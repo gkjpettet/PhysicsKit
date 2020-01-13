@@ -3,6 +3,8 @@ A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D 
 
 ## Port Progress
 
+Currently porting `Vector2.java`. Up to and including `copy()`.
+
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
 - [ ] BinarySearchTreeNode.java
@@ -217,15 +219,5 @@ A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D 
 - [ ] Reference.java
 - [ ] UnitConversion.java
 - [ ] Version.java
-
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 
 [dyn4j]: https://github.com/dyn4j/dyn4j
