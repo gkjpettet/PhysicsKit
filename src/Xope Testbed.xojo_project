@@ -11,6 +11,7 @@ Class=Epsilon;Xope/Epsilon.xojo_code;&h000000007EC487FF;&h00000000342617FF;false
 Class=Vector2;Xope/Vector2.xojo_code;&h000000001143EFFF;&h00000000342617FF;false
 Module=Maths;Xope/Maths.xojo_code;&h000000004986D7FF;&h00000000342617FF;false
 Class=Geometry;Xope/Geometry.xojo_code;&h0000000053090FFF;&h00000000342617FF;false
+Class=Rotation;Xope/Rotation.xojo_code;&h000000001C340FFF;&h00000000342617FF;false
 DefaultWindow=Window1
 AppMenuBar=MainMenuBar
 MajorVersion=1

@@ -6,6 +6,7 @@ Protected Module Xope
 		  
 		  Epsilon.Initialise
 		  Geometry.Initialise
+		  Rotation.Initialise
 		  Vector2.Initialise
 		End Sub
 	#tag EndMethod
