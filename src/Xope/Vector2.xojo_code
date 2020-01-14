@@ -385,8 +385,8 @@ Protected Class Vector2
 		  ///
 		  
 		  Var a As Double = otherAngle - ATan2(Self.Y, Self.X)
-		  If a > Math.PI Then Return a - Geometry.TWO_PI
-		  If a < -Math.PI Then Return a + Geometry.TWO_PI
+		  If a > Maths.PI Then Return a - Geometry.TWO_PI
+		  If a < -Maths.PI Then Return a + Geometry.TWO_PI
 		  Return a
 		  
 		End Function
@@ -402,8 +402,8 @@ Protected Class Vector2
 		  ///
 		  
 		  Var a As Double = ATan2(vector.Y, vector.X) - ATan2(Self.Y, Self.X)
-		  If a > Math.PI Then Return a - Geometry.TWO_PI
-		  If a < -Math.PI then Return a + Geometry.TWO_PI
+		  If a > Maths.PI Then Return a - Geometry.TWO_PI
+		  If a < -Maths.PI then Return a + Geometry.TWO_PI
 		  Return a
 		  
 		End Function

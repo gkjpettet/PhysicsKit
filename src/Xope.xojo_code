@@ -5,6 +5,7 @@ Protected Module Xope
 		  // Initialises the physics module including shared properties within classes.
 		  
 		  Epsilon.Initialise
+		  Geometry.Initialise
 		  Vector2.Initialise
 		End Sub
 	#tag EndMethod
