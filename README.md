@@ -3,7 +3,7 @@ A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D 
 
 ## Port Progress
 
-Currently porting `Vector2.java`. Up to and including `copy()`.
+Currently porting `Rotation.java`. Up to but not including the first constructor.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
@@ -211,7 +211,7 @@ Currently porting `Vector2.java`. Up to and including `copy()`.
 	- [ ] Transformable.java
 	- [ ] Translatable.java
 	- [ ] Triangle.java
-	- [ ] Vector2.java
+	- [x] Vector2.java
 	- [ ] Vector3.java
 	- [ ] Wound.java
 	- [ ] WoundIterator.java
