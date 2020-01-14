@@ -2,13 +2,18 @@
 Protected Class Vector2
 	#tag Method, Flags = &h0, Description = 44656661756C7420636F6E7374727563746F722E
 		Sub Constructor()
-		  
+		  ///
+		  ' Default constructor.
+		  ///
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120756E6974206C656E67746820766563746F7220696E2074686520676976656E20646972656374696F6E2028696E2072616469616E73292E
 		Sub Constructor(direction As Double)
-		  // Creates a unit length vector in the given direction (in radians).
+		  ///
+		  ' Creates a unit length vector in the given direction.
+		  ' - Parameter direction: The direction in radians.
+		  ///
 		  
 		  Self.X = Cos(direction)
 		  Self.Y = Sin(direction)
@@ -18,7 +23,11 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 4F7074696F6E616C20636F6E7374727563746F722E
 		Sub Constructor(x As Double, y As Double)
-		  // Optional constructor.
+		  ///
+		  ' Optional constructor.
+		  ' - Parameter x: The X component.
+		  ' - Parameter y: The Y component.
+		  ///
 		  
 		  Self.X = x
 		  Self.Y = y
@@ -28,7 +37,13 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120566563746F72322066726F6D2074686520666972737420706F696E7420746F20746865207365636F6E6420706F696E742E
 		Sub Constructor(x1 As Double, y1 As Double, x2 As Double, y2 As Double)
-		  // Creates a Vector2 from the first point to the second point.
+		  ///
+		  ' Creates a `Vector2` from the first point to the second point.
+		  ' - Parameter x1 The X coordinate of the first point.
+		  ' - Parameter y1: The Y coordinate of the first point.
+		  ' - Parameter x2: The X coordinate of the second point.
+		  ' - Parameter: y2 The Y coordinate of the second point.
+		  ///
 		  
 		  Self.X = x2 - x1
 		  Self.Y = y2 - y1
@@ -38,7 +53,10 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 436F707920636F6E7374727563746F722E
 		Sub Constructor(vector As Xope.Vector2)
-		  // Copy constructor.
+		  ///
+		  ' Copy constructor.
+		  ' - Parameter vector: The Vector2 to copy from.
+		  ///
 		  
 		  Self.X = vector.X
 		  Self.Y = vector.Y
@@ -48,7 +66,11 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120566563746F72322066726F6D2074686520666972737420706F696E7420746F20746865207365636F6E6420706F696E742E
 		Sub Constructor(p1 As Xope.Vector2, p2 As Xope.Vector2)
-		  // Creates a Vector2 from the first point to the second point.
+		  ///
+		  ' Creates a {Vector2} from the first point to the second point.
+		  ' - Parameter p1: The first point.
+		  ' - Parameter p2: The second point.
+		  ///
 		  
 		  Self.X = p2.X - p1.X
 		  Self.Y = p2.Y - p1.Y
@@ -58,7 +80,10 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F66207468697320566563746F72322E
 		Function Copy() As Xope.Vector2
-		  // Returns a copy of this Vector2.
+		  ///
+		  ' Returns a copy of this Vector2.
+		  ' - Returns: A new Vector2.
+		  ///
 		  
 		  Return New Vector2(Self.X, Self.Y)
 		  
@@ -67,15 +92,34 @@ Protected Class Vector2
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720566563746F723220676976656E20746865206D61676E697475646520616E6420646972656374696F6E2E2060646972656374696F6E6020697320696E2072616469616E732E
 		Function Create(magnitude As Double, direction As Double) As Xope.Vector2
-		  // Returns a new Vector2 given the magnitude and direction.
-		  // param: magnitude the magnitude of the Vector2.
-		  // param: direction the direction of the Vector2 in radians.
+		  ///
+		  ' Returns a new Vector2 given the magnitude and direction.
+		  ' - Parameter magnitude: The magnitude of the Vector2.
+		  ' - Parameter direction: The direction of the Vector2 in radians.
+		  ' - Returns: A new Vector2.
+		  ///
 		  
 		  Var x_ As Double = magnitude * Cos(direction)
 		  Var y_ As Double = magnitude * Sin(direction)
 		  Return New Vector2(x_, y_)
 		  
 		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Distance(x As Double, y As Double) As Double
+		  ///
+		  ' Returns the distance from this point to the given point.
+		  ' - Parameter x: The X coordinate of the point.
+		  ' - Parameter y: The Y coordinate of the point.
+		  ' - Returns: Double.
+		  ///
+		  
+		  Var dx As Double = Self.X - x
+		  Var dy As Double = Self.Y - y
+		  
+		  Return Sqrt(dx * dx + dy * dy)
 		End Function
 	#tag EndMethod
 
