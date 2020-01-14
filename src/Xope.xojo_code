@@ -4,6 +4,8 @@ Protected Module Xope
 		Protected Sub Initialise()
 		  // Initialises the physics module including shared properties within classes.
 		  
+		  Maths.Initialise
+		  
 		  Epsilon.Initialise
 		  Geometry.Initialise
 		  Rotation.Initialise
