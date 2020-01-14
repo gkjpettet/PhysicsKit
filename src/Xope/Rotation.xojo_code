@@ -137,6 +137,32 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C7565206F6620636F7328CE982920666F72207468697320526F746174696F6E2E
+		Function GetCost() As Double
+		  ///
+		  ' Returns the value of cos(Θ) for this Rotation.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Self.Cost
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C7565206F662073696E28CE982920666F72207468697320526F746174696F6E2E
+		Function GetSint() As Double
+		  ///
+		  ' Returns the value of sin(Θ) for this Rotation.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Self.Sint
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 496E7465726E616C207573652E20496E697469616C69736573207368617265642070726F706572746965732E
 		Shared Sub Initialise()
 		  ///
@@ -368,6 +394,58 @@ Protected Class Rotation
 		  ///
 		  
 		  Return New Rotation(0.0, 1.0)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20616E676C652028696E2072616469616E732920616E642072657475726E73207468697320526F746174696F6E2E
+		Function Set(angle As Double) As Xope.Rotation
+		  ///
+		  ' Sets this Rotation to the given angle.
+		  '
+		  ' - Parameter angle: The angle in radians.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Self.Cost = Cos(angle)
+		  Self.Sint = Sin(angle)
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
+		Function Set(r As Xope.Rotation) As Xope.Rotation
+		  ///
+		  ' Sets this Rotation to the given Rotation.
+		  '
+		  ' - Parameter r: The Rotation to set this Rotation} to.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Self.Cost = r.Cost
+		  Self.Sint = r.Sint
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F20626520746865206964656E7469747920616E642072657475726E73207468697320526F746174696F6E2E
+		Function SetIdentity() As Xope.Rotation
+		  ///
+		  ' Sets this Rotation to be the identity.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Self.Cost = 1.0
+		  Self.Sint = 0.0
+		  
+		  Return Self
 		  
 		End Function
 	#tag EndMethod
