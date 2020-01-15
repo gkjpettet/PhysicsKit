@@ -3,7 +3,7 @@ A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D 
 
 ## Port Progress
 
-Currently porting `Rotation.java`. Up to but not including `toRadians()`.
+Currently porting `Rotation.java`. Up to but not including `rotate270()`.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java

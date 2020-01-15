@@ -150,6 +150,89 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function GetRotated135() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 135 degrees and returns a new Rotation.
+		  '
+		  ' - Returns: A new Rotation.
+		  ///
+		  
+		  // Rotate by 90 and then another 45.
+		  Return Self.GetRotated45Helper(-Self.Sint, Self.Cost)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E732061204E657720726F746174696F6E2E
+		Function GetRotated180() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 180 degrees and returns a New rotation.
+		  '
+		  ' - Returns: A new Rotation.
+		  ///
+		  
+		  Return New Rotation(-Self.cost, -Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
+		Function GetRotated225() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 225 degrees and returns a new Rotation.
+		  '
+		  ' - Returns: A new Rotation.
+		  ///
+		  
+		  // Rotate by 180 and another 45 degrees.
+		  Return Self.GetRotated45Helper(-Self.Cost, -Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
+		Function GetRotated45() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 45 degrees and returns a new Rotation.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Return Self.GetRotated45Helper(Self.Cost, Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 272020496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F662061203435206465677265652E2052657475726E732061206E657720526F746174696F6E2E
+		Protected Function GetRotated45Helper(cost As Double, sint As Double) As Xope.Rotation
+		  ///
+		  '  Internal helper method to perform rotations consisting of a 45 degree.
+		  '
+		  ' - Parameter cost: The cos of the angle.
+		  ' - Parameter sint: the sin of the angle.
+		  '
+		  '- Returns: A new Rotation with initial values (cost, sint) and then rotated 45 degrees.
+		  ///
+		  
+		  Return New Rotation(mSQRT_2_INV * (cost - sint), mSQRT_2_INV * (cost + sint))
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
+		Function GetRotated90() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 90 degrees and returns a new Rotation.
+		  ' 
+		  ' - Returns: A new Rotation.
+		  ///
+		  
+		  Return New Rotation(-Self.Sint, Self.Cost)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C7565206F662073696E28CE982920666F72207468697320526F746174696F6E2E
 		Function GetSint() As Double
 		  ///
@@ -290,6 +373,100 @@ Protected Class Rotation
 		  End If
 		  
 		  Return -1
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313335206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
+		Function Rotate135() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 135 degrees and returns this Rotation.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  // Rotate by 90 and then another 45.
+		  Return Self.Rotate45Helper(-Self.Sint, Self.Cost)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
+		Function Rotate180() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 180 degrees and returns this Rotation.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Self.Cost = -Self.Cost
+		  Self.Sint = -Self.Sint
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
+		Function Rotate225() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 225 degrees and returns this Rotation.
+		  '
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  // Rotate by 180 and another 45 degrees.
+		  Return Self.Rotate45Helper(-Self.Cost, -Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
+		Function Rotate45() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 45 degrees and returns this Rotation.
+		  '
+		  ' - Returns: This Rotation after rotation.
+		  ///
+		  
+		  Return Self.Rotate45Helper(Self.Cost, Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F6620612034352064656772656520616E676C652E2052657475726E73207468697320526F746174696F6E206166746572206D6F64696669636174696F6E2E
+		Protected Function Rotate45Helper(cost As Double, sint As Double) As Xope.Rotation
+		  ///
+		  ' Internal helper method to perform rotations consisting of a 45 degree angle.
+		  '
+		  ' - Parameter cost: The cos of the angle.
+		  ' - Parameter sint: The sin of the angle.
+		  '
+		  ' - Returns: This Rotation after being set to (cost, sint) and rotated 45 degrees.
+		  ///
+		  
+		  Self.Cost = mSQRT_2_INV * (cost - sint)
+		  Self.Sint = mSQRT_2_INV * (cost + sint)
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
+		Function Rotate90() As Xope.Rotation
+		  ///
+		  ' Rotates this Rotation 90 degrees and returns this Rotation.
+		  ' 
+		  ' - Returns: This Rotation.
+		  ///
+		  
+		  Var temp As Double = Self.Cost
+		  Self.Cost = -Self.Sint
+		  Self.Sint = temp
+		  
+		  Return Self
+		  
 		  
 		End Function
 	#tag EndMethod
@@ -450,6 +627,42 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520616E676C6520696E206465677265657320666F72207468697320526F746174696F6E2E
+		Function ToDegrees() As Double
+		  ///
+		  ' Returns the angle in degrees for this Rotation.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Maths.ToDegrees(ToRadians)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520616E676C6520696E2072616469616E7320666F72207468697320526F746174696F6E2E
+		Function ToRadians() As Double
+		  ///
+		  ' Since we have the cos and sin values computed we can use
+		  ' the ACos function which is much faster than ATan2.
+		  '
+		  ' We can find the angle in the range [0, π] with ACos
+		  ' and then we'll use the sign of the sin value to find in which
+		  ' semicircle we are and extend the result to [-π, π].
+		  '
+		  ' Apart from being quite faster this is also more precise.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Var acos As Double = ACos(Self.Cost)
+		  Var angle As Double = If(Self.Sint >= 0, acos, -acos)
+		  
+		  Return angle
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E73206120537472696E6720726570726573656E746174696F6E206F66207468697320526F746174696F6E20696E2074686520666F726D61743A2022526F746174696F6E28636F73742C2073696E7429222E
 		Function ToString() As String
 		  ///
@@ -459,6 +672,34 @@ Protected Class Rotation
 		  
 		  Return "Rotation(" + Self.Cost.ToString + ", " + _
 		  Self.Sint.ToString + ")"
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468697320526F746174696F6E2061732061206E657720756E6974206C656E67746820646972656374696F6E20766563746F722E
+		Function ToVector() As Xope.Vector2
+		  ///
+		  ' Returns this Rotation as a unit length direction vector.
+		  '
+		  ' - Returns: A new Vector2.
+		  ///
+		  
+		  Return New Vector2(Self.Cost, Self.Sint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468697320526F746174696F6E2061732061206E657720646972656374696F6E20766563746F7220776974682074686520676976656E206D61676E69747564652E
+		Function ToVector(magnitude As Double) As Xope.Vector2
+		  ///
+		  ' Returns this Rotation as a new direction vector with the given magnitude.
+		  '
+		  ' - Parameter magnitude: The magnitude.
+		  '
+		  ' - Returns: A new Vector2.
+		  ///
+		  
+		  Return New Vector2(Self.Cost * magnitude, Self.Sint * magnitude)
 		  
 		End Function
 	#tag EndMethod
