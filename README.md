@@ -1,5 +1,5 @@
 # PhysicsKit
-A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 3.4.0).
+A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 3.4.0).
 
 ## Port Progress
 
