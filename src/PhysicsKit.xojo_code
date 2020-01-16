@@ -1,5 +1,5 @@
 #tag Module
-Protected Module Xope
+Protected Module PhysicsKit
 	#tag Method, Flags = &h1
 		Protected Sub Initialise()
 		  // Initialises the physics module including shared properties within classes.

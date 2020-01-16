@@ -43,7 +43,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F707920636F6E7374727563746F722E
-		Sub Constructor(rotation As Xope.Rotation)
+		Sub Constructor(rotation As PhysicsKit.Rotation)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -57,7 +57,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F66207468697320526F746174696F6E2E
-		Function Copy() As Xope.Rotation
+		Function Copy() As PhysicsKit.Rotation
 		  ///
 		  ' Returns a copy of this Rotation.
 		  ///
@@ -100,6 +100,24 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520636F7320616E642073696E20636F6D706F6E656E7473206F66207468697320526F746174696F6E20617265207468652073616D652061732074686520676976656E20526F746174696F6E2E
+		Function Equals(r As PhysicsKit.Rotation) As Boolean
+		  ///
+		  ' Returns True if the cos and sin components of this Rotation 
+		  ' are the same as the given Rotation.
+		  '
+		  ' - Parameter r: The Rotation to compare to.
+		  '
+		  ' - Returns: Boolean.
+		  ///
+		  
+		  If r = Nil Then Return False
+		  
+		  Return Self.Cost = r.Cost And Self.Sint = r.Sint
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520636F7320616E642073696E20636F6D706F6E656E7473206F66207468697320526F746174696F6E20617265207468652073616D652061732074686520676976656E20526F746174696F6E20676976656E2074686520737065636966696564206572726F722E
 		Function Equals(r As Rotation, error As Double) As Boolean
 		  ///
@@ -119,24 +137,6 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520636F7320616E642073696E20636F6D706F6E656E7473206F66207468697320526F746174696F6E20617265207468652073616D652061732074686520676976656E20526F746174696F6E2E
-		Function Equals(r As Xope.Rotation) As Boolean
-		  ///
-		  ' Returns True if the cos and sin components of this Rotation 
-		  ' are the same as the given Rotation.
-		  '
-		  ' - Parameter r: The Rotation to compare to.
-		  '
-		  ' - Returns: Boolean.
-		  ///
-		  
-		  If r = Nil Then Return False
-		  
-		  Return Self.Cost = r.Cost And Self.Sint = r.Sint
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C7565206F6620636F7328CE982920666F72207468697320526F746174696F6E2E
 		Function GetCost() As Double
 		  ///
@@ -151,7 +151,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRotated135() As Xope.Rotation
+		Function GetRotated135() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 135 degrees and returns a new Rotation.
 		  '
@@ -165,7 +165,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E732061204E657720726F746174696F6E2E
-		Function GetRotated180() As Xope.Rotation
+		Function GetRotated180() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 180 degrees and returns a New rotation.
 		  '
@@ -178,7 +178,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated225() As Xope.Rotation
+		Function GetRotated225() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 225 degrees and returns a new Rotation.
 		  '
@@ -192,7 +192,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated45() As Xope.Rotation
+		Function GetRotated45() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 45 degrees and returns a new Rotation.
 		  '
@@ -205,7 +205,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 272020496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F662061203435206465677265652E2052657475726E732061206E657720526F746174696F6E2E
-		Protected Function GetRotated45Helper(cost As Double, sint As Double) As Xope.Rotation
+		Protected Function GetRotated45Helper(cost As Double, sint As Double) As PhysicsKit.Rotation
 		  ///
 		  '  Internal helper method to perform rotations consisting of a 45 degree.
 		  '
@@ -221,7 +221,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated90() As Xope.Rotation
+		Function GetRotated90() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 90 degrees and returns a new Rotation.
 		  ' 
@@ -257,7 +257,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 416C7465726E61746976652077617920746F206372656174652061206E657720526F746174696F6E2066726F6D206120676976656E20616E676C652C20696E20646567726565732E
-		Shared Function OfDegrees(angle As Double) As Xope.Rotation
+		Shared Function OfDegrees(angle As Double) As PhysicsKit.Rotation
 		  ///
 		  ' Alternative way to create a new Rotation from a given angle, in degrees.
 		  '
@@ -272,7 +272,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 416C7465726E61746976652077617920746F206372656174652061206E657720526F746174696F6E2066726F6D206120676976656E20616E676C652C20696E2072616469616E732E
-		Shared Function Of_(angle As Double) As Xope.Rotation
+		Shared Function Of_(angle As Double) As PhysicsKit.Rotation
 		  ///
 		  ' Alternative way to create a new Rotation from a given angle, in radians.
 		  '
@@ -287,7 +287,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537461746963206D6574686F6420746F20637265617465206120526F746174696F6E2066726F6D20612070616972206F662076616C7565732074686174206C6965206F6E2074686520756E697420636972636C652E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function Of_(cost As Double, sint As Double) As Xope.Rotation
+		Shared Function Of_(cost As Double, sint As Double) As PhysicsKit.Rotation
 		  ///
 		  ' Static method to create a Rotation from a pair of values that lie on the unit circle.
 		  ' That is a pair of values (x, y) such that `x = cos(Θ), y = sin(Θ)` for some value Θ.
@@ -317,7 +317,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E20726570726573656E74696E67207468652073616D6520726F746174696F6E2061732061205472616E73666F726D206F626A6563742E
-		Shared Function Of_(transform As Xope.Transform) As Xope.Rotation
+		Shared Function Of_(transform As PhysicsKit.Transform) As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation representing the same rotation as a Transform object.
 		  '
@@ -334,7 +334,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537461746963206D6574686F6420746F20637265617465206120526F746174696F6E206F626A6563742066726F6D2074686520646972656374696F6E206F66206120676976656E20766563746F722E
-		Shared Function Of_(direction As Xope.Vector2) As Xope.Rotation
+		Shared Function Of_(direction As PhysicsKit.Vector2) As PhysicsKit.Rotation
 		  ///
 		  ' Static method to create a Rotation object from the direction of a given vector.
 		  '
@@ -368,7 +368,7 @@ Protected Class Rotation
 		  If obj = Nil Then Return -1
 		  If obj = Self Then Return 0
 		  If obj IsA Rotation Then
-		    Var r As Xope.Rotation = Xope.Rotation(obj)
+		    Var r As PhysicsKit.Rotation = PhysicsKit.Rotation(obj)
 		    Return If(Self.Cost = r.Cost And Self.Sint = r.Sint, 0, -1)
 		  End If
 		  
@@ -378,7 +378,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313335206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate135() As Xope.Rotation
+		Function Rotate135() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 135 degrees and returns this Rotation.
 		  '
@@ -392,7 +392,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate180() As Xope.Rotation
+		Function Rotate180() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 180 degrees and returns this Rotation.
 		  '
@@ -408,7 +408,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate225() As Xope.Rotation
+		Function Rotate225() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 225 degrees and returns this Rotation.
 		  '
@@ -422,7 +422,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate45() As Xope.Rotation
+		Function Rotate45() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 45 degrees and returns this Rotation.
 		  '
@@ -435,7 +435,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F6620612034352064656772656520616E676C652E2052657475726E73207468697320526F746174696F6E206166746572206D6F64696669636174696F6E2E
-		Protected Function Rotate45Helper(cost As Double, sint As Double) As Xope.Rotation
+		Protected Function Rotate45Helper(cost As Double, sint As Double) As PhysicsKit.Rotation
 		  ///
 		  ' Internal helper method to perform rotations consisting of a 45 degree angle.
 		  '
@@ -454,7 +454,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate90() As Xope.Rotation
+		Function Rotate90() As PhysicsKit.Rotation
 		  ///
 		  ' Rotates this Rotation 90 degrees and returns this Rotation.
 		  ' 
@@ -472,7 +472,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F66203020646567726565732E
-		Shared Function Rotation0() As Xope.Rotation
+		Shared Function Rotation0() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 0 degrees.
 		  '
@@ -485,7 +485,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662031333520646567726565732E
-		Shared Function Rotation135() As Xope.Rotation
+		Shared Function Rotation135() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 135 degrees.
 		  '
@@ -498,7 +498,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662031383020646567726565732E
-		Shared Function Rotation180() As Xope.Rotation
+		Shared Function Rotation180() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 180 degrees.
 		  '
@@ -511,7 +511,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662032323520646567726565732E
-		Shared Function Rotation225() As Xope.Rotation
+		Shared Function Rotation225() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 225 degrees.
 		  '
@@ -524,7 +524,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662032373020646567726565732E
-		Shared Function Rotation270() As Xope.Rotation
+		Shared Function Rotation270() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 270 degrees.
 		  '
@@ -537,7 +537,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Rotation315() As Xope.Rotation
+		Shared Function Rotation315() As PhysicsKit.Rotation
 		  ///
 		  '  Creates a new Rotation of 315 degrees.
 		  '
@@ -550,7 +550,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F6620343520646567726565732E
-		Shared Function Rotation45() As Xope.Rotation
+		Shared Function Rotation45() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 45 degrees.
 		  '
@@ -563,7 +563,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F6620393020646567726565732E
-		Shared Function Rotation90() As Xope.Rotation
+		Shared Function Rotation90() As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation of 90 degrees.
 		  '
@@ -576,7 +576,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20616E676C652028696E2072616469616E732920616E642072657475726E73207468697320526F746174696F6E2E
-		Function Set(angle As Double) As Xope.Rotation
+		Function Set(angle As Double) As PhysicsKit.Rotation
 		  ///
 		  ' Sets this Rotation to the given angle.
 		  '
@@ -594,7 +594,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
-		Function Set(r As Xope.Rotation) As Xope.Rotation
+		Function Set(r As PhysicsKit.Rotation) As PhysicsKit.Rotation
 		  ///
 		  ' Sets this Rotation to the given Rotation.
 		  '
@@ -612,7 +612,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F20626520746865206964656E7469747920616E642072657475726E73207468697320526F746174696F6E2E
-		Function SetIdentity() As Xope.Rotation
+		Function SetIdentity() As PhysicsKit.Rotation
 		  ///
 		  ' Sets this Rotation to be the identity.
 		  '
@@ -677,7 +677,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468697320526F746174696F6E2061732061206E657720756E6974206C656E67746820646972656374696F6E20766563746F722E
-		Function ToVector() As Xope.Vector2
+		Function ToVector() As PhysicsKit.Vector2
 		  ///
 		  ' Returns this Rotation as a unit length direction vector.
 		  '
@@ -690,7 +690,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468697320526F746174696F6E2061732061206E657720646972656374696F6E20766563746F7220776974682074686520676976656E206D61676E69747564652E
-		Function ToVector(magnitude As Double) As Xope.Vector2
+		Function ToVector(magnitude As Double) As PhysicsKit.Vector2
 		  ///
 		  ' Returns this Rotation as a new direction vector with the given magnitude.
 		  '
