@@ -112,6 +112,57 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub EqualsTest()
+		  ///
+		  ' Tests the `Equals` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(1.0, 2.0)
+		  
+		  Assert.IsTrue(v.Equals(v))
+		  Assert.IsTrue(v.Equals(v.Copy))
+		  Assert.IsTrue(v.Equals(New Vector2(1.0, 2.0)))
+		  Assert.IsTrue(v.Equals(1.0, 2.0))
+		  
+		  Assert.IsFalse(v.Equals(v.Copy.Set(2.0, 1.0)))
+		  Assert.IsFalse(v.Equals(2.0, 2.0))
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetTest()
+		  ///
+		  ' Tests the `Set` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2
+		  
+		  Var v2 As Vector2 = New Vector2(1.0, -3.0)
+		  Call v.Set(v2)
+		  
+		  Assert.IsFalse(v = v2)
+		  Assert.AreEqual(1.0, v.x)
+		  Assert.AreEqual(-3.0, v.y)
+		  
+		  Call v.Set(-1.0, 0.0)
+		  Assert.AreEqual(-1.0, v.x)
+		  Assert.AreEqual( 0.0, v.y)
+		  
+		  Call v.SetDirection(Maths.ToRadians(90))
+		  Assert.AreEqual( 0.0, v.x, 1E-10)
+		  Assert.AreEqual( 1.0, v.y)
+		  
+		  Call v.SetMagnitude(3.0)
+		  Assert.AreEqual( 0.0, v.x, 1E-10)
+		  Assert.AreEqual( 3.0, v.y)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub TripleProductTest()
 		  ///
 		  ' Tests the `TripleProduct` method.
