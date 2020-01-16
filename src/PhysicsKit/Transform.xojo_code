@@ -45,6 +45,22 @@ Implements PhysicsKit.Transformable
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F723220616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72322E
+		Sub Constructor(vector As PhysicsKit.Vector2)
+		  ///
+		  ' Transforms the given Vector2 and places the result in the given Vector2.
+		  '
+		  ' - Parameter vector: The Vector2 to transform.
+		  ///
+		  
+		  Var x As Double = vector.X
+		  Var y As Double = vector.Y
+		  vector.X = Self.Cost * x - Self.Sint * y + Self.X
+		  vector.Y = Self.Sint * x + Self.Cost * y + Self.Y
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 436F706965732074686973205472616E73666F726D2E
 		Function Copy() As PhysicsKit.Transform
 		  ///
@@ -893,22 +909,6 @@ Implements PhysicsKit.Transformable
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F723220616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72322E
-		Sub Transform(vector As PhysicsKit.Vector2)
-		  ///
-		  ' Transforms the given Vector2 and places the result in the given Vector2.
-		  '
-		  ' - Parameter vector: The Vector2 to transform.
-		  ///
-		  
-		  Var x As Double = vector.X
-		  Var y As Double = vector.Y
-		  vector.X = Self.Cost * x - Self.Sint * y + Self.X
-		  vector.Y = Self.Sint * x + Self.Cost * y + Self.Y
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F7232206F6E6C792062792074686520726F746174696F6E20616E642072657475726E732074686520726573756C7420696E2074686520676976656E20566563746F72322E
 		Sub TransformR(vector As PhysicsKit.Vector2)
 		  ///
@@ -1050,6 +1050,38 @@ Implements PhysicsKit.Transformable
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Cost"
+			Visible=false
+			Group="Behavior"
+			InitialValue="1"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Sint"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="X"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Y"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
