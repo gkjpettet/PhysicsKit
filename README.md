@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Currently porting Vector2Test.java. Up to and including `set()`.
+Currently porting Vector2Test.java. Up to and including `negate()`.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java

@@ -31,6 +31,36 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub AddTest()
+		  ///
+		  ' Tests the `Add` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 2.0)
+		  Var v2 As Vector2 = New Vector2(-2.0, 1.0)
+		  
+		  Var v3 As Vector2 = v1.Sum(v2)
+		  Assert.AreEqual(-1.0, v3.x)
+		  Assert.AreEqual( 3.0, v3.y)
+		  
+		  v3 = v1.Sum(3.0, -7.5)
+		  Assert.AreEqual( 4.0, v3.x)
+		  Assert.AreEqual(-5.5, v3.y)
+		  
+		  Call v1.Add(v2)
+		  Assert.AreEqual(-1.0, v1.x)
+		  Assert.AreEqual( 3.0, v1.y)
+		  
+		  Call v1.Add(-2.0, 1.0)
+		  Assert.AreEqual(-3.0, v1.x)
+		  Assert.AreEqual( 4.0, v1.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CopyTest()
 		  ///
 		  ' Tests the `Copy` method.
@@ -89,6 +119,33 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CrossTest()
+		  ///
+		  ' Test the `Cross` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  
+		  Assert.AreEqual(0.0, v1.Cross(v1))
+		  Assert.AreEqual(1.0, v1.Cross(v2))
+		  Assert.AreEqual(-2.0, v1.Cross(v1.GetLeftHandOrthogonalVector))
+		  
+		  Assert.AreEqual(0.0, v1.Cross(1.0, 1.0))
+		  Assert.AreEqual(1.0, v1.Cross(0.0, 1.0))
+		  Assert.AreEqual(2.0, v1.Cross(-1.0, 1.0))
+		  
+		  Var r As Vector2 = v1.Cross(3.0)
+		  
+		  Assert.AreEqual(-3.0, r.x)
+		  Assert.AreEqual( 3.0, r.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub DistanceTest()
 		  ///
 		  ' Tests the `Distance` methods.
@@ -112,6 +169,51 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub DivideTest()
+		  ///
+		  ' Tests the `Divide` and `Quotient` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(2.0, 1.0)
+		  
+		  Var r As Vector2 = v1.Quotient(-2.0)
+		  Assert.AreEqual(-1.0, r.x)
+		  Assert.AreEqual(-0.5, r.y)
+		  
+		  Call v1.Divide(-2.0)
+		  Assert.AreEqual(-1.0, r.x)
+		  Assert.AreEqual(-0.5, r.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DotTest()
+		  ///
+		  ' Tests the `Dot` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  
+		  Assert.AreEqual(1.0, v1.Dot(v2))
+		  // Test a perpendicular vector.
+		  Assert.AreEqual(0.0, v1.Dot(v1.GetLeftHandOrthogonalVector))
+		  Assert.AreEqual(v1.GetMagnitudeSquared, v1.Dot(v1))
+		  
+		  Assert.AreEqual(1.0, v1.Dot(0.0, 1.0))
+		  // Test a perpendicular vector.
+		  Assert.AreEqual(0.0, v1.Dot(-1.0, 1.0))
+		  Assert.AreEqual(2.0, v1.Dot(1.0, 1.0))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub EqualsTest()
 		  ///
 		  ' Tests the `Equals` methods.
@@ -128,6 +230,136 @@ Inherits TestGroup
 		  
 		  Assert.IsFalse(v.Equals(v.Copy.Set(2.0, 1.0)))
 		  Assert.IsFalse(v.Equals(2.0, 2.0))
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetTest()
+		  ///
+		  ' tests the `Get` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As PhysicsKit.Vector2 = New Vector2(3.0, 4.0)
+		  
+		  Var x As Vector2 = v.GetXComponent
+		  Var y As Vector2 = v.GetYComponent
+		  
+		  Assert.AreEqual(3.0, x.x)
+		  Assert.AreEqual(0.0, x.y)
+		  Assert.AreEqual(0.0, y.x)
+		  Assert.AreEqual(4.0, y.y)
+		  
+		  Assert.AreEqual(5.000, v.GetMagnitude, 1.0e-3)
+		  Assert.AreEqual(25.000, v.GetMagnitudeSquared, 1.0e-3)
+		  Assert.AreEqual(53.130, Maths.ToDegrees(v.GetDirection), 1.0e-3)
+		  
+		  Var v2 As Vector2 = New Vector2(-4.0, 3.0)
+		  Assert.AreEqual(90.000, Maths.ToDegrees(v.GetAngleBetween(v2)), 1.0e-3)
+		  
+		  v2 = v.GetLeftHandOrthogonalVector
+		  Assert.AreEqual( 4.0, v2.x)
+		  Assert.AreEqual(-3.0, v2.y)
+		  
+		  v2 = v.GetRightHandOrthogonalVector
+		  Assert.AreEqual(-4.0, v2.x)
+		  Assert.AreEqual( 3.0, v2.y)
+		  
+		  v2 = v.GetNegative
+		  Assert.AreEqual(-3.0, v2.x)
+		  Assert.AreEqual(-4.0, v2.y)
+		  
+		  v2 = v.GetNormalised
+		  Assert.AreEqual(0.600, v2.x, 1.0e-3)
+		  Assert.AreEqual(0.800, v2.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsOrthogonalTest()
+		  ///
+		  ' Tests the `IsOrthogonal` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  
+		  Assert.IsFalse(v1.IsOrthogonal(v2))
+		  Assert.IsTrue(v1.IsOrthogonal(v1.GetLeftHandOrthogonalVector))
+		  Assert.IsTrue(v1.IsOrthogonal(v1.GetRightHandOrthogonalVector))
+		  Assert.IsFalse(v1.IsOrthogonal(v1))
+		  
+		  Assert.IsFalse(v1.IsOrthogonal(0.0, 1.0))
+		  Assert.IsTrue(v1.IsOrthogonal(1.0, -1.0))
+		  Assert.IsTrue(v1.IsOrthogonal(-1.0, 1.0))
+		  Assert.IsFalse(v1.IsOrthogonal(1.0, 1.0))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsZeroTest()
+		  ///
+		  ' Tests the `IsZero` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2
+		  
+		  Assert.IsTrue(v.isZero)
+		  
+		  Call v.Set(1.0, 0.0)
+		  Assert.IsFalse(v.IsZero)
+		  
+		  Call v.Set(1.0, 1.0)
+		  Assert.IsFalse(v.IsZero)
+		  
+		  Call v.Set(0.0, 1.0)
+		  Assert.IsFalse(v.IsZero)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MultiplyTest()
+		  ///
+		  ' Tests the `Multiply` and `Product` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(2.0, 1.0)
+		  
+		  Var r As Vector2 = v1.Product(-1.5)
+		  Assert.AreEqual(-3.0, r.x)
+		  Assert.AreEqual(-1.5, r.y)
+		  
+		  Call v1.Multiply(-1.5)
+		  Assert.AreEqual(-3.0, v1.x)
+		  Assert.AreEqual(-1.5, v1.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub NegateTest()
+		  ///
+		  ' Tests the `Negate` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(1.0, -6.0)
+		  
+		  Call v.Negate
+		  Assert.AreEqual(-1.0, v.x)
+		  Assert.AreEqual( 6.0, v.y)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -159,6 +391,60 @@ Inherits TestGroup
 		  Call v.SetMagnitude(3.0)
 		  Assert.AreEqual( 0.0, v.x, 1E-10)
 		  Assert.AreEqual( 3.0, v.y)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SubtractTest()
+		  ///
+		  ' tests the `Subtract` and `Difference` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 2.0)
+		  Var v2 As Vector2 = New Vector2(-2.0, 1.0)
+		  
+		  Var v3 As Vector2 = v1.Difference(v2)
+		  Assert.AreEqual( 3.0, v3.x)
+		  Assert.AreEqual( 1.0, v3.y)
+		  
+		  v3 = v1.Difference(3.0, -7.5)
+		  Assert.AreEqual(-2.0, v3.x)
+		  Assert.AreEqual( 9.5, v3.y)
+		  
+		  Call v1.Subtract(v2)
+		  Assert.AreEqual( 3.0, v1.x)
+		  Assert.AreEqual( 1.0, v1.y)
+		  
+		  Call v1.Subtract(-2.0, 1.0)
+		  Assert.AreEqual( 5.0, v1.x)
+		  Assert.AreEqual( 0.0, v1.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TowardsTest()
+		  ///
+		  ' Tests the `Towards` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var p1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var p2 As Vector2 = New Vector2(0.0, 1.0)
+		  
+		  Var r As Vector2 = p1.Towards(p2)
+		  
+		  Assert.AreEqual(-1.0, r.x)
+		  Assert.AreEqual( 0.0, r.y)
+		  
+		  r = p1.Towards(2.0, 0.0)
+		  
+		  Assert.AreEqual( 1.0, r.x)
+		  Assert.AreEqual(-1.0, r.y)
+		  
 		End Sub
 	#tag EndMethod
 
