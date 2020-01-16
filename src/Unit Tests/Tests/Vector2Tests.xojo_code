@@ -88,6 +88,49 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub DistanceTest()
+		  ///
+		  ' Tests the `Distance` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2
+		  
+		  Assert.AreEqual(4.000, v.DistanceSquared(2.0, 0.0), 1.0e-3)
+		  Assert.AreEqual(5.000, v.DistanceSquared(2.0, -1.0), 1.0e-3)
+		  Assert.AreEqual(2.000, v.Distance(2.0, 0.0), 1.0e-3)
+		  Assert.AreEqual(5.000, v.Distance(3.0, 4.0), 1.0e-3)
+		  
+		  Assert.AreEqual(4.000, v.DistanceSquared(New Vector2(2.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(5.000, v.DistanceSquared(New Vector2(2.0, -1.0)), 1.0e-3)
+		  Assert.AreEqual(2.000, v.Distance(New Vector2(2.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(5.000, v.Distance(New Vector2(3.0, 4.0)), 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TripleProductTest()
+		  ///
+		  ' Tests the `TripleProduct` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var v2 As Vector2 = New Vector2(1.0, -1.0)
+		  
+		  Var r As Vector2 = Vector2.TripleProduct(v1, v2, v2)
+		  
+		  // T.he below would be -1.0 if the vectors were normalized.
+		  Assert.AreEqual(-2.000, r.x, 1.0e-3)
+		  Assert.AreEqual(-2.000, r.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private Prop1 As Integer
