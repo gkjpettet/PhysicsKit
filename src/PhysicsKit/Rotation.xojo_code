@@ -256,6 +256,26 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 436F6D7061726573207468697320526F746174696F6E20746F2074686520706173736564206F626A65637420666F7220657175616C6974792E
+		Function Equals(obj As Variant) As Boolean
+		  ///
+		  ' Compares this Rotation to the passed object for equality.
+		  '
+		  ' - Returns: True if `obj` is considered equal to this Rotation.
+		  ///
+		  
+		  If obj = Nil Then Return False
+		  If obj = Self Then Return True
+		  If obj IsA Rotation Then
+		    Var r As PhysicsKit.Rotation = PhysicsKit.Rotation(obj)
+		    Return If(Self.Cost = r.Cost And Self.Sint = r.Sint, True, False)
+		  End If
+		  
+		  Return False
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C7565206F6620636F7328CE982920666F72207468697320526F746174696F6E2E
 		Function GetCost() As Double
 		  ///
@@ -633,26 +653,6 @@ Protected Class Rotation
 		  
 		  // The rotation is the normalized vector.
 		  Return New Rotation(direction.X / magnitude, direction.Y / magnitude)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 436F6D7061726573207468697320526F746174696F6E20746F2074686520706173736564206F626A65637420666F7220657175616C6974792E
-		Function Operator_Compare(obj As Variant) As Integer
-		  ///
-		  ' Compares Self Rotation to the passed object for equality.
-		  '
-		  ' - Returns: 0 If `obj` is considered equal to Self Rotation, -1 otherwise.
-		  ///
-		  
-		  If obj = Nil Then Return -1
-		  If obj = Self Then Return 0
-		  If obj IsA Rotation Then
-		    Var r As PhysicsKit.Rotation = PhysicsKit.Rotation(obj)
-		    Return If(Self.Cost = r.Cost And Self.Sint = r.Sint, 0, -1)
-		  End If
-		  
-		  Return -1
 		  
 		End Function
 	#tag EndMethod
