@@ -31,9 +31,27 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub CopyTest()
+		  ///
+		  ' Tests the `Copy` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(1.0, 3.0)
+		  Var vc As Vector2 = v.Copy
+		  
+		  Assert.IsFalse(v = vc)
+		  Assert.AreEqual(v.x, vc.x)
+		  Assert.AreEqual(v.y, vc.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateTest()
 		  ///
-		  ' Tests the create methods.
+		  ' Tests the `Create` methods.
 		  ///
 		  
 		  Using PhysicsKit
@@ -47,7 +65,7 @@ Inherits TestGroup
 		  Assert.AreEqual(2.0, v2.y)
 		  
 		  Var v3 As Vector2 = New Vector2(v2)
-		  Assert.IsFalse(v3 Is v2)
+		  Assert.IsFalse(v3 = v2)
 		  Assert.AreEqual(1.0, v3.x)
 		  Assert.AreEqual(2.0, v3.y)
 		  

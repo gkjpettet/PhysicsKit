@@ -373,6 +373,28 @@ Protected Class Vector2
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520706173736564206F626A656374206973207468652073616D65206F626A656374206173207468697320766563746F72206F72206973206120566563746F7232206F626A6563742077697468207468652073616D65205820616E64205920636F6D706F6E656E74732E
+		Function Equals(obj As Variant) As Boolean
+		  ///
+		  ' Returns True if the passed object is the same object as this vector or is a 
+		  ' Vector2 object with the same X and Y components.
+		  '
+		  ' - Parameter obj: The object to compare with.
+		  '
+		  ' - Returns: Boolean.
+		  ///
+		  
+		  If obj = Nil Then Return False
+		  If obj = Self Then Return True
+		  If obj IsA Vector2 Then
+		    Var v As PhysicsKit.Vector2 = PhysicsKit.Vector2(obj)
+		    Return If(Self.X = v.X And Self.Y = v.Y, True, False)
+		  End If
+		  
+		  Return False
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520736D616C6C65737420616E676C65206265747765656E207468697320766563746F7220616E642074686520676976656E20616E676C652028696E2072616469616E73292E2052657475726E732074686520616E676C6520696E2072616469616E7320696E207468652072616E6765202DCF8020746F20CF802E
 		Function GetAngleBetween(otherAngle As Double) As Double
 		  ///
@@ -760,46 +782,6 @@ Protected Class Vector2
 		  
 		  Return magnitude
 		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Operator_Compare(v As PhysicsKit.Vector2) As Integer
-		  ///
-		  ' Determines if the passed Vector2 is the same object as this vector or is a 
-		  ' Vector2 object with the same X and Y components.
-		  '
-		  ' - Parameter v: The Vector2 to compare with.
-		  '
-		  ' - Returns: `0` if this vector and `v` are considered equal, `-1` otherwise.
-		  ///
-		  
-		  If v Is Nil Then Return -1
-		  If v Is Self Then Return 0
-		  Return If(Self.X = v.X And Self.Y = v.Y, 0, -1)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Operator_Compare(obj As Variant) As Integer
-		  ///
-		  ' Determines if the passed object is the same object as Self vector or is a 
-		  ' Vector2 object with the same X and Y components.
-		  '
-		  ' - Parameter obj: The object to compare with.
-		  '
-		  ' - Returns: `0` if the Self vector and `obj` are considered equal, `-1` otherwise.
-		  ///
-		  
-		  If obj Is Nil Then Return -1
-		  If obj Is Self Then Return 0
-		  If obj IsA Vector2 Then
-		    Var v As PhysicsKit.Vector2 = PhysicsKit.Vector2(obj)
-		    Return If(Self.X = v.X And Self.Y = v.Y, 0, -1)
-		  End If
-		  
-		  Return -1
 		End Function
 	#tag EndMethod
 
