@@ -201,15 +201,15 @@ Currently porting `Transform.java`. Up to but not including `Transform(transform
 	- [ ] Ray.java
 	- [ ] Rectangle.java
 	- [ ] RobustGeometry.java
-	- [ ] Rotatable.java
+	- [x] Rotatable.java
 	- [x] Rotation.java
 	- [ ] Segment.java
 	- [ ] Shape.java
 	- [ ] Shiftable.java
 	- [ ] Slice.java
 	- [ ] Transform.java
-	- [ ] Transformable.java
-	- [ ] Translatable.java
+	- [x] Transformable.java
+	- [x] Translatable.java
 	- [ ] Triangle.java
 	- [x] Vector2.java
 	- [ ] Vector3.java

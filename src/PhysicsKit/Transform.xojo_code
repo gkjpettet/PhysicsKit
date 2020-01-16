@@ -1,5 +1,6 @@
 #tag Class
 Protected Class Transform
+Implements PhysicsKit.Transformable
 	#tag Method, Flags = &h0, Description = 44656661756C74207075626C696320636F6E7374727563746F722E
 		Sub Constructor()
 		  ///
@@ -16,6 +17,78 @@ Protected Class Transform
 		  ///
 		  
 		  mIDENTITY = New Transform
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(theta As Double)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(theta As Double, x As Double, y As Double)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(theta As Double, point As PhysicsKit.Vector2)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(r As PhysicsKit.Rotation)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Rotate(r As PhysicsKit.Rotation, point As PhysicsKit.Vector2)
+		  // Part of the PhysicsKit.Rotatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Translate(x As Double, y As Double)
+		  // Part of the PhysicsKit.Translatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Translate(vector As PhysicsKit.Vector2)
+		  // Part of the PhysicsKit.Translatable interface.
+		  #pragma error  "Don't forget to implement this method!"
+		  
+		  
 		End Sub
 	#tag EndMethod
 
