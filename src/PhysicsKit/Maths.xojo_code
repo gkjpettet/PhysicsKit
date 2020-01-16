@@ -7,8 +7,22 @@ Protected Module Maths
 		  ///
 		  
 		  m180_OVER_PI = 180 / PI
-		  
+		  mPI_OVER_180 = PI / 180
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E7320746865207061737365642072616469616E732076616C756520696E20646567726565732E
+		Protected Function ToDegrees(radians As Double) As Double
+		  ///
+		  ' Returns the passed radians value in degrees.
+		  ' 
+		  ' - Parameter radians: The value to convert
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return radians * m180_OVER_PI
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 52657475726E73207468652073706563696669656420616E676C6520696E2072616469616E7320696E20646567726565732E
@@ -21,7 +35,7 @@ Protected Module Maths
 		  ' - Returns: Double.
 		  ///
 		  
-		  Return degrees * m180_OVER_PI
+		  Return degrees * mPI_OVER_180
 		  
 		End Function
 	#tag EndMethod
@@ -29,6 +43,10 @@ Protected Module Maths
 
 	#tag Property, Flags = &h21, Description = 5072652D63616C63756C617465642076616C7565206F6620313830202F20CF802E2055736564207768656E20636F6E76657274696E672072616469616E7320746F20646567726565732E
 		Private m180_OVER_PI As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mPI_OVER_180 As Double
 	#tag EndProperty
 
 

@@ -9,6 +9,7 @@ Protected Module PhysicsKit
 		  Epsilon.Initialise
 		  Geometry.Initialise
 		  Rotation.Initialise
+		  Transform.Initialise
 		  Vector2.Initialise
 		End Sub
 	#tag EndMethod

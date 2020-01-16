@@ -1,9 +1,9 @@
-# Xope
+# PhysicsKit
 A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 3.4.0).
 
 ## Port Progress
 
-Currently porting `Rotation.java`. Up to but not including `rotate270()`.
+Currently porting `Transform.java`. Up to but not including `Transform(transform)`.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
@@ -202,7 +202,7 @@ Currently porting `Rotation.java`. Up to but not including `rotate270()`.
 	- [ ] Rectangle.java
 	- [ ] RobustGeometry.java
 	- [ ] Rotatable.java
-	- [ ] Rotation.java
+	- [x] Rotation.java
 	- [ ] Segment.java
 	- [ ] Shape.java
 	- [ ] Shiftable.java
