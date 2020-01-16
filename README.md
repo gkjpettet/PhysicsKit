@@ -3,7 +3,7 @@ A 2D physics engine written in native Xojo. A direct port of [dyn4j], a Java 2D 
 
 ## Port Progress
 
-Currently porting `Transform.java`. Up to but not including `Transform(transform)`.
+Currently porting `Transform.java`. Up to but not including `rotate(double, double)`.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
