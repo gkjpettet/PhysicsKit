@@ -830,7 +830,7 @@ Implements PhysicsKit.Transformable
 		  ' Sets the translation.
 		  '
 		  ' - Parameter x: The translation along the x axis.
-		  ' - Parameter y; The translation along the y axis.
+		  ' - Parameter y The translation along the y axis.
 		  ///
 		  
 		  Self.X = x

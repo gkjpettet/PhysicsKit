@@ -8,6 +8,7 @@ Inherits TestController
 		  Dim group As TestGroup
 		  
 		  group = New Vector2Tests(Self, "Vector2")
+		  group = New RotationTests(Self, "Rotation")
 		  
 		End Sub
 	#tag EndEvent

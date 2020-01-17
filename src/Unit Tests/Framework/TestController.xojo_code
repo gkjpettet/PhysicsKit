@@ -59,8 +59,8 @@ Protected Class TestController
 		          
 		        ElseIf tr.Result = TestResult.Failed Then
 		          Dim failMessage As Text = tr.Message
-		          failMessage = failMessage.ReplaceAll("<", "&lt;")
-		          failMessage = failMessage.ReplaceAll(">", "&gt;")
+		          failMessage = failMessage.ReplaceAll("<", "&lt")
+		          failMessage = failMessage.ReplaceAll(">", "&gt")
 		          stream.Write "       <failure type=""xojo.AssertionFailedError"" message=""" + failMessage + """/>" + kEOL
 		        End If
 		        
