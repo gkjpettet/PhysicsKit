@@ -234,6 +234,23 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GetAngleBetweenTest()
+		  ///
+		  ' Tests the `GetAngleBetween` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(-1.0, 2.0)
+		  Var v2 As Vector2 = New Vector2(-2.0, -1.0)
+		  
+		  // This should return in the range of -π,π.
+		  Assert.IsTrue(Maths.PI >= Abs(v1.GetAngleBetween(v2)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetTest()
 		  ///
 		  ' tests the `Get` methods.
@@ -326,6 +343,23 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub LeftTest()
+		  ///
+		  ' Tests the `Left` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(11.0, 2.5)
+		  Call v.Left
+		  
+		  Assert.AreEqual( 2.5, v.x)
+		  Assert.AreEqual( -11.0, v.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub MultiplyTest()
 		  ///
 		  ' Tests the `Multiply` and `Product` methods.
@@ -359,6 +393,88 @@ Inherits TestGroup
 		  Call v.Negate
 		  Assert.AreEqual(-1.0, v.x)
 		  Assert.AreEqual( 6.0, v.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub NormaliseTest()
+		  ///
+		  ' Tests the `Normalise` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(3.0, 4.0)
+		  Call v.Normalise
+		  
+		  Assert.AreEqual( 3.0 / 5.0, v.x, 1.0e-3)
+		  Assert.AreEqual( 4.0 / 5.0, v.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProjectTest()
+		  ///
+		  ' Tests the `Project` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
+		  Var v2 As Vector2 = New Vector2(0.5, 1.0)
+		  
+		  Var r As Vector2 = v1.Project(v2)
+		  
+		  Assert.AreEqual( 0.600, r.x, 1.0e-3)
+		  Assert.AreEqual( 1.200, r.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RightTest()
+		  ///
+		  ' Tests the `Right` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(11.0, 2.5)
+		  Call v.Right
+		  
+		  Assert.AreEqual( -2.5, v.x)
+		  Assert.AreEqual( 11.0, v.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RotateTest()
+		  ///
+		  ' Tests the `Rotate` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(2.0, 1.0)
+		  
+		  Call v.Rotate(Maths.ToRadians(90))
+		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
+		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
+		  
+		  Call v.Rotate(New Rotation(Maths.ToRadians(60)), 0.0, 1.0)
+		  Assert.AreEqual(-1.366, v.x, 1.0e-3)
+		  Assert.AreEqual( 0.634, v.y, 1.0e-3)
+		  
+		  Call v.InverseRotate(New Rotation(Maths.ToRadians(60)), 0.0, 1.0)
+		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
+		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
+		  
+		  Call v.InverseRotate(Maths.ToRadians(90))
+		  Assert.AreEqual(2.0, v.x, 1.0e-3)
+		  Assert.AreEqual(1.0, v.y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -464,6 +580,23 @@ Inherits TestGroup
 		  // T.he below would be -1.0 if the vectors were normalized.
 		  Assert.AreEqual(-2.000, r.x, 1.0e-3)
 		  Assert.AreEqual(-2.000, r.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ZeroTest()
+		  ///
+		  ' Tests the `Zero` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var v As Vector2 = New Vector2(1.0, -2.0)
+		  
+		  Call v.Zero
+		  Assert.AreEqual( 0.0, v.x)
+		  Assert.AreEqual( 0.0, v.y)
 		  
 		End Sub
 	#tag EndMethod
