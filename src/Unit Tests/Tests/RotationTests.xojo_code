@@ -31,6 +31,56 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub CompareTest()
+		  ///
+		  ' Tests the `Compare` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(Maths.ToRadians(10))
+		  Var r2 As Rotation = New Rotation(Maths.ToRadians(100))
+		  Var r3 As Rotation = New Rotation(Maths.ToRadians(100))
+		  Var r4 As Rotation = New Rotation(Maths.ToRadians(-50))
+		  Var r5 As Rotation = New Rotation(Maths.ToRadians(110 + 10 * 360))
+		  
+		  Var v1 As Vector2 = New Vector2(Maths.ToRadians(-65))
+		  Var v2 As Vector2 = New Vector2(Maths.ToRadians(120))
+		  Call v1.Multiply(4.5)
+		  Call v2.Multiply(0.75)
+		  
+		  Assert.AreEqual(0, r1.Compare(r1))
+		  
+		  Assert.AreEqual(0, r2.Compare(r3))
+		  Assert.AreEqual(1, r1.Compare(r2))
+		  Assert.AreEqual(1, r3.Compare(r5))
+		  Assert.AreEqual(-1, r1.Compare(r4))
+		  
+		  Assert.AreEqual(1, r3.Compare(v2))
+		  Assert.AreEqual(-1, r4.Compare(v1))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CopyTest()
+		  ///
+		  ' Tests the `Copy` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(1.0, 3.0)
+		  Var rc As Rotation = r.Copy
+		  
+		  Assert.IsFalse(r = rc)
+		  Assert.AreEqual(r.cost, rc.cost)
+		  Assert.AreEqual(r.sint, rc.sint)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateTest()
 		  ///
 		  ' Tests the `Create` method.
@@ -109,6 +159,415 @@ Inherits TestGroup
 		  Var r315 As Rotation = Rotation.Rotation315
 		  Assert.AreEqual(Cos(Maths.ToRadians(315.0)), r315.cost, 1.0e-6)
 		  Assert.AreEqual(Sin(Maths.ToRadians(315.0)), r315.sint, 1.0e-6)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CrossTest()
+		  ///
+		  ' Tests the cross product methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(1.0, 0.0)
+		  Var r2 As Rotation = New Rotation(0.0, 1.0)
+		  Var v As Vector2 = New Vector2(-5.0, 0.0)
+		  
+		  Assert.AreEqual(1.0, r1.Cross(r2), 1.0e-6)
+		  Assert.AreEqual(0.0, r1.Cross(r2.GetRotated90), 1.0e-6)
+		  Assert.AreEqual(0.0, r1.Cross(v), 1.0e-6)
+		  
+		  Assert.AreEqual(0.0, r1.Cross(r1), 1.0e-6)
+		  Assert.AreEqual(0.0, r2.Cross(r2), 1.0e-6)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DotTest()
+		  ///
+		  ' Tests the `Dot` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(1.0, 0.0)
+		  Var r2 As Rotation = New Rotation(0.0, 1.0)
+		  Var v As Vector2 = New Vector2(0.0, -5.0)
+		  
+		  Assert.AreEqual(0.0, r1.Dot(r2), 1.0e-6)
+		  Assert.AreEqual(-1.0, r1.Dot(r2.GetRotated90), 1.0e-6)
+		  Assert.AreEqual(0.0, r1.Dot(v), 1.0e-6)
+		  
+		  // All Rotation objects are unit vectors.
+		  Assert.AreEqual(1.0, r1.Dot(r1), 1.0e-6)
+		  Assert.AreEqual(1.0, r2.Dot(r2), 1.0e-6)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub EqualsTest()
+		  ///
+		  ' Tests the `equals` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(2.0)
+		  
+		  Assert.IsTrue(r.Equals(r))
+		  Assert.IsTrue(r.Equals(r.Copy))
+		  Assert.IsTrue(r.Equals(New Rotation(2.0)))
+		  
+		  Assert.IsFalse(r.Equals(New Rotation(1.0)))
+		  Assert.IsFalse(r.Equals(New Vector2))
+		  
+		  Var nilObj As Vector2 = Nil
+		  Assert.IsFalse(r.Equals(nilObj))
+		  
+		  Assert.IsTrue(r.Equals(r, 1.0e-4))
+		  Var r2 As Rotation = r.Copy.Rotate(5).Rotate(-5)
+		  Assert.IsTrue(r.Equals(r2, 1.0e-4))
+		  
+		  Assert.IsFalse(r.Equals(New Rotation(1.0), 1.0e-4))
+		  
+		  Assert.IsTrue(r.Equals(2.0))
+		  Assert.IsTrue(r.Equals(2.0 + 1.0e-6, 1.0e-4))
+		  
+		  Assert.IsFalse(r.Equals(1.0))
+		  Assert.IsFalse(r.Equals(2.0 + 1.0e-2, 1.0e-4))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetRotatedTest()
+		  ///
+		  ' Tests the `GetRotated` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var temp As Rotation
+		  Var r1 As Rotation = New Rotation(Maths.ToRadians(0))
+		  
+		  temp = r1.GetRotated(Maths.toRadians(90))
+		  Assert.AreEqual(0.0, temp.cost, 1.0e-6)
+		  Assert.AreEqual(1.0, temp.sint, 1.0e-6)
+		  
+		  temp = r1.GetRotated(New Rotation(Maths.ToRadians(180)))
+		  Assert.AreEqual(-1.0, temp.cost, 1.0e-6)
+		  Assert.AreEqual( 0.0, temp.sint, 1.0e-6)
+		  
+		  Var r2 As Rotation = New Rotation(Maths.ToRadians(45))
+		  
+		  temp = r2.GetRotated(Maths.ToRadians(63))
+		  Assert.AreEqual(-0.309, temp.cost, 1.0e-3)
+		  Assert.AreEqual( 0.951, temp.sint, 1.0e-3)
+		  
+		  temp = r2.GetRotated(New Rotation(Maths.ToRadians(29)))
+		  Assert.AreEqual(0.276, temp.cost, 1.0e-3)
+		  Assert.AreEqual(0.961, temp.sint, 1.0e-3)
+		  
+		  Var r3 As Rotation = New Rotation(Maths.ToRadians(60))
+		  
+		  Assert.AreEqual(0.500, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.866, r3.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated90
+		  Assert.AreEqual(-0.866, temp.cost, 1.0e-3)
+		  Assert.AreEqual( 0.500, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated180
+		  Assert.AreEqual(-0.500, temp.cost, 1.0e-3)
+		  Assert.AreEqual(-0.866, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated270
+		  Assert.AreEqual( 0.866, temp.cost, 1.0e-3)
+		  Assert.AreEqual(-0.500, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated45
+		  Assert.AreEqual(-0.259, temp.cost, 1.0e-3)
+		  Assert.AreEqual( 0.966, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated135
+		  Assert.AreEqual(-0.966, temp.cost, 1.0e-3)
+		  Assert.AreEqual(-0.259, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated225
+		  Assert.AreEqual( 0.259, temp.cost, 1.0e-3)
+		  Assert.AreEqual(-0.966, temp.sint, 1.0e-3)
+		  
+		  temp = r3.GetRotated315
+		  Assert.AreEqual(0.966, temp.cost, 1.0e-3)
+		  Assert.AreEqual(0.259, temp.sint, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetRotationBetweenTest()
+		  ///
+		  ' Tests the `GetRotationBetween` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(Maths.ToRadians(10))
+		  Var r2 As Rotation = New Rotation(Maths.ToRadians(100))
+		  Var r3 As Rotation = New Rotation(Maths.ToRadians(100))
+		  Var r4 As Rotation = New Rotation(Maths.toRadians(-50))
+		  Var r5 As Rotation = New Rotation(Maths.toRadians(110 + 10 * 360))
+		  
+		  Var v1 As Vector2 = New Vector2(Maths.ToRadians(-65))
+		  Var v2 As Vector2 = New Vector2(Maths.ToRadians(120))
+		  Call v1.Multiply(4.5)
+		  Call v2.Multiply(0.75)
+		  
+		  Assert.AreEqual(Maths.ToRadians(0), r1.GetRotationBetween(r1).ToRadians, 1.0e-6)
+		  Assert.AreEqual(Maths.ToRadians(0), r2.GetRotationBetween(r3).ToRadians, 1.0e-6)
+		  Assert.AreEqual(Maths.ToRadians(90), r1.GetRotationBetween(r2).ToRadians, 1.0e-6)
+		  Assert.AreEqual(Maths.ToRadians(-60), r1.GetRotationBetween(r4).ToRadians, 1.0e-6)
+		  Assert.AreEqual(Maths.ToRadians(10), r3.GetRotationBetween(r5).ToRadians, 1.0e-6)
+		  
+		  Assert.AreEqual(Maths.ToRadians(20), r3.GetRotationBetween(v2).ToRadians, 1.0e-6)
+		  Assert.AreEqual(Maths.ToRadians(-15), r4.GetRotationBetween(v1).ToRadians, 1.0e-6)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetTest()
+		  ///
+		  ' Tests the `Get` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(1.5)
+		  
+		  Assert.AreEqual(Cos(1.5), r.GetCost)
+		  Assert.AreEqual(Sin(1.5), r.GetSint)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub InverseTest()
+		  ///
+		  ' Tests the `Inverse` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(0.0)
+		  
+		  Call r1.Inverse
+		  Assert.AreEqual(1.0, r1.cost, 1.0e-6)
+		  Assert.AreEqual(0.0, r1.sint, 1.0e-6)
+		  
+		  Var r2 As Rotation = New Rotation(Maths.PI / 2.0)
+		  Var r3 As Rotation = r2.Copy
+		  
+		  Call r2.Inverse
+		  Assert.AreEqual(0.0, r2.cost, 1.0e-6)
+		  Assert.AreEqual(-1.0, r2.sint, 1.0e-6)
+		  
+		  Call r2.Inverse
+		  Assert.IsTrue(r3.Equals(r2))
+		  
+		  Var temp As Rotation = r2.GetInversed
+		  Assert.AreEqual(0.0, temp.cost, 1.0e-6)
+		  Assert.AreEqual(-1.0, temp.sint, 1.0e-6)
+		  
+		  Assert.IsTrue(r3.Equals(r2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsIdentityTest()
+		  ///
+		  ' Tests the `IsIdentity` method.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation
+		  
+		  Assert.IsTrue(r.IsIdentity)
+		  Assert.IsTrue(r.IsIdentity(1.0e-6))
+		  
+		  Call r.Set(1.0)
+		  Assert.IsFalse(r.IsIdentity)
+		  Assert.IsFalse(r.IsIdentity(1.0e-6))
+		  
+		  Call r.Set(1.0e-6)
+		  Assert.IsFalse(r.IsIdentity)
+		  Assert.IsTrue(r.IsIdentity(1.0e-4))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsUnitTest()
+		  ///
+		  ' Tests the unit length property of rotations.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  // For any angle, the corresponding Rotation is always a unit vector.
+		  For i As Integer = 0 to 999
+		    Var r As PhysicsKit.Rotation = New Rotation(Maths.ToRadians(i))
+		    Assert.AreEqual(1.0, r.Dot(r), 1.0e-6)
+		  Next i
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RotateTest()
+		  ///
+		  ' Tests the `Rotate` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r1 As Rotation = New Rotation(Maths.ToRadians(0))
+		  
+		  Call r1.Rotate(Maths.ToRadians(90))
+		  Assert.AreEqual(0.0, r1.cost, 1.0e-6)
+		  Assert.AreEqual(1.0, r1.sint, 1.0e-6)
+		  
+		  Call r1.Rotate(New Rotation(Maths.ToRadians(90)))
+		  Assert.AreEqual(-1.0, r1.cost, 1.0e-6)
+		  Assert.AreEqual( 0.0, r1.sint, 1.0e-6)
+		  
+		  Var r2 As Rotation = New Rotation(Maths.ToRadians(45))
+		  
+		  Call r2.Rotate(Maths.ToRadians(63))
+		  Assert.AreEqual(-0.309, r2.cost, 1.0e-3)
+		  Assert.AreEqual( 0.951, r2.sint, 1.0e-3)
+		  
+		  Call r2.Rotate(New Rotation(Maths.ToRadians(29)))
+		  Assert.AreEqual(-0.731, r2.cost, 1.0e-3)
+		  Assert.AreEqual( 0.682, r2.sint, 1.0e-3)
+		  
+		  Var r3 As Rotation = New Rotation(Maths.ToRadians(60))
+		  
+		  Assert.AreEqual(0.500, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.866, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate90
+		  Assert.AreEqual(-0.866, r3.cost, 1.0e-3)
+		  Assert.AreEqual( 0.500, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate180
+		  Assert.AreEqual( 0.866, r3.cost, 1.0e-3)
+		  Assert.AreEqual(-0.500, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate270
+		  Assert.AreEqual(-0.500, r3.cost, 1.0e-3)
+		  Assert.AreEqual(-0.866, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate90
+		  Assert.AreEqual( 0.866, r3.cost, 1.0e-3)
+		  Assert.AreEqual(-0.500, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate45
+		  Assert.AreEqual(0.966, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.259, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate45
+		  Assert.AreEqual(0.500, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.866, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate135
+		  Assert.AreEqual(-0.966, r3.cost, 1.0e-3)
+		  Assert.AreEqual(-0.259, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate225
+		  Assert.AreEqual(0.500, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.866, r3.sint, 1.0e-3)
+		  
+		  Call r3.Rotate315
+		  Assert.AreEqual(0.966, r3.cost, 1.0e-3)
+		  Assert.AreEqual(0.259, r3.sint, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetTest()
+		  ///
+		  ' Tests the `Set` methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(2.0)
+		  
+		  Var r2 As rotation = New Rotation(3.0)
+		  Call r.Set(r2)
+		  
+		  Assert.IsFalse(r = r2)
+		  Assert.AreEqual(Cos(3.0), r.cost, 1.0e-6)
+		  Assert.AreEqual(Sin(3.0), r.sint, 1.0e-6)
+		  Assert.AreEqual(r2.cost, r.cost)
+		  Assert.AreEqual(r2.sint, r.sint)
+		  
+		  Call r.Set(-1.0)
+		  Assert.AreEqual(Cos(-1.0), r.cost, 1.0e-6)
+		  Assert.AreEqual(Sin(-1.0), r.sint, 1.0e-6)
+		  
+		  Call r.SetIdentity
+		  Assert.AreEqual(1.0, r.cost, 1.0e-6)
+		  Assert.AreEqual(0.0, r.sint, 1.0e-6)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ToAngleTest()
+		  ///
+		  ' Tests radians/degrees conversion methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(0.0, -1.0)
+		  
+		  Assert.AreEqual(-Maths.PI / 2, r.ToRadians, 1.0e-6)
+		  Assert.AreEqual(-90, r.ToDegrees, 1.0e-6)
+		  
+		  Call r.Rotate135
+		  
+		  Assert.AreEqual(Maths.PI / 4, r.ToRadians, 1.0e-6)
+		  Assert.AreEqual(45, r.ToDegrees, 1.0e-6)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ToVectorTest()
+		  ///
+		  ' Tests vector conversion methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var r As Rotation = New Rotation(Maths.ToRadians(30))
+		  Var v1 As Vector2 = r.ToVector
+		  Var v2 As Vector2 = r.ToVector(2.5)
+		  
+		  Assert.AreEqual(r.ToRadians, v1.GetDirection, 1.0e-6)
+		  Assert.AreEqual(r.ToRadians, v2.GetDirection, 1.0e-6)
+		  
+		  Assert.AreEqual(1.0, v1.GetMagnitude, 1.0e-6)
+		  Assert.AreEqual(2.5, v2.GetMagnitude, 1.0e-6)
 		  
 		End Sub
 	#tag EndMethod
