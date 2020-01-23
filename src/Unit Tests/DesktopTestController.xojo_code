@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New AABBTests(Self, "AABB")
 		  group = New TransformTests(Self, "Transform")
 		  group = New RotationTests(Self, "Rotation")
 		  group = New Vector2Tests(Self, "Vector2")

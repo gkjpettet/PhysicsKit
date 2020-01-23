@@ -305,7 +305,7 @@ Implements PhysicsKit.Translatable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D732074686520696E74657273656374696F6E206F662074686973204141424220616E642074686520676976656E20414142422072657475726E696E672074686520726573756C7420696E2061206E657720414142422E
-		Function GetIntersectiojn(aabb As PhysicsKit.AABB) As PhysicsKit.AABB
+		Function GetIntersection(aabb As PhysicsKit.AABB) As PhysicsKit.AABB
 		  ///
 		  ' Performs the intersection of this AABB and the given AABB returning
 		  ' the result in a new AABB.

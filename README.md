@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting AABB.java upto and including `copy()`.
-
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
 - [ ] BinarySearchTreeNode.java
@@ -149,7 +147,7 @@ Porting AABB.java upto and including `copy()`.
 	- [ ] World.java
 - [x] Epsilon.java
 - [ ] geometry
-	- [ ] AABB.java
+	- [x] AABB.java
 	- [ ] AbstractShape.java
 	- [ ] AdaptiveDecimal.java
 	- [ ] Capsule.java
