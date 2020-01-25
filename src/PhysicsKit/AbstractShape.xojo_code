@@ -41,8 +41,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function Contains(point As PhysicsKit.Vector2) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.Contains(point, IDENTITY)
 		  
 		End Function
 	#tag EndMethod
@@ -50,8 +50,12 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma Unused point
+		  #Pragma Unused transform
+		  
+		  Raise New UnsupportedOperationException(_
+		  "The Contains(Vector2, Transform) method must be implemented by the AbstractShape subclass.")
 		  
 		End Function
 	#tag EndMethod
@@ -59,8 +63,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function CreateAABB() As PhysicsKit.AABB
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.CreateAABB(IDENTITY)
 		  
 		End Function
 	#tag EndMethod
@@ -68,35 +72,38 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma Unused transform
 		  
+		  Raise New UnsupportedOperationException(_
+		  "The CreateAABB(Transform) method must be implemented by the AbstractShape subclass.")
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function CreateMass(density As Double) As PhysicsKit.Mass
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma Unused density
 		  
+		  Raise New UnsupportedOperationException(_
+		  "The CreateMass(Double) method must be implemented by the AbstractShape subclass.")
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function GetCenter() As PhysicsKit.Vector2
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
-		  
+		  Return Self.Center
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function GetID() As PhysicsKit.UUID
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return mID
 		  
 		End Function
 	#tag EndMethod
@@ -104,8 +111,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function GetRadius() As Double
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.Radius
 		  
 		End Function
 	#tag EndMethod
@@ -113,17 +120,19 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function GetRadius(center As PhysicsKit.Vector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma Unused center
 		  
+		  Raise New UnsupportedOperationException(_
+		  "The GetRadius(Vector2) method must be implemented by the AbstractShape subclass.")
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function GetUserData() As Variant
 		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.UserData
 		  
 		End Function
 	#tag EndMethod
@@ -141,8 +150,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function Project(vector As PhysicsKit.Vector2) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.Project(vector, IDENTITY)
 		  
 		End Function
 	#tag EndMethod
@@ -150,17 +159,20 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Function Project(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma Unused vector
+		  #Pragma Unused transform
 		  
+		  Raise New UnsupportedOperationException(_
+		  "The Project(Vector2, Transform) method must be implemented by the AbstractShape subclass.")
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(theta, 0.0, 0.0)
 		  
 		End Sub
 	#tag EndMethod
@@ -168,8 +180,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(New Rotation(theta), x, y)
 		  
 		End Sub
 	#tag EndMethod
@@ -177,8 +189,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, point As PhysicsKit.Vector2)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(theta, point.X, point.Y)
 		  
 		End Sub
 	#tag EndMethod
@@ -186,8 +198,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(r, 0.0, 0.0)
 		  
 		End Sub
 	#tag EndMethod
@@ -195,8 +207,14 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  ///
+		  ' Subclasses of AbstractShape should override just this method 
+		  ' if they need to perform additional operations on rotations.
+		  ///
+		  
+		  // Only rotate the center if the point about which we are rotating is not the center.
+		  If Not Self.Center.Equals(x, y) Then Call Self.Center.Rotate(r, x, y)
 		  
 		End Sub
 	#tag EndMethod
@@ -204,8 +222,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation, point As PhysicsKit.Vector2)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(r, point.X, point.Y)
 		  
 		End Sub
 	#tag EndMethod
@@ -213,8 +231,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub RotateAboutCenter(theta As Double)
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Rotate(theta, Self.Center.X, Self.Center.Y)
 		  
 		End Sub
 	#tag EndMethod
@@ -222,17 +240,36 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub SetUserData(data As Variant)
 		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.UserData = data
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120537472696E6720726570726573656E746174696F6E20696E2074686520666F726D3A202249443D69647C43656E7465723D28582C59297C5261646975733D726164697573222E
+		Function ToString() As String
+		  ///
+		  ' Returns a String representation in the form: "ID=id|Center=(X,Y)|Radius=radius".
+		  ///
+		  
+		  Var s() As STring
+		  s.AddRow("ID=")
+		  s.AddRow(Self.ID.ToString)
+		  s.AddRow("|Center=")
+		  s.AddRow(Self.Center.ToString)
+		  s.AddRow("|Radius=")
+		  s.AddRow(Self.Radius.ToString)
+		  
+		  Return String.FromArray(s)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Translate(x As Double, y As Double)
 		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Call Self.Center.Add(x, y)
 		  
 		End Sub
 	#tag EndMethod
@@ -240,8 +277,8 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 	#tag Method, Flags = &h0
 		Sub Translate(vector As PhysicsKit.Vector2)
 		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Self.Translate(vector.X, vector.Y)
 		  
 		End Sub
 	#tag EndMethod

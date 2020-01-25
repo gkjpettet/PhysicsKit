@@ -3,7 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `AbstractShape.java` up to but *not* including `toString()`.
 Need to port `java.util.UUID`.
 
 - [ ] BinarySearchTree.java
@@ -151,7 +150,7 @@ Need to port `java.util.UUID`.
 - [x] Epsilon.java
 - [ ] geometry
 	- [x] AABB.java
-	- [ ] AbstractShape.java
+	- [x] AbstractShape.java
 	- [ ] AdaptiveDecimal.java
 	- [ ] Capsule.java
 	- [ ] Circle.java
