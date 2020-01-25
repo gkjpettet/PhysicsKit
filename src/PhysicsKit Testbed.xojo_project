@@ -42,6 +42,7 @@ Class=Interval;PhysicsKit/Interval.xojo_code;&h0000000007E077FF;&h00000000342617
 Interface=Rotatable;PhysicsKit/Rotatable.xojo_code;&h00000000615CB7FF;&h00000000342617FF;false
 Class=UUID;PhysicsKit/UUID.xojo_code;&h000000000786FFFF;&h00000000342617FF;false
 Class=Mass;PhysicsKit/Mass.xojo_code;&h000000007282C7FF;&h00000000342617FF;false
+Class=AbstractShape;PhysicsKit/AbstractShape.xojo_code;&h000000002F9C67FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

@@ -6,6 +6,7 @@ Protected Module PhysicsKit
 		  
 		  Maths.Initialise
 		  
+		  AbstractShape.Initialise
 		  Epsilon.Initialise
 		  Geometry.Initialise
 		  Rotation.Initialise
