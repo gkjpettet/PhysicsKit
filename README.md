@@ -202,7 +202,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [x] Rotatable.java
 	- [x] Rotation.java
 	- [ ] Segment.java
-	- [ ] Shape.java
+	- [x] Shape.java
 	- [ ] Shiftable.java
 	- [ ] Slice.java
 	- [x] Transform.java

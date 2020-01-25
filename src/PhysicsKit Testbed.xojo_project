@@ -36,6 +36,7 @@ Toolbar=UnitTestsToolbar;Unit Tests/UI/UnitTestsToolbar.xojo_toolbar;&h000000004
 Window=UnitTestsWindow;Unit Tests/UI/UnitTestsWindow.xojo_window;&h000000005E851226;&h00000000447F2FFF;false
 Class=AABB;PhysicsKit/AABB.xojo_code;&h00000000598E87FF;&h00000000342617FF;false
 Interface=DataContainer;PhysicsKit/DataContainer.xojo_code;&h000000001EB867FF;&h00000000342617FF;false
+Interface=Shape;PhysicsKit/Shape.xojo_code;&h0000000047E687FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
