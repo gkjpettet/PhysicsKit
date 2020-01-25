@@ -3,8 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Ported `Interval.java`. Need to port `IntervalTest.java`.
-Need to port `Mass.java`.
+Need to port `IntervalTest.java`.
+Need to port `MassTest.java`.
 Need to port `java.util.UUID`.
 
 - [ ] BinarySearchTree.java
@@ -194,8 +194,8 @@ Need to port `java.util.UUID`.
 		- [ ] ReferencePointComparator.java
 	- [x] Interval.java
 	- [ ] Link.java
-	- [ ] Mass.java
-	- [ ] MassType.java
+	- [x] Mass.java
+	- [x] MassType.java
 	- [ ] Matrix22.java
 	- [ ] Matrix33.java
 	- [ ] PointFeature.java
