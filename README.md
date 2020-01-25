@@ -75,7 +75,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [ ] SingleTypedFallbackCondition.java
 		- [ ] TypedFallbackCondition.java
 	- [ ] TypeFilter.java
-- [ ] DataContainer.java
+- [x] DataContainer.java
 - [ ] dynamics
 	- [ ] AABBBroadphaseFilter.java
 	- [ ] Body.java
