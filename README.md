@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Need to port `MassTest.java`.
+Porting `MassTest.java` up to and including `setType()`.
 Need to port `java.util.UUID`.
 
 - [ ] BinarySearchTree.java

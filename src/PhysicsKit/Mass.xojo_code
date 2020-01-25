@@ -112,7 +112,7 @@ Protected Class Mass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061204D617373206F626A6563742066726F6D2074686520676976656E206172726179206F66206D61737365732E
-		Function Create(masses() As PhysicsKit.Mass) As PhysicsKit.Mass
+		Shared Function Create(masses() As PhysicsKit.Mass) As PhysicsKit.Mass
 		  ///
 		  ' Creates a Mass object from the given array of masses.
 		  '
