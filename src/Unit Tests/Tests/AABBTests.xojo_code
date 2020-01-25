@@ -125,6 +125,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var a As AABB = New AABB(0.0, 0.0, -1.0, 2.0)
+		    #Pragma Unused a
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -147,6 +148,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var a As AABB = New AABB(New Vector2(0.0, 0.0), New Vector2(-1.0, 2.0))
+		    #Pragma Unused a
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
