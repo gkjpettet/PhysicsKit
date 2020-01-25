@@ -434,6 +434,28 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub PolygonInertiaAndCOMTest()
+		  ///
+		  ' Tests the inertia and COM calculatons for polygon shapes.
+		  ///
+		  
+		  #Pragma Warning "Implement once Polygon class ported."
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub PolygonInertiaAndMassTest()
+		  ///
+		  ' Make sure the centre of mass does not effect the mass or inertia.
+		  ///
+		  
+		  #Pragma Warning "Implement once the Polygon class has been ported."
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SetTypeTest()
 		  ///
 		  ' Tests setting the type of the Mass.
