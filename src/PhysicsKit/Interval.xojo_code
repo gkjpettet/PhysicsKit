@@ -428,6 +428,25 @@ Protected Class Interval
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 5365747320746865206D696E696D756D20666F72207468697320696E74657276616C2E
+		Sub SetMin(min As Double)
+		  ///
+		  ' Sets the minimum for this interval.
+		  '
+		  ' - Parameter min: The minimum value.
+		  '
+		  ' - Throws: InvalidArgumentException if min > max.
+		  ///
+		  
+		  If min > Self.Max Then
+		    Raise New InvalidArgumentException(Messages.GEOMETRY_INTERVAL_INVALID_MINIMUM)
+		  End If
+		  
+		  Self.Min = min
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E73206120537472696E6720726570726573656E746174696F6E206F66207468697320496E74657276616C20696E2074686520666F726D61743A20225B6D696E2C206D61785D222E
 		Function ToString() As String
 		  ///

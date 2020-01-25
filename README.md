@@ -3,7 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Need to port `IntervalTest.java`.
 Need to port `MassTest.java`.
 Need to port `java.util.UUID`.
 
