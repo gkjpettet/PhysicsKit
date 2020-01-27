@@ -1,6 +1,6 @@
 #tag Class
 Protected Class AbstractShape
-Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
+Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag Method, Flags = &h0, Description = 4D696E696D616C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
 		  ///
@@ -11,7 +11,7 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 		  ' - Throws: InvalidlArgumentException if radius is zero or less.
 		  ///
 		  
-		  mID = UUID.RandomUUID
+		  mID = New UUID
 		  
 		  Constructor(New Vector2, radius)
 		  
@@ -30,7 +30,7 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 		  ' - Throws: NilObjectException if center is Nil.
 		  ///
 		  
-		  If mID Is Nil Then mID = UUID.RandomUUID
+		  If mID Is Nil Then mID = New UUID
 		  
 		  Self.Center = center
 		  Self.Radius = radius
@@ -353,6 +353,14 @@ Implements PhysicsKit.DataContainer, PhysicsKit.Shape, PhysicsKit.Transformable
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Radius"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
