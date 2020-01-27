@@ -178,7 +178,7 @@ comes for free with Java but not with Xojo.
 		- [ ] Triangulator.java
 	- [ ] EdgeFeature.java
 	- [ ] Ellipse.java
-	- [ ] Feature.java
+	- [x] Feature.java
 	- [ ] Geometry.java
 	- [ ] HalfEllipse.java
 	- [ ] hull
