@@ -3,7 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Need to port `java.util.UUID`.
+`AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
+comes for free with Java but not with Xojo.
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
