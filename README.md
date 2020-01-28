@@ -154,7 +154,7 @@ comes for free with Java but not with Xojo.
 	- [x] AbstractShape.java
 	- [ ] AdaptiveDecimal.java
 	- [ ] Capsule.java
-	- [ ] Circle.java
+	- [x] Circle.java
 	- [x] Convex.java
 	- [ ] decompose
 		- [ ] Bayazit.java

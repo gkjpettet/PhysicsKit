@@ -45,6 +45,7 @@ Class=Mass;PhysicsKit/Mass.xojo_code;&h000000007282C7FF;&h00000000342617FF;false
 Class=AbstractShape;PhysicsKit/AbstractShape.xojo_code;&h000000002F9C67FF;&h00000000342617FF;false
 Interface=Convex;PhysicsKit/Convex.xojo_code;&h000000001CCE5FFF;&h00000000342617FF;false
 Class=Feature;PhysicsKit/Feature.xojo_code;&h000000006D32AFFF;&h00000000342617FF;false
+Class=Circle;PhysicsKit/Circle.xojo_code;&h000000004414F7FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
