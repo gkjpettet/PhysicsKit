@@ -8,8 +8,6 @@ Protected Module PhysicsKit
 		  
 		  AbstractShape.Initialise
 		  Epsilon.Initialise
-		  Geometry.Initialise
-		  Rotation.Initialise
 		  Transform.Initialise
 		  Vector2.Initialise
 		End Sub

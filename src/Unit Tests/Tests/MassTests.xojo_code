@@ -213,7 +213,17 @@ Inherits TestGroup
 		  ' Test case for the circle create method.
 		  ///
 		  
-		  #Pragma Warning "Implement once Circle class has been ported."
+		  Using PhysicsKit
+		  
+		  Var c As Circle = New Circle(3.0)
+		  Var m As Mass = c.CreateMass(2.0)
+		  
+		  // The mass should be π * r * r * d
+		  Assert.AreEqual(56.548, m.GetMass, 1.0e-3)
+		  
+		  // I should be m * r * r / 2
+		  Assert.AreEqual(254.469, m.GetInertia, 1.0e-3)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -461,7 +471,40 @@ Inherits TestGroup
 		  ' Tests setting the type of the Mass.
 		  ///
 		  
-		  #Pragma Warning "Implement when Circle class ported"
+		  Using PhysicsKit
+		  
+		  Var c As Circle = Geometry.CreateCircle(2.0)
+		  Var mi As Mass = c.CreateMass(1.0)
+		  
+		  // Setting the type should not alter the mass values.
+		  mi.SetType(MassTypes.Infinite)
+		  Assert.IsTrue(mi.IsInfinite)
+		  Assert.IsFalse(0.0 = mi.Mass)
+		  Assert.IsFalse(0.0 = mi.InvMass)
+		  Assert.IsFalse(0.0 = mi.Inertia)
+		  Assert.IsFalse(0.0 = mi.InvInertia)
+		  
+		  // The get methods should return 0.
+		  Assert.AreEqual(0.0, mi.GetMass)
+		  Assert.AreEqual(0.0, mi.GetInverseMass)
+		  Assert.AreEqual(0.0, mi.GetInertia)
+		  Assert.AreEqual(0.0, mi.GetInverseInertia)
+		  
+		  mi.SetType(MassTypes.FixedAngularVelocity)
+		  Assert.IsFalse(0.0 = mi.Mass)
+		  Assert.IsFalse(0.0 = mi.InvMass)
+		  Assert.IsFalse(0.0 = mi.Inertia)
+		  Assert.IsFalse(0.0 = mi.InvInertia)
+		  Assert.AreEqual(0.0, mi.GetInertia)
+		  Assert.AreEqual(0.0, mi.GetInverseInertia)
+		  
+		  mi.SetType(MassTypes.FixedLinearVelocity)
+		  Assert.IsFalse(0.0 = mi.Mass)
+		  Assert.IsFalse(0.0 = mi.InvMass)
+		  Assert.IsFalse(0.0 = mi.Inertia)
+		  Assert.IsFalse(0.0 = mi.InvInertia)
+		  Assert.AreEqual(0.0, mi.GetMass)
+		  Assert.AreEqual(0.0, mi.GetInverseMass)
 		  
 		End Sub
 	#tag EndMethod

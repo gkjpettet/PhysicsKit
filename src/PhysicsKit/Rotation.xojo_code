@@ -442,7 +442,7 @@ Protected Class Rotation
 		  '- Returns: A new Rotation with initial values (cost, sint) and then rotated 45 degrees.
 		  ///
 		  
-		  Return New Rotation(mSQRT_2_INV * (cost - sint), mSQRT_2_INV * (cost + sint))
+		  Return New Rotation(SQRT_2_INV * (cost - sint), SQRT_2_INV * (cost + sint))
 		  
 		End Function
 	#tag EndMethod
@@ -501,16 +501,6 @@ Protected Class Rotation
 		  Return Self.Sint
 		  
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 496E7465726E616C207573652E20496E697469616C69736573207368617265642070726F706572746965732E
-		Shared Sub Initialise()
-		  ///
-		  ' Internal use. Initialises shared properties.
-		  ///
-		  
-		  mSQRT_2_INV = 1.0 / Sqrt(2)
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4E656761746573207468697320526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
@@ -808,8 +798,8 @@ Protected Class Rotation
 		  ' - Returns: Self Rotation after being set to (cost, sint) and rotated 45 degrees.
 		  ///
 		  
-		  Self.Cost = mSQRT_2_INV * (cost - sint)
-		  Self.Sint = mSQRT_2_INV * (cost + sint)
+		  Self.Cost = SQRT_2_INV * (cost - sint)
+		  Self.Sint = SQRT_2_INV * (cost + sint)
 		  
 		  Return Self
 		  
@@ -855,7 +845,7 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-mSQRT_2_INV, mSQRT_2_INV)
+		  Return New Rotation(-SQRT_2_INV, SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
@@ -881,7 +871,7 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-mSQRT_2_INV, -mSQRT_2_INV)
+		  Return New Rotation(-SQRT_2_INV, -SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
@@ -907,7 +897,7 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(mSQRT_2_INV, -mSQRT_2_INV)
+		  Return New Rotation(SQRT_2_INV, -SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
@@ -920,7 +910,7 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(mSQRT_2_INV, mSQRT_2_INV)
+		  Return New Rotation(SQRT_2_INV, SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
@@ -1067,33 +1057,18 @@ Protected Class Rotation
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub Untitled()
-		  
-		End Sub
-	#tag EndMethod
-
 
 	#tag Property, Flags = &h0, Description = 54686520636F73696E65206F662074686520616E676C6520646573637269626564206279207468697320526F746174696F6E2E
 		Cost As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Shared mSQRT_2_INV As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652073696E65206F662074686520616E676C6520646573637269626564206279207468697320526F746174696F6E2E
 		Sint As Double
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  Return mSQRT_2_INV
-			End Get
-		#tag EndGetter
-		Private Shared SQRT_2_INV As Double
-	#tag EndComputedProperty
+
+	#tag Constant, Name = SQRT_2_INV, Type = Double, Dynamic = False, Default = \"0.7071067811865475", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior
