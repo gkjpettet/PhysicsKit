@@ -49,6 +49,7 @@ Class=Feature;PhysicsKit/Feature.xojo_code;&h000000006D32AFFF;&h00000000342617FF
 Class=Circle;PhysicsKit/Circle.xojo_code;&h000000004414F7FF;&h00000000342617FF;false
 Class=PointFeature;PhysicsKit/PointFeature.xojo_code;&h0000000023A927FF;&h00000000342617FF;false
 Interface=Wound;PhysicsKit/Wound.xojo_code;&h0000000019559FFF;&h00000000342617FF;false
+Class=Polygon;PhysicsKit/Polygon.xojo_code;&h0000000053E7BFFF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

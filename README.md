@@ -3,6 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+Porting `Polygon.java` up to and including `toString()`.
+
 Part ported `Geometry.java` to allow compilation of `MassTests.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 

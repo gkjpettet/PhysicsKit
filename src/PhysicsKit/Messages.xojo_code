@@ -39,6 +39,27 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT, Type = String, Dynamic = False, Default = \"The `masses` array cannot contain Nil elements.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_POLYGON_COINCIDENT_VERTICES, Type = String, Dynamic = False, Default = \"A polygon cannot have coincident vertices.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_INVALID_WINDING, Type = String, Dynamic = False, Default = \"A polygon must have Counter-Clockwise vertex winding.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_LESS_THAN_3_VERTICES, Type = String, Dynamic = False, Default = \"A polygon must have 3 or more vertices.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_NIL_ARRAY, Type = String, Dynamic = False, Default = \"The vertices array cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_NIL_VERTICES, Type = String, Dynamic = False, Default = \"The vertices array cannot contain Nil points.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_NON_CONVEX, Type = String, Dynamic = False, Default = \"A polygon must be convex.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_POLYGON_ZERO_AREA, Type = String, Dynamic = False, Default = \"A polygon cannot have zero area.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_ROTATION_INVALID_POINT, Type = String, Dynamic = False, Default = \"The given values do not lie on the unit circle.", Scope = Protected
 	#tag EndConstant
 
