@@ -178,7 +178,7 @@ comes for free with Java but not with Xojo.
 		- [ ] SweepLineVertex.java
 		- [ ] SweepLineVertexType.java
 		- [ ] Triangulator.java
-	- [ ] EdgeFeature.java
+	- [x] EdgeFeature.java
 	- [ ] Ellipse.java
 	- [x] Feature.java
 	- [ ] Geometry.java

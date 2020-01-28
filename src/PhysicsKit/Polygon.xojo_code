@@ -1,7 +1,7 @@
 #tag Class
 Protected Class Polygon
 Inherits PhysicsKit.AbstractShape
-Implements PhysicsKit.Convex, PhysicsKit.Wound
+Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E657720506F6C79676F6E207573696E672074686520676976656E2076657274696365732E20205468652063656E747265206F662074686520706F6C79676F6E2069732063616C63756C61746564207573696E6720616E2061726561207765696768746564206D6574686F642E
 		Private Sub Constructor(valid As Boolean, vertices() As PhysicsKit.Vector2, center As PhysicsKit.Vector2)
 		  ///
@@ -732,14 +732,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 			Group="Behavior"
 			InitialValue=""
 			Type="Double"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Vertices()"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
