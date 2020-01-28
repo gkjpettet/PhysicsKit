@@ -200,7 +200,7 @@ comes for free with Java but not with Xojo.
 	- [ ] Matrix22.java
 	- [ ] Matrix33.java
 	- [x] PointFeature.java
-	- [ ] Polygon.java
+	- [x] Polygon.java
 	- [ ] Ray.java
 	- [ ] Rectangle.java
 	- [ ] RobustGeometry.java
