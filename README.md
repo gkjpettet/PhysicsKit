@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Part ported `Geometry.java` to allow compilation of `MassTests.java`.
+Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
 comes for free with Java but not with Xojo.

@@ -17,6 +17,172 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520617265612077656967687465642063656E74726F696420666F722074686520676976656E20706F696E74732E
+		Shared Function GetAreaWeightedCenter(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2
+		  ///
+		  ' Returns the area weighted centroid for the given points.
+		  '
+		  ' A Polygon's centroid must be computed by the area weighted method since the
+		  ' average method can be bias to one side if there are more points on that one
+		  ' side than another.
+		  '
+		  ' - Parameter points: The Polygon points.
+		  ' 
+		  ' - Returns: The area weighted centroid as a Vector2.
+		  '
+		  ' - Throws: NilObjectException if `points` is Nil or an element of `points` is Nil.
+		  ' - Throws: InvalidArgumentException if `points` is empty.
+		  ///
+		  
+		  // Calculate the average centre.
+		  // Note that this also performs the necessary checks and throws any exceptions needed.
+		  Var ac As Vector2 = Geometry.GetAverageCenter(points)
+		  Var size As Integer = points.Count
+		  
+		  // Otherwise perform the computation.
+		  Var center As Vector2 = New Vector2
+		  Var area As Double = 0.0
+		  // Loop through the vertices.
+		  Var iLimit As Integer = size - 1
+		  For i As Integer = 0 To iLimit
+		    // Get two vertices.
+		    Var p1 As Vector2 = points(i)
+		    Var p2 As Vector2 = If(i + 1 < size, points(i + 1), points(0))
+		    p1 = p1.Difference(ac)
+		    p2 = p2.Difference(ac)
+		    // Perform the cross product (yi * x(i+1) - y(i+1) * xi)
+		    Var d As Double = p1.Cross(p2)
+		    // Multiply by half.
+		    Var triangleArea As Double = 0.5 * d
+		    // Add it to the total area.
+		    area = area + triangleArea
+		    
+		    // Area weighted centroid
+		    // (p1 + p2) * (D / 3)
+		    // = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 3
+		    // We will divide by the total area later.
+		    Call center.Add(p1.Add(p2).Multiply(INV_3).Multiply(triangleArea))
+		  Next i
+		  
+		  // Check for zero area.
+		  If Abs(area) <= Epsilon.E Then
+		    // Zero area can only happen if all the points are the same point 
+		    // in which case just return a copy of the first.
+		    Return points(0).Copy
+		  End If
+		  
+		  // Finish the centroid calculation by dividing by the total area.
+		  Call center.Divide(area).Add(ac)
+		  
+		  // Return the centre.
+		  Return center
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652063656E74726F6964206F662074686520676976656E20706F696E747320627920706572666F726D696E6720616E20617665726167652E
+		Shared Function GetAverageCenter(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2
+		  ///
+		  ' Returns the centroid of the given points by performing an average.
+		  '
+		  ' - Parameter points: The list of points.
+		  '
+		  '- Returns: The centroid as a Vector2.
+		  '
+		  ' - Throws: NilObjectException if `points` is Nil or an element of `points` is Nil.
+		  ' - Throws: InvalidArgumentException if `points` is an empty array.
+		  ///
+		  
+		  // Check for Nil array
+		  If points = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  
+		  // Check for an empty array.
+		  If points.Count = 0 Then
+		    Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY1)
+		  End If
+		  
+		  // Get the size.
+		  Var size As Integer = points.Count
+		  
+		  // Check for an array of one point.
+		  If size = 1 Then
+		    Var p As Vector2 = points(0)
+		    // Make sure it's not Nil.
+		    If p Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    // Return a copy.
+		    Return p.Copy
+		  End If
+		  
+		  // Otherwise perform the average.
+		  Var ac As Vector2 = New Vector2
+		  For Each point As Vector2 In points
+		    // Check for Nil.
+		    If point Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    Call ac.Add(point)
+		  Next point
+		  
+		  Return ac.Divide(size)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206D6178696D756D20726164697573206F662074686520676976656E20766572746963657320726F74617465642061626F757420746865206F726967696E2E20496620746865207665727469636573206172726179206973204E696C206F7220656D7074792C207A65726F2069732072657475726E65642E
+		Shared Function GetRotationRadius(ParamArray vertices As PhysicsKit.Vector2) As Double
+		  ///
+		  ' Returns the maximum radius of the given vertices rotated about the origin.
+		  '
+		  ' If the vertices array is Nil or empty, zero is returned.
+		  '
+		  ' - Parameter vertices: The polygon vertices.
+		  '
+		  '- Returns: Double.
+		  ///
+		  
+		  Return Geometry.GetRotationRadius(New Vector2, vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206D6178696D756D20726164697573206F662074686520676976656E20766572746963657320726F74617465642061626F75742074686520676976656E2063656E7472652E204966207468652060766572746963657360206172726179206973204E696C206F7220656D7074792C207A65726F2069732072657475726E65642E204966206063656E74657260206973204E696C20746865206F726967696E2077696C6C206265207573656420696E73746561642E
+		Shared Function GetRotationRadius(center As PhysicsKit.Vector2, vertices() As PhysicsKit.Vector2) As Double
+		  ///
+		  ' Returns the maximum radius of the given vertices rotated about the given center.
+		  '
+		  ' If the vertices array is Nil or empty, zero is returned.
+		  ' If center is Nil the origin will be used instead.
+		  '
+		  ' - Parameter center: The center point.
+		  ' - Parameter vertices: The polygon vertices.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  // Validate the vertices.
+		  If vertices = Nil Then Return 0.0
+		  
+		  // Validate the centre.
+		  If center = Nil Then center = New Vector2
+		  
+		  // Validate the length.
+		  If vertices.Count = 0 Then Return 0.0
+		  
+		  // Find the maximum radius from the centre.
+		  Var r2 As Double = 0.0
+		  For Each v As Vector2 In vertices
+		    // Validate each vertex.
+		    If v <> Nil Then
+		      Var r2t As Double = center.DistanceSquared(v)
+		      // Keep the largest.
+		      r2 = Max(r2, r2t)
+		    End If
+		  Next v
+		  
+		  // Set the radius.
+		  Return Sqrt(r2)
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Constant, Name = INV_3, Type = Double, Dynamic = False, Default = \"0.3333333333333333", Scope = Public
 	#tag EndConstant
