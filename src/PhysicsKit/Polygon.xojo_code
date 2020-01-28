@@ -80,8 +80,53 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // If the polygon is convex then do a simple inside test.
+		  // If the the sign of the location of the point on the side of an edge (or line)
+		  // is always the same and the polygon is convex then we know that the
+		  // point lies inside the polygon.
+		  // This method doesn't care about vertex winding.
+		  
+		  // Inverse transform the point to put it in local coordinates.
+		  Var p As Vector2 = transform.GetInverseTransformed(point)
+		  
+		  // Start from the pair (p1 = last, p2 = first) so there's no 
+		  // need to check in the loop for wrap-around of the i + 1 vertice.
+		  Var size As Integer = Self.Vertices.Count
+		  Var p1 As Vector2 = Self.Vertices(size - 1)
+		  Var p2 As Vector2 = Self.Vertices(0)
+		  
+		  // Get the location of the point relative to the first two vertices.
+		  Var last As Double = Segment.GetLocation(p, p1, p2)
+		  
+		  // Loop through the rest of the vertices.
+		  For i As Integer = 0 To size - 2
+		    // p1 is now p2.
+		    p1 = p2
+		    // p2 is the next point.
+		    p2 = Self.Vertices(i + 1)
+		    // Check if they are equal (one of the vertices).
+		    If p.Equals(p1) Or p.Equals(p2) Then Return True
+		    
+		    // Do side of line test.
+		    Var location As Double = Segment.GetLocation(p, p1, p2)
+		    
+		    // Multiply the last location with this location.
+		    // If they are the same sign then the opertation will yield a positive result
+		    // -x * -y = +xy, x * y = +xy, -x * y = -xy, x * -y = -xy
+		    If last * location < 0 Then
+		      // reminder: (-0.0 < 0.0) evaluates to false and not true
+		      Return False
+		    End If
+		    
+		    // Update the last location, but only if it's not zero.
+		    // A location of zero indicates that the point lies ON the line
+		    // through p1 and p2. We can ignore these values because the
+		    // convexity requirement of the shape will ensure that if it's outside, a sign will change.
+		    If Abs(location) > Epsilon.E Then last = location
+		  Next i
+		  
+		  Return True
 		  
 		End Function
 	#tag EndMethod
@@ -116,8 +161,57 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetAxes(foci() As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
 		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // Get the size of the foci list.
+		  Var fociSize As Integer = If(foci <> Nil, foci.Count, 0)
+		  
+		  // Get the number of vertices this polygon has.
+		  Var size As Integer = Self.Vertices.Count
+		  
+		  // The axes of a polygon are created from the normal of the edges
+		  // plus the closest point to each focus.
+		  Var axes() As Vector2
+		  axes.ResizeTo(size + fociSize - 1)
+		  Var n As Integer = 0
+		  // Loop over the edge normals and put them into world space.
+		  For Each v As Vector2 In Self.Normals
+		    // Transform it into world space and add it to the list.
+		    axes(n) = transform.GetTransformedR(v)
+		    n = n + 1
+		  Next v
+		  
+		  // Loop over the focal points and find the closest points on the polygon to the focal points.
+		  For Each f As Vector2 In foci
+		    // Create a place for the closest point.
+		    Var closest As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		    Var d As Double = f.DistanceSquared(closest)
+		    // Find the minimum distance vertex.
+		    Var jLimit As Integer = Self.Vertices.LastRowIndex
+		    For j As Integer = 1 To jLimit
+		      // Get the vertex.
+		      Var p As Vector2 = Self.Vertices(j)
+		      // Transform it into world space.
+		      p = transform.GetTransformed(p)
+		      // Get the squared distance to the focus.
+		      Var dt As Double = f.DistanceSquared(p)
+		      // Compare with the last distance.
+		      If dt < d Then
+		        // If it's closer then save it.
+		        closest = p
+		        d = dt
+		      End If
+		    Next j
+		    // Once we have found the closest point create a vector from the focal point to the point.
+		    Var axis As Vector2 = f.Towards(closest)
+		    // Normalise it.
+		    Call axis.Normalise
+		    // Add it to the array.
+		    axes(n) = axis
+		    n = n + 1
+		  Next f
+		  
+		  // Return all the axes.
+		  Return axes
 		  
 		End Function
 	#tag EndMethod
@@ -132,10 +226,43 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Feature
+		Function GetFarthestFeature(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.EdgeFeature
 		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // Transform the normal into local space.
+		  Var localn As Vector2 = transform.GetInverseTransformedR(vector)
+		  
+		  Var index As Integer = GetFarthestVertexIndex(localn)
+		  Var count As Integer = Self.Vertices.Count
+		  
+		  Var maximum As Vector2 = New Vector2(Self.Vertices(index))
+		  
+		  // Once we have the point of maximum, see which edge is most perpendicular.
+		  Var leftN As Vector2 = Self.Normals(If(index = 0, count - 1, index - 1))
+		  Var rightN As Vector2 = Self.Normals(index)
+		  
+		  // Create the maximum point for the feature (transform the maximum into world space).
+		  transform.Transform(maximum)
+		  Var vm As PointFeature = New PointFeature(maximum, index)
+		  
+		  // Is the left or right edge more perpendicular?
+		  If leftN.Dot(localn) < rightN.Dot(localn) Then
+		    Var l As Integer = If((index = count - 1), 0, index + 1)
+		    
+		    Var left As Vector2 = transform.GetTransformed(Self.Vertices(l))
+		    Var vl As PointFeature = New PointFeature(left, l)
+		    
+		    // Make sure the edge is the right winding.
+		    Return New EdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
+		  Else
+		    Var r As Integer = If((index = 0), count - 1, index - 1)
+		    
+		    Var right As Vector2 = transform.GetTransformed(Self.Vertices(r))
+		    Var vr As PointFeature = New PointFeature(right, r)
+		    
+		    // Make sure the edge is the right winding.
+		    Return New EdgeFeature(vr, vm, vm, right.Towards(maximum), index)
+		  End If
 		  
 		End Function
 	#tag EndMethod
@@ -143,17 +270,111 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetFarthestPoint(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2
 		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // Transform the normal into local space.
+		  Var localn As Vector2 = transform.GetInverseTransformedR(vector)
+		  
+		  // Find the index of the farthest point.
+		  Var index As Integer = GetFarthestVertexIndex(localn)
+		  
+		  // Transform the point into world space and return.
+		  Return transform.GetTransformed(Self.Vertices(index))
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = 496E7465726E616C2068656C706572206D6574686F6420746861742072657475726E732074686520696E646578206F662074686520706F696E74207468617420697320666172746865737420696E20646972656374696F6E206F66206120766563746F722E
+		Private Function GetFarthestVertexIndex(vector As PhysicsKit.Vector2) As Integer
+		  ///
+		  ' Internal helper method that returns the index of the point that is 
+		  ' farthest in direction of a vector.
+		  '
+		  ' - Parameter vector: The direction.
+		  '
+		  ' - Returns: The index of the farthest vertex in that direction.
+		  ///
+		  
+		  // The sequence a(n) = vector.dot(vertices[n]) has a maximum, a minimum and is 
+		  // monotonic (though not strictly monotonic) between those extrema.
+		  // All indices are considered in modular arithmetic. I choose the initial index to be 0.
+		  //
+		  // Based on that I follow this approach:
+		  // We start from an initial index n0. We want to an adjacent to n0 index n1 for which a(n1) > a(n0).
+		  // If no such index exists then n0 is the maximum. Else we start in 
+		  // direction of n1 (i.e. left or right of n0) and while a(n) increases we continue to 
+		  // that direction. When the next number of the sequence does not increases anymore
+		  // we can stop and we have found max{a(n)}.
+		  //
+		  // Although the idea is simple we need to be careful with some edge cases and the 
+		  // correctness of the algorithm in all cases.
+		  // Although the sequence is not strictly monotonic the absence of equalities is intentional 
+		  // and wields the correct answer (see below).
+		  //
+		  // The correctness of this method relies on some properties:
+		  // 1) If n0 and n1 are two adjacent indices and a(n0) = a(n1) then a(n0) and a(n1) are 
+		  //    either max{a(n)} or min{a(n)}.
+		  //    This holds for all convex polygons. This property can guarantee that if our initial 
+		  //    index is n0 or n1 then it does not matter to which side (left or right) we start searching.
+		  // 2) The polygon has no coincident vertices.
+		  //    This guarantees us that there are no adjacent n0, n1, n2 for which a(n0) = a(n1) = a(n2)
+		  //    and that only two adjacent n0, n1 can exist with a(n0) = a(n1). This is important because if
+		  //    those adjacent n0, n1, n2 existed the code below would always return the initial index, 
+		  //    without knowing if it's a minimum or maximum. But since only two adjacent indices can 
+		  //    exist with a(n0) = a(n1) the code below will always start searching in one direction and 
+		  //    because of 1) this will give us the correct answer.
+		  
+		  // The initial starting index and the corresponding dot product.
+		  Var maxIndex As Integer = 0
+		  Var n As Integer = Self.Vertices.Count
+		  Var max As Double = vector.Dot(Self.Vertices(0))
+		  Var candidateMax As Double
+		  
+		  candidateMax = vector.Dot(Self.Vertices(1))
+		  If max < candidateMax Then
+		    // Search to the right.
+		    Do
+		      max = candidateMax
+		      maxIndex = maxIndex + 1
+		      
+		      // Exit?
+		      If maxIndex + 1 >= n Then Exit
+		      candidateMax = vector.Dot(Self.Vertices(maxIndex + 1))
+		      If max > candidateMax Then Exit
+		    Loop
+		  Else
+		    candidateMax = vector.Dot(Self.Vertices(n - 1))
+		    If max < candidateMax Then
+		      maxIndex = n
+		      
+		      // Search to the left.
+		      Do
+		        max = candidateMax
+		        maxIndex = maxIndex - 1
+		        
+		        // Exit?
+		        If maxIndex <= 0 Then Exit
+		        candidateMax = vector.Dot(Self.Vertices(maxIndex - 1))
+		        If max > candidateMax Then Exit
+		      Loop
+		    End If
+		  End If
+		  
+		  Return maxIndex
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function GetFoci(transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
-		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' - Notes:
+		  '   Not applicable to this shape. Always returns Nil.
+		  '   Part of the PhysicsKit.Convex interface.
+		  '
+		  ' - Returns : Nil.
+		  ///
 		  
+		  Return Nil
 		  
 		End Function
 	#tag EndMethod
@@ -170,8 +391,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetNormalIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma error  "Must implement!"
 		  
 		End Function
 	#tag EndMethod
@@ -179,8 +400,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetNormals() As PhysicsKit.Vector2()
 		  // Part of the PhysicsKit.Wound interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.Normals
 		  
 		End Function
 	#tag EndMethod
@@ -197,8 +418,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetRadius(center As PhysicsKit.Vector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Geometry.GetRotationRadius(center, Self.Vertices)
 		  
 		End Function
 	#tag EndMethod
@@ -215,8 +436,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetVertexIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  #Pragma error  "Must implement!"
 		  
 		End Function
 	#tag EndMethod
@@ -224,8 +445,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetVertices() As PhysicsKit.Vector2()
 		  // Part of the PhysicsKit.Wound interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Return Self.Vertices
 		  
 		End Function
 	#tag EndMethod
@@ -242,8 +463,31 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function Project(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Var v As Double = 0.0
+		  
+		  // Get the first point.
+		  Var p As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		  
+		  // Project the point onto the vector.
+		  Var min As Double = vector.Dot(p)
+		  Var max As Double = min
+		  
+		  // Loop over the rest of the vertices.
+		  Var limit As Integer = Self.Vertices.LastRowIndex
+		  For i As Integer = 1 To limit
+		    // Get the next point.
+		    p = transform.GetTransformed(Self.Vertices(i))
+		    // Project it onto the vector.
+		    v = vector.Dot(p)
+		    If v < min Then
+		      min = v
+		    ElseIf v > max Then
+		      max = v
+		    End If
+		  Next i
+		  
+		  Return New Interval(min, max)
 		  
 		End Function
 	#tag EndMethod
@@ -287,8 +531,14 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Super.Rotate(r, x, y)
+		  
+		  Var limit As Integer = Self.Vertices.LastRowIndex
+		  For i As Integer = 0 To limit
+		    Call Self.Vertices(i).Rotate(r, x, y)
+		    Call Self.Normals(i).Rotate(r)
+		  Next i
 		  
 		End Sub
 	#tag EndMethod
@@ -348,8 +598,11 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Sub Translate(x As Double, y As Double)
 		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  Super.Translate(x, y)
+		  For Each v As Vector2 In Self.Vertices
+		    Call v.Add(x, y)
+		  Next v
 		  
 		End Sub
 	#tag EndMethod
