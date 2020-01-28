@@ -126,6 +126,45 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E7320616E206172726179206F66206E6F726D616C6973656420766563746F727320726570726573656E74696E6720746865206E6F726D616C73206F6620616C6C2074686520656467657320676976656E207468652076657274696365732E
+		Shared Function GetCounterClockwiseEdgeNormals(vertices() As PhysicsKit.Vector2) As PhysicsKit.Vector2()
+		  ///
+		  ' Returns an array of normalised vectors representing the normals of all the
+		  ' edges given the vertices.
+		  '
+		  ' This method assumes counter-clockwise ordering.
+		  '
+		  ' - Parameter vertices: The vertices.
+		  '
+		  ' - Returns Vector2 array or Nil if the given `vertices` array is Nil or empty.
+		  '
+		  ' - Throws: NilObjectException if `vertices` contains a Nil element.
+		  ///
+		  
+		  If vertices = Nil Then Return Nil
+		  
+		  Var size As Integer = vertices.Count
+		  If size = 0 Then Return Nil
+		  
+		  Var normals() As Vector2
+		  normals.ResizeTo(size - 1)
+		  Var iLimit As Integer = size - 1
+		  For i As Integer = 0 To iLimit
+		    // Get the edge points.
+		    Var p1 As Vector2 = vertices(i)
+		    Var p2 As Vector2 = If((i + 1 = size), vertices(0), vertices(i + 1))
+		    // Create the edge and get its left perpedicular vector.
+		    Var n As Vector2 = p1.Towards(p2).Left
+		    // Normalise it.
+		    Call n.Normalise
+		    normals(i) = n
+		  Next i
+		  
+		  Return normals
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206D6178696D756D20726164697573206F662074686520676976656E20766572746963657320726F74617465642061626F757420746865206F726967696E2E20496620746865207665727469636573206172726179206973204E696C206F7220656D7074792C207A65726F2069732072657475726E65642E
 		Shared Function GetRotationRadius(ParamArray vertices As PhysicsKit.Vector2) As Double
 		  ///

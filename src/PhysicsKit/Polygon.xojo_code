@@ -15,6 +15,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' - Parameter center: The center of the polygon.
 		  ///
 		  
+		  #Pragma Unused valid
+		  
 		  Super.Constructor(center, Geometry.GetRotationRadius(center, vertices))
 		  
 		  // Set the vertices.
@@ -447,8 +449,10 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '   Not applicable to this shape. Always returns Nil.
 		  '   Part of the PhysicsKit.Convex interface.
 		  '
-		  ' - Returns : Nil.
+		  ' - Returns: Nil.
 		  ///
+		  
+		  #Pragma Unused transform
 		  
 		  Return Nil
 		  
