@@ -69,15 +69,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PhysicsKit.Vector2) As Boolean
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
 		  
@@ -132,28 +123,122 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB() As PhysicsKit.AABB
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
 		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // Get the first point.
+		  Var p As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		  
+		  // Initialize min and max values.
+		  Var minX As Double = p.X
+		  Var maxX As Double = p.X
+		  Var minY As Double = p.Y
+		  Var maxY As Double = p.Y
+		  
+		  // Loop over the rest of the vertices.
+		  Var iLimit As Integer = Self.Vertices.LastRowIndex
+		  For i As Integer = 1 To iLimit
+		    // Get the next point.
+		    Var px As Double = transform.GetTransformedX(Self.Vertices(i))
+		    Var py As Double = transform.GetTransformedY(Self.Vertices(i))
+		    
+		    // Compare the x values.
+		    If px < minX Then
+		      minX = px
+		    ElseIf px > maxX Then
+		      maxX = px
+		    End If
+		    
+		    // Compare the y values.
+		    If py < minY Then
+		      minY = py
+		    ElseIf py > maxY Then
+		      maxY = py
+		    End If
+		  Next i
+		  
+		  // Create the AABB.
+		  Return New AABB(minX, minY, maxX, maxY)
 		  
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 437265617465732061204D617373206F626A656374207573696E67207468652067656F6D65747269632070726F70657274696573206F66207468697320506F6C79676F6E20616E642074686520676976656E2064656E736974792E
 		Function CreateMass(density As Double) As PhysicsKit.Mass
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Creates a Mass object using the geometric properties of this Polygon and the given density.
+		  '
+		  ' A Polygon's centroid must be computed by the area weighted method since the
+		  ' average method can be bias to one side if there are more points on that one side than another.
+		  '
+		  ' - Parameter density: The density in kg/m².
+		  '
+		  ' - Returns: The Mass of this Polygon.
+		  '
+		  ' - Note: Part of the PhysicsKit.Shape interface.
+		  ///
 		  
+		  // Can't use normal centroid calculation since it will be weighted towards sides
+		  // that have larger distribution of points.
+		  Var center As Vector2 = new Vector2
+		  Var area As Double = 0.0
+		  Var I As Double = 0.0
+		  Var n As Integer = Self.Vertices.Count
+		  
+		  // Get the average centre.
+		  Var ac As Vector2 = New Vector2
+		  Var kLimit As Integer = n - 1
+		  For k As Integer = 0 To kLimit
+		    Call ac.Add(Self.Vertices(k))
+		  Next k
+		  Call ac.Divide(n)
+		  
+		  // Loop through the vertices using two variables to avoid branches in the loop.
+		  Var i1 As Integer = n - 1
+		  Var i2 As Integer = 0
+		  While i2 < n
+		    // Get two vertices.
+		    Var p1 As Vector2 = Self.Vertices(i1)
+		    Var p2 As Vector2 = Self.Vertices(i2)
+		    // Get the vector from the center to the point.
+		    p1 = p1.Difference(ac)
+		    p2 = p2.Difference(ac)
+		    // Perform the cross product (yi * x(i+1) - y(i+1) * xi).
+		    Var D As Double = p1.Cross(p2)
+		    // Multiply by half.
+		    Var triangleArea As Double = 0.5 * D
+		    // Add it to the total area.
+		    area = area + triangleArea
+		    
+		    // Area weighted centroid.
+		    // (p1 + p2) * (D / 6)
+		    // = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 6
+		    // We will divide by the total area later.
+		    center.X = center.X + ((p1.X + p2.X) * Geometry.INV_3 * triangleArea)
+		    center.Y = center.Y + ((p1.Y + p2.Y) * Geometry.INV_3 * triangleArea)
+		    
+		    // (yi * x(i+1) - y(i+1) * xi) * (p2^2 + p2 . p1 + p1^2)
+		    I = I + (triangleArea * (p2.Dot(p2) + p2.Dot(p1) + p1.Dot(p1)))
+		    // We will do the m / 6A = (d / 6) when we have the area summed up.
+		    
+		    i1 = i2
+		    i2 = i2 + 1
+		  Wend
+		  
+		  // Compute the mass.
+		  Var m As Double = density * area
+		  // Finish the centroid calculation by dividing by the total area
+		  // and adding in the average centre.
+		  Call center.Divide(area)
+		  Var c As Vector2 = center.Sum(ac)
+		  // Finish the inertia tensor by dividing by the total area and multiplying by d / 6
+		  I = I * ((density / 6.0))
+		  // Shift the axis of rotation to the area weighted center
+		  // (center is the vector from the average center to the area weighted center since
+		  // the average center is used as the origin).
+		  I = I - (m * center.GetMagnitudeSquared)
+		  
+		  Return New Mass(c, m, I)
 		  
 		End Function
 	#tag EndMethod
@@ -212,15 +297,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		  
 		  // Return all the axes.
 		  Return axes
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetCenter() As PhysicsKit.Vector2
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
 		  
 		End Function
 	#tag EndMethod
@@ -380,15 +456,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetID() As PhysicsKit.UUID
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetNormalIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
 		  
@@ -407,28 +474,10 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRadius() As Double
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetRadius(center As PhysicsKit.Vector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Return Geometry.GetRotationRadius(center, Self.Vertices)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetUserData() As Variant
-		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
 		  
 		End Function
 	#tag EndMethod
@@ -447,15 +496,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		  // Part of the PhysicsKit.Wound interface.
 		  
 		  Return Self.Vertices
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Project(vector As PhysicsKit.Vector2) As PhysicsKit.Interval
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
 		  
 		End Function
 	#tag EndMethod
@@ -493,42 +533,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double, point As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
@@ -539,33 +543,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		    Call Self.Vertices(i).Rotate(r, x, y)
 		    Call Self.Normals(i).Rotate(r)
 		  Next i
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, point As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub RotateAboutCenter(theta As Double)
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetUserData(data As Variant)
-		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
 		  
 		End Sub
 	#tag EndMethod
@@ -603,15 +580,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		  For Each v As Vector2 In Self.Vertices
 		    Call v.Add(x, y)
 		  Next v
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Translate(vector As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
 		  
 		End Sub
 	#tag EndMethod
