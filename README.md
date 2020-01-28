@@ -216,7 +216,7 @@ comes for free with Java but not with Xojo.
 	- [ ] Triangle.java
 	- [x] Vector2.java
 	- [ ] Vector3.java
-	- [ ] Wound.java
+	- [x] Wound.java
 	- [ ] WoundIterator.java
 - [ ] Listener.java
 - [ ] Reference.java

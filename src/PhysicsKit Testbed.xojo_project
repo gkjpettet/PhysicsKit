@@ -48,6 +48,7 @@ Interface=Convex;PhysicsKit/Convex.xojo_code;&h000000001CCE5FFF;&h00000000342617
 Class=Feature;PhysicsKit/Feature.xojo_code;&h000000006D32AFFF;&h00000000342617FF;false
 Class=Circle;PhysicsKit/Circle.xojo_code;&h000000004414F7FF;&h00000000342617FF;false
 Class=PointFeature;PhysicsKit/PointFeature.xojo_code;&h0000000023A927FF;&h00000000342617FF;false
+Interface=Wound;PhysicsKit/Wound.xojo_code;&h0000000019559FFF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
