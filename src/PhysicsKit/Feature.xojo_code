@@ -28,8 +28,8 @@ Protected Class Feature
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21, Description = 54686520696E646578206F66207468652065646765206F6E207468652073686170652E
-		Private Index As Integer
+	#tag Property, Flags = &h1, Description = 54686520696E646578206F66207468652065646765206F6E207468652073686170652E
+		Protected Index As Integer
 	#tag EndProperty
 
 

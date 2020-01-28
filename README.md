@@ -197,7 +197,7 @@ comes for free with Java but not with Xojo.
 	- [x] MassType.java
 	- [ ] Matrix22.java
 	- [ ] Matrix33.java
-	- [ ] PointFeature.java
+	- [x] PointFeature.java
 	- [ ] Polygon.java
 	- [ ] Ray.java
 	- [ ] Rectangle.java
