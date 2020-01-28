@@ -51,15 +51,14 @@ Protected Module Maths
 		  '
 		  ' <p>Special Cases:
 		  ' - If the argument is NaN, then the result is NaN.
-		  ' - If the argument is positive zero or negative zero, then the
-		  '   result is the same as the argument.
 		  '
 		  ' - Parameter d: The value whose signum is to be returned.
 		  '
 		  '- Returns: The signum function of the argument.
 		  ///
 		  
-		  Return If(d = 0.0 Or IsNaN(d), d, CopySign(1.0, d))
+		  Return If(IsNan(d), d, Sign(d))
+		  
 		End Function
 	#tag EndMethod
 
