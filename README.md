@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Segment.java` up to but **not** including static `getFarthestPoint(v1, v2, vector, transform)`.
+Porting `Segment.java` up to and including static `getFarthestPoint(v1, v2, vector, transform)`.
 
 Part ported `Geometry.java`.
 

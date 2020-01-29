@@ -187,6 +187,39 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520666172746865737420706F696E74206F6E2074686520676976656E207365676D656E742E205468726F7773204E696C4F626A656374457863657074696F6E2E
+		Shared Function GetFarthestPoint(v1 As PhysicsKit.Vector2, v2 As PhysicsKit.Vector2, vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2
+		  ///
+		  ' Returns the farthest point on the given segment.
+		  '
+		  ' - Parameter v1: The first point of the segment.
+		  ' - Parameter v2: The second point of the segment.
+		  ' - Parameter vector: The direction.
+		  ' - Parameter transform: The local to world space Transform of this Convex Shape.
+		  '
+		  ' - Returns: A new Vector2.
+		  '
+		  ' - Throws: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
+		  ///
+		  
+		  // Get the vertices and the centre.
+		  Var p1 As Vector2 = transform.GetTransformed(v1)
+		  Var p2 As Vector2 = transform.GetTransformed(v2)
+		  
+		  // Project them onto the vector.
+		  Var dot1 As Double = vector.Dot(p1)
+		  Var dot2 As Double = vector.Dot(p2)
+		  
+		  // Find the greatest projection.
+		  If dot1 >= dot2 Then
+		    Return p1
+		  Else
+		    Return p2
+		  End If
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function GetFoci(transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
 		  // Part of the PhysicsKit.Convex interface.
