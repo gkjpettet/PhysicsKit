@@ -14,6 +14,8 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		  ' - Parameter point2: The second point.
 		  ///
 		  
+		  #Pragma Unused valid
+		  
 		  Super.Constructor(Geometry.GetAverageCenter(vertices), length * 0.5)
 		  
 		  // Assign the verices.
@@ -54,45 +56,136 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PhysicsKit.Vector2) As Boolean
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As Boolean
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Should almost always return False since this shape represents an infinitely
+		  ' thin line segment. Use the `Contains(Vector2, Transform, double)` method instead 
+		  ' for better, though technically inaccurate, results.
+		  ' 
+		  ' - Note: Part of the PhysicsKit.Shape interface.
+		  ///
 		  
+		  // Put the point in local coordinates.
+		  Var p As Vector2 = transform.GetInverseTransformed(point)
+		  
+		  // Create a reference to the end points.
+		  Var p1 As Vector2 = Self.Vertices(0)
+		  Var p2 As Vector2 = Self.Vertices(1)
+		  
+		  // Get the location of the given point relative to this segment.
+		  Var value As Double = Segment.GetLocation(p, p1, p2)
+		  
+		  // See if the point is on the line created by this line segment.
+		  If Abs(value) <= Epsilon.E Then
+		    Var distSqrd As Double = p1.DistanceSquared(p2)
+		    If p.DistanceSquared(p1) <= distSqrd And p.DistanceSquared(p2) <= distSqrd Then
+		      // If the distance to the point from both points is less than or equal
+		      // to the length of the segment squared then we know its on the line segment.
+		      Return True
+		    End If
+		    // If the point is further away from either point than the length of the
+		    // segment then its not on the segment.
+		    Return False
+		  End If
+		  
+		  Return False
 		  
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function CreateAABB() As PhysicsKit.AABB
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520676976656E20706F696E7420697320696E7369646520746869732053686170652E
+		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform, radius As Double) As Boolean
+		  ///
+		  ' Returns True if the given point is inside this Shape.
+		  '
+		  ' If the given point lies on an edge the point is considered to be inside the Shape.
+		  ' The given point is assumed to be in world space.
+		  ' If the radius is greater than zero then the point is tested to be within the 
+		  ' shape expanded radially by the radius.
+		  '
+		  ' - Parameter point: World space point.
+		  ' - Parameter transform: Transform for this Shape.
+		  ' - Parameter radius: The expansion radius. In the range [0, ∞].
+		  '
+		  ' - Returns: Boolean.
+		  ///
 		  
+		  // If the radius is zero or less then perform the normal procedure.
+		  If radius <= 0 Then
+		    Return Contains(point, transform)
+		  Else
+		    // Put the point in local coordinates.
+		    Var p As Vector2 = transform.GetInverseTransformed(point)
+		    
+		    // Otherwise act like the segment is two circles and a rectangle.
+		    If Self.Vertices(0).DistanceSquared(p) <= radius * radius Then
+		      Return True
+		    ElseIf Self.Vertices(1).DistanceSquared(p) <= radius * radius Then
+		      Return True
+		    Else
+		      // See if the point is in the rectangle portion.
+		      Var l As Vector2 = Self.Vertices(0).Towards(Self.Vertices(1))
+		      Var p1 As Vector2 = Self.Vertices(0).Towards(p)
+		      Var p2 As Vector2 = Self.Vertices(1).Towards(p)
+		      If l.Dot(p1) > 0 And -l.Dot(p2) > 0 Then
+		        Var dist As Double = p1.Project(l.GetRightHandOrthogonalVector).GetMagnitudeSquared
+		        If dist <= radius * radius Then Return True
+		      End If
+		    End If
+		  End If
+		  
+		  Return False
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Be aware that this method could produce an infinitely thin
+		  ' AABB if this segment is aligned to either the x or y-axis.
+		  '
+		  ' - Note: Part of the PhysicsKit.Shape interface.
+		  ///
 		  
+		  // Get the transformed points.
+		  Var p0 As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		  Var p1 As Vector2 = transform.GetTransformed(Self.Vertices(1))
+		  
+		  // Create the AABB.
+		  Return AABB.CreateAABBFromPoints(p0, p1)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function CreateMass(density As Double) As PhysicsKit.Mass
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Creates a Mass object using the geometric properties of this Segment and the given density.
+		  '
+		  ' ```
+		  ' m = d * length
+		  ' I = l² * m / 12
+		  ' ```
+		  '
+		  ' - Parameter density: The density in kg/m²
+		  '
+		  ' - Returns: The Mass of this Segment.
+		  '
+		  ' - Note: Part of the PhysicsKit.Shape interface.
+		  ///
+		  
+		  Var length As Double = Self.Length
+		  
+		  // Compute the mass.
+		  Var mass As Double = density * length
+		  
+		  // Compute the inertia tensor.
+		  Var inertia As Double = length * length * mass / 12.0
+		  
+		  // Since we know that a line segment has only two points we can
+		  // feel safe using the averaging method for the centroid.
+		  Return New Mass(Self.Center, mass, inertia)
 		  
 		  
 		End Function
@@ -101,26 +194,66 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag Method, Flags = &h0
 		Function GetAxes(foci() As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
 		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
 		  
+		  // Get the number of foci.
+		  Var size As Integer = If(foci <> Nil, foci.Count, 0)
 		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetCenter() As PhysicsKit.Vector2
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  // Create an array to hold the axes.
+		  Var axes() As Vector2
+		  axes.ResizeTo(size + 1)
 		  
+		  Var n As Integer = 0
+		  
+		  // Get the vertices.
+		  Var p1 As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		  Var p2 As Vector2 = transform.GetTransformed(Self.Vertices(1))
+		  
+		  // Use both the edge and its normal.
+		  axes(n) = transform.GetTransformedR(Self.Normals(1))
+		  n = n + 1
+		  axes(n) = transform.GetTransformedR(Self.Normals(0))
+		  n = n + 1
+		  
+		  Var axis As Vector2
+		  // Add the voronoi region axes if point is supplied.
+		  For Each f As Vector2 In foci
+		    // Find the closest point.
+		    If p1.DistanceSquared(f) < p2.DistanceSquared(f) Then
+		      axis = p1.Towards(f)
+		    Else
+		      axis = p2.Towards(f)
+		    End If
+		    
+		    // Normalise the axis.
+		    Call axis.Normalise
+		    
+		    // Add the axis to the array.
+		    axes(n) = axis
+		    n = n + 1
+		  Next f
+		  
+		  // Return all the axes.
+		  Return axes
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function GetFarthestFeature(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Feature
-		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Returns the feature farthest in the direction of n.
+		  '
+		  ' For a Segment, it's always the Segment itself.
+		  '
+		  ' - Parameter vector: The direction.
+		  ' - Parameter transform: The local to world space Transform of this Convex Shape.
+		  '
+		  ' - Returns: EdgeFeature.
+		  '
+		  ' - Note: Part of the PhysicsKit.Convex interface.
+		  ///
 		  
+		  Return Segment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)
 		  
 		End Function
 	#tag EndMethod
@@ -180,9 +313,11 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Function GetFarthestPoint(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2
-		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Convex interface.
+		  ///
 		  
+		  Return Segment.GetFarthestPoint(Self.Vertices(0), Self.Vertices(1), vector, transform)
 		  
 		End Function
 	#tag EndMethod
@@ -222,18 +357,17 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Function GetFoci(transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
-		  // Part of the PhysicsKit.Convex interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  ///
+		  ' Not applicable to this shape.  Always returns Nils.
+		  '
+		  ' - Returns: Nil.
+		  '
+		  ' - Note: Part of the PhysicsKit.Convex interface.
+		  ///
 		  
+		  #Pragma Unused transform
 		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetID() As PhysicsKit.UUID
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
+		  Return Nil
 		  
 		End Function
 	#tag EndMethod
@@ -378,7 +512,7 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 		Function GetNormalIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
 		  
-		  #Pragma error  "Must implement!"
+		  #Pragma Warning  "Implement when figured out Java iterators."
 		End Function
 	#tag EndMethod
 
@@ -549,15 +683,6 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRadius() As Double
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetRadius(center As PhysicsKit.Vector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
 		  
@@ -677,19 +802,10 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetUserData() As Variant
-		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetVertexIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
 		  
-		  #Pragma error  "Must implement!"
+		  #Pragma Warning  "Implement when figured out Java iterators."
 		End Function
 	#tag EndMethod
 
@@ -703,91 +819,46 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PhysicsKit.Vector2) As PhysicsKit.Interval
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function Project(vector As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Shape interface.
+		  ///
 		  
+		  Var v As Double = 0.0
+		  
+		  // Get the vertices.
+		  Var p1 As Vector2 = transform.GetTransformed(Self.Vertices(0))
+		  Var p2 As Vector2 = transform.GetTransformed(Self.Vertices(1))
+		  
+		  // Project the first.
+		  Var min As Double = vector.Dot(p1)
+		  Var max As Double = min
+		  
+		  // Project the second.
+		  v = vector.Dot(p2)
+		  If v < min Then
+		    min = v
+		  ElseIf v > max Then
+		    max = v
+		  End If
+		  
+		  Return New Interval(min, max)
 		  
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(theta As Double, point As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Rotatable interface.
+		  ///
 		  
+		  Super.Rotate(r, x, y)
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, point As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Rotatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub RotateAboutCenter(theta As Double)
-		  // Part of the PhysicsKit.Shape interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetUserData(data As Variant)
-		  // Part of the PhysicsKit.DataContainer interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
+		  Call Self.Vertices(0).Rotate(r, x, y)
+		  Call Self.Vertices(1).Rotate(r, x, y)
+		  Call Self.Normals(0).Rotate(r)
+		  Call Self.Normals(1).Rotate(r)
 		  
 		End Sub
 	#tag EndMethod
@@ -814,18 +885,13 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Sub Translate(x As Double, y As Double)
-		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Translatable interface.
+		  ///
 		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Translate(vector As PhysicsKit.Vector2)
-		  // Part of the PhysicsKit.Translatable interface.
-		  #pragma error  "Don't forget to implement this method!"
-		  
+		  Super.Translate(x, y)
+		  Call Self.Vertices(0).Add(x, y)
+		  Call Self.Vertices(1).Add(x, y)
 		  
 		End Sub
 	#tag EndMethod

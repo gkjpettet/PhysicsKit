@@ -463,7 +463,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		Function GetNormalIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
 		  
-		  #Pragma error  "Must implement!"
+		  #Pragma Warning  "Implement when figured out Java iterators."
 		  
 		End Function
 	#tag EndMethod
@@ -490,8 +490,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		Function GetVertexIterator() As Iterator
 		  // Part of the PhysicsKit.Wound interface.
 		  
-		  #Pragma error  "Must implement!"
-		  
+		  #Pragma Warning  "Implement when figured out Java iterators."
 		End Function
 	#tag EndMethod
 
