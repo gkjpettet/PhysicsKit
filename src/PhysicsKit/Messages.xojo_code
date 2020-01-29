@@ -6,6 +6,9 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_AABB_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than or equal to zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_CIRCLE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 2.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_CIRCLE_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
@@ -18,7 +21,13 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_INTERVAL_INVALID_MINIMUM, Type = String, Dynamic = False, Default = \"The minimum value must be less than or equal to the maximum.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INVALID_SIZE_POINT_ARRAY1, Type = String, Dynamic = False, Default = \"The points array must have at least one point.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_VERTICES_SIZE, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 2.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_MASS_INVALID_INERTIA, Type = String, Dynamic = False, Default = \"The inertia tensor must be greater than or equal to zero.", Scope = Protected

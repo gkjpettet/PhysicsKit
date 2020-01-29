@@ -374,10 +374,17 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreatePolygonTest()
 		  ///
-		  ' Tesys case for the polygon create method.
+		  ' Tests the polygon create method.
 		  ///
 		  
-		  #Pragma Warning "Implement once the Polygon class has been ported."
+		  Using PhysicsKit
+		  
+		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var m As Mass = p.CreateMass(1.0)
+		  
+		  // The polygon mass should be the area * d
+		  Assert.AreEqual(0.594, m.GetMass, 1.0e-3)
+		  Assert.AreEqual(0.057, m.GetInertia, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod

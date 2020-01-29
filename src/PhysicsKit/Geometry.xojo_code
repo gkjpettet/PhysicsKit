@@ -17,6 +17,130 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
+		Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a circle with count number of vertices centered
+		  ' on the origin.
+		  '
+		  ' - Parameter count: The number of vertices to use. Must be greater than 2.
+		  ' - Parameter radius: The radius of the circle. Must be greater than zero.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ///
+		  
+		  Return Geometry.CreatePolygonalCircle(count, radius, 0)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
+		Shared Function CreatePolygonalCircle(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a circle with count number of vertices centered
+		  ' on the origin.
+		  '
+		  ' - Parameter count: The number of vertices to use. Must be greater than or equal to 3.
+		  ' - Parameter radius: The radius of the circle. Must be greater than zero.
+		  ' - Parameter theta: The radial offset for the points in radians.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ///
+		  
+		  // Validate the input.
+		  If count < 3 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CIRCLE_INVALID_COUNT)
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CIRCLE_INVALID_RADIUS)
+		  
+		  // Compute the angular increment.
+		  Var pin As Double = Geometry.TWO_PI / count
+		  
+		  // Make sure the resulting output is an even number of vertices.
+		  Var vertices() As Vector2
+		  vertices.ResizeTo(count - 1)
+		  
+		  Var c As Double = Cos(pin)
+		  Var s As Double = Sin(pin)
+		  Var t As Double = 0
+		  
+		  Var x As Double = radius
+		  Var y As Double = 0
+		  
+		  // Initialise at theta if necessary.
+		  If theta <> 0 Then
+		    x = radius * Cos(theta)
+		    y = radius * Sin(theta)
+		  End If
+		  
+		  Var iLimit As Integer = vertices.LastRowIndex
+		  For i As Integer = 0 To iLimit
+		    vertices(i) = New Vector2(x, y)
+		    
+		    // Apply the rotation matrix.
+		    t = x
+		    x = c * x - s * y
+		    y = s * t + c * y
+		  Next i
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E65772020506F6C79676F6E20776974682060636F756E7460206E756D626572206F6620706F696E74732C2077686572652074686520706F696E747320617265206576656E6C792064697374726962757465642061726F756E642074686520756E697420636972636C652E202054686520726573756C74696E6720506F6C79676F6E2077696C6C2062652063656E7465726564206F6E20746865206F726967696E2E
+		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Returns a new  Polygon with `count` number of points, where the points are 
+		  ' evenly distributed around the unit circle.  The resulting Polygon will be centered on the origin.
+		  '
+		  ' The radius parameter is the distance from the centre of the polygon to each vertex.
+		  '
+		  ' - Parameter count: The number of vertices.
+		  ' - Parameter radius: The radius from the centre to each vertex in meters.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Throws: InvalidArgumentException if `count` < 3 or radius <= 0.
+		  ///
+		  
+		  Return Geometry.CreateUnitCirclePolygon(count, radius, 0.0)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720506F6C79676F6E207769746820636F756E74206E756D626572206F6620706F696E74732C2077686572652074686520706F696E747320617265206576656E6C792064697374726962757465642061726F756E642074686520756E697420636972636C652E2054686520726573756C74696E6720506F6C79676F6E2077696C6C2062652063656E7465726564206F6E20746865206F726967696E2E
+		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Returns a new Polygon with count number of points, where the points are evenly 
+		  ' distributed around the unit circle. The resulting Polygon will be centered on the origin.
+		  '
+		  ' The `radius` parameter is the distance from the centre of the polygon to each vertex.
+		  ' The `theta` parameter is a vertex angle offset used to rotate all the vertices by the given amount.
+		  '
+		  ' - Parameter count: The number of vertices.
+		  ' - Parameter radius: The radius from the centre to each vertex in meters.
+		  ' - Parameter theta: The vertex angle offset in radians.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ///
+		  
+		  // Check the count.
+		  If count < 3 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_VERTICES_SIZE)
+		  
+		  // Check the radius.
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_RADIUS)
+		  
+		  // Call the more efficient method here.
+		  Return Geometry.CreatePolygonalCircle(count, radius, theta)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520617265612077656967687465642063656E74726F696420666F722074686520676976656E20706F696E74732E
 		Shared Function GetAreaWeightedCenter(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2
 		  ///
