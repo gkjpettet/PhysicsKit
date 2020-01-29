@@ -3,12 +3,16 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Segment.java` up to and including static `getFarthestPoint(v1, v2, vector, transform)`.
-
 Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
 comes for free with Java but not with Xojo.
+
+Still need to port the following methods (need to figure out Java iterators):
+- `Polygon.GetNormalIterator()`
+- `Polygon.GetVertexIterator()`
+- `Segment.GetNormalIterator()`
+- `Segment.GetVertexIterator()`
 
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
