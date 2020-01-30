@@ -4,7 +4,7 @@ Protected Module PhysicsKit
 		Protected Sub Initialise()
 		  // Initialises the physics module including shared properties within classes.
 		  
-		  Maths.Initialise
+		  MathsKit.Initialise
 		  
 		  AbstractShape.Initialise
 		  Epsilon.Initialise

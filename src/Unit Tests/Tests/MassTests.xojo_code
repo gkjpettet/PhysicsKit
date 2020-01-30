@@ -456,7 +456,7 @@ Inherits TestGroup
 		  ' Tests the inertia and COM calculatons for polygon shapes.
 		  ///
 		  
-		  #Pragma Warning "Implement once Polygon class ported."
+		  #Pragma Warning "Implement once Rectangle class is ported."
 		  
 		End Sub
 	#tag EndMethod

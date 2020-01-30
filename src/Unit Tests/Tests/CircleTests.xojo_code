@@ -87,7 +87,7 @@ Inherits TestGroup
 		  
 		  // Test using a rotation and translation matrix.
 		  Var tx As Transform = New Transform
-		  tx.Rotate(Maths.ToRadians(30.0))
+		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  
 		  aabb = c.CreateAABB(tx)
@@ -261,7 +261,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 2.500, i.max, 1.0e-3)
 		  
 		  // Rotating about the centre shouldn't effect anything.
-		  t.Rotate(Maths.ToRadians(30), 1.0, 0.5)
+		  t.Rotate(MathsKit.ToRadians(30), 1.0, 0.5)
 		  
 		  i = c.Project(y, t)
 		  
@@ -284,18 +284,18 @@ Inherits TestGroup
 		  
 		  // Rotate about centre.
 		  c.Translate(1.0, 1.0)
-		  c.RotateAboutCenter(Maths.ToRadians(30))
+		  c.RotateAboutCenter(MathsKit.ToRadians(30))
 		  Assert.AreEqual(1.000, c.Center.X, 1.0e-3)
 		  Assert.AreEqual(1.000, c.Center.Y, 1.0e-3)
 		  
 		  // Rotate about the origin.
-		  c.Rotate(Maths.ToRadians(90))
+		  c.Rotate(MathsKit.ToRadians(90))
 		  Assert.AreEqual(-1.000, c.Center.X, 1.0e-3)
 		  Assert.AreEqual( 1.000, c.Center.Y, 1.0e-3)
 		  c.Translate(c.GetCenter.getNegative)
 		  
 		  // Should move the centre.
-		  c.Rotate(Maths.ToRadians(90), 1.0, -1.0)
+		  c.Rotate(MathsKit.ToRadians(90), 1.0, -1.0)
 		  Assert.AreEqual( 0.000, c.Center.X, 1.0e-3)
 		  Assert.AreEqual(-2.000, c.Center.Y, 1.0e-3)
 		  

@@ -107,13 +107,13 @@ Inherits TestGroup
 		  Assert.AreEqual(-1.0, v5.x)
 		  Assert.AreEqual(-2.0, v5.y)
 		  
-		  Var v6 As Vector2 = Vector2.Create(1.0, Maths.ToRadians(90))
+		  Var v6 As Vector2 = Vector2.Create(1.0, MathsKit.ToRadians(90))
 		  Assert.AreEqual( 0.000, v6.x, 1.0e-3)
 		  Assert.AreEqual( 1.000, v6.y, 1.0e-3)
 		  
-		  Var v7 As Vector2 = New Vector2(Maths.ToRadians(30.0))
+		  Var v7 As Vector2 = New Vector2(MathsKit.ToRadians(30.0))
 		  Assert.AreEqual(1.000, v7.GetMagnitude, 1.0e-4)
-		  Assert.AreEqual(30.000, Maths.ToDegrees(v7.GetDirection), 1.0e-4)
+		  Assert.AreEqual(30.000, MathsKit.ToDegrees(v7.GetDirection), 1.0e-4)
 		  
 		End Sub
 	#tag EndMethod
@@ -245,7 +245,7 @@ Inherits TestGroup
 		  Var v2 As Vector2 = New Vector2(-2.0, -1.0)
 		  
 		  // This should return in the range of -π,π.
-		  Assert.IsTrue(Maths.PI >= Abs(v1.GetAngleBetween(v2)))
+		  Assert.IsTrue(MathsKit.PI >= Abs(v1.GetAngleBetween(v2)))
 		  
 		End Sub
 	#tag EndMethod
@@ -270,10 +270,10 @@ Inherits TestGroup
 		  
 		  Assert.AreEqual(5.000, v.GetMagnitude, 1.0e-3)
 		  Assert.AreEqual(25.000, v.GetMagnitudeSquared, 1.0e-3)
-		  Assert.AreEqual(53.130, Maths.ToDegrees(v.GetDirection), 1.0e-3)
+		  Assert.AreEqual(53.130, MathsKit.ToDegrees(v.GetDirection), 1.0e-3)
 		  
 		  Var v2 As Vector2 = New Vector2(-4.0, 3.0)
-		  Assert.AreEqual(90.000, Maths.ToDegrees(v.GetAngleBetween(v2)), 1.0e-3)
+		  Assert.AreEqual(90.000, MathsKit.ToDegrees(v.GetAngleBetween(v2)), 1.0e-3)
 		  
 		  v2 = v.GetLeftHandOrthogonalVector
 		  Assert.AreEqual( 4.0, v2.x)
@@ -460,19 +460,19 @@ Inherits TestGroup
 		  
 		  Var v As Vector2 = New Vector2(2.0, 1.0)
 		  
-		  Call v.Rotate(Maths.ToRadians(90))
+		  Call v.Rotate(MathsKit.ToRadians(90))
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
 		  
-		  Call v.Rotate(New Rotation(Maths.ToRadians(60)), 0.0, 1.0)
+		  Call v.Rotate(New Rotation(MathsKit.ToRadians(60)), 0.0, 1.0)
 		  Assert.AreEqual(-1.366, v.x, 1.0e-3)
 		  Assert.AreEqual( 0.634, v.y, 1.0e-3)
 		  
-		  Call v.InverseRotate(New Rotation(Maths.ToRadians(60)), 0.0, 1.0)
+		  Call v.InverseRotate(New Rotation(MathsKit.ToRadians(60)), 0.0, 1.0)
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
 		  
-		  Call v.InverseRotate(Maths.ToRadians(90))
+		  Call v.InverseRotate(MathsKit.ToRadians(90))
 		  Assert.AreEqual(2.0, v.x, 1.0e-3)
 		  Assert.AreEqual(1.0, v.y, 1.0e-3)
 		  
@@ -500,7 +500,7 @@ Inherits TestGroup
 		  Assert.AreEqual(-1.0, v.x)
 		  Assert.AreEqual( 0.0, v.y)
 		  
-		  Call v.SetDirection(Maths.ToRadians(90))
+		  Call v.SetDirection(MathsKit.ToRadians(90))
 		  Assert.AreEqual( 0.0, v.x, 1E-10)
 		  Assert.AreEqual( 1.0, v.y)
 		  

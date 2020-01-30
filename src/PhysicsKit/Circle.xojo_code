@@ -84,7 +84,7 @@ Implements PhysicsKit.Convex
 		  Var r2 As Double = Self.Radius * Self.Radius
 		  
 		  // Compute the mass.
-		  Var mass As Double = density * Maths.PI * r2
+		  Var mass As Double = density * MathsKit.PI * r2
 		  
 		  // Compute the inertia tensor.
 		  Var inertia As Double = mass * r2 * 0.5

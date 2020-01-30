@@ -629,7 +629,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		    End If
 		    // Check the cross product for CCW winding.
 		    Var cross As Double = p0.Towards(p1).Cross(p1.Towards(p2))
-		    Var tsign As Double = Maths.Signum(cross)
+		    Var tsign As Double = MathsKit.Signum(cross)
 		    area = area + cross
 		    // Check for colinear edges (for now its allowed).
 		    If Abs(cross) > Epsilon.E Then

@@ -40,7 +40,7 @@ Inherits TestGroup
 		  
 		  Var t As Transform = New Transform
 		  t.Translate(2.0, -1.0)
-		  t.Rotate(Maths.ToRadians(20), -2.0, 6.0)
+		  t.Rotate(MathsKit.ToRadians(20), -2.0, 6.0)
 		  
 		  Var tc As Transform = t.Copy
 		  
@@ -62,7 +62,7 @@ Inherits TestGroup
 		  
 		  Var t As Transform = New Transform
 		  t.Translate(2.0, 1.0)
-		  t.Rotate(Maths.ToRadians(25), 1.0, -1.0)
+		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
 		  Var v As Vector2 = New Vector2(1.0, 0.0)
 		  
@@ -120,12 +120,12 @@ Inherits TestGroup
 		  
 		  Var start As Transform = New Transform
 		  start.Translate(1.0, 0.0)
-		  start.Rotate(Maths.ToRadians(45))
+		  start.Rotate(MathsKit.ToRadians(45))
 		  
 		  Var endT As Transform = New Transform
 		  endT.Set(start)
 		  endT.Translate(3.0, 2.0)
-		  endT.Rotate(Maths.ToRadians(20))
+		  endT.Rotate(MathsKit.ToRadians(20))
 		  
 		  Var s As Vector2 = start.GetTransformed(p)
 		  Var e As Vector2 = endT.GetTransformed(p)
@@ -150,20 +150,20 @@ Inherits TestGroup
 		  
 		  // Test opposing sign angles.
 		  start.Identity
-		  start.Rotate(Maths.ToRadians(174.0))
+		  start.Rotate(MathsKit.ToRadians(174.0))
 		  
 		  endT.Identity
-		  endT.Rotate(Maths.ToRadians(-168))
+		  endT.Rotate(MathsKit.ToRadians(-168))
 		  
 		  Var l As Transform = start.Lerped(endT, alpha)
 		  Assert.AreEqual(-3.089, l.GetRotationAngle, 1.0e-3)
 		  
 		  // Test opposing sign angles.
 		  start.Identity
-		  start.Rotate(Maths.ToRadians(354.0))
+		  start.Rotate(MathsKit.ToRadians(354.0))
 		  
 		  endT.Identity
-		  endT.Rotate(Maths.ToRadians(2.0))
+		  endT.Rotate(MathsKit.ToRadians(2.0))
 		  
 		  l = start.Lerped(endT, alpha)
 		  Assert.AreEqual(-0.034, l.GetRotationAngle, 1.0e-3)
@@ -181,16 +181,16 @@ Inherits TestGroup
 		  
 		  Var t As Transform = New Transform
 		  
-		  t.Rotate(Maths.ToRadians(30))
-		  Assert.AreEqual(Maths.ToRadians(30), t.GetRotationAngle, 1.0e-3)
+		  t.Rotate(MathsKit.ToRadians(30))
+		  Assert.AreEqual(MathsKit.ToRadians(30), t.GetRotationAngle, 1.0e-3)
 		  
 		  t.Rotate(Rotation.OfDegrees(50))
-		  Assert.AreEqual(Maths.ToRadians(80), t.GetRotationAngle, 1.0e-3)
+		  Assert.AreEqual(MathsKit.ToRadians(80), t.GetRotationAngle, 1.0e-3)
 		  
 		  t.Identity
 		  
 		  t.Translate(5, 5)
-		  t.Rotate(Maths.ToRadians(90))
+		  t.Rotate(MathsKit.ToRadians(90))
 		  
 		  Var v As Vector2 = t.GetTranslation
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
@@ -201,7 +201,7 @@ Inherits TestGroup
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual(-5.000, v.y, 1.0e-3)
 		  
-		  t.Rotate(Maths.ToRadians(35), -5.0, -5.0)
+		  t.Rotate(MathsKit.ToRadians(35), -5.0, -5.0)
 		  v = t.GetTranslation
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual(-5.000, v.y, 1.0e-3)
@@ -223,11 +223,11 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var tx As Transform = New Transform
-		  tx.Rotate(Maths.toRadians(45.0))
+		  tx.Rotate(MathsKit.toRadians(45.0))
 		  tx.Translate(1.0, 0.0)
 		  
-		  Call tx.SetRotation(Maths.ToRadians(30.0))
-		  Assert.AreEqual(30.000, Maths.ToDegrees(tx.GetRotationAngle), 1.0e-3)
+		  Call tx.SetRotation(MathsKit.ToRadians(30.0))
+		  Assert.AreEqual(30.000, MathsKit.ToDegrees(tx.GetRotationAngle), 1.0e-3)
 		  Assert.AreEqual(1.0, tx.x)
 		  Assert.AreEqual(0.0, tx.y)
 		  
@@ -243,7 +243,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var tx As Transform = New Transform
-		  tx.Rotate(Maths.ToRadians(30))
+		  tx.Rotate(MathsKit.ToRadians(30))
 		  tx.Translate(2.0, 0.5)
 		  Var tx2 As Transform = New Transform
 		  tx2.Set(tx)
@@ -270,22 +270,22 @@ Inherits TestGroup
 		  
 		  Var tx As Transform = New Transform
 		  tx.Translate(1.0, 2.0)
-		  tx.Rotate(Maths.ToRadians(45))
+		  tx.Rotate(MathsKit.ToRadians(45))
 		  tx.SetTranslation(0.0, 0.0)
 		  
 		  Assert.AreEqual(0.0, tx.x)
 		  Assert.AreEqual(0.0, tx.y)
-		  Assert.AreEqual(Maths.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
+		  Assert.AreEqual(MathsKit.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
 		  
 		  tx.SetTranslationX(2.0)
 		  Assert.AreEqual(2.0, tx.x)
 		  Assert.AreEqual(0.0, tx.y)
-		  Assert.AreEqual(Maths.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
+		  Assert.AreEqual(MathsKit.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
 		  
 		  tx.SetTranslationY(3.0)
 		  Assert.AreEqual(2.0, tx.x)
 		  Assert.AreEqual(3.0, tx.y)
-		  Assert.AreEqual(Maths.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
+		  Assert.AreEqual(MathsKit.ToRadians(45.000), tx.GetRotationAngle, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -300,7 +300,7 @@ Inherits TestGroup
 		  
 		  Var t As Transform = New Transform
 		  t.Translate(2.0, 1.0)
-		  t.Rotate(Maths.ToRadians(25), 1.0, -1.0)
+		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
 		  Var v As Vector2 = New Vector2(1.0, 0.0)
 		  

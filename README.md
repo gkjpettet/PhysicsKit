@@ -3,6 +3,13 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+To test:
+- `Maths.GetExponent()`
+- `Maths.DoubleToBits()`
+- `Maths.DoubleToRawBits()`
+- `Maths.Scalb()`
+- `Maths.Hypot()`
+
 Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 

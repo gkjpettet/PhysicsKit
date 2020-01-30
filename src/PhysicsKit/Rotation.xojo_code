@@ -556,7 +556,7 @@ Protected Class Rotation
 		  ' - Returns :A new Rotation for the passed angle.
 		  ///
 		  
-		  Return New Rotation(Maths.ToRadians(angle))
+		  Return New Rotation(MathsKit.ToRadians(angle))
 		  
 		End Function
 	#tag EndMethod
@@ -988,7 +988,7 @@ Protected Class Rotation
 		  ' - Returns: Double.
 		  ///
 		  
-		  Return Maths.ToDegrees(ToRadians)
+		  Return MathsKit.ToDegrees(ToRadians)
 		  
 		End Function
 	#tag EndMethod
