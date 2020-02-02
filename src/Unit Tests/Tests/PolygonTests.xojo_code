@@ -32,6 +32,31 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub ContainsPointCoIncidentMidTest()
+		  ///
+		  ' Tests the Contains method against a point that is coincident with
+		  ' the starting edge of the polygon.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var vertices() As Vector2 = Array( _
+		  New Vector2(0.0, 4.0), _
+		  New Vector2(0.0, 2.0), _
+		  New Vector2(2.0, 0.0), _
+		  New Vector2(4.0, 0.0), _
+		  New Vector2(7.0, 3.0), _
+		  New Vector2(7.0, 5.0), _
+		  New Vector2(5.0, 7.0), _
+		  New Vector2(3.0, 7.0))
+		  Var p As Polygon = New Polygon(vertices)
+		  
+		  Assert.IsFalse(p.Contains(New Vector2(0.0, 0.0)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub ContainsPointCoIncidentStartTest()
 		  ///
 		  ' Tests the Contains methods against a point that is coincident with 
@@ -43,6 +68,58 @@ Inherits TestGroup
 		  Var vertices() As Vector2 = Array( _
 		  New Vector2(2.0, 0.0), _
 		  New Vector2(4.0, 0.0), _
+		  New Vector2(7.0, 3.0), _
+		  New Vector2(7.0, 5.0), _
+		  New Vector2(5.0, 7.0), _
+		  New Vector2(3.0, 7.0), _
+		  New Vector2(0.0, 4.0), _
+		  New Vector2(0.0, 2.0))
+		  Var p As Polygon = New Polygon(vertices)
+		  
+		  Assert.IsFalse(p.Contains(New Vector2(0.0, 0.0)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ContainsPointCoIncidentWithCoincidentEdges2Test()
+		  ///
+		  ' Tests the Contains method against a point that is coincident with
+		  ' the starting edge of a polygon that has two coincident edges.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var vertices() As Vector2 = Array( _
+		  New Vector2(2.0, 0.0), _
+		  New Vector2(4.0, 0.0), _
+		  New Vector2(5.0, 0.0), _
+		  New Vector2(7.0, 3.0), _
+		  New Vector2(7.0, 5.0), _
+		  New Vector2(5.0, 7.0), _
+		  New Vector2(3.0, 7.0), _
+		  New Vector2(0.0, 4.0), _
+		  New Vector2(0.0, 2.0))
+		  Var p As Polygon = New Polygon(vertices)
+		  
+		  Assert.IsTrue(p.Contains(New Vector2(4.5, 0.0)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ContainsPointCoIncidentWithCoincidentEdgesTest()
+		  ///
+		  ' Tests the Contains method against a point that is coincident with
+		  ' the starting edge of a polygon that has two coincident edges.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var vertices() As Vector2 = Array( _
+		  New Vector2(2.0, 0.0), _
+		  New Vector2(4.0, 0.0), _
+		  New Vector2(5.0, 0.0), _
 		  New Vector2(7.0, 3.0), _
 		  New Vector2(7.0, 5.0), _
 		  New Vector2(5.0, 7.0), _
