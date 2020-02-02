@@ -215,7 +215,7 @@ Still need to port the following methods (need to figure out Java iterators):
 	- [ ] RobustGeometry.java
 	- [x] Rotatable.java
 	- [x] Rotation.java
-	- [ ] Segment.java
+	- [x] Segment.java
 	- [x] Shape.java
 	- [ ] Shiftable.java
 	- [ ] Slice.java
@@ -233,6 +233,122 @@ Still need to port the following methods (need to figure out Java iterators):
 - [ ] Version.java
 
 ## Tests To Port
-TODO
+- [ ] BalancedBinarySearchTreeTest.java
+- [ ] BinarySearchTreeTest.java
+- [ ] collision
+	- [ ] AbstractTest.java
+	- [ ] AxisAlignedBoundsTest.java
+	- [ ] BroadphaseTest.java
+	- [ ] CapsuleCapsuleTest.java
+	- [ ] CapsuleSliceTest.java
+	- [ ] CategoryFilterTest.java
+	- [ ] CircleCapsuleTest.java
+	- [ ] CircleCircleTest.java
+	- [ ] CircleEllipseTest.java
+	- [ ] CircleHalfEllipseTest.java
+	- [ ] CirclePolygonTest.java
+	- [ ] CircleRectangleTest.java
+	- [ ] CircleSegmentTest.java
+	- [ ] CircleSliceTest.java
+	- [ ] CircleTriangleTest.java
+	- [ ] CollidableTest.java
+	- [ ] ConservativeAdvancementTest.java
+	- [ ] DefaultFilterTest.java
+	- [ ] EllipseCapsuleTest.java
+	- [ ] EllipseEllipseTest.java
+	- [ ] EllipseHalfEllipseTest.java
+	- [ ] EllipseSliceTest.java
+	- [ ] FallbackNarrowphaseDetectorTest.java
+	- [ ] FixtureTest.java
+	- [ ] GjkRaycastTest.java
+	- [ ] HalfEllipseCapsuleTest.java
+	- [ ] HalfEllipseHalfEllipseTest.java
+	- [ ] HalfEllipseSliceTest.java
+	- [ ] PolygonCapsuleTest.java
+	- [ ] PolygonEllipseTest.java
+	- [ ] PolygonHalfEllipseTest.java
+	- [ ] PolygonPolygonTest.java
+	- [ ] PolygonRectangleTest.java
+	- [ ] PolygonSegmentTest.java
+	- [ ] PolygonSliceTest.java
+	- [ ] PolygonTriangleTest.java
+	- [ ] RectangleCapsuleTest.java
+	- [ ] RectangleEllipseTest.java
+	- [ ] RectangleHalfEllipseTest.java
+	- [ ] RectangleRectangleTest.java
+	- [ ] RectangleSegmentTest.java
+	- [ ] RectangleSliceTest.java
+	- [ ] RectangleTriangleTest.java
+	- [ ] SegmentCapsuleTest.java
+	- [ ] SegmentDetectorTest.java
+	- [ ] SegmentEllipseTest.java
+	- [ ] SegmentHalfEllipseTest.java
+	- [ ] SegmentSegmentTest.java
+	- [ ] SegmentSliceTest.java
+	- [ ] SegmentTriangleTest.java
+	- [ ] SliceSliceTest.java
+	- [ ] TriangleCapsuleTest.java
+	- [ ] TriangleEllipseTest.java
+	- [ ] TriangleHalfEllipseTest.java
+	- [ ] TriangleSliceTest.java
+	- [ ] TriangleTriangleTest.java
+	- [ ] TypeFilterTest.java
+- [ ] dynamics
+	- [ ] AngleJointTest.java
+	- [ ] BodyFixtureTest.java
+	- [ ] BodyTest.java
+	- [ ] CapacityTest.java
+	- [ ] ContactConstraintIDTest.java
+	- [ ] ContactManagerTest.java
+	- [ ] DistanceJointTest.java
+	- [ ] ForceTest.java
+	- [ ] FrictionJointTest.java
+	- [ ] IslandTest.java
+	- [ ] PinJointTest.java
+	- [ ] PrismaticJointTest.java
+	- [ ] PulleyJointTest.java
+	- [ ] RevoluteJointTest.java
+	- [ ] RopeJointTest.java
+	- [ ] SettingsTest.java
+	- [ ] TorqueTest.java
+	- [ ] WeldJointTest.java
+	- [ ] WheelJointTest.java
+	- [ ] WorldTest.java
+- [ ] EpsilonTest.java
+- [ ] geometry
+	- [x] AABBTest.java
+	- [ ] AbstractDecomposeTest.java
+	- [ ] AbstractShapeTest.java
+	- [ ] AdaptiveDecimalTest.java
+	- [ ] BayazitTest.java
+	- [ ] CapsuleTest.java
+	- [x] CircleTest.java
+	- [ ] DivideAndConquerTest.java
+	- [ ] EarClippingTest.java
+	- [ ] EllipseTest.java
+	- [ ] GeometryTest.java
+	- [ ] GiftWrapTest.java
+	- [ ] GrahamScanTest.java
+	- [ ] HalfEllipseTest.java
+	- [x] IntervalTest.java
+	- [x] MassTest.java
+	- [ ] Matrix22Test.java
+	- [ ] Matrix33Test.java
+	- [ ] MonotoneChainTest.java
+	- [ ] PolygonTest.java
+	- [ ] RayTest.java
+	- [x] RectangleTest.java
+	- [ ] RobustGeometryTest.java
+	- [x] RotationTest.java
+	- [ ] SegmentTest.java
+	- [ ] SliceTest.java
+	- [ ] SweepLineTest.java
+	- [x] TransformTest.java
+	- [ ] TriangleTest.java
+	- [x] Vector2Test.java
+	- [ ] Vector3Test.java
+	- [ ] WoundTest.java
+- [ ] UnitConversionTest.java
+- [ ] VersionTest.java
 
 [dyn4j]: https://github.com/dyn4j/dyn4j

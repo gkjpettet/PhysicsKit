@@ -412,7 +412,16 @@ Inherits TestGroup
 		  ' Test case for the Segment create method.
 		  ///
 		  
-		  #Pragma Warning "Implement once the Segment class has been ported."
+		  Using PhysicsKit
+		  
+		  Var s As Segment = New Segment(New Vector2(-1.0, 0.0), New Vector2(1.0, 0.5))
+		  Var m As Mass = s.CreateMass(1.0)
+		  
+		  // The mass of a segment should be l * d
+		  Assert.AreEqual(2.061, m.GetMass, 1.0e-3)
+		  
+		  // the I of a segment should be 1 / 12 * l ^ 2 * m
+		  Assert.AreEqual(0.730, m.GetInertia, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
