@@ -90,6 +90,23 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E65772052656374616E676C6520776974682074686520676976656E20776964746820286D2920616E642068656967687420286D292C202063656E746572656420617420746865206F726967696E2E
+		Shared Function CreateRectangle(width As Double, height As Double) As PhysicsKit.Rectangle
+		  ///
+		  ' Creates a new Rectangle with the given width and height centered at the origin.
+		  '
+		  ' - Parameter width: The width in metres.
+		  ' - Parameter height: The height in metres.
+		  '
+		  ' - Returns: Rectangle.'
+		  ' - Throws: InvalidArgumentException if width or height is less than or equal to zero.
+		  ///
+		  
+		  Return New Rectangle(width, height)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4372656174657320612073717561726520776974682074686520676976656E2073697A652028696E206D6574726573292C2063656E746572656420617420746865206F726967696E2E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
 		Shared Function CreateSquare(size As Double) As PhysicsKit.Rectangle
 		  ///

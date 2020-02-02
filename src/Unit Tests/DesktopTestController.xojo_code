@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New RectangleTests(Self, "Rectangle")
 		  group = New CircleTests(Self, "Circle")
 		  group = New MassTests(Self, "Mass")
 		  group = New IntervalTests(Self, "Interval")
