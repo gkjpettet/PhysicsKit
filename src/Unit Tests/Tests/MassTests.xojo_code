@@ -395,8 +395,14 @@ Inherits TestGroup
 		  ' Test case for the Rectangle create method.
 		  ///
 		  
-		  #Pragma Warning "Implement once the Rectangle class has been ported."
+		  Using PhysicsKit
 		  
+		  Var r As Rectangle = New Rectangle(1.0, 1.0)
+		  Var m As Mass = r.CreateMass(1.5)
+		  
+		  // The mass of a rectangle should be h * w * d
+		  Assert.AreEqual(1.500, m.GetMass, 1.0e-3)
+		  Assert.AreEqual(0.250, m.GetInertia, 1.0e-3)
 		End Sub
 	#tag EndMethod
 
@@ -456,7 +462,17 @@ Inherits TestGroup
 		  ' Tests the inertia and COM calculatons for polygon shapes.
 		  ///
 		  
-		  #Pragma Warning "Implement once Rectangle class is ported."
+		  Using PhysicsKit
+		  
+		  // A polygon of a simple shape should match a simple shape's mass and inertia.
+		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
+		  Var r As Rectangle = Geometry.CreateSquare(1.0)
+		  
+		  Var pm As Mass = p.CreateMass(10.0)
+		  Var rm As Mass = r.CreateMass(10.0)
+		  
+		  Assert.AreEqual(rm.Mass, pm.Mass, 1.0e-3)
+		  Assert.AreEqual(rm.Inertia, pm.Inertia, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -467,7 +483,17 @@ Inherits TestGroup
 		  ' Make sure the centre of mass does not effect the mass or inertia.
 		  ///
 		  
-		  #Pragma Warning "Implement once the Polygon class has been ported."
+		  Using PhysicsKit
+		  
+		  // A polygon of a simple shape should match a simple shape's mass and inertia.
+		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
+		  Var m1 As Mass = p.CreateMass(10.0)
+		  
+		  p.Translate(0.5, -2.0)
+		  Var m2 As Mass = p.CreateMass(10.0)
+		  
+		  Assert.AreEqual(m1.Mass, m2.Mass, 1.0e-3)
+		  Assert.AreEqual(m1.Inertia, m2.Inertia, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod

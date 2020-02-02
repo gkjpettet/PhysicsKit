@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Rectangle.java` up to (not including) `toString()`.
-
 Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
@@ -210,7 +208,7 @@ Still need to port the following methods (need to figure out Java iterators):
 	- [x] PointFeature.java
 	- [x] Polygon.java
 	- [ ] Ray.java
-	- [ ] Rectangle.java
+	- [x] Rectangle.java
 	- [ ] RobustGeometry.java
 	- [x] Rotatable.java
 	- [x] Rotation.java

@@ -24,6 +24,9 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_INVALID_SIZE, Type = String, Dynamic = False, Default = \"The size must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INVALID_SIZE_POINT_ARRAY1, Type = String, Dynamic = False, Default = \"The points array must have at least one point.", Scope = Protected
 	#tag EndConstant
 

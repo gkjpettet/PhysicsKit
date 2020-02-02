@@ -90,6 +90,26 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 4372656174657320612073717561726520776974682074686520676976656E2073697A652028696E206D6574726573292C2063656E746572656420617420746865206F726967696E2E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
+		Shared Function CreateSquare(size As Double) As PhysicsKit.Rectangle
+		  ///
+		  ' Creates a square (equal height and width Rectangle) with the given size, centered at the origin.
+		  '
+		  ' - Parameter size: The size in metres.
+		  '
+		  ' - Returns: Rectangle.
+		  '
+		  ' - Throws: InvalidArgumentException if size is less than or equal to zero.
+		  ///
+		  
+		  // Check the size.
+		  If size <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE)
+		  
+		  Return New Rectangle(size, size)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E65772020506F6C79676F6E20776974682060636F756E7460206E756D626572206F6620706F696E74732C2077686572652074686520706F696E747320617265206576656E6C792064697374726962757465642061726F756E642074686520756E697420636972636C652E202054686520726573756C74696E6720506F6C79676F6E2077696C6C2062652063656E7465726564206F6E20746865206F726967696E2E
 		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double) As PhysicsKit.Polygon
 		  ///
