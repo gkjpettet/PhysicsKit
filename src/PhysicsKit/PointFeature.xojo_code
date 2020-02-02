@@ -75,8 +75,8 @@ Inherits PhysicsKit.Feature
 	#tag EndNote
 
 
-	#tag Property, Flags = &h21, Description = 54686520766572746578206F7220706F696E742E
-		Private Point As PhysicsKit.Vector2
+	#tag Property, Flags = &h0, Description = 54686520766572746578206F7220706F696E742E
+		Point As PhysicsKit.Vector2
 	#tag EndProperty
 
 
@@ -115,14 +115,6 @@ Inherits PhysicsKit.Feature
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Point"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

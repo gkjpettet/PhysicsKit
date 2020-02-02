@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `PolygonTests.java`. Up to **not** including `createDegenerate()`.
+Porting `PolygonTests.java`. Up to and including `containsPointCoIncidentStart()`.
 
 Part ported `Geometry.java`.
 
@@ -16,6 +16,7 @@ Still need to port the following methods (need to figure out Java iterators):
 - `Segment.GetNormalIterator()`
 - `Segment.GetVertexIterator()`
 
+## Main Files To Port
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
 - [ ] BinarySearchTreeNode.java
@@ -230,5 +231,8 @@ Still need to port the following methods (need to figure out Java iterators):
 - [ ] Reference.java
 - [ ] UnitConversion.java
 - [ ] Version.java
+
+## Tests To Port
+TODO
 
 [dyn4j]: https://github.com/dyn4j/dyn4j

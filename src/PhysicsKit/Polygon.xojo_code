@@ -415,9 +415,12 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		      maxIndex = maxIndex + 1
 		      
 		      // Exit?
-		      If maxIndex + 1 >= n Then Exit
-		      candidateMax = vector.Dot(Self.Vertices(maxIndex + 1))
-		      If max > candidateMax Then Exit
+		      If maxIndex + 1 >= n Then
+		        Exit
+		      Else
+		        candidateMax = vector.Dot(Self.Vertices(maxIndex + 1))
+		        If max >= candidateMax Then Exit
+		      End If
 		    Loop
 		  Else
 		    candidateMax = vector.Dot(Self.Vertices(n - 1))
@@ -430,14 +433,18 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		        maxIndex = maxIndex - 1
 		        
 		        // Exit?
-		        If maxIndex <= 0 Then Exit
-		        candidateMax = vector.Dot(Self.Vertices(maxIndex - 1))
-		        If max > candidateMax Then Exit
+		        If maxIndex <= 0 Then
+		          Exit
+		        Else
+		          candidateMax = vector.Dot(Self.Vertices(maxIndex - 1))
+		          If max > candidateMax Then Exit
+		        End If
 		      Loop
 		    End If
 		  End If
 		  
 		  Return maxIndex
+		  
 		  
 		End Function
 	#tag EndMethod
