@@ -52,6 +52,7 @@ Interface=Wound;PhysicsKit/Wound.xojo_code;&h0000000019559FFF;&h00000000342617FF
 Class=Polygon;PhysicsKit/Polygon.xojo_code;&h0000000053E7BFFF;&h00000000342617FF;false
 Class=EdgeFeature;PhysicsKit/EdgeFeature.xojo_code;&h00000000787957FF;&h00000000342617FF;false
 Class=Segment;PhysicsKit/Segment.xojo_code;&h0000000051CD27FF;&h00000000342617FF;false
+Class=Rectangle;PhysicsKit/Rectangle.xojo_code;&h000000001BF157FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

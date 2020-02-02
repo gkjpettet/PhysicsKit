@@ -78,6 +78,12 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_POLYGON_ZERO_AREA, Type = String, Dynamic = False, Default = \"A polygon cannot have zero area.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_RECTANGLE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"A rectangle must have a positive non-zero height.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_RECTANGLE_INVALID_WIDTH, Type = String, Dynamic = False, Default = \"A rectangle must have a positive non-zero width.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_ROTATION_INVALID_POINT, Type = String, Dynamic = False, Default = \"The given values do not lie on the unit circle.", Scope = Protected
 	#tag EndConstant
 
