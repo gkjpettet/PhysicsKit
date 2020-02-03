@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `PolygonTests.java`. Up to and including `containsPointCoIncidentStart()`.
-
 Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
@@ -318,7 +316,7 @@ Still need to port the following methods (need to figure out Java iterators):
 - [ ] geometry
 	- [x] AABBTest.java
 	- [ ] AbstractDecomposeTest.java
-	- [ ] AbstractShapeTest.java
+	- [x] AbstractShapeTest.java
 	- [ ] AdaptiveDecimalTest.java
 	- [ ] BayazitTest.java
 	- [ ] CapsuleTest.java

@@ -1,7 +1,7 @@
 #tag Class
 Protected Class Segment
 Inherits PhysicsKit.AbstractShape
-Implements PhysicsKit.Convex, PhysicsKit.Wound
+Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E6577207365676D656E74207573696E672074686520676976656E20706F696E74732E20205468652063656E7465722077696C6C206265207468652061766572616765206F662074686520706F696E74732E
 		Private Sub Constructor(valid As Boolean, vertices() As PhysicsKit.Vector2, segment As PhysicsKit.Vector2, length As Double)
 		  ///
@@ -946,6 +946,62 @@ Implements PhysicsKit.Convex, PhysicsKit.Wound
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Radius"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Length"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

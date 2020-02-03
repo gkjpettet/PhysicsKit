@@ -1,36 +1,67 @@
 #tag Class
-Protected Class DesktopTestController
-Inherits TestController
+Protected Class AbstractShapeTest
+Inherits TestGroup
 	#tag Event
-		Sub InitializeTestGroups()
-		  // Instantiate TestGroup subclasses here so that they can be run
-		  
-		  Dim group As TestGroup
-		  
-		  group = New AbstractShapeTest(Self, "AbstractShape")
-		  group = New PolygonTests(Self, "Polygon")
-		  group = New RectangleTests(Self, "Rectangle")
-		  group = New CircleTests(Self, "Circle")
-		  group = New MassTests(Self, "Mass")
-		  group = New IntervalTests(Self, "Interval")
-		  group = New AABBTests(Self, "AABB")
-		  group = New TransformTests(Self, "Transform")
-		  group = New RotationTests(Self, "Rotation")
-		  group = New Vector2Tests(Self, "Vector2")
+		Sub Setup()
+		  Prop2 = Prop2 + 1
 		  
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub TearDown()
+		  Prop2 = Prop2 - 1
+		  
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		  #pragma unused err
+		  
+		  Const kMethodName As Text = "UnhandledException"
+		  
+		  If methodName.Length >= kMethodName.Length And methodName.Left(kMethodName.Length) = kMethodName Then
+		    Assert.Pass("Exception was handled")
+		    Return True
+		  End If
+		End Function
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub SetUserDataTest()
+		  ///
+		  ' Make sure storage of user data is working.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var s As TestSupportClasses.AbstractShapeTestClass = New TestSupportClasses.AbstractShapeTestClass
+		  
+		  // Should initially be Nil.
+		  Assert.IsNil(s.GetUserData)
+		  
+		  Var obj As String = "Hello"
+		  s.SetUserData(obj)
+		  Assert.IsNotNil(s.GetUserData)
+		  Assert.AreSame(obj, s.GetUserData)
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private Prop1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Shared Prop2 As Integer
+	#tag EndProperty
+
 
 	#tag ViewBehavior
-		#tag ViewProperty
-			Name="AllTestCount"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Duration"
 			Visible=false
@@ -40,7 +71,7 @@ Inherits TestController
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="FailedCount"
+			Name="FailedTestCount"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -48,11 +79,11 @@ Inherits TestController
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="GroupCount"
+			Name="IncludeGroup"
 			Visible=false
 			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
+			InitialValue="True"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -72,15 +103,7 @@ Inherits TestController
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="PassedCount"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RunGroupCount"
+			Name="PassedTestCount"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -96,7 +119,23 @@ Inherits TestController
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="SkippedCount"
+			Name="SkippedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TestCount"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
