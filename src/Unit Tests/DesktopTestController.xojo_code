@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New RobustGeometryTest(Self, "RobustGeometry")
 		  group = New AbstractShapeTest(Self, "AbstractShape")
 		  group = New PolygonTests(Self, "Polygon")
 		  group = New RectangleTests(Self, "Rectangle")
