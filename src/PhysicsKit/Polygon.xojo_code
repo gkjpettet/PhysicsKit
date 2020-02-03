@@ -320,7 +320,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  Var rightN As Vector2 = Self.Normals(index)
 		  
 		  // Create the maximum point for the feature (transform the maximum into world space).
-		  transform.Transform(maximum)
+		  transform.TransformV(maximum)
 		  Var vm As PointFeature = New PointFeature(maximum, index)
 		  
 		  // Is the left or right edge more perpendicular?

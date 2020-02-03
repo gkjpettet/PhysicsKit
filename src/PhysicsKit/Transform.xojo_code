@@ -909,22 +909,6 @@ Implements PhysicsKit.Transformable
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F723220616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72322E
-		Sub Transform(vector As PhysicsKit.Vector2)
-		  ///
-		  ' Transforms the given Vector2 and places the result in the given Vector2.
-		  '
-		  ' - Parameter vector: The Vector2 to transform.
-		  ///
-		  
-		  Var x As Double = vector.X
-		  Var y As Double = vector.Y
-		  vector.X = Self.Cost * x - Self.Sint * y + Self.X
-		  vector.Y = Self.Sint * x + Self.Cost * y + Self.Y
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F7232206F6E6C792062792074686520726F746174696F6E20616E642072657475726E732074686520726573756C7420696E2074686520676976656E20566563746F72322E
 		Sub TransformR(vector As PhysicsKit.Vector2)
 		  ///
@@ -938,6 +922,24 @@ Implements PhysicsKit.Transformable
 		  Var y As Double = vector.Y
 		  vector.X = Self.Cost * x - Self.Sint * y
 		  vector.Y = Self.Sint * x + Self.Cost * y
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5472616E73666F726D732074686520676976656E20566563746F723220616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72322E2052656E616D65642066726F6D20605472616E73666F726D2E5472616E73666F726D602E
+		Sub TransformV(vector As PhysicsKit.Vector2)
+		  ///
+		  ' Transforms the given Vector2 and places the result in the given Vector2.
+		  '
+		  ' - Parameter vector: The Vector2 to transform.
+		  '
+		  ' - Note: Renamed from `Transform.Transform` to avoid deprecation warning from Xojo.
+		  ///
+		  
+		  Var x As Double = vector.X
+		  Var y As Double = vector.Y
+		  vector.X = Self.Cost * x - Self.Sint * y + Self.X
+		  vector.Y = Self.Sint * x + Self.Cost * y + Self.Y
 		  
 		End Sub
 	#tag EndMethod

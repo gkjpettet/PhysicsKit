@@ -305,7 +305,7 @@ Inherits TestGroup
 		  Var v As Vector2 = New Vector2(1.0, 0.0)
 		  
 		  // Test transformation.
-		  t.Transform(v)
+		  t.TransformV(v)
 		  Assert.AreEqual(1.967, v.x, 1.0e-3)
 		  Assert.AreEqual(1.657, v.y, 1.0e-3)
 		  
