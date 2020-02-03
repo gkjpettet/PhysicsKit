@@ -3,12 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Need to port `RobustGeometry`.
-
 Part ported `Geometry.java`.
-
-`AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 
-comes for free with Java but not with Xojo.
 
 Still need to port the following methods (need to figure out Java iterators):
 - `Polygon.GetNormalIterator()`
@@ -163,7 +158,7 @@ Still need to port the following methods (need to figure out Java iterators):
 - [ ] geometry
 	- [x] AABB.java
 	- [x] AbstractShape.java
-	- [ ] AdaptiveDecimal.java
+	- [x] AdaptiveDecimal.java
 	- [ ] Capsule.java
 	- [x] Circle.java
 	- [x] Convex.java
@@ -212,7 +207,7 @@ Still need to port the following methods (need to figure out Java iterators):
 	- [x] Polygon.java
 	- [ ] Ray.java
 	- [x] Rectangle.java
-	- [ ] RobustGeometry.java
+	- [x] RobustGeometry.java
 	- [x] Rotatable.java
 	- [x] Rotation.java
 	- [x] Segment.java
