@@ -63,6 +63,8 @@ Inherits TestGroup
 		  ' complex paths in `RobustGeometry.GetLocation(Vector2, Vector2, Vector2)`.
 		  ///
 		  
+		  #Pragma Warning "Broken and failing"
+		  
 		  Using PhysicsKit
 		  
 		  // Constant seed so we always get the same sequence of randoms

@@ -3,6 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+Porting `AdaptiveDecimalTest.java` up to and including `testIndex2()`.
+
 Part ported `Geometry.java`.
 
 Still need to port the following methods (need to figure out Java iterators):

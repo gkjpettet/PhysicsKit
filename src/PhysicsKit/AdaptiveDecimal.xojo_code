@@ -544,7 +544,7 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206E756D626572206F6620636F6D706F6E656E74732074686973204164617074697665446563696D616C2063616E20686F6C642E
-		Function Size() As Int32
+		Function Size() As Integer
 		  ///
 		  ' Returns: The number of components this AdaptiveDecimal can hold.
 		  ///
@@ -681,7 +681,7 @@ Protected Class AdaptiveDecimal
 		  ' - Returns: The result as an AdaptiveDecimal.
 		  ///
 		  
-		  Do
+		  While eIndex < e.Size
 		    Var enow As Double = e.Get(eIndex)
 		    Var sum As Double = carry + enow
 		    Var error As Double = GetErrorComponentFromSum(carry, enow, sum)
@@ -689,7 +689,7 @@ Protected Class AdaptiveDecimal
 		    carry = sum
 		    Call result.AppendNonZero(error)
 		    eIndex = eIndex + 1
-		  Loop until eIndex < e.Size
+		  Wend
 		  
 		  Call result.AppendNonZero(carry)
 		  Call result.Normalise
@@ -817,14 +817,6 @@ Protected Class AdaptiveDecimal
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Components()"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
