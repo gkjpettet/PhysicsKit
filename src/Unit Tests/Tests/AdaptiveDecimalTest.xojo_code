@@ -384,6 +384,54 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub TestArgument1Test()
+		  ///
+		  ' Check InvalidArgumentException for creating an AdaptiveDecimal with negative capacity.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var ad As AdaptiveDecimal = New AdaptiveDecimal(-5)
+		    #Pragma Unused ad
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException for attempting to create an AdaptiveDecimal " + _
+		  "with a negative capacity.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestArgument2Test()
+		  ///
+		  ' Check InvalidArgumentException for creating an AdaptiveDecimal with zero capacity.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var ad As AdaptiveDecimal = New AdaptiveDecimal(0)
+		    #Pragma Unused ad
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException for attempting to create an AdaptiveDecimal " + _
+		  "with zero capacity.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub TestIndex1Test()
 		  ///
 		  ' Check OutOfBoundsException for negative index.
@@ -427,6 +475,56 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected OutOfBoundsException as index bigger than capacity.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestIndex3Test()
+		  ///
+		  ' Check OutOfBoundsException for adding more components than the capacity.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var ad As AdaptiveDecimal = New AdaptiveDecimal(2)
+		    Call ad.Append(0.0).Append(0.0).Append(0.0)
+		    #Pragma Unused ad
+		  Catch e As OutOfBoundsException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected OutOfBoundsException as attempted to add more components " + _
+		  "than capacity available.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestStateTest()
+		  ///
+		  ' Check that `EnsureInvariants` raises a RuntimeException if 
+		  ' the invariants do not hold.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var ed As AdaptiveDecimal = New AdaptiveDecimal(2)
+		    Call ed.Append(1.0).Append(0.5)
+		    ed.EnsureInvariants
+		  Catch e As RuntimeException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected a RuntimeException due to invalid invariants.")
 		  
 		End Sub
 	#tag EndMethod
