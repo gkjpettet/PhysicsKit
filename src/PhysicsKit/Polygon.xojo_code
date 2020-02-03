@@ -42,8 +42,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Parameter verts: The array of vertices.
 		  '
-		  ' - Throws: NilObjectException if vertices is Nil or contains a Nil element.
-		  ' - Throws: InvalidArgumentException if vertices contains less than 3 points,
+		  ' - Raises: NilObjectException if vertices is Nil or contains a Nil element.
+		  ' - Raises: InvalidArgumentException if vertices contains less than 3 points,
 		  '           contains coincident points, is not convex, or has clockwise winding
 		  ///
 		  
@@ -603,8 +603,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: True or raises an exception.
 		  '
-		  ' - Throws: NilObjectException if verts is Nil or contains a Nil element.
-		  ' - Throws: InvalidArgumentException if verts contains less than 3 points, 
+		  ' - Raises: NilObjectException if verts is Nil or contains a Nil element.
+		  ' - Raises: InvalidArgumentException if verts contains less than 3 points, 
 		  '           contains coincident points, is not convex, or has clockwise winding.
 		  ///
 		  

@@ -29,7 +29,7 @@ Implements PhysicsKit.Convex
 		  '
 		  ' - Parameter radius: The radius.
 		  '
-		  ' - Throws: InvalidArgumentException if the given radius is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if the given radius is less than or equal to zero.
 		  ///
 		  
 		  Constructor(Validate(radius), radius)
@@ -214,7 +214,7 @@ Implements PhysicsKit.Convex
 		  '
 		  ' - Returns: True or raises an exception.
 		  '
-		  ' - Throws: InvalidArgumentException if the given radius is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if the given radius is less than or equal to zero.
 		  ///
 		  
 		  If radius <= 0 Then

@@ -48,7 +48,7 @@ Protected Class Interval
 		  ' - Parameter min: The minimum value.
 		  ' - Parameter max: The maximum value.
 		  ' 
-		  ' - Throws: InvalidArgumentException if min > max.
+		  ' - Raises: InvalidArgumentException if min > max.
 		  ///
 		  
 		  If min > max Then
@@ -416,7 +416,7 @@ Protected Class Interval
 		  '
 		  ' - Parameter max: The maximum value.
 		  '
-		  ' - Throws: InvalidArgumentException if max < min.
+		  ' - Raises: InvalidArgumentException if max < min.
 		  ///
 		  
 		  If max < Self.Min Then
@@ -435,7 +435,7 @@ Protected Class Interval
 		  '
 		  ' - Parameter min: The minimum value.
 		  '
-		  ' - Throws: InvalidArgumentException if min > max.
+		  ' - Raises: InvalidArgumentException if min > max.
 		  ///
 		  
 		  If min > Self.Max Then
@@ -545,7 +545,15 @@ Protected Class Interval
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Max"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

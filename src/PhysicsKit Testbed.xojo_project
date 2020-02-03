@@ -58,6 +58,7 @@ Class=Segment;PhysicsKit/Segment.xojo_code;&h0000000051CD27FF;&h00000000342617FF
 Class=Rectangle;PhysicsKit/Rectangle.xojo_code;&h000000001BF157FF;&h00000000342617FF;false
 Module=TestSupportClasses;Unit Tests/Tests/TestSupportClasses.xojo_code;&h0000000053A287FF;&h0000000044C729E7;false
 Class=AbstractShapeTestClass;Unit Tests/Tests/TestSupportClasses/AbstractShapeTestClass.xojo_code;&h0000000074A807FF;&h0000000053A287FF;false
+Class=AdaptiveDecimal;PhysicsKit/AdaptiveDecimal.xojo_code;&h00000000265B6FFF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

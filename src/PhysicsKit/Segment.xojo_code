@@ -45,8 +45,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' - Parameter point1: The first point.
 		  ' - Parameter point2: The second point.
 		  '
-		  ' - Throws: NilObjectException if `point1` or `point2` is Nil.
-		  ' - Throws: InvalidArgumentException if `point1` = `point2`.
+		  ' - Raises: NilObjectException if `point1` or `point2` is Nil.
+		  ' - Raises: InvalidArgumentException if `point1` = `point2`.
 		  ///
 		  
 		  Constructor(Validate(point1, point2), Array(point1, point2), _
@@ -272,7 +272,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' - Parameter transform: The local to world space Transform of this Convex Shape.
 		  '
 		  ' - Returns: New EdgeFeature.'
-		  ' - Throws: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
+		  ' - Raises: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
 		  ///
 		  
 		  // The farthest feature for a line is always the line itself.
@@ -334,7 +334,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: A new Vector2.
 		  '
-		  ' - Throws: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
+		  ' - Raises: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
 		  ///
 		  
 		  // Get the vertices and the centre.
@@ -399,7 +399,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' 
 		  ' - Returns: Vector2 or Nil if the lines are parallel or coincident.
 		  '
-		  ' - Throws: NilObjectException if the given segment is Nil.
+		  ' - Raises: NilObjectException if the given segment is Nil.
 		  ///
 		  
 		  Return Segment.GetLineIntersection(Self.Vertices(0), _
@@ -447,7 +447,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: The intersection point as a Vector2 or Nil if the lines are parallel or coincident.
 		  '
-		  ' - Throws: NilObjectException if `ap1`, `ap2`, `bp1` or `bp2` is Nil.
+		  ' - Raises: NilObjectException if `ap1`, `ap2`, `bp1` or `bp2` is Nil.
 		  ///
 		  
 		  Var A As Vector2 = ap1.Towards(ap2)
@@ -499,7 +499,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: Double.
 		  '
-		  ' - Throws: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
+		  ' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
 		  ///
 		  
 		  Return (linePoint2.X - linePoint1.X) * (point.Y - linePoint1.Y) - _
@@ -562,7 +562,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: Vector2.
 		  '
-		  ' - Throws: NilObjectException: If the given point is Nil.
+		  ' - Raises: NilObjectException: If the given point is Nil.
 		  ///
 		  
 		  Return Segment.GetPointOnLineClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
@@ -589,7 +589,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: Vector2
 		  '
-		  ' - Throws: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
+		  ' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
 		  ///
 		  
 		  // Create a vector from the point to the first line point.
@@ -627,7 +627,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Retiurns: Vector2.
 		  '
-		  ' - Throws: NilObjectException if the given point is Nil.
+		  ' - Raises: NilObjectException if the given point is Nil.
 		  ///
 		  
 		  Return Segment.GetPointOnSegmentClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
@@ -652,7 +652,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: Vector2.
 		  '
-		  ' - Throws: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
+		  ' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.
 		  ///
 		  
 		  // Create a vector from the point to the first line point.
@@ -704,7 +704,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  '
 		  ' - Returns: Vector2 or Nil (if the segments do not intersect, are parallel, or are coincident).
 		  '
-		  ' - Throws: NilObjectException if the given segment is Nil.
+		  ' - Raises: NilObjectException if the given segment is Nil.
 		  ///
 		  
 		  Return Segment.GetSegmentIntersection(Self.Vertices(0), Self.Vertices(1), _
@@ -758,7 +758,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' - Returns: The intersection point as a Vector2 or 
 		  '            Nil if the line segments don't intersect, are parallel, or are coincident.
 		  '
-		  ' - Throws: NilObjectException if `ap1`, `ap2`, `bp1`, or `bp2` is Nil.
+		  ' - Raises: NilObjectException if `ap1`, `ap2`, `bp1`, or `bp2` is Nil.
 		  ///
 		  
 		  Var A As Vector2 = ap1.Towards(ap2)
@@ -904,10 +904,10 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  ' - Parameter point1: The first point.
 		  ' - Parameter point2: The second point.
 		  '
-		  ' - Returns: True or throws.
+		  ' - Returns: True or raises.
 		  '
-		  ' - Throws: NilObjectException if `point1` or `point2` is Nil.
-		  ' - Throws: InvalidArgumentException if `point1` = `point2`.
+		  ' - Raises: NilObjectException if `point1` or `point2` is Nil.
+		  ' - Raises: InvalidArgumentException if `point1` = `point2`.
 		  ///
 		  
 		  // Make sure either point is not Nil.

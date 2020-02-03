@@ -27,7 +27,7 @@ Protected Class Mass
 		  '
 		  ' - Parameter mass: The Mass to copy.
 		  '
-		  ' - Throws:NilObjectException if `mass` is Nil.
+		  ' - Raises: NilObjectException if `mass` is Nil.
 		  ///
 		  
 		  // Validate the input.
@@ -55,8 +55,8 @@ Protected Class Mass
 		  ' - Parameter mass: The mass in kg.
 		  ' - Parameter inertia: The inertia tensor in kg·m²
 		  '
-		  ' - Throws: NilObjectException if `center` is Nil.
-		  ' - Throws: InvalidArgumentException if `mass` or `inertia` is less than zero.
+		  ' - Raises: NilObjectException if `center` is Nil.
+		  ' - Raises: InvalidArgumentException if `mass` or `inertia` is less than zero.
 		  ///
 		  
 		  // Validate the input,
@@ -131,8 +131,8 @@ Protected Class Mass
 		  '
 		  ' - Returns: A new Mass instance.
 		  '
-		  ' - Throws: NilObjectException if `masses` is Nil or contains Nil elements.
-		  ' - Throws: InvalidArgumentException if `masses` is empty.
+		  ' - Raises: NilObjectException if `masses` is Nil or contains Nil elements.
+		  ' - Raises: InvalidArgumentException if `masses` is empty.
 		  ///
 		  
 		  // Check the array for Nil or empty.
@@ -438,7 +438,45 @@ Protected Class Mass
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="PhysicsKit.MassTypes"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Normal"
+				"1 - Infinite"
+				"2 - FixedAngularVelocity"
+				"3 - FixedLinearVelocity"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Inertia"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InvInertia"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InvMass"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Mass"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

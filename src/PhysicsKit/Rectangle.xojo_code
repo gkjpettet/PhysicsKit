@@ -38,7 +38,7 @@ Inherits PhysicsKit.Polygon
 		  ' - Parameter width: The width.
 		  ' - Parameter height: The height.
 		  '
-		  ' - Throws: InvalidArgumentException if width or height is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
 		  ///
 		  
 		  Self.Constructor(Validate(width, height), width, height, Array( _
@@ -303,7 +303,7 @@ Inherits PhysicsKit.Polygon
 		  '
 		  ' - Returns: True.
 		  '
-		  ' - Throws: InvalidArgumentException if width or height is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
 		  ///
 		  
 		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_RECTANGLE_INVALID_WIDTH)
@@ -333,6 +333,70 @@ Inherits PhysicsKit.Polygon
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Radius"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Height"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

@@ -589,7 +589,7 @@ Protected Class Rotation
 		  ' - Parameter cost: The x value = cos(Θ).
 		  ' - Parameter sint: The y value = sin(Θ).
 		  '
-		  ' - Throws: InvalidArgumentExcpetion if (cost, sint) is not on the unit circle.
+		  ' - Raises: InvalidArgumentExcpetion if (cost, sint) is not on the unit circle.
 		  '
 		  ' - Returns: A new Rotation defined by (cost, sint).
 		  ///

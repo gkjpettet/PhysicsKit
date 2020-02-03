@@ -9,7 +9,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: A new Circle instance.'
 		  ' 
-		  ' - Throws: InvalidArgumentException if radius is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if radius is less than or equal to zero.
 		  ///
 		  
 		  Return New Circle(radius)
@@ -28,7 +28,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: A new Polygon.
 		  '
-		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ' - Raises: InvalidArgumentException if `count` < 3 or `radius` <= 0.
 		  ///
 		  
 		  Return Geometry.CreatePolygonalCircle(count, radius, 0)
@@ -48,7 +48,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: A new Polygon.
 		  '
-		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ' - Raises: InvalidArgumentException if `count` < 3 or `radius` <= 0.
 		  ///
 		  
 		  // Validate the input.
@@ -99,7 +99,7 @@ Protected Class Geometry
 		  ' - Parameter height: The height in metres.
 		  '
 		  ' - Returns: Rectangle.'
-		  ' - Throws: InvalidArgumentException if width or height is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
 		  ///
 		  
 		  Return New Rectangle(width, height)
@@ -116,7 +116,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: Rectangle.
 		  '
-		  ' - Throws: InvalidArgumentException if size is less than or equal to zero.
+		  ' - Raises: InvalidArgumentException if size is less than or equal to zero.
 		  ///
 		  
 		  // Check the size.
@@ -140,7 +140,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: A new Polygon.
 		  '
-		  ' - Throws: InvalidArgumentException if `count` < 3 or radius <= 0.
+		  ' - Raises: InvalidArgumentException if `count` < 3 or radius <= 0.
 		  ///
 		  
 		  Return Geometry.CreateUnitCirclePolygon(count, radius, 0.0)
@@ -163,7 +163,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns: A new Polygon.
 		  '
-		  ' - Throws: InvalidArgumentException if `count` < 3 or `radius` <= 0.
+		  ' - Raises: InvalidArgumentException if `count` < 3 or `radius` <= 0.
 		  ///
 		  
 		  // Check the count.
@@ -191,12 +191,12 @@ Protected Class Geometry
 		  ' 
 		  ' - Returns: The area weighted centroid as a Vector2.
 		  '
-		  ' - Throws: NilObjectException if `points` is Nil or an element of `points` is Nil.
-		  ' - Throws: InvalidArgumentException if `points` is empty.
+		  ' - Raises: NilObjectException if `points` is Nil or an element of `points` is Nil.
+		  ' - Raises: InvalidArgumentException if `points` is empty.
 		  ///
 		  
 		  // Calculate the average centre.
-		  // Note that this also performs the necessary checks and throws any exceptions needed.
+		  // Note that this also performs the necessary checks and raises any exceptions needed.
 		  Var ac As Vector2 = Geometry.GetAverageCenter(points)
 		  Var size As Integer = points.Count
 		  
@@ -250,8 +250,8 @@ Protected Class Geometry
 		  '
 		  '- Returns: The centroid as a Vector2.
 		  '
-		  ' - Throws: NilObjectException if `points` is Nil or an element of `points` is Nil.
-		  ' - Throws: InvalidArgumentException if `points` is an empty array.
+		  ' - Raises: NilObjectException if `points` is Nil or an element of `points` is Nil.
+		  ' - Raises: InvalidArgumentException if `points` is an empty array.
 		  ///
 		  
 		  // Check for Nil array
@@ -299,7 +299,7 @@ Protected Class Geometry
 		  '
 		  ' - Returns Vector2 array or Nil if the given `vertices` array is Nil or empty.
 		  '
-		  ' - Throws: NilObjectException if `vertices` contains a Nil element.
+		  ' - Raises: NilObjectException if `vertices` contains a Nil element.
 		  ///
 		  
 		  If vertices = Nil Then Return Nil

@@ -1,6 +1,6 @@
 #tag Interface
 Protected Interface Convex
-Implements  PhysicsKit.Shape
+Implements PhysicsKit.Shape
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E206172726179206F662073657061726174696E67206178657320746F207465737420666F7220746869732073686170652E
 		Function GetAxes(foci() As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Vector2()
 		  
@@ -52,7 +52,7 @@ Implements  PhysicsKit.Shape
 		
 		- Returns: An array of Vector2 objects.
 		
-		- Throws: UnsupportedOperationException if this shape doesn't support this method.
+		- Raises: UnsupportedOperationException if this shape doesn't support this method.
 		
 		GetFoci(transform As Transform) As Vector2()
 		--------------------------------------------
@@ -66,7 +66,7 @@ Implements  PhysicsKit.Shape
 		
 		- Returns: An array of Vector2 objects.
 		
-		- Throws: UnsupportedOperationException if this shape doesn't support this method.
+		- Raises: UnsupportedOperationException if this shape doesn't support this method.
 		
 		GetFarthestFeature(vector As Vector2, transform As Transform) As Feature
 		------------------------------------------------------------------------

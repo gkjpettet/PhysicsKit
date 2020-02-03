@@ -24,7 +24,7 @@ Implements PhysicsKit.Translatable
 		  ' - Parameter maxX: The maximum x extent.
 		  ' - Parameter maxY: The maximum y extent.
 		  '
-		  ' - Throws: InvalidArgumentException if minX or minY are greater than the permitted maximum.
+		  ' - Raises: InvalidArgumentException if minX or minY are greater than the permitted maximum.
 		  ///
 		  
 		  // Check the min and max.
@@ -65,7 +65,7 @@ Implements PhysicsKit.Translatable
 		  ' - Parameter center: The center of the circle.
 		  ' - Parameter radius: The radius of the circle.
 		  '
-		  ' - Throws: InvalidArgumentException if the given radius is less than zero.
+		  ' - Raises: InvalidArgumentException if the given radius is less than zero.
 		  ///
 		  
 		  If radius < 0 Then
@@ -95,7 +95,7 @@ Implements PhysicsKit.Translatable
 		  ' - Parameter min: The minimum extent.
 		  ' - Parameter max: The maximum extent.
 		  '
-		  ' - Throws: InvalidArgumentException if either coordinate of the given min is greater 
+		  ' - Raises: InvalidArgumentException if either coordinate of the given min is greater 
 		  '           than the given max.
 		  ///
 		  
@@ -688,7 +688,31 @@ Implements PhysicsKit.Translatable
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MaxX"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MaxY"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MinY"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

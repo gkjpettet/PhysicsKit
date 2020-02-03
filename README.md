@@ -3,6 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+Need to port `RobustGeometry`.
+
 Part ported `Geometry.java`.
 
 `AdaptiveDecimal.java` is a bitch. It needs lots of binary math re-implementation that 

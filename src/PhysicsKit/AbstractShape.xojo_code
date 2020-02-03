@@ -8,7 +8,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 		  '
 		  ' - Parameter radius: The rotation radius. Must be greater than zero.
 		  '
-		  ' - Throws: InvalidlArgumentException if radius is zero or less.
+		  ' - Raises: InvalidlArgumentException if radius is zero or less.
 		  ///
 		  
 		  mID = New UUID
@@ -26,8 +26,8 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 		  ' - Parameter center: The center.
 		  ' - Parameter radius: The rotation radius. Must be greater than zero.
 		  '
-		  ' - Throws: InvalidArgumentException if radius is zero or less.
-		  ' - Throws: NilObjectException if center is Nil.
+		  ' - Raises: InvalidArgumentException if radius is zero or less.
+		  ' - Raises: NilObjectException if center is Nil.
 		  ///
 		  
 		  If mID Is Nil Then mID = New UUID

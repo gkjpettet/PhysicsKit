@@ -167,7 +167,7 @@ class AdaptiveDecimal {
 		return this;
 	}
 	
-	/** The mask to get the mantissa of a double as per the standard; Taken from {@link DoubleConsts#SIGN_BIT_MASK} */
+	/** The mask to get the mantissa of a double as per the standard; Taken from {@link DoubleConsts#SIGNIF_BIT_MASK} */
     private static final long SIGNIF_BIT_MASK = 0x000FFFFFFFFFFFFFL;
     
     /** The implicit bit in the mantissa of a double */
