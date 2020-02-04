@@ -174,7 +174,7 @@ Protected Class AdaptiveDecimal
 		  ' 
 		  ' - Parameter length: The maximum number of components this AdaptiveDecimal can store.
 		  '
-		  ' - Raises: Inva;idArgumentException if `length` is <= 0.
+		  ' - Raises: InvalidArgumentException if `length` is <= 0.
 		  ///
 		  
 		  If length <= 0 Then Raise New InvalidArgumentException(Messages.ADAPTIVE_DECIMAL_INVALID_LENGTH)
@@ -215,7 +215,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 436F706965732074686520636F6D706F6E656E7473206F6620616E6F74686572204164617074697665446563696D616C20696E746F20746869732E20546865206361706163697479206F662074686973204164617074697665446563696D616C206973206E6F74206D6F64696669656420616E642069742073686F756C6420626520656E6F75676820746F20686F6C6420616C6C2074686520636F6D706F6E656E74732E20526169736573204F75744F66426F756E6473457863657074696F6E2E
 		Sub CopyFrom(other As PhysicsKit.AdaptiveDecimal)
 		  ///
-		  ' Copies the components of another AdaptiveDecimal into this.
+		  ' Copies the components of another AdaptiveDecimal into this one.
 		  ' The capacity of this AdaptiveDecimal is not modified and it should
 		  ' be enough to hold all the components.
 		  ' 

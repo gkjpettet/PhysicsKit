@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Capsule.java` upto and including `toString()`.
-
 Ported `RobustGeometry.java` but it's test are failing.
 
 Part ported `Geometry.java` up to but not including `createCapsule()`.
@@ -157,7 +155,7 @@ Part ported `Geometry.java` up to but not including `createCapsule()`.
 	- [x] AABB.java
 	- [x] AbstractShape.java
 	- [x] AdaptiveDecimal.java
-	- [ ] Capsule.java
+	- [x] Capsule.java
 	- [x] Circle.java
 	- [x] Convex.java
 	- [ ] decompose
