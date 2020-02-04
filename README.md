@@ -312,7 +312,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [x] AbstractShapeTest.java
 	- [x] AdaptiveDecimalTest.java
 	- [ ] BayazitTest.java
-	- [ ] CapsuleTest.java
+	- [x] CapsuleTest.java
 	- [x] CircleTest.java
 	- [ ] DivideAndConquerTest.java
 	- [ ] EarClippingTest.java
