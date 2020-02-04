@@ -1,5 +1,28 @@
 #tag Class
 Protected Class Geometry
+	#tag Method, Flags = &h0, Description = 437265617465732061206E65772043617073756C6520626F756E6465642062792074686520676976656E2072656374616E676C6520776964746820616E64206865696768742E205468652063617073756C652077696C6C20626520617869732D616C69676E656420616E642063656E7465726564206F6E20746865206F726967696E2077697468207468652063617073206F6E2074686520656E6473206F6620746865206C6172676573742064696D656E73696F6E2E
+		Shared Function CreateCapsule(width As Double, height As Double) As PhysicsKit.Capsule
+		  ///
+		  ' Creates a new Capsule bounded by the given rectangle width and height.
+		  '
+		  ' The capsule will be axis-aligned and centered on the origin with the caps on the
+		  ' ends of the largest dimension.
+		  '
+		  ' If width and height are equal use a Circle shape instead.
+		  '
+		  ' - Parameter width: The bounding rectangle width.
+		  ' - Parameter height: The bounding rectangle height.
+		  '
+		  ' - Returns: A new Capsule.
+		  '
+		  ' - Raises: InvalidArgumentException if `width` or `height` are less than or equal to zero.
+		  ///
+		  
+		  Return New Capsule(width, height)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720436972636C6520776974682074686520676976656E207261646975732063656E7465726564206F6E20746865206F726967696E2E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
 		Shared Function CreateCircle(radius As Double) As PhysicsKit.Circle
 		  ///
