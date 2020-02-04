@@ -17,6 +17,123 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 4372656174657320616E20657175696C61746572616C20547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
+		Shared Function CreateEquilateralTriangle(height As Double) As PhysicsKit.Triangle
+		  ///
+		  ' Creates an equilateral Triangle with the centre at the origin.
+		  '
+		  ' - Parameter height: The height of the triangle in metres.
+		  '
+		  ' - Returns: A new Triangle.
+		  '
+		  ' - Raises: InvalidArgumentException if height is less than or equal to zero.
+		  ///
+		  
+		  // Check the size.
+		  If height <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE)
+		  
+		  // Compute `a` where height = a * sqrt(3) / 2.0 (a is the width of the base).
+		  Var a As Double = 2.0 * height * INV_SQRT_3
+		  
+		  // Create the triangle.
+		  Return Geometry.CreateIsoscelesTriangle(a, height)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E7420776974682074686520676976656E206C656E6774682077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
+		Shared Function CreateHorizontalSegment(length As Double) As PhysicsKit.Segment
+		  ///
+		  ' Creates a new Segment with the given length with the centre at the origin.
+		  '
+		  ' - Parameter length: The length of the segment in metres.
+		  '
+		  ' - Returns: A new Segment.
+		  '
+		  ' - Raises: InvalidArgumentException if length is less than or equal to zero.
+		  ///
+		  
+		  // Check the length.
+		  If length <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_LENGTH)
+		  
+		  Var startV As Vector2 = New Vector2(-length * 0.5, 0.0)
+		  Var endV As Vector2 = New Vector2(length * 0.5, 0.0)
+		  
+		  Return New Segment(startV, endV)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4372656174657320616E2069736F7363656C657320547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
+		Shared Function CreateIsoscelesTriangle(width As Double, height As Double) As PhysicsKit.Triangle
+		  ///
+		  ' Creates an isosceles Triangle with the centre at the origin.
+		  '
+		  ' - Parameter width: The width of the base in metres.
+		  ' - Parameter height: The height in metres.
+		  '
+		  ' - Returns: A new Triangle.
+		  '
+		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
+		  ///
+		  
+		  // Check the width.
+		  If width <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_WIDTH)
+		  
+		  // Check the height.
+		  If height <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_HEIGHT)
+		  
+		  Var top As Vector2 = New Vector2(0.0, height)
+		  Var left As Vector2 = New Vector2(-width * 0.5, 0.0)
+		  Var right As Vector2 = New Vector2(width * 0.5, 0.0)
+		  
+		  // Create the triangle
+		  Var t As Triangle = New Triangle(top, left, right)
+		  Var center As Vector2 = t.GetCenter
+		  t.Translate(-center.X, -center.Y)
+		  
+		  Return t
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function CreatePolygon(vertices() As PhysicsKit.Vector2) As PhysicsKit.Polygon
+		  ///
+		  ' Returns a new Polygon with the given vertices.
+		  '
+		  ' This method makes a copy of both the array and the vertices within the array to 
+		  ' create the new Polygon.
+		  '
+		  ' The centre of the Polygon will be computed using the area weighted method.
+		  '
+		  ' - Parameter vertices: The array of vertices.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if `vertices` is Nil or an element of `vertices` is Nil.
+		  ' - Raises: InvalidArgumentException if `vertices` contains less than 3 non-Nil vertices.
+		  ///
+		  
+		  // Check the vertices array.
+		  If vertices = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_VERTICES_ARRAY)
+		  
+		  // Loop over the points and copy them.
+		  Var verts() As Vector2
+		  For Each vertex As Vector2 In vertices
+		    // Check for Nil points.
+		    If vertex <> Nil Then
+		      verts.AddRow(vertex.Copy)
+		    Else
+		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POLYGON_POINT)
+		    End If
+		  Next vertex
+		  
+		  Return New Polygon(verts)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
 		Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PhysicsKit.Polygon
 		  ///

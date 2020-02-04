@@ -510,9 +510,12 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Function GetNormalIterator() As Iterator
-		  // Part of the PhysicsKit.Wound interface.
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Wound interface.
+		  ///
 		  
-		  #Pragma Warning  "Implement when figured out Java iterators."
+		  Return New WoundIterator(Self.Normals)
+		  
 		End Function
 	#tag EndMethod
 
@@ -803,9 +806,12 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Function GetVertexIterator() As Iterator
-		  // Part of the PhysicsKit.Wound interface.
+		  /// 
+		  ' - Note: Part of the PhysicsKit.Wound interface.
+		  ///
 		  
-		  #Pragma Warning  "Implement when figured out Java iterators."
+		  Return New WoundIterator(Self.Vertices)
+		  
 		End Function
 	#tag EndMethod
 

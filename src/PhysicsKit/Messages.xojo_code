@@ -36,6 +36,12 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_INTERVAL_INVALID_MINIMUM, Type = String, Dynamic = False, Default = \"The minimum value must be less than or equal to the maximum.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"The height must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_LENGTH, Type = String, Dynamic = False, Default = \"The length must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
@@ -46,6 +52,9 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_INVALID_VERTICES_SIZE, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 2.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_WIDTH, Type = String, Dynamic = False, Default = \"The width must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_MASS_INVALID_INERTIA, Type = String, Dynamic = False, Default = \"The inertia tensor must be greater than or equal to zero.", Scope = Protected
@@ -73,6 +82,12 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_NIL_POINT_ARRAY_ELEMENTS, Type = String, Dynamic = False, Default = \"The points array cannot contain Nil points.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_POLYGON_POINT, Type = String, Dynamic = False, Default = \"A polygon cannot contain Nil points.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_VERTICES_ARRAY, Type = String, Dynamic = False, Default = \"The vertices array cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_POLYGON_COINCIDENT_VERTICES, Type = String, Dynamic = False, Default = \"A polygon cannot have coincident vertices.", Scope = Protected

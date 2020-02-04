@@ -7,12 +7,6 @@ Ported `RobustGeometry.java` but it's test are failing.
 
 Part ported `Geometry.java`.
 
-Still need to port the following methods (need to figure out Java iterators):
-- `Polygon.GetNormalIterator()`
-- `Polygon.GetVertexIterator()`
-- `Segment.GetNormalIterator()`
-- `Segment.GetVertexIterator()`
-
 ## Main Files To Port
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
@@ -219,11 +213,11 @@ Still need to port the following methods (need to figure out Java iterators):
 	- [x] Transform.java
 	- [x] Transformable.java
 	- [x] Translatable.java
-	- [ ] Triangle.java
+	- [x] Triangle.java
 	- [x] Vector2.java
 	- [ ] Vector3.java
 	- [x] Wound.java
-	- [ ] WoundIterator.java
+	- [x] WoundIterator.java
 - [ ] Listener.java
 - [ ] Reference.java
 - [ ] UnitConversion.java
@@ -344,7 +338,7 @@ Still need to port the following methods (need to figure out Java iterators):
 	- [ ] TriangleTest.java
 	- [x] Vector2Test.java
 	- [ ] Vector3Test.java
-	- [ ] WoundTest.java
+	- [x] WoundTest.java
 - [ ] UnitConversionTest.java
 - [ ] VersionTest.java
 
