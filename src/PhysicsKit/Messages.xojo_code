@@ -51,6 +51,9 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_INVALID_SIZE_POINT_ARRAY1, Type = String, Dynamic = False, Default = \"The points array must have at least one point.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_INVALID_SIZE_POINT_ARRAY2, Type = String, Dynamic = False, Default = \"The points array must contain at least 2 non-Nil points.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INVALID_VERTICES_SIZE, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 2.", Scope = Protected
 	#tag EndConstant
 
@@ -85,6 +88,12 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_NIL_POLYGON_POINT, Type = String, Dynamic = False, Default = \"A polygon cannot contain Nil points.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_SEGMENT_POINT, Type = String, Dynamic = False, Default = \"A segment cannot contain a Nil point.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_TRIANGLE_POINT, Type = String, Dynamic = False, Default = \"A triangle cannot contain a Nil point.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_NIL_VERTICES_ARRAY, Type = String, Dynamic = False, Default = \"The vertices array cannot be Nil.", Scope = Protected
