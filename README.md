@@ -3,6 +3,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+Porting `Slice.java` up to not including `toString()`.
+
 Ported `RobustGeometry.java` but it's test are failing.
 
 Part ported `Geometry.java` up to and including `createCapsule()`.

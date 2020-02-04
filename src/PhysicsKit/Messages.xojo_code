@@ -147,6 +147,12 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_SEGMENT_SAME_POINT, Type = String, Dynamic = False, Default = \"A line segment must have two different vertices.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_SLICE_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"A circular section must have a positive non-zero radius.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_SLICE_INVALID_THETA, Type = String, Dynamic = False, Default = \"A circular section must have a positive non-zero theta less than \xCF\x80.", Scope = Protected
+	#tag EndConstant
+
 
 End Module
 #tag EndModule
