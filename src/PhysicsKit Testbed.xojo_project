@@ -65,6 +65,7 @@ Class=AdaptiveDecimal;PhysicsKit/AdaptiveDecimal.xojo_code;&h00000000265B6FFF;&h
 Class=RobustGeometry;PhysicsKit/RobustGeometry.xojo_code;&h000000007BD417FF;&h00000000342617FF;false
 Class=Triangle;PhysicsKit/Triangle.xojo_code;&h000000000B976FFF;&h00000000342617FF;false
 Class=WoundIterator;PhysicsKit/WoundIterator.xojo_code;&h000000001D3F47FF;&h00000000342617FF;false
+Class=Capsule;PhysicsKit/Capsule.xojo_code;&h00000000518E6FFF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

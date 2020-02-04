@@ -21,6 +21,15 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_AABB_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than or equal to zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_CAPSULE_DEGENERATE, Type = String, Dynamic = False, Default = \"The width and height cannot be close to equal\x2C instead use a Circle shape type.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_CAPSULE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"The height must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_CAPSULE_INVALID_WIDTH, Type = String, Dynamic = False, Default = \"The width must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_CIRCLE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 2.", Scope = Protected
 	#tag EndConstant
 
