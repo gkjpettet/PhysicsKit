@@ -112,6 +112,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var c As Capsule = New Capsule(1.0, -1.0)
+		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
