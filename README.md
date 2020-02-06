@@ -179,7 +179,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 		- [ ] SweepLineVertexType.java
 		- [ ] Triangulator.java
 	- [x] EdgeFeature.java
-	- [ ] Ellipse.java
+	- [x] Ellipse.java
 	- [x] Feature.java
 	- [ ] Geometry.java
 	- [ ] HalfEllipse.java

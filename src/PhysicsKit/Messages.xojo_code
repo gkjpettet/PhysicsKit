@@ -36,6 +36,15 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_CIRCLE_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_ELLIPSE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"An ellipse must have a positive non-zero height.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_ELLIPSE_INVALID_WIDTH, Type = String, Dynamic = False, Default = \"An ellipse must have a positive non-zero width.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_ELLIPSE_SAT_NOT_SUPPORTED, Type = String, Dynamic = False, Default = \"The Ellipse shape type is not supported by the SAT collision detection algorithm. Use `Geometry.CreatePolygonalEllipse`\x2C GJK\x2C or `FallbackNarrowphaseDetector` with SAT as the primary and GJK as the fallback.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INTERVAL_INVALID, Type = String, Dynamic = False, Default = \"The minimum cannot be larger than the maximum.", Scope = Protected
 	#tag EndConstant
 
