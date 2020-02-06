@@ -97,7 +97,7 @@ Inherits TestGroup
 		  
 		  // Constant seed so we always get the same sequence of randoms.
 		  System.Random.Seed = SEED
-		  Var iterations As Integer = 10000
+		  Var iterations As Integer = 1000
 		  
 		  Var acc As AdaptiveDecimal = AdaptiveDecimal.ValueOf(0)
 		  

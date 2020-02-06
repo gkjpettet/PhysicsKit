@@ -326,12 +326,12 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [ ] Matrix22Test.java
 	- [ ] Matrix33Test.java
 	- [ ] MonotoneChainTest.java
-	- [ ] PolygonTest.java
+	- [x] PolygonTest.java
 	- [ ] RayTest.java
 	- [x] RectangleTest.java
 	- [ ] RobustGeometryTest.java
 	- [x] RotationTest.java
-	- [ ] SegmentTest.java
+	- [x] SegmentTest.java
 	- [ ] SliceTest.java
 	- [ ] SweepLineTest.java
 	- [x] TransformTest.java

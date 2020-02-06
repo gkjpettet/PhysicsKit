@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New SegmentTests(Self, "Segment")
 		  'group = New RobustGeometryTest(Self, "RobustGeometry") // Broken.
 		  group = New CapsuleTests(Self, "Capsule")
 		  group = New WoundTests(self, "Wound")

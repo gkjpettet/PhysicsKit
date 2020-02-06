@@ -29,6 +29,7 @@ Class=CircleTests;Unit Tests/Tests/CircleTests.xojo_code;&h000000003EE6E7FF;&h00
 Class=IntervalTests;Unit Tests/Tests/IntervalTests.xojo_code;&h000000002EC69FFF;&h0000000044C729E7;false
 Class=MassTests;Unit Tests/Tests/MassTests.xojo_code;&h0000000019614FFF;&h0000000044C729E7;false
 Class=PolygonTests;Unit Tests/Tests/PolygonTests.xojo_code;&h000000006434EFFF;&h0000000044C729E7;false
+Class=SegmentTests;Unit Tests/Tests/SegmentTests.xojo_code;&h0000000061497FFF;&h0000000044C729E7;false
 Class=RectangleTests;Unit Tests/Tests/RectangleTests.xojo_code;&h000000005E4D87FF;&h0000000044C729E7;false
 Class=RobustGeometryTest;Unit Tests/Tests/RobustGeometryTest.xojo_code;&h000000005848AFFF;&h0000000044C729E7;false
 Class=RotationTests;Unit Tests/Tests/RotationTests.xojo_code;&h000000003AC9E7FF;&h0000000044C729E7;false
