@@ -320,7 +320,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [ ] GeometryTest.java
 	- [ ] GiftWrapTest.java
 	- [ ] GrahamScanTest.java
-	- [ ] HalfEllipseTest.java
+	- [x] HalfEllipseTest.java
 	- [x] IntervalTest.java
 	- [x] MassTest.java
 	- [ ] Matrix22Test.java

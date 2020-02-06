@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New HalfEllipseTests(Self, "HalfEllipse")
 		  group = New EllipseTests(Self, "Ellipse")
 		  group = New SliceTests(Self, "Slice")
 		  group = New EpsilonTests(Self, "Epsilon")

@@ -34,6 +34,7 @@ Class=RectangleTests;Unit Tests/Tests/RectangleTests.xojo_code;&h000000005E4D87F
 Class=SegmentTests;Unit Tests/Tests/SegmentTests.xojo_code;&h0000000061497FFF;&h0000000044C729E7;false
 Class=SliceTests;Unit Tests/Tests/SliceTests.xojo_code;&h000000000BFCA7FF;&h0000000044C729E7;false
 Class=EllipseTests;Unit Tests/Tests/EllipseTests.xojo_code;&h0000000056E1CFFF;&h0000000044C729E7;false
+Class=HalfEllipseTests;Unit Tests/Tests/HalfEllipseTests.xojo_code;&h00000000256BA7FF;&h0000000044C729E7;false
 Class=RobustGeometryTest;Unit Tests/Tests/RobustGeometryTest.xojo_code;&h000000005848AFFF;&h0000000044C729E7;false
 Class=RotationTests;Unit Tests/Tests/RotationTests.xojo_code;&h000000003AC9E7FF;&h0000000044C729E7;false
 Class=TransformTests;Unit Tests/Tests/TransformTests.xojo_code;&h0000000025599FFF;&h0000000044C729E7;false
