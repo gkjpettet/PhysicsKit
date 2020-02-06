@@ -9,6 +9,7 @@ Protected Module PhysicsKit
 		  AbstractShape.Initialise
 		  Ellipse.Initialise
 		  Epsilon.Initialise
+		  HalfEllipse.Initialise
 		  RobustGeometry.Initialise
 		  Transform.Initialise
 		  Vector2.Initialise

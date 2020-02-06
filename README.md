@@ -182,7 +182,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [x] Ellipse.java
 	- [x] Feature.java
 	- [ ] Geometry.java
-	- [ ] HalfEllipse.java
+	- [x] HalfEllipse.java
 	- [ ] hull
 		- [ ] DivideAndConquer.java
 		- [ ] GiftWrap.java
