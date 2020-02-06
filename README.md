@@ -332,7 +332,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [ ] RobustGeometryTest.java
 	- [x] RotationTest.java
 	- [x] SegmentTest.java
-	- [ ] SliceTest.java
+	- [x] SliceTest.java
 	- [ ] SweepLineTest.java
 	- [x] TransformTest.java
 	- [ ] TriangleTest.java

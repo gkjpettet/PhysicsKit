@@ -171,6 +171,26 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int32, actual As Int64, message As Text = "")
+		  If expected = actual Then
+		    Pass()
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub AreEqual(expected As Int64, actual As Int32, message As Text = "")
+		  If expected = actual Then
+		    Pass()
+		  Else
+		    Fail(FailEqualMessage(expected.ToText, actual.ToText), message)
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Int64, actual As Int64, message As Text = "")
 		  If expected = actual Then
 		    Pass()

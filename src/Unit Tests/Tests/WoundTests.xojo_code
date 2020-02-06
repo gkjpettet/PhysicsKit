@@ -98,7 +98,7 @@ Inherits TestGroup
 		    i = i + 1
 		  Wend
 		  
-		  Assert.AreEqual(CType(w.GetVertices.Count, Int64), i)
+		  Assert.AreEqual(w.GetVertices.Count, i)
 		  
 		End Sub
 	#tag EndMethod

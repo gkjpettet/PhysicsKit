@@ -199,7 +199,7 @@ Inherits TestGroup
 		  
 		  Var axes() As Vector2 = s.GetAxes(Nil, t)
 		  
-		  Assert.AreEqual(CType(2, Int32), axes.Count)
+		  Assert.AreEqual(2, axes.Count)
 		  
 		  Var seg As Vector2 = s.Vertices(0).Towards(s.vertices(1))
 		  // One should be the line itself and the other should be the perp.
@@ -223,7 +223,7 @@ Inherits TestGroup
 		  
 		  axes = s.GetAxes(Array(f), t)
 		  
-		  Assert.AreEqual(CType(3, Int32), axes.Count)
+		  Assert.AreEqual(3, axes.Count)
 		  
 		  Var v1 As Vector2 = s.Vertices(0).Towards(f)
 		  Call v1.Normalise

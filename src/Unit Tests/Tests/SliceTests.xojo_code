@@ -1,9 +1,10 @@
 #tag Class
-Protected Class CapsuleTests
+Protected Class SliceTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
 		  Prop2 = Prop2 + 1
+		  
 		  IDENTITY = New PhysicsKit.Transform
 		End Sub
 	#tag EndEvent
@@ -38,24 +39,20 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  Var t As Transform = New Transform
-		  Var p As Vector2 = New Vector2(0.8, -0.45)
+		  Var p As Vector2 = New Vector2(0.5, -0.3)
 		  
 		  // Shouldn't be inside.
 		  Assert.IsTrue(Not e.Contains(p, t))
 		  
 		  // Move it a bit.
-		  t.Translate(0.5, 0.0)
+		  t.Translate(-0.25, 0.0)
 		  
 		  // Should be inside.
 		  Assert.IsTrue(e.Contains(p, t))
 		  
-		  Call p.Set(1.5, 0.0)
-		  // Should be on the edge.
-		  Assert.IsTrue(e.Contains(p, t))
-		  
-		  Call p.Set(0.75, 0.5)
+		  Call p.Set(0.75, 0.0)
 		  // Should be on the edge.
 		  Assert.IsTrue(e.Contains(p, t))
 		  
@@ -65,26 +62,26 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateAABBTest()
 		  ///
-		  ' Tests the generated AABB.
+		  ' Tests the generate AABB.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  
 		  // Using an identity transform.
 		  Var aabb As AABB = e.CreateAABB(IDENTITY)
-		  Assert.AreEqual(-0.500, aabb.GetMinX, 1.0e-3)
-		  Assert.AreEqual(-0.250, aabb.GetMinY, 1.0e-3)
-		  Assert.AreEqual( 0.500, aabb.GetMaxX, 1.0e-3)
-		  Assert.AreEqual( 0.250, aabb.GetMaxY, 1.0e-3)
+		  Assert.AreEqual( 0.000, aabb.getMinX, 1.0e-3)
+		  Assert.AreEqual(-0.422, aabb.getMinY, 1.0e-3)
+		  Assert.AreEqual( 1.000, aabb.getMaxX, 1.0e-3)
+		  Assert.AreEqual( 0.422, aabb.getMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
 		  Var aabb2 As AABB = e.CreateAABB
-		  Assert.AreEqual(aabb.GetMinX, aabb2.GetMinX)
-		  Assert.AreEqual(aabb.GetMinY, aabb2.GetMinY)
-		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)
-		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
+		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
+		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
+		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)
+		  Assert.AreEqual(aabb.getMaxY, aabb2.getMaxY)
 		  
 		  // Test using a rotation and translation matrix.
 		  Var tx As Transform = New Transform
@@ -92,18 +89,18 @@ Inherits TestGroup
 		  tx.Translate(1.0, 2.0)
 		  
 		  aabb = e.CreateAABB(tx)
-		  Assert.AreEqual(0.533, aabb.GetMinX, 1.0e-3)
-		  Assert.AreEqual(1.625, aabb.GetMinY, 1.0e-3)
-		  Assert.AreEqual(1.466, aabb.GetMaxX, 1.0e-3)
-		  Assert.AreEqual(2.375, aabb.GetMaxY, 1.0e-3)
+		  Assert.AreEqual( 1.000, aabb.getMinX, 1.0e-3)
+		  Assert.AreEqual( 2.000, aabb.getMinY, 1.0e-3)
+		  Assert.AreEqual( 1.996, aabb.getMaxX, 1.0e-3)
+		  Assert.AreEqual( 2.819, aabb.getMaxY, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateNegativeHeightTest()
+		Sub CreateNegativeRadiusTest()
 		  ///
-		  ' Tests a negative height.
+		  ' Tests a negative radius.
 		  ///
 		  
 		  Using PhysicsKit
@@ -111,22 +108,22 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(1.0, -1.0)
-		    #Pragma Unused c
+		    Var s As Slice = New Slice(-1.0, MathsKit.ToRadians(50))
+		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
 		  End Try
 		  
-		  Assert.Fail("Expected an InvalidArgumentException as negative height.")
+		  Assert.Fail("Expected an InvalidArgumentException as negative radius passed.")
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateNegativeWidthTest()
+		Sub CreateNegativeThetaTest()
 		  ///
-		  ' Tests a negative width.
+		  ' Tetss a negative theta.
 		  ///
 		  
 		  Using PhysicsKit
@@ -134,54 +131,39 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(-1.0, 1.0)
-		    #Pragma Unused c
+		    Var s As Slice = New Slice(1.0, -MathsKit.ToRadians(50))
+		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
 		  End Try
 		  
-		  Assert.Fail("Expected an InvalidArgumentException as negative width.")
+		  Assert.Fail("Expected an InvalidArgumentException as negative theta passed.")
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateSuccessHorizontalTest()
-		  ///
-		  ' Tests the constructor.
-		  //
-		  
-		  Using PhysicsKit
-		  
-		  Var cap As Capsule = New Capsule(2.0, 1.0)
-		  Var x As Vector2 = cap.LocalXAxis
-		  Assert.AreEqual(1.000, x.x, 1.0e-3)
-		  Assert.AreEqual(0.000, x.y, 1.0e-3)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub CreateSuccessVerticalTest()
+		Sub CreateSuccessTest()
 		  ///
 		  ' Tests the constructor.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var cap As Capsule = New Capsule(1.0, 2.0)
-		  Var x As Vector2 = cap.LocalXAxis
-		  Assert.AreEqual(0.000, x.x, 1.0e-3)
-		  Assert.AreEqual(1.000, x.y, 1.0e-3)
+		  Var slice As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  
+		  // The circle centre should be the origin.
+		  Assert.AreEqual(0.000, slice.GetCircleCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, slice.GetCircleCenter.y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateZeroHeightTest()
+		Sub CreateZeroRadiusTest()
 		  ///
-		  ' Tests a zero height.
+		  ' Tetss a zero radius.
 		  ///
 		  
 		  Using PhysicsKit
@@ -189,22 +171,22 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(1.0, 0.0)
-		    #Pragma Unused c
+		    Var s As Slice = New Slice(0.0, MathsKit.ToRadians(50))
+		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
 		  End Try
 		  
-		  Assert.Fail("Expected an InvalidArgumentException as zero height.")
+		  Assert.Fail("Expected an InvalidArgumentException as zero radius passed.")
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateZeroWidthTest()
+		Sub CreateZeroThetaTest()
 		  ///
-		  ' Tests a zero width.
+		  ' Tetss a zero theta.
 		  ///
 		  
 		  Using PhysicsKit
@@ -212,14 +194,14 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(0.0, 1.0)
-		    #Pragma Unused c
+		    Var s As Slice = New Slice(1.0, 0)
+		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
 		  End Try
 		  
-		  Assert.Fail("Expected an InvalidArgumentException as zero width.")
+		  Assert.Fail("Expected an InvalidArgumentException as zero theta passed.")
 		  
 		End Sub
 	#tag EndMethod
@@ -227,24 +209,24 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub GetAxesTest()
 		  ///
-		  ' tests the GetAxes method.
+		  ' Tests the GetAxes method.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  
 		  // Should be two axes + number of foci.
 		  Var foci() As Vector2 = Array(New Vector2(2.0, -0.5), New Vector2(1.0, 3.0))
-		  Var axes() as Vector2 = e.GetAxes(foci, IDENTITY)
+		  Var axes() As Vector2 = e.GetAxes(foci, IDENTITY)
 		  Assert.AreEqual(4, axes.Count)
 		  
 		  // Make sure we get back the right axes.
 		  axes = e.GetAxes(Nil, IDENTITY)
-		  Assert.AreEqual(1.000, axes(0).x, 1.0e-3)
-		  Assert.AreEqual(0.000, axes(0).y, 1.0e-3)
-		  Assert.AreEqual(0.000, axes(1).x, 1.0e-3)
-		  Assert.AreEqual(1.000, axes(1).y, 1.0e-3)
+		  Assert.AreEqual(-0.422, axes(0).x, 1.0e-3)
+		  Assert.AreEqual( 0.906, axes(0).y, 1.0e-3)
+		  Assert.AreEqual(-0.422, axes(1).x, 1.0e-3)
+		  Assert.AreEqual(-0.906, axes(1).y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -252,15 +234,15 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub GetFarthestTest()
 		  ///
-		  ' Tests the Farthest methods.
+		  ' Tests the farthest methods.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  Var t As Transform = New Transform
 		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var y As Vector2 = New Vector2(0.0, 1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)
@@ -273,22 +255,22 @@ Inherits TestGroup
 		  t.Rotate(MathsKit.ToRadians(30), 1.0, 0.5)
 		  
 		  p = e.GetFarthestPoint(y, t)
-		  Assert.AreEqual( 0.566, p.x, 1.0e-3)
-		  Assert.AreEqual(-0.25, p.y, 1.0e-3)
+		  Assert.AreEqual( 1.573, p.x, 1.0e-3)
+		  Assert.AreEqual( 1.319, p.y, 1.0e-3)
 		  
 		  // Try some local rotation.
 		  e.Translate(1.0, 0.5)
 		  e.Rotate(MathsKit.ToRadians(30), 1.0, 0.5)
 		  
 		  p = e.GetFarthestPoint(y, IDENTITY)
-		  Assert.AreEqual( 0.566, p.x, 1.0e-3)
-		  Assert.AreEqual(-0.25, p.y, 1.0e-3)
+		  Assert.AreEqual( 1.573, p.x, 1.0e-3)
+		  Assert.AreEqual( 1.319, p.y, 1.0e-3)
 		  
 		  t.Identity
 		  t.Translate(0.0, 1.0)
 		  p = e.GetFarthestPoint(y, t)
-		  Assert.AreEqual( 0.566, p.x, 1.0e-3)
-		  Assert.AreEqual( 0.75, p.y, 1.0e-3)
+		  Assert.AreEqual( 1.573, p.x, 1.0e-3)
+		  Assert.AreEqual( 2.319, p.y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -301,18 +283,15 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  Var foci() As Vector2 = e.GetFoci(IDENTITY)
 		  
 		  // Should be two foci.
-		  Assert.AreEqual(2, foci.Count)
+		  Assert.AreEqual(1, foci.Count)
 		  
 		  // Make sure the foci are correct.
-		  Assert.AreEqual(-0.250, foci(0).x, 1.0e-3)
+		  Assert.AreEqual( 0.000, foci(0).x, 1.0e-3)
 		  Assert.AreEqual( 0.000, foci(0).y, 1.0e-3)
-		  Assert.AreEqual( 0.250, foci(1).x, 1.0e-3)
-		  Assert.AreEqual( 0.000, foci(1).y, 1.0e-3)
-		  
 		End Sub
 	#tag EndMethod
 
@@ -324,38 +303,38 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  Var t As Transform = New Transform
 		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var y As Vector2 = New Vector2(0.0, 1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)
 		  
 		  Var i As Interval = e.Project(x, t)
-		  Assert.AreEqual( 0.000, i.min, 1.0e-3)
-		  Assert.AreEqual( 2.000, i.max, 1.0e-3)
+		  Assert.AreEqual(1.000, i.Min, 1.0e-3)
+		  Assert.AreEqual(2.000, i.Max, 1.0e-3)
 		  
 		  // Try some rotation.
-		  t.Rotate(MathsKit.ToRadians(30), 1.0, 0.5)
+		  t.Rotate(MathsKit.ToRadians(30), t.GetTransformed(e.GetCenter))
 		  
 		  i = e.Project(y, t)
-		  Assert.AreEqual(-1.25, i.min, 1.0e-3)
-		  Assert.AreEqual( 0.25, i.max, 1.0e-3)
+		  Assert.AreEqual(0.177, i.Min, 1.0e-3)
+		  Assert.AreEqual(0.996, i.Max, 1.0e-3)
 		  
 		  // Try some local rotation.
 		  e.Translate(1.0, 0.5)
-		  e.Rotate(MathsKit.ToRadians(30), 1.0, 0.5)
+		  e.RotateAboutCenter(MathsKit.ToRadians(30))
 		  
 		  i = e.Project(y, IDENTITY)
-		  Assert.AreEqual(-1.25, i.min, 1.0e-3)
-		  Assert.AreEqual( 0.25, i.max, 1.0e-3)
+		  Assert.AreEqual(0.177, i.Min, 1.0e-3)
+		  Assert.AreEqual(0.996, i.Max, 1.0e-3)
 		  
 		  t.Identity
 		  t.Translate(0.0, 1.0)
 		  i = e.Project(y, t)
-		  Assert.AreEqual(-2.25, i.min, 1.0e-3)
-		  Assert.AreEqual(-0.75, i.max, 1.0e-3)
+		  Assert.AreEqual(1.177, i.Min, 1.0e-3)
+		  Assert.AreEqual(1.996, i.Max, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -363,29 +342,46 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub RotateTest()
 		  ///
-		  ' Tests the Rotate methods.
+		  ' Tests the Rotate method.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  // Note: The centre is not at the origin.
 		  
-		  // Rotate about the centre.
+		  // Rotate about centre.
 		  e.Translate(1.0, 1.0)
-		  e.rotateAboutCenter(MathsKit.ToRadians(30))
-		  Assert.AreEqual(1.000, e.Center.x, 1.0e-3)
-		  Assert.AreEqual(1.000, e.Center.y, 1.0e-3)
+		  e.RotateAboutCenter(MathsKit.ToRadians(30))
+		  Assert.AreEqual(1.645, e.center.x, 1.0e-3)
+		  Assert.AreEqual(1.000, e.center.y, 1.0e-3)
 		  
 		  // Rotate about the origin.
 		  e.Rotate(MathsKit.ToRadians(90))
-		  Assert.AreEqual(-1.000, e.Center.x, 1.0e-3)
-		  Assert.AreEqual( 1.000, e.Center.y, 1.0e-3)
-		  e.translate(e.GetCenter.GetNegative)
+		  Assert.AreEqual(-1.000, e.center.x, 1.0e-3)
+		  Assert.AreEqual( 1.645, e.center.y, 1.0e-3)
+		  e.Translate(e.GetCenter.GetNegative)
 		  
 		  // Should move the centre.
 		  e.Rotate(MathsKit.ToRadians(90), 1.0, -1.0)
-		  Assert.AreEqual( 0.000, e.Center.x, 1.0e-3)
-		  Assert.AreEqual(-2.000, e.Center.y, 1.0e-3)
+		  Assert.AreEqual( 0.000, e.center.x, 1.0e-3)
+		  Assert.AreEqual(-2.000, e.center.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SliceRadiusTest()
+		  ///
+		  ' Verifies the output of the GetRadius and GetSliceRadius methods.
+		  ///
+		  
+		  Using PhysicsKit
+		  
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Assert.AreEqual(1.000, e.GetSliceRadius, 1.0e-3)
+		  Assert.IsFalse(Abs(1.0 - e.GetRadius) < Epsilon.E)
+		  Assert.IsFalse(Abs(e.GetSliceRadius - e.GetRadius) < Epsilon.E)
 		  
 		End Sub
 	#tag EndMethod
@@ -398,12 +394,12 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  
 		  e.Translate(1.0, -0.5)
 		  
-		  Assert.AreEqual( 1.000, e.Center.x, 1.0e-3)
-		  Assert.AreEqual(-0.500, e.Center.y, 1.0e-3)
+		  Assert.AreEqual(1.645, e.center.x, 1.0e-3)
+		  Assert.AreEqual(-0.500, e.center.y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
