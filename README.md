@@ -305,7 +305,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [ ] WeldJointTest.java
 	- [ ] WheelJointTest.java
 	- [ ] WorldTest.java
-- [ ] EpsilonTest.java
+- [x] EpsilonTest.java
 - [ ] geometry
 	- [x] AABBTest.java
 	- [ ] AbstractDecomposeTest.java

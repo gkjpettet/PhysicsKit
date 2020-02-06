@@ -1,7 +1,7 @@
 #tag Class
 Protected Class Epsilon
-	#tag Method, Flags = &h21
-		Private Shared Function Compute() As Double
+	#tag Method, Flags = &h0
+		Shared Function Compute() As Double
 		  // Computes an approximation of machine epsilon.
 		  
 		  Var e As Double = 0.5
