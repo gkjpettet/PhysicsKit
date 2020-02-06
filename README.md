@@ -316,7 +316,7 @@ Part ported `Geometry.java` up to and including `createCapsule()`.
 	- [x] CircleTest.java
 	- [ ] DivideAndConquerTest.java
 	- [ ] EarClippingTest.java
-	- [ ] EllipseTest.java
+	- [x] EllipseTest.java
 	- [ ] GeometryTest.java
 	- [ ] GiftWrapTest.java
 	- [ ] GrahamScanTest.java
