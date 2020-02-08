@@ -1,5 +1,85 @@
 #tag Class
 Protected Class Geometry
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720617272617920636F6E7461696E696E67207468652027636C65616E736564272076657273696F6E206F662074686520676976656E206C697374696E67206F6620706F6C79676F6E20706F696E74732E20456E73757265732074686520706F6C79676F6E20686173204343572077696E64696E672C2072656D6F76657320636F6C696E6561722076657274696365732C20616E642072656D6F76657320636F696E636964656E742076657274696365732E
+		Shared Function Cleanse(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2()
+		  ///
+		  ' Returns a new array containing the 'cleansed' version of the given listing of polygon points.
+		  '
+		  ' This method ensures the polygon has CCW winding, removes colinear vertices, and 
+		  ' removes coincident vertices.
+		  '
+		  ' If the given array is empty, the array is returned.
+		  '
+		  ' - Parameter points: The list polygon points.
+		  '
+		  ' - Returns: The same array, cleansed.
+		  '
+		  ' - Raises: NilObjectException if `points` is Nil or if points contains Nil elements.
+		  ///
+		  
+		  // Check for Nil array.
+		  If points = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  
+		  // Get the size of the points array.
+		  Var size As Integer = points.Count
+		  
+		  // Check the size.
+		  If size = 0 Then Return points
+		  
+		  // Create a result array.
+		  Var result() As Vector2
+		  
+		  Var winding As Double = 0
+		  
+		  // Loop over the points
+		  Var iLimit As Integer = size - 1
+		  For i As Integer = 0 To iLimit
+		    // Get the current point.
+		    Var point As Vector2 = points(i)
+		    
+		    // Get the adjacent points.
+		    Var prevPoint As Vector2 = points(If(i - 1 < 0, size - 1, i - 1))
+		    Var nextPoint As Vector2 = points(If(i + 1 = size, 0, i + 1))
+		    
+		    // Check for Nil.
+		    If point Is Nil Or prevPoint Is Nil Or nextPoint Is Nil Then
+		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    End If
+		    
+		    // Is this point equal to the next?
+		    Var diff As Vector2 = point.Difference(nextPoint)
+		    If diff.IsZero Then Continue // Skip this point.
+		    
+		    // Create the edge vectors.
+		    Var prevToPoint As Vector2 = prevPoint.Towards(point)
+		    Var pointToNext As Vector2 = point.Towards(nextPoint)
+		    
+		    // Check if the previous point is equal to this point.
+		    // Since the next point is not equal to this point, if this is true we still need 
+		    // to add the point because it is the last of a string of coincident vertices.
+		    If Not prevToPoint.IsZero Then
+		      // Compute the cross product.
+		      Var cross As Double = prevToPoint.Cross(pointToNext)
+		      
+		      // If the cross product is near zero then point is a colinear point.
+		      If Abs(cross) <= Epsilon.E Then Continue
+		    End If
+		    
+		    // Sum the current signed area.
+		    winding = winding + point.Cross(nextPoint)
+		    
+		    // Otherwise the point is valid.
+		    result.AddRow(point)
+		  Next i
+		  
+		  // Check the winding.
+		  If winding < 0 Then Geometry.ReverseWinding(result)
+		  
+		  Return result
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772043617073756C6520626F756E6465642062792074686520676976656E2072656374616E676C6520776964746820616E64206865696768742E205468652063617073756C652077696C6C20626520617869732D616C69676E656420616E642063656E7465726564206F6E20746865206F726967696E2077697468207468652063617073206F6E2074686520656E6473206F6620746865206C6172676573742064696D656E73696F6E2E
 		Shared Function CreateCapsule(width As Double, height As Double) As PhysicsKit.Capsule
 		  ///
@@ -40,6 +120,27 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Shared Function CreateEllipse(width As Double, height As Double) As PhysicsKit.Ellipse
+		  ///
+		  ' Creates a new Ellipse bounded by the given rectangle width and height.
+		  '
+		  ' The ellipse will be axis-aligned and centered on the origin.
+		  ' If width and height are equal use a Circle shape instead.
+		  '
+		  ' - Parameter width: The bounding rectangle width.
+		  ' - Parameter height: The bounding rectangle height.
+		  '
+		  ' - Returns: A new Ellipse.
+		  '
+		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
+		  ///
+		  
+		  Return New Ellipse(width, height)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4372656174657320616E20657175696C61746572616C20547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
 		Shared Function CreateEquilateralTriangle(height As Double) As PhysicsKit.Triangle
 		  ///
@@ -60,6 +161,55 @@ Protected Class Geometry
 		  
 		  // Create the triangle.
 		  Return Geometry.CreateIsoscelesTriangle(a, height)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function CreateHalfEllipse(width As Double, height As Double) As PhysicsKit.HalfEllipse
+		  ///
+		  ' Creates a new HalfEllipse bounded by the given rectangle width and height.
+		  '
+		  ' The ellipse will be axis-aligned with the base of the half ellipse on the x-axis. The given height
+		  ' is the height of the half, not the height of the full ellipse.
+		  '
+		  ' If width and height are equal use a Slice shape with `theta = MathsKit.PI` instead.
+		  '
+		  ' - Parameter width: The bounding rectangle width.
+		  ' - Parameter height: The bounding rectangle height.
+		  '
+		  ' - Returns: A new HalfEllipse.
+		  '
+		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
+		  ///
+		  
+		  Return New HalfEllipse(width, height)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function CreateHalfEllipseAtOrigin(width As Double, height As Double) As PhysicsKit.HalfEllipse
+		  ///
+		  ' Creates a new HalfEllipse bounded by the given rectangle width and height.
+		  '
+		  ' The ellipse will be axis-aligned with the base of the half ellipse on the x-axis. The given height
+		  ' is the height of the half, not the height of the full ellipse.
+		  '
+		  ' If width and height are equal use a Slice shape with `theta = MathsKit.PI` instead.
+		  '
+		  ' - Parameter width: The bounding rectangle width.
+		  ' - Parameter height: The bounding rectangle height.
+		  '
+		  ' - Returns: A new HalfEllipse.
+		  '
+		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero
+		  ///
+		  
+		  Var half As HalfEllipse = New HalfEllipse(width, height)
+		  Var c As Vector2 = half.GetCenter
+		  half.Translate(-c.X, -c.Y)
+		  Return half
 		  
 		End Function
 	#tag EndMethod
@@ -157,6 +307,131 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612063617073756C65207573696E672060636F756E7460206E756D626572206F66207665727469636573206F6E2065616368206361702C2063656E7465726564206F6E20746865206F726967696E2E202054686520636170732077696C6C206265206F6E2074686520656E6473206F6620746865206C6172676573742064696D656E73696F6E2E205468652072657475726E656420706F6C79676F6E2077696C6C2068617665206034202B2032202A20636F756E7460206E756D626572206F662076657274696365732E
+		Shared Function CreatePolygonalCapsule(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a capsule using `count` number of vertices on each
+		  ' cap, centered on the origin.  The caps will be on the ends of the largest dimension.
+		  '
+		  ' The returned polygon will have `4 + 2 * count` number of vertices.
+		  '
+		  ' - Parameter count: The number of vertices to use for one cap. Must be >= 1.
+		  ' - Parameter width: The bounding rectangle width.
+		  ' - Parameter height: The bounding rectangle height.
+		  '
+		  ' - Returns: A new Polygon.
+		  ///
+		  
+		  // Validate the input.
+		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_HEIGHT)
+		  
+		  // If the width and height are close enough to being equal, just return a circle.
+		  If Abs(width - height) < Epsilon.E Then
+		    Return Geometry.CreatePolygonalCircle(count, width)
+		  End If
+		  
+		  // Compute the angular increment.
+		  Var pin As Double = MathsKit.PI / (count + 1)
+		  
+		  // 4 rect verts plus 2 * circle half verts.
+		  Var vertices() As Vector2
+		  vertices.ResizeTo((4 + 2 * count) - 1)
+		  
+		  Var c As Double = Cos(pin)
+		  Var s As Double = Sin(pin)
+		  Var t As Double = 0
+		  
+		  // Get the major and minor axes.
+		  Var major As Double = width
+		  Var minor As Double = height
+		  Var vertical As Boolean = False
+		  If width < height Then
+		    major = height
+		    minor = width
+		    vertical = True
+		  End If
+		  
+		  // Get the radius from the minor axis.
+		  Var radius As Double = minor * 0.5
+		  
+		  // Compute the x/y offsets.
+		  Var offset As Double = major * 0.5 - radius
+		  Var ox As Double = 0
+		  Var oy As Double = 0
+		  If vertical Then
+		    // Aligned to the y.
+		    oy = offset
+		  Else
+		    // Aligned to the x.
+		    ox = offset
+		  End If
+		  
+		  Var n As Integer = 0
+		  
+		  // Right cap.
+		  Var ao As Double = If(vertical, 0, MathsKit.PI * 0.5)
+		  Var x As Double = radius * Cos(pin - ao)
+		  Var y As Double = radius * Sin(pin - ao)
+		  
+		  Var iLimit As Integer = count - 1
+		  For i As Integer = 0 To iLimit
+		    vertices(n) = New Vector2(x + ox, y + oy)
+		    n = n + 1
+		    
+		    // Apply the rotation matrix.
+		    t = x
+		    x = c * x - s * y
+		    y = s * t + c * y
+		  Next i
+		  
+		  // Add in top/left vertices.
+		  If vertical Then
+		    vertices(n) = New Vector2(-radius,  oy)
+		    n =n + 1
+		    vertices(n) = New Vector2(-radius, -oy)
+		    n = n + 1
+		  Else
+		    vertices(n) = New Vector2(ox, radius)
+		    n = n + 1
+		    vertices(n) = New Vector2(-ox, radius)
+		    n =n + 1
+		  End If
+		  
+		  // Left cap.
+		  ao = If(vertical, MathsKit.PI, MathsKit.PI * 0.5)
+		  x = radius * Cos(pin + ao)
+		  y = radius * Sin(pin + ao)
+		  iLimit = count - 1
+		  For i As Integer = 0 To iLimit
+		    vertices(n) = New Vector2(x - ox, y - oy)
+		    n = n + 1
+		    
+		    // Apply the rotation matrix.
+		    t = x
+		    x = c * x - s * y
+		    y = s * t + c * y
+		  Next i
+		  
+		  // Add in bottom/right vertices.
+		  If vertical Then
+		    vertices(n) = New Vector2(radius, -oy)
+		    n =n + 1
+		    vertices(n) = New Vector2(radius,  oy)
+		    n =n + 1
+		  Else
+		    vertices(n) = New Vector2(-ox, -radius)
+		    n = n + 1
+		    vertices(n) = New Vector2(ox, -radius)
+		    n = n + 1
+		  End If
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
 		Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PhysicsKit.Polygon
 		  ///
@@ -226,6 +501,223 @@ Protected Class Geometry
 		  Next i
 		  
 		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620616E20656C6C6970736520776974682060636F756E7460206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2060636F756E7460206D757374206265203E3D203420616E64206576656E2E
+		Shared Function CreatePolygonalEllipse(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of an ellipse with `count` number of vertices centered
+		  ' on the origin.
+		  '
+		  ' - Parameter count: The number of vertices to use. Must be >= 4. 
+		  '                    Should be even, if not, count - 1 vertices will be generated.
+		  ' - Parameter width: The width of the ellipse.
+		  ' - Parameter height: The height of the ellipse.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: InvalidlArgumentException if `count` < 4 or `width` <= 0 or `height` <= 0.
+		  ///
+		  
+		  // Validate the input.
+		  If count < 4 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_HEIGHT)
+		  
+		  Var a As Double = width * 0.5
+		  Var b As Double = height * 0.5
+		  
+		  Var n2 As Integer = count / 2
+		  // Compute the angular increment.
+		  Var pin2 As Double = MathsKit.PI / n2
+		  
+		  // Make sure the resulting output is an even number of vertices.
+		  Var vertices() As Vector2
+		  vertices.ResizeTo((n2 * 2) - 1)
+		  
+		  // Use the parametric equations:
+		  // x = a * cos(t)
+		  // y = b * sin(t)
+		  Var j As Integer = 0
+		  For i As Integer = 0 To n2
+		    Var t As Double = pin2 * i
+		    // Since the under side of the ellipse is the same as the top side, only with a 
+		    // negated y, lets save some time by creating the under side at the same time.
+		    Var x As Double = a * Cos(t)
+		    Var y As Double = b * Sin(t)
+		    If i > 0 Then vertices(vertices.Count - j) = New Vector2(x, -y)
+		    vertices(j) = New Vector2(x, y)
+		    j = j + 1
+		  Next i
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612068616C6620656C6C6970736520776974682060636F756E7460206E756D626572206F66207665727469636573207769746820746865206261736520617420746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2032602076657274696365732E
+		Shared Function CreatePolygonalHalfEllipse(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a half ellipse with `count` number of vertices with the
+		  ' base at the origin.
+		  '
+		  ' Returns a polygon with `count + 2` vertices.
+		  '
+		  ' The height is the total height of the half not the half height.
+		  '
+		  ' - Prameter count: The number of vertices to use. Must be >= 1.
+		  ' - Parameter width: The width of the half ellipse.
+		  ' - Parameter height: The height of the half ellipse. Should be the total height.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: InvalidArgumentException if `count` < 1 or `width` <= 0 or `height` <= 0.
+		  ///
+		  
+		  // Validate the input.
+		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)
+		  
+		  Var a As Double = width * 0.5
+		  Var b As Double = height * 0.5
+		  
+		  // Compute the angular increment.
+		  Var inc As Double = MathsKit.PI / (count + 1)
+		  
+		  // Make sure the resulting output is an even number of vertices.
+		  Var vertices() As Vector2
+		  vertices.ResizeTo(count + 1)
+		  
+		  // Set the start and end vertices.
+		  vertices(0) = New Vector2(a, 0)
+		  vertices(count + 1) = New Vector2(-a, 0)
+		  
+		  // Use the parametric equations:
+		  // x = a * cos(t)
+		  // y = b * sin(t)
+		  
+		  For i As Integer = 1 To count
+		    Var t As Double = inc * i
+		    // Since the under side of the ellipse is the same as the top side, only with a 
+		    // negated y, lets save some time by creating the under side at the same time.
+		    Var x As Double = a * Cos(t)
+		    Var y As Double = b * Sin(t)
+		    vertices(i) = New Vector2(x, y)
+		  Next i
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612068616C6620656C6C69707365207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2032602076657274696365732E
+		Shared Function CreatePolygonalHalfEllipseAtOrigin(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a half ellipse with count number of vertices centered
+		  ' on the origin.
+		  '
+		  ' Returns a polygon with `count + 2` vertices.
+		  ' The height is the total height of the half not the half height.
+		  '
+		  ' - Parameter count: The number of vertices to use. 
+		  '                    Should be even, if not, `count - 1` vertices will be generated.
+		  ' - Parameter width:The width of the half ellipse.
+		  ' - Parameter height: The height of the half ellipse. Should be the total height.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: InvalidArgumentException if `count` < 1 or `width` <= 0 or `height` <= 0.
+		  ///
+		  
+		  Var polygon As Polygon = Geometry.CreatePolygonalHalfEllipse(count, width, height)
+		  Var center As Vector2 = polygon.GetCenter
+		  polygon.Translate(-center.X, -center.Y)
+		  Return polygon
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120536C69636520776974682060636F756E7460206E756D626572206F6620766572746963657320776974682074686520636972636C652063656E747265642063656E7465726564206F6E20746865206F726967696E2E
+		Shared Function CreatePolygonalSlice(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a Slice with `count` number of vertices with the
+		  ' circle centred centered on the origin.
+		  '
+		  ' This method returns a polygon with count + 3 vertices.
+		  '
+		  ' - Parameter count: The number of vertices to use. Must be >= 1.
+		  ' - Parameter radius: The radius of the circle. Must be > 0.
+		  ' - Parameter theta: The arc length of the slice in radians. Must be > 0.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  '- Raises: InvalidArgumentException thrown if `count` < 1 or `radius` <= 0 or or `theta` <= 0.
+		  ///
+		  
+		  // Validate the input.
+		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_COUNT)
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_RADIUS)
+		  If theta <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_THETA)
+		  
+		  // Compute the angular increment.
+		  Var pin As Double = theta / (count + 1)
+		  
+		  // Make sure the resulting output is an even number of vertices.
+		  Var vertices() As Vector2
+		  vertices.ResizeTo(count + 2)
+		  
+		  Var c As Double = Cos(pin)
+		  Var s As Double = Sin(pin)
+		  Var t As Double = 0
+		  
+		  // Initialise at minus theta.
+		  Var x As Double = radius * Cos(-theta * 0.5)
+		  Var y As Double = radius * Sin(-theta * 0.5)
+		  
+		  // Set the first and last points of the arc.
+		  vertices(0) = New Vector2(x, y)
+		  vertices(count + 1) = New Vector2(x, -y)
+		  
+		  For i As Integer = 1 To count
+		    // Apply the rotation matrix.
+		    t = x
+		    x = c * x - s * y
+		    y = s * t + c * y
+		    // Add a point.
+		    vertices(i) = New Vector2(x, y)
+		  Next i
+		  
+		  // Finish off by adding the origin.
+		  vertices(count + 2) = New Vector2
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120536C696365207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2033602076657274696365732E
+		Shared Function CreatePolygonalSliceAtOrigin(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Creates a new Polygon in the shape of a Slice with count number of vertices centered on the origin.
+		  '
+		  ' This method returns a polygon with `count + 3` vertices.
+		  '
+		  ' - Parameter count: The number of vertices to use. Must be >= 1.
+		  ' - Parameter radius: The radius of the circle. Must be > 0.
+		  ' - Parameter theta: The arc length of the slice in radians. Must be > 0.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: InvalidArgumentException thrown if `count` < 1 or `radius` <= 0 or `theta` <= 0.
+		  ///
+		  
+		  Var polygon As Polygon = Geometry.CreatePolygonalSlice(count, radius, theta)
+		  Var center As Vector2 = polygon.GetCenter
+		  polygon.Translate(-center.X, -center.Y)
+		  Return polygon
 		  
 		End Function
 	#tag EndMethod
@@ -398,6 +890,61 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720536C69636520776974682074686520676976656E20636972636C652072616469757320616E6420617263206C656E6774682074686574612028696E2072616469616E73292E
+		Shared Function CreateSlice(radius As Double, theta As Double) As PhysicsKit.Slice
+		  ///
+		  ' Creates a new Slice with the given circle radius and arc length theta.
+		  '
+		  ' A Slice is an arbitrary slice of a circle. The specified radius is the radius
+		  ' 0f the circle. The slice will be positioned With the _circle centre_ on the origin.
+		  '
+		  ' Theta is the total arc length of the slice specified in radians. Theta is halved, putting
+		  ' half the arc length below the x-axis and half above.
+		  '
+		  ' Theta cannot be greater than π.
+		  '
+		  ' - Parameter radius: The circle radius.
+		  ' - Parameter theta: The total arc length in radians.
+		  '
+		  ' - Returns: A new Slice.
+		  '
+		  ' - Raises: InvalidArgumentException if radius is <= 0, if theta <= 0 or theta > π.
+		  ///
+		  
+		  Return New Slice(radius, theta)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720536C69636520776974682074686520676976656E20636972636C652072616469757320616E6420617263206C656E6774682074686574612028696E2072616469616E73292E2054686520736C6963652077696C6C20626520706F736974696F6E65642077697468207468652063656E74726F696420617420746865206F726967696E2E
+		Shared Function CreateSliceAtOrigin(radius As Double, theta As Double) As PhysicsKit.Slice
+		  ///
+		  ' Creates a new Slice with the given circle radius and arc length theta.
+		  '
+		  ' A Slice is an arbitrary slice of a circle. The specified radius is the radius
+		  ' of the circle. The slice will be positioned with the _centroid_ at the origin.
+		  '
+		  ' Theta is the total arc length of the slice specified in radians. Theta is halved, putting
+		  ' half the arc length below the x-axis and half above.
+		  '
+		  ' Theta cannot be greater than π.
+		  '
+		  ' - Parameter radius: The circle radius.
+		  ' - Parameter theta: The total arc length in radians.
+		  '
+		  ' - Returns: A new Slice.
+		  '
+		  ' - Raises: InvalidArgumentException if radius <= 0, if theta <= 0 or theta > π.
+		  ///
+		  
+		  Var slice As Slice = New Slice(radius, theta)
+		  slice.Translate(-slice.Center.X, -slice.Center.Y)
+		  
+		  Return slice
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4372656174657320612073717561726520776974682074686520676976656E2073697A652028696E206D6574726573292C2063656E746572656420617420746865206F726967696E2E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
 		Shared Function CreateSquare(size As Double) As PhysicsKit.Rectangle
 		  ///
@@ -539,6 +1086,44 @@ Protected Class Geometry
 		  Var endPoint As Vector2 = New Vector2(0.0, length * 0.5)
 		  
 		  Return New Segment(start, endPoint)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520782D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
+		Shared Function FlipAlongTheXAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about its center along the x-axis and returns the result as a new Polygon.
+		  '
+		  ' This method assumes that the line is through the origin.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon is Nil.
+		  ///
+		  
+		  Return Geometry.Flip(polygon, Vector2.X_AXIS, Nil)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520792D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
+		Shared Function FlipAlongTheYAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about its center along the y-axis and returns the result as a new Polygon.
+		  '
+		  ' This method assumes that the line is through the origin.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon is Nil.
+		  ///
+		  
+		  Return Geometry.Flip(polygon, Vector2.Y_AXIS, Nil)
 		  
 		End Function
 	#tag EndMethod

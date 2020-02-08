@@ -24,6 +24,9 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_CAPSULE_DEGENERATE, Type = String, Dynamic = False, Default = \"The width and height cannot be close to equal\x2C instead use a Circle shape type.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_CAPSULE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of cap vertices must be greater than or equal to 1.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_CAPSULE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"The height must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
@@ -36,6 +39,9 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_CIRCLE_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_ELLIPSE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than 3.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_ELLIPSE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"An ellipse must have a positive non-zero height.", Scope = Protected
 	#tag EndConstant
 
@@ -43,6 +49,9 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_ELLIPSE_SAT_NOT_SUPPORTED, Type = String, Dynamic = False, Default = \"The Ellipse shape type is not supported by the SAT collision detection algorithm. Use `Geometry.CreatePolygonalEllipse`\x2C GJK\x2C or `FallbackNarrowphaseDetector` with SAT as the primary and GJK as the fallback.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_HALF_ELLIPSE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than or equal to 1.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"A half ellipse must have a positive non-zero height.", Scope = Protected
@@ -163,6 +172,9 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_SEGMENT_SAME_POINT, Type = String, Dynamic = False, Default = \"A line segment must have two different vertices.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_SLICE_INVALID_COUNT, Type = String, Dynamic = False, Default = \"The number of vertices must be greater than or equal to 1.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_SLICE_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"A circular section must have a positive non-zero radius.", Scope = Protected

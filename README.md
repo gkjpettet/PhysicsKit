@@ -5,7 +5,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 Ported `RobustGeometry.java` but it's test are failing.
 
-Part ported `Geometry.java` up to and including `createCapsule()`.
+Part ported `Geometry.java` up to and including `flipAlongTheYAxis(polygon)`.
 
 ## Main Files To Port
 - [ ] BinarySearchTree.java
