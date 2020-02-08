@@ -78,7 +78,19 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_INVALID_LENGTH, Type = String, Dynamic = False, Default = \"The length must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT, Type = String, Dynamic = False, Default = \"The vertex count must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS, Type = String, Dynamic = False, Default = \"The segments cannot be colinear.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INVALID_RADIUS, Type = String, Dynamic = False, Default = \"The radius must be greater than zero.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_INVALID_SCALE, Type = String, Dynamic = False, Default = \"The scaling factor must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_INVALID_SIZE, Type = String, Dynamic = False, Default = \"The size must be greater than zero.", Scope = Protected
@@ -117,6 +129,27 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT, Type = String, Dynamic = False, Default = \"The `masses` array cannot contain Nil elements.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1, Type = String, Dynamic = False, Default = \"`convex1` must implement both the Convex and Wound interfaces.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2, Type = String, Dynamic = False, Default = \"`convex2` must implement both the Convex and Wound interfaces.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_FLIP_AXIS, Type = String, Dynamic = False, Default = \"The flip axis cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_FLIP_POLYGON, Type = String, Dynamic = False, Default = \"The polygon cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE, Type = String, Dynamic = False, Default = \"The circle cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX, Type = String, Dynamic = False, Default = \"Both convex shapes must be non-Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON, Type = String, Dynamic = False, Default = \"The polygon cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_NIL_POINT_ARRAY, Type = String, Dynamic = False, Default = \"The points array cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
@@ -127,6 +160,9 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_NIL_SEGMENT_POINT, Type = String, Dynamic = False, Default = \"A segment cannot contain a Nil point.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_NIL_SHAPE, Type = String, Dynamic = False, Default = \"The shape cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_NIL_TRIANGLE_POINT, Type = String, Dynamic = False, Default = \"A triangle cannot contain a Nil point.", Scope = Protected
@@ -181,6 +217,9 @@ Protected Module Messages
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_SLICE_INVALID_THETA, Type = String, Dynamic = False, Default = \"A circular section must have a positive non-zero theta less than \xCF\x80.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_ZERO_FLIP_AXIS, Type = String, Dynamic = False, Default = \"The flip axis cannot be the zero vector.", Scope = Protected
 	#tag EndConstant
 
 

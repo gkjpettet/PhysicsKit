@@ -270,6 +270,77 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206C697374206F66204C696E6B7320666F722074686520676976656E2076657274696365732E2049662060636C6F7365646020697320547275652C20616E206578747261206C696E6B2069732063726561746564206A6F696E696E6720746865206C61737420616E6420666972737420766572746963657320696E207468652061727261792E
+		Shared Function CreateLinks(vertices() As PhysicsKit.Vector2, closed As Boolean) As PhysicsKit.Link()
+		  ///
+		  ' Creates a list of Links for the given vertices.
+		  '
+		  ' If the `closed` parameter is True, an extra link is created joining the last and first
+		  ' vertices in the array.
+		  '
+		  ' - Parameter vertices: The poly-line vertices.
+		  ' - Parameter closed: True if the shape should be enclosed.
+		  '
+		  ' - Returns: An array of Link objects.
+		  '
+		  ' - Raises: NilObjectException if the array of vertices is Nil or 
+		  '           an element of the vertex array is Nil.
+		  ' - Raises: InvalidArgumentException if the array of vertices doesn't contain two or more elements.
+		  ///
+		  
+		  // Check the vertex array.
+		  If vertices Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  
+		  // Get the vertex length.
+		  Var size As Integer = vertices.Count
+		  
+		  // The size must be larger than 1 (2 or more).
+		  If size < 2 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
+		  
+		  // Generate the links.
+		  Var links() As Link
+		  
+		  Var iLimit As Integer = size - 2
+		  For i As Integer = 0 To iLimit
+		    Var p1 As Vector2 = vertices(i).Copy
+		    Var p2 As Vector2 = vertices(i + 1).Copy
+		    
+		    // Check for Nil segment vertices.
+		    If p1 Is Nil Or p2 Is Nil Then
+		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    End If
+		    
+		    Var link As Link = New Link(p1, p2)
+		    
+		    // Link up the previous and this link.
+		    If i > 0 Then
+		      Var prev As Link = links(i - 1)
+		      link.SetPrevious(prev)
+		    End If
+		    
+		    // Add link to the array of links.
+		    links.AddRow(link)
+		  Next i
+		  
+		  If closed Then
+		    // Create a link to span the first and last vertex.
+		    Var p1 As Vector2 = vertices(0).Copy
+		    Var p2 As Vector2 = vertices(size - 1).Copy
+		    Var link As Link = New Link(p1, p2)
+		    
+		    // Wire it up.
+		    Var prev As Link = links(links.Count - 1)
+		    Var nextLink As Link = links(0)
+		    link.SetPrevious(prev)
+		    link.SetNext(nextLink)
+		    links.AddRow(link)
+		  End If
+		  
+		  Return links
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Shared Function CreatePolygon(vertices() As PhysicsKit.Vector2) As PhysicsKit.Polygon
 		  ///
@@ -1090,6 +1161,81 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E206C696E6520616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E2054686973206D6574686F6420617373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
+		Shared Function Flip(polygon As PhysicsKit.Polygon, axis As PhysicsKit.Vector2) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about the given line and returns the result as a new Polygon.
+		  '
+		  ' This method assumes that the line is through the origin.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  ' - Parameter axis:The axis to flip about.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon or axis is Nil.
+		  ' - Raises: InvalidArgumentException if the given axis is the zero vector.
+		  ///
+		  
+		  Return Geometry.Flip(polygon, axis, Nil)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function Flip(polygon As PhysicsKit.Polygon, axis As PhysicsKit.Vector2, point As PhysicsKit.Vector2) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about the given line and returns the result as a new Polygon.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  ' - Parameter axis: The axis to flip about.
+		  ' - Parameter point: The point to flip about. If Nil, the polygon's centre is used.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon or axis is Nil.
+		  ' - Raises: InvalidArgumentException if the given axis is the zero vector.
+		  ///
+		  
+		  // Check for valid input.
+		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_FLIP_POLYGON)
+		  If axis Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_FLIP_AXIS)
+		  If axis.IsZero Then Raise New InvalidArgumentException(Messages.GEOMETRY_ZERO_FLIP_AXIS)
+		  
+		  // Just use the centre of the polygon if the given point is Nil.
+		  If point Is Nil Then point = polygon.GetCenter
+		  
+		  // Flip about the axis and point. Make sure the axis is normalised.
+		  Call axis.Normalise
+		  Var pv() As Vector2 = polygon.GetVertices
+		  Var nv() As Vector2
+		  nv.ResizeTo(pv.Count - 1)
+		  Var iLimit As Integer = pv.Count - 1
+		  For i As Integer = 0 To iLimit
+		    Var v0 As Vector2 = pv(i)
+		    
+		    // Centre on the origin.
+		    Var v1 As Vector2 = v0.Difference(point)
+		    
+		    // Get the projection of the point onto the axis.
+		    Var proj As Double = v1.Dot(axis)
+		    
+		    // Get the point on the axis.
+		    Var vp As Vector2 = axis.Product(proj)
+		    
+		    // Get the point past the projection.
+		    Var rv As Vector2 = vp.Add(vp.X - v1.X, vp.Y - v1.Y)
+		    nv(i) = rv.Add(point)
+		  Next i
+		  
+		  // Check the winding.
+		  If Geometry.GetWinding(nv) < 0 Then Geometry.ReverseWinding(nv)
+		  
+		  Return New Polygon(nv)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520782D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
 		Shared Function FlipAlongTheXAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
 		  ///
@@ -1109,6 +1255,25 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E20706F696E7420616C6F6E672074686520782D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E
+		Shared Function FlipAlongTheXAxis(polygon As PhysicsKit.Polygon, point As PhysicsKit.Vector2) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about the given point along the x-axis and 
+		  ' returns the result as a new Polygon.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  ' - Parameter point: The point to flip about.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon is Nil.
+		  ///
+		  
+		  Return Geometry.Flip(polygon, Vector2.X_AXIS, point)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520792D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
 		Shared Function FlipAlongTheYAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
 		  ///
@@ -1124,6 +1289,25 @@ Protected Class Geometry
 		  ///
 		  
 		  Return Geometry.Flip(polygon, Vector2.Y_AXIS, Nil)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E20706F696E7420616C6F6E672074686520792D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E
+		Shared Function FlipAlongTheYAxis(polygon As PhysicsKit.Polygon, point As PhysicsKit.Vector2) As PhysicsKit.Polygon
+		  ///
+		  ' Flips the given polygon about the given point along the y-axis and
+		  ' returns the result as a new Polygon.
+		  '
+		  ' - Parameter polygon: The polygon to flip.
+		  ' - Parameter point: The point To flip about.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given Polygon is Nil.
+		  ///
+		  
+		  Return Geometry.Flip(polygon, Vector2.Y_AXIS, point)
 		  
 		End Function
 	#tag EndMethod
@@ -1380,6 +1564,300 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
+		Shared Function MinkowskiSum(circle As PhysicsKit.Circle, polygon As PhysicsKit.Polygon, count As Integer) As PhysicsKit.Polygon
+		  ///
+		  ' Performs the Minkowski Sum of the given Polygon and Circle.
+		  '
+		  ' Use the count parameter to specify the number of vertices to use per round corner.
+		  '
+		  ' If the given polygon has _n_ number of vertices, the returned polygon will have 
+		  ' _n * 2 + n * count_ number of vertices.
+		  '
+		  ' This method is O(n) where n is the number of vertices in the given polygon.
+		  '
+		  ' - Parameter polygon: The polygon.
+		  ' - Parameter circle: The circle to add to the polygon.
+		  ' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.
+		  '
+		  ' - Returns: Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon or circle is Nil.
+		  ' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.
+		  ///
+		  
+		  Return Geometry.MinkowskiSum(polygon, circle, count)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720706F6C79676F6E207468617420686173206265656E2072616469616C6C7920657870616E6465642E2054686973206973206571756976616C656E7420746F20746865204D696E6B6F77736B692073756D206F66206120636972636C652C206F662074686520676976656E207261646975732C20616E642074686520676976656E20706F6C79676F6E2E
+		Shared Function MinkowskiSum(polygon As PhysicsKit.Polygon, radius As Double, count As Integer) As PhysicsKit.Polygon
+		  ///
+		  ' Returns a new polygon that has been radially expanded. This is equivalent to the Minkowski sum of
+		  ' a circle, of the given radius, and the given polygon.
+		  '
+		  ' Use the `count` parameter to specify the number of vertices to use per round corner.
+		  '
+		  ' If the given polygon has _n_ number of vertices, the returned polygon will have 
+		  ' _n * 2 + n * count_ number of vertices.
+		  '
+		  ' This method is O(n) where n is the number of vertices in the given polygon.
+		  '
+		  ' - Parameter polygon: The polygon to expand radially.
+		  ' - Parameter radius: The radial expansion. Must be greater than zero.
+		  ' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.
+		  '
+		  ' - Returns: Polygon.
+		  '
+		  ' - Raises: NilObjectrException if the given polygon is Nil.
+		  ' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.
+		  ///
+		  
+		  // check for valid input
+		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON)
+		  If radius <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS)
+		  If count <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT)
+		  
+		  Var vertices() As Vector2 = polygon.Vertices
+		  Var normals() As Vector2 = polygon.Normals
+		  Var size As Integer = vertices.Count
+		  
+		  Var nVerts() As Vector2
+		  nVerts.ResizeTo((size * 2 + size * count) - 1)
+		  
+		  // Perform the expansion.
+		  Var j As Integer = 0
+		  Var iLimit As Integer = size - 1
+		  For i As Integer = 0 To iLimit
+		    Var v1 As Vector2 = vertices(i)
+		    Var v2 As Vector2 = vertices(If(i + 1 = size, 0, i + 1))
+		    Var normal As Vector2 = normals(i)
+		    Var nv1 As Vector2 = normal.Product(radius).Add(v1)
+		    Var nv2 As Vector2 = normal.Product(radius).Add(v2)
+		    
+		    // Generate the previous polygonal arc with count vertices.
+		    // Compute (circular) angle between the edges.
+		    Var cv1 As Vector2
+		    If i = 0 Then
+		      // If it's the first iteration, then we need to compute the last vertex's new position.
+		      Var tn As Vector2 = normals(size - 1)
+		      cv1 = v1.Towards(tn.Product(radius).Add(v1))
+		    Else
+		      cv1 = v1.Towards(nVerts(j - 1))
+		    End If
+		    Var cv2 As Vector2 = v1.Towards(nv1)
+		    Var theta As Double = cv1.GetAngleBetween(cv2)
+		    
+		    // Compute the angular increment.
+		    Var pin As Double = theta / (count + 1)
+		    
+		    Var c As Double = Cos(pin)
+		    Var s As Double = Sin(pin)
+		    Var t As Double = 0
+		    
+		    // Compute the start theta.
+		    Var sTheta As Double = Vector2.X_AXIS.GetAngleBetween(normals(If(i - 1 < 0, size - 1, i - 1)))
+		    If sTheta < 0 Then
+		      sTheta = sTheta + Geometry.TWO_PI
+		    End If
+		    
+		    // Initialise at minus theta.
+		    Var x As Double = radius * Cos(sTheta)
+		    Var y As Double = radius * Sin(sTheta)
+		    
+		    Var kLimit As Integer = count - 1
+		    For k As Integer = 0 To kLimit
+		      // aAply the rotation matrix.
+		      t = x
+		      x = c * x - s * y
+		      y = s * t + c * y
+		      
+		      // Add a point.
+		      nVerts(j) = New Vector2(x, y)
+		      Call nverts(j).Add(v1)
+		      j = j + 1
+		    Next k
+		    
+		    nVerts(j) = nv1
+		    j = j + 1
+		    nVerts(j) = nv2
+		    j = j + 1
+		  Next i
+		  
+		  Return New Polygon(nVerts)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
+		Shared Function MinkowskiSum(polygon As PhysicsKit.Polygon, circle As PhysicsKit.Circle, count As Integer) As PhysicsKit.Polygon
+		  ///
+		  ' Performs the Minkowski Sum of the given Polygon and Circle.
+		  '
+		  ' Use the `count` parameter to specify the number of vertices to use per round corner.
+		  '
+		  ' If the given polygon has _n_ number of vertices, the returned polygon will have 
+		  ' _n * 2 + n * count_ number of vertices.
+		  '
+		  ' This method is O(n) where n is the number of vertices in the given polygon.
+		  '
+		  ' - Parameter polygon: The polygon.
+		  ' - Parameter circle: The circle to add to the polygon.
+		  ' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.
+		  '
+		  ' - Returns: Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon or circle is Nil.
+		  ' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.
+		  ///
+		  
+		  If circle Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE)
+		  Return Geometry.MinkowskiSum(polygon, circle.Radius, count)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20636F6E766578207368617065732E2054686520736861706573204D55535420696D706C656D656E7420626F74682074686520436F6E76657820616E6420576F756E6420696E74657266616365732E
+		Shared Function MinkowskiSum(convex1 As Variant, convex2 As Variant) As PhysicsKit.Polygon
+		  ///
+		  ' Returns the Minkowski Sum of the given convex shapes.
+		  '
+		  ' This method computes the Minkowski Sum in O(n + m) time where n and m are the number
+		  ' of vertices of the first and second convex respectively.
+		  '
+		  ' This method accepts any Convex Wound shape which basically means Polygons orSegments.
+		  '
+		  ' This method raises an InvalidArgumentException if two Segments are supplied
+		  ' that are colinear (in this case the resulting Minkowski sum would be another segment
+		  ' rather than a polygon).
+		  '
+		  ' - Parameter convex1: The first convex.
+		  ' - Parameter convex2: The second convex.
+		  ' - Both parameters must implement the Convex AND Wound interfaces.
+		  '
+		  ' - Returns: Polygon.
+		  '
+		  ' - Raises: NilObjectException if `convex1` or `convex2` are Nil.
+		  ' - Raises: InvalidArgumentException if both `convex1` and `convex2` are Segments and are colinear.
+		  ' - Raises: InvalidArgumentException if either `convex1` or `convex2` are NOT both Convex AND Wound.
+		  ///
+		  
+		  If convex1 Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
+		  If convex2 Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
+		  
+		  // Since Xojo doens't implement generics like Java does, validate the correct 
+		  // types have been passed.
+		  If convex1 IsA Convex = False Or convex1 IsA Wound = False Then
+		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1)
+		  End If
+		  If convex2 IsA Convex = False Or convex2 IsA Wound = False Then
+		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2)
+		  End If
+		  
+		  Var p1v() As Vector2 = Wound(convex1).GetVertices
+		  Var p2v() As Vector2 = Wound(convex2).GetVertices
+		  
+		  // Check for two segments.
+		  If convex1 IsA Segment And convex2 IsA Segment Then
+		    // Check if they are colinear.
+		    Var s1 As Vector2 = p1v(0).Towards(p1v(1))
+		    Var s2 As Vector2 = p2v(0).Towards(p2v(1))
+		    If s1.Cross(s2) <= Epsilon.E Then
+		      Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS)
+		    End If
+		  End If
+		  
+		  Var c1 As Integer = p1v.Count
+		  Var c2 As Integer = p2v.Count
+		  
+		  // Find the minimum y-coordinate vertex in the first polygon.
+		  // In the case of a tie, use the minimum x-coordinate vertex.
+		  Var i As Integer = 0
+		  Var j As Integer = 0
+		  Var min As Vector2 = New Vector2(MathsKit.DOUBLE_MAX_VALUE, MathsKit.DOUBLE_MAX_VALUE)
+		  Var kLimit As Integer = c1 - 1
+		  For k As Integer = 0 To kLimit
+		    Var v As Vector2 = p1v(k)
+		    If v.Y < min.Y Then
+		      Call min.Set(v)
+		      i = k
+		    Elseif v.Y = Min.Y Then
+		      If v.X < Min.X Then
+		        Call min.Set(v)
+		        i = k
+		      End If
+		    End If
+		  Next k
+		  
+		  // Find the minimum y-coordinate vertex in the second polygon.
+		  // In the case of a tie, use the minimum x-coordinate vertex.
+		  Call min.Set(MathsKit.DOUBLE_MAX_VALUE, MathsKit.DOUBLE_MAX_VALUE)
+		  kLimit = c2 - 1
+		  For k As Integer = 0 To kLimit
+		    Var v As Vector2 = p2v(k)
+		    If v.Y < min.Y Then
+		      Call min.Set(v)
+		      j = k
+		    ElseIf v.Y = min.Y Then
+		      If v.X < min.X Then
+		        Call min.Set(v)
+		        j = k
+		      End If
+		    End If
+		  Next k
+		  
+		  // Iterate through the vertices.
+		  Var n1 As Integer = c1 + i
+		  Var n2 As Integer = c2 + j
+		  
+		  // The maximum number of vertices for the output shape is m + n
+		  Var sum() As Vector2
+		  sum.ResizeTo(c1 + c2 - 1)
+		  While i <= n1 And j <= n2
+		    // Get the current edges.
+		    Var v1s As Vector2 = p1v(i Mod c1)
+		    Var v1e As Vector2 = p1v((i + 1) Mod c1)
+		    
+		    Var v2s As Vector2 = p2v(j Mod c2)
+		    Var v2e As Vector2 = p2v((j + 1) Mod c2)
+		    
+		    // Add the vertex to the final output.
+		    // On the first iteration we can assume this is a correct
+		    // one since we started at the minimum y-coordinate vertices.
+		    
+		    // On subsequent interations we can assume this is a correct
+		    // one since the angle condition was used to increment the vertex index.
+		    sum.AddRow(v1s.sum(v2s))
+		    
+		    // Compute the edge vectors.
+		    Var e1 As Vector2 = v1s.Towards(v1e)
+		    Var e2 As Vector2 = v2s.Towards(v2e)
+		    
+		    // Get the angles between the x-axis in the range [-π, π].
+		    Var a1 As Double = Vector2.X_AXIS.GetAngleBetween(e1)
+		    Var a2 As Double = Vector2.X_AXIS.GetAngleBetween(e2)
+		    
+		    // Put the angles in the range [0, 2π].
+		    If a1 < 0 Then a1 = a1 + Geometry.TWO_PI
+		    If a2 < 0 Then a2 = a2 + Geometry.TWO_PI
+		    
+		    // Determine which vertex to use next.
+		    If a1 < a2 Then
+		      i = i + 1
+		    ElseIf a1 > a2 Then
+		      j = j + 1
+		    Else
+		      i = i + 1
+		      j = j + 1
+		    End If
+		  Wend
+		  
+		  Return New Polygon(sum)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 526576657273657320746865206F72646572206F662074686520706F6C79676F6E20706F696E74732077697468696E2074686520676976656E2061727261792E20526169736573204E696C4F626A656374457863657074696F6E732E
 		Shared Sub ReverseWinding(points() As PhysicsKit.Vector2)
 		  ///
@@ -1416,6 +1894,169 @@ Protected Class Geometry
 		  Wend
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2063617073756C652E
+		Shared Function Scale(capsule As PhysicsKit.Capsule, scale As Double) As PhysicsKit.Capsule
+		  ///
+		  ' Returns a scaled version of the given capsule.
+		  '
+		  ' - Parameter capsule: The capsule.
+		  ' - Paramater scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Capsule.
+		  '
+		  ' - Raises: NilObjectException if the given capsule is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If capsule Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  Return New Capsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20636972636C652E
+		Shared Function Scale(circle As PhysicsKit.Circle, scale As Double) As PhysicsKit.Circle
+		  ///
+		  ' Returns a scaled version of the given circle.
+		  '
+		  ' - Parameter circle: The circle.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Circle.
+		  '
+		  ' - Raises: NilObjectException if the given circle is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If circle Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  Return New Circle(circle.Radius * scale)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20656C6C697073652E
+		Shared Function Scale(ellipse As PhysicsKit.Ellipse, scale As Double) As PhysicsKit.Ellipse
+		  ///
+		  ' Returns a scaled version of the given ellipse.
+		  '
+		  ' - Parameter ellipse: The ellipse.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returnsl: A new Ellipse.
+		  '
+		  ' - Raises: NilObjectException if the given ellipse is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If ellipse Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  Return New Ellipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2068616C662D656C6C697073652E
+		Shared Function Scale(halfEllipse As PhysicsKit.HalfEllipse, scale As Double) As PhysicsKit.HalfEllipse
+		  ///
+		  ' Returns a scaled version of the given half-ellipse.
+		  '
+		  ' - Parameter halfEllipse: The half-ellipse.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returnsl: A new HalfEllipse.
+		  '
+		  ' - Raises: NilObjectException if the given half-ellipse is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If halfEllipse Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  Return New HalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20706F6C79676F6E2E
+		Shared Function Scale(polygon As PhysicsKit.Polygon, scale As Double) As PhysicsKit.Polygon
+		  ///
+		  ' Returns a scaled version of the given polygon.
+		  '
+		  ' - Parameter polygon: The polygon.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero
+		  ///
+		  
+		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  
+		  Var oVertices() As Vector2 = polygon.Vertices
+		  Var size As Integer = oVertices.Count - 1
+		  
+		  Var vertices() As Vector2
+		  vertices.ResizeTo(size)
+		  Var center As Vector2 = polygon.Center
+		  For i As Integer = 0 To size
+		    vertices(i) = center.Towards(oVertices(i)).Multiply(scale).Add(center)
+		  Next i
+		  
+		  Return New Polygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E207365676D656E742E
+		Shared Function Scale(segment As PhysicsKit.Segment, scale As Double) As PhysicsKit.Segment
+		  ///
+		  ' Returns a scaled version of the given segment.
+		  '
+		  ' - Parameter segment: The segment.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Segment.
+		  '
+		  ' - Raises: NilObjectException if the given segment is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If segment Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  
+		  Var length As Double = segment.GetLength * scale * 0.5
+		  Var n As Vector2 = segment.Vertices(0).Towards(segment.Vertices(1))
+		  Call n.Normalise
+		  Call n.Multiply(length)
+		  
+		  Return New Segment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20736C6963652E
+		Shared Function Scale(slice As PhysicsKit.Slice, scale As Double) As PhysicsKit.Slice
+		  ///
+		  ' Returns a scaled version of the given slice.
+		  '
+		  ' - Parameter slice: The slice.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Slice.
+		  '
+		  ' - Raises: NilObjectException if the given slice is Nil.
+		  ' - Raises:" InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If slice Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  Return New Slice(slice.GetSliceRadius * scale, slice.GetTheta)
+		  
+		End Function
 	#tag EndMethod
 
 

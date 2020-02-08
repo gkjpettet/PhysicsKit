@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface Wound
 Implements PhysicsKit.Shape
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 52657475726E7320616E206974657261746F7220666F7220746865206E6F726D616C732E
 		Function GetNormalIterator() As Iterator
 		  
 		End Function
@@ -13,13 +13,13 @@ Implements PhysicsKit.Shape
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 52657475726E7320616E206974657261746F7220666F72207468652076657274696365732E
 		Function GetVertexIterator() As Iterator
 		  
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206172726179206F6620766572746963657320696E206C6F63616C20636F6F7264696E617465732E
 		Function GetVertices() As PhysicsKit.Vector2()
 		  
 		End Function

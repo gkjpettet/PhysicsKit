@@ -5,8 +5,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 Ported `RobustGeometry.java` but it's test are failing.
 
-Part ported `Geometry.java` up to and including `flipAlongTheYAxis(polygon)`.
-
 ## Main Files To Port
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
@@ -181,7 +179,7 @@ Part ported `Geometry.java` up to and including `flipAlongTheYAxis(polygon)`.
 	- [x] EdgeFeature.java
 	- [x] Ellipse.java
 	- [x] Feature.java
-	- [ ] Geometry.java
+	- [x] Geometry.java
 	- [x] HalfEllipse.java
 	- [ ] hull
 		- [ ] DivideAndConquer.java
@@ -194,7 +192,7 @@ Part ported `Geometry.java` up to and including `flipAlongTheYAxis(polygon)`.
 		- [ ] MonotoneChain.java
 		- [ ] ReferencePointComparator.java
 	- [x] Interval.java
-	- [ ] Link.java
+	- [x] Link.java
 	- [x] Mass.java
 	- [x] MassType.java
 	- [ ] Matrix22.java
