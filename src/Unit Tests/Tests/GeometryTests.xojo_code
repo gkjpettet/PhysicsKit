@@ -71,6 +71,26 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateNegativeHeightRectangleTest()
+		  ///
+		  ' Tests the failed creation of a rectangle with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRectangle(1.0, -2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException as negative height.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateNEgativeRadiusCircleTest()
 		  ///
 		  ' Tests the failed creation of a circle using a negative radius.
@@ -106,6 +126,46 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected an InvalidArgumentException as passed a negative radius.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeSizeSquareTest()
+		  ///
+		  ' Tests the creation of a square with a negative size.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateSquare(-1.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException as negative size.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeWidthRectangleTest()
+		  ///
+		  ' Tests the failed creation of a rectangle with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRectangle(-1.0, 2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException as negative width.")
 		  
 		End Sub
 	#tag EndMethod
@@ -210,6 +270,96 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateRectangleTest()
+		  ///
+		  ' Tests the successful creation of a rectangle.
+		  
+		  Call Geometry.CreateRectangle(1.0, 2.0)
+		  
+		  Assert.Pass
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSquareTest()
+		  ///
+		  ' Tests the successful creation of a square.
+		  ///
+		  
+		  Var r As Rectangle = Geometry.CreateSquare(1.0)
+		  Assert.AreEqual(1.000, r.GetWidth, 1.0e-3)
+		  Assert.AreEqual(1.000, r.GetHeight, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateTriangleAtOriginTest()
+		  ///
+		  ' Tests the successful creation of a triangle using points.
+		  ///
+		  
+		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
+		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
+		  Var p3 As Vector2 = New Vector2(-0.5, 1.0)
+		  Var t As Triangle = Geometry.CreateTriangleAtOrigin(p1, p2, p3)
+		  
+		  // The points should not be the same instances.
+		  Assert.IsFalse(t.Vertices(0) Is p1)
+		  Assert.IsFalse(t.Vertices(1) Is p2)
+		  Assert.IsFalse(t.Vertices(2) Is p3)
+		  
+		  //  Make sure the centre is at the origin.
+		  Var c As Vector2 = t.GetCenter
+		  Assert.AreEqual(0.000, c.x, 1.0e-3)
+		  Assert.AreEqual(0.000, c.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateTriangleNilPointTest()
+		  ///
+		  ' Tests the creation of a triangle using a null point.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
+		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
+		  
+		  // Should fail since the vertices list contains a Nil item.
+		  Try
+		    Call Geometry.CreateTriangle(p1, p2, Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected NilObjectException.")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateTriangleTest()
+		  ///
+		  ' Tests the successful creation of a triangle using points.
+		  ///
+		  
+		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
+		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
+		  Var p3 As Vector2 = New Vector2(-0.5, 1.0)
+		  Var t As Triangle = Geometry.CreateTriangle(p1, p2, p3)
+		  
+		  // The points should not be the same instances.
+		  Assert.IsFalse(t.Vertices(0) Is p1)
+		  Assert.IsFalse(t.Vertices(1) Is p2)
+		  Assert.IsFalse(t.Vertices(2) Is p3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateUnitCirclePolygonTest()
 		  ///
 		  ' Test case for the UnitCirclePolygon methods.
@@ -265,6 +415,25 @@ Inherits TestGroup
 		  Var angle As Double = v11.GetAngleBetween(v21)
 		  Assert.AreEqual(MathsKit.PI / 2.0, angle, 1.0e-3)
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroHeightRectangleTest()
+		  ///
+		  ' Tests the failed creation of a rectangle with a zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRectangle(1.0, 0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException as zero height.")
 		End Sub
 	#tag EndMethod
 
@@ -325,6 +494,25 @@ Inherits TestGroup
 		  
 		  Assert.Fail("Expected an InvalidArgumentException as zero size.")
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroWidthRectangleTest()
+		  ///
+		  ' Tests the failed creation of a rectangle with a zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRectangle(0.0, 2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException as zero width rectangle.")
 		End Sub
 	#tag EndMethod
 
