@@ -22,6 +22,7 @@ Class=DesktopTestController;Unit Tests/DesktopTestController.xojo_code;&h0000000
 Folder=Framework;Unit Tests/Framework;&h000000003E1A9B41;&h000000002516B04D;false
 Folder=Tests;Unit Tests/Tests;&h0000000044C729E7;&h000000002516B04D;false
 Class=AABBTests;Unit Tests/Tests/AABBTests.xojo_code;&h000000001A7C07FF;&h0000000044C729E7;false
+Class=GeometryTests;Unit Tests/Tests/GeometryTests.xojo_code;&h000000002744EFFF;&h0000000044C729E7;false
 Class=AbstractShapeTest;Unit Tests/Tests/AbstractShapeTest.xojo_code;&h000000002E2247FF;&h0000000044C729E7;false
 Class=AdaptiveDecimalTest;Unit Tests/Tests/AdaptiveDecimalTest.xojo_code;&h00000000190F2FFF;&h0000000044C729E7;false
 Class=CapsuleTests;Unit Tests/Tests/CapsuleTests.xojo_code;&h00000000780CCFFF;&h0000000044C729E7;false
