@@ -1813,7 +1813,6 @@ Protected Class Geometry
 		  
 		  // The maximum number of vertices for the output shape is m + n
 		  Var sum() As Vector2
-		  sum.ResizeTo(c1 + c2 - 1)
 		  While i <= n1 And j <= n2
 		    // Get the current edges.
 		    Var v1s As Vector2 = p1v(i Mod c1)

@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `GeometryTest.java` up to and including `createPolygonalCapsule()`.
-
 Ported `RobustGeometry.java` but it's test are failing.
 
 ## Main Files To Port
@@ -317,7 +315,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [ ] DivideAndConquerTest.java
 	- [ ] EarClippingTest.java
 	- [x] EllipseTest.java
-	- [ ] GeometryTest.java
+	- [x] GeometryTest.java
 	- [ ] GiftWrapTest.java
 	- [ ] GrahamScanTest.java
 	- [x] HalfEllipseTest.java

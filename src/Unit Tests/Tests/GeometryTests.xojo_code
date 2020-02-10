@@ -939,7 +939,7 @@ Inherits TestGroup
 		  ' Tests the CreatePolygonalSlice method with theta equal to zero.
 		  ///
 		  
-		  #Pragma BreakOnExceptions fal
+		  #Pragma BreakOnExceptions False
 		  
 		  Try
 		    Call Geometry.CreatePolygonalSlice(5, 1.0, 0)
@@ -2127,12 +2127,253 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidCount1Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidCount2Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.minkowskiSum(Geometry.createUnitCirclePolygon(5, 0.5), 0.2, -2)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidCount3Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid count
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
+		    Geometry.CreateCircle(0.5), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidCount4Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
+		    Geometry.CreateCircle(0.5), -2)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidRadius1Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid radius.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0, 3)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidRadius2Test()
+		  ///
+		  ' Test the minkowski sum method given an invalid radius.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), -2.0, 3)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumInvalidSegmentsTest()
+		  ///
+		  ' Test the minkowski sum method with invalid segments.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
+		    Geometry.CreateSegment(New Vector2(-0.5, 0.0)))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumNilShape1Test()
+		  ///
+		  ' Test the minkowski sum method given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Nil, Geometry.CreateCircle(0.2), 3)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumNilShape2Test()
+		  ///
+		  ' Test the minkowski sum method given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), Nil, 3)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumNilShape3Test()
+		  ///
+		  ' Test the minkowski sum method given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Nil, 0.2, 3)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumNilWound1Test()
+		  ///
+		  ' Test the minkowski sum method given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Nil, Geometry.CreateUnitCirclePolygon(5, 0.5))
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumNilWound2Test()
+		  ///
+		  ' Test the Minkowski sum method given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub MinkowskiSumTest()
 		  ///
 		  ' Test the minkowski sum method.
 		  ///
-		  
-		  #Pragma Warning "FAILING. The vertices array cannot contain Nil points??"
 		  
 		  // Verify the generation of the polygon works.
 		  Var p As Polygon 
@@ -2181,6 +2422,340 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleCapsuleInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleCircleInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateCircle(0.5), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleEllipseInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleHalfEllipseInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilCapsuleTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var c As Capsule
+		    Call Geometry.Scale(c, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilCircleTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var c As Circle
+		    Call Geometry.Scale(c, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilEllipseTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var e As Ellipse
+		    Call Geometry.Scale(e, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilHalfEllipseTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var he As HalfEllipse
+		    Call Geometry.Scale(he, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilPolygonTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var p As Polygon
+		    Call Geometry.Scale(p, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilSegmentTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var s As Segment
+		    Call Geometry.Scale(s, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleNilSliceTest()
+		  ///
+		  ' Tests that the scale method fails if given a Nil shape.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var s As Slice
+		    Call Geometry.Scale(s, 1.2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScalePolygonInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleSegmentInvalidTest()
+		  ///
+		  '  Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 1.0)), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleSliceInvalidTest()
+		  ///
+		  ' Tests that the scale method fails if given an invalid scale factor.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ScaleTest()
+		  ///
+		  ' Tests that the scale methods work as expected.
+		  ///
+		  
+		  Var s1 As Circle = Geometry.Scale(Geometry.CreateCircle(0.5), 2)
+		  Var s2 As Capsule = Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 2)
+		  Var s3 As Ellipse = Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 2)
+		  Var s4 As HalfEllipse = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 2)
+		  Var s5 As Slice = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
+		  Var s6 As Polygon = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 2)
+		  Var s7 As Segment = Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 0.0)), 2)
+		  
+		  Assert.AreEqual(1.000, s1.Radius, 1.0e-3)
+		  Assert.AreEqual(2.000, s2.Length, 1.0e-3)
+		  Assert.AreEqual(1.000, s2.CapRadius * 2.0, 1.0e-3)
+		  Assert.AreEqual(2.000, s3.GetWidth, 1.0e-3)
+		  Assert.AreEqual(1.000, s3.GetHeight, 1.0e-3)
+		  Assert.AreEqual(2.000, s4.GetWidth, 1.0e-3)
+		  Assert.AreEqual(0.500, s4.Height, 1.0e-3)
+		  Assert.AreEqual(1.000, s5.SliceRadius, 1.0e-3)
+		  Assert.AreEqual(1.000, s6.Radius, 1.0e-3)
+		  Assert.AreEqual(2.000, s7.Length, 1.0e-3)
+		  
+		  s1 = Geometry.Scale(Geometry.CreateCircle(0.5), 0.5)
+		  s2 = Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 0.5)
+		  s3 = Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 0.5)
+		  s4 = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 0.5)
+		  s5 = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0.5)
+		  s6 = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.5)
+		  s7 = Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 0.0)), 0.5)
+		  
+		  Assert.AreEqual(0.250, s1.Radius, 1.0e-3)
+		  Assert.AreEqual(0.500, s2.Length, 1.0e-3)
+		  Assert.AreEqual(0.250, s2.CapRadius * 2.0, 1.0e-3)
+		  Assert.AreEqual(0.500, s3.GetWidth, 1.0e-3)
+		  Assert.AreEqual(0.250, s3.GetHeight, 1.0e-3)
+		  Assert.AreEqual(0.500, s4.GetWidth, 1.0e-3)
+		  Assert.AreEqual(0.125, s4.Height, 1.0e-3)
+		  Assert.AreEqual(0.250, s5.SliceRadius, 1.0e-3)
+		  Assert.AreEqual(0.250, s6.Radius, 1.0e-3)
+		  Assert.AreEqual(0.500, s7.Length, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
