@@ -477,6 +477,66 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleInvalidCountTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method with an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalCapsule(0, 1.0, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleNegativeHeightTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method with zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalCapsule(5, 1.0, -0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleNegativeWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalCapsule(5, -1, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreatePolygonalCapsuleTest()
 		  ///
 		  ' Tests the CreatePolygonalCapsule method.
@@ -488,6 +548,46 @@ Inherits TestGroup
 		  // The centre should be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
 		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleZeroHeightTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method with zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalCapsule(5, 1.0, 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleZeroWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method with zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalCapsule(5, 0, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1601,6 +1701,112 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub FlipNilAxisTest()
+		  ///
+		  ' Tests the flip polygon method with a Nil axis.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Flip(Geometry.CreateSquare(1.0), Nil, Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FlipNilPointTest()
+		  ///
+		  ' Tests the flip polygon method with a Nil point.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    // It should use the centre.
+		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New Vector2(1.0, 1.0), Nil)
+		    Assert.Pass
+		    Return
+		  Catch e As RuntimeException
+		    Assert.Fail("")
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FlipNilPolygonTest()
+		  ///
+		  ' Tests the flip polygon method with a Nil polygon.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Flip(Nil, New Vector2(1.0, 1.0), Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FlipTest()
+		  ///
+		  ' Tests the flip polygon method.
+		  ///
+		  
+		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 1.0)
+		  
+		  // Flip about an arbitrary vector and point (line).
+		  Var flipped As Polygon = Geometry.Flip(p, New Vector2(1.0, 1.0), New Vector2(0.0, 2.0))
+		  
+		  Var vertices() As Vector2 = flipped.GetVertices
+		  Assert.AreEqual(-2.951, vertices(0).x, 1.0e-3)
+		  Assert.AreEqual( 2.309, vertices(0).y, 1.0e-3)
+		  Assert.AreEqual(-2.587, vertices(1).x, 1.0e-3)
+		  Assert.AreEqual( 1.190, vertices(1).y, 1.0e-3)
+		  Assert.AreEqual(-1.412, vertices(2).x, 1.0e-3)
+		  Assert.AreEqual( 1.190, vertices(2).y, 1.0e-3)
+		  Assert.AreEqual(-1.048, vertices(3).x, 1.0e-3)
+		  Assert.AreEqual( 2.309, vertices(3).y, 1.0e-3)
+		  Assert.AreEqual(-2.000, vertices(4).x, 1.0e-3)
+		  Assert.AreEqual( 3.000, vertices(4).y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FlipZeroAxisTest()
+		  ///
+		  ' Tests the flip polygon method with a zero vector axis.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New Vector2, Nil)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetAreaWeightedCenterArrayNilElementsTest()
 		  ///
 		  ' Tests the GetAreaWeightedCenter method passing an array with Nil elements.
@@ -1916,6 +2122,45 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MinkowskiSumTest()
+		  ///
+		  ' Test the minkowski sum method.
+		  ///
+		  
+		  #Pragma Warning "FAILING. The vertices array cannot contain Nil points??"
+		  
+		  // Verify the generation of the polygon works.
+		  Var p As Polygon 
+		  p = Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
+		  Geometry.CreateCircle(0.2), 3)
+		  
+		  // Verify the new vertex count.
+		  Assert.AreEqual(25, p.Vertices.Count, "Failed test 1")
+		  
+		  // Verify the generation of the polygon works.
+		  p = Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 3)
+		  
+		  // Verify the new vertex count.
+		  Assert.AreEqual(25, p.Vertices.Count, "Failed test 2")
+		  
+		  // Verify the generation of the polygon works.
+		  p = Geometry.MinkowskiSum(Geometry.CreateSquare(1.0), Geometry.CreateUnitCirclePolygon(5, 0.2))
+		  Assert.AreEqual(8, p.Vertices.Count, "Failed test 3")
+		  
+		  // Verify the generation of the polygon works.
+		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
+		  Geometry.CreateUnitCirclePolygon(5, 0.2))
+		  Assert.AreEqual(5, p.Vertices.Count, "Failed test 4")
+		  
+		  // Verify the generation of the polygon works.
+		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
+		  Geometry.CreateSegment(New Vector2(0.5, 0.5)))
+		  Assert.AreEqual(4, p.Vertices.Count, "Failed test 5")
 		  
 		End Sub
 	#tag EndMethod
