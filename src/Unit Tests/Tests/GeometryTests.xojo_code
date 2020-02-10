@@ -477,6 +477,22 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreatePolygonalCapsuleTest()
+		  ///
+		  ' Tests the CreatePolygonalCapsule method.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalCapsule(5, 1.0, 0.5)
+		  
+		  // The centre should be at the origin.
+		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreatePolygonalEllipseLessCountTest()
 		  ///
 		  ' Tests the CreatePolygonalEllipse method with less than 4 vertices.
@@ -614,6 +630,138 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseAtOriginTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipseAtOrigin method.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalHalfEllipseAtOrigin(5, 1.0, 0.5)
+		  
+		  // The centre should be at the origin.
+		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseInvalidCountTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method with an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalHalfEllipse(0, 1.0, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseNegativeHeightTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalHalfEllipse(5, 1.0, -0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseNegativeWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalHalfEllipse(5, -1, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0.5)
+		  
+		  // The centre should not be at the origin.
+		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.103, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseZeroHeightTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method with zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalHalfEllipseZeroWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalHalfEllipse method with zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalHalfEllipse(5, 0, 0.5)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreatePolygonalSliceAtOriginTest()
 		  ///
 		  ' Tests the CreatePolygonalSliceAtOrigin method.
@@ -630,6 +778,46 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceInvalidCountTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with an invalid count.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(0, 1.0, MathsKit.ToRadians(30))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceNegativeRadiusTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with a negative radius.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(5, -1, MathsKit.ToRadians(30))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreatePolygonalSliceTest()
 		  ///
 		  ' Tests the CreatePolygonalSlice method.
@@ -641,6 +829,86 @@ Inherits TestGroup
 		  // The centre should not be at the origin.
 		  Assert.AreEqual(0.658, p.GetCenter.x, 1.0e-3)
 		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceThetaEqualsZeroTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with theta equal to zero.
+		  ///
+		  
+		  #Pragma BreakOnExceptions fal
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(5, 1.0, 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceThetaGreaterThan180Test()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with theta greater than 180 degrees.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(190))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceThetaLessThanZeroTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with a negative theta.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(5, 1.0, -MathsKit.ToRadians(30))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceZeroRadiusTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method with a zero radius.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalSlice(5, 0, MathsKit.ToRadians(30))
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
 		  
 		End Sub
 	#tag EndMethod
