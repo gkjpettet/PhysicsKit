@@ -206,7 +206,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] Rotation.java
 	- [x] Segment.java
 	- [x] Shape.java
-	- [ ] Shiftable.java
+	- [x] Shiftable.java
 	- [x] Slice.java
 	- [x] Transform.java
 	- [x] Transformable.java

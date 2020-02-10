@@ -77,6 +77,7 @@ Class=Slice;PhysicsKit/Slice.xojo_code;&h00000000140FEFFF;&h00000000342617FF;fal
 Class=Ellipse;PhysicsKit/Ellipse.xojo_code;&h0000000058D58FFF;&h00000000342617FF;false
 Class=HalfEllipse;PhysicsKit/HalfEllipse.xojo_code;&h0000000036BDDFFF;&h00000000342617FF;false
 Class=Link;PhysicsKit/Link.xojo_code;&h000000007B289FFF;&h00000000342617FF;false
+Interface=Shiftable;PhysicsKit/Shiftable.xojo_code;&h0000000022BC3FFF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
