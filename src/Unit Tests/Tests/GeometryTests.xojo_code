@@ -31,6 +31,74 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub CleanseArrayTest()
+		  ///
+		  ' Tests the cleanse array method.
+		  ///
+		  
+		  Var points() As Vector2
+		  points.AddRow(New Vector2(1.0, 0.0))
+		  points.AddRow(New Vector2(1.0, 0.0))
+		  points.AddRow(New Vector2(0.5, -0.5))
+		  points.AddRow(New Vector2(0.0, -0.5))
+		  points.AddRow(New Vector2(-0.5, -0.5))
+		  points.AddRow(New Vector2(-2.0, -0.5))
+		  points.AddRow(New Vector2(2.1, 0.5))
+		  points.AddRow(New Vector2(1.0, 0.0))
+		  
+		  Var result() As Vector2 = Geometry.Cleanse(points)
+		  
+		  Assert.IsTrue(Geometry.GetWinding(result) > 0.0)
+		  Assert.AreEqual(4, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CleanseArrayWithNilElementsTest()
+		  ///
+		  ' Tests the cleanse method passing an array with Nil elements.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var a(4) As Vector2
+		    a(0) = New Vector2
+		    a(3) = New Vector2
+		    a(4) = New Vector2
+		    Call Geometry.cleanse(a)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CleanseNilArrayTest()
+		  ///
+		  ' Tests the cleanse method passing a Nil array.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.Cleanse(Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateCircleTest()
 		  ///
 		  ' Tests the successful creation of a circle.
@@ -46,6 +114,104 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Pass
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateEquilateralTriangleTest()
+		  ///
+		  ' Tests the successful creation of an equilateral angle triangle.
+		  ///
+		  
+		  Var t As Triangle = Geometry.CreateEquilateralTriangle(2.0)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = t.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		  // Compute the first angle.
+		  Var previousA As Double = t.Vertices(0).GetAngleBetween(t.Vertices(1))
+		  
+		  // Put the angle between 0 and 180.
+		  previousA = Abs(MathsKit.PI - Abs(previousA))
+		  
+		  // Compute the first distance.
+		  Var previousD As Double = t.Vertices(0).Distance(t.Vertices(1))
+		  
+		  // Make sure all the angles are the same.
+		  For i As Integer = 1 To 2
+		    Var v1 As Vector2 = t.Vertices(i)
+		    Var v2 As Vector2 = t.Vertices(If(i + 1 = 3, 0, i + 1))
+		    
+		    // Test the angle between the vectors.
+		    Var angle As Double = v1.GetAngleBetween(v2)
+		    
+		    // Put the angle between 0 and 180.
+		    angle = Abs(MathsKit.PI - Abs(angle)) 
+		    If angle < previousA * 0.9999 Or angle > previousA * 1.0001 Then
+		      Assert.Fail("The angle is not the same as the last.")
+		      Return
+		    End If
+		    
+		    // Test the distance between the points.
+		    Var distance As Double = v1.Distance(v2)
+		    If distance < previousD * 0.9999 Or distance > previousD * 1.0001 Then
+		      Assert.Fail("The distance is not the same as the last.")
+		    End If
+		  Next i
+		  
+		  // If we get here we didn't find a 90 degree angle.
+		  Assert.Pass
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateHoriztonalSegmentTest()
+		  ///
+		  ' Tests the successful creation of a segment given a length.
+		  ///
+		  
+		  Var s As Segment = Geometry.CreateHorizontalSegment(5.0)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = s.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateIsoscelesTriangleTest()
+		  ///
+		  ' Tests the successful creation of an isosceles triangle.
+		  ///
+		  
+		  Var t As Triangle = Geometry.CreateIsoscelesTriangle(2.0, 1.0)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = t.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		  // Get the vertices.
+		  Var v1 As Vector2 = t.Vertices(0)
+		  Var v2 As Vector2 = t.Vertices(1)
+		  Var v3 As Vector2 = t.Vertices(2)
+		  
+		  // Create the edges.
+		  Var e1 As Vector2 = v1.Towards(v2)
+		  Var e2 As Vector2 = v2.Towards(v3)
+		  Var e3 As Vector2 = v3.Towards(v1)
+		  
+		  // The length of e1 and e3 should be identical.
+		  Assert.AreEqual(e1.GetMagnitude, e3.GetMagnitude, 1.0e-3)
+		  
+		  // Then angles between e1 and e2 and e2 and e3 should be identical.
+		  Assert.AreEqual(e1.GetAngleBetween(e2), e2.GetAngleBetween(e3), 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -71,6 +237,46 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateNegativeHeightEquilateralTriangleTest()
+		  ///
+		  ' Tests the create equilateral triangle method with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateEquilateralTriangle(-1.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeHeightIsoscelesTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateIsoscelesTriangle(2.0, -2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateNegativeHeightRectangleTest()
 		  ///
 		  ' Tests the failed creation of a rectangle with a negative height.
@@ -91,7 +297,67 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateNEgativeRadiusCircleTest()
+		Sub CreateNegativeHeightRightTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRightTriangle(2.0, -2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeLengthHorizontalSegmentTest()
+		  ///
+		  ' Tests the creation of a segment passing a negative length.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateHorizontalSegment(-1.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeLengthVerticalSegmentTest()
+		  ///
+		  ' Tests the creation of a segment passing a negative length.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateVerticalSegment(-1.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeRadiusCircleTest()
 		  ///
 		  ' Tests the failed creation of a circle using a negative radius.
 		  ///
@@ -151,6 +417,26 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateNegativeWidthIsoscelesTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateIsoscelesTriangle(-1.0, 2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateNegativeWidthRectangleTest()
 		  ///
 		  ' Tests the failed creation of a rectangle with a negative width.
@@ -166,6 +452,195 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected InvalidArgumentException as negative width.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateNegativeWidthRightTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRightTriangle(-1.0, 2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseLessCountTest()
+		  ///
+		  ' Tests the CreatePolygonalEllipse method with less than 4 vertices.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalEllipse(3, 2, 1)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseNegativeHeightTest()
+		  ///
+		  ' Tests the CreatePolygonalEllipse method with a negative height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalEllipse(10, 2, -1)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseNegativeWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalEllipse method with a negative width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalEllipse(10, -1, 1)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseOddCountTest()
+		  ///
+		  ' Tests the createPolygonalEllipse method with an odd count.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalEllipse(5, 2, 1)
+		  
+		  // And the centre should be the origin.
+		  Assert.AreEqual(4, p.GetVertices.Count)
+		  
+		  // This method should succeed.
+		  p = Geometry.CreatePolygonalEllipse(11, 2, 1)
+		  
+		  // The centre should be the origin.
+		  Assert.AreEqual(10, p.GetVertices.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseTest()
+		  ///
+		  ' Tests the createPolygonalEllipse method.
+		  ///
+		  
+		  // This method should succeed
+		  Var p As Polygon = Geometry.CreatePolygonalEllipse(10, 2, 1)
+		  
+		  // And the centre should be the origin.
+		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseZeroHEightTest()
+		  ///
+		  ' Tests the CreatePolygonalEllipse method with a zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalEllipse(10, 2, 0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalEllipseZeroWidthTest()
+		  ///
+		  ' Tests the CreatePolygonalEllipse method with a zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreatePolygonalEllipse(10, 0, 1)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceAtOriginTest()
+		  ///
+		  ' Tests the CreatePolygonalSliceAtOrigin method.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalSliceAtOrigin(5, 1.0, MathsKit.ToRadians(30))
+		  
+		  // The centre should be the origin.
+		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreatePolygonalSliceTest()
+		  ///
+		  ' Tests the CreatePolygonalSlice method.
+		  ///
+		  
+		  // This method should succeed.
+		  Var p As Polygon = Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(30))
+		  
+		  // The centre should not be at the origin.
+		  Assert.AreEqual(0.658, p.GetCenter.x, 1.0e-3)
+		  Assert.AreEqual(0.000, p.GetCenter.y, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -281,6 +756,192 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateRightTriangleMirrorTest()
+		  ///
+		  ' Tests the successful creation of a right angle triangle.
+		  ///
+		  
+		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0, True)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = t.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		  // Get the vertices.
+		  Var v1 As Vector2 = t.Vertices(0)
+		  Var v2 As Vector2 = t.Vertices(1)
+		  Var v3 As Vector2 = t.Vertices(2)
+		  
+		  // Create the edges.
+		  Var e1 As Vector2 = v1.Towards(v2)
+		  Var e2 As Vector2 = v2.Towards(v3)
+		  Var e3 As Vector2 = v3.Towards(v1)
+		  
+		  // One of the follow dot products must be zero indicating a 90 degree angle.
+		  If e1.Dot(e2) < 0.00001 And e1.Dot(e2) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  If e2.Dot(e3) < 0.00001 And e2.Dot(e3) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  If e3.Dot(e1) < 0.00001 And e3.Dot(e1) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  // If we get here we didn't find a 90 degree angle.
+		  Assert.Fail("Failed to find a 90 degree angle.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateRightTriangleTest()
+		  ///
+		  ' Tests the successful creation of a right angle triangle.
+		  ///
+		  
+		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = t.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		  // Get the vertices.
+		  Var v1 As Vector2 = t.Vertices(0)
+		  Var v2 As Vector2 = t.Vertices(1)
+		  Var v3 As Vector2 = t.Vertices(2)
+		  
+		  // Create the edges.
+		  Var e1 As Vector2 = v1.Towards(v2)
+		  Var e2 As Vector2 = v2.Towards(v3)
+		  Var e3 As Vector2 = v3.Towards(v1)
+		  
+		  // One of the follow dot products must be zero indicating a 90 degree angle.
+		  If e1.Dot(e2) < 0.00001 And e1.Dot(e2) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  If e2.Dot(e3) < 0.00001 And e2.Dot(e3) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  If e3.Dot(e1) < 0.00001 And e3.Dot(e1) > -0.00001 Then
+		    Assert.Pass
+		    Return
+		  End If
+		  
+		  // If we get here we didn't find a 90 degree angle.
+		  Assert.Fail("Failed to find a 90 degree angle.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSegmentAtOriginTest()
+		  ///
+		  ' Tests the successful creation of a segment given two points at the origin.
+		  ///
+		  
+		  Var s As Segment = Geometry.CreateSegmentAtOrigin(New Vector2(1.0, 1.0), New Vector2(2.0, -1.0))
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = s.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSegmentEndTest()
+		  ///
+		  ' Tests the successful creation of a segment given an end point.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateSegment(New Vector2(1.0, 1.0))
+		    Assert.Pass
+		    Return
+		  Catch e As RuntimeException
+		    Assert.Fail("")
+		    Return
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSegmentNilPoint1Test()
+		  ///
+		  '  Tests the creation of a segment passing a Nil point.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateSegment(Nil, New Vector2)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSegmentNilPoint2Test()
+		  ///
+		  ' Tests the creation of a segment passing a Nil point.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateSegment(New Vector2, Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateSegmentTest()
+		  ///
+		  ' Tests the successful creation of a segment given two points.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateSegment(New Vector2(1.0, 1.0), New Vector2(2.0, -1.0))
+		    Assert.Pass
+		    Return
+		  Catch e As RuntimeException
+		    Assert.Fail("")
+		    Return
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateSquareTest()
 		  ///
 		  ' Tests the successful creation of a square.
@@ -309,7 +970,7 @@ Inherits TestGroup
 		  Assert.IsFalse(t.Vertices(1) Is p2)
 		  Assert.IsFalse(t.Vertices(2) Is p3)
 		  
-		  //  Make sure the centre is at the origin.
+		  // Make sure the centre is at the origin.
 		  Var c As Vector2 = t.GetCenter
 		  Assert.AreEqual(0.000, c.x, 1.0e-3)
 		  Assert.AreEqual(0.000, c.y, 1.0e-3)
@@ -419,6 +1080,62 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateVerticalSegmentTest()
+		  ///
+		  ' Tests the successful creation of a segment given a length.
+		  ///
+		  
+		  Var s As Segment = Geometry.CreateVerticalSegment(5.0)
+		  
+		  // Test that the centre is the origin.
+		  Var center As Vector2 = s.GetCenter
+		  Assert.AreEqual(0.000, center.x, 1.0e-3)
+		  Assert.AreEqual(0.000, center.y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroHeightEquilateralTriangleTest()
+		  ///
+		  ' Tests the create equilateral triangle method with a zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateEquilateralTriangle(0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroHeightIsoscelesTraingleTest()
+		  ///
+		  ' Tests the create right triangle method with a zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateIsoscelesTriangle(1.0, 0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateZeroHeightRectangleTest()
 		  ///
 		  ' Tests the failed creation of a rectangle with a zero height.
@@ -434,6 +1151,66 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected InvalidArgumentException as zero height.")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroHeightRightTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a zero height.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRightTriangle(1.0, 0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroLengthHorizontalSegmentTest()
+		  ///
+		  ' Tests the creation of a segment passing a zero length.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateHorizontalSegment(0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroLengthVerticalSegmentTest()
+		  ///
+		  ' Tests the creation of a segment passing a zero length.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.createVerticalSegment(0.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
 		End Sub
 	#tag EndMethod
 
@@ -498,6 +1275,25 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CreateZeroWidthIsoscelesTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateIsoscelesTriangle(0.0, 1.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateZeroWidthRectangleTest()
 		  ///
 		  ' Tests the failed creation of a rectangle with a zero width.
@@ -513,6 +1309,26 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected InvalidArgumentException as zero width rectangle.")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateZeroWidthRightTriangleTest()
+		  ///
+		  ' Tests the create right triangle method with a zero width.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.CreateRightTriangle(0.0, 2.0)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException.")
+		  
 		End Sub
 	#tag EndMethod
 
@@ -739,6 +1555,119 @@ Inherits TestGroup
 		  End Try
 		  
 		  Assert.Fail("Expected NilObjectException as passed Nil array.")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWindingArrayLessThan2PointsTest()
+		  ///
+		  ' Tests the GetWinding method passing an array with less than two points.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var points(0) As Vector2
+		    points(0) = New Vector2(-1.0, -1.0)
+		    Call Geometry.GetWinding(points)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWindingArrayNilPointTest()
+		  ///
+		  ' Tests the getWinding method passing an array containing Nil points.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var points(3) As Vector2
+		    points(0) = New Vector2(-1.0, -1.0)
+		    points(1) = Nil
+		    points(2) = Nil
+		    points(3) = Nil
+		    Call Geometry.GetWinding(points)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWindingArrayTest()
+		  ///
+		  ' Tests the GetWinding method passing a valid array.
+		  ///
+		  
+		  Var points(3) As Vector2
+		  points(0) = New Vector2(-1.0, -1.0)
+		  points(1) = New Vector2(1.0, -1.0)
+		  points(2) = New Vector2(1.0, 1.0)
+		  points(3) = New Vector2(-1.0, 1.0)
+		  Assert.IsTrue(Geometry.GetWinding(points) > 0)
+		  
+		  // Reverse the array.
+		  Var p As Vector2 = points(0)
+		  points(0) = points(3)
+		  points(3) = p
+		  p = points(1)
+		  points(1) = points(2)
+		  points(2) = p
+		  
+		  Assert.IsTrue(Geometry.GetWinding(points) < 0)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWindingNilArrayTest()
+		  ///
+		  ' Tests the getWinding method passing a Nil array.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.GetWinding(Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ReverseWindingNilArrayTest()
+		  ///
+		  ' Tests the reverse winding method passing a Nil array.
+		  ///
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Call Geometry.ReverseWinding(Nil)
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("")
 		  
 		End Sub
 	#tag EndMethod
