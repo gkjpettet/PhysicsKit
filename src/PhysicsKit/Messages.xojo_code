@@ -192,6 +192,15 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_POLYGON_ZERO_AREA, Type = String, Dynamic = False, Default = \"A polygon cannot have zero area.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_RAY_NIL_DIRECTION, Type = String, Dynamic = False, Default = \"The direction cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_RAY_NIL_START, Type = String, Dynamic = False, Default = \"The start point cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_RAY_ZERO_DIRECTION, Type = String, Dynamic = False, Default = \"A ray cannot have a zero direction vector.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_RECTANGLE_INVALID_HEIGHT, Type = String, Dynamic = False, Default = \"A rectangle must have a positive non-zero height.", Scope = Protected
 	#tag EndConstant
 

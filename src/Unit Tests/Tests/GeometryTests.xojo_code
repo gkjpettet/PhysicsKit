@@ -1349,7 +1349,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateTriangleNilPointTest()
 		  ///
-		  ' Tests the creation of a triangle using a null point.
+		  ' Tests the creation of a triangle using a Nil point.
 		  ///
 		  
 		  #Pragma BreakOnExceptions False

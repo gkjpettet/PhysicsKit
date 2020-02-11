@@ -591,7 +591,7 @@ Protected Class AdaptiveDecimal
 		  // It is based on the original fast_expansion_sum_zeroelim function written
 		  // by the author of the said paper.
 		  
-		  // Allocate a new instance of sufficient size if result is null or just clear.
+		  // Allocate a new instance of sufficient size if result is Nil or just clear.
 		  If result = Nil Then
 		    result = New AdaptiveDecimal(mSize + f.Size)
 		  Else

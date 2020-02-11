@@ -199,7 +199,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [ ] Matrix33.java
 	- [x] PointFeature.java
 	- [x] Polygon.java
-	- [ ] Ray.java
+	- [x] Ray.java
 	- [x] Rectangle.java
 	- [x] RobustGeometry.java
 	- [x] Rotatable.java
