@@ -325,7 +325,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [ ] Matrix33Test.java
 	- [ ] MonotoneChainTest.java
 	- [x] PolygonTest.java
-	- [ ] RayTest.java
+	- [x] RayTest.java
 	- [x] RectangleTest.java
 	- [ ] RobustGeometryTest.java
 	- [x] RotationTest.java
