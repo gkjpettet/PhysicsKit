@@ -129,6 +129,12 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT, Type = String, Dynamic = False, Default = \"The `masses` array cannot contain Nil elements.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_MATRIX_INVALID_LENGTH_4, Type = String, Dynamic = False, Default = \"The values array must have 4 elements.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_MATRIX_NIL_ARRAY, Type = String, Dynamic = False, Default = \"The values array cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1, Type = String, Dynamic = False, Default = \"`convex1` must implement both the Convex and Wound interfaces.", Scope = Protected
 	#tag EndConstant
 
