@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Matrix22.java` up to and including `copy()`.
-
 Ported `RobustGeometry.java` but it's test are failing.
 
 ## Main Files To Port
@@ -197,7 +195,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] Link.java
 	- [x] Mass.java
 	- [x] MassType.java
-	- [ ] Matrix22.java
+	- [x] Matrix22.java
 	- [ ] Matrix33.java
 	- [x] PointFeature.java
 	- [x] Polygon.java

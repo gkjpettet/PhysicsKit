@@ -614,7 +614,7 @@ Protected Class AdaptiveDecimal
 		  Var carry, sum, error As Double
 		  
 		  // Each time we need the next component in increasing magnitude.
-		  // (fnow > enow) == (fnow > -enow)
+		  // (fnow > enow) = (fnow > -enow)
 		  If Abs(enow) <= Abs(fnow) Then
 		    carry = enow
 		    eIndex = eIndex + 1
