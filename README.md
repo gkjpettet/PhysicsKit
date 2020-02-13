@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Matrix22Test.java` up to and including `subtract()`.
-
 Ported `RobustGeometry.java` but it's test are failing.
 
 ## Main Files To Port
@@ -323,7 +321,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] HalfEllipseTest.java
 	- [x] IntervalTest.java
 	- [x] MassTest.java
-	- [ ] Matrix22Test.java
+	- [x] Matrix22Test.java
 	- [ ] Matrix33Test.java
 	- [ ] MonotoneChainTest.java
 	- [x] PolygonTest.java
