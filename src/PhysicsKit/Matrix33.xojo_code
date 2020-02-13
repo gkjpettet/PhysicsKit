@@ -1,5 +1,32 @@
 #tag Class
 Protected Class Matrix33
+	#tag Method, Flags = &h0, Description = 416464732074686520676976656E204D6174726978333320746F2074686973204D617472697833332C2072657475726E696E672074686973204D617472697833332E
+		Function Add(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Adds the given Matrix33 to this Matrix33, returning this Matrix33.
+		  '
+		  ' `Self = Self + m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to add.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Self.M00 = Self.M00 + matrix.M00 
+		  Self.M01 = Self.M01 + matrix.M01 
+		  Self.M02 = Self.M02 + matrix.M02
+		  Self.M10 = Self.M10 + matrix.M10 
+		  Self.M11 = Self.M11 + matrix.M11 
+		  Self.M12 = Self.M12 + matrix.M12
+		  Self.M20 = Self.M20 + matrix.M20 
+		  Self.M21 = Self.M21 + matrix.M21 
+		  Self.M22 = Self.M22 + matrix.M22
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Constructor()
 		  ///
@@ -101,6 +128,24 @@ Protected Class Matrix33
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D6174726978333320746861742069732074686520646966666572656E6365206F662074686973204D6174726978333320616E642074686520676976656E204D617472697833332E
+		Function Difference(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Returns a new Matrix33 that is the difference of this Matrix33 and the given Matrix33.
+		  '
+		  ' `r = Self - m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to subtract.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  // Make a copy of this matrix and perform the subtraction.
+		  Return Self.Copy.Subtract(matrix)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520706173736564206F626A65637420697320636F6E7369646572656420657175616C20746F2074686973204D617472697833332E
 		Function Equals(obj As Variant) As Boolean
 		  ///
@@ -127,6 +172,51 @@ Protected Class Matrix33
 		  End If
 		  
 		  Return False
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5375627472616374732074686520676976656E204D617472697833332066726F6D2074686973204D617472697833332C2072657475726E696E672074686973204D617472697833332E
+		Function Subtract(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Subtracts the given Matrix33 from this Matrix33, returning this Matrix33.
+		  '
+		  ' `Self = Self - m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to subtract.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Self.M00 = Self.M00 - matrix.M00
+		  Self.M01 = Self.M01 - matrix.M01
+		  Self.M02 = Self.M02 - matrix.M02
+		  Self.M10 = Self.M10 - matrix.M10
+		  Self.M11 = Self.M11 - matrix.M11
+		  Self.M12 = Self.M12 - matrix.M12
+		  Self.M20 = Self.M20 - matrix.M20
+		  Self.M21 = Self.M21 - matrix.M21
+		  Self.M22 = Self.M22 - matrix.M22
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D617472697833332074686174206973207468652073756D206F662074686973204D6174726978333320616E642074686520676976656E204D617472697833332E
+		Function Sum(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Returns a new Matrix33 that is the sum of this Matrix33 and the given Matrix33.
+		  '
+		  ' ` r = Self + m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to add.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  // Make a copy of this matrix and perform the addition.
+		  Return Self.Copy.Add(matrix)
 		  
 		End Function
 	#tag EndMethod
