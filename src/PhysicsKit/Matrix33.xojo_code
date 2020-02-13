@@ -176,6 +176,90 @@ Protected Class Matrix33
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E206D6174726978204D617472697833332C2072657475726E696E672074686973204D617472697833332E
+		Function Multiply(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Multiplies this Matrix33 by the given matrix Matrix33, returning this Matrix33.
+		  '
+		  ' `Self = Self * m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to subtract.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Var m00 As Double = Self.M00
+		  Var m01 As Double = Self.M01
+		  Var m02 As Double = Self.M02
+		  Var m10 As Double = Self.M10
+		  Var m11 As Double = Self.M11
+		  Var m12 As Double = Self.M12
+		  Var m20 As Double = Self.M20
+		  Var m21 As Double = Self.M21
+		  Var m22 As Double = Self.M22
+		  
+		  // Row 1.
+		  Self.M00 = m00 * matrix.M00 + m01 * matrix.M10 + m02 * matrix.M20
+		  Self.M01 = m00 * matrix.M01 + m01 * matrix.M11 + m02 * matrix.M21
+		  Self.M02 = m00 * matrix.M02 + m01 * matrix.M12 + m02 * matrix.M22
+		  
+		  // Row 2.
+		  Self.M10 = m10 * matrix.M00 + m11 * matrix.M10 + m12 * matrix.M20
+		  Self.M11 = m10 * matrix.M01 + m11 * matrix.M11 + m12 * matrix.M21
+		  Self.M12 = m10 * matrix.M02 + m11 * matrix.M12 + m12 * matrix.M22
+		  
+		  // Row 3.
+		  Self.M20 = m20 * matrix.M00 + m21 * matrix.M10 + m22 * matrix.M20
+		  Self.M21 = m20 * matrix.M01 + m21 * matrix.M11 + m22 * matrix.M21
+		  Self.M22 = m20 * matrix.M02 + m21 * matrix.M12 + m22 * matrix.M22
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E20566563746F723320616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72332E
+		Function Multiply(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies this Matrix33 by the given Vector3 and places the result in the given Vector3.
+		  '
+		  ' `v = Self * v`
+		  '
+		  ' - Parameter vector: The Vector3 to multiply.
+		  '
+		  ' - Returns: The passed Vector3 containing the result.
+		  ///
+		  
+		  Var x As Double = vector.X
+		  Var y As Double = vector.Y
+		  Var z As Double = vector.Z
+		  vector.X = Self.M00 * x + Self.M01 * y + Self.M02 * z
+		  vector.Y = Self.M10 * x + Self.M11 * y + Self.M12 * z
+		  vector.Z = Self.M20 * x + Self.M21 * y + Self.M22 * z
+		  
+		  Return vector
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Product(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		  ///
+		  ' Returns a new Matrix33 that is the product of this Matrix33 and the given Matrix33.
+		  '
+		  ' `r = Self * m`
+		  '
+		  ' - Parameter matrix: The Matrix33 to multiply.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  // Make a copy of this matrix and perform the multiplication.
+		  Return Self.Copy.Multiply(matrix)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 5375627472616374732074686520676976656E204D617472697833332066726F6D2074686973204D617472697833332C2072657475726E696E672074686973204D617472697833332E
 		Function Subtract(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
 		  ///
