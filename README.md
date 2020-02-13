@@ -3,7 +3,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Matrix33.java` up to and including `multiply(Vector3)`.
+Porting `Vector3` up to and including `to(Double, Double, Double)`.
 
 Ported `RobustGeometry.java` but it's test are failing.
 
@@ -198,7 +198,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] Mass.java
 	- [x] MassType.java
 	- [x] Matrix22.java
-	- [ ] Matrix33.java
+	- [x] Matrix33.java
 	- [x] PointFeature.java
 	- [x] Polygon.java
 	- [x] Ray.java

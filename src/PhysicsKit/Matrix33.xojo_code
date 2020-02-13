@@ -128,6 +128,24 @@ Protected Class Matrix33
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Determinant() As Double
+		  ///
+		  ' Returns the determinant of this Matrix33.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Self.M00 * Self.M11 * Self.M22 + _
+		  Self.M01 * Self.M12 * Self.M20 + _
+		  Self.M02 * Self.M10 * Self.M21 - _
+		  Self.M20 * Self.M11 * Self.M02 - _
+		  Self.M21 * Self.M12 * Self.M00 - _
+		  Self.M22 * Self.M10 * Self.M01
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D6174726978333320746861742069732074686520646966666572656E6365206F662074686973204D6174726978333320616E642074686520676976656E204D617472697833332E
 		Function Difference(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
 		  ///
@@ -172,6 +190,138 @@ Protected Class Matrix33
 		  End If
 		  
 		  Return False
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetInverse() As PhysicsKit.Matrix33
+		  ///
+		  ' Returns a new Matrix33 containing the inverse of this Matrix33.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  // Make a copy of this matrix and perform the inversion.
+		  Return Self.Copy.Invert
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetTranspose() As PhysicsKit.Matrix33
+		  ///
+		  ' Returns the the transpose of this Matrix33 in a new Matrix33.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  Var rm As Matrix33 = New Matrix33
+		  
+		  rm.M00 = Self.M00
+		  rm.M01 = Self.M10
+		  rm.M02 = Self.M20
+		  rm.M10 = Self.M01
+		  rm.M11 = Self.M11
+		  rm.M12 = Self.M21
+		  rm.M20 = Self.M02
+		  rm.M21 = Self.M12
+		  rm.M22 = Self.M22
+		  
+		  Return rm
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Identity() As PhysicsKit.Matrix33
+		  ///
+		  ' Sets this Matrix33 to an identity Matrix33.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Self.M00 = 1
+		  Self.M01 = 0
+		  Self.M02 = 0
+		  Self.M10 = 0
+		  Self.M11 = 1
+		  Self.M12 = 0
+		  Self.M20 = 0
+		  Self.M21 = 0
+		  Self.M22 = 1
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Invert() As PhysicsKit.Matrix33
+		  ///
+		  ' Performs the inverse of this Matrix33 and places the result in this Matrix33.
+		  '
+		  ' - Returns: This Matrix33.
+		  //
+		  
+		  // Get the determinant.
+		  Var det As Double = Self.determinant()
+		  
+		  // Check for zero determinant.
+		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  
+		  // Compute the cofactor determinants and apply the signs and transpose the matrix 
+		  // and multiply by the inverse of the determinant.
+		  Var m00 As Double =  det * (Self.M11 * Self.M22 - Self.M12 * Self.M21)
+		  Var m01 As Double = -det * (Self.M01 * Self.M22 - Self.M21 * Self.M02) // actually m10 in the cofactor matrix
+		  Var m02 As Double =  det * (Self.M01 * Self.M12 - Self.M11 * Self.M02) // actually m20 in the cofactor matrix
+		  
+		  Var m10 As Double = -det * (Self.M10 * Self.M22 - Self.M20 * Self.M12) // actually m01 in the cofactor matrix
+		  Var m11 As Double =  det * (Self.M00 * Self.M22 - Self.M20 * Self.M02)
+		  Var m12 As Double = -det * (Self.M00 * Self.M12 - Self.M10 * Self.M02) // actually m21 in the cofactor matrix
+		  
+		  Var m20 As Double =  det * (Self.M10 * Self.M21 - Self.M20 * Self.M11) // actually m02 in the cofactor matrix
+		  Var m21 As Double = -det * (Self.M00 * Self.M21 - Self.M20 * Self.M01) // actually m12 in the cofactor matrix
+		  Var m22 As Double =  det * (Self.M00 * Self.M11 - Self.M10 * Self.M01)
+		  
+		  Self.M00 = M00
+		  Self.M01 = m01
+		  Self.M02 = m02
+		  Self.M10 = M10
+		  Self.M11 = m11
+		  Self.M12 = m12
+		  Self.M20 = M20
+		  Self.M21 = m21
+		  Self.M22 = m22
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Multiply(scalar As Double) As PhysicsKit.Matrix33
+		  ///
+		  ' Multiplies this Matrix33 by the given scalar and places the result in this Matrix33.
+		  '
+		  ' ` Self = Self * scalar`
+		  '
+		  ' - Parameter scalar: The scalar to multiply by.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Self.M00 = Self.M00 * scalar
+		  Self.M01 = Self.M01 * scalar
+		  Self.M02 = Self.M02 * scalar
+		  Self.M10 = Self.M10 * scalar
+		  Self.M11 = Self.M11 * scalar
+		  Self.M12 = Self.M12 * scalar
+		  Self.M20 = Self.M20 * scalar
+		  Self.M21 = Self.M21 * scalar
+		  Self.M22 = Self.M22 * scalar
+		  
+		  Return Self
 		  
 		End Function
 	#tag EndMethod
@@ -243,6 +393,49 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function MultiplyT(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies the given Vector3 by this Matrix33 and places the result in the given Vector3.
+		  '
+		  ' `v = vT * Self`
+		  '
+		  ' - Parameter vector: The Vector3 to multiply.
+		  '
+		  ' - Returns: The passed Vector3 containing the result.
+		  ///
+		  
+		  Var x As Double = vector.X
+		  Var y As Double = vector.Y
+		  Var z As Double = vector.Z
+		  
+		  vector.X = Self.M00 * x + Self.M10 * y + Self.M20 * z
+		  vector.Y = Self.M01 * x + Self.M11 * y + Self.M21 * z
+		  vector.Z = Self.M02 * x + Self.M12 * y + Self.M22 * z
+		  
+		  Return vector
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Product(scalar As Double) As PhysicsKit.Matrix33
+		  ///
+		  ' Multiplies this Matrix33 by the given scalar returning a new Matrix33 containing the result.
+		  '
+		  ' `r = Self * scalar`
+		  '
+		  ' - Parameter scalar: The scalar to multiply by.
+		  '
+		  ' - Returns: A new Matrix33.
+		  ///
+		  
+		  // Make a copy of this matrix and perform the scalar multiplication.
+		  Return Self.Copy.Multiply(scalar)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Product(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
 		  ///
 		  ' Returns a new Matrix33 that is the product of this Matrix33 and the given Matrix33.
@@ -256,6 +449,115 @@ Protected Class Matrix33
 		  
 		  // Make a copy of this matrix and perform the multiplication.
 		  Return Self.Copy.Multiply(matrix)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E20566563746F72332072657475726E696E672074686520726573756C7420696E2061206E657720566563746F72332E
+		Function Product(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies this Matrix33 by the given Vector3 returning the result in a new Vector3.
+		  '
+		  ' `r = Self * v`
+		  '
+		  ' - Parameter vector: The Vector3 to multiply.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return Self.Multiply(vector.Copy)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ProductT(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies the given  Vector3 by this Matrix33 returning the result in a new Vector3.
+		  '
+		  ' `r = vT * Self`
+		  '
+		  ' - Parameter vector: The Vector3 to multiply.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return Self.MultiplyT(vector.Copy)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 536F6C76657320604178203D2062602072657475726E696E67206078602061732061206E657720566563746F72322E
+		Function Solve(b As PhysicsKit.Vector2) As PhysicsKit.Vector2
+		  ///
+		  ' Solves the system of linear equations:
+		  '
+		  ' ```
+		  ' Ax = b
+		  ' Multiply by A⁻¹ on both sides
+		  ' x = A¹b
+		  ' ```
+		  '
+		  ' - Parameter b: The b Vector2.
+		  ' - Returns: A new Vector2.
+		  ///
+		  
+		  // Get the 2D determinant.
+		  Var det As Double = Self.M00 * Self.M11 - Self.M01 * Self.M10
+		  
+		  // Check for zero determinant.
+		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  
+		  Var r As Vector2 = New Vector2
+		  r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)
+		  r.Y = det * (Self.M00 * b.Y - Self.M10 * b.X)
+		  
+		  Return r
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 536F6C76657320604178203D20626020616E642072657475726E7320607860206173206120566563746F72332E
+		Function Solve(b As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Solves the system of linear equations:
+		  '
+		  ' ```
+		  ' Ax = b
+		  ' Multiply by A⁻¹ on both sides
+		  ' x = A⁻¹b
+		  ' ```
+		  '
+		  ' - Parameter b: The b Vector3.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  // Get the determinant.
+		  Var det As Double = Self.Determinant
+		  
+		  // Check for zero determinant.
+		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  
+		  Var r As Vector3 = New Vector3
+		  
+		  Var m00 As Double =  Self.M11 * Self.M22 - Self.M12 * Self.M21
+		  Var m01 As Double = -Self.M01 * Self.M22 + Self.M21 * Self.M02
+		  Var m02 As Double =  Self.M01 * Self.M12 - Self.M11 * Self.M02
+		  
+		  Var m10 As Double = -Self.M10 * Self.M22 + Self.M20 * Self.M12
+		  Var m11 As Double =  Self.M00 * Self.M22 - Self.M20 * Self.M02
+		  Var m12 As Double = -Self.M00 * Self.M12 + Self.M10 * Self.M02
+		  
+		  Var m20 As Double =  Self.M10 * Self.M21 - Self.M20 * Self.M11
+		  Var m21 As Double = -Self.M00 * Self.M21 + Self.M20 * Self.M01
+		  Var m22 As Double =  Self.M00 * Self.M11 - Self.M10 * Self.M01
+		  
+		  r.X = det * (m00 * b.X + m01 * b.Y + m02 * b.Z)
+		  r.Y = det * (m10 * b.X + m11 * b.Y + m12 * b.Z)
+		  r.Z = det * (m20 * b.X + m21 * b.Y + m22 * b.Z)
+		  
+		  Return r
 		  
 		End Function
 	#tag EndMethod
@@ -335,6 +637,36 @@ Protected Class Matrix33
 		  s.AddRow("]")
 		  
 		  Return String.FromArray(s)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Transpose() As PhysicsKit.Matrix33
+		  ///
+		  ' Sets this Matrix33 to the transpose of this Matrix33.
+		  '
+		  ' - Returns: This Matrix33.
+		  ///
+		  
+		  Var s As Double
+		  
+		  // Switch 01 and 10.
+		  s = Self.M01
+		  Self.M01 = Self.M10
+		  Self.M10 = s
+		  
+		  // Switch 02 and 20.
+		  s = Self.M02
+		  Self.M02 = Self.M20
+		  Self.M20 = s
+		  
+		  // Switch 12 and 21.
+		  s = Self.M12
+		  Self.M12 = Self.M21
+		  Self.M21 = s
+		  
+		  Return Self
 		  
 		End Function
 	#tag EndMethod

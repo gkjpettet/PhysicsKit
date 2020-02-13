@@ -83,6 +83,7 @@ Interface=Shiftable;PhysicsKit/Shiftable.xojo_code;&h0000000022BC3FFF;&h00000000
 Class=Ray;PhysicsKit/Ray.xojo_code;&h00000000116EAFFF;&h00000000342617FF;false
 Class=Matrix22;PhysicsKit/Matrix22.xojo_code;&h000000006A0CA7FF;&h00000000342617FF;false
 Class=Matrix33;PhysicsKit/Matrix33.xojo_code;&h00000000627387FF;&h00000000342617FF;false
+Class=Vector3;PhysicsKit/Vector3.xojo_code;&h000000005716C7FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

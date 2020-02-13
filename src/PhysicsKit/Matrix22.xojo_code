@@ -408,8 +408,8 @@ Protected Class Matrix22
 		  '
 		  ' ```
 		  ' Ax = b
-		  ' Multiply by A₋₁ on both sides
-		  ' x = A₋₁b
+		  ' Multiply by A⁻¹ on both sides
+		  ' x = A⁻¹b
 		  ' ```
 		  ' - Parameter b: The b Vector2.
 		  '
