@@ -131,6 +131,42 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652063726F73732070726F64756374206F6620746865207468697320566563746F723320616E642074686520676976656E20566563746F72332061732061206E657720566563746F72332E
+		Function Cross(x As Double, y As Double, z As Double) As PhysicsKit.Vector3
+		  ///
+		  ' Returns the cross product of the this Vector3 and the given Vector3 as a new Vector3.
+		  '
+		  ' - Parameter x: The x component of the Vector3.
+		  ' - Parameter y: The y component of the Vector3.
+		  ' - Parameter z: The z component of the Vector3.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return New Vector3(Self.Y * z - Self.Z * y, _
+		  Self.Z * x - Self.X * z, _
+		  Self.X * y - Self.Y * x)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652063726F73732070726F64756374206F6620746865207468697320566563746F723320616E642074686520676976656E20566563746F72332061732061206E657720566563746F72332E
+		Function Cross(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Returns the cross product of the this Vector3 and the given Vector3 as a new Vector3.
+		  '
+		  ' - Parameter vector: The Vector3.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return New Vector3(Self.Y * vector.Z - Self.Z * vector.Y, _
+		  Self.Z * vector.X - Self.X * vector.Z, _
+		  Self.X * vector.Y - Self.Y * vector.X)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 5375627472616374732074686520676976656E20566563746F72332066726F6D207468697320566563746F72332072657475726E696E672061206E657720566563746F723320636F6E7461696E696E672074686520726573756C742E
 		Function Difference(x As Double, y As Double, z As Double) As PhysicsKit.Vector3
 		  ///
@@ -243,6 +279,38 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520646F742070726F64756374206F662074686520676976656E20566563746F723320616E64207468697320566563746F72332E
+		Function Dot(x As Double, y As Double, z As Double) As Double
+		  ///
+		  ' Returns the dot product of the given Vector3 and this Vector3.
+		  '
+		  ' - Parameter x: The x component of the Vector3.
+		  ' - Parameter y: The y component of the Vector3.
+		  ' - Parameter z: The z component of the Vector3.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Self.X * x + Self.Y * y + Self.Z * z
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520646F742070726F64756374206F662074686520676976656E20566563746F723320616E64207468697320566563746F72332E
+		Function Dot(vector As PhysicsKit.Vector3) As Double
+		  ///
+		  ' Returns the dot product of the given Vector3 and this Vector3.
+		  '
+		  ' - Parameter vector: The Vector3.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520782C207920616E64207A20636F6D706F6E656E7473206F66207468697320566563746F723320617265207468652073616D652061732074686520676976656E20782C207920616E64207A20636F6D706F6E656E74732E
 		Function Equals(x As Double, y As Double, z As Double) As Boolean
 		  ///
@@ -332,6 +400,19 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720566563746F723320776869636820697320746865206E65676174697665206F66207468697320566563746F72332E
+		Function GetNegative() As PhysicsKit.Vector3
+		  ///
+		  ' Returns a new Vector3 which is the negative of this Vector3.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return New Vector3(-Self.X, -Self.Y, -Self.Z)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865207820636F6D706F6E656E74206F66207468697320566563746F72332061732061206E657720566563746F72332E
 		Function GetXComponent() As PhysicsKit.Vector3
 		  ///
@@ -367,6 +448,107 @@ Protected Class Vector3
 		  ///
 		  
 		  Return New Vector3(0.0, 0.0, Self.Z)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520676976656E20566563746F7233206973206F7274686F676F6E616C202870657270656E646963756C61722920746F207468697320566563746F72332E
+		Function IsOrthogonal(x As Double, y As Double, z As Double) As Boolean
+		  ///
+		  ' Returns True if the given Vector3 is orthogonal (perpendicular) to this Vector3.
+		  '
+		  ' If the dot product of this vector and the given vector is
+		  ' zero then we know that they are perpendicular.
+		  '
+		  ' - Parameter x: The x component of the Vector3.
+		  ' - Parameter y: The y component of the Vector3.
+		  ' - Parameter z: The z component of the Vector3.
+		  '
+		  ' - Returns: Boolean.
+		  ///
+		  
+		  Return Abs(Self.X * x + Self.Y * y + Self.Z * z) <= Epsilon.E
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520676976656E20566563746F7233206973206F7274686F676F6E616C202870657270656E646963756C61722920746F207468697320566563746F72332E
+		Function IsOrthogonal(vector As PhysicsKit.Vector3) As Boolean
+		  ///
+		  ' Returns True if the given Vector3 is orthogonal (perpendicular) to this Vector3.
+		  '
+		  ' If the dot product of this vector and the given vector is
+		  ' zero then we know that they are perpendicular.
+		  '
+		  ' - Parameter vector: The Vector3.'
+		  ' - Returns: Boolean.
+		  ///
+		  
+		  Return If(Abs(Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z) <= Epsilon.E, True, False)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732054727565206966207468697320566563746F723320697320746865207A65726F20566563746F72332E
+		Function IsZero() As Boolean
+		  ///
+		  ' Returns True if this Vector3 is the zero Vector3.
+		  '
+		  '- Returns: Boolean.
+		  ///
+		  
+		  Return Abs(Self.X) <= Epsilon.E And Abs(Self.Y) <= Epsilon.E And Abs(Self.Z) <= Epsilon.E
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468697320566563746F72332062792074686520676976656E207363616C617220616E642072657475726E73207468697320566563746F72332E
+		Function Multiply(scalar As Double) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies this Vector3 by the given scalar.
+		  '
+		  ' - Parameter scalar: The scalar.
+		  '
+		  ' - Returns: This Vector3.
+		  ///
+		  
+		  Self.X = Self.X * scalar
+		  Self.Y = Self.Y * scalar
+		  Self.Z = Self.Z * scalar
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4E656761746573207468697320566563746F723320616E642072657475726E732069742E
+		Function Negate() As PhysicsKit.Vector3
+		  ///
+		  ' Negates this Vector3 and returns it.
+		  '
+		  ' - Returns: This Vector3.
+		  ///
+		  
+		  Self.X = -Self.X
+		  Self.Y = -Self.Y
+		  Self.Z = -Self.Z
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468697320566563746F72332062792074686520676976656E207363616C61722072657475726E696E672061206E657720566563746F723320636F6E7461696E696E672074686520726573756C742E
+		Function Product(scalar As Double) As PhysicsKit.Vector3
+		  ///
+		  ' Multiplies this Vector3 by the given scalar returning a new Vector3 containing the result.
+		  '
+		  ' -Parameter scalar: The scalar.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Return New Vector3(Self.X * scalar, Self.Y * scalar, Self.Z * scalar)
 		  
 		End Function
 	#tag EndMethod
@@ -609,6 +791,23 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 536574732074686520566563746F723320746F20746865207A65726F20566563746F723320616E642072657475726E73207468697320566563746F72332E
+		Function Zero() As PhysicsKit.Vector3
+		  ///
+		  ' Sets the Vector3 to the zero Vector3 and returns this Vector3.
+		  '
+		  ' - Returns: This Vector3.
+		  ///
+		  
+		  Self.X = 0.0
+		  Self.Y = 0.0
+		  Self.Z = 0.0
+		  
+		  Return Self
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Note, Name = About
 		This class represents a vector or point in 3D space.
@@ -677,7 +876,23 @@ Protected Class Vector3
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Y"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Z"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
