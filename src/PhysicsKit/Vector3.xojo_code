@@ -413,6 +413,24 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720756E697420566563746F7233206F66207468697320566563746F72332E
+		Function GetNormalised() As PhysicsKit.Vector3
+		  ///
+		  ' Returns a new unit Vector3 of this Vector3.
+		  '
+		  ' This method requires that the length of this Vector3 is not zero.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)
+		  If magnitude <= Epsilon.E Then Return New Vector3
+		  magnitude = 1.0 / magnitude
+		  Return New Vector3(Self.X * magnitude, Self.Y * magnitude, Self.Z * magnitude)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865207820636F6D706F6E656E74206F66207468697320566563746F72332061732061206E657720566563746F72332E
 		Function GetXComponent() As PhysicsKit.Vector3
 		  ///
@@ -538,6 +556,29 @@ Protected Class Vector3
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 436F6E7665727473207468697320566563746F723320696E746F206120756E697420566563746F723320616E642072657475726E7320746865206D61676E6974756465206265666F7265206E6F726D616C69736174696F6E2E
+		Function Normalise() As Double
+		  ///
+		  ' Converts this Vector3 into a unit Vector3 and returns the magnitude before normalisation.
+		  '
+		  ' This method requires that the length of this Vector3 is not zero.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)
+		  If magnitude <= Epsilon.E Then Return 0
+		  
+		  Var m As Double = 1.0 / magnitude
+		  Self.X = Self.X * m
+		  Self.Y = Self.Y * m
+		  Self.Z = Self.Z * m
+		  
+		  Return magnitude
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468697320566563746F72332062792074686520676976656E207363616C61722072657475726E696E672061206E657720566563746F723320636F6E7461696E696E672074686520726573756C742E
 		Function Product(scalar As Double) As PhysicsKit.Vector3
 		  ///
@@ -549,6 +590,27 @@ Protected Class Vector3
 		  ///
 		  
 		  Return New Vector3(Self.X * scalar, Self.Y * scalar, Self.Z * scalar)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 50726F6A65637473207468697320766563746F72206F6E746F2074686520676976656E20566563746F723320616E642072657475726E732061206E657720566563746F72332E
+		Function Project(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		  ///
+		  ' Projects this vector onto the given Vector3.
+		  '
+		  ' This method requires that the length of the given Vector3 is not zero.
+		  '
+		  ' - Parameter vector: The Vector3.
+		  '
+		  ' - Returns: A new Vector3.
+		  ///
+		  
+		  Var dotProd As Double = Self.Dot(vector)
+		  Var denominator As Double = vector.Dot(vector)
+		  If denominator <= Epsilon.E Then Return New Vector3
+		  denominator = dotProd / denominator
+		  Return New Vector3(denominator * vector.X, denominator * vector.Y, denominator * vector.Z)
 		  
 		End Function
 	#tag EndMethod

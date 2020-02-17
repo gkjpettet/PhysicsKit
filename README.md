@@ -3,8 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Porting `Vector3` up to and including `zero()`.
-
 Ported `RobustGeometry.java` but it's test are failing.
 
 ## Main Files To Port
@@ -215,7 +213,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] Translatable.java
 	- [x] Triangle.java
 	- [x] Vector2.java
-	- [ ] Vector3.java
+	- [x] Vector3.java
 	- [x] Wound.java
 	- [x] WoundIterator.java
 - [ ] Listener.java
