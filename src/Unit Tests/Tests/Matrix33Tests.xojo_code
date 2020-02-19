@@ -136,6 +136,375 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub DeterminantTest()
+		  ///
+		  ' Tests the Determinant method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(1.0, 0.0, 5.0, 2.0, 1.0, 6.0, 3.0, 4.0, 0.0)
+		  Var det As Double = m1.Determinant
+		  Assert.AreEqual(1.0, det)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DifferenceTest()
+		  ///
+		  ' Tests the Difference method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var m2 As Matrix33 = New Matrix33(1.0, 1.0, 3.0, 0.0, 4.0, 1.0, 2.0, 2.0, 1.0)
+		  Var m3 As Matrix33 = m1.Difference(m2)
+		  
+		  // Test the values.
+		  Assert.AreEqual(-1.0, m3.m00)
+		  Assert.AreEqual( 1.0, m3.m01)
+		  Assert.AreEqual(-3.0, m3.m02)
+		  Assert.AreEqual( 3.0, m3.m10)
+		  Assert.AreEqual(-3.0, m3.m11)
+		  Assert.AreEqual( 0.0, m3.m12)
+		  Assert.AreEqual( 0.0, m3.m20)
+		  Assert.AreEqual(-2.0, m3.m21)
+		  Assert.AreEqual(-2.0, m3.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m3))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetInverseTest()
+		  ///
+		  ' Tests the GetInverse method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(1.0, 0.0, 5.0, 2.0, 1.0, 6.0, 3.0, 4.0, 0.0)
+		  Var m2 As Matrix33 = m1.GetInverse
+		  
+		  Assert.AreEqual(-24.0, m2.m00)
+		  Assert.AreEqual( 20.0, m2.m01)
+		  Assert.AreEqual( -5.0, m2.m02)
+		  Assert.AreEqual( 18.0, m2.m10)
+		  Assert.AreEqual(-15.0, m2.m11)
+		  Assert.AreEqual(  4.0, m2.m12)
+		  Assert.AreEqual(  5.0, m2.m20)
+		  Assert.AreEqual( -4.0, m2.m21)
+		  Assert.AreEqual(  1.0, m2.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetTransposeTest()
+		  ///
+		  ' Tests the GetTranspose method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  
+		  Var m2 As Matrix33 = m1.GetTranspose
+		  
+		  Assert.AreEqual(0.0, m2.m00)
+		  Assert.AreEqual(3.0, m2.m01)
+		  Assert.AreEqual(2.0, m2.m02)
+		  Assert.AreEqual(2.0, m2.m10)
+		  Assert.AreEqual(1.0, m2.m11)
+		  Assert.AreEqual(0.0, m2.m12)
+		  Assert.AreEqual(0.0, m2.m20)
+		  Assert.AreEqual(1.0, m2.m21)
+		  Assert.AreEqual(-1.0, m2.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IdentityTest()
+		  ///
+		  ' Tests the Identity method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  
+		  Call m1.Identity
+		  
+		  Assert.AreEqual(1.0, m1.m00)
+		  Assert.AreEqual(0.0, m1.m01)
+		  Assert.AreEqual(0.0, m1.m02)
+		  Assert.AreEqual(0.0, m1.m10)
+		  Assert.AreEqual(1.0, m1.m11)
+		  Assert.AreEqual(0.0, m1.m12)
+		  Assert.AreEqual(0.0, m1.m20)
+		  Assert.AreEqual(0.0, m1.m21)
+		  Assert.AreEqual(1.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub InvertTest()
+		  ///
+		  ' Tests the Invert method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(1.0, 0.0, 5.0, 2.0, 1.0, 6.0, 3.0, 4.0, 0.0)
+		  
+		  Call m1.Invert
+		  
+		  Assert.AreEqual(-24.0, m1.m00)
+		  Assert.AreEqual( 20.0, m1.m01)
+		  Assert.AreEqual( -5.0, m1.m02)
+		  Assert.AreEqual( 18.0, m1.m10)
+		  Assert.AreEqual(-15.0, m1.m11)
+		  Assert.AreEqual(  4.0, m1.m12)
+		  Assert.AreEqual(  5.0, m1.m20)
+		  Assert.AreEqual( -4.0, m1.m21)
+		  Assert.AreEqual(  1.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MultiplyMatrixTest()
+		  ///
+		  ' Tests the multiply matrix method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var m2 As Matrix33 = New Matrix33(1.0, 1.0, 3.0, 0.0, 4.0, 1.0, 2.0, 2.0, 1.0)
+		  
+		  Call m1.Multiply(m2)
+		  
+		  Assert.AreEqual(0.0, m1.m00)
+		  Assert.AreEqual(8.0, m1.m01)
+		  Assert.AreEqual(2.0, m1.m02)
+		  Assert.AreEqual(5.0, m1.m10)
+		  Assert.AreEqual(9.0, m1.m11)
+		  Assert.AreEqual(11.0, m1.m12)
+		  Assert.AreEqual(0.0, m1.m20)
+		  Assert.AreEqual(0.0, m1.m21)
+		  Assert.AreEqual(5.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MultiplyScalarTest()
+		  ///
+		  ' Tests the multiply by a scalar method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Call m1.Multiply(2.0)
+		  
+		  Assert.AreEqual(0.0, m1.m00)
+		  Assert.AreEqual(4.0, m1.m01)
+		  Assert.AreEqual(0.0, m1.m02)
+		  Assert.AreEqual(6.0, m1.m10)
+		  Assert.AreEqual(2.0, m1.m11)
+		  Assert.AreEqual(2.0, m1.m12)
+		  Assert.AreEqual(4.0, m1.m20)
+		  Assert.AreEqual(0.0, m1.m21)
+		  Assert.AreEqual(-2.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MultiplyVectorTest()
+		  ///
+		  ' Tests the multiply vector method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  
+		  Call m1.Multiply(v1)
+		  
+		  Assert.AreEqual(-2.0, v1.x)
+		  Assert.AreEqual( 4.0, v1.y)
+		  Assert.AreEqual( 0.0, v1.z)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MultiplyVectorTTest()
+		  ///
+		  ' Tests the multiply vector transpose method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  
+		  Call m1.MultiplyT(v1)
+		  
+		  Assert.AreEqual( 1.0, v1.x)
+		  Assert.AreEqual( 1.0, v1.y)
+		  Assert.AreEqual(-3.0, v1.z)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProductMatrixTest()
+		  ///
+		  ' Tests the product matrix method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var m2 As Matrix33 = New Matrix33(1.0, 1.0, 3.0, 0.0, 4.0, 1.0, 2.0, 2.0, 1.0)
+		  Var m3 As Matrix33 = m1.Product(m2)
+		  
+		  Assert.AreEqual(0.0, m3.m00)
+		  Assert.AreEqual(8.0, m3.m01)
+		  Assert.AreEqual(2.0, m3.m02)
+		  Assert.AreEqual(5.0, m3.m10)
+		  Assert.AreEqual(9.0, m3.m11)
+		  Assert.AreEqual(11.0, m3.m12)
+		  Assert.AreEqual(0.0, m3.m20)
+		  Assert.AreEqual(0.0, m3.m21)
+		  Assert.AreEqual(5.0, m3.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m3))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProductScalarTest()
+		  ///
+		  ' Tests the product by a scalar method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var m2 As Matrix33 = m1.Product(2.0)
+		  
+		  Assert.AreEqual(0.0, m2.m00)
+		  Assert.AreEqual(4.0, m2.m01)
+		  Assert.AreEqual(0.0, m2.m02)
+		  Assert.AreEqual(6.0, m2.m10)
+		  Assert.AreEqual(2.0, m2.m11)
+		  Assert.AreEqual(2.0, m2.m12)
+		  Assert.AreEqual(4.0, m2.m20)
+		  Assert.AreEqual(0.0, m2.m21)
+		  Assert.AreEqual(-2.0, m2.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProductVectorTest()
+		  ///
+		  ' Tests the product vector method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  
+		  Var v2 As Vector3 = m1.Product(v1)
+		  
+		  Assert.AreEqual(-2.0, v2.x)
+		  Assert.AreEqual( 4.0, v2.y)
+		  Assert.AreEqual( 0.0, v2.z)
+		  
+		  // Make sure we didn't modify the first vector.
+		  Assert.IsFalse(v1.Equals(v2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProductVectorTTest()
+		  ///
+		  ' Tests the product vector transpose method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  
+		  Var v2 As Vector3 = m1.ProductT(v1)
+		  
+		  Assert.AreEqual( 1.0, v2.x)
+		  Assert.AreEqual( 1.0, v2.y)
+		  Assert.AreEqual(-3.0, v2.z)
+		  
+		  // Make sure we didn't modify the first vector.
+		  Assert.IsFalse(v1.Equals(v2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Solve22Test()
+		  ///
+		  ' Tests the Solve method.
+		  ///
+		  
+		  Var A As Matrix33 = New Matrix33(3.0, -1.0, 0.0, -1.0, -1.0, 0.0, 0.0,  0.0, 0.0)
+		  Var b As Vector2 = New Vector2(2.0, 6.0)
+		  Var x As Vector2 = A.Solve22(b)
+		  
+		  Assert.AreEqual(-1.0, x.x)
+		  Assert.AreEqual(-5.0, x.y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Solve33Test()
+		  ///
+		  ' Tests the Solve method.
+		  ///
+		  
+		  Var A As Matrix33 = New Matrix33(1.0, -3.0, 3.0, 2.0, 3.0, -1.0, 4.0, -3.0, -1.0)
+		  Var b As Vector3 = New Vector3(-4.0, 15.0, 19.0)
+		  Var x As Vector3 = A.Solve33(b)
+		  
+		  Assert.AreEqual( 5.0, x.x)
+		  Assert.AreEqual( 1.0, x.y)
+		  Assert.AreEqual(-2.0, x.z)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SubtractTest()
+		  ///
+		  ' Tests the Subtract method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  Var m2 As Matrix33 = New Matrix33(1.0, 1.0, 3.0, 0.0, 4.0, 1.0, 2.0, 2.0, 1.0)
+		  
+		  Call m1.Subtract(m2)
+		  
+		  // Test the values.
+		  Assert.AreEqual(-1.0, m1.m00)
+		  Assert.AreEqual( 1.0, m1.m01)
+		  Assert.AreEqual(-3.0, m1.m02)
+		  Assert.AreEqual( 3.0, m1.m10)
+		  Assert.AreEqual(-3.0, m1.m11)
+		  Assert.AreEqual( 0.0, m1.m12)
+		  Assert.AreEqual( 0.0, m1.m20)
+		  Assert.AreEqual(-2.0, m1.m21)
+		  Assert.AreEqual(-2.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SumTest()
 		  ///
 		  ' Tests the Sum method.
@@ -166,6 +535,29 @@ Inherits TestGroup
 		  
 		  // Make sure we didn't modify the first matrix.
 		  Assert.IsFalse(m1.Equals(m3))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TransposeTest()
+		  ///
+		  ' Tests the Transpose method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
+		  
+		  Call m1.Transpose
+		  
+		  Assert.AreEqual(0.0, m1.m00)
+		  Assert.AreEqual(3.0, m1.m01)
+		  Assert.AreEqual(2.0, m1.m02)
+		  Assert.AreEqual(2.0, m1.m10)
+		  Assert.AreEqual(1.0, m1.m11)
+		  Assert.AreEqual(0.0, m1.m12)
+		  Assert.AreEqual(0.0, m1.m20)
+		  Assert.AreEqual(1.0, m1.m21)
+		  Assert.AreEqual(-1.0, m1.m22)
 		  
 		End Sub
 	#tag EndMethod

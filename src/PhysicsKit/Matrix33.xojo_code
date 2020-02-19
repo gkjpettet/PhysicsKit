@@ -488,7 +488,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536F6C76657320604178203D2062602072657475726E696E67206078602061732061206E657720566563746F72322E
-		Function Solve(b As PhysicsKit.Vector2) As PhysicsKit.Vector2
+		Function Solve22(b As PhysicsKit.Vector2) As PhysicsKit.Vector2
 		  ///
 		  ' Solves the system of linear equations:
 		  '
@@ -518,7 +518,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536F6C76657320604178203D20626020616E642072657475726E7320607860206173206120566563746F72332E
-		Function Solve(b As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function Solve33(b As PhysicsKit.Vector3) As PhysicsKit.Vector3
 		  ///
 		  ' Solves the system of linear equations:
 		  '
@@ -763,7 +763,71 @@ Protected Class Matrix33
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M01"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M02"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M10"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M11"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M12"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M20"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M21"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="M22"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
