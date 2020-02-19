@@ -31,6 +31,38 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub AddTest()
+		  ///
+		  ' Tests the Add method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(_
+		  0.0, 2.0, 0.0, _
+		  3.0, 1.0, 1.0, _
+		  2.0, 0.0, -1.0)
+		  
+		  Var m2 As Matrix33 = New Matrix33(_
+		  1.0, 1.0, 3.0, _
+		  0.0, 4.0, 1.0, _
+		  2.0, 2.0, 1.0)
+		  
+		  Call m1.Add(m2)
+		  
+		  // Test the values.
+		  Assert.AreEqual(1.0, m1.m00)
+		  Assert.AreEqual(3.0, m1.m01)
+		  Assert.AreEqual(3.0, m1.m02)
+		  Assert.AreEqual(3.0, m1.m10)
+		  Assert.AreEqual(5.0, m1.m11)
+		  Assert.AreEqual(2.0, m1.m12)
+		  Assert.AreEqual(4.0, m1.m20)
+		  Assert.AreEqual(2.0, m1.m21)
+		  Assert.AreEqual(0.0, m1.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CopyTest()
 		  ///
 		  ' Tests the copy constructor.
@@ -99,6 +131,41 @@ Inherits TestGroup
 		  Assert.AreEqual(1.0, m.m20)
 		  Assert.AreEqual(5.0, m.m21)
 		  Assert.AreEqual(-1.0, m.m22)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SumTest()
+		  ///
+		  ' Tests the Sum method.
+		  ///
+		  
+		  Var m1 As Matrix33 = New Matrix33(_
+		  0.0, 2.0, 0.0, _
+		  3.0, 1.0, 1.0, _
+		  2.0, 0.0, -1.0)
+		  
+		  Var m2 As Matrix33 = New Matrix33(_
+		  1.0, 1.0, 3.0, _
+		  0.0, 4.0, 1.0, _
+		  2.0, 2.0, 1.0)
+		  
+		  Var m3 As Matrix33 = m1.Sum(m2)
+		  
+		  // Test the values.
+		  Assert.AreEqual(1.0, m3.m00)
+		  Assert.AreEqual(3.0, m3.m01)
+		  Assert.AreEqual(3.0, m3.m02)
+		  Assert.AreEqual(3.0, m3.m10)
+		  Assert.AreEqual(5.0, m3.m11)
+		  Assert.AreEqual(2.0, m3.m12)
+		  Assert.AreEqual(4.0, m3.m20)
+		  Assert.AreEqual(2.0, m3.m21)
+		  Assert.AreEqual(0.0, m3.m22)
+		  
+		  // Make sure we didn't modify the first matrix.
+		  Assert.IsFalse(m1.Equals(m3))
 		  
 		End Sub
 	#tag EndMethod
