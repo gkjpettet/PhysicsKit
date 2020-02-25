@@ -82,7 +82,7 @@ Protected Class Vector3
 		  
 		  Self.X = x2 - x1
 		  Self.Y = y2 - y1
-		  Self.X = z2 - z1
+		  Self.Z = z2 - z1
 		  
 		End Sub
 	#tag EndMethod
@@ -97,7 +97,7 @@ Protected Class Vector3
 		  
 		  Self.X = vector.X
 		  Self.Y = vector.Y
-		  Self.X = vector.X
+		  Self.Z = vector.Z
 		  
 		End Sub
 	#tag EndMethod

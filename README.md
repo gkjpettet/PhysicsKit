@@ -335,7 +335,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] TransformTest.java
 	- [ ] TriangleTest.java
 	- [x] Vector2Test.java
-	- [ ] Vector3Test.java
+	- [x] Vector3Test.java
 	- [x] WoundTest.java
 - [ ] UnitConversionTest.java
 - [ ] VersionTest.java
