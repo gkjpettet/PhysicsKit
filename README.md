@@ -3,6 +3,9 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
+Need to port MinXYPointComparator as delegate.
+Need to port LinkedVertexHull.
+
 Ported `RobustGeometry.java` but it's test are failing.
 
 ## Main Files To Port
@@ -182,7 +185,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] Geometry.java
 	- [x] HalfEllipse.java
 	- [ ] hull
-		- [ ] DivideAndConquer.java
+		- [x] DivideAndConquer.java
 		- [ ] GiftWrap.java
 		- [ ] GrahamScan.java
 		- [x] HullGenerator.java

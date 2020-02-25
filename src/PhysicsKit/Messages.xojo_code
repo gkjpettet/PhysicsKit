@@ -63,6 +63,12 @@ Protected Module Messages
 	#tag Constant, Name = GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED, Type = String, Dynamic = False, Default = \"The HalfEllipse shape type is not supported by the SAT collision detection algorithm. Use `Geometry.CreatePolygonalHalfEllipse`\x2C GJK\x2C or the `FallbackNarrowphaseDetector` with SAT as the primary and GJK as the fallback.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_HULL_NIL_ARRAY, Type = String, Dynamic = False, Default = \"The point array cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = GEOMETRY_HULL_NIL_POINTS, Type = String, Dynamic = False, Default = \"The point array cannot contain Nil points.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = GEOMETRY_INTERVAL_INVALID, Type = String, Dynamic = False, Default = \"The minimum cannot be larger than the maximum.", Scope = Protected
 	#tag EndConstant
 
