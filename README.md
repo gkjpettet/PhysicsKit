@@ -185,7 +185,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 		- [ ] DivideAndConquer.java
 		- [ ] GiftWrap.java
 		- [ ] GrahamScan.java
-		- [ ] HullGenerator.java
+		- [x] HullGenerator.java
 		- [ ] LinkedVertex.java
 		- [ ] LinkedVertexHull.java
 		- [ ] MinXYPointComparator.java
