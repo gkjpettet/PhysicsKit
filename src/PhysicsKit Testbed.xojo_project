@@ -88,6 +88,7 @@ Class=Matrix33;PhysicsKit/Matrix33.xojo_code;&h00000000627387FF;&h00000000342617
 Class=Vector3;PhysicsKit/Vector3.xojo_code;&h000000005716C7FF;&h00000000342617FF;false
 Interface=HullGenerator;PhysicsKit/HullGenerator.xojo_code;&h000000006971BFFF;&h00000000342617FF;false
 Class=DivideAndConquer;PhysicsKit/DivideAndConquer.xojo_code;&h0000000051472FFF;&h00000000342617FF;false
+Class=MinXYPointComparator;PhysicsKit/MinXYPointComparator.xojo_code;&h0000000061A887FF;&h00000000342617FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

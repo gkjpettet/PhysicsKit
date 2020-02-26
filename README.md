@@ -3,7 +3,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Need to port MinXYPointComparator as delegate.
 Need to port LinkedVertexHull.
 
 Ported `RobustGeometry.java` but it's test are failing.
@@ -191,7 +190,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 		- [x] HullGenerator.java
 		- [ ] LinkedVertex.java
 		- [ ] LinkedVertexHull.java
-		- [ ] MinXYPointComparator.java
+		- [x] MinXYPointComparator.java
 		- [ ] MonotoneChain.java
 		- [ ] ReferencePointComparator.java
 	- [x] Interval.java
