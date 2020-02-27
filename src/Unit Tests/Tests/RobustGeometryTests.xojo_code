@@ -1,5 +1,5 @@
 #tag Class
-Protected Class RobustGeometryTest
+Protected Class RobustGeometryTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
@@ -55,6 +55,31 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RandomisedTest2Test()
+		  ///
+		  ' Another randomised test but with uniform random points.
+		  ' This will mostly trigger the short path in RobustGeometry.GetLocation(Vector2, Vector2, Vector2)
+		  ///
+		  
+		  // Constant seed so we always get the same sequence of randoms
+		  System.Random.Seed = SEED
+		  
+		  For i As Integer = 0 to 999
+		    // Generate three uniform random points pa, pb, pc
+		    Var pa As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
+		    Var pb As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
+		    Var pc As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
+		    
+		    Var exact As Double = GetLocationExact(pc, pa, pb)
+		    Var robust As Double = RobustGeometry.GetLocation(pc, pa, pb)
+		    
+		    Assert.AreEqual(MathsKit.Signum(exact), MathsKit.Signum(robust))
+		  Next i
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RandomisedTestTest()
 		  ///
 		  ' Randomised test to check almost colinear vectors.
@@ -105,6 +130,65 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 48656C706572206D6574686F6420746F20746573742074686520636F6E7665782068756C6C2067656E657261746F72732E
+		Shared Function RobustPolygonContains(vertices() As PhysicsKit.Vector2, point As PhysicsKit.Vector2) As Boolean
+		  ///
+		  ' Helper method to test the convex hull generators.
+		  '
+		  ' Tests if `point` is contained in the convex polygon defined by `vertices`.
+		  ' This points must be from a Polygon instance, validated through it's constructor.
+		  ' Uses robust geometric predicates.
+		  ' 
+		  ' - Parameter vertices: A list of vertices in CW/CCW order that describe a convex polygon.
+		  ' - Parameter point: The point to test.
+		  '
+		  ' - Returns: Boolean.
+		  ///
+		  
+		  // Copied from Polygon.Contains but uses RobustGeometry.GetLocation instead.
+		  
+		  // Start from the pair (p1 = last, p2 = first) so there's no need to check 
+		  // in the loop for wrap-around of the i + 1 vertice
+		  Var size As Integer = vertices.Count
+		  Var p1 As Vector2 = vertices(size - 1)
+		  Var p2 As Vector2 = vertices(0)
+		  
+		  // Get the location of the point relative to the first two vertices.
+		  Var last As Double = RobustGeometry.GetLocation(point, p1, p2)
+		  
+		  // Loop through the rest of the vertices.
+		  Var iLimit As Integer = size - 2
+		  For i As Integer = 0 To iLimit
+		    // p1 is now p2
+		    p1 = p2
+		    // p2 is the next point.
+		    p2 = vertices(i + 1)
+		    // Check if they are equal (one of the vertices).
+		    If point.Equals(p1) Or point.Equals(p2) Then Return True
+		    
+		    // Do side of line test.
+		    Var location As Double = RobustGeometry.GetLocation(point, p1, p2)
+		    
+		    // Multiply the last location with this location if they are the same sign then 
+		    // the opertation will yield a positive result:
+		    // -x * -y = +xy, x * y = +xy, -x * y = -xy, x * -y = -xy
+		    If last * location < 0 Then
+		      // Reminder: (-0.0 < 0.0) evaluates to False and not True.
+		      Return False
+		    End If
+		    
+		    // Update the last location, but only if it's not zero.
+		    // A location of zero indicates that the point lies ON the line
+		    // through p1 and p2. We can ignore these values because the
+		    // convexity requirement of the shape will ensure that if it's outside, a sign will change.
+		    If Abs(location) > Epsilon.E Then last = location
+		  Next i
+		  
+		  Return True
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private Prop1 As Integer
@@ -117,6 +201,10 @@ Inherits TestGroup
 	#tag Property, Flags = &h21
 		Private SEED As Integer = 0
 	#tag EndProperty
+
+
+	#tag Using, Name = PhysicsKit
+	#tag EndUsing
 
 
 	#tag ViewBehavior

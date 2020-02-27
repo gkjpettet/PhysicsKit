@@ -37,7 +37,7 @@ Implements PhysicsKit.HullGenerator
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Generate(ParamArray points As PhysicsKit.Vector2) As PhysicsKit.Vector2()
+		Function Generate(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2()
 		  ///
 		  ' - Note: Part of the PhysicsKit.HullGenerator interface.
 		  ///

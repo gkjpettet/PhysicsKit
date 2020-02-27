@@ -3,7 +3,9 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 
 ## Port Progress
 
-Ported `RobustGeometry.java` but it's test are failing.
+Porting `GiftWrapTest.java` up to an including `giftWrap4()`.
+
+Ported `RobustGeometry.java` but its test are failing.
 
 ## Main Files To Port
 - [ ] BinarySearchTree.java
@@ -327,7 +329,7 @@ Ported `RobustGeometry.java` but it's test are failing.
 	- [x] PolygonTest.java
 	- [x] RayTest.java
 	- [x] RectangleTest.java
-	- [ ] RobustGeometryTest.java
+	- [x] RobustGeometryTest.java
 	- [x] RotationTest.java
 	- [x] SegmentTest.java
 	- [x] SliceTest.java

@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface HullGenerator
 	#tag Method, Flags = &h0
-		Function Generate(ParamArray points As PhysicsKit.Vector2) As PhysicsKit.Vector2()
+		Function Generate(points() As PhysicsKit.Vector2) As PhysicsKit.Vector2()
 		  
 		End Function
 	#tag EndMethod
