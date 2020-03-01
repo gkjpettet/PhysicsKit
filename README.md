@@ -2,9 +2,6 @@
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 3.4.0).
 
 ## Port Progress
-
-Porting `GiftWrapTest.java` up to an including `giftWrap4()`.
-
 Ported `RobustGeometry.java` but its test are failing.
 
 ## Main Files To Port
@@ -185,7 +182,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] HalfEllipse.java
 	- [ ] hull
 		- [x] DivideAndConquer.java
-		- [ ] GiftWrap.java
+		- [x] GiftWrap.java
 		- [ ] GrahamScan.java
 		- [x] HullGenerator.java
 		- [x] LinkedVertex.java
@@ -318,7 +315,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [ ] EarClippingTest.java
 	- [x] EllipseTest.java
 	- [x] GeometryTest.java
-	- [ ] GiftWrapTest.java
+	- [x] GiftWrapTest.java
 	- [ ] GrahamScanTest.java
 	- [x] HalfEllipseTest.java
 	- [x] IntervalTest.java
