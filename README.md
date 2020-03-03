@@ -183,13 +183,13 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [ ] hull
 		- [x] DivideAndConquer.java
 		- [x] GiftWrap.java
-		- [ ] GrahamScan.java
+		- [x] GrahamScan.java
 		- [x] HullGenerator.java
 		- [x] LinkedVertex.java
 		- [x] LinkedVertexHull.java
 		- [x] MinXYPointComparator.java
 		- [ ] MonotoneChain.java
-		- [ ] ReferencePointComparator.java
+		- [x] ReferencePointComparator.java
 	- [x] Interval.java
 	- [x] Link.java
 	- [x] Mass.java
@@ -316,7 +316,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] EllipseTest.java
 	- [x] GeometryTest.java
 	- [x] GiftWrapTest.java
-	- [ ] GrahamScanTest.java
+	- [x] GrahamScanTest.java
 	- [x] HalfEllipseTest.java
 	- [x] IntervalTest.java
 	- [x] MassTest.java

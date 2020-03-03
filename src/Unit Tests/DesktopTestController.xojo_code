@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New GrahamScanTests(Self, "GrahamScan")
 		  group = New GiftWrapTests(Self, "GiftWrap")
 		  group = New Vector3Tests(Self, "Vector3")
 		  group = New Matrix33Tests(Self, "Matrix33")
