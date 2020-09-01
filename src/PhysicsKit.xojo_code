@@ -3,9 +3,6 @@ Protected Module PhysicsKit
 	#tag Method, Flags = &h1
 		Protected Sub Initialise()
 		  // Initialises the physics module including shared properties within classes.
-		  
-		  MathsKit.Initialise
-		  
 		  AbstractShape.Initialise
 		  Ellipse.Initialise
 		  Epsilon.Initialise
