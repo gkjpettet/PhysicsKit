@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface Transformable
+Protected Interface PKTransformable
 Implements PhysicsKit.Rotatable,PhysicsKit.Translatable
 	#tag Note, Name = About
 		Represents an object that is both Rotatable and Translatable.

@@ -607,7 +607,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E20726570726573656E74696E67207468652073616D6520726F746174696F6E2061732061205472616E73666F726D206F626A6563742E
-		Shared Function Of_(transform As PhysicsKit.Transform) As PhysicsKit.Rotation
+		Shared Function Of_(transform As PKTransform) As PhysicsKit.Rotation
 		  ///
 		  ' Creates a new Rotation representing the same rotation as a Transform object.
 		  '

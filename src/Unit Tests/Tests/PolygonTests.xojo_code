@@ -5,7 +5,7 @@ Inherits TestGroup
 		Sub Setup()
 		  Prop2 = Prop2 + 1
 		  
-		  IDENTITY = New PhysicsKit.Transform
+		  IDENTITY = New PKTransform
 		End Sub
 	#tag EndEvent
 
@@ -148,7 +148,7 @@ Inherits TestGroup
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var pt As PKVector2 = New PKVector2(2.0, 4.0)
 		  
 		  // Shouldn't be in the polygon.
@@ -203,7 +203,7 @@ Inherits TestGroup
 		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)
 		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
 		  
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  aabb = p.CreateAABB(tx)
@@ -412,7 +412,7 @@ Inherits TestGroup
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Var axes() As PKVector2 = p.GetAxes(Nil, t)
 		  Assert.IsFalse(axes = Nil)
@@ -454,7 +454,7 @@ Inherits TestGroup
 		  New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  Var f As PhysicsKit.EdgeFeature = p.GetFarthestFeature(y, t)
@@ -498,7 +498,7 @@ Inherits TestGroup
 		  New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  // Should return Nil.
 		  Var foci() As PKVector2 = p.GetFoci(t)
@@ -544,7 +544,7 @@ Inherits TestGroup
 		  New PKVector2(1.0, 0.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
 		  
@@ -621,7 +621,7 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
-		Private IDENTITY As PhysicsKit.Transform
+		Private IDENTITY As PKTransform
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

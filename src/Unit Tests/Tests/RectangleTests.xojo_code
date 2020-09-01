@@ -39,7 +39,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var r As Rectangle = New Rectangle(1.0, 2.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Var pt As PKVector2 = New PKVector2(2.0, 0.5)
 		  
@@ -146,7 +146,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var r As Rectangle = New Rectangle(1.0, 1.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Var axes() As PKVector2 = r.GetAxes(Nil, t)
 		  
@@ -203,7 +203,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var r As Rectangle = New Rectangle(2.0, 1.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var axis As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var i As Interval = r.Project(axis, t)
 		  

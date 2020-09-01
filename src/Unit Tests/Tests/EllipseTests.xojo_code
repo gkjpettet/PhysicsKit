@@ -5,7 +5,7 @@ Inherits TestGroup
 		Sub Setup()
 		  Prop2 = Prop2 + 1
 		  
-		  IDENTITY = New PhysicsKit.Transform
+		  IDENTITY = New PKTransform
 		End Sub
 	#tag EndEvent
 
@@ -38,7 +38,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var e As Ellipse = New Ellipse(2.0, 1.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.75, 0.35)
 		  
 		  // Shouldn't be in the circle
@@ -91,7 +91,7 @@ Inherits TestGroup
 		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
 		  
 		  // Test using a rotation and translation matrix.
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  
@@ -231,7 +231,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var e As Ellipse = New Ellipse(2.0, 1.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
@@ -294,7 +294,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var e As Ellipse = New Ellipse(2.0, 1.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
@@ -375,7 +375,7 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
-		Private IDENTITY As PhysicsKit.Transform
+		Private IDENTITY As PKTransform
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

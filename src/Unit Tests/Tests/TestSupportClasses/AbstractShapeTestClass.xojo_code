@@ -8,7 +8,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  #Pragma Unused point
 		  #Pragma Unused transform
 		  
@@ -17,7 +17,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  #Pragma Unused transform
 		  
 		  Return Nil
@@ -44,7 +44,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(n As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(n As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  #Pragma Unused n
 		  #Pragma Unused transform
 		  

@@ -38,7 +38,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // Transform the center.
@@ -58,7 +58,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // If the transform is not Nil then transform the center.
@@ -96,7 +96,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetAxes(foci() As PKVector2, transform As PhysicsKit.Transform) As PKVector2()
+		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()
 		  ///
 		  ' Circular shapes are handled specifically in the SAT algorithm since
 		  ' they have an infinite number of axes. As a result this method returns Nil.
@@ -116,7 +116,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.PointFeature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.PointFeature
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Obtain the farthest point along the given vector.
@@ -129,7 +129,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestPoint(vector As PKVector2, transform As PhysicsKit.Transform) As PKVector2
+		Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Make sure the axis is normalised.
@@ -149,7 +149,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFoci(transform As PhysicsKit.Transform) As PKVector2()
+		Function GetFoci(transform As PKTransform) As PKVector2()
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  Var foci(0) As PKVector2
@@ -172,7 +172,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // If the transform is not Nil then transform the center.

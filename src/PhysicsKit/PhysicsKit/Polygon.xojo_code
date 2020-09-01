@@ -71,7 +71,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // If the polygon is convex then do a simple inside test.
@@ -125,7 +125,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // Get the first point.
@@ -246,7 +246,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetAxes(foci() As PKVector2, transform As PhysicsKit.Transform) As PKVector2()
+		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Get the size of the foci list.
@@ -304,7 +304,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.EdgeFeature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.EdgeFeature
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Transform the normal into local space.
@@ -346,7 +346,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestPoint(vector As PKVector2, transform As PhysicsKit.Transform) As PKVector2
+		Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Transform the normal into local space.
@@ -450,7 +450,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFoci(transform As PhysicsKit.Transform) As PKVector2()
+		Function GetFoci(transform As PKTransform) As PKVector2()
 		  ///
 		  ' - Notes:
 		  '   Not applicable to this shape. Always returns Nil.
@@ -516,7 +516,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Var v As Double = 0.0

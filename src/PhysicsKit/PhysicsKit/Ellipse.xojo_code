@@ -49,7 +49,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -79,7 +79,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -136,7 +136,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetAxes(foci() As PKVector2, transform As PhysicsKit.Transform) As PKVector2()
+		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
@@ -151,7 +151,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Feature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.Feature
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
@@ -199,7 +199,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestPoint(vector As PKVector2, transform As PhysicsKit.Transform) As PKVector2
+		Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
@@ -386,7 +386,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFoci(transform As PhysicsKit.Transform) As PKVector2()
+		Function GetFoci(transform As PKTransform) As PKVector2()
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
@@ -546,7 +546,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///

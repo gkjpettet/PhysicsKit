@@ -11,7 +11,7 @@ Protected Module PhysicsKit
 		  Epsilon.Initialise
 		  HalfEllipse.Initialise
 		  RobustGeometry.Initialise
-		  Transform.Initialise
+		  PKTransform.Initialise
 		  PKVector2.Initialise
 		End Sub
 	#tag EndMethod

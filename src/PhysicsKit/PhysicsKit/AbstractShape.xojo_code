@@ -1,6 +1,6 @@
 #tag Class
 Protected Class AbstractShape
-Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
+Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 	#tag Method, Flags = &h0, Description = 4D696E696D616C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
 		  ///
@@ -48,7 +48,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused point
@@ -70,7 +70,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused transform
@@ -143,7 +143,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 		  ' Intialises shared properties.
 		  ///
 		  
-		  IDENTITY = New Transform
+		  IDENTITY = New PKTransform
 		End Sub
 	#tag EndMethod
 
@@ -157,7 +157,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused vector
@@ -298,7 +298,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 4964656E74697479205472616E73666F726D20696E7374616E63652E
-		Private Shared IDENTITY As PhysicsKit.Transform
+		Private Shared IDENTITY As PKTransform
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 546865207368617065277320756E69717565206964656E7469666965722E

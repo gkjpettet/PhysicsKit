@@ -1,6 +1,6 @@
 #tag Class
-Protected Class Transform
-Implements PhysicsKit.Transformable
+Protected Class PKTransform
+Implements PKTransformable
 	#tag Method, Flags = &h0, Description = 44656661756C74207075626C696320636F6E7374727563746F722E
 		Sub Constructor()
 		  ///
@@ -30,7 +30,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5075626C696320636F707920636F6E7374727563746F722E
-		Sub Constructor(t As PhysicsKit.Transform)
+		Sub Constructor(t As PKTransform)
 		  ///
 		  ' Public copy constructor.
 		  '
@@ -62,14 +62,14 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F706965732074686973205472616E73666F726D2E
-		Function Copy() As PhysicsKit.Transform
+		Function Copy() As PKTransform
 		  ///
 		  ' Copies this Transform.
 		  '
 		  ' - Returns: A new Transform.
 		  ///
 		  
-		  Return New Transform(Self)
+		  Return New PKTransform(Self)
 		  
 		End Function
 	#tag EndMethod
@@ -186,14 +186,14 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRotationTransform() As PhysicsKit.Transform
+		Function GetRotationTransform() As PKTransform
 		  ///
 		  ' Returns a new Transform including only the rotation of this Transform.
 		  '
 		  ' - Returns: A new Transform.
 		  ///
 		  
-		  Var t As PhysicsKit.Transform = New Transform(Self.Cost, Self.Sint, 0, 0)
+		  Var t As PKTransform = New PKTransform(Self.Cost, Self.Sint, 0, 0)
 		  Return t
 		  
 		End Function
@@ -322,14 +322,14 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetTranslationTransform() As PhysicsKit.Transform
+		Function GetTranslationTransform() As PKTransform
 		  ///
 		  ' Returns a new Transform including only the translation of this Transform.
 		  '
 		  ' - Returns: A new Transform.
 		  ///
 		  
-		  Var t As PhysicsKit.Transform = New Transform(1.0, 0.0, Self.X, Self.Y)
+		  Var t As PKTransform = New PKTransform(1.0, 0.0, Self.X, Self.Y)
 		  Return t
 		  
 		End Function
@@ -395,7 +395,7 @@ Implements PhysicsKit.Transformable
 		  ' Initialises shared properties.
 		  ///
 		  
-		  mIDENTITY = New Transform
+		  mIDENTITY = New PKTransform
 		End Sub
 	#tag EndMethod
 
@@ -435,7 +435,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Lerp(end_ As PhysicsKit.Transform, alpha As Double)
+		Sub Lerp(end_ As PKTransform, alpha As Double)
 		  ///
 		  ' Interpolates this transform linearly by `alpha` towards the given `end_` Transform.
 		  ' Interpolating from one angle to another can have two results depend_ing on the
@@ -460,8 +460,8 @@ Implements PhysicsKit.Transformable
 		  // Make sure we use the smallest rotation as described in the comments above.
 		  // There are two possible rotations depending on the direction, we always choose the smaller
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < 𝛝 < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.
@@ -482,7 +482,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E746572706F6C61746573206C696E6561726C7920627920616C70686120746F77617264732074686520676976656E2060656E645F60207472616E73666F726D20706C6163696E672074686520726573756C7420696E2074686520676976656E205472616E73666F726D2E
-		Sub Lerp(end_ As PhysicsKit.Transform, alpha As Double, result As PhysicsKit.Transform)
+		Sub Lerp(end_ As PKTransform, alpha As Double, result As PKTransform)
 		  ///
 		  ' Interpolates linearly by alpha towards the given `end_` transform placing
 		  ' the result in the given Transform.
@@ -509,8 +509,8 @@ Implements PhysicsKit.Transformable
 		  // Make sure we use the smallest rotation as described in the comments above. 
 		  // There are two possible rotations depending on the direction, we always choose the smaller.
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < theta < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.
@@ -547,7 +547,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E746572706F6C617465732074686973207472616E73666F726D206C696E6561726C792C20627920616C7068612C20676976656E20746865206368616E676520696E20706F736974696F6E20616E6420746865206368616E676520696E20616E676C6520616E6420706C6163657320697420696E746F20726573756C742E
-		Sub Lerp(dp As PKVector2, da As Double, alpha As Double, result As PhysicsKit.Transform)
+		Sub Lerp(dp As PKVector2, da As Double, alpha As Double, result As PKTransform)
 		  ///
 		  ' Interpolates this transform linearly, by alpha, given the change in 
 		  ' position (Δp) and the change in angle (Δa) and places it into result.
@@ -566,7 +566,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E746572706F6C61746573206C696E6561726C7920627920616C70686120746F77617264732074686520676976656E2060656E645F60207472616E73666F726D2072657475726E696E672061206E6577205472616E73666F726D20636F6E7461696E696E672074686520726573756C742E
-		Function Lerped(end_ As PhysicsKit.Transform, alpha As Double) As PhysicsKit.Transform
+		Function Lerped(end_ As PKTransform, alpha As Double) As PKTransform
 		  ///
 		  ' Interpolates linearly by alpha towards the given `end_` transform returning
 		  ' a new Transform containing the result.
@@ -595,8 +595,8 @@ Implements PhysicsKit.Transformable
 		  // Make sure we use the smallest rotation as described in the comments above.
 		  // There are two possible rotations depending on the direction, we always choose the smaller.
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < 𝛝 < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.
@@ -606,14 +606,14 @@ Implements PhysicsKit.Transformable
 		  // The following performs the following calculations:
 		  // tx.Rotate(a)
 		  // tx.=Translate(x, y)
-		  Var tx As PhysicsKit.Transform = New Transform(Cos(a), Sin(a), x, y)
+		  Var tx As PKTransform = New PKTransform(Cos(a), Sin(a), x, y)
 		  Return tx
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E746572706F6C617465732074686973207472616E73666F726D206C696E6561726C792C20627920616C7068612C20676976656E20746865206368616E676520696E20706F736974696F6E20616E6420746865206368616E676520696E20616E676C6520616E642072657475726E732074686520726573756C742061732061206E6577205472616E73666F726D2E
-		Function Lerped(dp As PKVector2, da As Double, alpha As Double) As PhysicsKit.Transform
+		Function Lerped(dp As PKVector2, da As Double, alpha As Double) As PKTransform
 		  ///
 		  ' Interpolates this transform linearly, by alpha, given the change in 
 		  ' position (Δp) and the change in angle (Δa) and returns the result.
@@ -625,7 +625,7 @@ Implements PhysicsKit.Transformable
 		  ' - Returns: A new Transform.
 		  ///
 		  
-		  Var result As PhysicsKit.Transform = New Transform(Self)
+		  Var result As PKTransform = New PKTransform(Self)
 		  result.RotateOnly(da * alpha)
 		  result.Translate(dp.X * alpha, dp.Y * alpha)
 		  Return result
@@ -761,7 +761,7 @@ Implements PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536574732074686973207472616E73666F726D20746F2074686520676976656E207472616E73666F726D2E
-		Sub Set(t As PhysicsKit.Transform)
+		Sub Set(t As PKTransform)
 		  ///
 		  ' Sets this transform to the given transform.
 		  '
@@ -1009,11 +1009,11 @@ Implements PhysicsKit.Transformable
 			  Return mIDENTITY
 			End Get
 		#tag EndGetter
-		Attributes( Deprecated = "Create your own instances of Transform instead." ) Shared IDENTITY As PhysicsKit.Transform
+		Attributes( Deprecated = "Create your own instances of Transform instead." ) Shared IDENTITY As PKTransform
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private Shared mIDENTITY As PhysicsKit.Transform
+		Private Shared mIDENTITY As PKTransform
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652073696E65206F662074686520726F746174696F6E20616E676C652E

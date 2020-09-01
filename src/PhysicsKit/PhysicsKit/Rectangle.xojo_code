@@ -49,7 +49,7 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  // Put the point in local coordinates.
 		  Var p As PKVector2 = transform.GetInverseTransformed(point)
 		  
@@ -88,7 +88,7 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  // Since we know that this is a rectangle we can get away with much fewer
 		  // comparisons to find the correct PKAABB. Each vertex maps to one point of the
 		  // PKAABB, we have to find in which of the four possible rotation states this
@@ -154,7 +154,7 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetAxes(foci() As PKVector2, transform As PhysicsKit.Transform) As PKVector2()
+		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()
 		  // Create an array to hold the axes.
 		  Var axes() As PKVector2
 		  
@@ -255,7 +255,7 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  // Get the center and vertices.
 		  Var center As PKVector2 = transform.GetTransformed(Self.Center)
 		  

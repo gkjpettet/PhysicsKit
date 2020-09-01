@@ -119,7 +119,7 @@ Inherits TestGroup
 		  Assert.AreEqual(Cos(MathsKit.ToRadians(-45)), r7.cost, 1.0e-6)
 		  Assert.AreEqual(Sin(MathsKit.ToRadians(-45)), r7.sint, 1.0e-6)
 		  
-		  Var t1 As Transform = New Transform
+		  Var t1 As PKTransform = New PKTransform
 		  Call t1.SetRotation(-1.0)
 		  t1.Translate(-10, -20) // Translation should not affect the result.
 		  

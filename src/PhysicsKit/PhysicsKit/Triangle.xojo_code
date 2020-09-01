@@ -26,7 +26,7 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  ///
 		  ' Returns True if the point is inside the Triangle.
 		  '

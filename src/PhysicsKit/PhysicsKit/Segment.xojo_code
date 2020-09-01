@@ -56,7 +56,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform) As Boolean
 		  ///
 		  ' Should almost always return False since this shape represents an infinitely
 		  ' thin line segment. Use the `Contains(PKVector2, Transform, double)` method instead 
@@ -94,7 +94,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520676976656E20706F696E7420697320696E7369646520746869732053686170652E
-		Function Contains(point As PKVector2, transform As PhysicsKit.Transform, radius As Double) As Boolean
+		Function Contains(point As PKVector2, transform As PKTransform, radius As Double) As Boolean
 		  ///
 		  ' Returns True if the given point is inside this Shape.
 		  '
@@ -140,7 +140,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
+		Function CreateAABB(transform As PKTransform) As PKAABB
 		  ///
 		  ' Be aware that this method could produce an infinitely thin
 		  ' PKAABB if this segment is aligned to either the x or y-axis.
@@ -192,7 +192,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetAxes(foci() As PKVector2, transform As PhysicsKit.Transform) As PKVector2()
+		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Get the number of foci.
@@ -239,7 +239,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Feature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.Feature
 		  ///
 		  ' Returns the feature farthest in the direction of n.
 		  '
@@ -259,7 +259,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652066617274686573742066656174757265206F6E2074686520676976656E207365676D656E742E20546869732077696C6C20616C776179732072657475726E20746865207365676D656E7420697473656C662C20627574206D7573742072657475726E20697420776974682074686520636F72726563742077696E64696E6720616E642074686520636F7272656374206D6178696D756D2E205468726F7773204E696C4F626A656374457863657074696F6E2E
-		Shared Function GetFarthestFeature(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.EdgeFeature
+		Shared Function GetFarthestFeature(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PhysicsKit.EdgeFeature
 		  ///
 		  ' Returns the farthest feature on the given segment.
 		  '
@@ -312,7 +312,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestPoint(vector As PKVector2, transform As PhysicsKit.Transform) As PKVector2
+		Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
@@ -323,7 +323,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666172746865737420706F696E74206F6E2074686520676976656E207365676D656E742E205468726F7773204E696C4F626A656374457863657074696F6E2E
-		Shared Function GetFarthestPoint(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PhysicsKit.Transform) As PKVector2
+		Shared Function GetFarthestPoint(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PKVector2
 		  ///
 		  ' Returns the farthest point on the given segment.
 		  '
@@ -356,7 +356,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFoci(transform As PhysicsKit.Transform) As PKVector2()
+		Function GetFoci(transform As PKTransform) As PKVector2()
 		  ///
 		  ' Not applicable to this shape.  Always returns Nils.
 		  '
@@ -825,7 +825,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///

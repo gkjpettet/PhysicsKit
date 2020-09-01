@@ -38,11 +38,11 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, -1.0)
 		  t.Rotate(MathsKit.ToRadians(20), -2.0, 6.0)
 		  
-		  Var tc As Transform = t.Copy
+		  Var tc As PKTransform = t.Copy
 		  
 		  Assert.AreEqual(t.cost, tc.cost)
 		  Assert.AreEqual(t.sint, tc.sint)
@@ -60,7 +60,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, 1.0)
 		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
@@ -97,7 +97,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(5, 2)
 		  
 		  t.Identity
@@ -118,11 +118,11 @@ Inherits TestGroup
 		  
 		  Var p As PKVector2 = New PKVector2
 		  
-		  Var start As Transform = New Transform
+		  Var start As PKTransform = New PKTransform
 		  start.Translate(1.0, 0.0)
 		  start.Rotate(MathsKit.ToRadians(45))
 		  
-		  Var endT As Transform = New Transform
+		  Var endT As PKTransform = New PKTransform
 		  endT.Set(start)
 		  endT.Translate(3.0, 2.0)
 		  endT.Rotate(MathsKit.ToRadians(20))
@@ -132,7 +132,7 @@ Inherits TestGroup
 		  
 		  Const alpha = 0.5
 		  
-		  Var mid As Transform = New Transform
+		  Var mid As PKTransform = New PKTransform
 		  start.Lerp(endT, alpha, mid)
 		  start.Lerp(endT, alpha)
 		  
@@ -155,7 +155,7 @@ Inherits TestGroup
 		  endT.Identity
 		  endT.Rotate(MathsKit.ToRadians(-168))
 		  
-		  Var l As Transform = start.Lerped(endT, alpha)
+		  Var l As PKTransform = start.Lerped(endT, alpha)
 		  Assert.AreEqual(-3.089, l.GetRotationAngle, 1.0e-3)
 		  
 		  // Test opposing sign angles.
@@ -179,7 +179,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  t.Rotate(MathsKit.ToRadians(30))
 		  Assert.AreEqual(MathsKit.ToRadians(30), t.GetRotationAngle, 1.0e-3)
@@ -222,7 +222,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.toRadians(45.0))
 		  tx.Translate(1.0, 0.0)
 		  
@@ -242,10 +242,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30))
 		  tx.Translate(2.0, 0.5)
-		  Var tx2 As Transform = New Transform
+		  Var tx2 As PKTransform = New PKTransform
 		  tx2.Set(tx)
 		  
 		  // Shouldn't be the same object reference.
@@ -268,7 +268,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Translate(1.0, 2.0)
 		  tx.Rotate(MathsKit.ToRadians(45))
 		  tx.SetTranslation(0.0, 0.0)
@@ -298,7 +298,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, 1.0)
 		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
@@ -335,7 +335,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(2, -1)
 		  
 		  t.Translate(4, 4)
@@ -354,7 +354,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, -1.0)
 		  
 		  Var values() As Double = t.GetValues

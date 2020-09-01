@@ -39,7 +39,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(2.0)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(2.0, 4.0)
 		  
 		  // Shouldn't be in the circle.
@@ -67,7 +67,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var IDENTITY As Transform = New Transform
+		  Var IDENTITY As PKTransform = New PKTransform
 		  
 		  Var c As Circle = New Circle(1.2)
 		  
@@ -86,7 +86,7 @@ Inherits TestGroup
 		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
 		  
 		  // Test using a rotation and translation matrix.
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  
@@ -179,7 +179,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(1.5)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  // A cicle has infinite axes so it should be Nil.
 		  Var axes() As PKVector2 = c.GetAxes(Nil, t)
@@ -197,7 +197,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(1.5)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  Var f As PointFeature = c.GetFarthestFeature(y, t)
@@ -231,7 +231,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(1.5)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  // Should only return one.
 		  Var foci() As PKVector2 = c.GetFoci(t)
@@ -249,7 +249,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(1.5)
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
 		  

@@ -5,7 +5,7 @@ Inherits TestGroup
 		Sub Setup()
 		  Prop2 = Prop2 + 1
 		  
-		  IDENTITY = New PhysicsKit.Transform
+		  IDENTITY = New PKTransform
 		End Sub
 	#tag EndEvent
 
@@ -40,7 +40,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(1.0, 1.0), New PKVector2(-1.0, -1.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Assert.IsFalse(s.Contains(New PKVector2(2.0, 2.0), t, 0.1))
 		  Assert.IsTrue(s.Contains(New PKVector2(1.05, 1.05), t, 0.1))
@@ -58,7 +58,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Assert.IsFalse(s.Contains(New PKVector2(2.0, 2.0), t))
 		  Assert.IsTrue(s.Contains(New PKVector2(0.75, 2.0), t))
@@ -89,7 +89,7 @@ Inherits TestGroup
 		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)
 		  Assert.AreEqual(aabb.getMaxY, aabb2.getMaxY)
 		  
-		  Var tx As Transform = New Transform
+		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  aabb = s.CreateAABB(tx)
@@ -195,7 +195,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Var axes() As PKVector2 = s.GetAxes(Nil, t)
 		  
@@ -243,7 +243,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var f As EdgeFeature = EdgeFeature(s.GetFarthestFeature(n, t))
@@ -278,7 +278,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  
 		  Var foci() As PKVector2 = s.GetFoci(t)
 		  Assert.IsTrue(foci = Nil)
@@ -592,7 +592,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
-		  Var t As Transform = New Transform
+		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var i As Interval = s.Project(n, t)
@@ -664,7 +664,7 @@ Inherits TestGroup
 
 
 	#tag Property, Flags = &h21
-		Private IDENTITY As PhysicsKit.Transform
+		Private IDENTITY As PKTransform
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
