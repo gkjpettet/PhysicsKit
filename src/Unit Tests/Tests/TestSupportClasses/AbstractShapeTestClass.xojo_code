@@ -17,7 +17,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  #Pragma Unused transform
 		  
 		  Return Nil

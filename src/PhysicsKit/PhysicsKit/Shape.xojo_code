@@ -14,13 +14,13 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4372656174657320616E20414142422066726F6D20746869732053686170652E
-		Function CreateAABB() As PhysicsKit.AABB
+		Function CreateAABB() As PKAABB
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4372656174657320616E20414142422066726F6D2074686973205368617065206166746572206170706C79696E672074686520676976656E207472616E73666F726D6174696F6E20746F207468652073686170652E
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  
 		End Function
 	#tag EndMethod

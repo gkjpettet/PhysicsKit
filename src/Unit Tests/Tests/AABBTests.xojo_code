@@ -38,7 +38,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  // 4 * 1 = 4
 		  Assert.AreEqual(4.0, aabb.GetArea, 1.0E-4)
 		  
@@ -53,7 +53,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  
 		  // Test containment.
 		  Assert.IsTrue(aabb.Contains(0.0, 0.5))
@@ -76,18 +76,18 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Test overlap.
-		  Var aabb1 As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
-		  Var aabb2 As AABB = New AABB(-1.0, -2.0, 5.0, 2.0)
+		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 2.0)
 		  Assert.IsFalse(aabb1.Contains(aabb2))
 		  Assert.IsFalse(aabb2.Contains(aabb1))
 		  
 		  // Test no overlap.
-		  Var aabb3 As AABB = New AABB(3.0, 2.0, 4.0, 3.0)
+		  Var aabb3 As PKAABB = New PKAABB(3.0, 2.0, 4.0, 3.0)
 		  Assert.IsFalse(aabb1.Contains(aabb3))
 		  Assert.IsFalse(aabb3.Contains(aabb1))
 		  
 		  // Test containment.
-		  Var aabb4 As AABB = New AABB(-1.0, 0.25, 1.0, 0.75)
+		  Var aabb4 As PKAABB = New PKAABB(-1.0, 0.25, 1.0, 0.75)
 		  Assert.IsTrue(aabb1.Contains(aabb4))
 		  Assert.IsFalse(aabb4.Contains(aabb1))
 		  
@@ -97,13 +97,13 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateCopyTest()
 		  ///
-		  ' Tests the successful copy of an AABB.
+		  ' Tests the successful copy of a PKAABB.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb1 As AABB = New AABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
-		  Var aabb2 As AABB = New AABB(aabb1)
+		  Var aabb1 As PKAABB = New PKAABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
+		  Var aabb2 As PKAABB = New PKAABB(aabb1)
 		  Assert.AreDifferent(aabb1, aabb2)
 		  Assert.AreEqual(aabb1.GetMinX, aabb2.GetMinX, 1.0E-4)
 		  Assert.AreEqual(aabb1.GetMinY, aabb2.GetMinY, 1.0E-4)
@@ -116,7 +116,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateFailure1Test()
 		  ///
-		  ' Tests the failed creation of an AABB.
+		  ' Tests the failed creation of a PKAABB.
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
@@ -124,7 +124,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var a As AABB = New AABB(0.0, 0.0, -1.0, 2.0)
+		    Var a As PKAABB = New PKAABB(0.0, 0.0, -1.0, 2.0)
 		    #Pragma Unused a
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -139,7 +139,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateFailure2Test()
 		  ///
-		  ' Tests the failed creation of an AABB.
+		  ' Tests the failed creation of a PKAABB.
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
@@ -147,7 +147,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var a As AABB = New AABB(New PKVector2(0.0, 0.0), New PKVector2(-1.0, 2.0))
+		    Var a As PKAABB = New PKAABB(New PKVector2(0.0, 0.0), New PKVector2(-1.0, 2.0))
 		    #Pragma Unused a
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -162,18 +162,18 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateRadiusTest()
 		  ///
-		  ' Tests the creation of an AABB from a radius.
+		  ' Tests the creation of a PKAABB from a radius.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(0.5)
+		  Var aabb As PKAABB = New PKAABB(0.5)
 		  Assert.AreEqual(-0.500, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual(-0.500, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.GetMaxX, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.GetMaxY, 1.0e-3)
 		  
-		  aabb = New AABB(New PKVector2(-1.0, 1.0), 0.5)
+		  aabb = New PKAABB(New PKVector2(-1.0, 1.0), 0.5)
 		  Assert.AreEqual(-1.500, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual(-0.500, aabb.GetMaxX, 1.0e-3)
@@ -185,14 +185,14 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateSuccessTest()
 		  ///
-		  ' Tests the successful creation of an AABB.
+		  ' Tests the successful creation of a PKAABB.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var a As AABB = New AABB(0.0, 0.0, 1.0, 1.0)
-		  Var b As AABB = New AABB(-2.0, 2.0, -1.0, 5.0)
-		  Var c As AABB = New AABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
+		  Var a As PKAABB = New PKAABB(0.0, 0.0, 1.0, 1.0)
+		  Var b As PKAABB = New PKAABB(-2.0, 2.0, -1.0, 5.0)
+		  Var c As PKAABB = New PKAABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
 		  
 		  Assert.AreEqual(0.0, a.MinX)
 		  Assert.AreEqual(0.0, a.MinY)
@@ -220,16 +220,16 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(0.0, 0.0, 0.0, 0.0)
+		  Var aabb As PKAABB = New PKAABB(0.0, 0.0, 0.0, 0.0)
 		  Assert.IsTrue(aabb.IsDegenerate)
 		  
-		  aabb = New AABB(1.0, 2.0, 1.0, 3.0)
+		  aabb = New PKAABB(1.0, 2.0, 1.0, 3.0)
 		  Assert.IsTrue(aabb.IsDegenerate)
 		  
-		  aabb = New AABB(1.0, 0.0, 2.0, 1.0)
+		  aabb = New PKAABB(1.0, 0.0, 2.0, 1.0)
 		  Assert.IsFalse(aabb.IsDegenerate)
 		  
-		  aabb = New AABB(1.0, 0.0, 1.000001, 2.0)
+		  aabb = New PKAABB(1.0, 0.0, 1.000001, 2.0)
 		  Assert.IsFalse(aabb.IsDegenerate)
 		  Assert.IsFalse(aabb.IsDegenerate(Epsilon.E))
 		  Assert.IsTrue(aabb.IsDegenerate(0.000001))
@@ -245,8 +245,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 4.0, 4.0)
-		  Var aabb2 As AABB = aabb.GetExpanded(2.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 4.0, 4.0)
+		  Var aabb2 As PKAABB = aabb.GetExpanded(2.0)
 		  
 		  Assert.AreDifferent(aabb, aabb2)
 		  
@@ -297,7 +297,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 1.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
 		  Assert.AreEqual(1.0, aabb.getHeight)
 		  
@@ -312,7 +312,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 1.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
 		  Assert.AreEqual(3.0, aabb.GetWidth)
 		  
@@ -327,17 +327,17 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb1 As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
-		  Var aabb2 As AABB = New AABB(-1.0, -2.0, 5.0, 0.5)
+		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 0.5)
 		  
-		  Var aabbr As AABB = aabb1.GetIntersection(aabb2)
+		  Var aabbr As PKAABB = aabb1.GetIntersection(aabb2)
 		  Assert.AreEqual(-1.0, aabbr.GetMinX, 1.0E-4)
 		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)
 		  Assert.AreEqual(2.0, aabbr.GetMaxX, 1.0E-4)
 		  Assert.AreEqual(0.5, aabbr.GetMaxY, 1.0E-4)
 		  
-		  // Test using separated aabbs (should give a zero AABB).
-		  VAR aabb3 AS AABB = New AABB(-4.0, 2.0, -3.0, 4.0)
+		  // Test using separated aabbs (should give a zero PKAABB).
+		  VAR aabb3 AS PKAABB = New PKAABB(-4.0, 2.0, -3.0, 4.0)
 		  aabbr = aabb1.GetIntersection(aabb3)
 		  Assert.AreEqual(0.0, aabbr.GetMinX, 1.0E-4)
 		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)
@@ -362,18 +362,18 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Test overlap.
-		  Var aabb1 As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
-		  Var aabb2 As AABB = New AABB(-1.0, -2.0, 5.0, 2.0)
+		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 2.0)
 		  Assert.IsTrue(aabb1.Overlaps(aabb2))
 		  Assert.IsTrue(aabb2.Overlaps(aabb1))
 		  
 		  // Test no overlap.
-		  Var aabb3 As AABB = New AABB(3.0, 2.0, 4.0, 3.0)
+		  Var aabb3 As PKAABB = New PKAABB(3.0, 2.0, 4.0, 3.0)
 		  Assert.IsFalse(aabb1.Overlaps(aabb3))
 		  Assert.IsFalse(aabb3.Overlaps(aabb1))
 		  
 		  // Test containment.
-		  Var aabb4 As AABB = New AABB(-1.0, 0.25, 1.0, 0.75)
+		  Var aabb4 As PKAABB = New PKAABB(-1.0, 0.25, 1.0, 0.75)
 		  Assert.IsTrue(aabb1.Overlaps(aabb4))
 		  Assert.IsTrue(aabb4.Overlaps(aabb1))
 		  
@@ -388,7 +388,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  // 4 + 1 = 5 * 2 = 10
 		  Assert.AreEqual(10.0, aabb.GetPerimeter, 1.0E-4)
 		  
@@ -403,9 +403,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb As AABB = New AABB(-2.0, 0.0, 1.0, 1.0)
+		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
-		  Var aabb2 As AABB = aabb.GetTranslated(New PKVector2(-1.0, 2.0))
+		  Var aabb2 As PKAABB = aabb.GetTranslated(New PKVector2(-1.0, 2.0))
 		  Assert.AreDifferent(aabb, aabb2)
 		  
 		  Assert.AreEqual(-2.0, aabb.GetMinX, 1.0E-4)
@@ -436,19 +436,19 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  //Ooverlapping AABBs.
-		  Var aabb1 As AABB = New AABB(-2.0, 0.0, 2.0, 1.0)
-		  Var aabb2 As AABB = New AABB(-1.0, -2.0, 5.0, 0.5)
+		  //Ooverlapping PKAABBs.
+		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 0.5)
 		  
 		  // Test the `GetUnion` method.
-		  Var aabbr As AABB = aabb1.GetUnion(aabb2)
+		  Var aabbr As PKAABB = aabb1.GetUnion(aabb2)
 		  Assert.AreEqual(-2.0, aabbr.GetMinX, 1.0E-4)
 		  Assert.AreEqual(-2.0, aabbr.GetMinY, 1.0E-4)
 		  Assert.AreEqual(5.0, aabbr.GetMaxX, 1.0E-4)
 		  Assert.AreEqual(1.0, aabbr.GetMaxY, 1.0E-4)
 		  
 		  // Test the `GetUnion` method using separated aabbs.
-		  Var aabb3 As AABB = New AABB(-4.0, 2.0, -3.0, 4.0)
+		  Var aabb3 As PKAABB = New PKAABB(-4.0, 2.0, -3.0, 4.0)
 		  aabbr = aabb1.GetUnion(aabb3)
 		  Assert.AreEqual(-4.0, aabbr.GetMinX, 1.0E-4)
 		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)

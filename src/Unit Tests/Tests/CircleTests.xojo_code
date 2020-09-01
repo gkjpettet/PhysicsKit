@@ -62,7 +62,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateAABBTest()
 		  ///
-		  ' Tests the generated AABB.
+		  ' Tests the generated PKAABB.
 		  ///
 		  
 		  Using PhysicsKit
@@ -72,14 +72,14 @@ Inherits TestGroup
 		  Var c As Circle = New Circle(1.2)
 		  
 		  // Using an identity transform.
-		  Var aabb As AABB = c.CreateAABB(IDENTITY)
+		  Var aabb As PKAABB = c.CreateAABB(IDENTITY)
 		  Assert.AreEqual(-1.2, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual(-1.2, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual( 1.2, aabb.GetMaxX, 1.0e-3)
 		  Assert.AreEqual( 1.2, aabb.GetMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
-		  Var aabb2 As AABB = c.CreateAABB
+		  Var aabb2 As PKAABB = c.CreateAABB
 		  Assert.AreEqual(aabb.GetMinX, aabb2.GetMinX)
 		  Assert.AreEqual(aabb.GetMinY, aabb2.GetMinY)
 		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)

@@ -190,14 +190,14 @@ Inherits TestGroup
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Var aabb As AABB = p.CreateAABB(IDENTITY)
+		  Var aabb As PKAABB = p.CreateAABB(IDENTITY)
 		  Assert.AreEqual(-1.0, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual(-1.0, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual( 1.0, aabb.GetMaxX, 1.0e-3)
 		  Assert.AreEqual( 1.0, aabb.GetMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
-		  Var aabb2 As AABB = p.CreateAABB
+		  Var aabb2 As PKAABB = p.CreateAABB
 		  Assert.AreEqual(aabb.GetMinX, aabb2.GetMinX)
 		  Assert.AreEqual(aabb.GetMinY, aabb2.GetMinY)
 		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)

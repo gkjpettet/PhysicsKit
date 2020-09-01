@@ -125,7 +125,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // Get the first point.
@@ -159,8 +159,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		    End If
 		  Next i
 		  
-		  // Create the AABB.
-		  Return New AABB(minX, minY, maxX, maxY)
+		  // Create the PKAABB.
+		  Return New PKAABB(minX, minY, maxX, maxY)
 		  
 		End Function
 	#tag EndMethod

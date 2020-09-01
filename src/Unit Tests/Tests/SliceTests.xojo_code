@@ -62,7 +62,7 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateAABBTest()
 		  ///
-		  ' Tests the generate AABB.
+		  ' Tests the generate PKAABB.
 		  ///
 		  
 		  Using PhysicsKit
@@ -70,14 +70,14 @@ Inherits TestGroup
 		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  
 		  // Using an identity transform.
-		  Var aabb As AABB = e.CreateAABB(IDENTITY)
+		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
 		  Assert.AreEqual( 0.000, aabb.getMinX, 1.0e-3)
 		  Assert.AreEqual(-0.422, aabb.getMinY, 1.0e-3)
 		  Assert.AreEqual( 1.000, aabb.getMaxX, 1.0e-3)
 		  Assert.AreEqual( 0.422, aabb.getMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
-		  Var aabb2 As AABB = e.CreateAABB
+		  Var aabb2 As PKAABB = e.CreateAABB
 		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
 		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
 		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)

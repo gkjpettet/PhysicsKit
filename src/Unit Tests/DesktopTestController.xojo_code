@@ -9,7 +9,7 @@ Inherits TestController
 		  
 		  group = New GrahamScanTests(Self, "GrahamScan")
 		  group = New GiftWrapTests(Self, "GiftWrap")
-		  group = New PKVector3Tests(Self, "PKVector3")
+		  group = New Vector3Tests(Self, "PKVector3")
 		  group = New Matrix33Tests(Self, "Matrix33")
 		  group = New Matrix22Tests(Self, "Matrix22")
 		  group = New RayTests(Self, "Ray")
@@ -32,7 +32,7 @@ Inherits TestController
 		  group = New AABBTests(Self, "AABB")
 		  group = New TransformTests(Self, "Transform")
 		  group = New RotationTests(Self, "Rotation")
-		  group = New PKVector2Tests(Self, "PKVector2")
+		  group = New Vector2Tests(Self, "PKVector2")
 		  
 		End Sub
 	#tag EndEvent

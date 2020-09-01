@@ -1,5 +1,5 @@
 #tag Class
-Protected Class PKVector2Tests
+Protected Class Vector2Tests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()

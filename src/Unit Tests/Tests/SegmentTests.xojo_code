@@ -76,14 +76,14 @@ Inherits TestGroup
 		  
 		  Var s As Segment = New Segment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  
-		  Var aabb As AABB = s.CreateAABB(IDENTITY)
+		  Var aabb As PKAABB = s.CreateAABB(IDENTITY)
 		  Assert.AreEqual(0.0, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual(0.0, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual(1.0, aabb.GetMaxX, 1.0e-3)
 		  Assert.AreEqual(1.0, aabb.GetMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
-		  Var aabb2 As AABB = s.CreateAABB
+		  Var aabb2 As PKAABB = s.CreateAABB
 		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
 		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
 		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)

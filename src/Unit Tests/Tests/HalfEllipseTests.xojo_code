@@ -80,20 +80,20 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub CreateAABBTest()
 		  ///
-		  ' Tests the generated AABB.
+		  ' Tests the generated PKAABB.
 		  ///
 		  
 		  Var e As HalfEllipse = New HalfEllipse(1.0, 0.25)
 		  
 		  // Using an identity transform.
-		  Var aabb As AABB = e.CreateAABB(IDENTITY)
+		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
 		  Assert.AreEqual(-0.500, aabb.getMinX, 1.0e-3)
 		  Assert.AreEqual( 0.000, aabb.getMinY, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.getMaxX, 1.0e-3)
 		  Assert.AreEqual( 0.250, aabb.getMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
-		  Var aabb2 As AABB = e.CreateAABB
+		  Var aabb2 As PKAABB = e.CreateAABB
 		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
 		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
 		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)

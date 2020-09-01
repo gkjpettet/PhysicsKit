@@ -97,7 +97,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -110,7 +110,7 @@ Implements PhysicsKit.Convex
 		  Var minY As Double = Self.GetFarthestPoint(PKVector2.INV_Y_AXIS, transform).Y
 		  Var maxY As Double = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform).Y
 		  
-		  Return New AABB(minX, minY, maxX, maxY)
+		  Return New PKAABB(minX, minY, maxX, maxY)
 		  
 		End Function
 	#tag EndMethod

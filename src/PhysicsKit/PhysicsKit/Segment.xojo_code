@@ -140,10 +140,10 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  ///
 		  ' Be aware that this method could produce an infinitely thin
-		  ' AABB if this segment is aligned to either the x or y-axis.
+		  ' PKAABB if this segment is aligned to either the x or y-axis.
 		  '
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -152,8 +152,8 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 		  Var p0 As PKVector2 = transform.GetTransformed(Self.Vertices(0))
 		  Var p1 As PKVector2 = transform.GetTransformed(Self.Vertices(1))
 		  
-		  // Create the AABB.
-		  Return AABB.CreateAABBFromPoints(p0, p1)
+		  // Create the PKAABB.
+		  Return PKAABB.CreateAABBFromPoints(p0, p1)
 		  
 		End Function
 	#tag EndMethod

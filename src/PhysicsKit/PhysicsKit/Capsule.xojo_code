@@ -95,7 +95,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -112,7 +112,7 @@ Implements PhysicsKit.Convex
 		  Var minY As Double = 2 * c - p1.Y
 		  Var maxY As Double = p1.Y
 		  
-		  Return New AABB(minX, minY, maxX, maxY)
+		  Return New PKAABB(minX, minY, maxX, maxY)
 		  
 		End Function
 	#tag EndMethod

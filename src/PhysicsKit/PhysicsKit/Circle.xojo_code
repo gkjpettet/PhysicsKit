@@ -58,14 +58,14 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // If the transform is not Nil then transform the center.
 		  Var center As PKVector2 = transform.GetTransformed(Self.Center)
 		  
-		  // Return a new AABB.
-		  Return New AABB(center, Self.Radius)
+		  // Return a new PKAABB.
+		  Return New PKAABB(center, Self.Radius)
 		  
 		End Function
 	#tag EndMethod

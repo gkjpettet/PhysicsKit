@@ -79,12 +79,12 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
 		  
-		  // Fast computation of Ellipse AABB without resorting to `GetFarthestPoint` related methods
+		  // Fast computation of Ellipse PKAABB without resorting to `GetFarthestPoint` related methods
 		  // Also see http://www.iquilezles.org/www/articles/ellipses/ellipses.htm
 		  
 		  // u is a unit vector with the world and local rotation.
@@ -98,7 +98,7 @@ Implements PhysicsKit.Convex
 		  Var hw2 As Double = Self.HalfWidth * Self.HalfWidth
 		  Var hh2 As Double = Self.HalfHeight * Self.HalfHeight
 		  
-		  // Calculate the resulting AABB's half width and half height.
+		  // Calculate the resulting PKAABB's half width and half height.
 		  Var aabbHalfWidth As Double = Sqrt(x2 * hw2 + y2 * hh2)
 		  Var aabbHalfHeight As Double = Sqrt(y2 * hw2 + x2 * hh2) 
 		  
@@ -106,13 +106,13 @@ Implements PhysicsKit.Convex
 		  Var cx As Double = transform.GetTransformedX(Self.Center)
 		  Var cy As Double = transform.GetTransformedY(Self.Center)
 		  
-		  // Combine to form the ellipse AABB.
+		  // Combine to form the ellipse PKAABB.
 		  Var minx As Double = cx - aabbHalfWidth
 		  Var miny As Double = cy - aabbHalfHeight
 		  Var maxx As Double = cx + aabbHalfWidth
 		  Var maxy As Double = cy + aabbHalfHeight
 		  
-		  Return New AABB(minx, miny, maxx, maxy)
+		  Return New PKAABB(minx, miny, maxx, maxy)
 		  
 		End Function
 	#tag EndMethod

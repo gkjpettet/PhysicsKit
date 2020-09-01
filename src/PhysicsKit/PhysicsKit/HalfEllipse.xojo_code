@@ -100,15 +100,15 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
 		  
-		  // Fast computation of HalfEllipse AABB without resorting to getFarthestPoint related methods
-		  // Based on the Ellipse AABB calculation + adjusting the result for the missing side
+		  // Fast computation of HalfEllipse PKAABB without resorting to getFarthestPoint related methods
+		  // Based on the Ellipse PKAABB calculation + adjusting the result for the missing side
 		  
-		  // First calculate the Ellipse AABB.
+		  // First calculate the Ellipse PKAABB.
 		  // Taken from `Ellipse.CreateAABB` with slight modifications.
 		  Var u As PKVector2 = Self.Rotation.ToVector
 		  transform.TransformR(u)
@@ -131,7 +131,7 @@ Implements PhysicsKit.Convex
 		  Var maxy As Double = cy + aabbHalfHeight
 		  
 		  // Now adjust for the missing side.
-		  // Every time one point will come from the Ellipse AABB and the other from the left and 
+		  // Every time one point will come from the Ellipse PKAABB and the other from the left and 
 		  // right vertices. Depending on the total rotation u, there are four possible cases.
 		  If u.Y > 0 Then
 		    If u.X > 0 Then
@@ -151,7 +151,7 @@ Implements PhysicsKit.Convex
 		    End If
 		  End If
 		  
-		  Return New AABB(minx, miny, maxx, maxy)
+		  Return New PKAABB(minx, miny, maxx, maxy)
 		  
 		End Function
 	#tag EndMethod

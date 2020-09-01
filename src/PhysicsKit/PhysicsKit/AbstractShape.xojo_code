@@ -61,7 +61,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB() As PhysicsKit.AABB
+		Function CreateAABB() As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Return Self.CreateAABB(IDENTITY)
@@ -70,7 +70,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PhysicsKit.Transformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused transform

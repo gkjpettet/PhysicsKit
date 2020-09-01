@@ -88,10 +88,10 @@ Inherits PhysicsKit.Polygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateAABB(transform As PhysicsKit.Transform) As PhysicsKit.AABB
+		Function CreateAABB(transform As PhysicsKit.Transform) As PKAABB
 		  // Since we know that this is a rectangle we can get away with much fewer
-		  // comparisons to find the correct AABB. Each vertex maps to one point of the
-		  // AABB, we have to find in which of the four possible rotation states this
+		  // comparisons to find the correct PKAABB. Each vertex maps to one point of the
+		  // PKAABB, we have to find in which of the four possible rotation states this
 		  // rectangle currently is. This is done below by comparing the first two vertices.
 		  
 		  // It's more convenient to use transform.GetTransformed instead but we can
@@ -107,15 +107,15 @@ Inherits PhysicsKit.Polygon
 		  
 		  If v0y > v1y Then
 		    If v0x < v1x Then
-		      Return New AABB(v0x, v1y, v2x, v3y)
+		      Return New PKAABB(v0x, v1y, v2x, v3y)
 		    Else
-		      Return New AABB(v1x, v2y, v3x, v0y)
+		      Return New PKAABB(v1x, v2y, v3x, v0y)
 		    End If
 		  Else
 		    If v0x < v1x Then
-		      Return New AABB(v3x, v0y, v1x, v2y)
+		      Return New PKAABB(v3x, v0y, v1x, v2y)
 		    Else
-		      Return New AABB(v2x, v3y, v0x, v1y)
+		      Return New PKAABB(v2x, v3y, v0x, v1y)
 		    End If
 		  End If
 		  
