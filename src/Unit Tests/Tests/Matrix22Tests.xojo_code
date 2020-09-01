@@ -255,7 +255,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var v1 As Vector2 = New Vector2(1.0, -1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Call m1.Multiply(v1)
 		  
 		  Assert.AreEqual(-1.0, v1.x)
@@ -271,7 +271,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var v1 As Vector2 = New Vector2(1.0, -1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Call m1.MultiplyT(v1)
 		  
 		  Assert.AreEqual(-2.0, v1.x)
@@ -328,8 +328,8 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var v1 As Vector2 = New Vector2(1.0, -1.0)
-		  Var v2 As Vector2 = m1.Product(v1)
+		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
+		  Var v2 As PKVector2 = m1.Product(v1)
 		  
 		  Assert.AreEqual(-1.0, v2.x)
 		  Assert.AreEqual(-1.0, v2.y)
@@ -347,8 +347,8 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var v1 As Vector2 = New Vector2(1.0, -1.0)
-		  Var v2 As Vector2 = m1.ProductT(v1)
+		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
+		  Var v2 As PKVector2 = m1.ProductT(v1)
 		  
 		  Assert.AreEqual(-2.0, v2.x)
 		  Assert.AreEqual(-2.0, v2.y)
@@ -366,8 +366,8 @@ Inherits TestGroup
 		  ///
 		  
 		  Var A As Matrix22 = New Matrix22(3.0, -1.0, -1.0, -1.0)
-		  Var b As Vector2 = New Vector2(2.0, 6.0)
-		  Var x As Vector2 = A.Solve(b)
+		  Var b As PKVector2 = New PKVector2(2.0, 6.0)
+		  Var x As PKVector2 = A.Solve(b)
 		  
 		  Assert.AreEqual(-1.0, x.x)
 		  Assert.AreEqual(-5.0, x.y)

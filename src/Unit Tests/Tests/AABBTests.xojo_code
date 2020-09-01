@@ -102,7 +102,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var aabb1 As AABB = New AABB(New Vector2(-3.0, 0.0), New Vector2(-2.0, 2.0))
+		  Var aabb1 As AABB = New AABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
 		  Var aabb2 As AABB = New AABB(aabb1)
 		  Assert.AreDifferent(aabb1, aabb2)
 		  Assert.AreEqual(aabb1.GetMinX, aabb2.GetMinX, 1.0E-4)
@@ -147,7 +147,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var a As AABB = New AABB(New Vector2(0.0, 0.0), New Vector2(-1.0, 2.0))
+		    Var a As AABB = New AABB(New PKVector2(0.0, 0.0), New PKVector2(-1.0, 2.0))
 		    #Pragma Unused a
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -173,7 +173,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 0.500, aabb.GetMaxX, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.GetMaxY, 1.0e-3)
 		  
-		  aabb = New AABB(New Vector2(-1.0, 1.0), 0.5)
+		  aabb = New AABB(New PKVector2(-1.0, 1.0), 0.5)
 		  Assert.AreEqual(-1.500, aabb.GetMinX, 1.0e-3)
 		  Assert.AreEqual( 0.500, aabb.GetMinY, 1.0e-3)
 		  Assert.AreEqual(-0.500, aabb.GetMaxX, 1.0e-3)
@@ -192,7 +192,7 @@ Inherits TestGroup
 		  
 		  Var a As AABB = New AABB(0.0, 0.0, 1.0, 1.0)
 		  Var b As AABB = New AABB(-2.0, 2.0, -1.0, 5.0)
-		  Var c As AABB = New AABB(New Vector2(-3.0, 0.0), New Vector2(-2.0, 2.0))
+		  Var c As AABB = New AABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
 		  
 		  Assert.AreEqual(0.0, a.MinX)
 		  Assert.AreEqual(0.0, a.MinY)
@@ -405,7 +405,7 @@ Inherits TestGroup
 		  
 		  Var aabb As AABB = New AABB(-2.0, 0.0, 1.0, 1.0)
 		  
-		  Var aabb2 As AABB = aabb.GetTranslated(New Vector2(-1.0, 2.0))
+		  Var aabb2 As AABB = aabb.GetTranslated(New PKVector2(-1.0, 2.0))
 		  Assert.AreDifferent(aabb, aabb2)
 		  
 		  Assert.AreEqual(-2.0, aabb.GetMinX, 1.0E-4)
@@ -418,7 +418,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 0.0, aabb2.GetMaxX, 1.0E-4)
 		  Assert.AreEqual( 3.0, aabb2.GetMaxY, 1.0E-4)
 		  
-		  aabb.Translate(New Vector2(-1.0, 2.0))
+		  aabb.Translate(New PKVector2(-1.0, 2.0))
 		  
 		  Assert.AreEqual(-3.0, aabb.GetMinX, 1.0E-4)
 		  Assert.AreEqual( 2.0, aabb.GetMinY, 1.0E-4)

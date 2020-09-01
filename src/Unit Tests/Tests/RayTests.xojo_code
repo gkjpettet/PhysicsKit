@@ -35,7 +35,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var r As Ray = New Ray(New Vector2, Nil)
+		    Var r As Ray = New Ray(New PKVector2, Nil)
 		    #Pragma Unused r
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -69,7 +69,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var r As Ray = New Ray(New Vector2, MathsKit.ToRadians(10))
+		    Var r As Ray = New Ray(New PKVector2, MathsKit.ToRadians(10))
 		    #Pragma Unused r
 		    Assert.Pass
 		    Return
@@ -86,7 +86,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var r As Ray = New Ray(New Vector2, New Vector2)
+		    Var r As Ray = New Ray(New PKVector2, New PKVector2)
 		    #Pragma Unused r
 		  Catch e As InvalidArgumentException
 		    Assert.Pass

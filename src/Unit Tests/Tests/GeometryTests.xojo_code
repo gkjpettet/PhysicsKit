@@ -36,17 +36,17 @@ Inherits TestGroup
 		  ' Tests the cleanse array method.
 		  ///
 		  
-		  Var points() As Vector2
-		  points.AddRow(New Vector2(1.0, 0.0))
-		  points.AddRow(New Vector2(1.0, 0.0))
-		  points.AddRow(New Vector2(0.5, -0.5))
-		  points.AddRow(New Vector2(0.0, -0.5))
-		  points.AddRow(New Vector2(-0.5, -0.5))
-		  points.AddRow(New Vector2(-2.0, -0.5))
-		  points.AddRow(New Vector2(2.1, 0.5))
-		  points.AddRow(New Vector2(1.0, 0.0))
+		  Var points() As PKVector2
+		  points.AddRow(New PKVector2(1.0, 0.0))
+		  points.AddRow(New PKVector2(1.0, 0.0))
+		  points.AddRow(New PKVector2(0.5, -0.5))
+		  points.AddRow(New PKVector2(0.0, -0.5))
+		  points.AddRow(New PKVector2(-0.5, -0.5))
+		  points.AddRow(New PKVector2(-2.0, -0.5))
+		  points.AddRow(New PKVector2(2.1, 0.5))
+		  points.AddRow(New PKVector2(1.0, 0.0))
 		  
-		  Var result() As Vector2 = Geometry.Cleanse(points)
+		  Var result() As PKVector2 = Geometry.Cleanse(points)
 		  
 		  Assert.IsTrue(Geometry.GetWinding(result) > 0.0)
 		  Assert.AreEqual(4, result.Count)
@@ -63,10 +63,10 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var a(4) As Vector2
-		    a(0) = New Vector2
-		    a(3) = New Vector2
-		    a(4) = New Vector2
+		    Var a(4) As PKVector2
+		    a(0) = New PKVector2
+		    a(3) = New PKVector2
+		    a(4) = New PKVector2
 		    Call Geometry.cleanse(a)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -127,7 +127,7 @@ Inherits TestGroup
 		  Var t As Triangle = Geometry.CreateEquilateralTriangle(2.0)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = t.GetCenter
+		  Var center As PKVector2 = t.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
@@ -142,8 +142,8 @@ Inherits TestGroup
 		  
 		  // Make sure all the angles are the same.
 		  For i As Integer = 1 To 2
-		    Var v1 As Vector2 = t.Vertices(i)
-		    Var v2 As Vector2 = t.Vertices(If(i + 1 = 3, 0, i + 1))
+		    Var v1 As PKVector2 = t.Vertices(i)
+		    Var v2 As PKVector2 = t.Vertices(If(i + 1 = 3, 0, i + 1))
 		    
 		    // Test the angle between the vectors.
 		    Var angle As Double = v1.GetAngleBetween(v2)
@@ -177,7 +177,7 @@ Inherits TestGroup
 		  Var s As Segment = Geometry.CreateHorizontalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = s.GetCenter
+		  Var center As PKVector2 = s.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
@@ -193,19 +193,19 @@ Inherits TestGroup
 		  Var t As Triangle = Geometry.CreateIsoscelesTriangle(2.0, 1.0)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = t.GetCenter
+		  Var center As PKVector2 = t.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
 		  // Get the vertices.
-		  Var v1 As Vector2 = t.Vertices(0)
-		  Var v2 As Vector2 = t.Vertices(1)
-		  Var v3 As Vector2 = t.Vertices(2)
+		  Var v1 As PKVector2 = t.Vertices(0)
+		  Var v2 As PKVector2 = t.Vertices(1)
+		  Var v3 As PKVector2 = t.Vertices(2)
 		  
 		  // Create the edges.
-		  Var e1 As Vector2 = v1.Towards(v2)
-		  Var e2 As Vector2 = v2.Towards(v3)
-		  Var e3 As Vector2 = v3.Towards(v1)
+		  Var e1 As PKVector2 = v1.Towards(v2)
+		  Var e2 As PKVector2 = v2.Towards(v3)
+		  Var e3 As PKVector2 = v3.Towards(v1)
 		  
 		  // The length of e1 and e3 should be identical.
 		  Assert.AreEqual(e1.GetMagnitude, e3.GetMagnitude, 1.0e-3)
@@ -1019,12 +1019,12 @@ Inherits TestGroup
 		  ' Tests the successful creation of a polygon using vertices.
 		  ///
 		  
-		  Var vertices(4) As Vector2
-		  vertices(0) = New Vector2(1.0, 0.0)
-		  vertices(1) = New Vector2(0.5, 1.0)
-		  vertices(2) = New Vector2(-0.5, 1.0)
-		  vertices(3) = New Vector2(-1.0, 0.0)
-		  vertices(4) = New Vector2(0.0, -1.0)
+		  Var vertices(4) As PKVector2
+		  vertices(0) = New PKVector2(1.0, 0.0)
+		  vertices(1) = New PKVector2(0.5, 1.0)
+		  vertices(2) = New PKVector2(-0.5, 1.0)
+		  vertices(3) = New PKVector2(-1.0, 0.0)
+		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
 		  Var p As Polygon = Geometry.CreatePolygonAtOrigin(vertices)
 		  
@@ -1037,7 +1037,7 @@ Inherits TestGroup
 		  Next 
 		  
 		  // Make sure the centre is at the origin.
-		  Var c As Vector2 = p.GetCenter
+		  Var c As PKVector2 = p.GetCenter
 		  Assert.AreEqual(0.000, c.x, 1.0e-3)
 		  Assert.AreEqual(0.000, c.y, 1.0e-3)
 		  
@@ -1053,7 +1053,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var vertices() As Vector2 = Nil
+		    Var vertices() As PKVector2 = Nil
 		    Call Geometry.CreatePolygon(vertices)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -1074,7 +1074,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var vertices(4) As Vector2
+		    Var vertices(4) As PKVector2
 		    // Should fail since the vertices list contains Nil items.
 		    Call Geometry.CreatePolygon(vertices)
 		  Catch e As NilObjectException
@@ -1093,12 +1093,12 @@ Inherits TestGroup
 		  ' Tests the successful creation of a polygon using vertices.
 		  ///
 		  
-		  Var vertices(4) As Vector2
-		  vertices(0) = New Vector2(1.0, 0.0)
-		  vertices(1) = New Vector2(0.5, 1.0)
-		  vertices(2) = New Vector2(-0.5, 1.0)
-		  vertices(3) = New Vector2(-1.0, 0.0)
-		  vertices(4) = New Vector2(0.0, -1.0)
+		  Var vertices(4) As PKVector2
+		  vertices(0) = New PKVector2(1.0, 0.0)
+		  vertices(1) = New PKVector2(0.5, 1.0)
+		  vertices(2) = New PKVector2(-0.5, 1.0)
+		  vertices(3) = New PKVector2(-1.0, 0.0)
+		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
 		  Var p As Polygon = Geometry.CreatePolygon(vertices)
 		  
@@ -1132,19 +1132,19 @@ Inherits TestGroup
 		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0, True)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = t.GetCenter
+		  Var center As PKVector2 = t.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
 		  // Get the vertices.
-		  Var v1 As Vector2 = t.Vertices(0)
-		  Var v2 As Vector2 = t.Vertices(1)
-		  Var v3 As Vector2 = t.Vertices(2)
+		  Var v1 As PKVector2 = t.Vertices(0)
+		  Var v2 As PKVector2 = t.Vertices(1)
+		  Var v3 As PKVector2 = t.Vertices(2)
 		  
 		  // Create the edges.
-		  Var e1 As Vector2 = v1.Towards(v2)
-		  Var e2 As Vector2 = v2.Towards(v3)
-		  Var e3 As Vector2 = v3.Towards(v1)
+		  Var e1 As PKVector2 = v1.Towards(v2)
+		  Var e2 As PKVector2 = v2.Towards(v3)
+		  Var e3 As PKVector2 = v3.Towards(v1)
 		  
 		  // One of the follow dot products must be zero indicating a 90 degree angle.
 		  If e1.Dot(e2) < 0.00001 And e1.Dot(e2) > -0.00001 Then
@@ -1177,19 +1177,19 @@ Inherits TestGroup
 		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = t.GetCenter
+		  Var center As PKVector2 = t.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
 		  // Get the vertices.
-		  Var v1 As Vector2 = t.Vertices(0)
-		  Var v2 As Vector2 = t.Vertices(1)
-		  Var v3 As Vector2 = t.Vertices(2)
+		  Var v1 As PKVector2 = t.Vertices(0)
+		  Var v2 As PKVector2 = t.Vertices(1)
+		  Var v3 As PKVector2 = t.Vertices(2)
 		  
 		  // Create the edges.
-		  Var e1 As Vector2 = v1.Towards(v2)
-		  Var e2 As Vector2 = v2.Towards(v3)
-		  Var e3 As Vector2 = v3.Towards(v1)
+		  Var e1 As PKVector2 = v1.Towards(v2)
+		  Var e2 As PKVector2 = v2.Towards(v3)
+		  Var e3 As PKVector2 = v3.Towards(v1)
 		  
 		  // One of the follow dot products must be zero indicating a 90 degree angle.
 		  If e1.Dot(e2) < 0.00001 And e1.Dot(e2) > -0.00001 Then
@@ -1219,10 +1219,10 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given two points at the origin.
 		  ///
 		  
-		  Var s As Segment = Geometry.CreateSegmentAtOrigin(New Vector2(1.0, 1.0), New Vector2(2.0, -1.0))
+		  Var s As Segment = Geometry.CreateSegmentAtOrigin(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = s.GetCenter
+		  Var center As PKVector2 = s.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
@@ -1238,7 +1238,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New Vector2(1.0, 1.0))
+		    Call Geometry.CreateSegment(New PKVector2(1.0, 1.0))
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1258,7 +1258,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(Nil, New Vector2)
+		    Call Geometry.CreateSegment(Nil, New PKVector2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1278,7 +1278,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New Vector2, Nil)
+		    Call Geometry.CreateSegment(New PKVector2, Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1298,7 +1298,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New Vector2(1.0, 1.0), New Vector2(2.0, -1.0))
+		    Call Geometry.CreateSegment(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1328,9 +1328,9 @@ Inherits TestGroup
 		  ' Tests the successful creation of a triangle using points.
 		  ///
 		  
-		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
-		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
-		  Var p3 As Vector2 = New Vector2(-0.5, 1.0)
+		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
+		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
 		  Var t As Triangle = Geometry.CreateTriangleAtOrigin(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
@@ -1339,7 +1339,7 @@ Inherits TestGroup
 		  Assert.IsFalse(t.Vertices(2) Is p3)
 		  
 		  // Make sure the centre is at the origin.
-		  Var c As Vector2 = t.GetCenter
+		  Var c As PKVector2 = t.GetCenter
 		  Assert.AreEqual(0.000, c.x, 1.0e-3)
 		  Assert.AreEqual(0.000, c.y, 1.0e-3)
 		  
@@ -1354,8 +1354,8 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
-		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
+		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  
 		  // Should fail since the vertices list contains a Nil item.
 		  Try
@@ -1375,9 +1375,9 @@ Inherits TestGroup
 		  ' Tests the successful creation of a triangle using points.
 		  ///
 		  
-		  Var p1 As Vector2 = New Vector2(1.0, 0.0)
-		  Var p2 As Vector2 = New Vector2(0.5, 1.0)
-		  Var p3 As Vector2 = New Vector2(-0.5, 1.0)
+		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
+		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
 		  Var t As Triangle = Geometry.CreateTriangle(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
@@ -1416,7 +1416,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 0.500, p.vertices(0).x, 1.0e-3)
 		  Assert.AreEqual( 0.000, p.vertices(0).y, 1.0e-3)
 		  
-		  Var v11 As Vector2 = p.vertices(0)
+		  Var v11 As PKVector2 = p.vertices(0)
 		  
 		  Try
 		    p = Geometry.CreateUnitCirclePolygon(5, 0.5, MathsKit.PI / 2.0)
@@ -1438,7 +1438,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 0.000, p.vertices(0).x, 1.0e-3)
 		  Assert.AreEqual( 0.500, p.vertices(0).y, 1.0e-3)
 		  
-		  Var v21 As Vector2 = p.vertices(0)
+		  Var v21 As PKVector2 = p.vertices(0)
 		  
 		  // The angle between any two vertices of the two polygons should be PI / 2.
 		  Var angle As Double = v11.GetAngleBetween(v21)
@@ -1456,7 +1456,7 @@ Inherits TestGroup
 		  Var s As Segment = Geometry.CreateVerticalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
-		  Var center As Vector2 = s.GetCenter
+		  Var center As PKVector2 = s.GetCenter
 		  Assert.AreEqual(0.000, center.x, 1.0e-3)
 		  Assert.AreEqual(0.000, center.y, 1.0e-3)
 		  
@@ -1730,7 +1730,7 @@ Inherits TestGroup
 		  
 		  Try
 		    // It should use the centre.
-		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New Vector2(1.0, 1.0), Nil)
+		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New PKVector2(1.0, 1.0), Nil)
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1749,7 +1749,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Flip(Nil, New Vector2(1.0, 1.0), Nil)
+		    Call Geometry.Flip(Nil, New PKVector2(1.0, 1.0), Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1769,9 +1769,9 @@ Inherits TestGroup
 		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 1.0)
 		  
 		  // Flip about an arbitrary vector and point (line).
-		  Var flipped As Polygon = Geometry.Flip(p, New Vector2(1.0, 1.0), New Vector2(0.0, 2.0))
+		  Var flipped As Polygon = Geometry.Flip(p, New PKVector2(1.0, 1.0), New PKVector2(0.0, 2.0))
 		  
-		  Var vertices() As Vector2 = flipped.GetVertices
+		  Var vertices() As PKVector2 = flipped.GetVertices
 		  Assert.AreEqual(-2.951, vertices(0).x, 1.0e-3)
 		  Assert.AreEqual( 2.309, vertices(0).y, 1.0e-3)
 		  Assert.AreEqual(-2.587, vertices(1).x, 1.0e-3)
@@ -1795,7 +1795,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New Vector2, Nil)
+		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New PKVector2, Nil)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1816,10 +1816,10 @@ Inherits TestGroup
 		  
 		  Try
 		    Call Geometry.GetAreaWeightedCenter(Array(_
-		    New Vector2(1.0, 0.0), _
+		    New PKVector2(1.0, 0.0), _
 		    Nil, _
-		    New Vector2(4.0, 3.0), _
-		    New Vector2(-2.0, -1.0), _
+		    New PKVector2(4.0, 3.0), _
+		    New PKVector2(-2.0, -1.0), _
 		    Nil))
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -1840,7 +1840,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var tmp() As Vector2
+		    Var tmp() As PKVector2
 		    Call Geometry.GetAreaWeightedCenter(tmp)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -1878,17 +1878,17 @@ Inherits TestGroup
 		  ' Tests the GetAreaWeightedCenter method with a polygon that is not centered about the origin.
 		  ///
 		  
-		  Var vertices(5) As Vector2
-		  vertices(0) = New Vector2(-1.0, 2.0)
-		  vertices(1) = New Vector2(0.0, 3.0)
+		  Var vertices(5) As PKVector2
+		  vertices(0) = New PKVector2(-1.0, 2.0)
+		  vertices(1) = New PKVector2(0.0, 3.0)
 		  
 		  // Test dense area of points.
-		  vertices(2) = New Vector2(2.2, 1.5)
-		  vertices(3) = New Vector2(2.3, 1.3)
-		  vertices(4) = New Vector2(2.4, 1.2)
-		  vertices(5) = New Vector2(1.0, 0.0)
+		  vertices(2) = New PKVector2(2.2, 1.5)
+		  vertices(3) = New PKVector2(2.3, 1.3)
+		  vertices(4) = New PKVector2(2.4, 1.2)
+		  vertices(5) = New PKVector2(1.0, 0.0)
 		  
-		  Var c As Vector2 = Geometry.GetAreaWeightedCenter(vertices)
+		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(vertices)
 		  
 		  // Note the x is closer to the "real" centre of the object.
 		  Assert.AreEqual(0.682, c.x, 1.0e-3)
@@ -1903,17 +1903,17 @@ Inherits TestGroup
 		  ' Tests the GetAreaWeightedCenter method.
 		  ///
 		  
-		  Var vertices(5) As Vector2
-		  vertices(0) = New Vector2(-2.0, 1.0)
-		  vertices(1) = New Vector2(-1.0, 2.0)
+		  Var vertices(5) As PKVector2
+		  vertices(0) = New PKVector2(-2.0, 1.0)
+		  vertices(1) = New PKVector2(-1.0, 2.0)
 		  
 		  // Test dense area of points.
-		  vertices(2) = New Vector2(1.2, 0.5)
-		  vertices(3) = New Vector2(1.3, 0.3)
-		  vertices(4) = New Vector2(1.4, 0.2)
-		  vertices(5) = New Vector2(0.0, -1.0)
+		  vertices(2) = New PKVector2(1.2, 0.5)
+		  vertices(3) = New PKVector2(1.3, 0.3)
+		  vertices(4) = New PKVector2(1.4, 0.2)
+		  vertices(5) = New PKVector2(0.0, -1.0)
 		  
-		  Var c As Vector2 = Geometry.GetAreaWeightedCenter(vertices)
+		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(vertices)
 		  
 		  // Note the x is closer to the "real" centre of the object
 		  Assert.AreEqual(-0.318, c.x, 1.0e-3)
@@ -1929,13 +1929,13 @@ Inherits TestGroup
 		  ' points who are all the same yielding zero area.
 		  ///
 		  
-		  Var points(3) As Vector2
-		  points(0) = New Vector2(2.0, 1.0)
-		  points(1) = New Vector2(2.0, 1.0)
-		  points(2) = New Vector2(2.0, 1.0)
-		  points(3) = New Vector2(2.0, 1.0)
+		  Var points(3) As PKVector2
+		  points(0) = New PKVector2(2.0, 1.0)
+		  points(1) = New PKVector2(2.0, 1.0)
+		  points(2) = New PKVector2(2.0, 1.0)
+		  points(3) = New PKVector2(2.0, 1.0)
 		  
-		  Var c As Vector2 = Geometry.GetAreaWeightedCenter(points)
+		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(points)
 		  
 		  Assert.AreEqual(2.000, c.x, 1.0e-3)
 		  Assert.AreEqual(1.000, c.y, 1.0e-3)
@@ -1953,10 +1953,10 @@ Inherits TestGroup
 		  
 		  Try
 		    Call Geometry.GetAverageCenter(Array(_
-		    New Vector2(1.0, 0.0), _
+		    New PKVector2(1.0, 0.0), _
 		    Nil, _
-		    New Vector2(4.0, 3.0), _
-		    New Vector2(-2.0, -1.0), _
+		    New PKVector2(4.0, 3.0), _
+		    New PKVector2(-2.0, -1.0), _
 		    Nil))
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -1976,15 +1976,15 @@ Inherits TestGroup
 		  ' centre of mass when vertices are more dense at any place along the perimeter.
 		  ///
 		  
-		  Var vertices(5) As Vector2
-		  vertices(0) = New Vector2(-2.0, 1.0)
-		  vertices(1) = New Vector2(-1.0, 2.0)
-		  vertices(2) = New Vector2(1.2, 0.5)
-		  vertices(3) = New Vector2(1.3, 0.3)
-		  vertices(4) = New Vector2(1.4, 0.2)
-		  vertices(5) = New Vector2(0.0, -1.0)
+		  Var vertices(5) As PKVector2
+		  vertices(0) = New PKVector2(-2.0, 1.0)
+		  vertices(1) = New PKVector2(-1.0, 2.0)
+		  vertices(2) = New PKVector2(1.2, 0.5)
+		  vertices(3) = New PKVector2(1.3, 0.3)
+		  vertices(4) = New PKVector2(1.4, 0.2)
+		  vertices(5) = New PKVector2(0.0, -1.0)
 		  
-		  Var c As Vector2 = Geometry.GetAverageCenter(vertices)
+		  Var c As PKVector2 = Geometry.GetAverageCenter(vertices)
 		  
 		  Assert.AreEqual(0.150, c.x, 1.0e-3)
 		  Assert.AreEqual(0.500, c.y, 1.0e-3)
@@ -2001,7 +2001,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var tmp() As Vector2
+		    Var tmp() As PKVector2
 		    Call Geometry.GetAverageCenter(tmp)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -2042,8 +2042,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var points(0) As Vector2
-		    points(0) = New Vector2(-1.0, -1.0)
+		    Var points(0) As PKVector2
+		    points(0) = New PKVector2(-1.0, -1.0)
 		    Call Geometry.GetWinding(points)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -2064,8 +2064,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var points(3) As Vector2
-		    points(0) = New Vector2(-1.0, -1.0)
+		    Var points(3) As PKVector2
+		    points(0) = New PKVector2(-1.0, -1.0)
 		    points(1) = Nil
 		    points(2) = Nil
 		    points(3) = Nil
@@ -2086,15 +2086,15 @@ Inherits TestGroup
 		  ' Tests the GetWinding method passing a valid array.
 		  ///
 		  
-		  Var points(3) As Vector2
-		  points(0) = New Vector2(-1.0, -1.0)
-		  points(1) = New Vector2(1.0, -1.0)
-		  points(2) = New Vector2(1.0, 1.0)
-		  points(3) = New Vector2(-1.0, 1.0)
+		  Var points(3) As PKVector2
+		  points(0) = New PKVector2(-1.0, -1.0)
+		  points(1) = New PKVector2(1.0, -1.0)
+		  points(2) = New PKVector2(1.0, 1.0)
+		  points(3) = New PKVector2(-1.0, 1.0)
 		  Assert.IsTrue(Geometry.GetWinding(points) > 0)
 		  
 		  // Reverse the array.
-		  Var p As Vector2 = points(0)
+		  Var p As PKVector2 = points(0)
 		  points(0) = points(3)
 		  points(3) = p
 		  p = points(1)
@@ -2257,8 +2257,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
-		    Geometry.CreateSegment(New Vector2(-0.5, 0.0)))
+		    Call Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
+		    Geometry.CreateSegment(New PKVector2(-0.5, 0.0)))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2394,13 +2394,13 @@ Inherits TestGroup
 		  Assert.AreEqual(8, p.Vertices.Count, "Failed test 3")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
+		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
 		  Geometry.CreateUnitCirclePolygon(5, 0.2))
 		  Assert.AreEqual(5, p.Vertices.Count, "Failed test 4")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New Vector2(1.0, 0.0)), _
-		  Geometry.CreateSegment(New Vector2(0.5, 0.5)))
+		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
+		  Geometry.CreateSegment(New PKVector2(0.5, 0.5)))
 		  Assert.AreEqual(4, p.Vertices.Count, "Failed test 5")
 		  
 		End Sub
@@ -2682,7 +2682,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 1.0)), 0)
+		    Call Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 1.0)), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2725,7 +2725,7 @@ Inherits TestGroup
 		  Var s4 As HalfEllipse = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 2)
 		  Var s5 As Slice = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
 		  Var s6 As Polygon = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 2)
-		  Var s7 As Segment = Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 0.0)), 2)
+		  Var s7 As Segment = Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
 		  
 		  Assert.AreEqual(1.000, s1.Radius, 1.0e-3)
 		  Assert.AreEqual(2.000, s2.Length, 1.0e-3)
@@ -2744,7 +2744,7 @@ Inherits TestGroup
 		  s4 = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 0.5)
 		  s5 = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0.5)
 		  s6 = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.5)
-		  s7 = Geometry.Scale(Geometry.CreateSegment(New Vector2(1.0, 0.0)), 0.5)
+		  s7 = Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), 0.5)
 		  
 		  Assert.AreEqual(0.250, s1.Radius, 1.0e-3)
 		  Assert.AreEqual(0.500, s2.Length, 1.0e-3)

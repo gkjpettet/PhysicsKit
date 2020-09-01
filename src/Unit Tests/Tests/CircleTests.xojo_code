@@ -40,7 +40,7 @@ Inherits TestGroup
 		  
 		  Var c As Circle = New Circle(2.0)
 		  Var t As Transform = New Transform
-		  Var p As Vector2 = New Vector2(2.0, 4.0)
+		  Var p As PKVector2 = New PKVector2(2.0, 4.0)
 		  
 		  // Shouldn't be in the circle.
 		  Assert.IsTrue(Not c.Contains(p, t))
@@ -182,7 +182,7 @@ Inherits TestGroup
 		  Var t As Transform = New Transform
 		  
 		  // A cicle has infinite axes so it should be Nil.
-		  Var axes() As Vector2 = c.GetAxes(Nil, t)
+		  Var axes() As PKVector2 = c.GetAxes(Nil, t)
 		  Assert.IsTrue(axes Is Nil)
 		  
 		End Sub
@@ -198,13 +198,13 @@ Inherits TestGroup
 		  
 		  Var c As Circle = New Circle(1.5)
 		  Var t As Transform = New Transform
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  Var f As PointFeature = c.GetFarthestFeature(y, t)
 		  Assert.AreEqual( 0.000, f.GetPoint.X, 1.0e-3)
 		  Assert.AreEqual(-1.500, f.GetPoint.Y, 1.0e-3)
 		  
-		  Var p As Vector2 = c.GetFarthestPoint(y, t)
+		  Var p As PKVector2 = c.GetFarthestPoint(y, t)
 		  Assert.AreEqual( 0.000, p.x, 1.0e-3)
 		  Assert.AreEqual(-1.500, p.y, 1.0e-3)
 		  
@@ -234,7 +234,7 @@ Inherits TestGroup
 		  Var t As Transform = New Transform
 		  
 		  // Should only return one.
-		  Var foci() As Vector2 = c.GetFoci(t)
+		  Var foci() As PKVector2 = c.GetFoci(t)
 		  Assert.IsTrue(foci.Count = 1)
 		  
 		End Sub
@@ -250,8 +250,8 @@ Inherits TestGroup
 		  
 		  Var c As Circle = New Circle(1.5)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, 1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  t.Translate(1.0, 0.5)
 		  

@@ -39,7 +39,7 @@ Inherits TestGroup
 		  
 		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
 		  Var t As Transform = New Transform
-		  Var p As Vector2 = New Vector2(0.75, 0.35)
+		  Var p As PKVector2 = New PKVector2(0.75, 0.35)
 		  
 		  // Shouldn't be in.
 		  Assert.IsTrue(Not e.Contains(p, t))
@@ -226,7 +226,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var e As HalfEllipse = New HalfEllipse(1.0, 0.5)
-		    Call e.GetAxes(Array(New Vector2), IDENTITY)
+		    Call e.GetAxes(Array(New PKVector2), IDENTITY)
 		  Catch e As UnsupportedOperationException
 		    Assert.Pass
 		    Return
@@ -245,13 +245,13 @@ Inherits TestGroup
 		  
 		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)
 		  
-		  Var p As Vector2 = e.GetFarthestPoint(x, t)
+		  Var p As PKVector2 = e.GetFarthestPoint(x, t)
 		  Assert.AreEqual( 2.000, p.x, 1.0e-3)
 		  Assert.AreEqual( 0.5, p.y, 1.0e-3)
 		  
@@ -308,7 +308,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var he As HalfEllipse = New HalfEllipse(4.0, 4.0)
-		  Var d As Double = he.GetRadius(New Vector2(1, 0.25))
+		  Var d As Double = he.GetRadius(New PKVector2(1, 0.25))
 		  
 		  Assert.AreEqual(3.927647520827677, d, 1e-3)
 		End Sub
@@ -322,8 +322,8 @@ Inherits TestGroup
 		  
 		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, 1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)

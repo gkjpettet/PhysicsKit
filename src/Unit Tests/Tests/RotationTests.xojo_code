@@ -44,8 +44,8 @@ Inherits TestGroup
 		  Var r4 As Rotation = New Rotation(MathsKit.ToRadians(-50))
 		  Var r5 As Rotation = New Rotation(MathsKit.ToRadians(110 + 10 * 360))
 		  
-		  Var v1 As Vector2 = New Vector2(MathsKit.ToRadians(-65))
-		  Var v2 As Vector2 = New Vector2(MathsKit.ToRadians(120))
+		  Var v1 As PKVector2 = New PKVector2(MathsKit.ToRadians(-65))
+		  Var v2 As PKVector2 = New PKVector2(MathsKit.ToRadians(120))
 		  Call v1.Multiply(4.5)
 		  Call v2.Multiply(0.75)
 		  
@@ -113,7 +113,7 @@ Inherits TestGroup
 		  Assert.AreEqual(Cos(2.5), r6.cost, 1.0e-6)
 		  Assert.AreEqual(Sin(2.5), r6.sint, 1.0e-6)
 		  
-		  Var v1 As Vector2 = New Vector2(5, -5)
+		  Var v1 As PKVector2 = New PKVector2(5, -5)
 		  
 		  Var r7 As Rotation = Rotation.of_(v1)
 		  Assert.AreEqual(Cos(MathsKit.ToRadians(-45)), r7.cost, 1.0e-6)
@@ -172,7 +172,7 @@ Inherits TestGroup
 		  
 		  Var r1 As Rotation = New Rotation(1.0, 0.0)
 		  Var r2 As Rotation = New Rotation(0.0, 1.0)
-		  Var v As Vector2 = New Vector2(-5.0, 0.0)
+		  Var v As PKVector2 = New PKVector2(-5.0, 0.0)
 		  
 		  Assert.AreEqual(1.0, r1.Cross(r2), 1.0e-6)
 		  Assert.AreEqual(0.0, r1.Cross(r2.GetRotated90), 1.0e-6)
@@ -194,7 +194,7 @@ Inherits TestGroup
 		  
 		  Var r1 As Rotation = New Rotation(1.0, 0.0)
 		  Var r2 As Rotation = New Rotation(0.0, 1.0)
-		  Var v As Vector2 = New Vector2(0.0, -5.0)
+		  Var v As PKVector2 = New PKVector2(0.0, -5.0)
 		  
 		  Assert.AreEqual(0.0, r1.Dot(r2), 1.0e-6)
 		  Assert.AreEqual(-1.0, r1.Dot(r2.GetRotated90), 1.0e-6)
@@ -222,9 +222,9 @@ Inherits TestGroup
 		  Assert.IsTrue(r.Equals(New Rotation(2.0)))
 		  
 		  Assert.IsFalse(r.Equals(New Rotation(1.0)))
-		  Assert.IsFalse(r.Equals(New Vector2))
+		  Assert.IsFalse(r.Equals(New PKVector2))
 		  
-		  Var nilObj As Vector2 = Nil
+		  Var nilObj As PKVector2 = Nil
 		  Assert.IsFalse(r.Equals(nilObj))
 		  
 		  Assert.IsTrue(r.Equals(r, 1.0e-4))
@@ -321,8 +321,8 @@ Inherits TestGroup
 		  Var r4 As Rotation = New Rotation(MathsKit.toRadians(-50))
 		  Var r5 As Rotation = New Rotation(MathsKit.toRadians(110 + 10 * 360))
 		  
-		  Var v1 As Vector2 = New Vector2(MathsKit.ToRadians(-65))
-		  Var v2 As Vector2 = New Vector2(MathsKit.ToRadians(120))
+		  Var v1 As PKVector2 = New PKVector2(MathsKit.ToRadians(-65))
+		  Var v2 As PKVector2 = New PKVector2(MathsKit.ToRadians(120))
 		  Call v1.Multiply(4.5)
 		  Call v2.Multiply(0.75)
 		  
@@ -560,8 +560,8 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var r As Rotation = New Rotation(MathsKit.ToRadians(30))
-		  Var v1 As Vector2 = r.ToVector
-		  Var v2 As Vector2 = r.ToVector(2.5)
+		  Var v1 As PKVector2 = r.ToVector
+		  Var v2 As PKVector2 = r.ToVector(2.5)
 		  
 		  Assert.AreEqual(r.ToRadians, v1.GetDirection, 1.0e-6)
 		  Assert.AreEqual(r.ToRadians, v2.GetDirection, 1.0e-6)

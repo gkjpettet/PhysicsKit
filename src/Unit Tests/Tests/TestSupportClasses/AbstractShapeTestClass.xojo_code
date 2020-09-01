@@ -3,12 +3,12 @@ Protected Class AbstractShapeTestClass
 Inherits PhysicsKit.AbstractShape
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  Super.Constructor(New PhysicsKit.Vector2, 0)
+		  Super.Constructor(New PKVector2, 0)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Contains(point As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As Boolean
+		Function Contains(point As PKVector2, transform As PhysicsKit.Transform) As Boolean
 		  #Pragma Unused point
 		  #Pragma Unused transform
 		  
@@ -35,7 +35,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRadius(center As PhysicsKit.Vector2) As Double
+		Function GetRadius(center As PKVector2) As Double
 		  #Pragma Unused center
 		  
 		  Return 0.0
@@ -44,7 +44,7 @@ Inherits PhysicsKit.AbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(n As PhysicsKit.Vector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
+		Function Project(n As PKVector2, transform As PhysicsKit.Transform) As PhysicsKit.Interval
 		  #Pragma Unused n
 		  #Pragma Unused transform
 		  

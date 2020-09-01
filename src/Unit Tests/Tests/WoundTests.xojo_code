@@ -33,12 +33,12 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub GetRadiusCenterTest()
 		  ///
-		  ' Tests the GetRadius(Vector2) method.
+		  ' Tests the GetRadius(PKVector2) method.
 		  ///
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Vector2 = New Vector2(1.0, 0.0)
+		  Var c As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(1.434, p.GetRadius(c), 1.0e-3)
@@ -87,9 +87,9 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var w As Wound = Geometry.CreatePolygon(Array(_
-		  New Vector2(0.0, 0.0), _
-		  New Vector2(1.0, 0.0), _
-		  New Vector2(0.0, 1.0)))
+		  New PKVector2(0.0, 0.0), _
+		  New PKVector2(1.0, 0.0), _
+		  New PKVector2(0.0, 1.0)))
 		  
 		  Var it As Iterator = w.GetVertexIterator
 		  Var i As Integer = 0
@@ -112,15 +112,15 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var w As Wound = Geometry.CreatePolygon(Array(_
-		  New Vector2(0.0, 0.0), _
-		  New Vector2(1.0, 0.0), _
-		  New Vector2(0.0, 1.0)))
+		  New PKVector2(0.0, 0.0), _
+		  New PKVector2(1.0, 0.0), _
+		  New PKVector2(0.0, 1.0)))
 		  
 		  Var it As Iterator = w.GetVertexIterator
 		  Var i As Integer = 0
-		  Var verts() As Vector2 = w.GetVertices
+		  Var verts() As PKVector2 = w.GetVertices
 		  While it.MoveNext
-		    Var v As Vector2 = it.Value
+		    Var v As PKVector2 = it.Value
 		    Assert.IsTrue(verts(i).Equals(v))
 		    i = i + 1
 		  Wend

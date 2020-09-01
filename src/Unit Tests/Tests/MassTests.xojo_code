@@ -71,7 +71,7 @@ Inherits TestGroup
 		  masses.AddRow(m3)
 		  Var m As Mass = Mass.Create(masses)
 		  
-		  Var c As Vector2 = m.GetCenter
+		  Var c As PKVector2 = m.GetCenter
 		  Assert.IsTrue(m.IsInfinite)
 		  Assert.AreEqual(0.000, c.x, 1.0e-3)
 		  Assert.AreEqual(0.000, c.y, 1.0e-3)
@@ -92,8 +92,8 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m1 As Mass = New Mass(New Vector2, 1.0, 2.0)
-		    Var m2 As Mass = New Mass(New Vector2, 2.0, 7.0)
+		    Var m1 As Mass = New Mass(New PKVector2, 1.0, 2.0)
+		    Var m2 As Mass = New Mass(New PKVector2, 2.0, 7.0)
 		    Var masses() As Mass
 		    masses.AddRow(m1)
 		    masses.AddRow(Nil)
@@ -140,12 +140,12 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m1 As Mass = New Mass(New Vector2, 1.0, 2.0)
+		  Var m1 As Mass = New Mass(New PKVector2, 1.0, 2.0)
 		  Var masses() As Mass
 		  masses.AddRow(m1)
 		  Var m As Mass = Mass.Create(masses)
 		  
-		  Var c As Vector2 = m.GetCenter
+		  Var c As PKVector2 = m.GetCenter
 		  Assert.IsFalse(m.IsInfinite)
 		  Assert.AreDifferent(m1, m)
 		  Assert.AreEqual(0.000, c.x, 1.0e-3)
@@ -189,16 +189,16 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m1 As Mass = New Mass(New Vector2( 1.0,  1.0), 3.00, 1.00)
-		  Var m2 As Mass = New Mass(New Vector2(-1.0,  0.0), 0.50, 0.02)
-		  Var m3 As Mass = New Mass(New Vector2( 1.0, -2.0), 2.00, 3.00)
+		  Var m1 As Mass = New Mass(New PKVector2( 1.0,  1.0), 3.00, 1.00)
+		  Var m2 As Mass = New Mass(New PKVector2(-1.0,  0.0), 0.50, 0.02)
+		  Var m3 As Mass = New Mass(New PKVector2( 1.0, -2.0), 2.00, 3.00)
 		  Var masses() As Mass
 		  masses.AddRow(m1)
 		  masses.AddRow(m2)
 		  masses.AddRow(m3)
 		  Var m As Mass = Mass.Create(masses)
 		  
-		  Var c As Vector2 = m.GetCenter
+		  Var c As PKVector2 = m.GetCenter
 		  Assert.AreEqual( 0.818, c.x, 1.0e-3)
 		  Assert.AreEqual(-0.181, c.y, 1.0e-3)
 		  Assert.AreEqual( 5.500, m.GetMass, 1.0e-3)
@@ -258,7 +258,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New Vector2(1.0, 0.0), 2.0, 1.0)
+		  Var m As Mass = New Mass(New PKVector2(1.0, 0.0), 2.0, 1.0)
 		  Var m2 As Mass = New Mass(m)
 		  
 		  Assert.AreDifferent(m, m2)
@@ -280,10 +280,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New Vector2, 1.0, 0.0)
+		  Var m As Mass = New Mass(New PKVector2, 1.0, 0.0)
 		  Assert.IsFalse(m.IsInfinite)
 		  Assert.IsTrue(m.GetType = MassTypes.FixedAngularVelocity)
-		  Assert.IsTrue(m.GetCenter.Equals(New Vector2))
+		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 1.0)
 		  Assert.AreEqual(m.GetInertia, 0.0)
 		  
@@ -298,10 +298,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New Vector2, 0, 1.0)
+		  Var m As Mass = New Mass(New PKVector2, 0, 1.0)
 		  Assert.IsFalse(m.IsInfinite)
 		  Assert.IsTrue(m.GetType = MassTypes.FixedLinearVelocity)
-		  Assert.IsTrue(m.GetCenter.Equals(New Vector2))
+		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 0.0)
 		  Assert.AreEqual(m.GetInertia, 1.0)
 		  
@@ -316,9 +316,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New Vector2, 0, 0)
+		  Var m As Mass = New Mass(New PKVector2, 0, 0)
 		  Assert.IsTrue(m.IsInfinite)
-		  Assert.IsTrue(m.GetCenter.Equals(New Vector2))
+		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 0.0)
 		  Assert.AreEqual(m.GetInertia, 0.0)
 		  
@@ -336,7 +336,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(New Vector2, 1.0, -1.0)
+		    Var m As Mass = New Mass(New PKVector2, 1.0, -1.0)
 		    #Pragma Unused m
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -359,7 +359,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(New Vector2, -1.0, 1.0)
+		    Var m As Mass = New Mass(New PKVector2, -1.0, 1.0)
 		    #Pragma Unused m
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -414,7 +414,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(-1.0, 0.0), New Vector2(1.0, 0.5))
+		  Var s As Segment = New Segment(New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
 		  Var m As Mass = s.CreateMass(1.0)
 		  
 		  // The mass of a segment should be l * d
@@ -434,8 +434,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New Vector2, 1.0, 1.0)
-		  Assert.IsTrue(m.GetCenter.Equals(New Vector2))
+		  Var m As Mass = New Mass(New PKVector2, 1.0, 1.0)
+		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 1.0)
 		  Assert.AreEqual(m.GetInertia, 1.0)
 		  

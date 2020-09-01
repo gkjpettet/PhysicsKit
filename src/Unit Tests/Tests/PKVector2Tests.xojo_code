@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Vector2Tests
+Protected Class PKVector2Tests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
@@ -38,10 +38,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 2.0)
-		  Var v2 As Vector2 = New Vector2(-2.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 2.0)
+		  Var v2 As PKVector2 = New PKVector2(-2.0, 1.0)
 		  
-		  Var v3 As Vector2 = v1.Sum(v2)
+		  Var v3 As PKVector2 = v1.Sum(v2)
 		  Assert.AreEqual(-1.0, v3.x)
 		  Assert.AreEqual( 3.0, v3.y)
 		  
@@ -68,8 +68,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(1.0, 3.0)
-		  Var vc As Vector2 = v.Copy
+		  Var v As PKVector2 = New PKVector2(1.0, 3.0)
+		  Var vc As PKVector2 = v.Copy
 		  
 		  Assert.IsFalse(v = vc)
 		  Assert.AreEqual(v.x, vc.x)
@@ -86,32 +86,32 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2
+		  Var v1 As PKVector2 = New PKVector2
 		  Assert.AreEqual(0.0, v1.x)
 		  Assert.AreEqual(0.0, v1.y)
 		  
-		  Var v2 As Vector2 = New Vector2(1.0, 2.0)
+		  Var v2 As PKVector2 = New PKVector2(1.0, 2.0)
 		  Assert.AreEqual(1.0, v2.x)
 		  Assert.AreEqual(2.0, v2.y)
 		  
-		  Var v3 As Vector2 = New Vector2(v2)
+		  Var v3 As PKVector2 = New PKVector2(v2)
 		  Assert.IsFalse(v3 = v2)
 		  Assert.AreEqual(1.0, v3.x)
 		  Assert.AreEqual(2.0, v3.y)
 		  
-		  Var v4 As Vector2 = New Vector2(0.0, 1.0, 2.0, 3.0)
+		  Var v4 As PKVector2 = New PKVector2(0.0, 1.0, 2.0, 3.0)
 		  Assert.AreEqual(2.0, v4.x)
 		  Assert.AreEqual(2.0, v4.y)
 		  
-		  Var v5 As Vector2 = New Vector2(v2, v1)
+		  Var v5 As PKVector2 = New PKVector2(v2, v1)
 		  Assert.AreEqual(-1.0, v5.x)
 		  Assert.AreEqual(-2.0, v5.y)
 		  
-		  Var v6 As Vector2 = Vector2.Create(1.0, MathsKit.ToRadians(90))
+		  Var v6 As PKVector2 = PKVector2.Create(1.0, MathsKit.ToRadians(90))
 		  Assert.AreEqual( 0.000, v6.x, 1.0e-3)
 		  Assert.AreEqual( 1.000, v6.y, 1.0e-3)
 		  
-		  Var v7 As Vector2 = New Vector2(MathsKit.ToRadians(30.0))
+		  Var v7 As PKVector2 = New PKVector2(MathsKit.ToRadians(30.0))
 		  Assert.AreEqual(1.000, v7.GetMagnitude, 1.0e-4)
 		  Assert.AreEqual(30.000, MathsKit.ToDegrees(v7.GetDirection), 1.0e-4)
 		  
@@ -126,8 +126,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  Assert.AreEqual(0.0, v1.Cross(v1))
 		  Assert.AreEqual(1.0, v1.Cross(v2))
@@ -137,7 +137,7 @@ Inherits TestGroup
 		  Assert.AreEqual(1.0, v1.Cross(0.0, 1.0))
 		  Assert.AreEqual(2.0, v1.Cross(-1.0, 1.0))
 		  
-		  Var r As Vector2 = v1.Cross(3.0)
+		  Var r As PKVector2 = v1.Cross(3.0)
 		  
 		  Assert.AreEqual(-3.0, r.x)
 		  Assert.AreEqual( 3.0, r.y)
@@ -153,17 +153,17 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2
+		  Var v As PKVector2 = New PKVector2
 		  
 		  Assert.AreEqual(4.000, v.DistanceSquared(2.0, 0.0), 1.0e-3)
 		  Assert.AreEqual(5.000, v.DistanceSquared(2.0, -1.0), 1.0e-3)
 		  Assert.AreEqual(2.000, v.Distance(2.0, 0.0), 1.0e-3)
 		  Assert.AreEqual(5.000, v.Distance(3.0, 4.0), 1.0e-3)
 		  
-		  Assert.AreEqual(4.000, v.DistanceSquared(New Vector2(2.0, 0.0)), 1.0e-3)
-		  Assert.AreEqual(5.000, v.DistanceSquared(New Vector2(2.0, -1.0)), 1.0e-3)
-		  Assert.AreEqual(2.000, v.Distance(New Vector2(2.0, 0.0)), 1.0e-3)
-		  Assert.AreEqual(5.000, v.Distance(New Vector2(3.0, 4.0)), 1.0e-3)
+		  Assert.AreEqual(4.000, v.DistanceSquared(New PKVector2(2.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(5.000, v.DistanceSquared(New PKVector2(2.0, -1.0)), 1.0e-3)
+		  Assert.AreEqual(2.000, v.Distance(New PKVector2(2.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(5.000, v.Distance(New PKVector2(3.0, 4.0)), 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -176,9 +176,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(2.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(2.0, 1.0)
 		  
-		  Var r As Vector2 = v1.Quotient(-2.0)
+		  Var r As PKVector2 = v1.Quotient(-2.0)
 		  Assert.AreEqual(-1.0, r.x)
 		  Assert.AreEqual(-0.5, r.y)
 		  
@@ -197,8 +197,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  Assert.AreEqual(1.0, v1.Dot(v2))
 		  // Test a perpendicular vector.
@@ -221,11 +221,11 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(1.0, 2.0)
+		  Var v As PKVector2 = New PKVector2(1.0, 2.0)
 		  
 		  Assert.IsTrue(v.Equals(v))
 		  Assert.IsTrue(v.Equals(v.Copy))
-		  Assert.IsTrue(v.Equals(New Vector2(1.0, 2.0)))
+		  Assert.IsTrue(v.Equals(New PKVector2(1.0, 2.0)))
 		  Assert.IsTrue(v.Equals(1.0, 2.0))
 		  
 		  Assert.IsFalse(v.Equals(v.Copy.Set(2.0, 1.0)))
@@ -241,8 +241,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(-1.0, 2.0)
-		  Var v2 As Vector2 = New Vector2(-2.0, -1.0)
+		  Var v1 As PKVector2 = New PKVector2(-1.0, 2.0)
+		  Var v2 As PKVector2 = New PKVector2(-2.0, -1.0)
 		  
 		  // This should return in the range of -π,π.
 		  Assert.IsTrue(MathsKit.PI >= Abs(v1.GetAngleBetween(v2)))
@@ -258,10 +258,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As PhysicsKit.Vector2 = New Vector2(3.0, 4.0)
+		  Var v As PKVector2 = New PKVector2(3.0, 4.0)
 		  
-		  Var x As Vector2 = v.GetXComponent
-		  Var y As Vector2 = v.GetYComponent
+		  Var x As PKVector2 = v.GetXComponent
+		  Var y As PKVector2 = v.GetYComponent
 		  
 		  Assert.AreEqual(3.0, x.x)
 		  Assert.AreEqual(0.0, x.y)
@@ -272,7 +272,7 @@ Inherits TestGroup
 		  Assert.AreEqual(25.000, v.GetMagnitudeSquared, 1.0e-3)
 		  Assert.AreEqual(53.130, MathsKit.ToDegrees(v.GetDirection), 1.0e-3)
 		  
-		  Var v2 As Vector2 = New Vector2(-4.0, 3.0)
+		  Var v2 As PKVector2 = New PKVector2(-4.0, 3.0)
 		  Assert.AreEqual(90.000, MathsKit.ToDegrees(v.GetAngleBetween(v2)), 1.0e-3)
 		  
 		  v2 = v.GetLeftHandOrthogonalVector
@@ -302,8 +302,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var v2 As Vector2 = New Vector2(0.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  Assert.IsFalse(v1.IsOrthogonal(v2))
 		  Assert.IsTrue(v1.IsOrthogonal(v1.GetLeftHandOrthogonalVector))
@@ -326,7 +326,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2
+		  Var v As PKVector2 = New PKVector2
 		  
 		  Assert.IsTrue(v.isZero)
 		  
@@ -350,7 +350,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(11.0, 2.5)
+		  Var v As PKVector2 = New PKVector2(11.0, 2.5)
 		  Call v.Left
 		  
 		  Assert.AreEqual( 2.5, v.x)
@@ -367,9 +367,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(2.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(2.0, 1.0)
 		  
-		  Var r As Vector2 = v1.Product(-1.5)
+		  Var r As PKVector2 = v1.Product(-1.5)
 		  Assert.AreEqual(-3.0, r.x)
 		  Assert.AreEqual(-1.5, r.y)
 		  
@@ -388,7 +388,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(1.0, -6.0)
+		  Var v As PKVector2 = New PKVector2(1.0, -6.0)
 		  
 		  Call v.Negate
 		  Assert.AreEqual(-1.0, v.x)
@@ -405,7 +405,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(3.0, 4.0)
+		  Var v As PKVector2 = New PKVector2(3.0, 4.0)
 		  Call v.Normalise
 		  
 		  Assert.AreEqual( 3.0 / 5.0, v.x, 1.0e-3)
@@ -422,10 +422,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var v2 As Vector2 = New Vector2(0.5, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var v2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  
-		  Var r As Vector2 = v1.Project(v2)
+		  Var r As PKVector2 = v1.Project(v2)
 		  
 		  Assert.AreEqual( 0.600, r.x, 1.0e-3)
 		  Assert.AreEqual( 1.200, r.y, 1.0e-3)
@@ -441,7 +441,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(11.0, 2.5)
+		  Var v As PKVector2 = New PKVector2(11.0, 2.5)
 		  Call v.Right
 		  
 		  Assert.AreEqual( -2.5, v.x)
@@ -458,7 +458,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(2.0, 1.0)
+		  Var v As PKVector2 = New PKVector2(2.0, 1.0)
 		  
 		  Call v.Rotate(MathsKit.ToRadians(90))
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
@@ -487,9 +487,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2
+		  Var v As PKVector2 = New PKVector2
 		  
-		  Var v2 As Vector2 = New Vector2(1.0, -3.0)
+		  Var v2 As PKVector2 = New PKVector2(1.0, -3.0)
 		  Call v.Set(v2)
 		  
 		  Assert.IsFalse(v = v2)
@@ -518,10 +518,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 2.0)
-		  Var v2 As Vector2 = New Vector2(-2.0, 1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 2.0)
+		  Var v2 As PKVector2 = New PKVector2(-2.0, 1.0)
 		  
-		  Var v3 As Vector2 = v1.Difference(v2)
+		  Var v3 As PKVector2 = v1.Difference(v2)
 		  Assert.AreEqual( 3.0, v3.x)
 		  Assert.AreEqual( 1.0, v3.y)
 		  
@@ -548,10 +548,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var p2 As Vector2 = New Vector2(0.0, 1.0)
+		  Var p1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var p2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
-		  Var r As Vector2 = p1.Towards(p2)
+		  Var r As PKVector2 = p1.Towards(p2)
 		  
 		  Assert.AreEqual(-1.0, r.x)
 		  Assert.AreEqual( 0.0, r.y)
@@ -572,10 +572,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v1 As Vector2 = New Vector2(1.0, 1.0)
-		  Var v2 As Vector2 = New Vector2(1.0, -1.0)
+		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var v2 As PKVector2 = New PKVector2(1.0, -1.0)
 		  
-		  Var r As Vector2 = Vector2.TripleProduct(v1, v2, v2)
+		  Var r As PKVector2 = PKVector2.TripleProduct(v1, v2, v2)
 		  
 		  // T.he below would be -1.0 if the vectors were normalized.
 		  Assert.AreEqual(-2.000, r.x, 1.0e-3)
@@ -592,7 +592,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var v As Vector2 = New Vector2(1.0, -2.0)
+		  Var v As PKVector2 = New PKVector2(1.0, -2.0)
 		  
 		  Call v.Zero
 		  Assert.AreEqual( 0.0, v.x)

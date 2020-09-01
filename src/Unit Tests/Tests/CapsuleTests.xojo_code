@@ -40,7 +40,7 @@ Inherits TestGroup
 		  
 		  Var e As Capsule = New Capsule(2.0, 1.0)
 		  Var t As Transform = New Transform
-		  Var p As Vector2 = New Vector2(0.8, -0.45)
+		  Var p As PKVector2 = New PKVector2(0.8, -0.45)
 		  
 		  // Shouldn't be inside.
 		  Assert.IsTrue(Not e.Contains(p, t))
@@ -155,7 +155,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var cap As Capsule = New Capsule(2.0, 1.0)
-		  Var x As Vector2 = cap.LocalXAxis
+		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(1.000, x.x, 1.0e-3)
 		  Assert.AreEqual(0.000, x.y, 1.0e-3)
 		  
@@ -171,7 +171,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var cap As Capsule = New Capsule(1.0, 2.0)
-		  Var x As Vector2 = cap.LocalXAxis
+		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(0.000, x.x, 1.0e-3)
 		  Assert.AreEqual(1.000, x.y, 1.0e-3)
 		  
@@ -235,8 +235,8 @@ Inherits TestGroup
 		  Var e As Capsule = New Capsule(1.0, 0.5)
 		  
 		  // Should be two axes + number of foci.
-		  Var foci() As Vector2 = Array(New Vector2(2.0, -0.5), New Vector2(1.0, 3.0))
-		  Var axes() as Vector2 = e.GetAxes(foci, IDENTITY)
+		  Var foci() As PKVector2 = Array(New PKVector2(2.0, -0.5), New PKVector2(1.0, 3.0))
+		  Var axes() as PKVector2 = e.GetAxes(foci, IDENTITY)
 		  Assert.AreEqual(4, axes.Count)
 		  
 		  // Make sure we get back the right axes.
@@ -259,13 +259,13 @@ Inherits TestGroup
 		  
 		  Var e As Capsule = New Capsule(2.0, 1.0)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)
 		  
-		  Var p As Vector2 = e.GetFarthestPoint(x, t)
+		  Var p As PKVector2 = e.GetFarthestPoint(x, t)
 		  Assert.AreEqual( 2.000, p.x, 1.0e-3)
 		  Assert.AreEqual( 0.500, p.y, 1.0e-3)
 		  
@@ -302,7 +302,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var e As Capsule = New Capsule(1.0, 0.5)
-		  Var foci() As Vector2 = e.GetFoci(IDENTITY)
+		  Var foci() As PKVector2 = e.GetFoci(IDENTITY)
 		  
 		  // Should be two foci.
 		  Assert.AreEqual(2, foci.Count)
@@ -326,8 +326,8 @@ Inherits TestGroup
 		  
 		  Var e As Capsule = New Capsule(2.0, 1.0)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  // Try some translation.
 		  t.Translate(1.0, 0.5)

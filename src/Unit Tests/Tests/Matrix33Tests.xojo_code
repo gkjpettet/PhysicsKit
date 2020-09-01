@@ -453,8 +453,8 @@ Inherits TestGroup
 		  ///
 		  
 		  Var A As Matrix33 = New Matrix33(3.0, -1.0, 0.0, -1.0, -1.0, 0.0, 0.0,  0.0, 0.0)
-		  Var b As Vector2 = New Vector2(2.0, 6.0)
-		  Var x As Vector2 = A.Solve22(b)
+		  Var b As PKVector2 = New PKVector2(2.0, 6.0)
+		  Var x As PKVector2 = A.Solve22(b)
 		  
 		  Assert.AreEqual(-1.0, x.x)
 		  Assert.AreEqual(-5.0, x.y)

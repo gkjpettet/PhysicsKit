@@ -64,10 +64,10 @@ Inherits TestGroup
 		  t.Translate(2.0, 1.0)
 		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
-		  Var v As Vector2 = New Vector2(1.0, 0.0)
+		  Var v As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  // Test transformation.
-		  Var vt As Vector2 = t.GetTransformed(v)
+		  Var vt As PKVector2 = t.GetTransformed(v)
 		  Assert.AreEqual(1.967, vt.x, 1.0e-3)
 		  Assert.AreEqual(1.657, vt.y, 1.0e-3)
 		  
@@ -116,7 +116,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p As Vector2 = New Vector2
+		  Var p As PKVector2 = New PKVector2
 		  
 		  Var start As Transform = New Transform
 		  start.Translate(1.0, 0.0)
@@ -127,8 +127,8 @@ Inherits TestGroup
 		  endT.Translate(3.0, 2.0)
 		  endT.Rotate(MathsKit.ToRadians(20))
 		  
-		  Var s As Vector2 = start.GetTransformed(p)
-		  Var e As Vector2 = endT.GetTransformed(p)
+		  Var s As PKVector2 = start.GetTransformed(p)
+		  Var e As PKVector2 = endT.GetTransformed(p)
 		  
 		  Const alpha = 0.5
 		  
@@ -136,7 +136,7 @@ Inherits TestGroup
 		  start.Lerp(endT, alpha, mid)
 		  start.Lerp(endT, alpha)
 		  
-		  Var m As Vector2 = mid.GetTransformed(p)
+		  Var m As PKVector2 = mid.GetTransformed(p)
 		  // This test only works this way for the mid point
 		  // otherwise we would have to replicate the lerp method.
 		  Assert.AreEqual((s.x + e.x) * alpha, m.x, 1.0e-9)
@@ -192,7 +192,7 @@ Inherits TestGroup
 		  t.Translate(5, 5)
 		  t.Rotate(MathsKit.ToRadians(90))
 		  
-		  Var v As Vector2 = t.GetTranslation
+		  Var v As PKVector2 = t.GetTranslation
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 5.000, v.y, 1.0e-3)
 		  
@@ -302,7 +302,7 @@ Inherits TestGroup
 		  t.Translate(2.0, 1.0)
 		  t.Rotate(MathsKit.ToRadians(25), 1.0, -1.0)
 		  
-		  Var v As Vector2 = New Vector2(1.0, 0.0)
+		  Var v As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  // Test transformation.
 		  t.TransformV(v)

@@ -3,13 +3,16 @@ Protected Module PhysicsKit
 	#tag Method, Flags = &h1
 		Protected Sub Initialise()
 		  // Initialises the physics module including shared properties within classes.
+		  // We could avoid initialise methods on these classes by making the shared properties 
+		  // static but that would require us to use computed shared properties which I suspect are 
+		  // slower than regular properties.
 		  AbstractShape.Initialise
 		  Ellipse.Initialise
 		  Epsilon.Initialise
 		  HalfEllipse.Initialise
 		  RobustGeometry.Initialise
 		  Transform.Initialise
-		  Vector2.Initialise
+		  PKVector2.Initialise
 		End Sub
 	#tag EndMethod
 
@@ -58,5 +61,47 @@ Protected Module PhysicsKit
 	#tag EndEnum
 
 
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+	#tag EndViewBehavior
 End Module
 #tag EndModule

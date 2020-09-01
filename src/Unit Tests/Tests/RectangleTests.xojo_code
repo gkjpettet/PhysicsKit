@@ -41,7 +41,7 @@ Inherits TestGroup
 		  Var r As Rectangle = New Rectangle(1.0, 2.0)
 		  Var t As Transform = New Transform
 		  
-		  Var pt As Vector2 = New Vector2(2.0, 0.5)
+		  Var pt As PKVector2 = New PKVector2(2.0, 0.5)
 		  
 		  Assert.IsTrue(Not r.Contains(pt, t))
 		  
@@ -148,7 +148,7 @@ Inherits TestGroup
 		  Var r As Rectangle = New Rectangle(1.0, 1.0)
 		  Var t As Transform = New Transform
 		  
-		  Var axes() As Vector2 = r.GetAxes(Nil, t)
+		  Var axes() As PKVector2 = r.GetAxes(Nil, t)
 		  
 		  // Make sure there are only two.
 		  // Gets its own variable as the Xojo compiler seems unable to deduce which `AreEquals` method 
@@ -157,14 +157,14 @@ Inherits TestGroup
 		  Assert.AreEqual(2, axesCount)
 		  
 		  // make sure the axes are perpendicular to the edges
-		  Var ab As Vector2 = r.Vertices(0).Towards(r.Vertices(1))
-		  Var ad As Vector2 = r.Vertices(0).Towards(r.Vertices(3))
+		  Var ab As PKVector2 = r.Vertices(0).Towards(r.Vertices(1))
+		  Var ad As PKVector2 = r.Vertices(0).Towards(r.Vertices(3))
 		  
 		  Assert.AreEqual(0.000, ab.Dot(axes(1)), 1.0e-3)
 		  Assert.AreEqual(0.000, ad.Dot(axes(0)), 1.0e-3)
 		  
 		  // Test a focal point.
-		  Var pt As Vector2 = New Vector2(2.0, -1.0)
+		  Var pt As PKVector2 = New PKVector2(2.0, -1.0)
 		  axes = r.GetAxes(Array(pt), t)
 		  
 		  // Make sure there are 4 more axes.
@@ -204,7 +204,7 @@ Inherits TestGroup
 		  
 		  Var r As Rectangle = New Rectangle(2.0, 1.0)
 		  Var t As Transform = New Transform
-		  Var axis As Vector2 = New Vector2(1.0, 0.0)
+		  Var axis As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var i As Interval = r.Project(axis, t)
 		  
 		  Assert.AreEqual(-1.000, i.min, 1.0e-3)

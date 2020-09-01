@@ -40,18 +40,18 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array( _
-		  New Vector2(0.0, 4.0), _
-		  New Vector2(0.0, 2.0), _
-		  New Vector2(2.0, 0.0), _
-		  New Vector2(4.0, 0.0), _
-		  New Vector2(7.0, 3.0), _
-		  New Vector2(7.0, 5.0), _
-		  New Vector2(5.0, 7.0), _
-		  New Vector2(3.0, 7.0))
+		  Var vertices() As PKVector2 = Array( _
+		  New PKVector2(0.0, 4.0), _
+		  New PKVector2(0.0, 2.0), _
+		  New PKVector2(2.0, 0.0), _
+		  New PKVector2(4.0, 0.0), _
+		  New PKVector2(7.0, 3.0), _
+		  New PKVector2(7.0, 5.0), _
+		  New PKVector2(5.0, 7.0), _
+		  New PKVector2(3.0, 7.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Assert.IsFalse(p.Contains(New Vector2(0.0, 0.0)))
+		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
 		End Sub
 	#tag EndMethod
@@ -65,18 +65,18 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array( _
-		  New Vector2(2.0, 0.0), _
-		  New Vector2(4.0, 0.0), _
-		  New Vector2(7.0, 3.0), _
-		  New Vector2(7.0, 5.0), _
-		  New Vector2(5.0, 7.0), _
-		  New Vector2(3.0, 7.0), _
-		  New Vector2(0.0, 4.0), _
-		  New Vector2(0.0, 2.0))
+		  Var vertices() As PKVector2 = Array( _
+		  New PKVector2(2.0, 0.0), _
+		  New PKVector2(4.0, 0.0), _
+		  New PKVector2(7.0, 3.0), _
+		  New PKVector2(7.0, 5.0), _
+		  New PKVector2(5.0, 7.0), _
+		  New PKVector2(3.0, 7.0), _
+		  New PKVector2(0.0, 4.0), _
+		  New PKVector2(0.0, 2.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Assert.IsFalse(p.Contains(New Vector2(0.0, 0.0)))
+		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
 		End Sub
 	#tag EndMethod
@@ -90,19 +90,19 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array( _
-		  New Vector2(2.0, 0.0), _
-		  New Vector2(4.0, 0.0), _
-		  New Vector2(5.0, 0.0), _
-		  New Vector2(7.0, 3.0), _
-		  New Vector2(7.0, 5.0), _
-		  New Vector2(5.0, 7.0), _
-		  New Vector2(3.0, 7.0), _
-		  New Vector2(0.0, 4.0), _
-		  New Vector2(0.0, 2.0))
+		  Var vertices() As PKVector2 = Array( _
+		  New PKVector2(2.0, 0.0), _
+		  New PKVector2(4.0, 0.0), _
+		  New PKVector2(5.0, 0.0), _
+		  New PKVector2(7.0, 3.0), _
+		  New PKVector2(7.0, 5.0), _
+		  New PKVector2(5.0, 7.0), _
+		  New PKVector2(3.0, 7.0), _
+		  New PKVector2(0.0, 4.0), _
+		  New PKVector2(0.0, 2.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Assert.IsTrue(p.Contains(New Vector2(4.5, 0.0)))
+		  Assert.IsTrue(p.Contains(New PKVector2(4.5, 0.0)))
 		  
 		End Sub
 	#tag EndMethod
@@ -116,19 +116,19 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array( _
-		  New Vector2(2.0, 0.0), _
-		  New Vector2(4.0, 0.0), _
-		  New Vector2(5.0, 0.0), _
-		  New Vector2(7.0, 3.0), _
-		  New Vector2(7.0, 5.0), _
-		  New Vector2(5.0, 7.0), _
-		  New Vector2(3.0, 7.0), _
-		  New Vector2(0.0, 4.0), _
-		  New Vector2(0.0, 2.0))
+		  Var vertices() As PKVector2 = Array( _
+		  New PKVector2(2.0, 0.0), _
+		  New PKVector2(4.0, 0.0), _
+		  New PKVector2(5.0, 0.0), _
+		  New PKVector2(7.0, 3.0), _
+		  New PKVector2(7.0, 5.0), _
+		  New PKVector2(5.0, 7.0), _
+		  New PKVector2(3.0, 7.0), _
+		  New PKVector2(0.0, 4.0), _
+		  New PKVector2(0.0, 2.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
-		  Assert.IsFalse(p.Contains(New Vector2(0.0, 0.0)))
+		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
 		End Sub
 	#tag EndMethod
@@ -141,15 +141,15 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(_
-		  New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, 0.0), _
-		  New Vector2(1.0, 0.0))
+		  Var vertices() As PKVector2 = Array(_
+		  New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, 0.0), _
+		  New PKVector2(1.0, 0.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  
 		  Var t As Transform = New Transform
-		  Var pt As Vector2 = New Vector2(2.0, 4.0)
+		  Var pt As PKVector2 = New PKVector2(2.0, 4.0)
 		  
 		  // Shouldn't be in the polygon.
 		  Assert.IsTrue(Not p.Contains(pt, t))
@@ -186,8 +186,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
 		  Var aabb As AABB = p.CreateAABB(IDENTITY)
@@ -226,8 +226,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2(0.5, 0.5), New Vector2(-0.3, -0.5), _
-		    New Vector2(1.0, -0.3)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2(0.5, 0.5), New PKVector2(-0.3, -0.5), _
+		    New PKVector2(1.0, -0.3)))
 		    #Pragma Unused p
 		  Catch e As RuntimeException
 		    Assert.Fail("Unexpected constructor failure.")
@@ -250,8 +250,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2, New Vector2(2.0, 2.0), _
-		    New Vector2(2.0, 2.0), New Vector2(1.0, 0.0)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2(2.0, 2.0), _
+		    New PKVector2(2.0, 2.0), New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -270,8 +270,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2(1.0, 0.0), New Vector2(2.0, 0.0), _
-		    New Vector2(1.0, 0.0)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2(1.0, 0.0), New PKVector2(2.0, 0.0), _
+		    New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -294,7 +294,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2, Nil, New Vector2(0, 2)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2, Nil, New PKVector2(0, 2)))
 		    #Pragma Unused p
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -317,8 +317,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2(1.0, 1.0), New Vector2(-1.0, 1.0), _
-		    New Vector2(-0.5, 0.0), New Vector2(-1.0, -1.0), New Vector2(1.0, -1.0)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2(1.0, 1.0), New PKVector2(-1.0, 1.0), _
+		    New PKVector2(-0.5, 0.0), New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -341,7 +341,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2, New Vector2(2.0, 2.0), New Vector2(1.0, 0.0)))
+		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2(2.0, 2.0), New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -364,7 +364,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New Vector2, New Vector2))
+		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -387,8 +387,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As polygon = New Polygon(Array(New Vector2(0.0, 1.0), New Vector2(-2.0, -2.0), _
-		    New Vector2(1.0, -2.0)))
+		    Var p As polygon = New Polygon(Array(New PKVector2(0.0, 1.0), New PKVector2(-2.0, -2.0), _
+		    New PKVector2(1.0, -2.0)))
 		    #Pragma Unused p
 		  Catch e As RuntimeException
 		    Assert.Fail("Constructor failed but should have passed.")
@@ -408,27 +408,27 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  Var t As Transform = New Transform
 		  
-		  Var axes() As Vector2 = p.GetAxes(Nil, t)
+		  Var axes() As PKVector2 = p.GetAxes(Nil, t)
 		  Assert.IsFalse(axes = Nil)
 		  Var axesCount As Integer = axes.Count
 		  Assert.AreEqual(3, axesCount)
 		  
 		  // Test passing some focal points.
-		  Var pt As Vector2 = New Vector2(-3.0, 2.0)
+		  Var pt As PKVector2 = New PKVector2(-3.0, 2.0)
 		  axes = p.GetAxes(Array(pt), t)
 		  axesCount = axes.Count
 		  Assert.AreEqual(4, axesCount)
 		  
 		  // Make sure the axes are perpendicular to the edges.
-		  Var ab As Vector2 = p.Vertices(0).Towards(p.Vertices(1))
-		  Var bc As Vector2 = p.Vertices(1).Towards(p.Vertices(2))
-		  Var ca As Vector2 = p.Vertices(2).Towards(p.Vertices(0))
+		  Var ab As PKVector2 = p.Vertices(0).Towards(p.Vertices(1))
+		  Var bc As PKVector2 = p.Vertices(1).Towards(p.Vertices(2))
+		  Var ca As PKVector2 = p.Vertices(2).Towards(p.Vertices(0))
 		  
 		  Assert.AreEqual(0.000, ab.Dot(axes(0)), 1.0e-3)
 		  Assert.AreEqual(0.000, bc.Dot(axes(1)), 1.0e-3)
@@ -448,14 +448,14 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(_
-		  New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, -1.0), _
-		  New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(_
+		  New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, -1.0), _
+		  New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  Var t As Transform = New Transform
-		  Var y As Vector2 = New Vector2(0.0, -1.0)
+		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
 		  Var f As PhysicsKit.EdgeFeature = p.GetFarthestFeature(y, t)
 		  
@@ -467,7 +467,7 @@ Inherits TestGroup
 		  Assert.AreEqual( 1.000, f.Vertex2.Point.x, 1.0e-3, "5")
 		  Assert.AreEqual(-1.000, f.Vertex2.Point.y, 1.0e-3, "6")
 		  
-		  Var pt As Vector2 = p.GetFarthestPoint(y, t)
+		  Var pt As PKVector2 = p.GetFarthestPoint(y, t)
 		  
 		  Assert.AreEqual(-1.000, pt.x, 1.0e-3, "7")
 		  Assert.AreEqual(-1.000, pt.y, 1.0e-3, "8")
@@ -494,14 +494,14 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(New Vector2(0.0, 1.0), New Vector2(-1.0, -1.0), _
-		  New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), New PKVector2(-1.0, -1.0), _
+		  New PKVector2(1.0, -1.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  Var t As Transform = New Transform
 		  
 		  // Should return Nil.
-		  Var foci() As Vector2 = p.GetFoci(t)
+		  Var foci() As PKVector2 = p.GetFoci(t)
 		  Assert.IsTrue(foci = Nil)
 		  
 		End Sub
@@ -538,15 +538,15 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(_
-		  New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, 0.0), _
-		  New Vector2(1.0, 0.0))
+		  Var vertices() As PKVector2 = Array(_
+		  New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, 0.0), _
+		  New PKVector2(1.0, 0.0))
 		  
 		  Var p As Polygon = New Polygon(vertices)
 		  Var t As Transform = New Transform
-		  Var x As Vector2 = New Vector2(1.0, 0.0)
-		  Var y As Vector2 = New Vector2(0.0, 1.0)
+		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
+		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
 		  
 		  t.Translate(1.0, 0.5)
 		  
@@ -574,8 +574,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
 		  // Should move the points.
@@ -601,8 +601,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var vertices() As Vector2 = Array(New Vector2(0.0, 1.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, -1.0))
+		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As Polygon = New Polygon(vertices)
 		  
 		  p.Translate(1.0, -0.5)

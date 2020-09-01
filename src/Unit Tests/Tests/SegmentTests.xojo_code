@@ -39,12 +39,12 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(1.0, 1.0), New Vector2(-1.0, -1.0))
+		  Var s As Segment = New Segment(New PKVector2(1.0, 1.0), New PKVector2(-1.0, -1.0))
 		  Var t As Transform = New Transform
 		  
-		  Assert.IsFalse(s.Contains(New Vector2(2.0, 2.0), t, 0.1))
-		  Assert.IsTrue(s.Contains(New Vector2(1.05, 1.05), t, 0.1))
-		  Assert.IsTrue(s.Contains(New Vector2(0.505, 0.5), t, 0.1))
+		  Assert.IsFalse(s.Contains(New PKVector2(2.0, 2.0), t, 0.1))
+		  Assert.IsTrue(s.Contains(New PKVector2(1.05, 1.05), t, 0.1))
+		  Assert.IsTrue(s.Contains(New PKVector2(0.505, 0.5), t, 0.1))
 		  
 		End Sub
 	#tag EndMethod
@@ -57,11 +57,11 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As Transform = New Transform
 		  
-		  Assert.IsFalse(s.Contains(New Vector2(2.0, 2.0), t))
-		  Assert.IsTrue(s.Contains(New Vector2(0.75, 2.0), t))
+		  Assert.IsFalse(s.Contains(New PKVector2(2.0, 2.0), t))
+		  Assert.IsTrue(s.Contains(New PKVector2(0.75, 2.0), t))
 		  
 		End Sub
 	#tag EndMethod
@@ -74,7 +74,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 0.0), New Vector2(1.0, 1.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  
 		  Var aabb As AABB = s.CreateAABB(IDENTITY)
 		  Assert.AreEqual(0.0, aabb.GetMinX, 1.0e-3)
@@ -112,7 +112,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As New Segment(New Vector2, New Vector2)
+		    Var s As New Segment(New PKVector2, New PKVector2)
 		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -135,7 +135,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As New Segment(Nil, New Vector2)
+		    Var s As New Segment(Nil, New PKVector2)
 		    #Pragma Unused s
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -158,7 +158,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Segment = New Segment(New Vector2, Nil)
+		    Var s As Segment = New Segment(New PKVector2, Nil)
 		    #Pragma Unused s
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -178,7 +178,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.0, 2.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.0, 2.0))
 		  
 		  Assert.AreEqual(0.500, s.center.x, 1.0e-3)
 		  Assert.AreEqual(1.500, s.center.y, 1.0e-3)
@@ -194,14 +194,14 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As Transform = New Transform
 		  
-		  Var axes() As Vector2 = s.GetAxes(Nil, t)
+		  Var axes() As PKVector2 = s.GetAxes(Nil, t)
 		  
 		  Assert.AreEqual(2, axes.Count)
 		  
-		  Var seg As Vector2 = s.Vertices(0).Towards(s.vertices(1))
+		  Var seg As PKVector2 = s.Vertices(0).Towards(s.vertices(1))
 		  // One should be the line itself and the other should be the perp.
 		  Assert.AreEqual(0.000, seg.Cross(axes(1)), 1.0e-3)
 		  Assert.AreEqual(0.000, seg.Dot(axes(0)), 1.0e-3)
@@ -218,14 +218,14 @@ Inherits TestGroup
 		  Assert.AreEqual(0.000, seg.Dot(axes(0)), 1.0e-3)
 		  
 		  // Test for some foci.
-		  Var f As Vector2 = New Vector2(2.0, -2.0)
+		  Var f As PKVector2 = New PKVector2(2.0, -2.0)
 		  t.Identity
 		  
 		  axes = s.GetAxes(Array(f), t)
 		  
 		  Assert.AreEqual(3, axes.Count)
 		  
-		  Var v1 As Vector2 = s.Vertices(0).Towards(f)
+		  Var v1 As PKVector2 = s.Vertices(0).Towards(f)
 		  Call v1.Normalise
 		  
 		  Assert.AreEqual(v1.x, axes(2).X, 1.0e-3)
@@ -242,9 +242,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As Transform = New Transform
-		  Var n As Vector2 = New Vector2(1.0, 0.0)
+		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var f As EdgeFeature = EdgeFeature(s.GetFarthestFeature(n, t))
 		  Assert.AreEqual(1.500, f.max.point.x, 1.0e-3)
@@ -255,7 +255,7 @@ Inherits TestGroup
 		  Assert.AreEqual(1.500, f.vertex2.point.x, 1.0e-3)
 		  Assert.AreEqual(3.000, f.vertex2.point.y, 1.0e-3)
 		  
-		  Var p As Vector2 = s.GetFarthestPoint(n, t)
+		  Var p As PKVector2 = s.GetFarthestPoint(n, t)
 		  Assert.AreEqual(1.500, p.x, 1.0e-3)
 		  Assert.AreEqual(3.000, p.y, 1.0e-3)
 		  
@@ -277,10 +277,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As Transform = New Transform
 		  
-		  Var foci() As Vector2 = s.GetFoci(t)
+		  Var foci() As PKVector2 = s.GetFoci(t)
 		  Assert.IsTrue(foci = Nil)
 		  
 		End Sub
@@ -294,7 +294,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  
 		  Assert.AreEqual(2.500, s.GetLength, 1.0e-3)
 		  
@@ -310,9 +310,9 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Normal case.
-		  Var p As Vector2 = Segment.GetLineIntersection(_
-		  New Vector2(-1.0, -1.0), New Vector2(2.0, 0.0), _
-		  New Vector2(-1.0,  0.0), New Vector2(1.0, 0.5))
+		  Var p As PKVector2 = Segment.GetLineIntersection(_
+		  New PKVector2(-1.0, -1.0), New PKVector2(2.0, 0.0), _
+		  New PKVector2(-1.0,  0.0), New PKVector2(1.0, 0.5))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(11.0, p.x)
@@ -320,8 +320,8 @@ Inherits TestGroup
 		  
 		  // Try horizontal line.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(-1.0, 1.0), New Vector2(2.0, 1.0), _
-		  New Vector2(-1.0, 0.0), New Vector2(1.0, 0.5))
+		  New PKVector2(-1.0, 1.0), New PKVector2(2.0, 1.0), _
+		  New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(3.0, p.x)
@@ -329,8 +329,8 @@ Inherits TestGroup
 		  
 		  // Try a vertical line.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 1.0), _
-		  New Vector2(-1.0, 0.0), New Vector2(1.0, 0.5))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(3.0, p.x)
@@ -338,8 +338,8 @@ Inherits TestGroup
 		  
 		  // Try a vertical and horizontal line.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, -2.0), _
-		  New Vector2(0.0, 1.0), New Vector2(4.0, 1.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, -2.0), _
+		  New PKVector2(0.0, 1.0), New PKVector2(4.0, 1.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(3.0, p.x)
@@ -347,43 +347,43 @@ Inherits TestGroup
 		  
 		  // Try two parallel lines.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(-2.0, -1.0), New Vector2(-1.0, 0.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(0.0, 0.0))
+		  New PKVector2(-2.0, -1.0), New PKVector2(-1.0, 0.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(0.0, 0.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try two vertical lines (parallel).
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 1.0), _
-		  New Vector2(2.0, 0.0), New Vector2(2.0, 1.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(2.0, 0.0), New PKVector2(2.0, 1.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try two horizontal lines (parallel).
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(3.0, 1.0), New Vector2(4.0, 1.0), _
-		  New Vector2(2.0, 2.0), New Vector2(4.0, 2.0))
+		  New PKVector2(3.0, 1.0), New PKVector2(4.0, 1.0), _
+		  New PKVector2(2.0, 2.0), New PKVector2(4.0, 2.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear lines.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, 1.0), _
-		  New Vector2(-2.0, -2.0), New Vector2(-1.5, -1.5))
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, 1.0), _
+		  New PKVector2(-2.0, -2.0), New PKVector2(-1.5, -1.5))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear vertical lines.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 1.0), _
-		  New Vector2(3.0, 2.0), New Vector2(3.0, 7.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(3.0, 2.0), New PKVector2(3.0, 7.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear horizontal lines.
 		  p = Segment.GetLineIntersection(_
-		  New Vector2(4.0, 1.0), New Vector2(5.0, 1.0), _
-		  New Vector2(-1.0, 1.0), New Vector2(1.0, 1.0))
+		  New PKVector2(4.0, 1.0), New PKVector2(5.0, 1.0), _
+		  New PKVector2(-1.0, 1.0), New PKVector2(1.0, 1.0))
 		  
 		  Assert.IsNil(p)
 		  
@@ -399,31 +399,31 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Test invalid line.
-		  Var loc As Double = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2, New Vector2)
+		  Var loc As Double = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2)
 		  Assert.AreEqual(0.000, loc, 1.0e-3)
 		  
 		  // Test valid line/on line.
-		  loc = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2, New Vector2(2.0, 2.0))
+		  loc = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2(2.0, 2.0))
 		  Assert.AreEqual(0.000, loc, 1.0e-3)
 		  
 		  // Test valid line/left-above line.
-		  loc = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2, New Vector2(1.0, 0.5))
+		  loc = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2(1.0, 0.5))
 		  Assert.IsTrue(loc > 0)
 		  
 		  // Test valid line/right-below line.
-		  loc = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2, New Vector2(1.0, 2.0))
+		  loc = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2(1.0, 2.0))
 		  Assert.IsTrue(loc < 0)
 		  
 		  // Test vertical line.
-		  loc = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2, New Vector2(0.0, 3.0))
+		  loc = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2(0.0, 3.0))
 		  Assert.IsTrue(loc < 0)
-		  loc = Segment.GetLocation(New Vector2(-1.0, 1.0), New Vector2, New Vector2(0.0, 3.0))
+		  loc = Segment.GetLocation(New PKVector2(-1.0, 1.0), New PKVector2, New PKVector2(0.0, 3.0))
 		  Assert.IsTrue(loc > 0)
 		  
 		  // Test horizontal line.
-		  loc = Segment.GetLocation(New Vector2(1.0, 1.0), New Vector2(0.0, 0.0), New Vector2(1.0, 0.0))
+		  loc = Segment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2(0.0, 0.0), New PKVector2(1.0, 0.0))
 		  Assert.IsTrue(loc > 0)
-		  loc = Segment.GetLocation(New Vector2(1.0, -1.0), New Vector2(0.0, 0.0), New Vector2(1.0, 0.0))
+		  loc = Segment.GetLocation(New PKVector2(1.0, -1.0), New PKVector2(0.0, 0.0), New PKVector2(1.0, 0.0))
 		  Assert.IsTrue(loc < 0)
 		  
 		End Sub
@@ -437,36 +437,36 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var pt As Vector2 = New Vector2(1.0, -1.0)
+		  Var pt As PKVector2 = New PKVector2(1.0, -1.0)
 		  
 		  // Test invalid line/segment.
-		  Var p As Vector2 = Segment.GetPointOnLineClosestToPoint(_
-		  pt, New Vector2(1.0, 1.0), New Vector2(1.0, 1.0))
+		  Var p As PKVector2 = Segment.GetPointOnLineClosestToPoint(_
+		  pt, New PKVector2(1.0, 1.0), New PKVector2(1.0, 1.0))
 		  Assert.AreEqual(1.000, p.x, 1.0e-3)
 		  Assert.AreEqual(1.000, p.y, 1.0e-3)
 		  
-		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New Vector2(1.0, 1.0), New Vector2(1.0, 1.0))
+		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New PKVector2(1.0, 1.0), New PKVector2(1.0, 1.0))
 		  Assert.AreEqual(1.000, p.x, 1.0e-3)
 		  Assert.AreEqual(1.000, p.y, 1.0e-3)
 		  
 		  // Test valid line.
-		  p = Segment.GetPointOnLineClosestToPoint(pt, New Vector2, New Vector2(5.0, 5.0))
+		  p = Segment.GetPointOnLineClosestToPoint(pt, New PKVector2, New PKVector2(5.0, 5.0))
 		  // Since 0,0 is perpendicular to pt
 		  Assert.AreEqual(0.000, p.x, 1.0e-3)
 		  Assert.AreEqual(0.000, p.y, 1.0e-3)
 		  
-		  p = Segment.GetPointOnLineClosestToPoint(pt, New Vector2, New Vector2(2.5, 5.0))
+		  p = Segment.GetPointOnLineClosestToPoint(pt, New PKVector2, New PKVector2(2.5, 5.0))
 		  Assert.AreEqual(-0.200, p.x, 1.0e-3)
 		  Assert.AreEqual(-0.400, p.y, 1.0e-3)
 		  
 		  // Test valid segment.
-		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New Vector2(-1.0, -1.0), New Vector2(1.0, 1.0))
+		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New PKVector2(-1.0, -1.0), New PKVector2(1.0, 1.0))
 		  // since 0,0 is perpendicular to pt
 		  Assert.AreEqual(0.000, p.x, 1.0e-3)
 		  Assert.AreEqual(0.000, p.y, 1.0e-3)
 		  
 		  // Test closest is one of the segment points.
-		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New Vector2, New Vector2(2.5, 5.0))
+		  p = Segment.GetPointOnSegmentClosestToPoint(pt, New PKVector2, New PKVector2(2.5, 5.0))
 		  Assert.AreEqual(0.000, p.x, 1.0e-3)
 		  Assert.AreEqual(0.000, p.y, 1.0e-3)
 		  
@@ -481,9 +481,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p As Vector2 = Segment.GetSegmentIntersection(_
-		  New Vector2(-3.0, -1.0), New Vector2(3.0, 1.0), _
-		  New Vector2(-1.0, -2.0), New Vector2(1.0, 2.0))
+		  Var p As PKVector2 = Segment.GetSegmentIntersection(_
+		  New PKVector2(-3.0, -1.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(-1.0, -2.0), New PKVector2(1.0, 2.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(0.0, p.x)
@@ -491,15 +491,15 @@ Inherits TestGroup
 		  
 		  // Normal case, no intersection.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(-1.0, -1.0), New Vector2(2.0, 0.0), _
-		  New Vector2(-1.0,  0.0), New Vector2(1.0, 0.5))
+		  New PKVector2(-1.0, -1.0), New PKVector2(2.0, 0.0), _
+		  New PKVector2(-1.0,  0.0), New PKVector2(1.0, 0.5))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try horizontal segment.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(-1.0, 1.0), New Vector2(2.0, 1.0), _
-		  New Vector2(-1.0, 0.0), New Vector2(1.0, 2.0))
+		  New PKVector2(-1.0, 1.0), New PKVector2(2.0, 1.0), _
+		  New PKVector2(-1.0, 0.0), New PKVector2(1.0, 2.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(0.0, p.x)
@@ -507,8 +507,8 @@ Inherits TestGroup
 		  
 		  // Try a vertical segment.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 3.0), _
-		  New Vector2(4.0, 0.0), New Vector2(1.0, 3.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 3.0), _
+		  New PKVector2(4.0, 0.0), New PKVector2(1.0, 3.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(3.0, p.x)
@@ -516,8 +516,8 @@ Inherits TestGroup
 		  
 		  // Try a vertical and horizontal segment.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(3.0, 2.0), New Vector2(3.0, -2.0), _
-		  New Vector2(0.0, 1.0), New Vector2(4.0, 1.0))
+		  New PKVector2(3.0, 2.0), New PKVector2(3.0, -2.0), _
+		  New PKVector2(0.0, 1.0), New PKVector2(4.0, 1.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(3.0, p.x)
@@ -525,58 +525,58 @@ Inherits TestGroup
 		  
 		  // Try two parallel segments.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(-2.0, -1.0), New Vector2(-1.0, 0.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(0.0, 0.0))
+		  New PKVector2(-2.0, -1.0), New PKVector2(-1.0, 0.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(0.0, 0.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try two vertical segments (parallel).
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 1.0), _
-		  New Vector2(2.0, 0.0), New Vector2(2.0, 1.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(2.0, 0.0), New PKVector2(2.0, 1.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try two horizontal segments (parallel).
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(3.0, 1.0), New Vector2(4.0, 1.0), _
-		  New Vector2(3.0, 2.0), New Vector2(4.0, 2.0))
+		  New PKVector2(3.0, 1.0), New PKVector2(4.0, 1.0), _
+		  New PKVector2(3.0, 2.0), New PKVector2(4.0, 2.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear segments.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, 1.0), _
-		  New Vector2(-2.0, -2.0), New Vector2(-1.5, -1.5))
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, 1.0), _
+		  New PKVector2(-2.0, -2.0), New PKVector2(-1.5, -1.5))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear vertical segments.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(3.0, 0.0), New Vector2(3.0, 1.0), _
-		  New Vector2(3.0, -1.0), New Vector2(3.0, 7.0))
+		  New PKVector2(3.0, 0.0), New PKVector2(3.0, 1.0), _
+		  New PKVector2(3.0, -1.0), New PKVector2(3.0, 7.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try colinear horizontal segments.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(-1.0, 1.0), New Vector2(5.0, 1.0), _
-		  New Vector2(-1.0, 1.0), New Vector2(1.0, 1.0))
+		  New PKVector2(-1.0, 1.0), New PKVector2(5.0, 1.0), _
+		  New PKVector2(-1.0, 1.0), New PKVector2(1.0, 1.0))
 		  
 		  Assert.IsNil(p)
 		  
 		  // Try intersection at end point.
 		  p = Segment.GetSegmentIntersection(_
-		  New Vector2(1.0, 0.0), New Vector2(3.0, -2.0), _
-		  New Vector2(-1.0, -1.0), New Vector2(1.0, 0.0))
+		  New PKVector2(1.0, 0.0), New PKVector2(3.0, -2.0), _
+		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, 0.0))
 		  
 		  Assert.IsNotNil(p)
 		  Assert.AreEqual(1.0, p.x)
 		  Assert.AreEqual(0.0, p.y)
 		  
 		  // Test segment intersection perpendicular.
-		  Var s1 As Segment = New Segment(New Vector2(-10, 10), New Vector2(10, 10))
-		  Var s2 As Segment = New Segment(New Vector2(0, 0), New Vector2(0, 5))
+		  Var s1 As Segment = New Segment(New PKVector2(-10, 10), New PKVector2(10, 10))
+		  Var s2 As Segment = New Segment(New PKVector2(0, 0), New PKVector2(0, 5))
 		  p = s2.GetSegmentIntersection(s1)
 		  Assert.IsNil(p)
 		  
@@ -591,9 +591,9 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 1.0), New Vector2(1.5, 3.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As Transform = New Transform
-		  Var n As Vector2 = New Vector2(1.0, 0.0)
+		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var i As Interval = s.Project(n, t)
 		  
@@ -632,7 +632,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 0.0), New Vector2(1.0, 1.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  s.Rotate(MathsKit.ToRadians(45), 0, 0)
 		  
 		  Assert.AreEqual(0.000, s.vertices(0).x, 1.0e-3)
@@ -652,7 +652,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New Vector2(0.0, 0.0), New Vector2(1.0, 1.0))
+		  Var s As Segment = New Segment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  s.Translate(2.0, -1.0)
 		  
 		  Assert.AreEqual( 2.000, s.vertices(0).x, 1.0e-3)

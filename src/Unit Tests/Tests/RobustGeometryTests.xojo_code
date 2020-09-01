@@ -31,9 +31,9 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h21, Description = 48656C706572206D6574686F6420746F20636F6D7075746520746865206571756976616C656E74206F6620605365676D656E742E4765744C6F636174696F6E28566563746F72322C20566563746F72322C20566563746F723229602062757420776974682065786163742061726974686D657469632C207669612074686520757365206F6620426967446563696D616C2E
-		Private Function GetLocationExact(point As PhysicsKit.Vector2, linePoint1 As PhysicsKit.Vector2, linePoint2 As PhysicsKit.Vector2) As Double
+		Private Function GetLocationExact(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2) As Double
 		  ///
-		  ' Helper method to compute the equivalent of `Segment.GetLocation(Vector2, Vector2, Vector2)`
+		  ' Helper method to compute the equivalent of `Segment.GetLocation(PKVector2, PKVector2, PKVector2)`
 		  ' but with exact arithmetic, via the use of BigDecimal.
 		  ' The result is returned as a Double which is an approximation of the computed value
 		  ' but this is the best we can request given the requirements.
@@ -58,7 +58,7 @@ Inherits TestGroup
 		Sub RandomisedTest2Test()
 		  ///
 		  ' Another randomised test but with uniform random points.
-		  ' This will mostly trigger the short path in RobustGeometry.GetLocation(Vector2, Vector2, Vector2)
+		  ' This will mostly trigger the short path in RobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)
 		  ///
 		  
 		  // Constant seed so we always get the same sequence of randoms
@@ -66,9 +66,9 @@ Inherits TestGroup
 		  
 		  For i As Integer = 0 to 999
 		    // Generate three uniform random points pa, pb, pc
-		    Var pa As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
-		    Var pb As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
-		    Var pc As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
+		    Var pa As PKVector2 = New PKVector2(System.Random.Number, System.Random.Number)
+		    Var pb As PKVector2 = New PKVector2(System.Random.Number, System.Random.Number)
+		    Var pc As PKVector2 = New PKVector2(System.Random.Number, System.Random.Number)
 		    
 		    Var exact As Double = GetLocationExact(pc, pa, pb)
 		    Var robust As Double = RobustGeometry.GetLocation(pc, pa, pb)
@@ -85,7 +85,7 @@ Inherits TestGroup
 		  ' Randomised test to check almost colinear vectors.
 		  ' Chose three random, almost colinear, points and then exhaustively check for all
 		  ' floating point values near the tested point. This will trigger the most
-		  ' complex paths in `RobustGeometry.GetLocation(Vector2, Vector2, Vector2)`.
+		  ' complex paths in `RobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)`.
 		  ///
 		  
 		  #Pragma Warning "Broken and failing"
@@ -100,16 +100,16 @@ Inherits TestGroup
 		  
 		  For i As Integer = 0 To iterations - 1
 		    // Generate three colinear points pa, pb, pc
-		    Var pa As Vector2 = New Vector2(System.Random.Number, System.Random.Number)
-		    Var pb As Vector2 = pa.Product(System.Random.Number)
-		    Var pc As Vector2 = pa.Product(System.Random.Number)
+		    Var pa As PKVector2 = New PKVector2(System.Random.Number, System.Random.Number)
+		    Var pb As PKVector2 = pa.Product(System.Random.Number)
+		    Var pc As PKVector2 = pa.Product(System.Random.Number)
 		    
 		    // Loop to all directions.
 		    For up As Integer = 0 To 4
 		      Var xUp As Boolean = ((up Mod 2) = 0)
 		      Var yUp As Boolean = ((up / 2) = 0)
 		      
-		      Var pcOffset As Vector2 = pc.Copy
+		      Var pcOffset As PKVector2 = pc.Copy
 		      
 		      // Test all adjacent floating point values in this quadrant.
 		      For y As Integer = 0 To blockSize - 1
@@ -131,7 +131,7 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 48656C706572206D6574686F6420746F20746573742074686520636F6E7665782068756C6C2067656E657261746F72732E
-		Shared Function RobustPolygonContains(vertices() As PhysicsKit.Vector2, point As PhysicsKit.Vector2) As Boolean
+		Shared Function RobustPolygonContains(vertices() As PKVector2, point As PKVector2) As Boolean
 		  ///
 		  ' Helper method to test the convex hull generators.
 		  '
@@ -150,8 +150,8 @@ Inherits TestGroup
 		  // Start from the pair (p1 = last, p2 = first) so there's no need to check 
 		  // in the loop for wrap-around of the i + 1 vertice
 		  Var size As Integer = vertices.Count
-		  Var p1 As Vector2 = vertices(size - 1)
-		  Var p2 As Vector2 = vertices(0)
+		  Var p1 As PKVector2 = vertices(size - 1)
+		  Var p2 As PKVector2 = vertices(0)
 		  
 		  // Get the location of the point relative to the first two vertices.
 		  Var last As Double = RobustGeometry.GetLocation(point, p1, p2)
