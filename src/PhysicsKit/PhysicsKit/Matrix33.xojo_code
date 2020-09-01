@@ -369,15 +369,15 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E20566563746F723320616E6420706C616365732074686520726573756C7420696E2074686520676976656E20566563746F72332E
-		Function Multiply(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function Multiply(vector As PKVector3) As PKVector3
 		  ///
-		  ' Multiplies this Matrix33 by the given Vector3 and places the result in the given Vector3.
+		  ' Multiplies this Matrix33 by the given PKVector3 and places the result in the given PKVector3.
 		  '
 		  ' `v = Self * v`
 		  '
-		  ' - Parameter vector: The Vector3 to multiply.
+		  ' - Parameter vector: The PKVector3 to multiply.
 		  '
-		  ' - Returns: The passed Vector3 containing the result.
+		  ' - Returns: The passed PKVector3 containing the result.
 		  ///
 		  
 		  Var x As Double = vector.X
@@ -393,15 +393,15 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function MultiplyT(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function MultiplyT(vector As PKVector3) As PKVector3
 		  ///
-		  ' Multiplies the given Vector3 by this Matrix33 and places the result in the given Vector3.
+		  ' Multiplies the given PKVector3 by this Matrix33 and places the result in the given PKVector3.
 		  '
 		  ' `v = vT * Self`
 		  '
-		  ' - Parameter vector: The Vector3 to multiply.
+		  ' - Parameter vector: The PKVector3 to multiply.
 		  '
-		  ' - Returns: The passed Vector3 containing the result.
+		  ' - Returns: The passed PKVector3 containing the result.
 		  ///
 		  
 		  Var x As Double = vector.X
@@ -454,15 +454,15 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E20566563746F72332072657475726E696E672074686520726573756C7420696E2061206E657720566563746F72332E
-		Function Product(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function Product(vector As PKVector3) As PKVector3
 		  ///
-		  ' Multiplies this Matrix33 by the given Vector3 returning the result in a new Vector3.
+		  ' Multiplies this Matrix33 by the given PKVector3 returning the result in a new PKVector3.
 		  '
 		  ' `r = Self * v`
 		  '
-		  ' - Parameter vector: The Vector3 to multiply.
+		  ' - Parameter vector: The PKVector3 to multiply.
 		  '
-		  ' - Returns: A new Vector3.
+		  ' - Returns: A new PKVector3.
 		  ///
 		  
 		  Return Self.Multiply(vector.Copy)
@@ -471,15 +471,15 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ProductT(vector As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function ProductT(vector As PKVector3) As PKVector3
 		  ///
-		  ' Multiplies the given  Vector3 by this Matrix33 returning the result in a new Vector3.
+		  ' Multiplies the given  PKVector3 by this Matrix33 returning the result in a new PKVector3.
 		  '
 		  ' `r = vT * Self`
 		  '
-		  ' - Parameter vector: The Vector3 to multiply.
+		  ' - Parameter vector: The PKVector3 to multiply.
 		  '
-		  ' - Returns: A new Vector3.
+		  ' - Returns: A new PKVector3.
 		  ///
 		  
 		  Return Self.MultiplyT(vector.Copy)
@@ -518,7 +518,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536F6C76657320604178203D20626020616E642072657475726E7320607860206173206120566563746F72332E
-		Function Solve33(b As PhysicsKit.Vector3) As PhysicsKit.Vector3
+		Function Solve33(b As PKVector3) As PKVector3
 		  ///
 		  ' Solves the system of linear equations:
 		  '
@@ -528,9 +528,9 @@ Protected Class Matrix33
 		  ' x = A⁻¹b
 		  ' ```
 		  '
-		  ' - Parameter b: The b Vector3.
+		  ' - Parameter b: The b PKVector3.
 		  '
-		  ' - Returns: A new Vector3.
+		  ' - Returns: A new PKVector3.
 		  ///
 		  
 		  // Get the determinant.
@@ -539,7 +539,7 @@ Protected Class Matrix33
 		  // Check for zero determinant.
 		  If Abs(det) > Epsilon.E Then det = 1.0 / det
 		  
-		  Var r As Vector3 = New Vector3
+		  Var r As PKVector3 = New PKVector3
 		  
 		  Var m00 As Double =  Self.M11 * Self.M22 - Self.M12 * Self.M21
 		  Var m01 As Double = -Self.M01 * Self.M22 + Self.M21 * Self.M02

@@ -325,7 +325,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
-		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, -1.0, 2.0)
 		  
 		  Call m1.Multiply(v1)
 		  
@@ -343,7 +343,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
-		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, -1.0, 2.0)
 		  
 		  Call m1.MultiplyT(v1)
 		  
@@ -411,9 +411,9 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
-		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, -1.0, 2.0)
 		  
-		  Var v2 As Vector3 = m1.Product(v1)
+		  Var v2 As PKVector3 = m1.Product(v1)
 		  
 		  Assert.AreEqual(-2.0, v2.x)
 		  Assert.AreEqual( 4.0, v2.y)
@@ -432,9 +432,9 @@ Inherits TestGroup
 		  ///
 		  
 		  Var m1 As Matrix33 = New Matrix33(0.0, 2.0, 0.0, 3.0, 1.0, 1.0, 2.0, 0.0, -1.0)
-		  Var v1 As Vector3 = New Vector3(1.0, -1.0, 2.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, -1.0, 2.0)
 		  
-		  Var v2 As Vector3 = m1.ProductT(v1)
+		  Var v2 As PKVector3 = m1.ProductT(v1)
 		  
 		  Assert.AreEqual( 1.0, v2.x)
 		  Assert.AreEqual( 1.0, v2.y)
@@ -469,8 +469,8 @@ Inherits TestGroup
 		  ///
 		  
 		  Var A As Matrix33 = New Matrix33(1.0, -3.0, 3.0, 2.0, 3.0, -1.0, 4.0, -3.0, -1.0)
-		  Var b As Vector3 = New Vector3(-4.0, 15.0, 19.0)
-		  Var x As Vector3 = A.Solve33(b)
+		  Var b As PKVector3 = New PKVector3(-4.0, 15.0, 19.0)
+		  Var x As PKVector3 = A.Solve33(b)
 		  
 		  Assert.AreEqual( 5.0, x.x)
 		  Assert.AreEqual( 1.0, x.y)

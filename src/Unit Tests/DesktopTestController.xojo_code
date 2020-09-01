@@ -9,7 +9,7 @@ Inherits TestController
 		  
 		  group = New GrahamScanTests(Self, "GrahamScan")
 		  group = New GiftWrapTests(Self, "GiftWrap")
-		  group = New Vector3Tests(Self, "Vector3")
+		  group = New PKVector3Tests(Self, "PKVector3")
 		  group = New Matrix33Tests(Self, "Matrix33")
 		  group = New Matrix22Tests(Self, "Matrix22")
 		  group = New RayTests(Self, "Ray")

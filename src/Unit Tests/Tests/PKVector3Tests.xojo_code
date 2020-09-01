@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Vector3Tests
+Protected Class PKVector3Tests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
@@ -36,10 +36,10 @@ Inherits TestGroup
 		  ' Tests the add and sum methods.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 2.0, 3.0)
-		  Var v2 As Vector3 = New Vector3(-2.0, 1.0, -1.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 2.0, 3.0)
+		  Var v2 As PKVector3 = New PKVector3(-2.0, 1.0, -1.0)
 		  
-		  Var v3 As Vector3 = v1.Sum(v2)
+		  Var v3 As PKVector3 = v1.Sum(v2)
 		  Assert.AreEqual(-1.0, v3.x)
 		  Assert.AreEqual( 3.0, v3.y)
 		  Assert.AreEqual( 2.0, v3.z)
@@ -68,8 +68,8 @@ Inherits TestGroup
 		  ' Tests the Copy method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(1.0, 3.0, 2.0)
-		  Var vc As Vector3 = v.Copy
+		  Var v As PKVector3 = New PKVector3(1.0, 3.0, 2.0)
+		  Var vc As PKVector3 = v.Copy
 		  
 		  Assert.IsFalse(v = vc)
 		  Assert.AreEqual(v.x, vc.x)
@@ -85,30 +85,30 @@ Inherits TestGroup
 		  ' Tests the create methods.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3
+		  Var v1 As PKVector3 = New PKVector3
 		  
 		  // Should default to zero.
 		  Assert.AreEqual(0.0, v1.x)
 		  Assert.AreEqual(0.0, v1.y)
 		  Assert.AreEqual(0.0, v1.z)
 		  
-		  Var v2 As Vector3 = New Vector3(1.0, 2.0, 3.0)
+		  Var v2 As PKVector3 = New PKVector3(1.0, 2.0, 3.0)
 		  Assert.AreEqual(1.0, v2.x)
 		  Assert.AreEqual(2.0, v2.y)
 		  Assert.AreEqual(3.0, v2.z)
 		  
-		  Var v3 As Vector3 = New Vector3(v2)
+		  Var v3 As PKVector3 = New PKVector3(v2)
 		  Assert.IsFalse(v3 = v2)
 		  Assert.AreEqual(1.0, v3.x)
 		  Assert.AreEqual(2.0, v3.y)
 		  Assert.AreEqual(3.0, v3.z)
 		  
-		  Var v4 As Vector3 = New Vector3(0.0, 1.0, 1.0, 2.0, 3.0, 1.0)
+		  Var v4 As PKVector3 = New PKVector3(0.0, 1.0, 1.0, 2.0, 3.0, 1.0)
 		  Assert.AreEqual(2.0, v4.x)
 		  Assert.AreEqual(2.0, v4.y)
 		  Assert.AreEqual(0.0, v4.z)
 		  
-		  Var v5 As Vector3 = New Vector3(v2, v1)
+		  Var v5 As PKVector3 = New PKVector3(v2, v1)
 		  Assert.AreEqual(-1.0, v5.x)
 		  Assert.AreEqual(-2.0, v5.y)
 		  Assert.AreEqual(-3.0, v5.z)
@@ -122,10 +122,10 @@ Inherits TestGroup
 		  ' Tests the cross product methods.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 1.0, 0.0)
-		  Var v2 As Vector3 = New Vector3(0.0, 1.0, -1.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 1.0, 0.0)
+		  Var v2 As PKVector3 = New PKVector3(0.0, 1.0, -1.0)
 		  
-		  Var r As Vector3 = v1.Cross(v1)
+		  Var r As PKVector3 = v1.Cross(v1)
 		  Assert.AreEqual(0.0, r.x)
 		  Assert.AreEqual(0.0, r.y)
 		  Assert.AreEqual(0.0, r.z)
@@ -159,17 +159,17 @@ Inherits TestGroup
 		  ' Tests the distance methods.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3
+		  Var v As PKVector3 = New PKVector3
 		  
 		  Assert.AreEqual(4.000, v.DistanceSquared(2.0, 0.0, 0.0), 1.0e-3)
 		  Assert.AreEqual(9.000, v.DistanceSquared(2.0, -1.0, 2.0), 1.0e-3)
 		  Assert.AreEqual(2.000, v.Distance(2.0, 0.0, 0.0), 1.0e-3)
 		  Assert.AreEqual(3.000, v.Distance(2.0, -1.0, 2.0), 1.0e-3)
 		  
-		  Assert.AreEqual(4.000, v.DistanceSquared(New Vector3(2.0, 0.0, 0.0)), 1.0e-3)
-		  Assert.AreEqual(9.000, v.DistanceSquared(New Vector3(2.0, -1.0, 2.0)), 1.0e-3)
-		  Assert.AreEqual(2.000, v.Distance(New Vector3(2.0, 0.0, 0.0)), 1.0e-3)
-		  Assert.AreEqual(3.000, v.Distance(New Vector3(2.0, -1.0, 2.0)), 1.0e-3)
+		  Assert.AreEqual(4.000, v.DistanceSquared(New PKVector3(2.0, 0.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(9.000, v.DistanceSquared(New PKVector3(2.0, -1.0, 2.0)), 1.0e-3)
+		  Assert.AreEqual(2.000, v.Distance(New PKVector3(2.0, 0.0, 0.0)), 1.0e-3)
+		  Assert.AreEqual(3.000, v.Distance(New PKVector3(2.0, -1.0, 2.0)), 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
@@ -180,8 +180,8 @@ Inherits TestGroup
 		  ' Tests the Dot method.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 1.0, -1.0)
-		  Var v2 As Vector3 = New Vector3(0.0, 1.0, 0.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 1.0, -1.0)
+		  Var v2 As PKVector3 = New PKVector3(0.0, 1.0, 0.0)
 		  
 		  Assert.AreEqual(1.0, v1.Dot(v2))
 		  
@@ -201,11 +201,11 @@ Inherits TestGroup
 		  ' Tests the Equals method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(1.0, 2.0, -1.0)
+		  Var v As PKVector3 = New PKVector3(1.0, 2.0, -1.0)
 		  
 		  Assert.IsTrue(v.Equals(v))
 		  Assert.IsTrue(v.Equals(v.Copy))
-		  Assert.IsTrue(v.Equals(New Vector3(1.0, 2.0, -1.0)))
+		  Assert.IsTrue(v.Equals(New PKVector3(1.0, 2.0, -1.0)))
 		  Assert.IsTrue(v.Equals(1.0, 2.0, -1.0))
 		  
 		  Assert.IsFalse(v.Equals(v.Copy.Set(2.0, 1.0, -1.0)))
@@ -220,11 +220,11 @@ Inherits TestGroup
 		  ' Tests the get methods.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(2.0, 1.0, -2.0)
+		  Var v As PKVector3 = New PKVector3(2.0, 1.0, -2.0)
 		  
-		  Var x As Vector3 = v.GetXComponent
-		  Var y As Vector3 = v.GetYComponent
-		  Var z As Vector3 = v.GetZComponent
+		  Var x As PKVector3 = v.GetXComponent
+		  Var y As PKVector3 = v.GetYComponent
+		  Var z As PKVector3 = v.GetZComponent
 		  
 		  Assert.AreEqual(2.0, x.x)
 		  Assert.AreEqual(0.0, x.y)
@@ -241,7 +241,7 @@ Inherits TestGroup
 		  Assert.AreEqual(3.000, v.GetMagnitude, 1.0e-3)
 		  Assert.AreEqual(9.000, v.GetMagnitudeSquared, 1.0e-3)
 		  
-		  Var v2 As Vector3 = v.GetNegative
+		  Var v2 As PKVector3 = v.GetNegative
 		  Assert.AreEqual(-2.0, v2.x)
 		  Assert.AreEqual(-1.0, v2.y)
 		  Assert.AreEqual( 2.0, v2.z)
@@ -260,8 +260,8 @@ Inherits TestGroup
 		  ' Tests the IsOrthogonal method.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 1.0, 0.0)
-		  Var v2 As Vector3 = New Vector3(0.0, 1.0, 2.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 1.0, 0.0)
+		  Var v2 As PKVector3 = New PKVector3(0.0, 1.0, 2.0)
 		  
 		  Assert.IsFalse(v1.IsOrthogonal(v2))
 		  Assert.IsFalse(v1.IsOrthogonal(v1))
@@ -280,7 +280,7 @@ Inherits TestGroup
 		  ' Tests the IsZero method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3
+		  Var v As PKVector3 = New PKVector3
 		  
 		  Assert.IsTrue(v.IsZero)
 		  
@@ -305,9 +305,9 @@ Inherits TestGroup
 		  ' Tests the multiply and product methods.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(2.0, 1.0, -1.0)
+		  Var v1 As PKVector3 = New PKVector3(2.0, 1.0, -1.0)
 		  
-		  Var r As Vector3 = v1.Product(-1.5)
+		  Var r As PKVector3 = v1.Product(-1.5)
 		  Assert.AreEqual(-3.0, r.x)
 		  Assert.AreEqual(-1.5, r.y)
 		  Assert.AreEqual( 1.5, r.z)
@@ -326,7 +326,7 @@ Inherits TestGroup
 		  ' Tests the Negate method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(1.0, -6.0, 2.0)
+		  Var v As PKVector3 = New PKVector3(1.0, -6.0, 2.0)
 		  
 		  Call v.Negate
 		  Assert.AreEqual(-1.0, v.x)
@@ -342,7 +342,7 @@ Inherits TestGroup
 		  ' Tests the Normalise method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(2.0, 1.0, 2.0)
+		  Var v As PKVector3 = New PKVector3(2.0, 1.0, 2.0)
 		  Call v.Normalise
 		  
 		  Assert.AreEqual( 2.0 / 3.0, v.x, 1.0e-3)
@@ -358,10 +358,10 @@ Inherits TestGroup
 		  ' Tests the Project method.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 1.0, 0.0)
-		  Var v2 As Vector3 = New Vector3(0.5, 1.0, 1.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 1.0, 0.0)
+		  Var v2 As PKVector3 = New PKVector3(0.5, 1.0, 1.0)
 		  
-		  Var r As Vector3 = v1.Project(v2)
+		  Var r As PKVector3 = v1.Project(v2)
 		  
 		  Assert.AreEqual( 0.333, r.x, 1.0e-3)
 		  Assert.AreEqual( 0.666, r.y, 1.0e-3)
@@ -376,9 +376,9 @@ Inherits TestGroup
 		  ' Tests the set methods.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3
+		  Var v As PKVector3 = New PKVector3
 		  
-		  Var v2 As Vector3 = New Vector3(1.0, -3.0, 2.0)
+		  Var v2 As PKVector3 = New PKVector3(1.0, -3.0, 2.0)
 		  Call v.Set(v2)
 		  
 		  Assert.IsFalse(v = v2)
@@ -405,10 +405,10 @@ Inherits TestGroup
 		  ' Tests the subtract and difference methods.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 2.0, 3.0)
-		  Var v2 As Vector3 = New Vector3(-2.0, 1.0, -1.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 2.0, 3.0)
+		  Var v2 As PKVector3 = New PKVector3(-2.0, 1.0, -1.0)
 		  
-		  Var v3 As Vector3 = v1.Difference(v2)
+		  Var v3 As PKVector3 = v1.Difference(v2)
 		  Assert.AreEqual(3.0, v3.x)
 		  Assert.AreEqual(1.0, v3.y)
 		  Assert.AreEqual(4.0, v3.z)
@@ -437,10 +437,10 @@ Inherits TestGroup
 		  ' Tests the Towards method.
 		  ///
 		  
-		  Var p1 As Vector3 = New Vector3(1.0, 1.0, 1.0)
-		  Var p2 As Vector3 = New Vector3(0.0, 1.0, 0.0)
+		  Var p1 As PKVector3 = New PKVector3(1.0, 1.0, 1.0)
+		  Var p2 As PKVector3 = New PKVector3(0.0, 1.0, 0.0)
 		  
-		  Var r As Vector3 = p1.Towards(p2)
+		  Var r As PKVector3 = p1.Towards(p2)
 		  
 		  Assert.AreEqual(-1.0, r.x)
 		  Assert.AreEqual( 0.0, r.y)
@@ -461,10 +461,10 @@ Inherits TestGroup
 		  ' Tests the TripleProduct method.
 		  ///
 		  
-		  Var v1 As Vector3 = New Vector3(1.0, 1.0, 0.0)
-		  Var v2 As Vector3 = New Vector3(0.0, -1.0, 1.0)
+		  Var v1 As PKVector3 = New PKVector3(1.0, 1.0, 0.0)
+		  Var v2 As PKVector3 = New PKVector3(0.0, -1.0, 1.0)
 		  
-		  Var r As Vector3 = Vector3.TripleProduct(v1, v2, v2)
+		  Var r As PKVector3 = PKVector3.TripleProduct(v1, v2, v2)
 		  
 		  Assert.AreEqual(-2.000, r.x, 1.0e-3)
 		  Assert.AreEqual(-1.000, r.y, 1.0e-3)
@@ -479,7 +479,7 @@ Inherits TestGroup
 		  ' Tests the Zero method.
 		  ///
 		  
-		  Var v As Vector3 = New Vector3(1.0, -2.0, 3.0)
+		  Var v As PKVector3 = New PKVector3(1.0, -2.0, 3.0)
 		  
 		  Call v.Zero
 		  Assert.AreEqual( 0.0, v.x)
