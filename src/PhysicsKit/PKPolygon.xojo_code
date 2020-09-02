@@ -116,7 +116,7 @@ Implements   PKConvex,  PKWound
 		    // A location of zero indicates that the point lies ON the line
 		    // through p1 and p2. We can ignore these values because the
 		    // convexity requirement of the shape will ensure that if it's outside, a sign will change.
-		    If Abs(location) > PhysicsKit.Epsilon.E Then last = location
+		    If Abs(location) > PKEpsilon.E Then last = location
 		  Next i
 		  
 		  Return True
@@ -644,7 +644,7 @@ Implements   PKConvex,  PKWound
 		    Var tsign As Double = MathsKit.Signum(cross)
 		    area = area + cross
 		    // Check for colinear edges (for now its allowed).
-		    If Abs(cross) > PhysicsKit.Epsilon.E Then
+		    If Abs(cross) > PKEpsilon.E Then
 		      // Check for convexity.
 		      If sign <> 0.0 And tsign <> sign Then
 		        Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_NON_CONVEX)
@@ -654,7 +654,7 @@ Implements   PKConvex,  PKWound
 		  Next i
 		  
 		  // Don't allow degenerate polygons.
-		  If Abs(area) <= PhysicsKit.Epsilon.E Then
+		  If Abs(area) <= PKEpsilon.E Then
 		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_ZERO_AREA)
 		  End If
 		  

@@ -596,7 +596,7 @@ Protected Class PKRotation
 		  
 		  Var magnitude As Double = cost * cost + sint * sint
 		  
-		  If Abs(magnitude - 1) > PhysicsKit.Epsilon.E Then
+		  If Abs(magnitude - 1) > PKEpsilon.E Then
 		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_ROTATION_INVALID_POINT)
 		  End If
 		  
@@ -636,7 +636,7 @@ Protected Class PKRotation
 		  // Normalise the vector.
 		  Var magnitude As Double = Sqrt(direction.X * direction.X + direction.Y * direction.Y)
 		  
-		  If magnitude <= PhysicsKit.Epsilon.E Then
+		  If magnitude <= PKEpsilon.E Then
 		    // The zero vector has no direction, return the Identity rotation.
 		    Return New PKRotation
 		  End If

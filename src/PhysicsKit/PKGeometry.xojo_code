@@ -62,7 +62,7 @@ Protected Class PKGeometry
 		      Var cross As Double = prevToPoint.Cross(pointToNext)
 		      
 		      // If the cross product is near zero then point is a colinear point.
-		      If Abs(cross) <= PhysicsKit.Epsilon.E Then Continue
+		      If Abs(cross) <= PKEpsilon.E Then Continue
 		    End If
 		    
 		    // Sum the current signed area.
@@ -399,7 +399,7 @@ Protected Class PKGeometry
 		  If height <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_HEIGHT)
 		  
 		  // If the width and height are close enough to being equal, just return a circle.
-		  If Abs(width - height) < PhysicsKit.Epsilon.E Then
+		  If Abs(width - height) < PKEpsilon.E Then
 		    Return PKGeometry.CreatePolygonalCircle(count, width)
 		  End If
 		  
@@ -1360,7 +1360,7 @@ Protected Class PKGeometry
 		  Next i
 		  
 		  // Check for zero area.
-		  If Abs(area) <= PhysicsKit.Epsilon.E Then
+		  If Abs(area) <= PKEpsilon.E Then
 		    // Zero area can only happen if all the points are the same point 
 		    // in which case just return a copy of the first.
 		    Return points(0).Copy
@@ -1763,7 +1763,7 @@ Protected Class PKGeometry
 		    // Check if they are colinear.
 		    Var s1 As PKVector2 = p1v(0).Towards(p1v(1))
 		    Var s2 As PKVector2 = p2v(0).Towards(p2v(1))
-		    If s1.Cross(s2) <= PhysicsKit.Epsilon.E Then
+		    If s1.Cross(s2) <= PKEpsilon.E Then
 		      Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS)
 		    End If
 		  End If

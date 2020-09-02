@@ -268,7 +268,7 @@ Protected Class PKMatrix33
 		  Var det As Double = Self.determinant()
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PKEpsilon.E Then det = 1.0 / det
 		  
 		  // Compute the cofactor determinants and apply the signs and transpose the matrix 
 		  // and multiply by the inverse of the determinant.
@@ -506,7 +506,7 @@ Protected Class PKMatrix33
 		  Var det As Double = Self.M00 * Self.M11 - Self.M01 * Self.M10
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PKEpsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector2 = New PKVector2
 		  r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)
@@ -537,7 +537,7 @@ Protected Class PKMatrix33
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PKEpsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector3 = New PKVector3
 		  

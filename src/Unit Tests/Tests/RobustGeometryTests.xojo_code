@@ -181,7 +181,7 @@ Inherits TestGroup
 		    // A location of zero indicates that the point lies ON the line
 		    // through p1 and p2. We can ignore these values because the
 		    // convexity requirement of the shape will ensure that if it's outside, a sign will change.
-		    If Abs(location) > Epsilon.E Then last = location
+		    If Abs(location) > PKEpsilon.E Then last = location
 		  Next i
 		  
 		  Return True

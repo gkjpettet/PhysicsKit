@@ -433,7 +433,7 @@ Implements  PKConvex
 		  If height <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_HEIGHT)
 		  
 		  // Check for basically a circle.
-		  If Abs(width - height) < Epsilon.E Then
+		  If Abs(width - height) < PKEpsilon.E Then
 		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_DEGENERATE)
 		  End If
 		  

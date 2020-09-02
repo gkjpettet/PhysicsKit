@@ -76,7 +76,7 @@ Implements   PKConvex,  PKWound
 		  Var value As Double = Segment.GetLocation(p, p1, p2)
 		  
 		  // See if the point is on the line created by this line segment.
-		  If Abs(value) <= Epsilon.E Then
+		  If Abs(value) <= PKEpsilon.E Then
 		    Var distSqrd As Double = p1.DistanceSquared(p2)
 		    If p.DistanceSquared(p1) <= distSqrd And p.DistanceSquared(p2) <= distSqrd Then
 		      // If the distance to the point from both points is less than or equal
@@ -455,14 +455,14 @@ Implements   PKConvex,  PKWound
 		  
 		  // Compute the bottom.
 		  Var BxA As Double = B.Cross(A)
-		  If Abs(BxA) <= Epsilon.E Then
+		  If Abs(BxA) <= PKEpsilon.E Then
 		    // The lines are parallel and don't intersect.
 		    Return Nil
 		  End If
 		  
 		  // Compute the top.
 		  Var ambxA As Double = ap1.Difference(bp1).Cross(A)
-		  If Abs(ambxA) <= Epsilon.E Then
+		  If Abs(ambxA) <= PKEpsilon.E Then
 		    // The lines are coincident.
 		    Return Nil
 		  End If
@@ -605,7 +605,7 @@ Implements   PKConvex,  PKWound
 		  Var ab2 As Double = line.Dot(line)
 		  
 		  // Check ab2 for zero (linePoint1 = linePoint2).
-		  If ab2 <= Epsilon.E Then Return linePoint1.Copy
+		  If ab2 <= PKEpsilon.E Then Return linePoint1.Copy
 		  
 		  // Get the projection of AP on AB.
 		  Var ap_ab As Double = p1ToP.Dot(line)
@@ -671,7 +671,7 @@ Implements   PKConvex,  PKWound
 		  Var ap_ab As Double = p1ToP.Dot(line)
 		  
 		  // Check ab2 for zero (linePoint1 = linePoint2).
-		  If ab2 <= Epsilon.E Then Return linePoint1.Copy
+		  If ab2 <= PKEpsilon.E Then Return linePoint1.Copy
 		  
 		  // Get the position from the first line point to the projection.
 		  Var t As Double = ap_ab / ab2
@@ -769,14 +769,14 @@ Implements   PKConvex,  PKWound
 		  
 		  // Compute the bottom.
 		  Var BxA As Double = B.Cross(A)
-		  If Abs(BxA) <= Epsilon.E Then
+		  If Abs(BxA) <= PKEpsilon.E Then
 		    // The line segments are parallel and don't intersect.
 		    Return Nil
 		  End If
 		  
 		  // Compute the top.
 		  Var ambxA As Double = ap1.Difference(bp1).Cross(A)
-		  If Abs(ambxA) <= Epsilon.E Then
+		  If Abs(ambxA) <= PKEpsilon.E Then
 		    // The line segments are coincident.
 		    Return Nil
 		  End If

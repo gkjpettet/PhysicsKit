@@ -380,8 +380,8 @@ Inherits TestGroup
 		  
 		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
 		  Assert.AreEqual(1.000, e.GetSliceRadius, 1.0e-3)
-		  Assert.IsFalse(Abs(1.0 - e.GetRadius) < Epsilon.E)
-		  Assert.IsFalse(Abs(e.GetSliceRadius - e.GetRadius) < Epsilon.E)
+		  Assert.IsFalse(Abs(1.0 - e.GetRadius) < PKEpsilon.E)
+		  Assert.IsFalse(Abs(e.GetSliceRadius - e.GetRadius) < PKEpsilon.E)
 		  
 		End Sub
 	#tag EndMethod

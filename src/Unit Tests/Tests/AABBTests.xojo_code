@@ -231,7 +231,7 @@ Inherits TestGroup
 		  
 		  aabb = New PKAABB(1.0, 0.0, 1.000001, 2.0)
 		  Assert.IsFalse(aabb.IsDegenerate)
-		  Assert.IsFalse(aabb.IsDegenerate(Epsilon.E))
+		  Assert.IsFalse(aabb.IsDegenerate(PKEpsilon.E))
 		  Assert.IsTrue(aabb.IsDegenerate(0.000001))
 		  
 		End Sub

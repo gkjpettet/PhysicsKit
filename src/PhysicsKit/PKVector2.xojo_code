@@ -507,7 +507,7 @@ Protected Class PKVector2
 		  ///
 		  
 		  Var magnitude As Double = Self.GetMagnitude
-		  If magnitude <= PhysicsKit.Epsilon.E then Return New PKVector2
+		  If magnitude <= PKEpsilon.E then Return New PKVector2
 		  
 		  magnitude = 1.0 / magnitude
 		  
@@ -677,7 +677,7 @@ Protected Class PKVector2
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return Abs(Self.X * x + Self.Y * y) <= PhysicsKit.Epsilon.E
+		  Return Abs(Self.X * x + Self.Y * y) <= PKEpsilon.E
 		  
 		End Function
 	#tag EndMethod
@@ -695,7 +695,7 @@ Protected Class PKVector2
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return Abs(Self.X * vector.X + Self.Y * vector.Y) <= PhysicsKit.Epsilon.E
+		  Return Abs(Self.X * vector.X + Self.Y * vector.Y) <= PKEpsilon.E
 		  
 		End Function
 	#tag EndMethod
@@ -708,7 +708,7 @@ Protected Class PKVector2
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return Abs(Self.X) <= PhysicsKit.Epsilon.E And Abs(Self.Y) <= PhysicsKit.Epsilon.E
+		  Return Abs(Self.X) <= PKEpsilon.E And Abs(Self.Y) <= PKEpsilon.E
 		  
 		End Function
 	#tag EndMethod
@@ -774,7 +774,7 @@ Protected Class PKVector2
 		  ///
 		  
 		  var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y)
-		  If magnitude <= PhysicsKit.Epsilon.E Then Return 0
+		  If magnitude <= PKEpsilon.E Then Return 0
 		  
 		  Var m As Double = 1.0 / magnitude
 		  Self.X = Self.X * m
@@ -813,7 +813,7 @@ Protected Class PKVector2
 		  Var dotProd As Double = Self.Dot(vector)
 		  Var denominator As Double = vector.Dot(vector)
 		  
-		  If denominator <= PhysicsKit.Epsilon.E Then Return New PKVector2
+		  If denominator <= PKEpsilon.E Then Return New PKVector2
 		  
 		  denominator = dotProd / denominator
 		  
@@ -1064,7 +1064,7 @@ Protected Class PKVector2
 		  ///
 		  
 		  // Check the given magnitude.
-		  If Abs(magnitude) <= PhysicsKit.Epsilon.E Then
+		  If Abs(magnitude) <= PKEpsilon.E Then
 		    Self.X = 0.0
 		    Self.Y = 0.0
 		    Return Self

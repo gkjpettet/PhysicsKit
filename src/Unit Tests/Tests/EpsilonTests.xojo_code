@@ -39,13 +39,13 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Ensure that the static variable is set.
-		  Assert.IsFalse(Epsilon.E = 0.0)
+		  Assert.IsFalse(PKEpsilon.E = 0.0)
 		  
 		  // Ensure the compute method returns in a finite number of iterations.
-		  Call Epsilon.Compute
+		  Call PKEpsilon.Compute
 		  
 		  // Ensure that the epsilon adds nothing to the number 1.
-		  Assert.AreEqual(1.0, 1.0 + Epsilon.E)
+		  Assert.AreEqual(1.0, 1.0 + PKEpsilon.E)
 		  
 		End Sub
 	#tag EndMethod

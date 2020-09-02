@@ -8,7 +8,7 @@ Protected Module PhysicsKit
 		  // slower than regular properties.
 		  PKAbstractShape.Initialise
 		  Ellipse.Initialise
-		  Epsilon.Initialise
+		  PKEpsilon.Initialise
 		  HalfEllipse.Initialise
 		  RobustGeometry.Initialise
 		  PKTransform.Initialise

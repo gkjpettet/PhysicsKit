@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Epsilon
+Protected Class PKEpsilon
 	#tag Method, Flags = &h0
 		Shared Function Compute() As Double
 		  // Computes an approximation of machine epsilon.

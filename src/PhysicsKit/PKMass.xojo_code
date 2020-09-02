@@ -77,7 +77,7 @@ Protected Class PKMass
 		  Self.Inertia = inertia
 		  
 		  // Set the inverse mass.
-		  If mass > PhysicsKit.Epsilon.E Then
+		  If mass > PKEpsilon.E Then
 		    Self.InvMass = 1.0 / mass
 		  Else
 		    Self.InvMass = 0.0
@@ -85,7 +85,7 @@ Protected Class PKMass
 		  End If
 		  
 		  // Set the inverse inertia.
-		  If inertia > PhysicsKit.Epsilon.E Then
+		  If inertia > PKEpsilon.E Then
 		    Self.InvInertia = 1.0 / inertia
 		  Else
 		    Self.InvInertia = 0.0
@@ -93,7 +93,7 @@ Protected Class PKMass
 		  End If
 		  
 		  // Check if both the mass and inertia are zero.
-		  If mass <= PhysicsKit.Epsilon.E And inertia <= PhysicsKit.Epsilon.E Then Self.Type = PhysicsKit.MassTypes.Infinite
+		  If mass <= PKEpsilon.E And inertia <= PKEpsilon.E Then Self.Type = PhysicsKit.MassTypes.Infinite
 		  
 		End Sub
 	#tag EndMethod

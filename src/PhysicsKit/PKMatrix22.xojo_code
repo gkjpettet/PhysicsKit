@@ -215,7 +215,7 @@ Protected Class PKMatrix22
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PKEpsilon.E Then det = 1.0 / det
 		  
 		  Var a As Double = Self.M00
 		  Var b As Double = Self.M01
@@ -420,7 +420,7 @@ Protected Class PKMatrix22
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PKEpsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector2 = New PKVector2
 		  r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)

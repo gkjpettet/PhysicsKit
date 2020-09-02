@@ -424,7 +424,7 @@ Protected Class PKVector3
 		  ///
 		  
 		  Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)
-		  If magnitude <= PhysicsKit.Epsilon.E Then Return New PKVector3
+		  If magnitude <= PKEpsilon.E Then Return New PKVector3
 		  magnitude = 1.0 / magnitude
 		  Return New PKVector3(Self.X * magnitude, Self.Y * magnitude, Self.Z * magnitude)
 		  
@@ -485,7 +485,7 @@ Protected Class PKVector3
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return Abs(Self.X * x + Self.Y * y + Self.Z * z) <= PhysicsKit.Epsilon.E
+		  Return Abs(Self.X * x + Self.Y * y + Self.Z * z) <= PKEpsilon.E
 		  
 		End Function
 	#tag EndMethod
@@ -502,7 +502,7 @@ Protected Class PKVector3
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return If(Abs(Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z) <= PhysicsKit.Epsilon.E, True, False)
+		  Return If(Abs(Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z) <= PKEpsilon.E, True, False)
 		  
 		End Function
 	#tag EndMethod
@@ -515,7 +515,7 @@ Protected Class PKVector3
 		  '- Returns: Boolean.
 		  ///
 		  
-		  Return Abs(Self.X) <= PhysicsKit.Epsilon.E And Abs(Self.Y) <= PhysicsKit.Epsilon.E And Abs(Self.Z) <= PhysicsKit.Epsilon.E
+		  Return Abs(Self.X) <= PKEpsilon.E And Abs(Self.Y) <= PKEpsilon.E And Abs(Self.Z) <= PKEpsilon.E
 		  
 		End Function
 	#tag EndMethod
@@ -567,7 +567,7 @@ Protected Class PKVector3
 		  ///
 		  
 		  Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)
-		  If magnitude <= PhysicsKit.Epsilon.E Then Return 0
+		  If magnitude <= PKEpsilon.E Then Return 0
 		  
 		  Var m As Double = 1.0 / magnitude
 		  Self.X = Self.X * m
@@ -608,7 +608,7 @@ Protected Class PKVector3
 		  
 		  Var dotProd As Double = Self.Dot(vector)
 		  Var denominator As Double = vector.Dot(vector)
-		  If denominator <= PhysicsKit.Epsilon.E Then Return New PKVector3
+		  If denominator <= PKEpsilon.E Then Return New PKVector3
 		  denominator = dotProd / denominator
 		  Return New PKVector3(denominator * vector.X, denominator * vector.Y, denominator * vector.Z)
 		  
@@ -666,7 +666,7 @@ Protected Class PKVector3
 		  ///
 		  
 		  // Check the given magnitude.
-		  If Abs(magnitude) <= PhysicsKit.Epsilon.E Then
+		  If Abs(magnitude) <= PKEpsilon.E Then
 		    Self.X = 0.0
 		    Self.Y = 0.0
 		    Self.Z = 0.0
