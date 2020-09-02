@@ -174,7 +174,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given a length.
 		  ///
 		  
-		  Var s As Segment= PKGeometry.CreateHorizontalSegment(5.0)
+		  Var s As PKSegment= PKGeometry.CreateHorizontalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -1219,7 +1219,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given two points at the origin.
 		  ///
 		  
-		  Var s As Segment= PKGeometry.CreateSegmentAtOrigin(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
+		  Var s As PKSegment= PKGeometry.CreateSegmentAtOrigin(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -1453,7 +1453,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given a length.
 		  ///
 		  
-		  Var s As Segment= PKGeometry.CreateVerticalSegment(5.0)
+		  Var s As PKSegment= PKGeometry.CreateVerticalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -2620,7 +2620,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Segment
+		    Var s As PKSegment
 		    Call PKGeometry.Scale(s, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -2725,7 +2725,7 @@ Inherits TestGroup
 		  Var s4 As PKHalfEllipse= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 2)
 		  Var s5 As Slice= PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
 		  Var s6 As PKPolygon= PKGeometry.Scale(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 2)
-		  Var s7 As Segment= PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
+		  Var s7 As PKSegment= PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
 		  
 		  Assert.AreEqual(1.000, s1.Radius, 1.0e-3)
 		  Assert.AreEqual(2.000, s2.Length, 1.0e-3)

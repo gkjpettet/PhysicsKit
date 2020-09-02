@@ -1,6 +1,6 @@
 #tag Class
 Protected Class Link
-Inherits PhysicsKit.Segment
+Inherits PKSegment
 	#tag Method, Flags = &h0
 		Sub Constructor(point1 As PKVector2, point2 As PKVector2)
 		  ///
@@ -183,7 +183,7 @@ Inherits PhysicsKit.Segment
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 5570646174657320746865206C656E67746820616E6420726164697573206F662074686520676976656E205365676D656E742E
-		Private Shared Sub UpdateLength(segment As PhysicsKit.Segment)
+		Private Shared Sub UpdateLength(segment As PKSegment)
 		  ///
 		  ' Updates the length and radius of the given Segment.
 		  '
@@ -201,7 +201,7 @@ Inherits PhysicsKit.Segment
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 5570646174657320746865206E6F726D616C73206F662074686520676976656E205365676D656E742E
-		Private Shared Sub UpdateNormals(segment As PhysicsKit.Segment)
+		Private Shared Sub UpdateNormals(segment As PKSegment)
 		  ///
 		  ' Updates the normals of the given Segment.
 		  '

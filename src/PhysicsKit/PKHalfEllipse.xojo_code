@@ -541,7 +541,7 @@ Implements  PKConvex
 		    // We have two solutions based on the point location.
 		    // If the point is below the half ellipse, then we need to perform
 		    // a golden section search like the ellipse code.
-		    If PhysicsKit.Segment.GetLocation(center, Self.VertexLeft, Self.VertexRight) <= 0 Then
+		    If PKSegment.GetLocation(center, Self.VertexLeft, Self.VertexRight) <= 0 Then
 		      Return Self.GetMaxDistanceEllipse(center)
 		    Else
 		      // Otherwise we can just take the greater distance of the vertices.

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Segment
+Protected Class PKSegment
 Inherits PKAbstractShape
 Implements   PKConvex,  PKWound
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E6577207365676D656E74207573696E672074686520676976656E20706F696E74732E20205468652063656E7465722077696C6C206265207468652061766572616765206F662074686520706F696E74732E
@@ -73,7 +73,7 @@ Implements   PKConvex,  PKWound
 		  Var p2 As PKVector2 = Self.Vertices(1)
 		  
 		  // Get the location of the given point relative to this segment.
-		  Var value As Double = Segment.GetLocation(p, p1, p2)
+		  Var value As Double = PKSegment.GetLocation(p, p1, p2)
 		  
 		  // See if the point is on the line created by this line segment.
 		  If Abs(value) <= PKEpsilon.E Then
@@ -253,7 +253,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
 		  
-		  Return Segment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)
+		  Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)
 		  
 		End Function
 	#tag EndMethod
@@ -303,9 +303,9 @@ Implements   PKConvex,  PKWound
 		  
 		  // Make sure the edge is the right winding.
 		  If p1.Towards(p2).Right.Dot(vector) > 0 Then
-		    Return New EdgeFeature(vp2, vp1, vm, p2.Towards(p1), 0)
+		    Return New PhysicsKit.EdgeFeature(vp2, vp1, vm, p2.Towards(p1), 0)
 		  Else
-		    Return New EdgeFeature(vp1, vp2, vm, p1.Towards(p2), 0)
+		    Return New PhysicsKit.EdgeFeature(vp1, vp2, vm, p1.Towards(p2), 0)
 		  End If
 		  
 		End Function
@@ -317,7 +317,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Convex interface.
 		  ///
 		  
-		  Return Segment.GetFarthestPoint(Self.Vertices(0), Self.Vertices(1), vector, transform)
+		  Return PKSegment.GetFarthestPoint(Self.Vertices(0), Self.Vertices(1), vector, transform)
 		  
 		End Function
 	#tag EndMethod
@@ -386,7 +386,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206C696E6520696E74657273656374696F6E206F662074686520676976656E205365676D656E7420616E642074686973205365676D656E742E20417373756D6573207468617420626F7468207468697320616E642074686520676976656E207365676D656E742061726520696E207468652073616D652073706163652028656974686572206C6F63616C206F7220776F726C64207370616365292E204D61792072657475726E204E696C2E205468726F7773204E696C4F626A656374457863657074696F6E2E
-		Function GetLineIntersection(segment As PhysicsKit.Segment) As PKVector2
+		Function GetLineIntersection(segment As PKSegment) As PKVector2
 		  ///
 		  ' Returns the line intersection of the given Segment and this Segment.
 		  '
@@ -514,7 +514,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New WoundIterator(Self.Normals)
+		  Return New PhysicsKit.WoundIterator(Self.Normals)
 		  
 		End Function
 	#tag EndMethod
@@ -568,7 +568,7 @@ Implements   PKConvex,  PKWound
 		  ' - Raises: NilObjectException: If the given point is Nil.
 		  ///
 		  
-		  Return Segment.GetPointOnLineClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
+		  Return PKSegment.GetPointOnLineClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
 		  
 		End Function
 	#tag EndMethod
@@ -633,7 +633,7 @@ Implements   PKConvex,  PKWound
 		  ' - Raises: NilObjectException if the given point is Nil.
 		  ///
 		  
-		  Return Segment.GetPointOnSegmentClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
+		  Return PKSegment.GetPointOnSegmentClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))
 		  
 		End Function
 	#tag EndMethod
@@ -695,7 +695,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E74657273656374696F6E206F662074686520676976656E205365676D656E7420616E642074686973205365676D656E742E20417373756D6573207468617420626F7468207468697320616E642074686520676976656E207365676D656E742061726520696E207468652073616D652073706163652028656974686572206C6F63616C206F7220776F726C64207370616365292E205468726F7773204E696C4F626A656374457863657074696F6E2E
-		Function GetSegmentIntersection(segment As PhysicsKit.Segment) As PKVector2
+		Function GetSegmentIntersection(segment As PKSegment) As PKVector2
 		  ///
 		  ' Returns the intersection of the given Segment and this Segment.
 		  '
@@ -810,7 +810,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New WoundIterator(Self.Vertices)
+		  Return New PhysicsKit.WoundIterator(Self.Vertices)
 		  
 		End Function
 	#tag EndMethod

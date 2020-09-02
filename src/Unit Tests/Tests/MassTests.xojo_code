@@ -414,7 +414,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var s As Segment = New Segment(New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
+		  Var s As PKSegment = New PKSegment(New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
 		  Var m As PKMass = s.CreateMass(1.0)
 		  
 		  // The mass of a segment should be l * d

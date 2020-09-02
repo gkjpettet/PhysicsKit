@@ -49,7 +49,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Return Segment.GetLocation(point, linePoint1, linePoint2)
+		  Return PKSegment.GetLocation(point, linePoint1, linePoint2)
 		  
 		End Function
 	#tag EndMethod

@@ -43,7 +43,7 @@ Inherits TestGroup
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(1.434, p.GetRadius(c), 1.0e-3)
 		  
-		  Var s As Segment= PKGeometry.CreateHorizontalSegment(4.0)
+		  Var s As PKSegment= PKGeometry.CreateHorizontalSegment(4.0)
 		  Assert.AreEqual(3.000, s.GetRadius(c), 1.0e-3)
 		  
 		  Var r As Rectangle= PKGeometry.CreateRectangle(3.0, 2.0)
@@ -66,7 +66,7 @@ Inherits TestGroup
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(0.500, p.GetRadius, 1.0e-3)
 		  
-		  Var s As Segment= PKGeometry.CreateHorizontalSegment(4.0)
+		  Var s As PKSegment= PKGeometry.CreateHorizontalSegment(4.0)
 		  Assert.AreEqual(2.000, s.GetRadius, 1.0e-3)
 		  
 		  Var r As Rectangle= PKGeometry.CreateRectangle(3.0, 2.0)

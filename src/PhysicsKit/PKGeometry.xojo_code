@@ -215,7 +215,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E7420776974682074686520676976656E206C656E6774682077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function CreateHorizontalSegment(length As Double) As PhysicsKit.Segment
+		Shared Function CreateHorizontalSegment(length As Double) As PKSegment
 		  ///
 		  ' Creates a new Segment with the given length with the centre at the origin.
 		  '
@@ -232,7 +232,7 @@ Protected Class PKGeometry
 		  Var startV As PKVector2 = New PKVector2(-length * 0.5, 0.0)
 		  Var endV As PKVector2 = New PKVector2(length * 0.5, 0.0)
 		  
-		  Return New PhysicsKit.Segment(startV, endV)
+		  Return New PKSegment(startV, endV)
 		  
 		End Function
 	#tag EndMethod
@@ -893,7 +893,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E742066726F6D20746865206F726967696E20746F2074686520676976656E20656E6420706F696E742E204D616B6573206120636F7079206F662074686520676976656E20706F696E7420746F2063726561746520746865205365676D656E742E20526169736573204E696C4F626A656374457863657074696F6E732E
-		Shared Function CreateSegment(endPoint As PKVector2) As PhysicsKit.Segment
+		Shared Function CreateSegment(endPoint As PKVector2) As PKSegment
 		  ///
 		  ' Creates a new Segment from the origin to the given end point
 		  '
@@ -912,7 +912,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E7420776974682074686520676976656E20706F696E74732E204D616B6573206120636F7079206F662074686520676976656E20706F696E747320746F2063726561746520746865205365676D656E742E205468652063656E747265206F6620746865205365676D656E742077696C6C206265207468652061766572616765206F66207468652074776F20706F696E74732E20526169736573204E696C4F626A656374457863657074696F6E732E
-		Shared Function CreateSegment(p1 As PKVector2, p2 As PKVector2) As PhysicsKit.Segment
+		Shared Function CreateSegment(p1 As PKVector2, p2 As PKVector2) As PKSegment
 		  ///
 		  ' Creates a new Segment with the given points.
 		  '
@@ -930,13 +930,13 @@ Protected Class PKGeometry
 		  
 		  If p1 Is Nil Or p2 Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SEGMENT_POINT)
 		  
-		  Return New PhysicsKit.Segment(p1.Copy, p2.Copy)
+		  Return New PKSegment(p1.Copy, p2.Copy)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E7420776974682074686520676976656E20706F696E74732E204D616B6573206120636F7079206F662074686520676976656E20706F696E747320746F2063726561746520746865205365676D656E742E20547472616E736C6174657320746865205365676D656E7420766572746963657320736F2074686174207468652063656E74726520697320617420746865206F726967696E2E20526169736573204E696C4F626A656374457863657074696F6E732E
-		Shared Function CreateSegmentAtOrigin(p1 As PKVector2, p2 As PKVector2) As PhysicsKit.Segment
+		Shared Function CreateSegmentAtOrigin(p1 As PKVector2, p2 As PKVector2) As PKSegment
 		  ///
 		  ' Creates a new Segment with the given points.
 		  '
@@ -952,7 +952,7 @@ Protected Class PKGeometry
 		  ' - Raises: NilObjectException if `p1` or `p2` is Nil.
 		  ///
 		  
-		  Var s As PhysicsKit.Segment= PKGeometry.createSegment(p1, p2)
+		  Var s As PKSegment= PKGeometry.createSegment(p1, p2)
 		  Var center As PKVector2 = s.GetCenter
 		  s.Translate(-center.X, -center.Y)
 		  
@@ -1139,7 +1139,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577205365676D656E7420776974682074686520676976656E206C656E6774682077697468207468652063656E74726520617420746865206F726967696E2E20606C656E6774686020697320696E206D65747265732E2052616973657320496E76616C6964417267756D656E74457863657074696F6E732E
-		Shared Function CreateVerticalSegment(length As Double) As PhysicsKit.Segment
+		Shared Function CreateVerticalSegment(length As Double) As PKSegment
 		  ///
 		  ' Creates a new Segment with the given length with the centre at the origin.
 		  '
@@ -1156,7 +1156,7 @@ Protected Class PKGeometry
 		  Var start As PKVector2 = New PKVector2(0.0, -length * 0.5)
 		  Var endPoint As PKVector2 = New PKVector2(0.0, length * 0.5)
 		  
-		  Return New PhysicsKit.Segment(start, endPoint)
+		  Return New PKSegment(start, endPoint)
 		  
 		End Function
 	#tag EndMethod
@@ -1916,33 +1916,6 @@ Protected Class PKGeometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E207365676D656E742E
-		Shared Function Scale(segment As PhysicsKit.Segment, scale As Double) As PhysicsKit.Segment
-		  ///
-		  ' Returns a scaled version of the given segment.
-		  '
-		  ' - Parameter segment: The segment.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returns: A new Segment.
-		  '
-		  ' - Raises: NilObjectException if the given segment is Nil.
-		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
-		  ///
-		  
-		  If segment Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  
-		  Var length As Double = segment.GetLength * scale * 0.5
-		  Var n As PKVector2 = segment.Vertices(0).Towards(segment.Vertices(1))
-		  Call n.Normalise
-		  Call n.Multiply(length)
-		  
-		  Return New PhysicsKit.Segment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20736C6963652E
 		Shared Function Scale(slice As PhysicsKit.Slice, scale As Double) As PhysicsKit.Slice
 		  ///
@@ -2054,6 +2027,33 @@ Protected Class PKGeometry
 		  Next i
 		  
 		  Return New PKPolygon(vertices)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E207365676D656E742E
+		Shared Function Scale(segment As PKSegment, scale As Double) As PKSegment
+		  ///
+		  ' Returns a scaled version of the given segment.
+		  '
+		  ' - Parameter segment: The segment.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Segment.
+		  '
+		  ' - Raises: NilObjectException if the given segment is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If segment Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
+		  
+		  Var length As Double = segment.GetLength * scale * 0.5
+		  Var n As PKVector2 = segment.Vertices(0).Towards(segment.Vertices(1))
+		  Call n.Normalise
+		  Call n.Multiply(length)
+		  
+		  Return New PKSegment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
 		  
 		End Function
 	#tag EndMethod

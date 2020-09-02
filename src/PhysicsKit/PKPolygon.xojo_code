@@ -90,7 +90,7 @@ Implements   PKConvex,  PKWound
 		  Var p2 As PKVector2 = Self.Vertices(0)
 		  
 		  // Get the location of the point relative to the first two vertices.
-		  Var last As Double = PhysicsKit.Segment.GetLocation(p, p1, p2)
+		  Var last As Double = PKSegment.GetLocation(p, p1, p2)
 		  
 		  // Loop through the rest of the vertices.
 		  For i As Integer = 0 To size - 2
@@ -102,7 +102,7 @@ Implements   PKConvex,  PKWound
 		    If p.Equals(p1) Or p.Equals(p2) Then Return True
 		    
 		    // Do side of line test.
-		    Var location As Double = PhysicsKit.Segment.GetLocation(p, p1, p2)
+		    Var location As Double = PKSegment.GetLocation(p, p1, p2)
 		    
 		    // Multiply the last location with this location.
 		    // If they are the same sign then the opertation will yield a positive result

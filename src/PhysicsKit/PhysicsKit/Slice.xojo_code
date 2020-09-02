@@ -84,8 +84,8 @@ Implements  PKConvex
 		  
 		  If v.GetMagnitudeSquared <= radiusSquared Then
 		    // If it's in the circle then we need to make sure its in the section.
-		    If Segment.GetLocation(lp, Self.Vertices(0), Self.Vertices(1)) <= 0 And _
-		      Segment.GetLocation(lp, Self.Vertices(0), Self.Vertices(2)) >= 0 Then
+		    If PKSegment.GetLocation(lp, Self.Vertices(0), Self.Vertices(1)) <= 0 And _
+		      PKSegment.GetLocation(lp, Self.Vertices(0), Self.Vertices(2)) >= 0 Then
 		      Return True
 		    End If
 		  End If
@@ -244,16 +244,16 @@ Implements  PKConvex
 		    // Check if this section is nearly a half circle.
 		    If Self.CosAlpha <= 1.0e-6 Then
 		      // If so, we want to return the full back side.
-		      Return Segment.GetFarthestFeature(Self.Vertices(1), Self.Vertices(2), vector, transform)
+		      Return PKSegment.GetFarthestFeature(Self.Vertices(1), Self.Vertices(2), vector, transform)
 		    End If
 		    
 		    // Otherwise check which side its on.
 		    If localnRotated.Y > 0 Then
 		      // It's the top segment.
-		      Return Segment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)
+		      Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)
 		    ElseIf localnRotated.Y < 0 Then
 		      // It's the bottom segment.
-		      Return Segment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(2), vector, transform)
+		      Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(2), vector, transform)
 		    Else
 		      // It's the tip point.
 		      Return New PKPointFeature(transform.GetTransformed(Self.Vertices(0)))
@@ -343,8 +343,8 @@ Implements  PKConvex
 		  //  /  \  )
 		  // /    \)
 		  
-		  If Segment.GetLocation(center, Self.Vertices(1), Self.Vertices(0)) <= 0 And _
-		    Segment.GetLocation(center, Self.Vertices(2), Self.Vertices(0)) >= 0 Then
+		  If PKSegment.GetLocation(center, Self.Vertices(1), Self.Vertices(0)) <= 0 And _
+		    PKSegment.GetLocation(center, Self.Vertices(2), Self.Vertices(0)) >= 0 Then
 		    // It's the slice radius plus the distance from the centre to the tip of the slice.
 		    Return Self.SliceRadius + center.Distance(Self.Vertices(0))
 		  Else

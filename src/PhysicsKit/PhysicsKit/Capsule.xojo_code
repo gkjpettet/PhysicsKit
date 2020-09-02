@@ -83,7 +83,7 @@ Implements  PKConvex
 		  ///
 		  
 		  // A capsule is just a radially expanded line segment.
-		  Var p As PKVector2 = Segment.GetPointOnSegmentClosestToPoint(point, _
+		  Var p As PKVector2 = PKSegment.GetPointOnSegmentClosestToPoint(point, _
 		  transform.GetTransformed(Self.Foci(0)), transform.GetTransformed(Self.Foci(1)))
 		  
 		  Var r2 As Double = Self.CapRadius * Self.CapRadius
@@ -247,11 +247,11 @@ Implements  PKConvex
 		      Var p2 As PKVector2 = Self.Foci(1).Sum(v).Add(e)
 		      
 		      // Return the full bottom side.
-		      Return Segment.GetFarthestFeature(p1, p2, vector, transform)
+		      Return PKSegment.GetFarthestFeature(p1, p2, vector, transform)
 		    Else
 		      Var p1 As PKVector2 = Self.Foci(0).Difference(v).Subtract(e)
 		      Var p2 As PKVector2 = Self.Foci(1).Difference(v).Add(e)
-		      Return Segment.GetFarthestFeature(p1, p2, vector, transform)
+		      Return PKSegment.GetFarthestFeature(p1, p2, vector, transform)
 		    End If
 		  End If
 		  
@@ -268,7 +268,7 @@ Implements  PKConvex
 		  Call vector.Normalise
 		  
 		  // A capsule is just a radially expanded line segment.
-		  Var p As PKVector2 = Segment.GetFarthestPoint(Self.Foci(0), Self.Foci(1), vector, transform)
+		  Var p As PKVector2 = PKSegment.GetFarthestPoint(Self.Foci(0), Self.Foci(1), vector, transform)
 		  
 		  // Apply the radial expansion.
 		  Return p.Add(vector.Product(Self.CapRadius))
