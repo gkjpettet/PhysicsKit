@@ -142,7 +142,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4372656174657320616E20657175696C61746572616C20547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function CreateEquilateralTriangle(height As Double) As PhysicsKit.Triangle
+		Shared Function CreateEquilateralTriangle(height As Double) As PKTriangle
 		  ///
 		  ' Creates an equilateral Triangle with the centre at the origin.
 		  '
@@ -238,7 +238,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4372656174657320616E2069736F7363656C657320547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E2052616973657320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function CreateIsoscelesTriangle(width As Double, height As Double) As PhysicsKit.Triangle
+		Shared Function CreateIsoscelesTriangle(width As Double, height As Double) As PKTriangle
 		  ///
 		  ' Creates an isosceles Triangle with the centre at the origin.
 		  '
@@ -261,7 +261,7 @@ Protected Class PKGeometry
 		  Var right As PKVector2 = New PKVector2(width * 0.5, 0.0)
 		  
 		  // Create the triangle
-		  Var t As PhysicsKit.Triangle = New PhysicsKit.Triangle(top, left, right)
+		  Var t As PKTriangle = New PKTriangle(top, left, right)
 		  Var center As PKVector2 = t.GetCenter
 		  t.Translate(-center.X, -center.Y)
 		  
@@ -837,7 +837,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120726967687420616E676C6520547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E206077696474686020616E642060686569676874602061726520696E206D65747265732E2052616973657320496E76616C6964417267756D656E74457863657074696F6E732E
-		Shared Function CreateRightTriangle(width As Double, height As Double) As PhysicsKit.Triangle
+		Shared Function CreateRightTriangle(width As Double, height As Double) As PKTriangle
 		  ///
 		  ' Creates a right angle Triangle with the centre at the origin.
 		  '
@@ -854,7 +854,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120726967687420616E676C6520547269616E676C652077697468207468652063656E74726520617420746865206F726967696E2E206077696474686020616E642060686569676874602061726520696E206D65747265732E2052616973657320496E76616C6964417267756D656E74457863657074696F6E732E
-		Shared Function CreateRightTriangle(width As Double, height As Double, mirror As Boolean) As PhysicsKit.Triangle
+		Shared Function CreateRightTriangle(width As Double, height As Double, mirror As Boolean) As PKTriangle
 		  ///
 		  ' Creates a right angle Triangle with the centre at the origin.
 		  '
@@ -876,12 +876,12 @@ Protected Class PKGeometry
 		  Var left As PKVector2 = New PKVector2(0.0, 0.0)
 		  Var right As PKVector2 = New PKVector2(If(mirror, -width, width), 0.0)
 		  
-		  Var t As PhysicsKit.Triangle
+		  Var t As PKTriangle
 		  If mirror Then
 		    // Make sure it has anti-clockwise winding.
-		    t = New PhysicsKit.Triangle(top, right, left)
+		    t = New PKTriangle(top, right, left)
 		  Else
-		    t = New PhysicsKit.Triangle(top, left, right)
+		    t = New PKTriangle(top, left, right)
 		  End If
 		  
 		  Var center As PKVector2 = t.GetCenter
@@ -1037,7 +1037,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720547269616E676C652C207573696E672074686520676976656E20706F696E74732E204D616B6573206120636F7079206F662074686520676976656E20706F696E747320746F206372656174652074686520547269616E676C652E20526169736573204E696C4F626A656374457863657074696F6E732E
-		Shared Function CreateTriangle(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PhysicsKit.Triangle
+		Shared Function CreateTriangle(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PKTriangle
 		  ///
 		  ' Creates a new Triangle, using the given points.
 		  '
@@ -1058,13 +1058,13 @@ Protected Class PKGeometry
 		    Raise New NilObjectException(PKMessages.GEOMETRY_NIL_TRIANGLE_POINT)
 		  End If
 		  
-		  Return New PhysicsKit.Triangle(p1.Copy, p2.Copy, p3.Copy)
+		  Return New PKTriangle(p1.Copy, p2.Copy, p3.Copy)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720547269616E676C6520776974682074686520676976656E20706F696E74732063656E746572656420617420746865206F726967696E2E204D616B6573206120636F7079206F662074686520676976656E20706F696E747320746F206372656174652074686520547269616E676C652E20526169736573204E696C4F626A656374457863657074696F6E732E
-		Shared Function CreateTriangleAtOrigin(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PhysicsKit.Triangle
+		Shared Function CreateTriangleAtOrigin(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PKTriangle
 		  ///
 		  ' Creates a new Triangle with the given points centered at the origin.
 		  '
@@ -1078,7 +1078,7 @@ Protected Class PKGeometry
 		  ' - Raises: NilObjectException if `p1`, `p2`, or `p3` is Nil.
 		  ///
 		  
-		  Var t As PhysicsKit.Triangle= PKGeometry.CreateTriangle(p1, p2, p3)
+		  Var t As PKTriangle= PKGeometry.CreateTriangle(p1, p2, p3)
 		  Var center As PKVector2 = t.GetCenter
 		  t.Translate(-center.X, -center.Y)
 		  

@@ -124,7 +124,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of an equilateral angle triangle.
 		  ///
 		  
-		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
+		  Var t As PKTriangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -190,7 +190,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of an isosceles triangle.
 		  ///
 		  
-		  Var t As Triangle= PKGeometry.CreateIsoscelesTriangle(2.0, 1.0)
+		  Var t As PKTriangle= PKGeometry.CreateIsoscelesTriangle(2.0, 1.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -1129,7 +1129,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a right angle triangle.
 		  ///
 		  
-		  Var t As Triangle= PKGeometry.CreateRightTriangle(1.0, 2.0, True)
+		  Var t As PKTriangle= PKGeometry.CreateRightTriangle(1.0, 2.0, True)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -1174,7 +1174,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a right angle triangle.
 		  ///
 		  
-		  Var t As Triangle= PKGeometry.CreateRightTriangle(1.0, 2.0)
+		  Var t As PKTriangle= PKGeometry.CreateRightTriangle(1.0, 2.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -1331,7 +1331,7 @@ Inherits TestGroup
 		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
-		  Var t As Triangle= PKGeometry.CreateTriangleAtOrigin(p1, p2, p3)
+		  Var t As PKTriangle= PKGeometry.CreateTriangleAtOrigin(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
 		  Assert.IsFalse(t.Vertices(0) Is p1)
@@ -1378,7 +1378,7 @@ Inherits TestGroup
 		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
-		  Var t As Triangle= PKGeometry.CreateTriangle(p1, p2, p3)
+		  Var t As PKTriangle= PKGeometry.CreateTriangle(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
 		  Assert.IsFalse(t.Vertices(0) Is p1)

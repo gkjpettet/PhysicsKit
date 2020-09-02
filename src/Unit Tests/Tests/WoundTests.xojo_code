@@ -49,7 +49,7 @@ Inherits TestGroup
 		  Var r As PKRectangle= PKGeometry.CreateRectangle(3.0, 2.0)
 		  Assert.AreEqual(2.692, r.GetRadius(c), 1.0e-3)
 		  
-		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
+		  Var t As PKTriangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  Assert.AreEqual(2.255, t.GetRadius(c), 1.0e-3)
 		  
 		End Sub
@@ -72,7 +72,7 @@ Inherits TestGroup
 		  Var r As PKRectangle= PKGeometry.CreateRectangle(3.0, 2.0)
 		  Assert.AreEqual(1.802, r.GetRadius, 1.0e-3)
 		  
-		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
+		  Var t As PKTriangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  Assert.AreEqual(1.333, t.GetRadius, 1.0e-3)
 		  
 		End Sub
