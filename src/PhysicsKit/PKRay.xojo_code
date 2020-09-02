@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Ray
+Protected Class PKRay
 	#tag Method, Flags = &h0
 		Sub Constructor(direction As Double)
 		  ///
