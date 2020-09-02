@@ -121,7 +121,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function CreateEllipse(width As Double, height As Double) As PhysicsKit.Ellipse
+		Shared Function CreateEllipse(width As Double, height As Double) As PKEllipse
 		  ///
 		  ' Creates a new Ellipse bounded by the given rectangle width and height.
 		  '
@@ -136,7 +136,7 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
 		  ///
 		  
-		  Return New PhysicsKit.Ellipse(width, height)
+		  Return New PKEllipse(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -1916,26 +1916,6 @@ Protected Class PKGeometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20656C6C697073652E
-		Shared Function Scale(ellipse As PhysicsKit.Ellipse, scale As Double) As PhysicsKit.Ellipse
-		  ///
-		  ' Returns a scaled version of the given ellipse.
-		  '
-		  ' - Parameter ellipse: The ellipse.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returnsl: A new Ellipse.
-		  '
-		  ' - Raises: NilObjectException if the given ellipse is Nil.
-		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
-		  ///
-		  
-		  If ellipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  Return New PhysicsKit.Ellipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2068616C662D656C6C697073652E
 		Shared Function Scale(halfEllipse As PhysicsKit.HalfEllipse, scale As Double) As PhysicsKit.HalfEllipse
 		  ///
@@ -2023,6 +2003,26 @@ Protected Class PKGeometry
 		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
 		  Return New PKCircle(circle.Radius * scale)
 		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20656C6C697073652E
+		Shared Function Scale(ellipse As PKEllipse, scale As Double) As PKEllipse
+		  ///
+		  ' Returns a scaled version of the given ellipse.
+		  '
+		  ' - Parameter ellipse: The ellipse.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returnsl: A new Ellipse.
+		  '
+		  ' - Raises: NilObjectException if the given ellipse is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If ellipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
+		  Return New PKEllipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
 		End Function
 	#tag EndMethod
 

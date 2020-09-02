@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Ellipse
+Protected Class PKEllipse
 Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h0
@@ -160,7 +160,7 @@ Implements  PKConvex
 		  Var farthest As PKVector2 = Self.GetFarthestPoint(vector, transform)
 		  
 		  // For an ellipse the farthest feature along a vector will always be a vertex.
-		  Return New PointFeature(farthest)
+		  Return New PhysicsKit.PointFeature(farthest)
 		  
 		End Function
 	#tag EndMethod
@@ -276,8 +276,8 @@ Implements  PKConvex
 		  // Compute the golden ratio test points.
 		  Var x2 As Double = x1 - (x1 - x0) * INV_GOLDEN_RATIO
 		  Var x3 As Double = x0 + (x1 - x0) * INV_GOLDEN_RATIO
-		  Var fx2 As Double = Ellipse.GetSquaredDistance(aa, ba, x2, q, p)
-		  Var fx3 As Double = Ellipse.GetSquaredDistance(aa, ba, x3, q, p)
+		  Var fx2 As Double = PKEllipse.GetSquaredDistance(aa, ba, x2, q, p)
+		  Var fx3 As Double = PKEllipse.GetSquaredDistance(aa, ba, x3, q, p)
 		  
 		  // Our bracket is now: [x0, x2, x3, x1]. Iteratively reduce the bracket.
 		  Var iLimit As Integer = FARTHEST_POINT_MAX_ITERATIONS - 1
@@ -288,14 +288,14 @@ Implements  PKConvex
 		      x2 = x3
 		      fx2 = fx3
 		      x3 = x0 + (x1 - x0) * INV_GOLDEN_RATIO
-		      fx3 = Ellipse.GetSquaredDistance(aa, ba, x3, q, p)
+		      fx3 = PKEllipse.GetSquaredDistance(aa, ba, x3, q, p)
 		    Else
 		      If Abs(x3 - x0) <= FARTHEST_POINT_EPSILON Then Exit
 		      x1 = x3
 		      x3 = x2
 		      fx3 = fx2
 		      x2 = x1 - (x1 - x0) * INV_GOLDEN_RATIO
-		      fx2 = Ellipse.GetSquaredDistance(aa, ba, x2, q, p)
+		      fx2 = PKEllipse.GetSquaredDistance(aa, ba, x2, q, p)
 		    End If
 		  Next i
 		  
@@ -360,7 +360,7 @@ Implements  PKConvex
 		    // It's on the x-axis and the farthest point is easy to calculate.
 		    p = New PKVector2(If(px < 0, a, -a), 0)
 		  Else
-		    p = Ellipse.GetFarthestPointOnBoundedEllipse(0, a, a, b, New PKVector2(px, py))
+		    p = PKEllipse.GetFarthestPointOnBoundedEllipse(0, a, a, b, New PKVector2(px, py))
 		  End If
 		  
 		  // Translate the point to the correct quadrant.
@@ -450,7 +450,7 @@ Implements  PKConvex
 		  Var p As PKVector2 = center.Difference(Self.Center).InverseRotate(Self.Rotation)
 		  
 		  // Get the farthest point.
-		  Var fp As PKVector2 = Ellipse.GetFarthestPointOnEllipse(Self.HalfWidth, Self.HalfHeight, p)
+		  Var fp As PKVector2 = PKEllipse.GetFarthestPointOnEllipse(Self.HalfWidth, Self.HalfHeight, p)
 		  
 		  // Get the distance between the two points. The distance will be the same if we 
 		  // translate/rotate the points back to the real position and rotation, so don't bother.

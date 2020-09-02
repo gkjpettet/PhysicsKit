@@ -390,7 +390,7 @@ Implements  PKConvex
 		  Var p As PKVector2 = point.Difference(Self.EllipseCenter).InverseRotate(Self.Rotation)
 		  
 		  // Get the farthest point.
-		  Var fp As PKVector2 = Ellipse.GetFarthestPointOnEllipse(Self.HalfWidth, Self.Height, p)
+		  Var fp As PKVector2 = PKEllipse.GetFarthestPointOnEllipse(Self.HalfWidth, Self.Height, p)
 		  
 		  // Get the distance between the two points. The distance will be the
 		  // same if we translate/rotate the points back to the real position and rotation, so don't bother.
@@ -495,7 +495,7 @@ Implements  PKConvex
 		  Var xmax As Double = 0 
 		  
 		  // Get the farthest point on the ellipse.
-		  Var s As PKVector2 = Ellipse.GetFarthestPointOnBoundedEllipse(xmin, xmax, a, b, p)
+		  Var s As PKVector2 = PKEllipse.GetFarthestPointOnBoundedEllipse(xmin, xmax, a, b, p)
 		  
 		  // Then compare that with the farthest point of the two vertices.
 		  Var d1 As Double = s.Distance(p)

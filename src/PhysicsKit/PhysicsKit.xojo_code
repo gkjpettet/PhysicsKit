@@ -7,7 +7,7 @@ Protected Module PhysicsKit
 		  // static but that would require us to use computed shared properties which I suspect are 
 		  // slower than regular properties.
 		  PKAbstractShape.Initialise
-		  Ellipse.Initialise
+		  PKEllipse.Initialise
 		  PKEpsilon.Initialise
 		  HalfEllipse.Initialise
 		  RobustGeometry.Initialise

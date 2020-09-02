@@ -37,7 +37,7 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(2.0, 1.0)
+		  Var e As PKEllipse = New PKEllipse(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.75, 0.35)
 		  
@@ -74,7 +74,7 @@ Inherits TestGroup
 		  ' Tests the generated PKAABB.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(1.0, 0.5)
+		  Var e As PKEllipse = New PKEllipse(1.0, 0.5)
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
@@ -113,7 +113,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var ell As Ellipse = New Ellipse(1.0, -1.0)
+		    Var ell As PKEllipse = New PKEllipse(1.0, -1.0)
 		    #Pragma Unused ell
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -134,7 +134,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var ell As Ellipse = New Ellipse(-1.0, 1.0)
+		    Var ell As PKEllipse = New PKEllipse(-1.0, 1.0)
 		    #Pragma Unused ell
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -152,7 +152,7 @@ Inherits TestGroup
 		  ' Tests the constructor.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(1.0, 2.0)
+		  Var e As PKEllipse = New PKEllipse(1.0, 2.0)
 		  Assert.AreEqual(1.0, e.getHalfHeight)
 		  Assert.AreEqual(0.5, e.getHalfWidth)
 		  Assert.AreEqual(1.0, e.getWidth)
@@ -170,7 +170,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var ell As ellipse = New Ellipse(1.0, 0.0)
+		    Var ell As PKEllipse = New PKEllipse(1.0, 0.0)
 		    #Pragma Unused ell
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -191,7 +191,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var ell As Ellipse = New Ellipse(0.0, 1.0)
+		    Var ell As PKEllipse = New PKEllipse(0.0, 1.0)
 		    #Pragma Unused ell
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -212,7 +212,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var e As Ellipse = New Ellipse(1.0, 0.5)
+		    Var e As PKEllipse = New PKEllipse(1.0, 0.5)
 		    Call e.GetAxes(Array(New PKVector2), IDENTITY)
 		  Catch err As UnsupportedOperationException
 		    Assert.Pass
@@ -230,7 +230,7 @@ Inherits TestGroup
 		  ' Tests the farthest methods.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(2.0, 1.0)
+		  Var e As PKEllipse = New PKEllipse(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
@@ -275,7 +275,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var e As Ellipse = New Ellipse(1.0, 0.5)
+		    Var e As PKEllipse = New PKEllipse(1.0, 0.5)
 		    Call e.GetFoci(IDENTITY)
 		  Catch err As UnsupportedOperationException
 		    Assert.Pass
@@ -293,7 +293,7 @@ Inherits TestGroup
 		  ' Tests the Project method.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(2.0, 1.0)
+		  Var e As PKEllipse = New PKEllipse(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
@@ -335,7 +335,7 @@ Inherits TestGroup
 		  ' Tests the Rotate methods.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(1.0, 0.5)
+		  Var e As PKEllipse = New PKEllipse(1.0, 0.5)
 		  
 		  // Rotate about centre.
 		  e.Translate(1.0, 1.0)
@@ -363,7 +363,7 @@ Inherits TestGroup
 		  ' Tests the Translate methods.
 		  ///
 		  
-		  Var e As Ellipse = New Ellipse(1.0, 0.5)
+		  Var e As PKEllipse = New PKEllipse(1.0, 0.5)
 		  
 		  e.Translate(1.0, -0.5)
 		  
