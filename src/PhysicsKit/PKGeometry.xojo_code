@@ -271,7 +271,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206C697374206F66204C696E6B7320666F722074686520676976656E2076657274696365732E2049662060636C6F7365646020697320547275652C20616E206578747261206C696E6B2069732063726561746564206A6F696E696E6720746865206C61737420616E6420666972737420766572746963657320696E207468652061727261792E
-		Shared Function CreateLinks(vertices() As PKVector2, closed As Boolean) As PhysicsKit.Link()
+		Shared Function CreateLinks(vertices() As PKVector2, closed As Boolean) As PKLink()
 		  ///
 		  ' Creates a list of Links for the given vertices.
 		  '
@@ -298,7 +298,7 @@ Protected Class PKGeometry
 		  If size < 2 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
 		  
 		  // Generate the links.
-		  Var links() As PhysicsKit.Link
+		  Var links() As PKLink
 		  
 		  Var iLimit As Integer = size - 2
 		  For i As Integer = 0 To iLimit
@@ -310,11 +310,11 @@ Protected Class PKGeometry
 		      Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    End If
 		    
-		    Var link As PhysicsKit.Link = New PhysicsKit.Link(p1, p2)
+		    Var link As PKLink = New PKLink(p1, p2)
 		    
 		    // Link up the previous and this link.
 		    If i > 0 Then
-		      Var prev As PhysicsKit.Link = links(i - 1)
+		      Var prev As PKLink = links(i - 1)
 		      link.SetPrevious(prev)
 		    End If
 		    
@@ -326,11 +326,11 @@ Protected Class PKGeometry
 		    // Create a link to span the first and last vertex.
 		    Var p1 As PKVector2 = vertices(0).Copy
 		    Var p2 As PKVector2 = vertices(size - 1).Copy
-		    Var link As PhysicsKit.Link = New PhysicsKit.Link(p1, p2)
+		    Var link As PKLink = New PKLink(p1, p2)
 		    
 		    // Wire it up.
-		    Var prev As PhysicsKit.Link = links(links.Count - 1)
-		    Var nextLink As PhysicsKit.Link = links(0)
+		    Var prev As PKLink = links(links.Count - 1)
+		    Var nextLink As PKLink = links(0)
 		    link.SetPrevious(prev)
 		    link.SetNext(nextLink)
 		    links.AddRow(link)

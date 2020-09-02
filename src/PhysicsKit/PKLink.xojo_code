@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Link
+Protected Class PKLink
 Inherits PKSegment
 	#tag Method, Flags = &h0
 		Sub Constructor(point1 As PKVector2, point2 As PKVector2)
@@ -16,7 +16,7 @@ Inherits PKSegment
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206E657874206C696E6B20696E2074686520636861696E2E
-		Function GetNext() As PhysicsKit.Link
+		Function GetNext() As PKLink
 		  ///
 		  ' Returns the next link in the chain.
 		  '
@@ -55,7 +55,7 @@ Inherits PKSegment
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652070726576696F7573206C696E6B20696E2074686520636861696E2E
-		Function GetPrevious() As PhysicsKit.Link
+		Function GetPrevious() As PKLink
 		  ///
 		  ' Returns the previous link in the chain.
 		  '
@@ -94,7 +94,7 @@ Inherits PKSegment
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5365747320746865206E657874206C696E6B20696E2074686520636861696E2E
-		Sub SetNext(nextLink As PhysicsKit.Link)
+		Sub SetNext(nextLink As PKLink)
 		  ///
 		  ' Sets the next link in the chain.
 		  '
@@ -119,7 +119,7 @@ Inherits PKSegment
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652070726576696F7573206C696E6B20696E2074686520636861696E2E
-		Sub SetPrevious(previousLink As PhysicsKit.Link)
+		Sub SetPrevious(previousLink As PKLink)
 		  ///
 		  ' Sets the previous link in the chain.
 		  '
@@ -239,11 +239,11 @@ Inherits PKSegment
 
 
 	#tag Property, Flags = &h0, Description = 546865206E657874206C696E6B20696E2074686520636861696E2E
-		NextLink As PhysicsKit.Link
+		NextLink As PKLink
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652070726576696F7573206C696E6B20696E2074686520636861696E2E
-		PreviousLink As PhysicsKit.Link
+		PreviousLink As PKLink
 	#tag EndProperty
 
 
