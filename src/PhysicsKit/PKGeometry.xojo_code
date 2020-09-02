@@ -962,7 +962,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720536C69636520776974682074686520676976656E20636972636C652072616469757320616E6420617263206C656E6774682074686574612028696E2072616469616E73292E
-		Shared Function CreateSlice(radius As Double, theta As Double) As PhysicsKit.Slice
+		Shared Function CreateSlice(radius As Double, theta As Double) As PKSlice
 		  ///
 		  ' Creates a new Slice with the given circle radius and arc length theta.
 		  '
@@ -982,13 +982,13 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if radius is <= 0, if theta <= 0 or theta > π.
 		  ///
 		  
-		  Return New PhysicsKit.Slice(radius, theta)
+		  Return New PKSlice(radius, theta)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720536C69636520776974682074686520676976656E20636972636C652072616469757320616E6420617263206C656E6774682074686574612028696E2072616469616E73292E2054686520736C6963652077696C6C20626520706F736974696F6E65642077697468207468652063656E74726F696420617420746865206F726967696E2E
-		Shared Function CreateSliceAtOrigin(radius As Double, theta As Double) As PhysicsKit.Slice
+		Shared Function CreateSliceAtOrigin(radius As Double, theta As Double) As PKSlice
 		  ///
 		  ' Creates a new Slice with the given circle radius and arc length theta.
 		  '
@@ -1008,7 +1008,7 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if radius <= 0, if theta <= 0 or theta > π.
 		  ///
 		  
-		  Var slice As PhysicsKit.Slice = New PhysicsKit.Slice(radius, theta)
+		  Var slice As PKSlice = New PKSlice(radius, theta)
 		  slice.Translate(-slice.Center.X, -slice.Center.Y)
 		  
 		  Return slice
@@ -1916,27 +1916,6 @@ Protected Class PKGeometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20736C6963652E
-		Shared Function Scale(slice As PhysicsKit.Slice, scale As Double) As PhysicsKit.Slice
-		  ///
-		  ' Returns a scaled version of the given slice.
-		  '
-		  ' - Parameter slice: The slice.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returns: A new Slice.
-		  '
-		  ' - Raises: NilObjectException if the given slice is Nil.
-		  ' - Raises:" InvalidArgumentException if the given scale is less than or equal to zero.
-		  ///
-		  
-		  If slice Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  Return New PhysicsKit.Slice(slice.GetSliceRadius * scale, slice.GetTheta)
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20636972636C652E
 		Shared Function Scale(circle As PKCircle, scale As Double) As PKCircle
 		  ///
@@ -2054,6 +2033,27 @@ Protected Class PKGeometry
 		  Call n.Multiply(length)
 		  
 		  Return New PKSegment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20736C6963652E
+		Shared Function Scale(slice As PKSlice, scale As Double) As PKSlice
+		  ///
+		  ' Returns a scaled version of the given slice.
+		  '
+		  ' - Parameter slice: The slice.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Slice.
+		  '
+		  ' - Raises: NilObjectException if the given slice is Nil.
+		  ' - Raises:" InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If slice Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
+		  Return New PKSlice(slice.GetSliceRadius * scale, slice.GetTheta)
 		  
 		End Function
 	#tag EndMethod

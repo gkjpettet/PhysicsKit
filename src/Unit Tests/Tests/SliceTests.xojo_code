@@ -39,7 +39,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.5, -0.3)
 		  
@@ -67,7 +67,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
@@ -108,7 +108,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Slice = New Slice(-1.0, MathsKit.ToRadians(50))
+		    Var s As PKSlice = New PKSlice(-1.0, MathsKit.ToRadians(50))
 		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -131,7 +131,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Slice = New Slice(1.0, -MathsKit.ToRadians(50))
+		    Var s As PKSlice = New PKSlice(1.0, -MathsKit.ToRadians(50))
 		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -151,7 +151,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var slice As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var slice As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
 		  // The circle centre should be the origin.
 		  Assert.AreEqual(0.000, slice.GetCircleCenter.x, 1.0e-3)
@@ -171,7 +171,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Slice = New Slice(0.0, MathsKit.ToRadians(50))
+		    Var s As PKSlice = New PKSlice(0.0, MathsKit.ToRadians(50))
 		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -194,7 +194,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var s As Slice = New Slice(1.0, 0)
+		    Var s As PKSlice = New PKSlice(1.0, 0)
 		    #Pragma Unused s
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -214,7 +214,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
 		  // Should be two axes + number of foci.
 		  Var foci() As PKVector2 = Array(New PKVector2(2.0, -0.5), New PKVector2(1.0, 3.0))
@@ -239,7 +239,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
@@ -283,7 +283,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var foci() As PKVector2 = e.GetFoci(IDENTITY)
 		  
 		  // Should be two foci.
@@ -303,7 +303,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
@@ -347,7 +347,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  // Note: The centre is not at the origin.
 		  
 		  // Rotate about centre.
@@ -378,7 +378,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Assert.AreEqual(1.000, e.GetSliceRadius, 1.0e-3)
 		  Assert.IsFalse(Abs(1.0 - e.GetRadius) < PKEpsilon.E)
 		  Assert.IsFalse(Abs(e.GetSliceRadius - e.GetRadius) < PKEpsilon.E)
@@ -394,7 +394,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Slice = New Slice(1.0, MathsKit.ToRadians(50))
+		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
 		  e.Translate(1.0, -0.5)
 		  

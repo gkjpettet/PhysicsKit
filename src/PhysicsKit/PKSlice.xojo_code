@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Slice
+Protected Class PKSlice
 Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h21
