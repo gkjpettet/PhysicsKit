@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1669961727">
+ <ObjName>PKMessages</ObjName>
+ <ObjContainerID>856788991</ObjContainerID>
+ <IsClass>0</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1376673791</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The requested index is out of range.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1386186751</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>This PKAdaptiveDecimal has insufficient capacity to perform that operation.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>ADAPTIVE_DECIMAL_INVALID_LENGTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1615718399</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The `length` property must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>ADAPTIVE_DECIMAL_INVALID_REPRESENTATION</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1146732543</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>This PKAdaptiveDecimal has an invalid representation.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>ADAPTIVE_DECIMAL_OTHER_COMPONENTS_TOO_LARGE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>520972287</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>`other` has too many components to fit in this AdaptvieDecimal.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_AABB_INVALID_MIN_MAX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1881628671</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The min cannot be greater than the max.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_AABB_INVALID_RADIUS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>529727487</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The radius must be greater than or equal to zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CAPSULE_DEGENERATE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1311940607</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The width and height cannot be close to equal, instead use a Circle shape type.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CAPSULE_INVALID_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>748560383</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of cap vertices must be greater than or equal to 1.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CAPSULE_INVALID_HEIGHT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>422160383</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The height must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CAPSULE_INVALID_WIDTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>875374591</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The width must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CIRCLE_INVALID_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1507180543</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of vertices must be greater than 2.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_CIRCLE_INVALID_RADIUS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2088589311</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The radius must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ELLIPSE_INVALID_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>192645119</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of vertices must be greater than 3.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ELLIPSE_INVALID_HEIGHT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>72982527</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>An ellipse must have a positive non-zero height.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ELLIPSE_INVALID_WIDTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1200039935</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>An ellipse must have a positive non-zero width.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ELLIPSE_SAT_NOT_SUPPORTED</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>92514303</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The Ellipse shape type is not supported by the SAT collision detection algorithm. Use `Geometry.CreatePolygonalEllipse`, GJK, or `FallbackNarrowphaseDetector` with SAT as the primary and GJK as the fallback.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HALF_ELLIPSE_INVALID_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1115498495</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of vertices must be greater than or equal to 1.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1846523903</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A half ellipse must have a positive non-zero height.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1563502591</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A half ellipse must have a positive non-zero width.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1921155071</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The HalfEllipse shape type is not supported by the SAT collision detection algorithm. Use `Geometry.CreatePolygonalHalfEllipse`, GJK, or the `FallbackNarrowphaseDetector` with SAT as the primary and GJK as the fallback.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HULL_NIL_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1146032127</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The point array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_HULL_NIL_POINTS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1753114623</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The point array cannot contain Nil points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INTERVAL_INVALID</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>246317055</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The minimum cannot be larger than the maximum.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INTERVAL_INVALID_MAXIMUM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>462272511</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The maximum value must be greater than or equal to the minimum.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INTERVAL_INVALID_MINIMUM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>650528767</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The minimum value must be less than or equal to the maximum.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_HEIGHT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1311180799</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The height must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_LENGTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1162469375</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The length must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1205784575</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The vertex count must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2095007743</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The radius must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>171730943</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The segments cannot be colinear.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_RADIUS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1221117951</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The radius must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_SCALE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>492550143</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The scaling factor must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_SIZE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1416077311</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The size must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_SIZE_POINT_ARRAY1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1732130815</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The points array must have at least one point.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_SIZE_POINT_ARRAY2</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>375748607</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The points array must contain at least 2 non-Nil points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_VERTICES_SIZE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1689925631</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of vertices must be greater than 2.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_INVALID_WIDTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1598255103</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The width must be greater than zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_INVALID_INERTIA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>752779263</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The inertia tensor must be greater than or equal to zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_INVALID_MASS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>803172351</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The mass must be greater than or equal to zero.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1344714751</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The `masses` array must contain at least one non-Nil element.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_NIL_CENTER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>149587967</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The center point cannot be NIL.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_NIL_MASS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>737728511</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>Cannot copy a Nil Mass.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_NIL_MASS_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1449347071</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The `masses` array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1431625727</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The `masses` array cannot contain Nil elements.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MATRIX_INVALID_LENGTH_4</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>140388351</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The values array must have 4 elements.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MATRIX_INVALID_LENGTH_9</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1397735423</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The `values` array must have exactly 9 elements.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MATRIX_NIL_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>849375231</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The values array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>35760127</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>`convex1` must implement both the Convex and Wound interfaces.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1539971071</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>`convex2` must implement both the Convex and Wound interfaces.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_FLIP_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1531514879</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The flip axis cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_FLIP_POLYGON</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1100060671</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The polygon cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1875937279</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The circle cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>237701119</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>Both convex shapes must be non-Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>271747071</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The polygon cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_POINT_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1097365503</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The points array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_POINT_ARRAY_ELEMENTS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>775565311</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The points array cannot contain Nil points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_POLYGON_POINT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1551011839</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon cannot contain Nil points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_SEGMENT_POINT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1986891775</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A segment cannot contain a Nil point.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_SHAPE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>21307391</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The shape cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_TRIANGLE_POINT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1039099903</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A triangle cannot contain a Nil point.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_NIL_VERTICES_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1988110335</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The vertices array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_COINCIDENT_VERTICES</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2045765631</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon cannot have coincident vertices.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_INVALID_WINDING</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>168607743</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon must have Counter-Clockwise vertex winding.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_LESS_THAN_3_VERTICES</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1519192063</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon must have 3 or more vertices.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_NIL_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1226379263</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The vertices array cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_NIL_VERTICES</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>91883519</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The vertices array cannot contain Nil points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_NON_CONVEX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1433743359</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon must be convex.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_POLYGON_ZERO_AREA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1451112447</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A polygon cannot have zero area.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_RAY_NIL_DIRECTION</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2030579711</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The direction cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_RAY_NIL_START</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>910176255</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The start point cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_RAY_ZERO_DIRECTION</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1639174143</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A ray cannot have a zero direction vector.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_RECTANGLE_INVALID_HEIGHT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>898365439</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A rectangle must have a positive non-zero height.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_RECTANGLE_INVALID_WIDTH</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>883253247</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A rectangle must have a positive non-zero width.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ROTATION_INVALID_POINT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2090596351</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The given values do not lie on the unit circle.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SEGMENT_NIL_POINT1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2072647679</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>Point 1 cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SEGMENT_NIL_POINT2</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2068758527</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>Point 2 cannot be Nil.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SEGMENT_SAME_POINT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>817846271</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A line segment must have two different vertices.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SLICE_INVALID_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1917407231</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The number of vertices must be greater than or equal to 1.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SLICE_INVALID_RADIUS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2082846719</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A circular section must have a positive non-zero radius.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_SLICE_INVALID_THETA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>954116095</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A circular section must have a positive non-zero theta less than π.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_ZERO_FLIP_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>536575999</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The flip axis cannot be the zero vector.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+</block>
+</RBProject>
