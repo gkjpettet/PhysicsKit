@@ -1748,15 +1748,15 @@ Protected Class Geometry
 		  
 		  // Since Xojo doens't implement generics like Java does, validate the correct 
 		  // types have been passed.
-		  If convex1 IsA PKConvex = False Or convex1 IsA Wound = False Then
+		  If convex1 IsA PKConvex = False Or convex1 IsA PKWound = False Then
 		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1)
 		  End If
-		  If convex2 IsA PKConvex = False Or convex2 IsA Wound = False Then
+		  If convex2 IsA PKConvex = False Or convex2 IsA PKWound = False Then
 		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2)
 		  End If
 		  
-		  Var p1v() As PKVector2 = Wound(convex1).GetVertices
-		  Var p2v() As PKVector2 = Wound(convex2).GetVertices
+		  Var p1v() As PKVector2 = PKWound(convex1).GetVertices
+		  Var p2v() As PKVector2 = PKWound(convex2).GetVertices
 		  
 		  // Check for two segments.
 		  If convex1 IsA Segment And convex2 IsA Segment Then

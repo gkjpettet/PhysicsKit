@@ -86,7 +86,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var w As Wound = Geometry.CreatePolygon(Array(_
+		  Var w As PKWound = Geometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _
 		  New PKVector2(1.0, 0.0), _
 		  New PKVector2(0.0, 1.0)))
@@ -111,7 +111,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var w As Wound = Geometry.CreatePolygon(Array(_
+		  Var w As PKWound = Geometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _
 		  New PKVector2(1.0, 0.0), _
 		  New PKVector2(0.0, 1.0)))

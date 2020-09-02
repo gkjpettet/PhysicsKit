@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface Wound
+Protected Interface PKWound
 Implements  PKShape
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E206974657261746F7220666F7220746865206E6F726D616C732E
 		Function GetNormalIterator() As Iterator
