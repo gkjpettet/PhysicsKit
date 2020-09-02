@@ -246,7 +246,7 @@ Inherits TestGroup
 		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
-		  Var f As EdgeFeature = EdgeFeature(s.GetFarthestFeature(n, t))
+		  Var f As PKEdgeFeature = PKEdgeFeature(s.GetFarthestFeature(n, t))
 		  Assert.AreEqual(1.500, f.max.point.x, 1.0e-3)
 		  Assert.AreEqual(3.000, f.max.point.y, 1.0e-3)
 		  

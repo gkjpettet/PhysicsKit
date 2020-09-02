@@ -246,7 +246,7 @@ Implements  PKConvex
 		    // checking if localAxis points to the left or right.
 		    Var vmax As PKPointFeature = If((localAxis.X <= 0), vp1, vp2)
 		    
-		    Return New PhysicsKit.EdgeFeature(vp1, vp2, vmax, p1.Towards(p2), 0)
+		    Return New PKEdgeFeature(vp1, vp2, vmax, p1.Towards(p2), 0)
 		  End If
 		  
 		End Function

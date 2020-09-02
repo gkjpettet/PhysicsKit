@@ -304,7 +304,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.EdgeFeature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKEdgeFeature
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Transform the normal into local space.
@@ -331,7 +331,7 @@ Implements   PKConvex,  PKWound
 		    Var vl As PKPointFeature = New PKPointFeature(left, l)
 		    
 		    // Make sure the edge is the right winding.
-		    Return New PhysicsKit.EdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
+		    Return New PKEdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
 		  Else
 		    Var r As Integer = If((index = 0), count - 1, index - 1)
 		    
@@ -339,7 +339,7 @@ Implements   PKConvex,  PKWound
 		    Var vr As PKPointFeature = New PKPointFeature(right, r)
 		    
 		    // Make sure the edge is the right winding.
-		    Return New PhysicsKit.EdgeFeature(vr, vm, vm, right.Towards(maximum), index)
+		    Return New PKEdgeFeature(vr, vm, vm, right.Towards(maximum), index)
 		  End If
 		  
 		End Function

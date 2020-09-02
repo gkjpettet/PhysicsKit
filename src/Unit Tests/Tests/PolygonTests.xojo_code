@@ -457,7 +457,7 @@ Inherits TestGroup
 		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
-		  Var f As PhysicsKit.EdgeFeature = p.GetFarthestFeature(y, t)
+		  Var f As PKEdgeFeature = p.GetFarthestFeature(y, t)
 		  
 		  // Should always get an edge.
 		  Assert.AreEqual(-1.000, f.Max.Point.x, 1.0e-3, "1")

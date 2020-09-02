@@ -259,7 +259,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652066617274686573742066656174757265206F6E2074686520676976656E207365676D656E742E20546869732077696C6C20616C776179732072657475726E20746865207365676D656E7420697473656C662C20627574206D7573742072657475726E20697420776974682074686520636F72726563742077696E64696E6720616E642074686520636F7272656374206D6178696D756D2E205468726F7773204E696C4F626A656374457863657074696F6E2E
-		Shared Function GetFarthestFeature(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PhysicsKit.EdgeFeature
+		Shared Function GetFarthestFeature(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PKEdgeFeature
 		  ///
 		  ' Returns the farthest feature on the given segment.
 		  '
@@ -271,7 +271,7 @@ Implements   PKConvex,  PKWound
 		  ' - Parameter vector: The direction.
 		  ' - Parameter transform: The local to world space Transform of this Convex Shape.
 		  '
-		  ' - Returns: New EdgeFeature.'
+		  ' - Returns: New PKEdgeFeature.'
 		  ' - Raises: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.
 		  ///
 		  
@@ -303,9 +303,9 @@ Implements   PKConvex,  PKWound
 		  
 		  // Make sure the edge is the right winding.
 		  If p1.Towards(p2).Right.Dot(vector) > 0 Then
-		    Return New PhysicsKit.EdgeFeature(vp2, vp1, vm, p2.Towards(p1), 0)
+		    Return New PKEdgeFeature(vp2, vp1, vm, p2.Towards(p1), 0)
 		  Else
-		    Return New PhysicsKit.EdgeFeature(vp1, vp2, vm, p1.Towards(p2), 0)
+		    Return New PKEdgeFeature(vp1, vp2, vm, p1.Towards(p2), 0)
 		  End If
 		  
 		End Function

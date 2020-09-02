@@ -1,5 +1,5 @@
 #tag Class
-Protected Class EdgeFeature
+Protected Class PKEdgeFeature
 Inherits PKFeature
 	#tag Method, Flags = &h0, Description = 4372656174657320616E206564676520666561747572652E
 		Sub Constructor(vertex1 As PKPointFeature, vertex2 As PKPointFeature, max As PKPointFeature, edge As PKVector2, index As Integer)
