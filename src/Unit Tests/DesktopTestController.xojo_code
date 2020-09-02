@@ -19,7 +19,7 @@ Inherits TestController
 		  group = New SliceTests(Self, "Slice")
 		  group = New EpsilonTests(Self, "Epsilon")
 		  group = New SegmentTests(Self, "Segment")
-		  'group = New RobustGeometryTests(Self, "RobustGeometry") // Broken.
+		  group = New RobustGeometryTests(Self, "RobustGeometry") // Broken.
 		  group = New CapsuleTests(Self, "Capsule")
 		  group = New WoundTests(self, "Wound")
 		  group = New AdaptiveDecimalTest(Self, "AdaptiveDecimal")

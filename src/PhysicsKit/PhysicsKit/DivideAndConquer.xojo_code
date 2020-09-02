@@ -2,7 +2,7 @@
 Protected Class DivideAndConquer
 Implements  PKHullGenerator
 	#tag Method, Flags = &h0, Description = 526563757273697665206D6574686F6420746F2073756264697669646520616E64206D657267652074686520706F696E74732E
-		Function Divide(points() As PKVector2, first As Integer, last As Integer) As PhysicsKit.LinkedVertexHull
+		Function Divide(points() As PKVector2, first As Integer, last As Integer) As PKLinkedVertexHull
 		  ///
 		  ' Recursive method to subdivide and merge the points.
 		  '
@@ -18,19 +18,19 @@ Implements  PKHullGenerator
 		  
 		  If size = 1 Then
 		    // If we only have one point create a hull containing the one point.
-		    Return New LinkedVertexHull(points(first))
+		    Return New PKLinkedVertexHull(points(first))
 		  Else
 		    // Otherwise find the middle index.
 		    Var mid As Integer = (first + last) / 2
 		    
 		    // Create the left convex hull.
-		    Var left As LinkedVertexHull = Divide(points, first, mid)
+		    Var left As PKLinkedVertexHull = Divide(points, first, mid)
 		    
 		    // Create the right convex hull.
-		    Var right As LinkedVertexHull = Divide(points, mid, last)
+		    Var right As PKLinkedVertexHull = Divide(points, mid, last)
 		    
 		    // Merge the two convex hulls.
-		    Return LinkedVertexHull.Merge(left, right)
+		    Return PKLinkedVertexHull.Merge(left, right)
 		  End If
 		  
 		End Function
@@ -63,7 +63,7 @@ Implements  PKHullGenerator
 		  // Those are gracefully handled and removed in the main algorithm. 
 		  
 		  // Perform the divide and conquer algorithm on the point cloud.
-		  Var hull As LinkedVertexHull = Self.Divide(points, 0, size)
+		  Var hull As PKLinkedVertexHull = Self.Divide(points, 0, size)
 		  
 		  // Return the array.
 		  Return hull.ToArray

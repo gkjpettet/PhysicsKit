@@ -1,5 +1,5 @@
 #tag Class
-Protected Class LinkedVertexHull
+Protected Class PKLinkedVertexHull
 	#tag Method, Flags = &h0
 		Sub Constructor()
 		  ///
@@ -12,12 +12,12 @@ Protected Class LinkedVertexHull
 	#tag Method, Flags = &h0
 		Sub Constructor(point As PKVector2)
 		  ///
-		  ' Create a convex LinkedVertexHull of one point.
+		  ' Create a convex PKLinkedVertexHull of one point.
 		  '
 		  ' - Parameter point: The point.
 		  ///
 		  
-		  Var root As LinkedVertex = New LinkedVertex(point)
+		  Var root As PhysicsKit.LinkedVertex = New PhysicsKit.LinkedVertex(point)
 		  Self.LeftMost = root
 		  Self.RightMost = root
 		  Self.Size = 1
@@ -26,17 +26,17 @@ Protected Class LinkedVertexHull
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D6572676573207468652074776F20676976656E20636F6E766578204C696E6B656456657274657848756C6C7320696E746F206F6E6520636F6E766578204C696E6B656456657274657848756C6C2E
-		Shared Function Merge(left As PhysicsKit.LinkedVertexHull, right As PhysicsKit.LinkedVertexHull) As PhysicsKit.LinkedVertexHull
+		Shared Function Merge(left As PKLinkedVertexHull, right As PKLinkedVertexHull) As PKLinkedVertexHull
 		  ///
-		  ' Merges the two given convex LinkedVertexHulls into one convex LinkedVertexHull.
+		  ' Merges the two given convex PKLinkedVertexHulls into one convex PKLinkedVertexHull.
 		  '
-		  ' The left LinkedVertexHull should contain only points whose x coordinates are
-		  ' less than all the points in the right LinkedVertexHull.
+		  ' The left PKLinkedVertexHull should contain only points whose x coordinates are
+		  ' less than all the points in the right PKLinkedVertexHull.
 		  '
-		  ' - Parameter left: The left convex LinkedVertexHull.
-		  ' - Parameter right: The right convex LinkedVertexHull.
+		  ' - Parameter left: The left convex PKLinkedVertexHull.
+		  ' - Parameter right: The right convex PKLinkedVertexHull.
 		  '
-		  ' - Returns: A new LinkedVertexHull representing the merged convex hull.
+		  ' - Returns: A new PKLinkedVertexHull representing the merged convex hull.
 		  ///
 		  
 		  // This merge algorithm handles all cases, including point-point and point-segment without 
@@ -44,12 +44,12 @@ Protected Class LinkedVertexHull
 		  // It finds the upper and lower edges that connect the two hulls such that the resulting 
 		  // hull remains convex.
 		  
-		  Var hull As LinkedVertexHull = New LinkedVertexHull
+		  Var hull As PKLinkedVertexHull = New PKLinkedVertexHull
 		  hull.LeftMost = left.LeftMost
 		  hull.RightMost = right.RightMost
 		  
-		  Var lu As LinkedVertex = left.RightMost
-		  Var ru As LinkedVertex = right.LeftMost
+		  Var lu As PhysicsKit.LinkedVertex = left.RightMost
+		  Var ru As PhysicsKit.LinkedVertex = right.LeftMost
 		  
 		  // We don't use strict inequalities when checking the result of getLocation
 		  // so we can remove coincident points in the hull.
@@ -60,15 +60,15 @@ Protected Class LinkedVertexHull
 		  Var limitLeftU As Integer = left.Size - 1
 		  
 		  Do
-		    Var prevLu As LinkedVertex = lu
-		    Var prevRu As LinkedVertex = ru
+		    Var prevLu As PhysicsKit.LinkedVertex = lu
+		    Var prevRu As PhysicsKit.LinkedVertex = ru
 		    
-		    While limitRightU > 0 And RobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) <= 0
+		    While limitRightU > 0 And PhysicsKit.RobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) <= 0
 		      ru = ru.NextVertex
 		      limitRightU = limitRightU - 1
 		    Wend
 		    
-		    While limitLeftU > 0 And RobustGeometry.GetLocation(lu.PreviousVertex.Point, lu.Point, ru.Point) <= 0
+		    While limitLeftU > 0 And PhysicsKit.RobustGeometry.GetLocation(lu.PreviousVertex.Point, lu.Point, ru.Point) <= 0
 		      lu = lu.PreviousVertex
 		      limitLeftU = limitLeftU - 1
 		    Wend
@@ -78,22 +78,22 @@ Protected Class LinkedVertexHull
 		  Loop
 		  
 		  // Same as before, for the other side.
-		  Var ll As LinkedVertex = left.RightMost
-		  Var rl As LinkedVertex = right.LeftMost
+		  Var ll As PhysicsKit.LinkedVertex = left.RightMost
+		  Var rl As PhysicsKit.LinkedVertex = right.LeftMost
 		  
 		  Var limitRightL As Integer = right.Size - 1
 		  Var limitLeftL As Integer = left.Size - 1
 		  
 		  Do
-		    Var prevLl As LinkedVertex = ll
-		    Var prevRl As LinkedVertex = rl
+		    Var prevLl As PhysicsKit.LinkedVertex = ll
+		    Var prevRl As PhysicsKit.LinkedVertex = rl
 		    
-		    While limitRightL > 0 And RobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) >= 0
+		    While limitRightL > 0 And PhysicsKit.RobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) >= 0
 		      rl = rl.PreviousVertex
 		      limitRightL = limitRightL - 1
 		    Wend
 		    
-		    While limitLeftL > 0 And RobustGeometry.GetLocation(ll.NextVertex.Point, ll.Point, rl.Point) >= 0
+		    While limitLeftL > 0 And PhysicsKit.RobustGeometry.GetLocation(ll.NextVertex.Point, ll.Point, rl.Point) >= 0
 		      ll = ll.NextVertex
 		      limitLeftL = limitLeftL - 1
 		    Wend
@@ -113,7 +113,7 @@ Protected Class LinkedVertexHull
 		  // of limitLeft/Right/L/U but it is not straightforward and there is no observable
 		  // speed gain. So use a simple loop instead.
 		  Var size As Integer = 0
-		  Var v As LinkedVertex = lu
+		  Var v As PhysicsKit.LinkedVertex = lu
 		  
 		  Do
 		    size = size + 1
@@ -156,13 +156,13 @@ Protected Class LinkedVertexHull
 	#tag Method, Flags = &h0, Description = 52657475726E73206120537472696E6720726570726573656E746174696F6E206F662074686973206F626A6563742E
 		Function ToString() As String
 		  ///
-		  ' Returns a String representation of this LinkedVertexHull.
+		  ' Returns a String representation of this PKLinkedVertexHull.
 		  '
 		  ' - Returns: String.
 		  ///
 		  
 		  Var s() As String
-		  s.AddRow("LinkedVertexHull[Size=")
+		  s.AddRow("PKLinkedVertexHull[Size=")
 		  s.AddRow(Self.Size.ToString)
 		  s.AddRow("|LeftMostPoint=")
 		  s.AddRow(Self.LeftMost.Point.ToString)
