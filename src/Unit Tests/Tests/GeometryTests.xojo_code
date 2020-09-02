@@ -1315,7 +1315,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a square.
 		  ///
 		  
-		  Var r As Rectangle= PKGeometry.CreateSquare(1.0)
+		  Var r As PKRectangle= PKGeometry.CreateSquare(1.0)
 		  Assert.AreEqual(1.000, r.GetWidth, 1.0e-3)
 		  Assert.AreEqual(1.000, r.GetHeight, 1.0e-3)
 		  

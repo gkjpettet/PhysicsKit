@@ -38,7 +38,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = New Rectangle(1.0, 2.0)
+		  Var r As PKRectangle = New PKRectangle(1.0, 2.0)
 		  Var t As PKTransform = New PKTransform
 		  
 		  Var pt As PKVector2 = New PKVector2(2.0, 0.5)
@@ -71,7 +71,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var r As Rectangle = New Rectangle(2.0, 0.0)
+		    Var r As PKRectangle = New PKRectangle(2.0, 0.0)
 		    #Pragma Unused r
 		    
 		  Catch e As InvalidArgumentException
@@ -95,7 +95,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var r As Rectangle = New Rectangle(-1.0, 3.0)
+		    Var r As PKRectangle = New PKRectangle(-1.0, 3.0)
 		    #Pragma Unused r
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -115,7 +115,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = New Rectangle(2.0, 2.0)
+		  Var r As PKRectangle = New PKRectangle(2.0, 2.0)
 		  
 		  // Make sure the center is 0,0.
 		  Assert.AreEqual(0.000, r.Center.x, 1.0e-3)
@@ -145,7 +145,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = New Rectangle(1.0, 1.0)
+		  Var r As PKRectangle = New PKRectangle(1.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  
 		  Var axes() As PKVector2 = r.GetAxes(Nil, t)
@@ -185,7 +185,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle= PKGeometry.CreateRectangle(1, 1)
+		  Var r As PKRectangle= PKGeometry.CreateRectangle(1, 1)
 		  r.Translate(1, 1)
 		  r.Rotate(MathsKit.ToRadians(30))
 		  
@@ -202,7 +202,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = New Rectangle(2.0, 1.0)
+		  Var r As PKRectangle = New PKRectangle(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var axis As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var i As PKInterval = r.Project(axis, t)

@@ -397,7 +397,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = New Rectangle(1.0, 1.0)
+		  Var r As PKRectangle = New PKRectangle(1.0, 1.0)
 		  Var m As PKMass = r.CreateMass(1.5)
 		  
 		  // The mass of a rectangle should be h * w * d
@@ -475,7 +475,7 @@ Inherits TestGroup
 		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
-		  Var r As Rectangle= PKGeometry.CreateSquare(1.0)
+		  Var r As PKRectangle= PKGeometry.CreateSquare(1.0)
 		  
 		  Var pm As PKMass = p.CreateMass(10.0)
 		  Var rm As PKMass = r.CreateMass(10.0)

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class PKRobustGeometryTests
+Protected Class RobustGeometryTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()

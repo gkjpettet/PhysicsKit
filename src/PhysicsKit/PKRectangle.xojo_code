@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Rectangle
+Protected Class PKRectangle
 Inherits PKPolygon
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E205468652063656E747265206F66207468652072656374616E676C652077696C6C20626520746865206F726967696E2E
 		Private Sub Constructor(valid As Boolean, width As Double, height As Double, vertices() As PKVector2)
