@@ -357,7 +357,7 @@ Inherits TestGroup
 		  ' - Parameter cloud: The point cloud.
 		  ///
 		  
-		  Var gs As GrahamScan = New GrahamScan
+		  Var gs As PKGrahamScan = New PKGrahamScan
 		  Var hull() As PKVector2 = gs.Generate(cloud)
 		  
 		  // Make sure we can create a polygon from it (this will check for convexity, winding, etc).
