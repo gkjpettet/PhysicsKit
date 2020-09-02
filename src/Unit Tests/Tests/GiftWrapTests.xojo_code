@@ -332,7 +332,7 @@ Inherits TestGroup
 		  ' - Parameter cloud: The point cloud.
 		  ///
 		  
-		  Var gw As GiftWrap = New GiftWrap
+		  Var gw As PKGiftWrap = New PKGiftWrap
 		  Var hull() As PKVector2 = gw.Generate(cloud)
 		  
 		  // Make sure we can create a polygon from it (this will check for convexity, winding, etc).

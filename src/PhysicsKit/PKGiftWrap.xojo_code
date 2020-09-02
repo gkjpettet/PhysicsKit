@@ -1,5 +1,5 @@
 #tag Class
-Protected Class GiftWrap
+Protected Class PKGiftWrap
 Implements  PKHullGenerator
 	#tag Method, Flags = &h0
 		Function Generate(points() As PKVector2) As PKVector2()
