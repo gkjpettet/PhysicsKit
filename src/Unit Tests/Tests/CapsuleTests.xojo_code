@@ -38,7 +38,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.8, -0.45)
 		  
@@ -70,7 +70,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
@@ -111,7 +111,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(1.0, -1.0)
+		    Var c As PKCapsule = New PKCapsule(1.0, -1.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -134,7 +134,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(-1.0, 1.0)
+		    Var c As PKCapsule = New PKCapsule(-1.0, 1.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -154,7 +154,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var cap As Capsule = New Capsule(2.0, 1.0)
+		  Var cap As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(1.000, x.x, 1.0e-3)
 		  Assert.AreEqual(0.000, x.y, 1.0e-3)
@@ -170,7 +170,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var cap As Capsule = New Capsule(1.0, 2.0)
+		  Var cap As PKCapsule = New PKCapsule(1.0, 2.0)
 		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(0.000, x.x, 1.0e-3)
 		  Assert.AreEqual(1.000, x.y, 1.0e-3)
@@ -189,7 +189,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(1.0, 0.0)
+		    Var c As PKCapsule = New PKCapsule(1.0, 0.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -212,7 +212,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule = New Capsule(0.0, 1.0)
+		    Var c As PKCapsule = New PKCapsule(0.0, 1.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -232,7 +232,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
 		  // Should be two axes + number of foci.
 		  Var foci() As PKVector2 = Array(New PKVector2(2.0, -0.5), New PKVector2(1.0, 3.0))
@@ -257,7 +257,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
@@ -301,7 +301,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  Var foci() As PKVector2 = e.GetFoci(IDENTITY)
 		  
 		  // Should be two foci.
@@ -324,7 +324,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(2.0, 1.0)
+		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
@@ -368,7 +368,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
 		  // Rotate about the centre.
 		  e.Translate(1.0, 1.0)
@@ -398,7 +398,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var e As Capsule = New Capsule(1.0, 0.5)
+		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
 		  e.Translate(1.0, -0.5)
 		  

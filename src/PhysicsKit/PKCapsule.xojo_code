@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Capsule
+Protected Class PKCapsule
 Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h0
@@ -225,7 +225,7 @@ Implements  PKConvex
 		  
 		  // Get the squared length of the localaxis and add the fudge factor
 		  // should always 1.0 * factor since localaxis is normalised.
-		  Var d As Double = localAxis.Dot(localAxis) * Capsule.EDGE_FEATURE_SELECTION_CRITERIA
+		  Var d As Double = localAxis.Dot(localAxis) * PKCapsule.EDGE_FEATURE_SELECTION_CRITERIA
 		  
 		  // Project the normal onto the localaxis normal.
 		  Var d1 As Double= localAxis.Dot(n1)

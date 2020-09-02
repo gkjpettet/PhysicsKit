@@ -81,7 +81,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772043617073756C6520626F756E6465642062792074686520676976656E2072656374616E676C6520776964746820616E64206865696768742E205468652063617073756C652077696C6C20626520617869732D616C69676E656420616E642063656E7465726564206F6E20746865206F726967696E2077697468207468652063617073206F6E2074686520656E6473206F6620746865206C6172676573742064696D656E73696F6E2E
-		Shared Function CreateCapsule(width As Double, height As Double) As PhysicsKit.Capsule
+		Shared Function CreateCapsule(width As Double, height As Double) As PKCapsule
 		  ///
 		  ' Creates a new Capsule bounded by the given rectangle width and height.
 		  '
@@ -98,7 +98,7 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if `width` or `height` are less than or equal to zero.
 		  ///
 		  
-		  Return New PhysicsKit.Capsule(width, height)
+		  Return New PKCapsule(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -1896,7 +1896,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2063617073756C652E
-		Shared Function Scale(capsule As PhysicsKit.Capsule, scale As Double) As PhysicsKit.Capsule
+		Shared Function Scale(capsule As PKCapsule, scale As Double) As PKCapsule
 		  ///
 		  ' Returns a scaled version of the given capsule.
 		  '
@@ -1911,7 +1911,7 @@ Protected Class PKGeometry
 		  
 		  If capsule Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
 		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  Return New PhysicsKit.Capsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)
+		  Return New PKCapsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)
 		  
 		End Function
 	#tag EndMethod

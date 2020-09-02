@@ -2515,7 +2515,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var c As Capsule
+		    Var c As PKCapsule
 		    Call PKGeometry.Scale(c, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -2720,7 +2720,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Var s1 As PKCircle= PKGeometry.Scale(PKGeometry.CreateCircle(0.5), 2)
-		  Var s2 As Capsule= PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 2)
+		  Var s2 As PKCapsule= PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 2)
 		  Var s3 As PKEllipse= PKGeometry.Scale(PKGeometry.CreateEllipse(1.0, 0.5), 2)
 		  Var s4 As PKHalfEllipse= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 2)
 		  Var s5 As PKSlice= PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
