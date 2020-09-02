@@ -336,7 +336,7 @@ Inherits TestGroup
 		  Var hull() As PKVector2 = gw.Generate(cloud)
 		  
 		  // Make sure we can create a polygon from it (this will check for convexity, winding, etc).
-		  Var poly As Polygon = New Polygon(hull)
+		  Var poly As PKPolygon = New PKPolygon(hull)
 		  
 		  // Make sure all the points are either on or contained in the hull.
 		  For Each p As PKVector2 In cloud

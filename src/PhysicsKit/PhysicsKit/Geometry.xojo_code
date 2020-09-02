@@ -342,7 +342,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function CreatePolygon(vertices() As PKVector2) As PhysicsKit.Polygon
+		Shared Function CreatePolygon(vertices() As PKVector2) As PKPolygon
 		  ///
 		  ' Returns a new Polygon with the given vertices.
 		  '
@@ -373,13 +373,13 @@ Protected Class Geometry
 		    End If
 		  Next vertex
 		  
-		  Return New Polygon(verts)
+		  Return New PKPolygon(verts)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612063617073756C65207573696E672060636F756E7460206E756D626572206F66207665727469636573206F6E2065616368206361702C2063656E7465726564206F6E20746865206F726967696E2E202054686520636170732077696C6C206265206F6E2074686520656E6473206F6620746865206C6172676573742064696D656E73696F6E2E205468652072657475726E656420706F6C79676F6E2077696C6C2068617665206034202B2032202A20636F756E7460206E756D626572206F662076657274696365732E
-		Shared Function CreatePolygonalCapsule(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalCapsule(count As Integer, width As Double, height As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a capsule using `count` number of vertices on each
 		  ' cap, centered on the origin.  The caps will be on the ends of the largest dimension.
@@ -498,13 +498,13 @@ Protected Class Geometry
 		    n = n + 1
 		  End If
 		  
-		  Return New Polygon(vertices)
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
-		Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a circle with count number of vertices centered
 		  ' on the origin.
@@ -523,7 +523,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120636972636C65207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E
-		Shared Function CreatePolygonalCircle(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalCircle(count As Integer, radius As Double, theta As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a circle with count number of vertices centered
 		  ' on the origin.
@@ -571,13 +571,13 @@ Protected Class Geometry
 		    y = s * t + c * y
 		  Next i
 		  
-		  Return New Polygon(vertices)
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620616E20656C6C6970736520776974682060636F756E7460206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2060636F756E7460206D757374206265203E3D203420616E64206576656E2E
-		Shared Function CreatePolygonalEllipse(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalEllipse(count As Integer, width As Double, height As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of an ellipse with `count` number of vertices centered
 		  ' on the origin.
@@ -623,13 +623,13 @@ Protected Class Geometry
 		    j = j + 1
 		  Next i
 		  
-		  Return New Polygon(vertices)
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612068616C6620656C6C6970736520776974682060636F756E7460206E756D626572206F66207665727469636573207769746820746865206261736520617420746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2032602076657274696365732E
-		Shared Function CreatePolygonalHalfEllipse(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalHalfEllipse(count As Integer, width As Double, height As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a half ellipse with `count` number of vertices with the
 		  ' base at the origin.
@@ -679,13 +679,13 @@ Protected Class Geometry
 		    vertices(i) = New PKVector2(x, y)
 		  Next i
 		  
-		  Return New Polygon(vertices)
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F6620612068616C6620656C6C69707365207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2032602076657274696365732E
-		Shared Function CreatePolygonalHalfEllipseAtOrigin(count As Integer, width As Double, height As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalHalfEllipseAtOrigin(count As Integer, width As Double, height As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a half ellipse with count number of vertices centered
 		  ' on the origin.
@@ -703,7 +703,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `count` < 1 or `width` <= 0 or `height` <= 0.
 		  ///
 		  
-		  Var polygon As Polygon = Geometry.CreatePolygonalHalfEllipse(count, width, height)
+		  Var polygon As PKPolygon = Geometry.CreatePolygonalHalfEllipse(count, width, height)
 		  Var center As PKVector2 = polygon.GetCenter
 		  polygon.Translate(-center.X, -center.Y)
 		  Return polygon
@@ -712,7 +712,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120536C69636520776974682060636F756E7460206E756D626572206F6620766572746963657320776974682074686520636972636C652063656E747265642063656E7465726564206F6E20746865206F726967696E2E
-		Shared Function CreatePolygonalSlice(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalSlice(count As Integer, radius As Double, theta As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a Slice with `count` number of vertices with the
 		  ' circle centred centered on the origin.
@@ -764,13 +764,13 @@ Protected Class Geometry
 		  // Finish off by adding the origin.
 		  vertices(count + 2) = New PKVector2
 		  
-		  Return New Polygon(vertices)
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720506F6C79676F6E20696E20746865207368617065206F66206120536C696365207769746820636F756E74206E756D626572206F662076657274696365732063656E7465726564206F6E20746865206F726967696E2E2052657475726E73206120706F6C79676F6E20776974682060636F756E74202B2033602076657274696365732E
-		Shared Function CreatePolygonalSliceAtOrigin(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		Shared Function CreatePolygonalSliceAtOrigin(count As Integer, radius As Double, theta As Double) As PKPolygon
 		  ///
 		  ' Creates a new Polygon in the shape of a Slice with count number of vertices centered on the origin.
 		  '
@@ -785,7 +785,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException thrown if `count` < 1 or `radius` <= 0 or `theta` <= 0.
 		  ///
 		  
-		  Var polygon As Polygon = Geometry.CreatePolygonalSlice(count, radius, theta)
+		  Var polygon As PKPolygon = Geometry.CreatePolygonalSlice(count, radius, theta)
 		  Var center As PKVector2 = polygon.GetCenter
 		  polygon.Translate(-center.X, -center.Y)
 		  Return polygon
@@ -794,7 +794,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720506F6C79676F6E2C207573696E672074686520676976656E2076657274696365732C2063656E746572656420617420746865206F726967696E2E204D616B6573206120636F7079206F662074686520617272617920616E64207468652076657274696365732077697468696E2074686520617272617920746F2063726561746520746865206E657720506F6C79676F6E2E207468726F7773204E696C4F626A656374457863657074696F6E7320616E6420496E76616C6964417267756D656E74457863657074696F6E732E
-		Shared Function CreatePolygonAtOrigin(vertices() As PKVector2) As PhysicsKit.Polygon
+		Shared Function CreatePolygonAtOrigin(vertices() As PKVector2) As PKPolygon
 		  ///
 		  ' Returns a new Polygon, using the given vertices, centered at the origin.
 		  '
@@ -810,7 +810,7 @@ Protected Class Geometry
 		  ' - Raises InvalidArgumentException if `vertices` contains less than 3 non-Nill vertices.
 		  ///
 		  
-		  Var p As Polygon = Geometry.CreatePolygon(vertices)
+		  Var p As PKPolygon = Geometry.CreatePolygon(vertices)
 		  Var center As PKVector2 = p.GetCenter
 		  p.Translate(-center.X, -center.Y)
 		  
@@ -1088,7 +1088,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E65772020506F6C79676F6E20776974682060636F756E7460206E756D626572206F6620706F696E74732C2077686572652074686520706F696E747320617265206576656E6C792064697374726962757465642061726F756E642074686520756E697420636972636C652E202054686520726573756C74696E6720506F6C79676F6E2077696C6C2062652063656E7465726564206F6E20746865206F726967696E2E
-		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double) As PhysicsKit.Polygon
+		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double) As PKPolygon
 		  ///
 		  ' Returns a new  Polygon with `count` number of points, where the points are 
 		  ' evenly distributed around the unit circle.  The resulting Polygon will be centered on the origin.
@@ -1109,7 +1109,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720506F6C79676F6E207769746820636F756E74206E756D626572206F6620706F696E74732C2077686572652074686520706F696E747320617265206576656E6C792064697374726962757465642061726F756E642074686520756E697420636972636C652E2054686520726573756C74696E6720506F6C79676F6E2077696C6C2062652063656E7465726564206F6E20746865206F726967696E2E
-		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double, theta As Double) As PhysicsKit.Polygon
+		Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double, theta As Double) As PKPolygon
 		  ///
 		  ' Returns a new Polygon with count number of points, where the points are evenly 
 		  ' distributed around the unit circle. The resulting Polygon will be centered on the origin.
@@ -1162,7 +1162,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E206C696E6520616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E2054686973206D6574686F6420617373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
-		Shared Function Flip(polygon As PhysicsKit.Polygon, axis As PKVector2) As PhysicsKit.Polygon
+		Shared Function Flip(polygon As PKPolygon, axis As PKVector2) As PKPolygon
 		  ///
 		  ' Flips the given polygon about the given line and returns the result as a new Polygon.
 		  '
@@ -1183,7 +1183,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Flip(polygon As PhysicsKit.Polygon, axis As PKVector2, point As PKVector2) As PhysicsKit.Polygon
+		Shared Function Flip(polygon As PKPolygon, axis As PKVector2, point As PKVector2) As PKPolygon
 		  ///
 		  ' Flips the given polygon about the given line and returns the result as a new Polygon.
 		  '
@@ -1231,13 +1231,13 @@ Protected Class Geometry
 		  // Check the winding.
 		  If Geometry.GetWinding(nv) < 0 Then Geometry.ReverseWinding(nv)
 		  
-		  Return New Polygon(nv)
+		  Return New PKPolygon(nv)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520782D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
-		Shared Function FlipAlongTheXAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
+		Shared Function FlipAlongTheXAxis(polygon As PKPolygon) As PKPolygon
 		  ///
 		  ' Flips the given polygon about its center along the x-axis and returns the result as a new Polygon.
 		  '
@@ -1256,7 +1256,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E20706F696E7420616C6F6E672074686520782D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E
-		Shared Function FlipAlongTheXAxis(polygon As PhysicsKit.Polygon, point As PKVector2) As PhysicsKit.Polygon
+		Shared Function FlipAlongTheXAxis(polygon As PKPolygon, point As PKVector2) As PKPolygon
 		  ///
 		  ' Flips the given polygon about the given point along the x-axis and 
 		  ' returns the result as a new Polygon.
@@ -1275,7 +1275,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F7574206974732063656E74657220616C6F6E672074686520792D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E20417373756D6573207468617420746865206C696E65206973207468726F75676820746865206F726967696E2E
-		Shared Function FlipAlongTheYAxis(polygon As PhysicsKit.Polygon) As PhysicsKit.Polygon
+		Shared Function FlipAlongTheYAxis(polygon As PKPolygon) As PKPolygon
 		  ///
 		  ' Flips the given polygon about its center along the y-axis and returns the result as a new Polygon.
 		  '
@@ -1294,7 +1294,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C6970732074686520676976656E20706F6C79676F6E2061626F75742074686520676976656E20706F696E7420616C6F6E672074686520792D6178697320616E642072657475726E732074686520726573756C742061732061206E657720506F6C79676F6E2E
-		Shared Function FlipAlongTheYAxis(polygon As PhysicsKit.Polygon, point As PKVector2) As PhysicsKit.Polygon
+		Shared Function FlipAlongTheYAxis(polygon As PKPolygon, point As PKVector2) As PKPolygon
 		  ///
 		  ' Flips the given polygon about the given point along the y-axis and
 		  ' returns the result as a new Polygon.
@@ -1565,7 +1565,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
-		Shared Function MinkowskiSum(circle As PhysicsKit.Circle, polygon As PhysicsKit.Polygon, count As Integer) As PhysicsKit.Polygon
+		Shared Function MinkowskiSum(circle As PhysicsKit.Circle, polygon As PKPolygon, count As Integer) As PKPolygon
 		  ///
 		  ' Performs the Minkowski Sum of the given Polygon and Circle.
 		  '
@@ -1592,7 +1592,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720706F6C79676F6E207468617420686173206265656E2072616469616C6C7920657870616E6465642E2054686973206973206571756976616C656E7420746F20746865204D696E6B6F77736B692073756D206F66206120636972636C652C206F662074686520676976656E207261646975732C20616E642074686520676976656E20706F6C79676F6E2E
-		Shared Function MinkowskiSum(polygon As PhysicsKit.Polygon, radius As Double, count As Integer) As PhysicsKit.Polygon
+		Shared Function MinkowskiSum(polygon As PKPolygon, radius As Double, count As Integer) As PKPolygon
 		  ///
 		  ' Returns a new polygon that has been radially expanded. This is equivalent to the Minkowski sum of
 		  ' a circle, of the given radius, and the given polygon.
@@ -1685,13 +1685,13 @@ Protected Class Geometry
 		    j = j + 1
 		  Next i
 		  
-		  Return New Polygon(nVerts)
+		  Return New PKPolygon(nVerts)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
-		Shared Function MinkowskiSum(polygon As PhysicsKit.Polygon, circle As PhysicsKit.Circle, count As Integer) As PhysicsKit.Polygon
+		Shared Function MinkowskiSum(polygon As PKPolygon, circle As PhysicsKit.Circle, count As Integer) As PKPolygon
 		  ///
 		  ' Performs the Minkowski Sum of the given Polygon and Circle.
 		  '
@@ -1719,7 +1719,7 @@ Protected Class Geometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20636F6E766578207368617065732E2054686520736861706573204D55535420696D706C656D656E7420626F74682074686520436F6E76657820616E6420576F756E6420696E74657266616365732E
-		Shared Function MinkowskiSum(convex1 As Variant, convex2 As Variant) As PhysicsKit.Polygon
+		Shared Function MinkowskiSum(convex1 As Variant, convex2 As Variant) As PKPolygon
 		  ///
 		  ' Returns the Minkowski Sum of the given convex shapes.
 		  '
@@ -1852,7 +1852,7 @@ Protected Class Geometry
 		    End If
 		  Wend
 		  
-		  Return New Polygon(sum)
+		  Return New PKPolygon(sum)
 		  
 		End Function
 	#tag EndMethod
@@ -1978,38 +1978,6 @@ Protected Class Geometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20706F6C79676F6E2E
-		Shared Function Scale(polygon As PhysicsKit.Polygon, scale As Double) As PhysicsKit.Polygon
-		  ///
-		  ' Returns a scaled version of the given polygon.
-		  '
-		  ' - Parameter polygon: The polygon.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returns: A new Polygon.
-		  '
-		  ' - Raises: NilObjectException if the given polygon is Nil.
-		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero
-		  ///
-		  
-		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  
-		  Var oVertices() As PKVector2 = polygon.Vertices
-		  Var size As Integer = oVertices.Count - 1
-		  
-		  Var vertices() As PKVector2
-		  vertices.ResizeTo(size)
-		  Var center As PKVector2 = polygon.Center
-		  For i As Integer = 0 To size
-		    vertices(i) = center.Towards(oVertices(i)).Multiply(scale).Add(center)
-		  Next i
-		  
-		  Return New Polygon(vertices)
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E207365676D656E742E
 		Shared Function Scale(segment As PhysicsKit.Segment, scale As Double) As PhysicsKit.Segment
 		  ///
@@ -2054,6 +2022,38 @@ Protected Class Geometry
 		  If slice Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
 		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
 		  Return New Slice(slice.GetSliceRadius * scale, slice.GetTheta)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20706F6C79676F6E2E
+		Shared Function Scale(polygon As PKPolygon, scale As Double) As PKPolygon
+		  ///
+		  ' Returns a scaled version of the given polygon.
+		  '
+		  ' - Parameter polygon: The polygon.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Polygon.
+		  '
+		  ' - Raises: NilObjectException if the given polygon is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero
+		  ///
+		  
+		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  
+		  Var oVertices() As PKVector2 = polygon.Vertices
+		  Var size As Integer = oVertices.Count - 1
+		  
+		  Var vertices() As PKVector2
+		  vertices.ResizeTo(size)
+		  Var center As PKVector2 = polygon.Center
+		  For i As Integer = 0 To size
+		    vertices(i) = center.Towards(oVertices(i)).Multiply(scale).Add(center)
+		  Next i
+		  
+		  Return New PKPolygon(vertices)
 		  
 		End Function
 	#tag EndMethod

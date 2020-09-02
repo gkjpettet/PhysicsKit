@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Polygon
+Protected Class PKPolygon
 Inherits PKAbstractShape
 Implements   PKConvex,  PKWound
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E657720506F6C79676F6E207573696E672074686520676976656E2076657274696365732E20205468652063656E747265206F662074686520706F6C79676F6E2069732063616C63756C61746564207573696E6720616E2061726561207765696768746564206D6574686F642E
@@ -17,13 +17,13 @@ Implements   PKConvex,  PKWound
 		  
 		  #Pragma Unused valid
 		  
-		  Super.Constructor(center, Geometry.GetRotationRadius(center, vertices))
+		  Super.Constructor(center, PhysicsKit.Geometry.GetRotationRadius(center, vertices))
 		  
 		  // Set the vertices.
 		  Self.Vertices = vertices
 		  
 		  // Create the normals.
-		  Self.Normals = Geometry.GetCounterClockwiseEdgeNormals(vertices)
+		  Self.Normals = PhysicsKit.Geometry.GetCounterClockwiseEdgeNormals(vertices)
 		  
 		End Sub
 	#tag EndMethod
@@ -47,7 +47,7 @@ Implements   PKConvex,  PKWound
 		  '           contains coincident points, is not convex, or has clockwise winding
 		  ///
 		  
-		  Constructor(Validate(verts), verts, Geometry.GetAreaWeightedCenter(verts))
+		  Constructor(Validate(verts), verts, PhysicsKit.Geometry.GetAreaWeightedCenter(verts))
 		  
 		End Sub
 	#tag EndMethod
@@ -90,7 +90,7 @@ Implements   PKConvex,  PKWound
 		  Var p2 As PKVector2 = Self.Vertices(0)
 		  
 		  // Get the location of the point relative to the first two vertices.
-		  Var last As Double = Segment.GetLocation(p, p1, p2)
+		  Var last As Double = PhysicsKit.Segment.GetLocation(p, p1, p2)
 		  
 		  // Loop through the rest of the vertices.
 		  For i As Integer = 0 To size - 2
@@ -102,7 +102,7 @@ Implements   PKConvex,  PKWound
 		    If p.Equals(p1) Or p.Equals(p2) Then Return True
 		    
 		    // Do side of line test.
-		    Var location As Double = Segment.GetLocation(p, p1, p2)
+		    Var location As Double = PhysicsKit.Segment.GetLocation(p, p1, p2)
 		    
 		    // Multiply the last location with this location.
 		    // If they are the same sign then the opertation will yield a positive result
@@ -116,7 +116,7 @@ Implements   PKConvex,  PKWound
 		    // A location of zero indicates that the point lies ON the line
 		    // through p1 and p2. We can ignore these values because the
 		    // convexity requirement of the shape will ensure that if it's outside, a sign will change.
-		    If Abs(location) > Epsilon.E Then last = location
+		    If Abs(location) > PhysicsKit.Epsilon.E Then last = location
 		  Next i
 		  
 		  Return True
@@ -216,8 +216,8 @@ Implements   PKConvex,  PKWound
 		    // (p1 + p2) * (D / 6)
 		    // = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 6
 		    // We will divide by the total area later.
-		    center.X = center.X + ((p1.X + p2.X) * Geometry.INV_3 * triangleArea)
-		    center.Y = center.Y + ((p1.Y + p2.Y) * Geometry.INV_3 * triangleArea)
+		    center.X = center.X + ((p1.X + p2.X) * PhysicsKit.Geometry.INV_3 * triangleArea)
+		    center.Y = center.Y + ((p1.Y + p2.Y) * PhysicsKit.Geometry.INV_3 * triangleArea)
 		    
 		    // (yi * x(i+1) - y(i+1) * xi) * (p2^2 + p2 . p1 + p1^2)
 		    I = I + (triangleArea * (p2.Dot(p2) + p2.Dot(p1) + p1.Dot(p1)))
@@ -240,7 +240,7 @@ Implements   PKConvex,  PKWound
 		  // the average center is used as the origin).
 		  I = I - (m * center.GetMagnitudeSquared)
 		  
-		  Return New Mass(c, m, I)
+		  Return New PhysicsKit.Mass(c, m, I)
 		  
 		End Function
 	#tag EndMethod
@@ -321,25 +321,25 @@ Implements   PKConvex,  PKWound
 		  
 		  // Create the maximum point for the feature (transform the maximum into world space).
 		  transform.TransformV(maximum)
-		  Var vm As PointFeature = New PointFeature(maximum, index)
+		  Var vm As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(maximum, index)
 		  
 		  // Is the left or right edge more perpendicular?
 		  If leftN.Dot(localn) < rightN.Dot(localn) Then
 		    Var l As Integer = If((index = count - 1), 0, index + 1)
 		    
 		    Var left As PKVector2 = transform.GetTransformed(Self.Vertices(l))
-		    Var vl As PointFeature = New PointFeature(left, l)
+		    Var vl As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(left, l)
 		    
 		    // Make sure the edge is the right winding.
-		    Return New EdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
+		    Return New PhysicsKit.EdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
 		  Else
 		    Var r As Integer = If((index = 0), count - 1, index - 1)
 		    
 		    Var right As PKVector2 = transform.GetTransformed(Self.Vertices(r))
-		    Var vr As PointFeature = New PointFeature(right, r)
+		    Var vr As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(right, r)
 		    
 		    // Make sure the edge is the right winding.
-		    Return New EdgeFeature(vr, vm, vm, right.Towards(maximum), index)
+		    Return New PhysicsKit.EdgeFeature(vr, vm, vm, right.Towards(maximum), index)
 		  End If
 		  
 		End Function
@@ -472,7 +472,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New WoundIterator(Self.Normals)
+		  Return New PhysicsKit.WoundIterator(Self.Normals)
 		  
 		End Function
 	#tag EndMethod
@@ -490,7 +490,7 @@ Implements   PKConvex,  PKWound
 		Function GetRadius(center As PKVector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
 		  
-		  Return Geometry.GetRotationRadius(center, Self.Vertices)
+		  Return PhysicsKit.Geometry.GetRotationRadius(center, Self.Vertices)
 		  
 		End Function
 	#tag EndMethod
@@ -501,7 +501,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New WoundIterator(Self.Vertices)
+		  Return New PhysicsKit.WoundIterator(Self.Vertices)
 		  
 		End Function
 	#tag EndMethod
@@ -542,7 +542,7 @@ Implements   PKConvex,  PKWound
 		    End If
 		  Next i
 		  
-		  Return New Interval(min, max)
+		  Return New PhysicsKit.Interval(min, max)
 		  
 		End Function
 	#tag EndMethod
@@ -614,17 +614,17 @@ Implements   PKConvex,  PKWound
 		  ///
 		  
 		  // Check the vertex array.
-		  If verts = Nil Then Raise New NilObjectException(Messages.GEOMETRY_POLYGON_NIL_ARRAY)
+		  If verts = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_POLYGON_NIL_ARRAY)
 		  
 		  // Get the size.
 		  Var size As Integer = verts.Count
 		  
 		  // Check the size.
-		  If size < 3 Then Raise New InvalidArgumentException(Messages.GEOMETRY_POLYGON_LESS_THAN_3_VERTICES)
+		  If size < 3 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_LESS_THAN_3_VERTICES)
 		  
 		  // Check for Nil vertices.
 		  For Each v As PKVector2 In verts
-		    If v Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_POLYGON_NIL_VERTICES)
+		    If v Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_POLYGON_NIL_VERTICES)
 		  Next v
 		  
 		  // Check for convex.
@@ -637,30 +637,30 @@ Implements   PKConvex,  PKWound
 		    Var p2 As PKVector2 = If((i + 1 = size), verts(0), verts(i + 1))
 		    // Check for coincident vertices.
 		    If p1.Equals(p2) Then
-		      Raise New InvalidArgumentException(Messages.GEOMETRY_POLYGON_COINCIDENT_VERTICES)
+		      Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_COINCIDENT_VERTICES)
 		    End If
 		    // Check the cross product for CCW winding.
 		    Var cross As Double = p0.Towards(p1).Cross(p1.Towards(p2))
 		    Var tsign As Double = MathsKit.Signum(cross)
 		    area = area + cross
 		    // Check for colinear edges (for now its allowed).
-		    If Abs(cross) > Epsilon.E Then
+		    If Abs(cross) > PhysicsKit.Epsilon.E Then
 		      // Check for convexity.
 		      If sign <> 0.0 And tsign <> sign Then
-		        Raise New InvalidArgumentException(Messages.GEOMETRY_POLYGON_NON_CONVEX)
+		        Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_NON_CONVEX)
 		      End If
 		    End If
 		    sign = tsign
 		  Next i
 		  
 		  // Don't allow degenerate polygons.
-		  If Abs(area) <= Epsilon.E Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_POLYGON_ZERO_AREA)
+		  If Abs(area) <= PhysicsKit.Epsilon.E Then
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_ZERO_AREA)
 		  End If
 		  
 		  // Check for CCW.
 		  If area < 0.0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_POLYGON_INVALID_WINDING)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_INVALID_WINDING)
 		  End If
 		  
 		  // If we've made it this far then continue.

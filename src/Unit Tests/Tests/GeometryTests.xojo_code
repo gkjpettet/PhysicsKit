@@ -543,7 +543,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalCapsule(5, 1.0, 0.5)
+		  Var p As PKPolygon = Geometry.CreatePolygonalCapsule(5, 1.0, 0.5)
 		  
 		  // The centre should be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -659,7 +659,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalEllipse(5, 2, 1)
+		  Var p As PKPolygon = Geometry.CreatePolygonalEllipse(5, 2, 1)
 		  
 		  // And the centre should be the origin.
 		  Assert.AreEqual(4, p.GetVertices.Count)
@@ -680,7 +680,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed
-		  Var p As Polygon = Geometry.CreatePolygonalEllipse(10, 2, 1)
+		  Var p As PKPolygon = Geometry.CreatePolygonalEllipse(10, 2, 1)
 		  
 		  // And the centre should be the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -736,7 +736,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalHalfEllipseAtOrigin(5, 1.0, 0.5)
+		  Var p As PKPolygon = Geometry.CreatePolygonalHalfEllipseAtOrigin(5, 1.0, 0.5)
 		  
 		  // The centre should be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -812,7 +812,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0.5)
+		  Var p As PKPolygon = Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0.5)
 		  
 		  // The centre should not be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -868,7 +868,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalSliceAtOrigin(5, 1.0, MathsKit.ToRadians(30))
+		  Var p As PKPolygon = Geometry.CreatePolygonalSliceAtOrigin(5, 1.0, MathsKit.ToRadians(30))
 		  
 		  // The centre should be the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -924,7 +924,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As Polygon = Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(30))
+		  Var p As PKPolygon = Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(30))
 		  
 		  // The centre should not be at the origin.
 		  Assert.AreEqual(0.658, p.GetCenter.x, 1.0e-3)
@@ -1026,7 +1026,7 @@ Inherits TestGroup
 		  vertices(3) = New PKVector2(-1.0, 0.0)
 		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
-		  Var p As Polygon = Geometry.CreatePolygonAtOrigin(vertices)
+		  Var p As PKPolygon = Geometry.CreatePolygonAtOrigin(vertices)
 		  
 		  // The array should not be the same object.
 		  Assert.IsFalse(p.vertices Is vertices)
@@ -1100,7 +1100,7 @@ Inherits TestGroup
 		  vertices(3) = New PKVector2(-1.0, 0.0)
 		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
-		  Var p As Polygon = Geometry.CreatePolygon(vertices)
+		  Var p As PKPolygon = Geometry.CreatePolygon(vertices)
 		  
 		  // The array should not be the same object.
 		  Assert.IsFalse(p.Vertices Is vertices)
@@ -1394,7 +1394,7 @@ Inherits TestGroup
 		  ' Test case for the UnitCirclePolygon methods.
 		  ///
 		  
-		  Var p As Polygon 
+		  Var p As PKPolygon 
 		  
 		  Try
 		    p = Geometry.CreateUnitCirclePolygon(5, 0.5)
@@ -1766,10 +1766,10 @@ Inherits TestGroup
 		  ' Tests the flip polygon method.
 		  ///
 		  
-		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 1.0)
+		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 1.0)
 		  
 		  // Flip about an arbitrary vector and point (line).
-		  Var flipped As Polygon = Geometry.Flip(p, New PKVector2(1.0, 1.0), New PKVector2(0.0, 2.0))
+		  Var flipped As PKPolygon = Geometry.Flip(p, New PKVector2(1.0, 1.0), New PKVector2(0.0, 2.0))
 		  
 		  Var vertices() As PKVector2 = flipped.GetVertices
 		  Assert.AreEqual(-2.951, vertices(0).x, 1.0e-3)
@@ -2376,7 +2376,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // Verify the generation of the polygon works.
-		  Var p As Polygon 
+		  Var p As PKPolygon 
 		  p = Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
 		  Geometry.CreateCircle(0.2), 3)
 		  
@@ -2599,7 +2599,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon
+		    Var p As PKPolygon
 		    Call Geometry.Scale(p, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -2724,7 +2724,7 @@ Inherits TestGroup
 		  Var s3 As Ellipse = Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 2)
 		  Var s4 As HalfEllipse = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 2)
 		  Var s5 As Slice = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
-		  Var s6 As Polygon = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 2)
+		  Var s6 As PKPolygon = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 2)
 		  Var s7 As Segment = Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
 		  
 		  Assert.AreEqual(1.000, s1.Radius, 1.0e-3)

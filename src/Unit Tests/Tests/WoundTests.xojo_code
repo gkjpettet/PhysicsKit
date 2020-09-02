@@ -40,7 +40,7 @@ Inherits TestGroup
 		  
 		  Var c As PKVector2 = New PKVector2(1.0, 0.0)
 		  
-		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(1.434, p.GetRadius(c), 1.0e-3)
 		  
 		  Var s As Segment = Geometry.CreateHorizontalSegment(4.0)
@@ -63,7 +63,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p As Polygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(0.500, p.GetRadius, 1.0e-3)
 		  
 		  Var s As Segment = Geometry.CreateHorizontalSegment(4.0)

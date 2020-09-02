@@ -49,7 +49,7 @@ Inherits TestGroup
 		  New PKVector2(7.0, 5.0), _
 		  New PKVector2(5.0, 7.0), _
 		  New PKVector2(3.0, 7.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
@@ -74,7 +74,7 @@ Inherits TestGroup
 		  New PKVector2(3.0, 7.0), _
 		  New PKVector2(0.0, 4.0), _
 		  New PKVector2(0.0, 2.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
@@ -100,7 +100,7 @@ Inherits TestGroup
 		  New PKVector2(3.0, 7.0), _
 		  New PKVector2(0.0, 4.0), _
 		  New PKVector2(0.0, 2.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Assert.IsTrue(p.Contains(New PKVector2(4.5, 0.0)))
 		  
@@ -126,7 +126,7 @@ Inherits TestGroup
 		  New PKVector2(3.0, 7.0), _
 		  New PKVector2(0.0, 4.0), _
 		  New PKVector2(0.0, 2.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Assert.IsFalse(p.Contains(New PKVector2(0.0, 0.0)))
 		  
@@ -146,7 +146,7 @@ Inherits TestGroup
 		  New PKVector2(-1.0, 0.0), _
 		  New PKVector2(1.0, 0.0))
 		  
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Var t As PKTransform = New PKTransform
 		  Var pt As PKVector2 = New PKVector2(2.0, 4.0)
@@ -188,7 +188,7 @@ Inherits TestGroup
 		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  Var aabb As PKAABB = p.CreateAABB(IDENTITY)
 		  Assert.AreEqual(-1.0, aabb.GetMinX, 1.0e-3)
@@ -226,7 +226,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2(0.5, 0.5), New PKVector2(-0.3, -0.5), _
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2(0.5, 0.5), New PKVector2(-0.3, -0.5), _
 		    New PKVector2(1.0, -0.3)))
 		    #Pragma Unused p
 		  Catch e As RuntimeException
@@ -250,7 +250,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2(2.0, 2.0), _
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2, New PKVector2(2.0, 2.0), _
 		    New PKVector2(2.0, 2.0), New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
@@ -270,7 +270,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2(1.0, 0.0), New PKVector2(2.0, 0.0), _
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2(1.0, 0.0), New PKVector2(2.0, 0.0), _
 		    New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
@@ -294,7 +294,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2, Nil, New PKVector2(0, 2)))
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2, Nil, New PKVector2(0, 2)))
 		    #Pragma Unused p
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -317,7 +317,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2(1.0, 1.0), New PKVector2(-1.0, 1.0), _
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2(1.0, 1.0), New PKVector2(-1.0, 1.0), _
 		    New PKVector2(-0.5, 0.0), New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
@@ -341,7 +341,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2(2.0, 2.0), New PKVector2(1.0, 0.0)))
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2, New PKVector2(2.0, 2.0), New PKVector2(1.0, 0.0)))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -364,7 +364,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As Polygon = New Polygon(Array(New PKVector2, New PKVector2))
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2, New PKVector2))
 		    #Pragma Unused p
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -387,7 +387,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As polygon = New Polygon(Array(New PKVector2(0.0, 1.0), New PKVector2(-2.0, -2.0), _
+		    Var p As PKPolygon = New PKPolygon(Array(New PKVector2(0.0, 1.0), New PKVector2(-2.0, -2.0), _
 		    New PKVector2(1.0, -2.0)))
 		    #Pragma Unused p
 		  Catch e As RuntimeException
@@ -411,7 +411,7 @@ Inherits TestGroup
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  Var t As PKTransform = New PKTransform
 		  
 		  Var axes() As PKVector2 = p.GetAxes(Nil, t)
@@ -453,7 +453,7 @@ Inherits TestGroup
 		  New PKVector2(-1.0, -1.0), _
 		  New PKVector2(1.0, -1.0))
 		  
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
@@ -497,7 +497,7 @@ Inherits TestGroup
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), New PKVector2(-1.0, -1.0), _
 		  New PKVector2(1.0, -1.0))
 		  
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  Var t As PKTransform = New PKTransform
 		  
 		  // Should return Nil.
@@ -518,7 +518,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var p As polygon = New Polygon(Nil)
+		    Var p As PKPolygon = New PKPolygon(Nil)
 		    #Pragma Unused p
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -543,7 +543,7 @@ Inherits TestGroup
 		  New PKVector2(-1.0, 0.0), _
 		  New PKVector2(1.0, 0.0))
 		  
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
@@ -576,7 +576,7 @@ Inherits TestGroup
 		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  // Should move the points.
 		  p.Rotate(MathsKit.ToRadians(90), 0, 0)
@@ -603,7 +603,7 @@ Inherits TestGroup
 		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
-		  Var p As Polygon = New Polygon(vertices)
+		  Var p As PKPolygon = New PKPolygon(vertices)
 		  
 		  p.Translate(1.0, -0.5)
 		  
