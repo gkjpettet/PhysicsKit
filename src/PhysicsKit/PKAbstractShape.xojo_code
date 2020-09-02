@@ -81,7 +81,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused density

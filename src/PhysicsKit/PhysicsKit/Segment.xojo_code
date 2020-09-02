@@ -159,7 +159,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  ///
 		  ' Creates a Mass object using the geometric properties of this Segment and the given density.
 		  '
@@ -185,7 +185,7 @@ Implements   PKConvex,  PKWound
 		  
 		  // Since we know that a line segment has only two points we can
 		  // feel safe using the averaging method for the centroid.
-		  Return New Mass(Self.Center, mass, inertia)
+		  Return New PKMass(Self.Center, mass, inertia)
 		  
 		  
 		End Function

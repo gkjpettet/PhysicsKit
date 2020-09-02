@@ -41,8 +41,8 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var masses() As Mass
-		    Var m As Mass = Mass.Create(masses)
+		    Var masses() As PKMass
+		    Var m As PKMass = PKMass.Create(masses)
 		    #Pragma Unused m
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -62,14 +62,14 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m1 As Mass = New Mass
-		  Var m2 As Mass = New Mass
-		  Var m3 As Mass = New Mass
-		  Var masses() As Mass
+		  Var m1 As PKMass = New PKMass
+		  Var m2 As PKMass = New PKMass
+		  Var m3 As PKMass = New PKMass
+		  Var masses() As PKMass
 		  masses.AddRow(m1)
 		  masses.AddRow(m2)
 		  masses.AddRow(m3)
-		  Var m As Mass = Mass.Create(masses)
+		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter
 		  Assert.IsTrue(m.IsInfinite)
@@ -92,13 +92,13 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m1 As Mass = New Mass(New PKVector2, 1.0, 2.0)
-		    Var m2 As Mass = New Mass(New PKVector2, 2.0, 7.0)
-		    Var masses() As Mass
+		    Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
+		    Var m2 As PKMass = New PKMass(New PKVector2, 2.0, 7.0)
+		    Var masses() As PKMass
 		    masses.AddRow(m1)
 		    masses.AddRow(Nil)
 		    masses.AddRow(m2)
-		    Call Mass.Create(masses)
+		    Call PKMass.Create(masses)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -120,7 +120,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = Mass.Create(Nil)
+		    Var m As PKMass = PKMass.Create(Nil)
 		    #Pragma Unused m
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -140,10 +140,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m1 As Mass = New Mass(New PKVector2, 1.0, 2.0)
-		  Var masses() As Mass
+		  Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
+		  Var masses() As PKMass
 		  masses.AddRow(m1)
-		  Var m As Mass = Mass.Create(masses)
+		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter
 		  Assert.IsFalse(m.IsInfinite)
@@ -167,9 +167,9 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var masses() As Mass
+		    Var masses() As PKMass
 		    masses.AddRow(Nil)
-		    Var m As mass = Mass.Create(masses)
+		    Var m As PKMass = PKMass.Create(masses)
 		    #Pragma Unused m
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -189,14 +189,14 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m1 As Mass = New Mass(New PKVector2( 1.0,  1.0), 3.00, 1.00)
-		  Var m2 As Mass = New Mass(New PKVector2(-1.0,  0.0), 0.50, 0.02)
-		  Var m3 As Mass = New Mass(New PKVector2( 1.0, -2.0), 2.00, 3.00)
-		  Var masses() As Mass
+		  Var m1 As PKMass = New PKMass(New PKVector2( 1.0,  1.0), 3.00, 1.00)
+		  Var m2 As PKMass = New PKMass(New PKVector2(-1.0,  0.0), 0.50, 0.02)
+		  Var m3 As PKMass = New PKMass(New PKVector2( 1.0, -2.0), 2.00, 3.00)
+		  Var masses() As PKMass
 		  masses.AddRow(m1)
 		  masses.AddRow(m2)
 		  masses.AddRow(m3)
-		  Var m As Mass = Mass.Create(masses)
+		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter
 		  Assert.AreEqual( 0.818, c.x, 1.0e-3)
@@ -216,7 +216,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = New Circle(3.0)
-		  Var m As Mass = c.CreateMass(2.0)
+		  Var m As PKMass = c.CreateMass(2.0)
 		  
 		  // The mass should be π * r * r * d
 		  Assert.AreEqual(56.548, m.GetMass, 1.0e-3)
@@ -238,7 +238,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(Nil)
+		    Var m As PKMass = New PKMass(Nil)
 		    #Pragma Unused m
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -258,8 +258,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New PKVector2(1.0, 0.0), 2.0, 1.0)
-		  Var m2 As Mass = New Mass(m)
+		  Var m As PKMass = New PKMass(New PKVector2(1.0, 0.0), 2.0, 1.0)
+		  Var m2 As PKMass = New PKMass(m)
 		  
 		  Assert.AreDifferent(m, m2)
 		  Assert.AreDifferent(m.Center, m2.Center)
@@ -280,7 +280,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New PKVector2, 1.0, 0.0)
+		  Var m As PKMass = New PKMass(New PKVector2, 1.0, 0.0)
 		  Assert.IsFalse(m.IsInfinite)
 		  Assert.IsTrue(m.GetType = MassTypes.FixedAngularVelocity)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
@@ -298,7 +298,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New PKVector2, 0, 1.0)
+		  Var m As PKMass = New PKMass(New PKVector2, 0, 1.0)
 		  Assert.IsFalse(m.IsInfinite)
 		  Assert.IsTrue(m.GetType = MassTypes.FixedLinearVelocity)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
@@ -316,7 +316,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New PKVector2, 0, 0)
+		  Var m As PKMass = New PKMass(New PKVector2, 0, 0)
 		  Assert.IsTrue(m.IsInfinite)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 0.0)
@@ -336,7 +336,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(New PKVector2, 1.0, -1.0)
+		    Var m As PKMass = New PKMass(New PKVector2, 1.0, -1.0)
 		    #Pragma Unused m
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -359,7 +359,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(New PKVector2, -1.0, 1.0)
+		    Var m As PKMass = New PKMass(New PKVector2, -1.0, 1.0)
 		    #Pragma Unused m
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -380,7 +380,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
-		  Var m As Mass = p.CreateMass(1.0)
+		  Var m As PKMass = p.CreateMass(1.0)
 		  
 		  // The polygon mass should be the area * d
 		  Assert.AreEqual(0.594, m.GetMass, 1.0e-3)
@@ -398,7 +398,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var r As Rectangle = New Rectangle(1.0, 1.0)
-		  Var m As Mass = r.CreateMass(1.5)
+		  Var m As PKMass = r.CreateMass(1.5)
 		  
 		  // The mass of a rectangle should be h * w * d
 		  Assert.AreEqual(1.500, m.GetMass, 1.0e-3)
@@ -415,7 +415,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var s As Segment = New Segment(New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
-		  Var m As Mass = s.CreateMass(1.0)
+		  Var m As PKMass = s.CreateMass(1.0)
 		  
 		  // The mass of a segment should be l * d
 		  Assert.AreEqual(2.061, m.GetMass, 1.0e-3)
@@ -434,7 +434,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var m As Mass = New Mass(New PKVector2, 1.0, 1.0)
+		  Var m As PKMass = New PKMass(New PKVector2, 1.0, 1.0)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 1.0)
 		  Assert.AreEqual(m.GetInertia, 1.0)
@@ -453,7 +453,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var m As Mass = New Mass(Nil, 1.0, 1.0)
+		    Var m As PKMass = New PKMass(Nil, 1.0, 1.0)
 		    #Pragma Unused m
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -477,8 +477,8 @@ Inherits TestGroup
 		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
 		  Var r As Rectangle = Geometry.CreateSquare(1.0)
 		  
-		  Var pm As Mass = p.CreateMass(10.0)
-		  Var rm As Mass = r.CreateMass(10.0)
+		  Var pm As PKMass = p.CreateMass(10.0)
+		  Var rm As PKMass = r.CreateMass(10.0)
 		  
 		  Assert.AreEqual(rm.Mass, pm.Mass, 1.0e-3)
 		  Assert.AreEqual(rm.Inertia, pm.Inertia, 1.0e-3)
@@ -496,10 +496,10 @@ Inherits TestGroup
 		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
 		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
-		  Var m1 As Mass = p.CreateMass(10.0)
+		  Var m1 As PKMass = p.CreateMass(10.0)
 		  
 		  p.Translate(0.5, -2.0)
-		  Var m2 As Mass = p.CreateMass(10.0)
+		  Var m2 As PKMass = p.CreateMass(10.0)
 		  
 		  Assert.AreEqual(m1.Mass, m2.Mass, 1.0e-3)
 		  Assert.AreEqual(m1.Inertia, m2.Inertia, 1.0e-3)
@@ -516,7 +516,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Var c As Circle = Geometry.CreateCircle(2.0)
-		  Var mi As Mass = c.CreateMass(1.0)
+		  Var mi As PKMass = c.CreateMass(1.0)
 		  
 		  // Setting the type should not alter the mass values.
 		  mi.SetType(MassTypes.Infinite)

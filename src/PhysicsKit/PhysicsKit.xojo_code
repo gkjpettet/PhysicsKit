@@ -19,13 +19,13 @@ Protected Module PhysicsKit
 	#tag Method, Flags = &h0
 		Function ToString(Extends mt As PhysicsKit.MassTypes) As String
 		  Select Case mt
-		  Case MassTypes.FixedAngularVelocity
+		  Case PhysicsKit.MassTypes.FixedAngularVelocity
 		    Return "Fixed Angular Velocity"
-		  Case MassTypes.FixedLinearVelocity
+		  Case PhysicsKit.MassTypes.FixedLinearVelocity
 		    Return "Fixed Linear Velocity"
-		  Case MassTypes.Infinite
+		  Case PhysicsKit.MassTypes.Infinite
 		    Return "Infinite"
-		  Case MassTypes.Normal
+		  Case PhysicsKit.MassTypes.Normal
 		    Return "Normal"
 		  Case Else
 		    Return "Unknown mass type"

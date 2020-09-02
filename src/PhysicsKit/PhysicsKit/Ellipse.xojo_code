@@ -118,7 +118,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -130,7 +130,7 @@ Implements  PKConvex
 		  // http://math.stackexchange.com/questions/152277/moment-of-inertia-of-an-ellipse-in-2d
 		  Var I As Double = m * (Self.HalfWidth * Self.HalfWidth + Self.HalfHeight * Self.HalfHeight) / 4.0
 		  
-		  Return New Mass(Self.Center, m, I)
+		  Return New PKMass(Self.Center, m, I)
 		  
 		End Function
 	#tag EndMethod

@@ -123,7 +123,7 @@ Inherits PKPolygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061204D617373206F626A656374207573696E67207468652067656F6D65747269632070726F70657274696573206F6620746869732052656374616E676C6520616E642074686520676976656E2064656E736974792028696E206B672F6DC2B2292E
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  ///
 		  ' Creates a Mass object using the geometric properties of this Rectangle and the given density.
 		  '
@@ -148,7 +148,7 @@ Inherits PKPolygon
 		  // Since we know that a rectangle has only four points that are
 		  // evenly distributed we can feel safe using the averaging method for the centroid.
 		  
-		  Return New Mass(Self.Center, mass, inertia)
+		  Return New PKMass(Self.Center, mass, inertia)
 		  
 		End Function
 	#tag EndMethod

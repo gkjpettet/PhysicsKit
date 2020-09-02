@@ -26,10 +26,10 @@ Inherits PKAbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  #Pragma Unused density
 		  
-		  Return New PhysicsKit.Mass
+		  Return New PKMass
 		  
 		End Function
 	#tag EndMethod

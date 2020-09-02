@@ -71,7 +71,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  ///
 		  ' - Notes:
 		  ' ```
@@ -90,7 +90,7 @@ Implements  PKConvex
 		  Var inertia As Double = mass * r2 * 0.5
 		  
 		  // Use the center supplied to the circle.
-		  Return New Mass(Self.Center, mass, inertia)
+		  Return New PKMass(Self.Center, mass, inertia)
 		  
 		End Function
 	#tag EndMethod

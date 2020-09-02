@@ -166,7 +166,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061204D617373206F626A656374207573696E67207468652067656F6D65747269632070726F70657274696573206F66207468697320506F6C79676F6E20616E642074686520676976656E2064656E736974792E
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  ///
 		  ' Creates a Mass object using the geometric properties of this Polygon and the given density.
 		  '
@@ -240,7 +240,7 @@ Implements   PKConvex,  PKWound
 		  // the average center is used as the origin).
 		  I = I - (m * center.GetMagnitudeSquared)
 		  
-		  Return New PhysicsKit.Mass(c, m, I)
+		  Return New PKMass(c, m, I)
 		  
 		End Function
 	#tag EndMethod

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Mass
+Protected Class PKMass
 	#tag Method, Flags = &h0, Description = 44656661756C7420636F6E7374727563746F722E
 		Sub Constructor()
 		  ///
@@ -8,7 +8,7 @@ Protected Class Mass
 		  ' Creates and infinite mass centred at the origin.
 		  ///
 		  
-		  Self.Type = MassTypes.Infinite
+		  Self.Type = PhysicsKit.MassTypes.Infinite
 		  Self.Center = New PKVector2
 		  Self.Mass = 0.0
 		  Self.Inertia = 0.0
@@ -19,7 +19,7 @@ Protected Class Mass
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F707920636F6E7374727563746F722E
-		Sub Constructor(mass As PhysicsKit.Mass)
+		Sub Constructor(mass As PKMass)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -31,7 +31,7 @@ Protected Class Mass
 		  ///
 		  
 		  // Validate the input.
-		  If mass Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_MASS_NIL_MASS)
+		  If mass Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS)
 		  
 		  // Setup the mass.
 		  Self.Type = mass.Type
@@ -61,58 +61,58 @@ Protected Class Mass
 		  
 		  // Validate the input,
 		  If center Is Nil Then
-		    Raise New NilObjectException(Messages.GEOMETRY_MASS_NIL_CENTER)
+		    Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_CENTER)
 		  End If
 		  If mass < 0.0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_MASS_INVALID_MASS)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_MASS)
 		  End If
 		  If inertia < 0.0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_MASS_INVALID_INERTIA)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_INERTIA)
 		  End If
 		  
 		  // Create the mass.
-		  Self.Type = MassTypes.Normal
+		  Self.Type = PhysicsKit.MassTypes.Normal
 		  Self.Center = center.Copy
 		  Self.Mass = mass
 		  Self.Inertia = inertia
 		  
 		  // Set the inverse mass.
-		  If mass > Epsilon.E Then
+		  If mass > PhysicsKit.Epsilon.E Then
 		    Self.InvMass = 1.0 / mass
 		  Else
 		    Self.InvMass = 0.0
-		    Self.Type = MassTypes.FixedLinearVelocity
+		    Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity
 		  End If
 		  
 		  // Set the inverse inertia.
-		  If inertia > Epsilon.E Then
+		  If inertia > PhysicsKit.Epsilon.E Then
 		    Self.InvInertia = 1.0 / inertia
 		  Else
 		    Self.InvInertia = 0.0
-		    Self.Type = MassTypes.FixedAngularVelocity
+		    Self.Type = PhysicsKit.MassTypes.FixedAngularVelocity
 		  End If
 		  
 		  // Check if both the mass and inertia are zero.
-		  If mass <= Epsilon.E And inertia <= Epsilon.E Then Self.Type = MassTypes.Infinite
+		  If mass <= PhysicsKit.Epsilon.E And inertia <= PhysicsKit.Epsilon.E Then Self.Type = PhysicsKit.MassTypes.Infinite
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F706965732074686973204D61737320616E642072657475726E732069742061732061206E6577204D61737320696E7374616E63652E
-		Function Copy() As PhysicsKit.Mass
+		Function Copy() As PKMass
 		  ///
 		  ' Copies this Mass.
 		  '
 		  ' - Returns: A new Mass instance.
 		  ///
 		  
-		  Return New Mass(Self)
+		  Return New PKMass(Self)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061204D617373206F626A6563742066726F6D2074686520676976656E206172726179206F66206D61737365732E
-		Shared Function Create(masses() As PhysicsKit.Mass) As PhysicsKit.Mass
+		Shared Function Create(masses() As PKMass) As PKMass
 		  ///
 		  ' Creates a Mass object from the given array of masses.
 		  '
@@ -137,10 +137,10 @@ Protected Class Mass
 		  
 		  // Check the array for Nil or empty.
 		  If masses = Nil Then
-		    Raise New NilObjectException(Messages.GEOMETRY_MASS_NIL_MASS_ARRAY)
+		    Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY)
 		  End If
 		  If masses.Count = 0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE)
 		  End If
 		  
 		  // Get the length of the masses array.
@@ -149,11 +149,11 @@ Protected Class Mass
 		  // Check for a list of one.
 		  If size = 1 Then
 		    // Check for Nil item.
-		    Var m As Mass = masses(0)
+		    Var m As PKMass = masses(0)
 		    If m <> Nil Then
-		      Return New Mass(masses(0))
+		      Return New PKMass(masses(0))
 		    Else
-		      Raise New NilObjectException(Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
 		    End If
 		  End If
 		  
@@ -163,10 +163,10 @@ Protected Class Mass
 		  Var I As Double = 0.0
 		  
 		  // Loop over the masses.
-		  For Each mass As PhysicsKit.Mass In masses
+		  For Each mass As PKMass In masses
 		    // Check for Nil mass.
 		    If mass = Nil Then
-		      Raise New NilObjectException(Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
 		    End If
 		    // Add the centers up (weighting them by their respective mass).
 		    Call c.Add(mass.Center.Product(mass.Mass))
@@ -183,7 +183,7 @@ Protected Class Mass
 		  // After obtaining the new center of mass we need to compute the interia tensor about the center
 		  // using the parallel axis theorem:
 		  // `Idis = Icm + mr^2` where `r` is the perpendicular distance between the two parallel axes.
-		  For Each mass As PhysicsKit.Mass In masses
+		  For Each mass As PKMass In masses
 		    // Compute the distance from the new center to the current mass's center.
 		    Var d2 As Double = mass.Center.DistanceSquared(c)
 		    // Compute `Idis`:
@@ -193,7 +193,7 @@ Protected Class Mass
 		  Next mass
 		  
 		  // Finally create the Mass.
-		  Return New Mass(c, m, I)
+		  Return New PKMass(c, m, I)
 		  
 		End Function
 	#tag EndMethod
@@ -202,8 +202,8 @@ Protected Class Mass
 		Function Equals(other As Variant) As Boolean
 		  If other Is Nil Then Return False
 		  
-		  If other IsA PhysicsKit.Mass Then
-		    Var o As PhysicsKit.Mass = Mass(other)
+		  If other IsA PKMass Then
+		    Var o As PKMass = PKMass(other)
 		    If Self.Type = o.Type And _
 		      Self.Mass = o.Mass And _ 
 		      Self.Inertia = o.Inertia And _
@@ -238,7 +238,7 @@ Protected Class Mass
 		  ' - Returns: Double.
 		  ///
 		  
-		  If Self.Type = MassTypes.Infinite Or Self.Type = MassTypes.FixedAngularVelocity Then
+		  If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedAngularVelocity Then
 		    Return 0.0
 		  Else
 		    Return Self.Inertia
@@ -255,7 +255,7 @@ Protected Class Mass
 		  ' - Returns: Double.
 		  ///
 		  
-		  If Self.Type = MassTypes.Infinite Or Self.Type = MassTypes.FixedangularVelocity Then
+		  If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedangularVelocity Then
 		    Return 0.0
 		  Else
 		    Return Self.InvInertia
@@ -272,7 +272,7 @@ Protected Class Mass
 		  ' - Returns: Double.
 		  ///
 		  
-		  If Self.Type = MassTypes.Infinite Or Self.Type = MassTypes.FixedLinearVelocity Then
+		  If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity Then
 		    Return 0.0
 		  Else
 		    Return Self.InvMass
@@ -289,7 +289,7 @@ Protected Class Mass
 		  ' - Returns: Double.
 		  ///
 		  
-		  If Self.Type = MassTypes.Infinite Or Self.Type = MassTypes.FixedLinearVelocity Then
+		  If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity Then
 		    Return 0.0
 		  Else
 		    Return Self.Mass
@@ -322,7 +322,7 @@ Protected Class Mass
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  Return Self.Type = MassTypes.Infinite
+		  Return Self.Type = PhysicsKit.MassTypes.Infinite
 		  
 		End Function
 	#tag EndMethod

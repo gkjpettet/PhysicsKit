@@ -118,7 +118,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -150,7 +150,7 @@ Implements  PKConvex
 		  // Add the rectangular inertia and cicle inertia.
 		  Var I As Double = rI + cI
 		  
-		  Return New Mass(Self.Center, m, I)
+		  Return New PKMass(Self.Center, m, I)
 		  
 		End Function
 	#tag EndMethod

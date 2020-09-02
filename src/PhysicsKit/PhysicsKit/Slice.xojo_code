@@ -116,7 +116,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CreateMass(density As Double) As PhysicsKit.Mass
+		Function CreateMass(density As Double) As PKMass
 		  ///
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -130,7 +130,7 @@ Implements  PKConvex
 		  Var I As Double = _
 		  1.0 / 18.0 * r2 * r2 * (9.0 * Self.Alpha * Self.Alpha - 8.0 * sina * sina) / Self.Alpha
 		  
-		  Return New Mass(Self.Center, m, I)
+		  Return New PKMass(Self.Center, m, I)
 		  
 		End Function
 	#tag EndMethod
