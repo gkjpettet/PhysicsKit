@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface HullGenerator
+Protected Interface PKHullGenerator
 	#tag Method, Flags = &h0
 		Function Generate(points() As PKVector2) As PKVector2()
 		  
