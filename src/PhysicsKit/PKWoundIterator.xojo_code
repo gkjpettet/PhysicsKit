@@ -1,5 +1,5 @@
 #tag Class
-Protected Class WoundIterator
+Protected Class PKWoundIterator
 Implements Iterator
 	#tag Method, Flags = &h0
 		Sub Constructor(vectors() As PKVector2)

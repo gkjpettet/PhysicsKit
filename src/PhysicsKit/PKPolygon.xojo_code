@@ -472,7 +472,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New PhysicsKit.WoundIterator(Self.Normals)
+		  Return New PKWoundIterator(Self.Normals)
 		  
 		End Function
 	#tag EndMethod
@@ -501,7 +501,7 @@ Implements   PKConvex,  PKWound
 		  ' - Note: Part of the PhysicsKit.Wound interface.
 		  ///
 		  
-		  Return New PhysicsKit.WoundIterator(Self.Vertices)
+		  Return New PKWoundIterator(Self.Vertices)
 		  
 		End Function
 	#tag EndMethod
