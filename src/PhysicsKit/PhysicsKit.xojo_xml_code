@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="874911743">
+ <ObjName>PhysicsKit</ObjName>
+ <ObjContainerID>856788991</ObjContainerID>
+ <IsClass>0</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Initialise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>271996927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Initialise()</SourceLine>
+   <SourceLine>// Initialises the physics module including shared properties within classes.</SourceLine>
+   <SourceLine>// We could avoid initialise methods on these classes by making the shared properties </SourceLine>
+   <SourceLine>// static but that would require us to use computed shared properties which I suspect are </SourceLine>
+   <SourceLine>// slower than regular properties.</SourceLine>
+   <SourceLine>PKAbstractShape.Initialise</SourceLine>
+   <SourceLine>PKEllipse.Initialise</SourceLine>
+   <SourceLine>PKEpsilon.Initialise</SourceLine>
+   <SourceLine>PKHalfEllipse.Initialise</SourceLine>
+   <SourceLine>PKRobustGeometry.Initialise</SourceLine>
+   <SourceLine>PKTransform.Initialise</SourceLine>
+   <SourceLine>PKVector2.Initialise</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>821759999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString(Extends mt As PhysicsKit.MassTypes) As String</SourceLine>
+   <SourceLine>Select Case mt</SourceLine>
+   <SourceLine>Case PhysicsKit.MassTypes.FixedAngularVelocity</SourceLine>
+   <SourceLine>Return "Fixed Angular Velocity"</SourceLine>
+   <SourceLine>Case PhysicsKit.MassTypes.FixedLinearVelocity</SourceLine>
+   <SourceLine>Return "Fixed Linear Velocity"</SourceLine>
+   <SourceLine>Case PhysicsKit.MassTypes.Infinite</SourceLine>
+   <SourceLine>Return "Infinite"</SourceLine>
+   <SourceLine>Case PhysicsKit.MassTypes.Normal</SourceLine>
+   <SourceLine>Return "Normal"</SourceLine>
+   <SourceLine>Case Else</SourceLine>
+   <SourceLine>Return "Unknown mass type"</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends mt As PhysicsKit.MassTypes</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>MassTypes Enumeration</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>485435391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>MassTypes Enumeration</NoteLine>
+   <NoteLine>An enumeration for special Mass types.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Normal:</NoteLine>
+   <NoteLine>Indicates a normal mass.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Infinite:</NoteLine>
+   <NoteLine>Indicates that the mass is infinite (rate of rotation and translation should not change)</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>FixedAngularVelocity:</NoteLine>
+   <NoteLine>Indicates that the mass's rate of rotation should not change.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>FixedLinearVelocity:</NoteLine>
+   <NoteLine>Indicates that the mass's rate of translation should not change.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Enumeration>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>MassTypes</ItemName>
+  <ItemFlags>1</ItemFlags>
+  <ItemType>Integer</ItemType>
+  <ItemName>MassTypes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>648882175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Normal</SourceLine>
+   <SourceLine>Infinite</SourceLine>
+   <SourceLine>FixedAngularVelocity</SourceLine>
+   <SourceLine>FixedLinearVelocity</SourceLine>
+  </ItemSource>
+ </Enumeration>
+</block>
+</RBProject>
