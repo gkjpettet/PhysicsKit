@@ -40,16 +40,16 @@ Inherits TestGroup
 		  
 		  Var c As PKVector2 = New PKVector2(1.0, 0.0)
 		  
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(1.434, p.GetRadius(c), 1.0e-3)
 		  
-		  Var s As Segment = Geometry.CreateHorizontalSegment(4.0)
+		  Var s As Segment= PKGeometry.CreateHorizontalSegment(4.0)
 		  Assert.AreEqual(3.000, s.GetRadius(c), 1.0e-3)
 		  
-		  Var r As Rectangle = Geometry.CreateRectangle(3.0, 2.0)
+		  Var r As Rectangle= PKGeometry.CreateRectangle(3.0, 2.0)
 		  Assert.AreEqual(2.692, r.GetRadius(c), 1.0e-3)
 		  
-		  Var t As Triangle = Geometry.CreateEquilateralTriangle(2.0)
+		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  Assert.AreEqual(2.255, t.GetRadius(c), 1.0e-3)
 		  
 		End Sub
@@ -63,16 +63,16 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(0.500, p.GetRadius, 1.0e-3)
 		  
-		  Var s As Segment = Geometry.CreateHorizontalSegment(4.0)
+		  Var s As Segment= PKGeometry.CreateHorizontalSegment(4.0)
 		  Assert.AreEqual(2.000, s.GetRadius, 1.0e-3)
 		  
-		  Var r As Rectangle = Geometry.CreateRectangle(3.0, 2.0)
+		  Var r As Rectangle= PKGeometry.CreateRectangle(3.0, 2.0)
 		  Assert.AreEqual(1.802, r.GetRadius, 1.0e-3)
 		  
-		  Var t As Triangle = Geometry.CreateEquilateralTriangle(2.0)
+		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  Assert.AreEqual(1.333, t.GetRadius, 1.0e-3)
 		  
 		End Sub
@@ -86,7 +86,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var w As PKWound = Geometry.CreatePolygon(Array(_
+		  Var w As PKWound= PKGeometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _
 		  New PKVector2(1.0, 0.0), _
 		  New PKVector2(0.0, 1.0)))
@@ -111,7 +111,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var w As PKWound = Geometry.CreatePolygon(Array(_
+		  Var w As PKWound= PKGeometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _
 		  New PKVector2(1.0, 0.0), _
 		  New PKVector2(0.0, 1.0)))

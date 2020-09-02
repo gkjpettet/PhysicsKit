@@ -349,7 +349,7 @@ Implements  PKConvex
 		    Return Self.SliceRadius + center.Distance(Self.Vertices(0))
 		  Else
 		    // Otherwise its the rotation radius of the triangular section.
-		    Return Geometry.GetRotationRadius(center, Self.Vertices)
+		    Return PKGeometry.GetRotationRadius(center, Self.Vertices)
 		  End If
 		  
 		End Function

@@ -16,7 +16,7 @@ Implements   PKConvex,  PKWound
 		  
 		  #Pragma Unused valid
 		  
-		  Super.Constructor(Geometry.GetAverageCenter(vertices), length * 0.5)
+		  Super.Constructor(PKGeometry.GetAverageCenter(vertices), length * 0.5)
 		  
 		  // Assign the verices.
 		  Self.Vertices = vertices
@@ -689,7 +689,7 @@ Implements   PKConvex,  PKWound
 		Function GetRadius(center As PKVector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
 		  
-		  Return Geometry.GetRotationRadius(center, Self.Vertices)
+		  Return PKGeometry.GetRotationRadius(center, Self.Vertices)
 		  
 		End Function
 	#tag EndMethod

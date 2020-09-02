@@ -309,7 +309,7 @@ Implements  PKConvex
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
 		  
-		  Return Geometry.GetRotationRadius(center, Self.Foci) + Self.CapRadius
+		  Return PKGeometry.GetRotationRadius(center, Self.Foci) + Self.CapRadius
 		  
 		End Function
 	#tag EndMethod

@@ -379,7 +379,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Var m As PKMass = p.CreateMass(1.0)
 		  
 		  // The polygon mass should be the area * d
@@ -474,8 +474,8 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
-		  Var r As Rectangle = Geometry.CreateSquare(1.0)
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
+		  Var r As Rectangle= PKGeometry.CreateSquare(1.0)
 		  
 		  Var pm As PKMass = p.CreateMass(10.0)
 		  Var rm As PKMass = r.CreateMass(10.0)
@@ -495,7 +495,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
 		  Var m1 As PKMass = p.CreateMass(10.0)
 		  
 		  p.Translate(0.5, -2.0)
@@ -515,7 +515,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = Geometry.CreateCircle(2.0)
+		  Var c As Circle= PKGeometry.CreateCircle(2.0)
 		  Var mi As PKMass = c.CreateMass(1.0)
 		  
 		  // Setting the type should not alter the mass values.

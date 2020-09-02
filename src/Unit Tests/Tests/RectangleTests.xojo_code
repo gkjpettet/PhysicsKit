@@ -185,7 +185,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var r As Rectangle = Geometry.CreateRectangle(1, 1)
+		  Var r As Rectangle= PKGeometry.CreateRectangle(1, 1)
 		  r.Translate(1, 1)
 		  r.Rotate(MathsKit.ToRadians(30))
 		  

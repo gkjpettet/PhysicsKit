@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Geometry
+Protected Class PKGeometry
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720617272617920636F6E7461696E696E67207468652027636C65616E736564272076657273696F6E206F662074686520676976656E206C697374696E67206F6620706F6C79676F6E20706F696E74732E20456E73757265732074686520706F6C79676F6E20686173204343572077696E64696E672C2072656D6F76657320636F6C696E6561722076657274696365732C20616E642072656D6F76657320636F696E636964656E742076657274696365732E
 		Shared Function Cleanse(points() As PKVector2) As PKVector2()
 		  ///
@@ -18,7 +18,7 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check for Nil array.
-		  If points = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  If points = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY)
 		  
 		  // Get the size of the points array.
 		  Var size As Integer = points.Count
@@ -43,7 +43,7 @@ Protected Class Geometry
 		    
 		    // Check for Nil.
 		    If point Is Nil Or prevPoint Is Nil Or nextPoint Is Nil Then
-		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    End If
 		    
 		    // Is this point equal to the next?
@@ -62,7 +62,7 @@ Protected Class Geometry
 		      Var cross As Double = prevToPoint.Cross(pointToNext)
 		      
 		      // If the cross product is near zero then point is a colinear point.
-		      If Abs(cross) <= Epsilon.E Then Continue
+		      If Abs(cross) <= PhysicsKit.Epsilon.E Then Continue
 		    End If
 		    
 		    // Sum the current signed area.
@@ -73,7 +73,7 @@ Protected Class Geometry
 		  Next i
 		  
 		  // Check the winding.
-		  If winding < 0 Then Geometry.ReverseWinding(result)
+		  If winding < 0 Then PKGeometry.ReverseWinding(result)
 		  
 		  Return result
 		  
@@ -98,7 +98,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `width` or `height` are less than or equal to zero.
 		  ///
 		  
-		  Return New Capsule(width, height)
+		  Return New PhysicsKit.Capsule(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -115,7 +115,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if radius is less than or equal to zero.
 		  ///
 		  
-		  Return New Circle(radius)
+		  Return New PhysicsKit.Circle(radius)
 		  
 		End Function
 	#tag EndMethod
@@ -136,7 +136,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
 		  ///
 		  
-		  Return New Ellipse(width, height)
+		  Return New PhysicsKit.Ellipse(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -154,13 +154,13 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the size.
-		  If height <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE)
+		  If height <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SIZE)
 		  
 		  // Compute `a` where height = a * sqrt(3) / 2.0 (a is the width of the base).
 		  Var a As Double = 2.0 * height * INV_SQRT_3
 		  
 		  // Create the triangle.
-		  Return Geometry.CreateIsoscelesTriangle(a, height)
+		  Return PKGeometry.CreateIsoscelesTriangle(a, height)
 		  
 		End Function
 	#tag EndMethod
@@ -183,7 +183,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
 		  ///
 		  
-		  Return New HalfEllipse(width, height)
+		  Return New PhysicsKit.HalfEllipse(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -206,7 +206,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero
 		  ///
 		  
-		  Var half As HalfEllipse = New HalfEllipse(width, height)
+		  Var half As PhysicsKit.HalfEllipse = New PhysicsKit.HalfEllipse(width, height)
 		  Var c As PKVector2 = half.GetCenter
 		  half.Translate(-c.X, -c.Y)
 		  Return half
@@ -227,12 +227,12 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the length.
-		  If length <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_LENGTH)
+		  If length <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_LENGTH)
 		  
 		  Var startV As PKVector2 = New PKVector2(-length * 0.5, 0.0)
 		  Var endV As PKVector2 = New PKVector2(length * 0.5, 0.0)
 		  
-		  Return New Segment(startV, endV)
+		  Return New PhysicsKit.Segment(startV, endV)
 		  
 		End Function
 	#tag EndMethod
@@ -251,17 +251,17 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the width.
-		  If width <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_WIDTH)
+		  If width <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_WIDTH)
 		  
 		  // Check the height.
-		  If height <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_HEIGHT)
+		  If height <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_HEIGHT)
 		  
 		  Var top As PKVector2 = New PKVector2(0.0, height)
 		  Var left As PKVector2 = New PKVector2(-width * 0.5, 0.0)
 		  Var right As PKVector2 = New PKVector2(width * 0.5, 0.0)
 		  
 		  // Create the triangle
-		  Var t As Triangle = New Triangle(top, left, right)
+		  Var t As PhysicsKit.Triangle = New PhysicsKit.Triangle(top, left, right)
 		  Var center As PKVector2 = t.GetCenter
 		  t.Translate(-center.X, -center.Y)
 		  
@@ -289,16 +289,16 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the vertex array.
-		  If vertices Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  If vertices Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY)
 		  
 		  // Get the vertex length.
 		  Var size As Integer = vertices.Count
 		  
 		  // The size must be larger than 1 (2 or more).
-		  If size < 2 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
+		  If size < 2 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
 		  
 		  // Generate the links.
-		  Var links() As Link
+		  Var links() As PhysicsKit.Link
 		  
 		  Var iLimit As Integer = size - 2
 		  For i As Integer = 0 To iLimit
@@ -307,14 +307,14 @@ Protected Class Geometry
 		    
 		    // Check for Nil segment vertices.
 		    If p1 Is Nil Or p2 Is Nil Then
-		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    End If
 		    
-		    Var link As Link = New Link(p1, p2)
+		    Var link As PhysicsKit.Link = New PhysicsKit.Link(p1, p2)
 		    
 		    // Link up the previous and this link.
 		    If i > 0 Then
-		      Var prev As Link = links(i - 1)
+		      Var prev As PhysicsKit.Link = links(i - 1)
 		      link.SetPrevious(prev)
 		    End If
 		    
@@ -326,11 +326,11 @@ Protected Class Geometry
 		    // Create a link to span the first and last vertex.
 		    Var p1 As PKVector2 = vertices(0).Copy
 		    Var p2 As PKVector2 = vertices(size - 1).Copy
-		    Var link As Link = New Link(p1, p2)
+		    Var link As PhysicsKit.Link = New PhysicsKit.Link(p1, p2)
 		    
 		    // Wire it up.
-		    Var prev As Link = links(links.Count - 1)
-		    Var nextLink As Link = links(0)
+		    Var prev As PhysicsKit.Link = links(links.Count - 1)
+		    Var nextLink As PhysicsKit.Link = links(0)
 		    link.SetPrevious(prev)
 		    link.SetNext(nextLink)
 		    links.AddRow(link)
@@ -360,7 +360,7 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the vertices array.
-		  If vertices = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_VERTICES_ARRAY)
+		  If vertices = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_VERTICES_ARRAY)
 		  
 		  // Loop over the points and copy them.
 		  Var verts() As PKVector2
@@ -369,7 +369,7 @@ Protected Class Geometry
 		    If vertex <> Nil Then
 		      verts.AddRow(vertex.Copy)
 		    Else
-		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POLYGON_POINT)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POLYGON_POINT)
 		    End If
 		  Next vertex
 		  
@@ -394,13 +394,13 @@ Protected Class Geometry
 		  ///
 		  
 		  // Validate the input.
-		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_COUNT)
-		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_WIDTH)
-		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CAPSULE_INVALID_HEIGHT)
+		  If count < 1 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_CAPSULE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_CAPSULE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_CAPSULE_INVALID_HEIGHT)
 		  
 		  // If the width and height are close enough to being equal, just return a circle.
-		  If Abs(width - height) < Epsilon.E Then
-		    Return Geometry.CreatePolygonalCircle(count, width)
+		  If Abs(width - height) < PhysicsKit.Epsilon.E Then
+		    Return PKGeometry.CreatePolygonalCircle(count, width)
 		  End If
 		  
 		  // Compute the angular increment.
@@ -517,7 +517,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `count` < 3 or `radius` <= 0.
 		  ///
 		  
-		  Return Geometry.CreatePolygonalCircle(count, radius, 0)
+		  Return PKGeometry.CreatePolygonalCircle(count, radius, 0)
 		  
 		End Function
 	#tag EndMethod
@@ -538,11 +538,11 @@ Protected Class Geometry
 		  ///
 		  
 		  // Validate the input.
-		  If count < 3 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CIRCLE_INVALID_COUNT)
-		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_CIRCLE_INVALID_RADIUS)
+		  If count < 3 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_CIRCLE_INVALID_COUNT)
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_CIRCLE_INVALID_RADIUS)
 		  
 		  // Compute the angular increment.
-		  Var pin As Double = Geometry.TWO_PI / count
+		  Var pin As Double= PKGeometry.TWO_PI / count
 		  
 		  // Make sure the resulting output is an even number of vertices.
 		  Var vertices() As PKVector2
@@ -593,9 +593,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // Validate the input.
-		  If count < 4 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_COUNT)
-		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_WIDTH)
-		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_ELLIPSE_INVALID_HEIGHT)
+		  If count < 4 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ELLIPSE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ELLIPSE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ELLIPSE_INVALID_HEIGHT)
 		  
 		  Var a As Double = width * 0.5
 		  Var b As Double = height * 0.5
@@ -648,9 +648,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // Validate the input.
-		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_COUNT)
-		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)
-		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)
+		  If count < 1 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_HALF_ELLIPSE_INVALID_COUNT)
+		  If width <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)
 		  
 		  Var a As Double = width * 0.5
 		  Var b As Double = height * 0.5
@@ -703,7 +703,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `count` < 1 or `width` <= 0 or `height` <= 0.
 		  ///
 		  
-		  Var polygon As PKPolygon = Geometry.CreatePolygonalHalfEllipse(count, width, height)
+		  Var polygon As PKPolygon= PKGeometry.CreatePolygonalHalfEllipse(count, width, height)
 		  Var center As PKVector2 = polygon.GetCenter
 		  polygon.Translate(-center.X, -center.Y)
 		  Return polygon
@@ -729,9 +729,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // Validate the input.
-		  If count < 1 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_COUNT)
-		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_RADIUS)
-		  If theta <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_THETA)
+		  If count < 1 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_SLICE_INVALID_COUNT)
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_SLICE_INVALID_RADIUS)
+		  If theta <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_SLICE_INVALID_THETA)
 		  
 		  // Compute the angular increment.
 		  Var pin As Double = theta / (count + 1)
@@ -785,7 +785,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException thrown if `count` < 1 or `radius` <= 0 or `theta` <= 0.
 		  ///
 		  
-		  Var polygon As PKPolygon = Geometry.CreatePolygonalSlice(count, radius, theta)
+		  Var polygon As PKPolygon= PKGeometry.CreatePolygonalSlice(count, radius, theta)
 		  Var center As PKVector2 = polygon.GetCenter
 		  polygon.Translate(-center.X, -center.Y)
 		  Return polygon
@@ -810,7 +810,7 @@ Protected Class Geometry
 		  ' - Raises InvalidArgumentException if `vertices` contains less than 3 non-Nill vertices.
 		  ///
 		  
-		  Var p As PKPolygon = Geometry.CreatePolygon(vertices)
+		  Var p As PKPolygon= PKGeometry.CreatePolygon(vertices)
 		  Var center As PKVector2 = p.GetCenter
 		  p.Translate(-center.X, -center.Y)
 		  
@@ -831,7 +831,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
 		  ///
 		  
-		  Return New Rectangle(width, height)
+		  Return New PhysicsKit.Rectangle(width, height)
 		  
 		End Function
 	#tag EndMethod
@@ -848,7 +848,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `width` or `height` is less than or equal to zero.
 		  ///
 		  
-		  Return Geometry.CreateRightTriangle(width, height, False)
+		  Return PKGeometry.CreateRightTriangle(width, height, False)
 		  
 		End Function
 	#tag EndMethod
@@ -867,21 +867,21 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the width.
-		  If width <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_WIDTH)
+		  If width <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_WIDTH)
 		  
 		  // Check the height.
-		  If height <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_HEIGHT)
+		  If height <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_HEIGHT)
 		  
 		  Var top As PKVector2 = New PKVector2(0.0, height)
 		  Var left As PKVector2 = New PKVector2(0.0, 0.0)
 		  Var right As PKVector2 = New PKVector2(If(mirror, -width, width), 0.0)
 		  
-		  Var t As Triangle
+		  Var t As PhysicsKit.Triangle
 		  If mirror Then
 		    // Make sure it has anti-clockwise winding.
-		    t = New Triangle(top, right, left)
+		    t = New PhysicsKit.Triangle(top, right, left)
 		  Else
-		    t = New Triangle(top, left, right)
+		    t = New PhysicsKit.Triangle(top, left, right)
 		  End If
 		  
 		  Var center As PKVector2 = t.GetCenter
@@ -906,7 +906,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if `endPoint` is Nil.
 		  ///
 		  
-		  Return Geometry.CreateSegment(New PKVector2, endPoint)
+		  Return PKGeometry.CreateSegment(New PKVector2, endPoint)
 		  
 		End Function
 	#tag EndMethod
@@ -928,9 +928,9 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if `p1` or `p2` is Nil.
 		  ///
 		  
-		  If p1 Is Nil Or p2 Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SEGMENT_POINT)
+		  If p1 Is Nil Or p2 Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SEGMENT_POINT)
 		  
-		  Return New Segment(p1.Copy, p2.Copy)
+		  Return New PhysicsKit.Segment(p1.Copy, p2.Copy)
 		  
 		End Function
 	#tag EndMethod
@@ -952,7 +952,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if `p1` or `p2` is Nil.
 		  ///
 		  
-		  Var s As Segment = Geometry.createSegment(p1, p2)
+		  Var s As PhysicsKit.Segment= PKGeometry.createSegment(p1, p2)
 		  Var center As PKVector2 = s.GetCenter
 		  s.Translate(-center.X, -center.Y)
 		  
@@ -982,7 +982,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if radius is <= 0, if theta <= 0 or theta > π.
 		  ///
 		  
-		  Return New Slice(radius, theta)
+		  Return New PhysicsKit.Slice(radius, theta)
 		  
 		End Function
 	#tag EndMethod
@@ -1008,7 +1008,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if radius <= 0, if theta <= 0 or theta > π.
 		  ///
 		  
-		  Var slice As Slice = New Slice(radius, theta)
+		  Var slice As PhysicsKit.Slice = New PhysicsKit.Slice(radius, theta)
 		  slice.Translate(-slice.Center.X, -slice.Center.Y)
 		  
 		  Return slice
@@ -1029,9 +1029,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the size.
-		  If size <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE)
+		  If size <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SIZE)
 		  
-		  Return New Rectangle(size, size)
+		  Return New PhysicsKit.Rectangle(size, size)
 		  
 		End Function
 	#tag EndMethod
@@ -1055,10 +1055,10 @@ Protected Class Geometry
 		  ///
 		  
 		  If p1 Is Nil Or p2 Is Nil Or p3 Is Nil Then
-		    Raise New NilObjectException(Messages.GEOMETRY_NIL_TRIANGLE_POINT)
+		    Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_TRIANGLE_POINT)
 		  End If
 		  
-		  Return New Triangle(p1.Copy, p2.Copy, p3.Copy)
+		  Return New PhysicsKit.Triangle(p1.Copy, p2.Copy, p3.Copy)
 		  
 		End Function
 	#tag EndMethod
@@ -1078,7 +1078,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if `p1`, `p2`, or `p3` is Nil.
 		  ///
 		  
-		  Var t As Triangle = Geometry.CreateTriangle(p1, p2, p3)
+		  Var t As PhysicsKit.Triangle= PKGeometry.CreateTriangle(p1, p2, p3)
 		  Var center As PKVector2 = t.GetCenter
 		  t.Translate(-center.X, -center.Y)
 		  
@@ -1103,7 +1103,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if `count` < 3 or radius <= 0.
 		  ///
 		  
-		  Return Geometry.CreateUnitCirclePolygon(count, radius, 0.0)
+		  Return PKGeometry.CreateUnitCirclePolygon(count, radius, 0.0)
 		  
 		End Function
 	#tag EndMethod
@@ -1127,13 +1127,13 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the count.
-		  If count < 3 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_VERTICES_SIZE)
+		  If count < 3 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_VERTICES_SIZE)
 		  
 		  // Check the radius.
-		  If radius <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_RADIUS)
+		  If radius <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_RADIUS)
 		  
 		  // Call the more efficient method here.
-		  Return Geometry.CreatePolygonalCircle(count, radius, theta)
+		  Return PKGeometry.CreatePolygonalCircle(count, radius, theta)
 		  
 		End Function
 	#tag EndMethod
@@ -1151,12 +1151,12 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check the length.
-		  If length <= 0.0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_LENGTH)
+		  If length <= 0.0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_LENGTH)
 		  
 		  Var start As PKVector2 = New PKVector2(0.0, -length * 0.5)
 		  Var endPoint As PKVector2 = New PKVector2(0.0, length * 0.5)
 		  
-		  Return New Segment(start, endPoint)
+		  Return New PhysicsKit.Segment(start, endPoint)
 		  
 		End Function
 	#tag EndMethod
@@ -1177,7 +1177,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given axis is the zero vector.
 		  ///
 		  
-		  Return Geometry.Flip(polygon, axis, Nil)
+		  Return PKGeometry.Flip(polygon, axis, Nil)
 		  
 		End Function
 	#tag EndMethod
@@ -1198,9 +1198,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check for valid input.
-		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_FLIP_POLYGON)
-		  If axis Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_FLIP_AXIS)
-		  If axis.IsZero Then Raise New InvalidArgumentException(Messages.GEOMETRY_ZERO_FLIP_AXIS)
+		  If polygon Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_FLIP_POLYGON)
+		  If axis Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_FLIP_AXIS)
+		  If axis.IsZero Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ZERO_FLIP_AXIS)
 		  
 		  // Just use the centre of the polygon if the given point is Nil.
 		  If point Is Nil Then point = polygon.GetCenter
@@ -1229,7 +1229,7 @@ Protected Class Geometry
 		  Next i
 		  
 		  // Check the winding.
-		  If Geometry.GetWinding(nv) < 0 Then Geometry.ReverseWinding(nv)
+		  If PKGeometry.GetWinding(nv) < 0 Then PKGeometry.ReverseWinding(nv)
 		  
 		  Return New PKPolygon(nv)
 		  
@@ -1250,7 +1250,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if the given polygon is Nil.
 		  ///
 		  
-		  Return Geometry.Flip(polygon, PKVector2.X_AXIS, Nil)
+		  Return PKGeometry.Flip(polygon, PKVector2.X_AXIS, Nil)
 		  
 		End Function
 	#tag EndMethod
@@ -1269,7 +1269,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if the given polygon is Nil.
 		  ///
 		  
-		  Return Geometry.Flip(polygon, PKVector2.X_AXIS, point)
+		  Return PKGeometry.Flip(polygon, PKVector2.X_AXIS, point)
 		  
 		End Function
 	#tag EndMethod
@@ -1288,7 +1288,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if the given polygon is Nil.
 		  ///
 		  
-		  Return Geometry.Flip(polygon, PKVector2.Y_AXIS, Nil)
+		  Return PKGeometry.Flip(polygon, PKVector2.Y_AXIS, Nil)
 		  
 		End Function
 	#tag EndMethod
@@ -1307,7 +1307,7 @@ Protected Class Geometry
 		  ' - Raises: NilObjectException if the given Polygon is Nil.
 		  ///
 		  
-		  Return Geometry.Flip(polygon, PKVector2.Y_AXIS, point)
+		  Return PKGeometry.Flip(polygon, PKVector2.Y_AXIS, point)
 		  
 		End Function
 	#tag EndMethod
@@ -1331,7 +1331,7 @@ Protected Class Geometry
 		  
 		  // Calculate the average centre.
 		  // Note that this also performs the necessary checks and raises any exceptions needed.
-		  Var ac As PKVector2 = Geometry.GetAverageCenter(points)
+		  Var ac As PKVector2= PKGeometry.GetAverageCenter(points)
 		  Var size As Integer = points.Count
 		  
 		  // Otherwise perform the computation.
@@ -1360,7 +1360,7 @@ Protected Class Geometry
 		  Next i
 		  
 		  // Check for zero area.
-		  If Abs(area) <= Epsilon.E Then
+		  If Abs(area) <= PhysicsKit.Epsilon.E Then
 		    // Zero area can only happen if all the points are the same point 
 		    // in which case just return a copy of the first.
 		    Return points(0).Copy
@@ -1389,11 +1389,11 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check for Nil array
-		  If points = Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  If points = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY)
 		  
 		  // Check for an empty array.
 		  If points.Count = 0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY1)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY1)
 		  End If
 		  
 		  // Get the size.
@@ -1403,7 +1403,7 @@ Protected Class Geometry
 		  If size = 1 Then
 		    Var p As PKVector2 = points(0)
 		    // Make sure it's not Nil.
-		    If p Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    If p Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    // Return a copy.
 		    Return p.Copy
 		  End If
@@ -1412,7 +1412,7 @@ Protected Class Geometry
 		  Var ac As PKVector2 = New PKVector2
 		  For Each point As PKVector2 In points
 		    // Check for Nil.
-		    If point Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		    If point Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    Call ac.Add(point)
 		  Next point
 		  
@@ -1472,7 +1472,7 @@ Protected Class Geometry
 		  '- Returns: Double.
 		  ///
 		  
-		  Return Geometry.GetRotationRadius(New PKVector2, vertices)
+		  Return PKGeometry.GetRotationRadius(New PKVector2, vertices)
 		  
 		End Function
 	#tag EndMethod
@@ -1533,13 +1533,13 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check for a Nil array.
-		  If points Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  If points Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY)
 		  
 		  // Get the size.
 		  Var size As Integer = points.Count
 		  
 		  // the Size must be larger than 1.
-		  If size < 2 then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
+		  If size < 2 then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)
 		  
 		  // Determine the winding by computing a signed "area".
 		  Var area As Double = 0.0
@@ -1551,7 +1551,7 @@ Protected Class Geometry
 		    
 		    // Check for Nil.
 		    If p1 Is Nil Or p2 Is Nil Then
-		      Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
+		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)
 		    End If
 		    
 		    // Add the signed area.
@@ -1586,7 +1586,7 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.
 		  ///
 		  
-		  Return Geometry.MinkowskiSum(polygon, circle, count)
+		  Return PKGeometry.MinkowskiSum(polygon, circle, count)
 		  
 		End Function
 	#tag EndMethod
@@ -1615,9 +1615,9 @@ Protected Class Geometry
 		  ///
 		  
 		  // check for valid input
-		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON)
-		  If radius <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS)
-		  If count <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT)
+		  If polygon Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON)
+		  If radius <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS)
+		  If count <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT)
 		  
 		  Var vertices() As PKVector2 = polygon.Vertices
 		  Var normals() As PKVector2 = polygon.Normals
@@ -1659,7 +1659,7 @@ Protected Class Geometry
 		    // Compute the start theta.
 		    Var sTheta As Double = PKVector2.X_AXIS.GetAngleBetween(normals(If(i - 1 < 0, size - 1, i - 1)))
 		    If sTheta < 0 Then
-		      sTheta = sTheta + Geometry.TWO_PI
+		      sTheta = sTheta + PKGeometry.TWO_PI
 		    End If
 		    
 		    // Initialise at minus theta.
@@ -1712,8 +1712,8 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.
 		  ///
 		  
-		  If circle Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE)
-		  Return Geometry.MinkowskiSum(polygon, circle.Radius, count)
+		  If circle Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE)
+		  Return PKGeometry.MinkowskiSum(polygon, circle.Radius, count)
 		  
 		End Function
 	#tag EndMethod
@@ -1743,16 +1743,16 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if either `convex1` or `convex2` are NOT both Convex AND Wound.
 		  ///
 		  
-		  If convex1 Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
-		  If convex2 Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
+		  If convex1 Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
+		  If convex2 Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)
 		  
 		  // Since Xojo doens't implement generics like Java does, validate the correct 
 		  // types have been passed.
 		  If convex1 IsA PKConvex = False Or convex1 IsA PKWound = False Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1)
 		  End If
 		  If convex2 IsA PKConvex = False Or convex2 IsA PKWound = False Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2)
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2)
 		  End If
 		  
 		  Var p1v() As PKVector2 = PKWound(convex1).GetVertices
@@ -1763,8 +1763,8 @@ Protected Class Geometry
 		    // Check if they are colinear.
 		    Var s1 As PKVector2 = p1v(0).Towards(p1v(1))
 		    Var s2 As PKVector2 = p2v(0).Towards(p2v(1))
-		    If s1.Cross(s2) <= Epsilon.E Then
-		      Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS)
+		    If s1.Cross(s2) <= PhysicsKit.Epsilon.E Then
+		      Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS)
 		    End If
 		  End If
 		  
@@ -1838,8 +1838,8 @@ Protected Class Geometry
 		    Var a2 As Double = PKVector2.X_AXIS.GetAngleBetween(e2)
 		    
 		    // Put the angles in the range [0, 2π].
-		    If a1 < 0 Then a1 = a1 + Geometry.TWO_PI
-		    If a2 < 0 Then a2 = a2 + Geometry.TWO_PI
+		    If a1 < 0 Then a1 = a1 + PKGeometry.TWO_PI
+		    If a2 < 0 Then a2 = a2 + PKGeometry.TWO_PI
 		    
 		    // Determine which vertex to use next.
 		    If a1 < a2 Then
@@ -1870,7 +1870,7 @@ Protected Class Geometry
 		  ///
 		  
 		  // Check for a Nil array.
-		  If points Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_POINT_ARRAY)
+		  If points Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_POINT_ARRAY)
 		  
 		  // Get the length.
 		  Var size As Integer = points.Count
@@ -1909,9 +1909,9 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If capsule Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  Return New Capsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)
+		  If capsule Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
+		  Return New PhysicsKit.Capsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)
 		  
 		End Function
 	#tag EndMethod
@@ -1930,9 +1930,9 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If circle Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  Return New Circle(circle.Radius * scale)
+		  If circle Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
+		  Return New PhysicsKit.Circle(circle.Radius * scale)
 		  
 		End Function
 	#tag EndMethod
@@ -1951,9 +1951,9 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If ellipse Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  Return New Ellipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
+		  If ellipse Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
+		  Return New PhysicsKit.Ellipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
 		End Function
 	#tag EndMethod
 
@@ -1971,9 +1971,9 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If halfEllipse Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  Return New HalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)
+		  If halfEllipse Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
+		  Return New PhysicsKit.HalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)
 		  
 		End Function
 	#tag EndMethod
@@ -1992,15 +1992,15 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If segment Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  If segment Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
 		  
 		  Var length As Double = segment.GetLength * scale * 0.5
 		  Var n As PKVector2 = segment.Vertices(0).Towards(segment.Vertices(1))
 		  Call n.Normalise
 		  Call n.Multiply(length)
 		  
-		  Return New Segment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
+		  Return New PhysicsKit.Segment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))
 		  
 		End Function
 	#tag EndMethod
@@ -2019,9 +2019,9 @@ Protected Class Geometry
 		  ' - Raises:" InvalidArgumentException if the given scale is less than or equal to zero.
 		  ///
 		  
-		  If slice Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
-		  Return New Slice(slice.GetSliceRadius * scale, slice.GetTheta)
+		  If slice Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
+		  Return New PhysicsKit.Slice(slice.GetSliceRadius * scale, slice.GetTheta)
 		  
 		End Function
 	#tag EndMethod
@@ -2040,8 +2040,8 @@ Protected Class Geometry
 		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero
 		  ///
 		  
-		  If polygon Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_INVALID_SCALE)
+		  If polygon Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_INVALID_SCALE)
 		  
 		  Var oVertices() As PKVector2 = polygon.Vertices
 		  Var size As Integer = oVertices.Count - 1

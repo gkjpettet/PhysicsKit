@@ -46,9 +46,9 @@ Inherits TestGroup
 		  points.AddRow(New PKVector2(2.1, 0.5))
 		  points.AddRow(New PKVector2(1.0, 0.0))
 		  
-		  Var result() As PKVector2 = Geometry.Cleanse(points)
+		  Var result() As PKVector2= PKGeometry.Cleanse(points)
 		  
-		  Assert.IsTrue(Geometry.GetWinding(result) > 0.0)
+		  Assert.IsTrue(PKGeometry.GetWinding(result) > 0.0)
 		  Assert.AreEqual(4, result.Count)
 		  
 		End Sub
@@ -67,7 +67,7 @@ Inherits TestGroup
 		    a(0) = New PKVector2
 		    a(3) = New PKVector2
 		    a(4) = New PKVector2
-		    Call Geometry.cleanse(a)
+		    Call PKGeometry.cleanse(a)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -87,7 +87,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Cleanse(Nil)
+		    Call PKGeometry.Cleanse(Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -107,7 +107,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateCircle(1.0)
+		    Call PKGeometry.CreateCircle(1.0)
 		  Catch e As RuntimeException
 		    Assert.Fail("Unexpected runtime exception whilst creating a circle.")
 		    Return
@@ -124,7 +124,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of an equilateral angle triangle.
 		  ///
 		  
-		  Var t As Triangle = Geometry.CreateEquilateralTriangle(2.0)
+		  Var t As Triangle= PKGeometry.CreateEquilateralTriangle(2.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -174,7 +174,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given a length.
 		  ///
 		  
-		  Var s As Segment = Geometry.CreateHorizontalSegment(5.0)
+		  Var s As Segment= PKGeometry.CreateHorizontalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -190,7 +190,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of an isosceles triangle.
 		  ///
 		  
-		  Var t As Triangle = Geometry.CreateIsoscelesTriangle(2.0, 1.0)
+		  Var t As Triangle= PKGeometry.CreateIsoscelesTriangle(2.0, 1.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -225,7 +225,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try 
-		    Call Geometry.CreateUnitCirclePolygon(2, 0.5)
+		    Call PKGeometry.CreateUnitCirclePolygon(2, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -245,7 +245,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateEquilateralTriangle(-1.0)
+		    Call PKGeometry.CreateEquilateralTriangle(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -265,7 +265,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateIsoscelesTriangle(2.0, -2.0)
+		    Call PKGeometry.CreateIsoscelesTriangle(2.0, -2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -285,7 +285,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRectangle(1.0, -2.0)
+		    Call PKGeometry.CreateRectangle(1.0, -2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -305,7 +305,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRightTriangle(2.0, -2.0)
+		    Call PKGeometry.CreateRightTriangle(2.0, -2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -325,7 +325,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateHorizontalSegment(-1.0)
+		    Call PKGeometry.CreateHorizontalSegment(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -345,7 +345,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateVerticalSegment(-1.0)
+		    Call PKGeometry.CreateVerticalSegment(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -365,7 +365,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateCircle(-1.0)
+		    Call PKGeometry.CreateCircle(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -385,7 +385,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateUnitCirclePolygon(5, -0.5)
+		    Call PKGeometry.CreateUnitCirclePolygon(5, -0.5)
 		  Catch InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -405,7 +405,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSquare(-1.0)
+		    Call PKGeometry.CreateSquare(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -425,7 +425,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateIsoscelesTriangle(-1.0, 2.0)
+		    Call PKGeometry.CreateIsoscelesTriangle(-1.0, 2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -445,7 +445,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRectangle(-1.0, 2.0)
+		    Call PKGeometry.CreateRectangle(-1.0, 2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -465,7 +465,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRightTriangle(-1.0, 2.0)
+		    Call PKGeometry.CreateRightTriangle(-1.0, 2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -485,7 +485,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalCapsule(0, 1.0, 0.5)
+		    Call PKGeometry.CreatePolygonalCapsule(0, 1.0, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -505,7 +505,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalCapsule(5, 1.0, -0.5)
+		    Call PKGeometry.CreatePolygonalCapsule(5, 1.0, -0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -525,7 +525,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalCapsule(5, -1, 0.5)
+		    Call PKGeometry.CreatePolygonalCapsule(5, -1, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -543,7 +543,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalCapsule(5, 1.0, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalCapsule(5, 1.0, 0.5)
 		  
 		  // The centre should be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -561,7 +561,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalCapsule(5, 1.0, 0)
+		    Call PKGeometry.CreatePolygonalCapsule(5, 1.0, 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -581,7 +581,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalCapsule(5, 0, 0.5)
+		    Call PKGeometry.CreatePolygonalCapsule(5, 0, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -601,7 +601,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalEllipse(3, 2, 1)
+		    Call PKGeometry.CreatePolygonalEllipse(3, 2, 1)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -621,7 +621,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalEllipse(10, 2, -1)
+		    Call PKGeometry.CreatePolygonalEllipse(10, 2, -1)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -641,7 +641,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalEllipse(10, -1, 1)
+		    Call PKGeometry.CreatePolygonalEllipse(10, -1, 1)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -659,13 +659,13 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalEllipse(5, 2, 1)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalEllipse(5, 2, 1)
 		  
 		  // And the centre should be the origin.
 		  Assert.AreEqual(4, p.GetVertices.Count)
 		  
 		  // This method should succeed.
-		  p = Geometry.CreatePolygonalEllipse(11, 2, 1)
+		  p= PKGeometry.CreatePolygonalEllipse(11, 2, 1)
 		  
 		  // The centre should be the origin.
 		  Assert.AreEqual(10, p.GetVertices.Count)
@@ -680,7 +680,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed
-		  Var p As PKPolygon = Geometry.CreatePolygonalEllipse(10, 2, 1)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalEllipse(10, 2, 1)
 		  
 		  // And the centre should be the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -698,7 +698,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalEllipse(10, 2, 0)
+		    Call PKGeometry.CreatePolygonalEllipse(10, 2, 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -718,7 +718,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalEllipse(10, 0, 1)
+		    Call PKGeometry.CreatePolygonalEllipse(10, 0, 1)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -736,7 +736,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalHalfEllipseAtOrigin(5, 1.0, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalHalfEllipseAtOrigin(5, 1.0, 0.5)
 		  
 		  // The centre should be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -754,7 +754,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalHalfEllipse(0, 1.0, 0.5)
+		    Call PKGeometry.CreatePolygonalHalfEllipse(0, 1.0, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -774,7 +774,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalHalfEllipse(5, 1.0, -0.5)
+		    Call PKGeometry.CreatePolygonalHalfEllipse(5, 1.0, -0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -794,7 +794,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalHalfEllipse(5, -1, 0.5)
+		    Call PKGeometry.CreatePolygonalHalfEllipse(5, -1, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -812,7 +812,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0.5)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalHalfEllipse(5, 1.0, 0.5)
 		  
 		  // The centre should not be at the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -830,7 +830,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalHalfEllipse(5, 1.0, 0)
+		    Call PKGeometry.CreatePolygonalHalfEllipse(5, 1.0, 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -850,7 +850,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalHalfEllipse(5, 0, 0.5)
+		    Call PKGeometry.CreatePolygonalHalfEllipse(5, 0, 0.5)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -868,7 +868,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalSliceAtOrigin(5, 1.0, MathsKit.ToRadians(30))
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalSliceAtOrigin(5, 1.0, MathsKit.ToRadians(30))
 		  
 		  // The centre should be the origin.
 		  Assert.AreEqual(0.000, p.GetCenter.x, 1.0e-3)
@@ -886,7 +886,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(0, 1.0, MathsKit.ToRadians(30))
+		    Call PKGeometry.CreatePolygonalSlice(0, 1.0, MathsKit.ToRadians(30))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -906,7 +906,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(5, -1, MathsKit.ToRadians(30))
+		    Call PKGeometry.CreatePolygonalSlice(5, -1, MathsKit.ToRadians(30))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -924,7 +924,7 @@ Inherits TestGroup
 		  ///
 		  
 		  // This method should succeed.
-		  Var p As PKPolygon = Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(30))
+		  Var p As PKPolygon= PKGeometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(30))
 		  
 		  // The centre should not be at the origin.
 		  Assert.AreEqual(0.658, p.GetCenter.x, 1.0e-3)
@@ -942,7 +942,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(5, 1.0, 0)
+		    Call PKGeometry.CreatePolygonalSlice(5, 1.0, 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -962,7 +962,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(190))
+		    Call PKGeometry.CreatePolygonalSlice(5, 1.0, MathsKit.ToRadians(190))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -982,7 +982,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(5, 1.0, -MathsKit.ToRadians(30))
+		    Call PKGeometry.CreatePolygonalSlice(5, 1.0, -MathsKit.ToRadians(30))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1002,7 +1002,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreatePolygonalSlice(5, 0, MathsKit.ToRadians(30))
+		    Call PKGeometry.CreatePolygonalSlice(5, 0, MathsKit.ToRadians(30))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1026,7 +1026,7 @@ Inherits TestGroup
 		  vertices(3) = New PKVector2(-1.0, 0.0)
 		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
-		  Var p As PKPolygon = Geometry.CreatePolygonAtOrigin(vertices)
+		  Var p As PKPolygon= PKGeometry.CreatePolygonAtOrigin(vertices)
 		  
 		  // The array should not be the same object.
 		  Assert.IsFalse(p.vertices Is vertices)
@@ -1054,7 +1054,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var vertices() As PKVector2 = Nil
-		    Call Geometry.CreatePolygon(vertices)
+		    Call PKGeometry.CreatePolygon(vertices)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1076,7 +1076,7 @@ Inherits TestGroup
 		  Try
 		    Var vertices(4) As PKVector2
 		    // Should fail since the vertices list contains Nil items.
-		    Call Geometry.CreatePolygon(vertices)
+		    Call PKGeometry.CreatePolygon(vertices)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1100,7 +1100,7 @@ Inherits TestGroup
 		  vertices(3) = New PKVector2(-1.0, 0.0)
 		  vertices(4) = New PKVector2(0.0, -1.0)
 		  
-		  Var p As PKPolygon = Geometry.CreatePolygon(vertices)
+		  Var p As PKPolygon= PKGeometry.CreatePolygon(vertices)
 		  
 		  // The array should not be the same object.
 		  Assert.IsFalse(p.Vertices Is vertices)
@@ -1117,7 +1117,7 @@ Inherits TestGroup
 		  ///
 		  ' Tests the successful creation of a rectangle.
 		  
-		  Call Geometry.CreateRectangle(1.0, 2.0)
+		  Call PKGeometry.CreateRectangle(1.0, 2.0)
 		  
 		  Assert.Pass
 		End Sub
@@ -1129,7 +1129,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a right angle triangle.
 		  ///
 		  
-		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0, True)
+		  Var t As Triangle= PKGeometry.CreateRightTriangle(1.0, 2.0, True)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -1174,7 +1174,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a right angle triangle.
 		  ///
 		  
-		  Var t As Triangle = Geometry.CreateRightTriangle(1.0, 2.0)
+		  Var t As Triangle= PKGeometry.CreateRightTriangle(1.0, 2.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = t.GetCenter
@@ -1219,7 +1219,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given two points at the origin.
 		  ///
 		  
-		  Var s As Segment = Geometry.CreateSegmentAtOrigin(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
+		  Var s As Segment= PKGeometry.CreateSegmentAtOrigin(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -1238,7 +1238,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New PKVector2(1.0, 1.0))
+		    Call PKGeometry.CreateSegment(New PKVector2(1.0, 1.0))
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1258,7 +1258,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(Nil, New PKVector2)
+		    Call PKGeometry.CreateSegment(Nil, New PKVector2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1278,7 +1278,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New PKVector2, Nil)
+		    Call PKGeometry.CreateSegment(New PKVector2, Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1298,7 +1298,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSegment(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
+		    Call PKGeometry.CreateSegment(New PKVector2(1.0, 1.0), New PKVector2(2.0, -1.0))
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1315,7 +1315,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a square.
 		  ///
 		  
-		  Var r As Rectangle = Geometry.CreateSquare(1.0)
+		  Var r As Rectangle= PKGeometry.CreateSquare(1.0)
 		  Assert.AreEqual(1.000, r.GetWidth, 1.0e-3)
 		  Assert.AreEqual(1.000, r.GetHeight, 1.0e-3)
 		  
@@ -1331,7 +1331,7 @@ Inherits TestGroup
 		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
-		  Var t As Triangle = Geometry.CreateTriangleAtOrigin(p1, p2, p3)
+		  Var t As Triangle= PKGeometry.CreateTriangleAtOrigin(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
 		  Assert.IsFalse(t.Vertices(0) Is p1)
@@ -1359,7 +1359,7 @@ Inherits TestGroup
 		  
 		  // Should fail since the vertices list contains a Nil item.
 		  Try
-		    Call Geometry.CreateTriangle(p1, p2, Nil)
+		    Call PKGeometry.CreateTriangle(p1, p2, Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1378,7 +1378,7 @@ Inherits TestGroup
 		  Var p1 As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var p2 As PKVector2 = New PKVector2(0.5, 1.0)
 		  Var p3 As PKVector2 = New PKVector2(-0.5, 1.0)
-		  Var t As Triangle = Geometry.CreateTriangle(p1, p2, p3)
+		  Var t As Triangle= PKGeometry.CreateTriangle(p1, p2, p3)
 		  
 		  // The points should not be the same instances.
 		  Assert.IsFalse(t.Vertices(0) Is p1)
@@ -1397,7 +1397,7 @@ Inherits TestGroup
 		  Var p As PKPolygon 
 		  
 		  Try
-		    p = Geometry.CreateUnitCirclePolygon(5, 0.5)
+		    p= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Catch e As RuntimeException
 		    Assert.Fail("Unexpected runtime exception during creation of first polygon.")
 		    Return
@@ -1419,7 +1419,7 @@ Inherits TestGroup
 		  Var v11 As PKVector2 = p.vertices(0)
 		  
 		  Try
-		    p = Geometry.CreateUnitCirclePolygon(5, 0.5, MathsKit.PI / 2.0)
+		    p= PKGeometry.CreateUnitCirclePolygon(5, 0.5, MathsKit.PI / 2.0)
 		  Catch e As RuntimeException
 		    Assert.Fail("Unexpected runtime exception during creation of second polygon.")
 		    Return
@@ -1453,7 +1453,7 @@ Inherits TestGroup
 		  ' Tests the successful creation of a segment given a length.
 		  ///
 		  
-		  Var s As Segment = Geometry.CreateVerticalSegment(5.0)
+		  Var s As Segment= PKGeometry.CreateVerticalSegment(5.0)
 		  
 		  // Test that the centre is the origin.
 		  Var center As PKVector2 = s.GetCenter
@@ -1472,7 +1472,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateEquilateralTriangle(0.0)
+		    Call PKGeometry.CreateEquilateralTriangle(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1492,7 +1492,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateIsoscelesTriangle(1.0, 0.0)
+		    Call PKGeometry.CreateIsoscelesTriangle(1.0, 0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1512,7 +1512,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRectangle(1.0, 0.0)
+		    Call PKGeometry.CreateRectangle(1.0, 0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1531,7 +1531,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRightTriangle(1.0, 0.0)
+		    Call PKGeometry.CreateRightTriangle(1.0, 0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1551,7 +1551,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateHorizontalSegment(0.0)
+		    Call PKGeometry.CreateHorizontalSegment(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1571,7 +1571,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.createVerticalSegment(0.0)
+		    Call PKGeometry.createVerticalSegment(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1591,7 +1591,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateCircle(0.0)
+		    Call PKGeometry.CreateCircle(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1611,7 +1611,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateUnitCirclePolygon(5, 0.0)
+		    Call PKGeometry.CreateUnitCirclePolygon(5, 0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1631,7 +1631,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateSquare(0.0)
+		    Call PKGeometry.CreateSquare(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1651,7 +1651,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateIsoscelesTriangle(0.0, 1.0)
+		    Call PKGeometry.CreateIsoscelesTriangle(0.0, 1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1670,7 +1670,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRectangle(0.0, 2.0)
+		    Call PKGeometry.CreateRectangle(0.0, 2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1689,7 +1689,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.CreateRightTriangle(0.0, 2.0)
+		    Call PKGeometry.CreateRightTriangle(0.0, 2.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1709,7 +1709,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Flip(Geometry.CreateSquare(1.0), Nil, Nil)
+		    Call PKGeometry.Flip(PKGeometry.CreateSquare(1.0), Nil, Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1730,7 +1730,7 @@ Inherits TestGroup
 		  
 		  Try
 		    // It should use the centre.
-		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New PKVector2(1.0, 1.0), Nil)
+		    Call PKGeometry.Flip(PKGeometry.CreateSquare(1.0), New PKVector2(1.0, 1.0), Nil)
 		    Assert.Pass
 		    Return
 		  Catch e As RuntimeException
@@ -1749,7 +1749,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Flip(Nil, New PKVector2(1.0, 1.0), Nil)
+		    Call PKGeometry.Flip(Nil, New PKVector2(1.0, 1.0), Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1766,10 +1766,10 @@ Inherits TestGroup
 		  ' Tests the flip polygon method.
 		  ///
 		  
-		  Var p As PKPolygon = Geometry.CreateUnitCirclePolygon(5, 1.0)
+		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 1.0)
 		  
 		  // Flip about an arbitrary vector and point (line).
-		  Var flipped As PKPolygon = Geometry.Flip(p, New PKVector2(1.0, 1.0), New PKVector2(0.0, 2.0))
+		  Var flipped As PKPolygon= PKGeometry.Flip(p, New PKVector2(1.0, 1.0), New PKVector2(0.0, 2.0))
 		  
 		  Var vertices() As PKVector2 = flipped.GetVertices
 		  Assert.AreEqual(-2.951, vertices(0).x, 1.0e-3)
@@ -1795,7 +1795,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Flip(Geometry.CreateSquare(1.0), New PKVector2, Nil)
+		    Call PKGeometry.Flip(PKGeometry.CreateSquare(1.0), New PKVector2, Nil)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1815,7 +1815,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.GetAreaWeightedCenter(Array(_
+		    Call PKGeometry.GetAreaWeightedCenter(Array(_
 		    New PKVector2(1.0, 0.0), _
 		    Nil, _
 		    New PKVector2(4.0, 3.0), _
@@ -1841,7 +1841,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var tmp() As PKVector2
-		    Call Geometry.GetAreaWeightedCenter(tmp)
+		    Call PKGeometry.GetAreaWeightedCenter(tmp)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -1861,7 +1861,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.GetAreaWeightedCenter(Nil)
+		    Call PKGeometry.GetAreaWeightedCenter(Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -1888,7 +1888,7 @@ Inherits TestGroup
 		  vertices(4) = New PKVector2(2.4, 1.2)
 		  vertices(5) = New PKVector2(1.0, 0.0)
 		  
-		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(vertices)
+		  Var c As PKVector2= PKGeometry.GetAreaWeightedCenter(vertices)
 		  
 		  // Note the x is closer to the "real" centre of the object.
 		  Assert.AreEqual(0.682, c.x, 1.0e-3)
@@ -1913,7 +1913,7 @@ Inherits TestGroup
 		  vertices(4) = New PKVector2(1.4, 0.2)
 		  vertices(5) = New PKVector2(0.0, -1.0)
 		  
-		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(vertices)
+		  Var c As PKVector2= PKGeometry.GetAreaWeightedCenter(vertices)
 		  
 		  // Note the x is closer to the "real" centre of the object
 		  Assert.AreEqual(-0.318, c.x, 1.0e-3)
@@ -1935,7 +1935,7 @@ Inherits TestGroup
 		  points(2) = New PKVector2(2.0, 1.0)
 		  points(3) = New PKVector2(2.0, 1.0)
 		  
-		  Var c As PKVector2 = Geometry.GetAreaWeightedCenter(points)
+		  Var c As PKVector2= PKGeometry.GetAreaWeightedCenter(points)
 		  
 		  Assert.AreEqual(2.000, c.x, 1.0e-3)
 		  Assert.AreEqual(1.000, c.y, 1.0e-3)
@@ -1952,7 +1952,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.GetAverageCenter(Array(_
+		    Call PKGeometry.GetAverageCenter(Array(_
 		    New PKVector2(1.0, 0.0), _
 		    Nil, _
 		    New PKVector2(4.0, 3.0), _
@@ -1984,7 +1984,7 @@ Inherits TestGroup
 		  vertices(4) = New PKVector2(1.4, 0.2)
 		  vertices(5) = New PKVector2(0.0, -1.0)
 		  
-		  Var c As PKVector2 = Geometry.GetAverageCenter(vertices)
+		  Var c As PKVector2= PKGeometry.GetAverageCenter(vertices)
 		  
 		  Assert.AreEqual(0.150, c.x, 1.0e-3)
 		  Assert.AreEqual(0.500, c.y, 1.0e-3)
@@ -2002,7 +2002,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var tmp() As PKVector2
-		    Call Geometry.GetAverageCenter(tmp)
+		    Call PKGeometry.GetAverageCenter(tmp)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2022,7 +2022,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.GetAverageCenter(Nil)
+		    Call PKGeometry.GetAverageCenter(Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2044,7 +2044,7 @@ Inherits TestGroup
 		  Try
 		    Var points(0) As PKVector2
 		    points(0) = New PKVector2(-1.0, -1.0)
-		    Call Geometry.GetWinding(points)
+		    Call PKGeometry.GetWinding(points)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2069,7 +2069,7 @@ Inherits TestGroup
 		    points(1) = Nil
 		    points(2) = Nil
 		    points(3) = Nil
-		    Call Geometry.GetWinding(points)
+		    Call PKGeometry.GetWinding(points)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2091,7 +2091,7 @@ Inherits TestGroup
 		  points(1) = New PKVector2(1.0, -1.0)
 		  points(2) = New PKVector2(1.0, 1.0)
 		  points(3) = New PKVector2(-1.0, 1.0)
-		  Assert.IsTrue(Geometry.GetWinding(points) > 0)
+		  Assert.IsTrue(PKGeometry.GetWinding(points) > 0)
 		  
 		  // Reverse the array.
 		  Var p As PKVector2 = points(0)
@@ -2101,7 +2101,7 @@ Inherits TestGroup
 		  points(1) = points(2)
 		  points(2) = p
 		  
-		  Assert.IsTrue(Geometry.GetWinding(points) < 0)
+		  Assert.IsTrue(PKGeometry.GetWinding(points) < 0)
 		  
 		End Sub
 	#tag EndMethod
@@ -2115,7 +2115,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.GetWinding(Nil)
+		    Call PKGeometry.GetWinding(Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2135,7 +2135,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 0)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2155,7 +2155,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.minkowskiSum(Geometry.createUnitCirclePolygon(5, 0.5), 0.2, -2)
+		    Call PKGeometry.minkowskiSum(PKGeometry.createUnitCirclePolygon(5, 0.5), 0.2, -2)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2175,8 +2175,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
-		    Geometry.CreateCircle(0.5), 0)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), _
+		    PKGeometry.CreateCircle(0.5), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2196,8 +2196,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
-		    Geometry.CreateCircle(0.5), -2)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), _
+		    PKGeometry.CreateCircle(0.5), -2)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2217,7 +2217,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0, 3)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0, 3)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2237,7 +2237,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), -2.0, 3)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), -2.0, 3)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2257,8 +2257,8 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
-		    Geometry.CreateSegment(New PKVector2(-0.5, 0.0)))
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), _
+		    PKGeometry.CreateSegment(New PKVector2(-0.5, 0.0)))
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2278,7 +2278,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Nil, Geometry.CreateCircle(0.2), 3)
+		    Call PKGeometry.MinkowskiSum(Nil, PKGeometry.CreateCircle(0.2), 3)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2298,7 +2298,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), Nil, 3)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), Nil, 3)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2318,7 +2318,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Nil, 0.2, 3)
+		    Call PKGeometry.MinkowskiSum(Nil, 0.2, 3)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2338,7 +2338,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Nil, Geometry.CreateUnitCirclePolygon(5, 0.5))
+		    Call PKGeometry.MinkowskiSum(Nil, PKGeometry.CreateUnitCirclePolygon(5, 0.5))
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2358,7 +2358,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), Nil)
+		    Call PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2377,30 +2377,30 @@ Inherits TestGroup
 		  
 		  // Verify the generation of the polygon works.
 		  Var p As PKPolygon 
-		  p = Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), _
-		  Geometry.CreateCircle(0.2), 3)
+		  p= PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), _
+		  PKGeometry.CreateCircle(0.2), 3)
 		  
 		  // Verify the new vertex count.
 		  Assert.AreEqual(25, p.Vertices.Count, "Failed test 1")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 3)
+		  p= PKGeometry.MinkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0.2, 3)
 		  
 		  // Verify the new vertex count.
 		  Assert.AreEqual(25, p.Vertices.Count, "Failed test 2")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateSquare(1.0), Geometry.CreateUnitCirclePolygon(5, 0.2))
+		  p= PKGeometry.MinkowskiSum(PKGeometry.CreateSquare(1.0), PKGeometry.CreateUnitCirclePolygon(5, 0.2))
 		  Assert.AreEqual(8, p.Vertices.Count, "Failed test 3")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
-		  Geometry.CreateUnitCirclePolygon(5, 0.2))
+		  p= PKGeometry.MinkowskiSum(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), _
+		  PKGeometry.CreateUnitCirclePolygon(5, 0.2))
 		  Assert.AreEqual(5, p.Vertices.Count, "Failed test 4")
 		  
 		  // Verify the generation of the polygon works.
-		  p = Geometry.MinkowskiSum(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), _
-		  Geometry.CreateSegment(New PKVector2(0.5, 0.5)))
+		  p= PKGeometry.MinkowskiSum(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), _
+		  PKGeometry.CreateSegment(New PKVector2(0.5, 0.5)))
 		  Assert.AreEqual(4, p.Vertices.Count, "Failed test 5")
 		  
 		End Sub
@@ -2415,7 +2415,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.ReverseWinding(Nil)
+		    Call PKGeometry.ReverseWinding(Nil)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2435,7 +2435,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2455,7 +2455,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateCircle(0.5), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateCircle(0.5), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2475,7 +2475,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateEllipse(1.0, 0.5), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2495,7 +2495,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2516,7 +2516,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var c As Capsule
-		    Call Geometry.Scale(c, 1.2)
+		    Call PKGeometry.Scale(c, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2537,7 +2537,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var c As Circle
-		    Call Geometry.Scale(c, 1.2)
+		    Call PKGeometry.Scale(c, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2558,7 +2558,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var e As Ellipse
-		    Call Geometry.Scale(e, 1.2)
+		    Call PKGeometry.Scale(e, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2579,7 +2579,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var he As HalfEllipse
-		    Call Geometry.Scale(he, 1.2)
+		    Call PKGeometry.Scale(he, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2600,7 +2600,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var p As PKPolygon
-		    Call Geometry.Scale(p, 1.2)
+		    Call PKGeometry.Scale(p, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2621,7 +2621,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var s As Segment
-		    Call Geometry.Scale(s, 1.2)
+		    Call PKGeometry.Scale(s, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2642,7 +2642,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var s As Slice
-		    Call Geometry.Scale(s, 1.2)
+		    Call PKGeometry.Scale(s, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -2662,7 +2662,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2682,7 +2682,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 1.0)), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 1.0)), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2702,7 +2702,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0)
+		    Call PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2719,13 +2719,13 @@ Inherits TestGroup
 		  ' Tests that the scale methods work as expected.
 		  ///
 		  
-		  Var s1 As Circle = Geometry.Scale(Geometry.CreateCircle(0.5), 2)
-		  Var s2 As Capsule = Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 2)
-		  Var s3 As Ellipse = Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 2)
-		  Var s4 As HalfEllipse = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 2)
-		  Var s5 As Slice = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
-		  Var s6 As PKPolygon = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 2)
-		  Var s7 As Segment = Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
+		  Var s1 As Circle= PKGeometry.Scale(PKGeometry.CreateCircle(0.5), 2)
+		  Var s2 As Capsule= PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 2)
+		  Var s3 As Ellipse= PKGeometry.Scale(PKGeometry.CreateEllipse(1.0, 0.5), 2)
+		  Var s4 As HalfEllipse= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 2)
+		  Var s5 As Slice= PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
+		  Var s6 As PKPolygon= PKGeometry.Scale(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 2)
+		  Var s7 As Segment= PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)
 		  
 		  Assert.AreEqual(1.000, s1.Radius, 1.0e-3)
 		  Assert.AreEqual(2.000, s2.Length, 1.0e-3)
@@ -2738,13 +2738,13 @@ Inherits TestGroup
 		  Assert.AreEqual(1.000, s6.Radius, 1.0e-3)
 		  Assert.AreEqual(2.000, s7.Length, 1.0e-3)
 		  
-		  s1 = Geometry.Scale(Geometry.CreateCircle(0.5), 0.5)
-		  s2 = Geometry.Scale(Geometry.CreateCapsule(1.0, 0.5), 0.5)
-		  s3 = Geometry.Scale(Geometry.CreateEllipse(1.0, 0.5), 0.5)
-		  s4 = Geometry.Scale(Geometry.CreateHalfEllipse(1.0, 0.25), 0.5)
-		  s5 = Geometry.Scale(Geometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0.5)
-		  s6 = Geometry.Scale(Geometry.CreateUnitCirclePolygon(5, 0.5), 0.5)
-		  s7 = Geometry.Scale(Geometry.CreateSegment(New PKVector2(1.0, 0.0)), 0.5)
+		  s1= PKGeometry.Scale(PKGeometry.CreateCircle(0.5), 0.5)
+		  s2= PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 0.5)
+		  s3= PKGeometry.Scale(PKGeometry.CreateEllipse(1.0, 0.5), 0.5)
+		  s4= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 0.5)
+		  s5= PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 0.5)
+		  s6= PKGeometry.Scale(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0.5)
+		  s7= PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), 0.5)
 		  
 		  Assert.AreEqual(0.250, s1.Radius, 1.0e-3)
 		  Assert.AreEqual(0.500, s2.Length, 1.0e-3)

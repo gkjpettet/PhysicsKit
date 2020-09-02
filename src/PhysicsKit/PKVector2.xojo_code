@@ -407,8 +407,8 @@ Protected Class PKVector2
 		  ///
 		  
 		  Var a As Double = otherAngle - ATan2(Self.Y, Self.X)
-		  If a > MathsKit.PI Then Return a - PhysicsKit.Geometry.TWO_PI
-		  If a < -MathsKit.PI Then Return a + PhysicsKit.Geometry.TWO_PI
+		  If a > MathsKit.PI Then Return a - PKGeometry.TWO_PI
+		  If a < -MathsKit.PI Then Return a + PKGeometry.TWO_PI
 		  Return a
 		  
 		End Function
@@ -424,8 +424,8 @@ Protected Class PKVector2
 		  ///
 		  
 		  Var a As Double = ATan2(vector.Y, vector.X) - ATan2(Self.Y, Self.X)
-		  If a > MathsKit.PI Then Return a - PhysicsKit.Geometry.TWO_PI
-		  If a < -MathsKit.PI then Return a + PhysicsKit.Geometry.TWO_PI
+		  If a > MathsKit.PI Then Return a - PKGeometry.TWO_PI
+		  If a < -MathsKit.PI then Return a + PKGeometry.TWO_PI
 		  Return a
 		  
 		End Function

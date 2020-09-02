@@ -460,8 +460,8 @@ Implements PKTransformable
 		  // Make sure we use the smallest rotation as described in the comments above.
 		  // There are two possible rotations depending on the direction, we always choose the smaller
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PKGeometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < 𝛝 < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.
@@ -509,8 +509,8 @@ Implements PKTransformable
 		  // Make sure we use the smallest rotation as described in the comments above. 
 		  // There are two possible rotations depending on the direction, we always choose the smaller.
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PKGeometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < theta < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.
@@ -595,8 +595,8 @@ Implements PKTransformable
 		  // Make sure we use the smallest rotation as described in the comments above.
 		  // There are two possible rotations depending on the direction, we always choose the smaller.
 		  Var diff As Double = re - rs
-		  If diff < -MathsKit.PI Then diff = diff + PhysicsKit.Geometry.TWO_PI
-		  If diff > MathsKit.PI Then diff = diff - PhysicsKit.Geometry.TWO_PI
+		  If diff < -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI
+		  If diff > MathsKit.PI Then diff = diff - PKGeometry.TWO_PI
 		  // Interpolate.
 		  // It's OK if this method produces an angle outside the range of -π < 𝛝 < π
 		  // since the `Rotate` method uses sin and cos which are not bounded.

@@ -17,13 +17,13 @@ Implements   PKConvex,  PKWound
 		  
 		  #Pragma Unused valid
 		  
-		  Super.Constructor(center, PhysicsKit.Geometry.GetRotationRadius(center, vertices))
+		  Super.Constructor(center, PKGeometry.GetRotationRadius(center, vertices))
 		  
 		  // Set the vertices.
 		  Self.Vertices = vertices
 		  
 		  // Create the normals.
-		  Self.Normals = PhysicsKit.Geometry.GetCounterClockwiseEdgeNormals(vertices)
+		  Self.Normals = PKGeometry.GetCounterClockwiseEdgeNormals(vertices)
 		  
 		End Sub
 	#tag EndMethod
@@ -47,7 +47,7 @@ Implements   PKConvex,  PKWound
 		  '           contains coincident points, is not convex, or has clockwise winding
 		  ///
 		  
-		  Constructor(Validate(verts), verts, PhysicsKit.Geometry.GetAreaWeightedCenter(verts))
+		  Constructor(Validate(verts), verts, PKGeometry.GetAreaWeightedCenter(verts))
 		  
 		End Sub
 	#tag EndMethod
@@ -216,8 +216,8 @@ Implements   PKConvex,  PKWound
 		    // (p1 + p2) * (D / 6)
 		    // = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 6
 		    // We will divide by the total area later.
-		    center.X = center.X + ((p1.X + p2.X) * PhysicsKit.Geometry.INV_3 * triangleArea)
-		    center.Y = center.Y + ((p1.Y + p2.Y) * PhysicsKit.Geometry.INV_3 * triangleArea)
+		    center.X = center.X + ((p1.X + p2.X) * PKGeometry.INV_3 * triangleArea)
+		    center.Y = center.Y + ((p1.Y + p2.Y) * PKGeometry.INV_3 * triangleArea)
 		    
 		    // (yi * x(i+1) - y(i+1) * xi) * (p2^2 + p2 . p1 + p1^2)
 		    I = I + (triangleArea * (p2.Dot(p2) + p2.Dot(p1) + p1.Dot(p1)))
@@ -490,7 +490,7 @@ Implements   PKConvex,  PKWound
 		Function GetRadius(center As PKVector2) As Double
 		  // Part of the PhysicsKit.Shape interface.
 		  
-		  Return PhysicsKit.Geometry.GetRotationRadius(center, Self.Vertices)
+		  Return PKGeometry.GetRotationRadius(center, Self.Vertices)
 		  
 		End Function
 	#tag EndMethod
