@@ -166,7 +166,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function CreateHalfEllipse(width As Double, height As Double) As PhysicsKit.HalfEllipse
+		Shared Function CreateHalfEllipse(width As Double, height As Double) As PKHalfEllipse
 		  ///
 		  ' Creates a new HalfEllipse bounded by the given rectangle width and height.
 		  '
@@ -183,13 +183,13 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero.
 		  ///
 		  
-		  Return New PhysicsKit.HalfEllipse(width, height)
+		  Return New PKHalfEllipse(width, height)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function CreateHalfEllipseAtOrigin(width As Double, height As Double) As PhysicsKit.HalfEllipse
+		Shared Function CreateHalfEllipseAtOrigin(width As Double, height As Double) As PKHalfEllipse
 		  ///
 		  ' Creates a new HalfEllipse bounded by the given rectangle width and height.
 		  '
@@ -206,7 +206,7 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if width or height are less than or equal to zero
 		  ///
 		  
-		  Var half As PhysicsKit.HalfEllipse = New PhysicsKit.HalfEllipse(width, height)
+		  Var half As PKHalfEllipse = New PKHalfEllipse(width, height)
 		  Var c As PKVector2 = half.GetCenter
 		  half.Translate(-c.X, -c.Y)
 		  Return half
@@ -1916,27 +1916,6 @@ Protected Class PKGeometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2068616C662D656C6C697073652E
-		Shared Function Scale(halfEllipse As PhysicsKit.HalfEllipse, scale As Double) As PhysicsKit.HalfEllipse
-		  ///
-		  ' Returns a scaled version of the given half-ellipse.
-		  '
-		  ' - Parameter halfEllipse: The half-ellipse.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returnsl: A new HalfEllipse.
-		  '
-		  ' - Raises: NilObjectException if the given half-ellipse is Nil.
-		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
-		  ///
-		  
-		  If halfEllipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  Return New PhysicsKit.HalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E207365676D656E742E
 		Shared Function Scale(segment As PhysicsKit.Segment, scale As Double) As PhysicsKit.Segment
 		  ///
@@ -2023,6 +2002,27 @@ Protected Class PKGeometry
 		  If ellipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
 		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
 		  Return New PKEllipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E2068616C662D656C6C697073652E
+		Shared Function Scale(halfEllipse As PKHalfEllipse, scale As Double) As PKHalfEllipse
+		  ///
+		  ' Returns a scaled version of the given half-ellipse.
+		  '
+		  ' - Parameter halfEllipse: The half-ellipse.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returnsl: A new HalfEllipse.
+		  '
+		  ' - Raises: NilObjectException if the given half-ellipse is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If halfEllipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
+		  Return New PKHalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)
+		  
 		End Function
 	#tag EndMethod
 

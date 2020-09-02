@@ -37,7 +37,7 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(2.0, 0.5)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.75, 0.35)
 		  
@@ -83,7 +83,7 @@ Inherits TestGroup
 		  ' Tests the generated PKAABB.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(1.0, 0.25)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(1.0, 0.25)
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
@@ -122,7 +122,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var he As HalfEllipse = New HalfEllipse(1.0, -1.0)
+		    Var he As PKHalfEllipse = New PKHalfEllipse(1.0, -1.0)
 		    #Pragma Unused he
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -143,7 +143,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var he As HalfEllipse = New HalfEllipse(-1.0, 1.0)
+		    Var he As PKHalfEllipse = New PKHalfEllipse(-1.0, 1.0)
 		    #Pragma Unused he
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -162,7 +162,7 @@ Inherits TestGroup
 		  ///
 		  
 		  Try
-		    Var he As HalfEllipse  = New HalfEllipse(1.0, 2.0)
+		    Var he As PKHalfEllipse  = New PKHalfEllipse(1.0, 2.0)
 		    #Pragma Unused he
 		  Catch e As RuntimeException
 		    Assert.Fail("Unexpected constructor failure.")
@@ -184,7 +184,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var he As HalfEllipse = New HalfEllipse(1.0, 0.0)
+		    Var he As PKHalfEllipse = New PKHalfEllipse(1.0, 0.0)
 		    #Pragma Unused he
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -205,7 +205,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var he As HalfEllipse = New HalfEllipse(0.0, 1.0)
+		    Var he As PKHalfEllipse = New PKHalfEllipse(0.0, 1.0)
 		    #Pragma Unused he
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -225,7 +225,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var e As HalfEllipse = New HalfEllipse(1.0, 0.5)
+		    Var e As PKHalfEllipse = New PKHalfEllipse(1.0, 0.5)
 		    Call e.GetAxes(Array(New PKVector2), IDENTITY)
 		  Catch e As UnsupportedOperationException
 		    Assert.Pass
@@ -243,7 +243,7 @@ Inherits TestGroup
 		  ' Tests the farthest methods.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(2.0, 0.5)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
@@ -288,7 +288,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var e As HalfEllipse = New HalfEllipse(1.0, 0.5)
+		    Var e As PKHalfEllipse = New PKHalfEllipse(1.0, 0.5)
 		    Call e.GetFoci(IDENTITY)
 		  Catch e As UnsupportedOperationException
 		    Assert.Pass
@@ -307,7 +307,7 @@ Inherits TestGroup
 		  ' to ensure that we obtain the correct max distance.
 		  ///
 		  
-		  Var he As HalfEllipse = New HalfEllipse(4.0, 4.0)
+		  Var he As PKHalfEllipse = New PKHalfEllipse(4.0, 4.0)
 		  Var d As Double = he.GetRadius(New PKVector2(1, 0.25))
 		  
 		  Assert.AreEqual(3.927647520827677, d, 1e-3)
@@ -320,7 +320,7 @@ Inherits TestGroup
 		  ' Tests the Project method.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(2.0, 0.5)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(2.0, 0.5)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
@@ -366,7 +366,7 @@ Inherits TestGroup
 		  ' Tests the Rotate methods.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(1.0, 0.25)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(1.0, 0.25)
 		  
 		  // Rotate about center.
 		  e.Translate(1.0, 1.0)
@@ -394,7 +394,7 @@ Inherits TestGroup
 		  ' Tests the Translate method.
 		  ///
 		  
-		  Var e As HalfEllipse = New HalfEllipse(1.0, 0.25)
+		  Var e As PKHalfEllipse = New PKHalfEllipse(1.0, 0.25)
 		  
 		  e.Translate(1.0, -0.5)
 		  

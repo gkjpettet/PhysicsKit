@@ -2578,7 +2578,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var he As HalfEllipse
+		    Var he As PKHalfEllipse
 		    Call PKGeometry.Scale(he, 1.2)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -2722,7 +2722,7 @@ Inherits TestGroup
 		  Var s1 As PKCircle= PKGeometry.Scale(PKGeometry.CreateCircle(0.5), 2)
 		  Var s2 As Capsule= PKGeometry.Scale(PKGeometry.CreateCapsule(1.0, 0.5), 2)
 		  Var s3 As PKEllipse= PKGeometry.Scale(PKGeometry.CreateEllipse(1.0, 0.5), 2)
-		  Var s4 As HalfEllipse= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 2)
+		  Var s4 As PKHalfEllipse= PKGeometry.Scale(PKGeometry.CreateHalfEllipse(1.0, 0.25), 2)
 		  Var s5 As Slice= PKGeometry.Scale(PKGeometry.CreateSlice(0.5, MathsKit.ToRadians(30)), 2)
 		  Var s6 As PKPolygon= PKGeometry.Scale(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 2)
 		  Var s7 As Segment= PKGeometry.Scale(PKGeometry.CreateSegment(New PKVector2(1.0, 0.0)), 2)

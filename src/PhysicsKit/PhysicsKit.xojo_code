@@ -9,7 +9,7 @@ Protected Module PhysicsKit
 		  PKAbstractShape.Initialise
 		  PKEllipse.Initialise
 		  PKEpsilon.Initialise
-		  HalfEllipse.Initialise
+		  PKHalfEllipse.Initialise
 		  RobustGeometry.Initialise
 		  PKTransform.Initialise
 		  PKVector2.Initialise

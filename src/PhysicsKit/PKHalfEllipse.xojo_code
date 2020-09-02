@@ -1,5 +1,5 @@
 #tag Class
-Protected Class HalfEllipse
+Protected Class PKHalfEllipse
 Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h0
@@ -228,7 +228,7 @@ Implements  PKConvex
 		    
 		    transform.TransformV(localAxis)
 		    
-		    Return New PointFeature(localAxis)
+		    Return New PhysicsKit.PointFeature(localAxis)
 		  Else
 		    // Below code is equivalent to
 		    // Return Segment.GetFarthestFeature(Self.vertexLeft, Self.vertexRight, vector, transform)
@@ -238,15 +238,15 @@ Implements  PKConvex
 		    Var p2 As PKVector2 = transform.GetTransformed(Self.VertexRight)
 		    
 		    // The vector p1->p2 is always CCW winding.
-		    Var vp1 As PointFeature = New PointFeature(p1, 0)
-		    Var vp2 As PointFeature = New PointFeature(p2, 1)
+		    Var vp1 As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(p1, 0)
+		    Var vp2 As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(p2, 1)
 		    
 		    // Choose the vertex that maximizes v.Dot(vector)
 		    // localAxis is vector in local space and we can choose the correct vertex by
 		    // checking if localAxis points to the left or right.
-		    Var vmax As PointFeature = If((localAxis.X <= 0), vp1, vp2)
+		    Var vmax As PhysicsKit.PointFeature = If((localAxis.X <= 0), vp1, vp2)
 		    
-		    Return New EdgeFeature(vp1, vp2, vmax, p1.Towards(p2), 0)
+		    Return New PhysicsKit.EdgeFeature(vp1, vp2, vmax, p1.Towards(p2), 0)
 		  End If
 		  
 		End Function
@@ -541,7 +541,7 @@ Implements  PKConvex
 		    // We have two solutions based on the point location.
 		    // If the point is below the half ellipse, then we need to perform
 		    // a golden section search like the ellipse code.
-		    If Segment.GetLocation(center, Self.VertexLeft, Self.VertexRight) <= 0 Then
+		    If PhysicsKit.Segment.GetLocation(center, Self.VertexLeft, Self.VertexRight) <= 0 Then
 		      Return Self.GetMaxDistanceEllipse(center)
 		    Else
 		      // Otherwise we can just take the greater distance of the vertices.
