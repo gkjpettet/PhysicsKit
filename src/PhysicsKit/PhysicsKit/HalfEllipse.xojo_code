@@ -1,7 +1,7 @@
 #tag Class
 Protected Class HalfEllipse
 Inherits PhysicsKit.AbstractShape
-Implements PhysicsKit.Convex
+Implements  PKConvex
 	#tag Method, Flags = &h0
 		Sub Constructor(valid As Boolean, width As Double, height As Double, center As PKVector2, vertexLeft As PKVector2, vertexRight As PKVector2)
 		  ///

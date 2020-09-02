@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface Convex
+Protected Interface PKConvex
 Implements  PKShape
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E206172726179206F662073657061726174696E67206178657320746F207465737420666F7220746869732073686170652E
 		Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()

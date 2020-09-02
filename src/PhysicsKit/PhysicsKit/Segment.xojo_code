@@ -1,7 +1,7 @@
 #tag Class
 Protected Class Segment
 Inherits PhysicsKit.AbstractShape
-Implements PhysicsKit.Convex,PhysicsKit.Wound
+Implements PhysicsKit.Wound,  PKConvex
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E6577207365676D656E74207573696E672074686520676976656E20706F696E74732E20205468652063656E7465722077696C6C206265207468652061766572616765206F662074686520706F696E74732E
 		Private Sub Constructor(valid As Boolean, vertices() As PKVector2, segment As PKVector2, length As Double)
 		  ///
