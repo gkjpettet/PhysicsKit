@@ -38,7 +38,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(2.0)
+		  Var c As PKCircle = New PKCircle(2.0)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(2.0, 4.0)
 		  
@@ -69,7 +69,7 @@ Inherits TestGroup
 		  
 		  Var IDENTITY As PKTransform = New PKTransform
 		  
-		  Var c As Circle = New Circle(1.2)
+		  Var c As PKCircle = New PKCircle(1.2)
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = c.CreateAABB(IDENTITY)
@@ -110,7 +110,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var c As Circle = New Circle(-1.0)
+		    Var c As PKCircle = New PKCircle(-1.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -133,7 +133,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var c As Circle = New Circle(1.0)
+		    Var c As PKCircle = New PKCircle(1.0)
 		    Assert.IsNotNil(c.GetID)
 		    Assert.AreEqual(0.0, c.Center.X)
 		    Assert.AreEqual(0.0, c.Center.Y)
@@ -158,7 +158,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var c As Circle = New Circle(0.0)
+		    Var c As PKCircle = New PKCircle(0.0)
 		    #Pragma Unused c
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -178,7 +178,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(1.5)
+		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  
 		  // A cicle has infinite axes so it should be Nil.
@@ -196,7 +196,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(1.5)
+		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
@@ -230,7 +230,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(1.5)
+		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  
 		  // Should only return one.
@@ -248,7 +248,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(1.5)
+		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  Var x As PKVector2 = New PKVector2(1.0, 0.0)
 		  Var y As PKVector2 = New PKVector2(0.0, 1.0)
@@ -280,7 +280,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Centre is at 0,0.
-		  Var c As Circle = New Circle(1.0)
+		  Var c As PKCircle = New PKCircle(1.0)
 		  
 		  // Rotate about centre.
 		  c.Translate(1.0, 1.0)
@@ -311,7 +311,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  // Centre is at 0,0.
-		  Var c As Circle = New Circle(1.0)
+		  Var c As PKCircle = New PKCircle(1.0)
 		  
 		  c.Translate(1.0, -0.5)
 		  

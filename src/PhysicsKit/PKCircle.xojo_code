@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Circle
+Protected Class PKCircle
 Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h21, Description = 56616C69646174656420636F6E7374727563746F722E20437265617465732061206E657720436972636C652063656E7465726564206F6E20746865206F726967696E20776974682074686520676976656E207261646975732E
@@ -123,7 +123,7 @@ Implements  PKConvex
 		  Var farthest As PKVector2 = Self.GetFarthestPoint(vector, transform)
 		  
 		  // For a circle the farthest feature along a vector will always be a vertex.
-		  Return New PointFeature(farthest)
+		  Return New PhysicsKit.PointFeature(farthest)
 		  
 		End Function
 	#tag EndMethod
@@ -182,7 +182,7 @@ Implements  PKConvex
 		  Var c As Double = center.Dot(vector)
 		  
 		  // The interval is defined by the radius.
-		  Return New Interval(c - Self.Radius, c + Self.Radius)
+		  Return New PhysicsKit.Interval(c - Self.Radius, c + Self.Radius)
 		  
 		End Function
 	#tag EndMethod

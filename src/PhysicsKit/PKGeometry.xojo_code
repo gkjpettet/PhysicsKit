@@ -104,7 +104,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720436972636C6520776974682074686520676976656E207261646975732063656E7465726564206F6E20746865206F726967696E2E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function CreateCircle(radius As Double) As PhysicsKit.Circle
+		Shared Function CreateCircle(radius As Double) As PKCircle
 		  ///
 		  ' Returns a new Circle with the given radius centered on the origin.
 		  '
@@ -115,7 +115,7 @@ Protected Class PKGeometry
 		  ' - Raises: InvalidArgumentException if radius is less than or equal to zero.
 		  ///
 		  
-		  Return New PhysicsKit.Circle(radius)
+		  Return New PKCircle(radius)
 		  
 		End Function
 	#tag EndMethod
@@ -1565,7 +1565,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
-		Shared Function MinkowskiSum(circle As PhysicsKit.Circle, polygon As PKPolygon, count As Integer) As PKPolygon
+		Shared Function MinkowskiSum(circle As PKCircle, polygon As PKPolygon, count As Integer) As PKPolygon
 		  ///
 		  ' Performs the Minkowski Sum of the given Polygon and Circle.
 		  '
@@ -1691,7 +1691,7 @@ Protected Class PKGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320746865204D696E6B6F77736B692053756D206F662074686520676976656E20506F6C79676F6E20616E6420436972636C652E20557365207468652060636F756E746020706172616D6574657220746F207370656369667920746865206E756D626572206F6620766572746963657320746F207573652070657220726F756E6420636F726E65722E
-		Shared Function MinkowskiSum(polygon As PKPolygon, circle As PhysicsKit.Circle, count As Integer) As PKPolygon
+		Shared Function MinkowskiSum(polygon As PKPolygon, circle As PKCircle, count As Integer) As PKPolygon
 		  ///
 		  ' Performs the Minkowski Sum of the given Polygon and Circle.
 		  '
@@ -1916,27 +1916,6 @@ Protected Class PKGeometry
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20636972636C652E
-		Shared Function Scale(circle As PhysicsKit.Circle, scale As Double) As PhysicsKit.Circle
-		  ///
-		  ' Returns a scaled version of the given circle.
-		  '
-		  ' - Parameter circle: The circle.
-		  ' - Parameter scale: The scale. Must be greater than zero.
-		  '
-		  ' - Returns: A new Circle.
-		  '
-		  ' - Raises: NilObjectException if the given circle is Nil.
-		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
-		  ///
-		  
-		  If circle Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
-		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
-		  Return New PhysicsKit.Circle(circle.Radius * scale)
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20656C6C697073652E
 		Shared Function Scale(ellipse As PhysicsKit.Ellipse, scale As Double) As PhysicsKit.Ellipse
 		  ///
@@ -2022,6 +2001,27 @@ Protected Class PKGeometry
 		  If slice Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
 		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
 		  Return New PhysicsKit.Slice(slice.GetSliceRadius * scale, slice.GetTheta)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120286E657729207363616C65642076657273696F6E206F662074686520676976656E20636972636C652E
+		Shared Function Scale(circle As PKCircle, scale As Double) As PKCircle
+		  ///
+		  ' Returns a scaled version of the given circle.
+		  '
+		  ' - Parameter circle: The circle.
+		  ' - Parameter scale: The scale. Must be greater than zero.
+		  '
+		  ' - Returns: A new Circle.
+		  '
+		  ' - Raises: NilObjectException if the given circle is Nil.
+		  ' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.
+		  ///
+		  
+		  If circle Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)
+		  If scale <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)
+		  Return New PKCircle(circle.Radius * scale)
 		  
 		End Function
 	#tag EndMethod

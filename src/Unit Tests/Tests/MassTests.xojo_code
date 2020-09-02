@@ -215,7 +215,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle = New Circle(3.0)
+		  Var c As PKCircle = New PKCircle(3.0)
 		  Var m As PKMass = c.CreateMass(2.0)
 		  
 		  // The mass should be π * r * r * d
@@ -515,7 +515,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var c As Circle= PKGeometry.CreateCircle(2.0)
+		  Var c As PKCircle= PKGeometry.CreateCircle(2.0)
 		  Var mi As PKMass = c.CreateMass(1.0)
 		  
 		  // Setting the type should not alter the mass values.
