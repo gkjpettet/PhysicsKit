@@ -32,7 +32,7 @@ Implements  PKHullGenerator
 		  Next i
 		  
 		  // Create the comparator for the array.
-		  Var pc As ReferencePointComparator = New ReferencePointComparator(minY)
+		  Var pc As PKReferencePointComparator = New PKReferencePointComparator(minY)
 		  // Sort the array by angle.
 		  points.Sort(AddressOf pc.Compare)
 		  

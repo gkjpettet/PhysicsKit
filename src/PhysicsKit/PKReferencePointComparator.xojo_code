@@ -1,5 +1,5 @@
 #tag Class
-Protected Class ReferencePointComparator
+Protected Class PKReferencePointComparator
 	#tag Method, Flags = &h0
 		Function Compare(p1 As PKVector2, p2 As PKVector2) As Integer
 		  // We can use the `GetLocation` method to successfully sort by angle to the reference point
