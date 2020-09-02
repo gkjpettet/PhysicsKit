@@ -315,13 +315,13 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520526F746174696F6E206F626A656374207468617420726570726573656E747320746865206C6F63616C20726F746174696F6E2E
-		Function GetRotation() As PhysicsKit.Rotation
+		Function GetRotation() As PKRotation
 		  ///
 		  ' - Returns: The Rotation object that represents the local rotation.
 		  ///
 		  
 		  // localXAxis is already a unit vector so we can just return it as a Rotation.
-		  Return New Rotation(Self.LocalXAxis.X, Self.LocalXAxis.Y)
+		  Return New PKRotation(Self.LocalXAxis.X, Self.LocalXAxis.Y)
 		  
 		End Function
 	#tag EndMethod
@@ -360,7 +360,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  ///
 		  ' - Note: Part of the PhysicsKit.Rotatable interface.
 		  ///

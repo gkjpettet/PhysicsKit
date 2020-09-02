@@ -184,7 +184,7 @@ Inherits TestGroup
 		  t.Rotate(MathsKit.ToRadians(30))
 		  Assert.AreEqual(MathsKit.ToRadians(30), t.GetRotationAngle, 1.0e-3)
 		  
-		  t.Rotate(Rotation.OfDegrees(50))
+		  t.Rotate(PKRotation.OfDegrees(50))
 		  Assert.AreEqual(MathsKit.ToRadians(80), t.GetRotationAngle, 1.0e-3)
 		  
 		  t.Identity
@@ -196,7 +196,7 @@ Inherits TestGroup
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 5.000, v.y, 1.0e-3)
 		  
-		  t.Rotate(Rotation.OfDegrees(90))
+		  t.Rotate(PKRotation.OfDegrees(90))
 		  v = t.GetTranslation
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual(-5.000, v.y, 1.0e-3)
@@ -206,7 +206,7 @@ Inherits TestGroup
 		  Assert.AreEqual(-5.000, v.x, 1.0e-3)
 		  Assert.AreEqual(-5.000, v.y, 1.0e-3)
 		  
-		  t.Rotate(Rotation.OfDegrees(45), -1.0, -1.0)
+		  t.Rotate(PKRotation.OfDegrees(45), -1.0, -1.0)
 		  v = t.GetTranslation
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
 		  Assert.AreEqual(-6.656, v.y, 1.0e-3)

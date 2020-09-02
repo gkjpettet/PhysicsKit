@@ -23,7 +23,7 @@ Implements PhysicsKit.Convex
 		  Self.HalfHeight = height * 0.5
 		  
 		  // Initially the ellipse is aligned to the world space x axis.
-		  Self.Rotation = New Rotation
+		  Self.Rotation = New PKRotation
 		  
 		  
 		End Sub
@@ -460,7 +460,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520726F746174696F6E206F626A656374207468617420726570726573656E747320746865206C6F63616C20726F746174696F6E2E
-		Function GetRotation() As PhysicsKit.Rotation
+		Function GetRotation() As PKRotation
 		  ///
 		  ' - Returns: The Rotation object that represents the local rotation.
 		  ///
@@ -570,7 +570,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Rotatable interface.
 		  ///
@@ -658,7 +658,7 @@ Implements PhysicsKit.Convex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865206C6F63616C20726F746174696F6E2E
-		Rotation As PhysicsKit.Rotation
+		Rotation As PKRotation
 	#tag EndProperty
 
 

@@ -854,7 +854,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Rotatable interface.
 		  ///

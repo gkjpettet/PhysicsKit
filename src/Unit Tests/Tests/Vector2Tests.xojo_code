@@ -464,11 +464,11 @@ Inherits TestGroup
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
 		  
-		  Call v.Rotate(New Rotation(MathsKit.ToRadians(60)), 0.0, 1.0)
+		  Call v.Rotate(New PKRotation(MathsKit.ToRadians(60)), 0.0, 1.0)
 		  Assert.AreEqual(-1.366, v.x, 1.0e-3)
 		  Assert.AreEqual( 0.634, v.y, 1.0e-3)
 		  
-		  Call v.InverseRotate(New Rotation(MathsKit.ToRadians(60)), 0.0, 1.0)
+		  Call v.InverseRotate(New PKRotation(MathsKit.ToRadians(60)), 0.0, 1.0)
 		  Assert.AreEqual(-1.000, v.x, 1.0e-3)
 		  Assert.AreEqual( 2.000, v.y, 1.0e-3)
 		  

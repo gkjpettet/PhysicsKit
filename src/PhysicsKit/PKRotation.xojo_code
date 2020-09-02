@@ -1,7 +1,7 @@
 #tag Class
-Protected Class Rotation
+Protected Class PKRotation
 	#tag Method, Flags = &h0, Description = 436F6D7061726573207468697320526F746174696F6E207769746820616E6F74686572206F6E652C206261736564206F6E2074686520616E676C65206265747765656E207468656D2E2052657475726E73203120696620F09D9B9D203E20302C202D3120696620F09D9B9D203C203020616E642030206F74686572776973652E
-		Function Compare(other As PhysicsKit.Rotation) As Integer
+		Function Compare(other As PKRotation) As Integer
 		  ///
 		  ' Compares this Rotation with another one, based on the angle between them.
 		  ' (The one with -π <= 𝛝 <= π).
@@ -98,7 +98,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F707920636F6E7374727563746F722E
-		Sub Constructor(rotation As PhysicsKit.Rotation)
+		Sub Constructor(rotation As PKRotation)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -112,18 +112,18 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F66207468697320526F746174696F6E2E
-		Function Copy() As PhysicsKit.Rotation
+		Function Copy() As PKRotation
 		  ///
 		  ' Returns a copy of Self Rotation.
 		  ///
 		  
-		  Return New Rotation(Self.Cost, Self.Sint)
+		  Return New PKRotation(Self.Cost, Self.Sint)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652063726F73732070726F64756374206F6620746865207468697320526F746174696F6E20616E642074686520676976656E20526F746174696F6E2E205468697320697320657373656E7469616C6C79207468652073696E65206F662074686520616E676C65206265747765656E2074686F736520726F746174696F6E732E
-		Function Cross(r As PhysicsKit.Rotation) As Double
+		Function Cross(r As PKRotation) As Double
 		  ///
 		  ' Returns the cross product of the this Rotation and the given Rotation.
 		  ' This is essentially the sine of the angle between those rotations.
@@ -155,7 +155,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520646F742070726F64756374206F6620746865207468697320526F746174696F6E20616E642074686520676976656E20526F746174696F6E2E205468697320697320657373656E7469616C6C79207468652073696E65206F662074686520616E676C65206265747765656E2074686F736520726F746174696F6E732E
-		Function Dot(r As PhysicsKit.Rotation) As Double
+		Function Dot(r As PKRotation) As Double
 		  ///
 		  ' Returns the dot product of the this Rotation and the given Rotation.
 		  ' This is essentially the sine of the angle between those rotations.
@@ -220,7 +220,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520636F7320616E642073696E20636F6D706F6E656E7473206F66207468697320526F746174696F6E20617265207468652073616D652061732074686520676976656E20526F746174696F6E2E
-		Function Equals(r As PhysicsKit.Rotation) As Boolean
+		Function Equals(r As PKRotation) As Boolean
 		  ///
 		  ' Returns True if the cos and sin components of Self Rotation 
 		  ' are the same as the given Rotation.
@@ -238,7 +238,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520636F7320616E642073696E20636F6D706F6E656E7473206F66207468697320526F746174696F6E20617265207468652073616D652061732074686520676976656E20526F746174696F6E20676976656E2074686520737065636966696564206572726F722E
-		Function Equals(r As Rotation, error As Double) As Boolean
+		Function Equals(r As PKRotation, error As Double) As Boolean
 		  ///
 		  ' Returns True if the cos and sin components of Self Rotation are 
 		  ' the same as the given Rotation given the specified error.
@@ -266,8 +266,8 @@ Protected Class Rotation
 		  
 		  If obj = Nil Then Return False
 		  If obj = Self Then Return True
-		  If obj IsA Rotation Then
-		    Var r As PhysicsKit.Rotation = PhysicsKit.Rotation(obj)
+		  If obj IsA PKRotation Then
+		    Var r As PKRotation = PKRotation(obj)
 		    Return If(Self.Cost = r.Cost And Self.Sint = r.Sint, True, False)
 		  End If
 		  
@@ -290,7 +290,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4E656761746573207468697320726F746174696F6E20616E642072657475726E732061206E657720726F746174696F6E2E
-		Function GetInversed() As PhysicsKit.Rotation
+		Function GetInversed() As PKRotation
 		  ///
 		  ' Negates Self rotation and returns a new rotation.
 		  ' Let Θ be the rotation, then -Θ is the inverse rotation.
@@ -298,13 +298,13 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(Self.Cost, -Self.Sint)
+		  Return New PKRotation(Self.Cost, -Self.Sint)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E2062792074686520676976656E20616E676C652028696E2072616469616E732920616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated(angle As Double) As PhysicsKit.Rotation
+		Function GetRotated(angle As Double) As PKRotation
 		  ///
 		  ' Rotates this Rotation by the given angle (in radians) and returns a new Rotation.
 		  '
@@ -319,7 +319,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E7465726E616C206D6574686F6420746861742072657475726E2061206E657720526F746174696F6E20726570726573656E74696E67207468697320526F746174696F6E206166746572206265696E6720726F746174656420627920616E20616E676C6520CE982E
-		Function GetRotated(c As Double, s As Double) As PhysicsKit.Rotation
+		Function GetRotated(c As Double, s As Double) As PKRotation
 		  ///
 		  ' Internal method that return a new Rotation representing this Rotation
 		  ' after being rotated by an angle Θ.
@@ -330,13 +330,13 @@ Protected Class Rotation
 		  ' - Returns: This Rotation.
 		  ///
 		  
-		  Return new Rotation(Self.Cost * c - Self.Sint * s, Self.Cost * s + Self.Sint * c)
+		  Return New PKRotation(Self.Cost * c - Self.Sint * s, Self.Cost * s + Self.Sint * c)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E2062792074686520676976656E20526F746174696F6E20616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated(r As PhysicsKit.Rotation) As PhysicsKit.Rotation
+		Function GetRotated(r As PKRotation) As PKRotation
 		  ///
 		  ' Rotates this Rotation by the given Rotation and returns a new Rotation.
 		  '
@@ -351,7 +351,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRotated135() As PhysicsKit.Rotation
+		Function GetRotated135() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 135 degrees and returns a new Rotation.
 		  '
@@ -365,20 +365,20 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E732061204E657720726F746174696F6E2E
-		Function GetRotated180() As PhysicsKit.Rotation
+		Function GetRotated180() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 180 degrees and returns a New rotation.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-Self.cost, -Self.Sint)
+		  Return New PKRotation(-Self.cost, -Self.Sint)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated225() As PhysicsKit.Rotation
+		Function GetRotated225() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 225 degrees and returns a new Rotation.
 		  '
@@ -392,20 +392,20 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323730206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated270() As PhysicsKit.Rotation
+		Function GetRotated270() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 270 degrees and returns a new Rotation.
 		  ' 
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(Self.Sint, -Self.Cost)
+		  Return New PKRotation(Self.Sint, -Self.Cost)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20333135206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated315() As PhysicsKit.Rotation
+		Function GetRotated315() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 315 degrees and returns a new Rotation.
 		  '
@@ -419,7 +419,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated45() As PhysicsKit.Rotation
+		Function GetRotated45() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 45 degrees and returns a new Rotation.
 		  '
@@ -432,7 +432,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 272020496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F662061203435206465677265652E2052657475726E732061206E657720526F746174696F6E2E
-		Protected Function GetRotated45Helper(cost As Double, sint As Double) As PhysicsKit.Rotation
+		Protected Function GetRotated45Helper(cost As Double, sint As Double) As PKRotation
 		  ///
 		  '  Internal helper method to perform rotations consisting of a 45 degree.
 		  '
@@ -442,26 +442,26 @@ Protected Class Rotation
 		  '- Returns: A new Rotation with initial values (cost, sint) and then rotated 45 degrees.
 		  ///
 		  
-		  Return New Rotation(SQRT_2_INV * (cost - sint), SQRT_2_INV * (cost + sint))
+		  Return New PKRotation(SQRT_2_INV * (cost - sint), SQRT_2_INV * (cost + sint))
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E732061206E657720526F746174696F6E2E
-		Function GetRotated90() As PhysicsKit.Rotation
+		Function GetRotated90() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 90 degrees and returns a new Rotation.
 		  ' 
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-Self.Sint, Self.Cost)
+		  Return New PKRotation(-Self.Sint, Self.Cost)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520616E676C65202861732061206E657720526F746174696F6E29206265747765656E207468697320526F746174696F6E20616E642074686520676976656E20526F746174696F6E2E
-		Function GetRotationBetween(r As PhysicsKit.Rotation) As PhysicsKit.Rotation
+		Function GetRotationBetween(r As PKRotation) As PKRotation
 		  ///
 		  ' Returns the angle (as a new Rotation) between this Rotation and the given Rotation.
 		  '
@@ -470,13 +470,13 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(Self.Dot(r), Self.Cross(r))
+		  Return New PKRotation(Self.Dot(r), Self.Cross(r))
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520616E676C65202861732061206E657720526F746174696F6E29206265747765656E207468697320526F746174696F6E20616E642074686520676976656E20566563746F72322E
-		Function GetRotationBetween(vector As PKVector2) As PhysicsKit.Rotation
+		Function GetRotationBetween(vector As PKVector2) As PKRotation
 		  ///
 		  ' Returns the angle (as a new Rotation) between this Rotation and the given PKVector2.
 		  '
@@ -485,7 +485,7 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return Self.GetRotationBetween(Rotation.Of_(vector))
+		  Return Self.GetRotationBetween(PKRotation.Of_(vector))
 		  
 		End Function
 	#tag EndMethod
@@ -504,7 +504,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4E656761746573207468697320526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
-		Function Inverse() As PhysicsKit.Rotation
+		Function Inverse() As PKRotation
 		  ///
 		  ' Negates Self Rotation and returns Self Rotation.
 		  ' Let Θ be the rotation, then -Θ is the inverse rotation.
@@ -547,7 +547,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 416C7465726E61746976652077617920746F206372656174652061206E657720526F746174696F6E2066726F6D206120676976656E20616E676C652C20696E20646567726565732E
-		Shared Function OfDegrees(angle As Double) As PhysicsKit.Rotation
+		Shared Function OfDegrees(angle As Double) As PKRotation
 		  ///
 		  ' Alternative way to create a new Rotation from a given angle, in degrees.
 		  '
@@ -556,13 +556,13 @@ Protected Class Rotation
 		  ' - Returns :A new Rotation for the passed angle.
 		  ///
 		  
-		  Return New Rotation(MathsKit.ToRadians(angle))
+		  Return New PKRotation(MathsKit.ToRadians(angle))
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 416C7465726E61746976652077617920746F206372656174652061206E657720526F746174696F6E2066726F6D206120676976656E20616E676C652C20696E2072616469616E732E
-		Shared Function Of_(angle As Double) As PhysicsKit.Rotation
+		Shared Function Of_(angle As Double) As PKRotation
 		  ///
 		  ' Alternative way to create a new Rotation from a given angle, in radians.
 		  '
@@ -571,13 +571,13 @@ Protected Class Rotation
 		  ' - Returns: A new Rotation for the given angle.
 		  ///
 		  
-		  Return New Rotation(angle)
+		  Return New PKRotation(angle)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537461746963206D6574686F6420746F20637265617465206120526F746174696F6E2066726F6D20612070616972206F662076616C7565732074686174206C6965206F6E2074686520756E697420636972636C652E205468726F777320496E76616C6964417267756D656E74457863657074696F6E2E
-		Shared Function Of_(cost As Double, sint As Double) As PhysicsKit.Rotation
+		Shared Function Of_(cost As Double, sint As Double) As PKRotation
 		  ///
 		  ' Static method to create a Rotation from a pair of values that lie on the unit circle.
 		  ' That is a pair of values (x, y) such that `x = cos(Θ), y = sin(Θ)` for some value Θ.
@@ -596,18 +596,18 @@ Protected Class Rotation
 		  
 		  Var magnitude As Double = cost * cost + sint * sint
 		  
-		  If Abs(magnitude - 1) > Epsilon.E Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_ROTATION_INVALID_POINT)
+		  If Abs(magnitude - 1) > PhysicsKit.Epsilon.E Then
+		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ROTATION_INVALID_POINT)
 		  End If
 		  
-		  Return New Rotation(cost, sint)
+		  Return New PKRotation(cost, sint)
 		  
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E20726570726573656E74696E67207468652073616D6520726F746174696F6E2061732061205472616E73666F726D206F626A6563742E
-		Shared Function Of_(transform As PKTransform) As PhysicsKit.Rotation
+		Shared Function Of_(transform As PKTransform) As PKRotation
 		  ///
 		  ' Creates a new Rotation representing the same rotation as a Transform object.
 		  '
@@ -617,14 +617,14 @@ Protected Class Rotation
 		  //
 		  
 		  // The cos and sin values are already computed internally in Transform.
-		  Return New Rotation(transform.Cost, transform.Sint)
+		  Return New PKRotation(transform.Cost, transform.Sint)
 		  
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537461746963206D6574686F6420746F20637265617465206120526F746174696F6E206F626A6563742066726F6D2074686520646972656374696F6E206F66206120676976656E20766563746F722E
-		Shared Function Of_(direction As PKVector2) As PhysicsKit.Rotation
+		Shared Function Of_(direction As PKVector2) As PKRotation
 		  ///
 		  ' Static method to create a Rotation object from the direction of a given vector.
 		  '
@@ -636,19 +636,19 @@ Protected Class Rotation
 		  // Normalise the vector.
 		  Var magnitude As Double = Sqrt(direction.X * direction.X + direction.Y * direction.Y)
 		  
-		  If magnitude <= Epsilon.E Then
+		  If magnitude <= PhysicsKit.Epsilon.E Then
 		    // The zero vector has no direction, return the Identity rotation.
-		    Return New Rotation
+		    Return New PKRotation
 		  End If
 		  
 		  // The rotation is the normalized vector.
-		  Return New Rotation(direction.X / magnitude, direction.Y / magnitude)
+		  Return New PKRotation(direction.X / magnitude, direction.Y / magnitude)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 2720526F7461746573207468697320526F746174696F6E2062792074686520676976656E20616E676C652028696E2072616469616E732920616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate(angle As Double) As PhysicsKit.Rotation
+		Function Rotate(angle As Double) As PKRotation
 		  ///
 		  ' Rotates this Rotation by the given angle (in radians) and returns this Rotation.
 		  '
@@ -663,7 +663,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E7465726E616C206D6574686F64207468617420726F7461746573207468697320526F746174696F6E20627920616E20616E676C6520CE9820616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate(c As Double, s As Double) As PhysicsKit.Rotation
+		Function Rotate(c As Double, s As Double) As PKRotation
 		  ///
 		  ' Internal method that rotates this Rotation by an angle Θ and returns this Rotation.
 		  '
@@ -685,7 +685,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E2062792074686520676976656E20526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate(r As PhysicsKit.Rotation) As PhysicsKit.Rotation
+		Function Rotate(r As PKRotation) As PKRotation
 		  ///
 		  ' Rotates this Rotation by the given Rotation and returns this Rotation.
 		  '
@@ -700,7 +700,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313335206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate135() As PhysicsKit.Rotation
+		Function Rotate135() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 135 degrees and returns Self Rotation.
 		  '
@@ -714,7 +714,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20313830206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate180() As PhysicsKit.Rotation
+		Function Rotate180() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 180 degrees and returns Self Rotation.
 		  '
@@ -730,7 +730,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323235206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate225() As PhysicsKit.Rotation
+		Function Rotate225() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 225 degrees and returns Self Rotation.
 		  '
@@ -744,7 +744,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20323730206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate270() As PhysicsKit.Rotation
+		Function Rotate270() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 270 degrees and returns Self Rotation.
 		  '
@@ -761,7 +761,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E20333135206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate315() As PhysicsKit.Rotation
+		Function Rotate315() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 315 degrees and returns Self Rotation.
 		  '
@@ -775,7 +775,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203435206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate45() As PhysicsKit.Rotation
+		Function Rotate45() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 45 degrees and returns Self Rotation.
 		  '
@@ -788,7 +788,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 496E7465726E616C2068656C706572206D6574686F6420746F20706572666F726D20726F746174696F6E7320636F6E73697374696E67206F6620612034352064656772656520616E676C652E2052657475726E73207468697320526F746174696F6E206166746572206D6F64696669636174696F6E2E
-		Protected Function Rotate45Helper(cost As Double, sint As Double) As PhysicsKit.Rotation
+		Protected Function Rotate45Helper(cost As Double, sint As Double) As PKRotation
 		  ///
 		  ' Internal helper method to perform rotations consisting of a 45 degree angle.
 		  '
@@ -807,7 +807,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320526F746174696F6E203930206465677265657320616E642072657475726E73207468697320526F746174696F6E2E
-		Function Rotate90() As PhysicsKit.Rotation
+		Function Rotate90() As PKRotation
 		  ///
 		  ' Rotates Self Rotation 90 degrees and returns Self Rotation.
 		  ' 
@@ -825,111 +825,111 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F66203020646567726565732E
-		Shared Function Rotation0() As PhysicsKit.Rotation
+		Shared Function Rotation0() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 0 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation
+		  Return New PKRotation
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662031333520646567726565732E
-		Shared Function Rotation135() As PhysicsKit.Rotation
+		Shared Function Rotation135() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 135 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-SQRT_2_INV, SQRT_2_INV)
+		  Return New PKRotation(-SQRT_2_INV, SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662031383020646567726565732E
-		Shared Function Rotation180() As PhysicsKit.Rotation
+		Shared Function Rotation180() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 180 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-1.0, 0.0)
+		  Return New PKRotation(-1.0, 0.0)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662032323520646567726565732E
-		Shared Function Rotation225() As PhysicsKit.Rotation
+		Shared Function Rotation225() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 225 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(-SQRT_2_INV, -SQRT_2_INV)
+		  Return New PKRotation(-SQRT_2_INV, -SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F662032373020646567726565732E
-		Shared Function Rotation270() As PhysicsKit.Rotation
+		Shared Function Rotation270() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 270 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(0.0, -1.0)
+		  Return New PKRotation(0.0, -1.0)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function Rotation315() As PhysicsKit.Rotation
+		Shared Function Rotation315() As PKRotation
 		  ///
 		  '  Creates a new Rotation of 315 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(SQRT_2_INV, -SQRT_2_INV)
+		  Return New PKRotation(SQRT_2_INV, -SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F6620343520646567726565732E
-		Shared Function Rotation45() As PhysicsKit.Rotation
+		Shared Function Rotation45() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 45 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(SQRT_2_INV, SQRT_2_INV)
+		  Return New PKRotation(SQRT_2_INV, SQRT_2_INV)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720526F746174696F6E206F6620393020646567726565732E
-		Shared Function Rotation90() As PhysicsKit.Rotation
+		Shared Function Rotation90() As PKRotation
 		  ///
 		  ' Creates a new Rotation of 90 degrees.
 		  '
 		  ' - Returns: A new Rotation.
 		  ///
 		  
-		  Return New Rotation(0.0, 1.0)
+		  Return New PKRotation(0.0, 1.0)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20616E676C652028696E2072616469616E732920616E642072657475726E73207468697320526F746174696F6E2E
-		Function Set(angle As Double) As PhysicsKit.Rotation
+		Function Set(angle As Double) As PKRotation
 		  ///
 		  ' Sets Self Rotation to the given angle.
 		  '
@@ -947,7 +947,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F2074686520676976656E20526F746174696F6E20616E642072657475726E73207468697320526F746174696F6E2E
-		Function Set(r As PhysicsKit.Rotation) As PhysicsKit.Rotation
+		Function Set(r As PKRotation) As PKRotation
 		  ///
 		  ' Sets Self Rotation to the given Rotation.
 		  '
@@ -965,7 +965,7 @@ Protected Class Rotation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320526F746174696F6E20746F20626520746865206964656E7469747920616E642072657475726E73207468697320526F746174696F6E2E
-		Function SetIdentity() As PhysicsKit.Rotation
+		Function SetIdentity() As PKRotation
 		  ///
 		  ' Sets Self Rotation to be the identity.
 		  '

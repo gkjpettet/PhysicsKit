@@ -156,14 +156,14 @@ Implements PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRotation() As PhysicsKit.Rotation
+		Function GetRotation() As PKRotation
 		  ///
 		  ' Returns the Rotation object representing the rotation of this Transform.
 		  '
 		  ' Returns: Rotation.
 		  ///
 		  
-		  Return Rotation.Of_(Self)
+		  Return PKRotation.Of_(Self)
 		  
 		End Function
 	#tag EndMethod
@@ -713,7 +713,7 @@ Implements PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation)
+		Sub Rotate(r As PKRotation)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  Self.Rotate(r.Cost, r.Sint)
@@ -722,7 +722,7 @@ Implements PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  Self.Rotate(r.Cost, r.Sint, x, y)
@@ -731,7 +731,7 @@ Implements PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, point As PKVector2)
+		Sub Rotate(r As PKRotation, point As PKVector2)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  Self.Rotate(r, point.X, point.Y)
@@ -801,7 +801,7 @@ Implements PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function SetRotation(rotation As PhysicsKit.Rotation) As PhysicsKit.Rotation
+		Function SetRotation(rotation As PKRotation) As PKRotation
 		  ///
 		  ' Sets the rotation and returns the previous rotation as a new Rotation object.
 		  '
@@ -811,7 +811,7 @@ Implements PKTransformable
 		  ///
 		  
 		  // Get the current rotation.
-		  Var r As PhysicsKit.Rotation = GetRotation
+		  Var r As PKRotation = GetRotation
 		  
 		  // Get rid of the current rotation and rotate by the new rotation.
 		  Self.Cost = rotation.Cost

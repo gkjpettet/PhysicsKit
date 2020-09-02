@@ -19,19 +19,19 @@ Protected Interface Rotatable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F746174657320746865206F626A6563742061626F757420746865206F726967696E2062792074686520616D6F756E74207370656369666965642062792074686520526F746174696F6E20706172616D657465722E
-		Sub Rotate(r As PhysicsKit.Rotation)
+		Sub Rotate(r As PKRotation)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 20526F746174657320746865206F626A6563742061626F75742074686520676976656E20706F696E74206279207468652073706563696669656420726F746174696F6E20616D6F756E742E
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F746174657320746865206F626A6563742061626F75742074686520676976656E20706F696E74206279207468652073706563696669656420616D6F756E74206F6620726F746174696F6E2E
-		Sub Rotate(r As PhysicsKit.Rotation, point As PKVector2)
+		Sub Rotate(r As PKRotation, point As PKVector2)
 		  
 		End Sub
 	#tag EndMethod
@@ -45,7 +45,7 @@ Protected Interface Rotatable
 		Rotates the object about the origin by the angle specified in radians.
 		- Parameter theta: The angle of rotation in radians.
 		
-		Rotate(r As Rotation)
+		Rotate(r As PKRotation)
 		---------------------
 		Rotates the object about the origin
 		- Parameter r: The Rotation representing the rotation amount.
@@ -56,7 +56,7 @@ Protected Interface Rotatable
 		- Parameter theta: The angle of rotation in radians.
 		- Parameter point: The point to rotate about.
 		
-		Rotate(r As Rotation, point As PKVector2)
+		Rotate(r As PKRotation, point As PKVector2)
 		---------------------------------------
 		Rotates the object about the given point.
 		- Parameter rotation: The Rotation representing the rotation amount.
@@ -69,7 +69,7 @@ Protected Interface Rotatable
 		- Parameter x: The x coordinate to rotate about.
 		- Parameter y: The y coordinate to rotate about.
 		
-		Rotate(r As Rotation, x As Double, y As Double)
+		Rotate(r As PKRotation, x As Double, y As Double)
 		-----------------------------------------------
 		Rotates the object about the given point.
 		- Parameter r: The Rotation representing the rotation amount.

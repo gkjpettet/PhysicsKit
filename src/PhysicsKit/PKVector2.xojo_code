@@ -615,7 +615,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F74617465732061626F757420746865206F726967696E2062792074686520696E766572736520616E676C65202DF09D9B9D20616E642072657475726E73207468697320766563746F722E
-		Function InverseRotate(rotation As PhysicsKit.Rotation) As PKVector2
+		Function InverseRotate(rotation As PKRotation) As PKVector2
 		  ///
 		  ' Rotates about the origin by the inverse angle -𝛝.
 		  '
@@ -630,7 +630,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F74617465732061626F75742074686520676976656E20636F6F7264696E617465732062792074686520696E766572736520616E676C65202DF09D9B9D20616E64207468656E2072657475726E73207468697320766563746F722E
-		Function InverseRotate(rotation As PhysicsKit.Rotation, x As Double, y As Double) As PKVector2
+		Function InverseRotate(rotation As PKRotation, x As Double, y As Double) As PKVector2
 		  /// 
 		  ' Rotates about the given coordinates by the inverse angle -𝛝.
 		  '
@@ -647,7 +647,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320766563746F722061626F75742074686520676976656E20706F696E742062792074686520696E766572736520616E676C65202DF09D9B9D20616E64207468656E2072657475726E73207468697320766563746F722E
-		Function InverseRotate(rotation As PhysicsKit.Rotation, point As PKVector2) As PKVector2
+		Function InverseRotate(rotation As PKRotation, point As PKVector2) As PKVector2
 		  ///
 		  ' Rotates Self vector about the given point by the inverse angle -𝛝.
 		  '
@@ -950,7 +950,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F74617465732061626F757420746865206F726967696E206279207468652070617373656420526F746174696F6E20616E642072657475726E73207468697320766563746F722E
-		Function Rotate(rotation As PhysicsKit.Rotation) As PKVector2
+		Function Rotate(rotation As PKRotation) As PKVector2
 		  ///
 		  ' Rotates about the origin.
 		  '
@@ -965,7 +965,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F7461746573207468697320766563746F722061626F75742074686520676976656E20636F6F7264696E6174657320616E64207468656E2072657475726E73207468697320766563746F722E
-		Function Rotate(rotation As PhysicsKit.Rotation, x As Double, y As Double) As PKVector2
+		Function Rotate(rotation As PKRotation, x As Double, y As Double) As PKVector2
 		  ///
 		  ' Rotates Self vector about the given coordinates.
 		  '
@@ -982,7 +982,7 @@ Protected Class PKVector2
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526F74617465732074686520766563746F722061626F75742074686520676976656E20706F696E7420616E64207468652072657475726E73207468697320766563746F722E
-		Function Rotate(rotation As PhysicsKit.Rotation, point As PKVector2) As PKVector2
+		Function Rotate(rotation As PKRotation, point As PKVector2) As PKVector2
 		  ///
 		  ' Rotates the vector about the given point.
 		  '

@@ -181,7 +181,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 		Sub Rotate(theta As Double, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
-		  Self.Rotate(New Rotation(theta), x, y)
+		  Self.Rotate(New PKRotation(theta), x, y)
 		  
 		End Sub
 	#tag EndMethod
@@ -196,7 +196,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation)
+		Sub Rotate(r As PKRotation)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  Self.Rotate(r, 0.0, 0.0)
@@ -205,7 +205,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  ///
@@ -220,7 +220,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, point As PKVector2)
+		Sub Rotate(r As PKRotation, point As PKVector2)
 		  // Part of the PhysicsKit.Rotatable interface.
 		  
 		  Self.Rotate(r, point.X, point.Y)

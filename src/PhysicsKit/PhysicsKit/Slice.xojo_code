@@ -40,7 +40,7 @@ Implements PhysicsKit.Convex
 		  Self.Normals = Array(v1, v2)
 		  
 		  // Initially the slice is aligned to the world space x axis.
-		  Self.Rotation = New Rotation
+		  Self.Rotation = New PKRotation
 		  
 		End Sub
 	#tag EndMethod
@@ -356,7 +356,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetRotation() As PhysicsKit.Rotation
+		Function GetRotation() As PKRotation
 		  ///
 		  ' - Returns: The Rotation object that represents the local rotation.
 		  ///
@@ -428,7 +428,7 @@ Implements PhysicsKit.Convex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Rotate(r As PhysicsKit.Rotation, x As Double, y As Double)
+		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Rotatable interface.
 		  ///
@@ -539,7 +539,7 @@ Implements PhysicsKit.Convex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865206C6F63616C20726F746174696F6E20696E2072616469616E732E
-		Rotation As PhysicsKit.Rotation
+		Rotation As PKRotation
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865207261646975732070617373656420696E206174206372656174696F6E
