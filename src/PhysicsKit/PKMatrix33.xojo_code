@@ -1,7 +1,7 @@
 #tag Class
-Protected Class Matrix33
+Protected Class PKMatrix33
 	#tag Method, Flags = &h0, Description = 416464732074686520676976656E204D6174726978333320746F2074686973204D617472697833332C2072657475726E696E672074686973204D617472697833332E
-		Function Add(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Add(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Adds the given Matrix33 to this Matrix33, returning this Matrix33.
 		  '
@@ -50,8 +50,8 @@ Protected Class Matrix33
 		  ' - Raises: InvalidArgumentException if `values` does not have 9 elements.
 		  ///
 		  
-		  If values Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_MATRIX_NIL_ARRAY)
-		  If values.Count <> 9 Then Raise New OutOfBoundsException(Messages.GEOMETRY_MATRIX_INVALID_LENGTH_9)
+		  If values Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MATRIX_NIL_ARRAY)
+		  If values.Count <> 9 Then Raise New OutOfBoundsException(PhysicsKit.Messages.GEOMETRY_MATRIX_INVALID_LENGTH_9)
 		  Self.M00 = values(0)
 		  Self.M01 = values(1)
 		  Self.M02 = values(2)
@@ -95,7 +95,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(matrix As PhysicsKit.Matrix33)
+		Sub Constructor(matrix As PKMatrix33)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -116,14 +116,14 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Copy() As PhysicsKit.Matrix33
+		Function Copy() As PKMatrix33
 		  ///
 		  ' Returns a copy of this Matrix33.
 		  '
 		  ' - Returns: A new Matrix33.
 		  ///
 		  
-		  Return New Matrix33(Self)
+		  Return New PKMatrix33(Self)
 		  
 		End Function
 	#tag EndMethod
@@ -147,7 +147,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D6174726978333320746861742069732074686520646966666572656E6365206F662074686973204D6174726978333320616E642074686520676976656E204D617472697833332E
-		Function Difference(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Difference(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Returns a new Matrix33 that is the difference of this Matrix33 and the given Matrix33.
 		  '
@@ -174,8 +174,8 @@ Protected Class Matrix33
 		  
 		  If obj Is Nil Then Return False
 		  If obj = Self Then Return True
-		  If obj IsA Matrix33 Then
-		    Var other As Matrix33 = Matrix33(obj)
+		  If obj IsA PKMatrix33 Then
+		    Var other As PKMatrix33 = PKMatrix33(obj)
 		    If other.M00 = Self.m00 And _
 		      other.M01 = Self.M01 And _
 		      other.M02 = Self.M02 And _
@@ -195,7 +195,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetInverse() As PhysicsKit.Matrix33
+		Function GetInverse() As PKMatrix33
 		  ///
 		  ' Returns a new Matrix33 containing the inverse of this Matrix33.
 		  '
@@ -209,14 +209,14 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetTranspose() As PhysicsKit.Matrix33
+		Function GetTranspose() As PKMatrix33
 		  ///
 		  ' Returns the the transpose of this Matrix33 in a new Matrix33.
 		  '
 		  ' - Returns: A new Matrix33.
 		  ///
 		  
-		  Var rm As Matrix33 = New Matrix33
+		  Var rm As PKMatrix33 = New PKMatrix33
 		  
 		  rm.M00 = Self.M00
 		  rm.M01 = Self.M10
@@ -234,7 +234,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Identity() As PhysicsKit.Matrix33
+		Function Identity() As PKMatrix33
 		  ///
 		  ' Sets this Matrix33 to an identity Matrix33.
 		  '
@@ -257,7 +257,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Invert() As PhysicsKit.Matrix33
+		Function Invert() As PKMatrix33
 		  ///
 		  ' Performs the inverse of this Matrix33 and places the result in this Matrix33.
 		  '
@@ -268,7 +268,7 @@ Protected Class Matrix33
 		  Var det As Double = Self.determinant()
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
 		  
 		  // Compute the cofactor determinants and apply the signs and transpose the matrix 
 		  // and multiply by the inverse of the determinant.
@@ -300,7 +300,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Multiply(scalar As Double) As PhysicsKit.Matrix33
+		Function Multiply(scalar As Double) As PKMatrix33
 		  ///
 		  ' Multiplies this Matrix33 by the given scalar and places the result in this Matrix33.
 		  '
@@ -327,7 +327,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697833332062792074686520676976656E206D6174726978204D617472697833332C2072657475726E696E672074686973204D617472697833332E
-		Function Multiply(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Multiply(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Multiplies this Matrix33 by the given matrix Matrix33, returning this Matrix33.
 		  '
@@ -418,7 +418,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Product(scalar As Double) As PhysicsKit.Matrix33
+		Function Product(scalar As Double) As PKMatrix33
 		  ///
 		  ' Multiplies this Matrix33 by the given scalar returning a new Matrix33 containing the result.
 		  '
@@ -436,7 +436,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Product(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Product(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Returns a new Matrix33 that is the product of this Matrix33 and the given Matrix33.
 		  '
@@ -506,7 +506,7 @@ Protected Class Matrix33
 		  Var det As Double = Self.M00 * Self.M11 - Self.M01 * Self.M10
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector2 = New PKVector2
 		  r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)
@@ -528,7 +528,7 @@ Protected Class Matrix33
 		  ' x = A⁻¹b
 		  ' ```
 		  '
-		  ' - Parameter b: The b PKVector3.
+		  ' - Parameter b: The PKVector3.
 		  '
 		  ' - Returns: A new PKVector3.
 		  ///
@@ -537,7 +537,7 @@ Protected Class Matrix33
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector3 = New PKVector3
 		  
@@ -563,7 +563,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5375627472616374732074686520676976656E204D617472697833332066726F6D2074686973204D617472697833332C2072657475726E696E672074686973204D617472697833332E
-		Function Subtract(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Subtract(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Subtracts the given Matrix33 from this Matrix33, returning this Matrix33.
 		  '
@@ -590,7 +590,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D617472697833332074686174206973207468652073756D206F662074686973204D6174726978333320616E642074686520676976656E204D617472697833332E
-		Function Sum(matrix As PhysicsKit.Matrix33) As PhysicsKit.Matrix33
+		Function Sum(matrix As PKMatrix33) As PKMatrix33
 		  ///
 		  ' Returns a new Matrix33 that is the sum of this Matrix33 and the given Matrix33.
 		  '
@@ -642,7 +642,7 @@ Protected Class Matrix33
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Transpose() As PhysicsKit.Matrix33
+		Function Transpose() As PKMatrix33
 		  ///
 		  ' Sets this Matrix33 to the transpose of this Matrix33.
 		  '
