@@ -6,7 +6,7 @@ Protected Module PhysicsKit
 		  // We could avoid initialise methods on these classes by making the shared properties 
 		  // static but that would require us to use computed shared properties which I suspect are 
 		  // slower than regular properties.
-		  AbstractShape.Initialise
+		  PKAbstractShape.Initialise
 		  Ellipse.Initialise
 		  Epsilon.Initialise
 		  HalfEllipse.Initialise

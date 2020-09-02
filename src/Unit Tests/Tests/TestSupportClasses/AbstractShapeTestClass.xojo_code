@@ -1,6 +1,6 @@
 #tag Class
 Protected Class AbstractShapeTestClass
-Inherits PhysicsKit.AbstractShape
+Inherits PKAbstractShape
 	#tag Method, Flags = &h0
 		Sub Constructor()
 		  Super.Constructor(New PKVector2, 0)

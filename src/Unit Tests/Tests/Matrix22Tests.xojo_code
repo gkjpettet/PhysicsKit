@@ -36,8 +36,8 @@ Inherits TestGroup
 		  ' Tests the Add method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(0.0, 2.0, 3.5, 1.2)
-		  Var m2 As Matrix22 = New Matrix22(1.3, 0.3, 0.0, 4.5)
+		  Var m1 As PKMatrix22 = New PKMatrix22(0.0, 2.0, 3.5, 1.2)
+		  Var m2 As PKMatrix22 = New PKMatrix22(1.3, 0.3, 0.0, 4.5)
 		  
 		  Call m1.Add(m2)
 		  
@@ -56,14 +56,14 @@ Inherits TestGroup
 		  ' Tests the copy constructor.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22
+		  Var m1 As PKMatrix22 = New PKMatrix22
 		  m1.m00 = 0
 		  m1.m01 = 2
 		  m1.m10 = 1
 		  m1.m11 = 3
 		  
 		  // Make a copy.
-		  Var m2 As Matrix22 = New Matrix22(m1)
+		  Var m2 As PKMatrix22 = New PKMatrix22(m1)
 		  
 		  // Test the values.
 		  Assert.AreEqual(m1.m00, m2.m00)
@@ -80,7 +80,7 @@ Inherits TestGroup
 		  ' Test the creation method passing a Double array.
 		  ///
 		  
-		  Var m As Matrix22 = New Matrix22(Array(1.0, 2.0, -3.0, 8.0))
+		  Var m As PKMatrix22 = New PKMatrix22(Array(1.0, 2.0, -3.0, 8.0))
 		  Assert.AreEqual(1.0, m.m00)
 		  Assert.AreEqual(2.0, m.m01)
 		  Assert.AreEqual(-3.0, m.m10)
@@ -95,7 +95,7 @@ Inherits TestGroup
 		  ' Tests the creation method passing four Doubles.
 		  ///
 		  
-		  Var m As Matrix22 = New Matrix22(1.0, 2.0, -3.0, 8.0)
+		  Var m As PKMatrix22 = New PKMatrix22(1.0, 2.0, -3.0, 8.0)
 		  Assert.AreEqual(1.0, m.m00)
 		  Assert.AreEqual(2.0, m.m01)
 		  Assert.AreEqual(-3.0, m.m10)
@@ -110,7 +110,7 @@ Inherits TestGroup
 		  ' Tests the Determinat method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Var det As Double = m1.Determinant
 		  Assert.AreEqual(-2.0, det)
 		  
@@ -123,9 +123,9 @@ Inherits TestGroup
 		  ' Tests the Difference method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(0.0, 2.0, 3.5, 1.2)
-		  Var m2 As Matrix22 = New Matrix22(1.3, 0.3, 0.0, 4.5)
-		  Var m3 As Matrix22 = m1.Difference(m2)
+		  Var m1 As PKMatrix22 = New PKMatrix22(0.0, 2.0, 3.5, 1.2)
+		  Var m2 As PKMatrix22 = New PKMatrix22(1.3, 0.3, 0.0, 4.5)
+		  Var m3 As PKMatrix22 = m1.Difference(m2)
 		  
 		  // Test the values.
 		  Assert.AreEqual(-1.3, m3.m00)
@@ -145,8 +145,8 @@ Inherits TestGroup
 		  ' Tests the GetInverse method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var m2 As Matrix22 = m1.GetInverse
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m2 As PKMatrix22 = m1.GetInverse
 		  
 		  Assert.AreEqual(-2.0, m2.m00)
 		  Assert.AreEqual(1.0, m2.m01)
@@ -165,8 +165,8 @@ Inherits TestGroup
 		  ' Tests the GetTranspose method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var m2 As Matrix22 = m1.GetTranspose
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m2 As PKMatrix22 = m1.GetTranspose
 		  
 		  Assert.AreEqual(1.0, m2.m00)
 		  Assert.AreEqual(3.0, m2.m01)
@@ -185,7 +185,7 @@ Inherits TestGroup
 		  ' Tests the Identity method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Call m1.Identity
 		  
 		  Assert.AreEqual(1.0, m1.m00)
@@ -202,7 +202,7 @@ Inherits TestGroup
 		  ' Tests the Invert method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Call m1.Invert
 		  
 		  Assert.AreEqual(-2.0, m1.m00)
@@ -219,8 +219,8 @@ Inherits TestGroup
 		  ' Tests the multiply matrix method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var m2 As Matrix22 = New Matrix22(4.0, 3.0, 2.0, 1.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m2 As PKMatrix22 = New PKMatrix22(4.0, 3.0, 2.0, 1.0)
 		  Call m1.Multiply(m2)
 		  
 		  Assert.AreEqual(8.0, m1.m00)
@@ -237,7 +237,7 @@ Inherits TestGroup
 		  ' Tests the multiply by a scalar method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Call m1.Multiply(2.0)
 		  
 		  Assert.AreEqual(2.0, m1.m00)
@@ -254,7 +254,7 @@ Inherits TestGroup
 		  ' Tests the multiply vector method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Call m1.Multiply(v1)
 		  
@@ -270,7 +270,7 @@ Inherits TestGroup
 		  ' Tests the multiply vector transpose method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Call m1.MultiplyT(v1)
 		  
@@ -286,9 +286,9 @@ Inherits TestGroup
 		  ' Tests the product matrix method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var m2 As Matrix22 = New Matrix22(4.0, 3.0, 2.0, 1.0)
-		  Var m3 As Matrix22 = m1.Product(m2)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m2 As PKMatrix22 = New PKMatrix22(4.0, 3.0, 2.0, 1.0)
+		  Var m3 As PKMatrix22 = m1.Product(m2)
 		  
 		  Assert.AreEqual(8.0, m3.m00)
 		  Assert.AreEqual(5.0, m3.m01)
@@ -307,8 +307,8 @@ Inherits TestGroup
 		  ' Tests the product by a scalar method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
-		  Var m2 As Matrix22 = m1.Product(2.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m2 As PKMatrix22 = m1.Product(2.0)
 		  
 		  Assert.AreEqual(2.0, m2.m00)
 		  Assert.AreEqual(4.0, m2.m01)
@@ -327,7 +327,7 @@ Inherits TestGroup
 		  ' Tests the product vector method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Var v2 As PKVector2 = m1.Product(v1)
 		  
@@ -346,7 +346,7 @@ Inherits TestGroup
 		  ' Tests the product vector transpose method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Var v1 As PKVector2 = New PKVector2(1.0, -1.0)
 		  Var v2 As PKVector2 = m1.ProductT(v1)
 		  
@@ -365,7 +365,7 @@ Inherits TestGroup
 		  ' Tests the Solve method.
 		  ///
 		  
-		  Var A As Matrix22 = New Matrix22(3.0, -1.0, -1.0, -1.0)
+		  Var A As PKMatrix22 = New PKMatrix22(3.0, -1.0, -1.0, -1.0)
 		  Var b As PKVector2 = New PKVector2(2.0, 6.0)
 		  Var x As PKVector2 = A.Solve(b)
 		  
@@ -381,8 +381,8 @@ Inherits TestGroup
 		  ' Tests the Subtract method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(0.0, 2.0, 3.5, 1.2)
-		  Var m2 As Matrix22 = New Matrix22(1.3, 0.3, 0.0, 4.5)
+		  Var m1 As PKMatrix22 = New PKMatrix22(0.0, 2.0, 3.5, 1.2)
+		  Var m2 As PKMatrix22 = New PKMatrix22(1.3, 0.3, 0.0, 4.5)
 		  
 		  Call m1.Subtract(m2)
 		  
@@ -401,10 +401,10 @@ Inherits TestGroup
 		  ' Tests the Sum method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(0.0, 2.0, 3.5, 1.2)
-		  Var m2 As Matrix22 = New Matrix22(1.3, 0.3, 0.0, 4.5)
+		  Var m1 As PKMatrix22 = New PKMatrix22(0.0, 2.0, 3.5, 1.2)
+		  Var m2 As PKMatrix22 = New PKMatrix22(1.3, 0.3, 0.0, 4.5)
 		  
-		  Var m3 As Matrix22  = m1.Sum(m2)
+		  Var m3 As PKMatrix22  = m1.Sum(m2)
 		  
 		  // Test the values.
 		  Assert.AreEqual(1.3, m3.m00)
@@ -424,7 +424,7 @@ Inherits TestGroup
 		  ' Tests the Transpose method.
 		  ///
 		  
-		  Var m1 As Matrix22 = New Matrix22(1.0, 2.0, 3.0, 4.0)
+		  Var m1 As PKMatrix22 = New PKMatrix22(1.0, 2.0, 3.0, 4.0)
 		  Call m1.Transpose
 		  
 		  Assert.AreEqual(1.0, m1.m00)

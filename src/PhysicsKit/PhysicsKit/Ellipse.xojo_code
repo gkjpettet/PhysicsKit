@@ -1,6 +1,6 @@
 #tag Class
 Protected Class Ellipse
-Inherits PhysicsKit.AbstractShape
+Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h0
 		Sub Constructor(valid As Boolean, width As Double, height As Double)

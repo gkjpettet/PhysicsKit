@@ -1,6 +1,6 @@
 #tag Class
 Protected Class Slice
-Inherits PhysicsKit.AbstractShape
+Inherits PKAbstractShape
 Implements  PKConvex
 	#tag Method, Flags = &h21
 		Private Sub Constructor(valid As Boolean, radius As Double, theta As Double, center As PKVector2)

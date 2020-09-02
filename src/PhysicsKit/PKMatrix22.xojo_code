@@ -1,7 +1,7 @@
 #tag Class
-Protected Class Matrix22
+Protected Class PKMatrix22
 	#tag Method, Flags = &h0, Description = 416464732074686520676976656E204D6174726978323220746F2074686973204D617472697832322C2072657475726E696E672074686973204D617472697832322E
-		Function Add(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Add(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Adds the given Matrix22 to this Matrix22, returning this Matrix22.
 		  '
@@ -46,8 +46,8 @@ Protected Class Matrix22
 		  ' - Raises: OutOfBoundsException if `values` does not have 4 elements.
 		  ///
 		  
-		  If values = Nil Then Raise New NilObjectException(Messages.GEOMETRY_MATRIX_NIL_ARRAY)
-		  If values.Count <> 4 Then Raise New OutOfBoundsException(Messages.GEOMETRY_MATRIX_INVALID_LENGTH_4)
+		  If values = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MATRIX_NIL_ARRAY)
+		  If values.Count <> 4 Then Raise New OutOfBoundsException(PhysicsKit.Messages.GEOMETRY_MATRIX_INVALID_LENGTH_4)
 		  Self.M00 = values(0)
 		  Self.M01 = values(1)
 		  Self.M10 = values(2)
@@ -76,7 +76,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(m As PhysicsKit.Matrix22)
+		Sub Constructor(m As PKMatrix22)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -92,14 +92,14 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686973204D617472697832322E
-		Function Copy() As PhysicsKit.Matrix22
+		Function Copy() As PKMatrix22
 		  ///
 		  ' Returns a copy of this Matrix22.
 		  '
 		  ' - Returns: A new Matrix22.
 		  ///
 		  
-		  Return New Matrix22(Self)
+		  Return New PKMatrix22(Self)
 		  
 		End Function
 	#tag EndMethod
@@ -118,7 +118,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D6174726978323220746861742069732074686520646966666572656E6365206F662074686973204D6174726978323220616E642074686520676976656E204D617472697832322E
-		Function Difference(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Difference(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Returns a new Matrix22 that is the difference of this Matrix22 and the given Matrix22.
 		  '
@@ -143,8 +143,8 @@ Protected Class Matrix22
 		  
 		  If obj Is Nil Then Return False
 		  If obj = Self Then Return True
-		  If obj IsA Matrix22 Then
-		    Var other As Matrix22 = Matrix22(obj)
+		  If obj IsA PKMatrix22 Then
+		    Var other As PKMatrix22 = PKMatrix22(obj)
 		    If other.M00 = Self.M00 And _
 		      other.M01 = Self.M01 And _
 		      other.M10 = Self.M10 And _
@@ -159,7 +159,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetInverse() As PhysicsKit.Matrix22
+		Function GetInverse() As PKMatrix22
 		  ///
 		  ' Returns a new Matrix22 containing the inverse of this Matrix22.
 		  '
@@ -173,7 +173,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865207472616E73706F7365206F662074686973204D6174726978323220696E2061206E6577204D617472697832322E
-		Function GetTranspose() As PhysicsKit.Matrix22
+		Function GetTranspose() As PKMatrix22
 		  ///
 		  ' Returns the transpose of this Matrix22 in a new Matrix22.
 		  '
@@ -186,7 +186,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536574732074686973204D6174726978323220746F20616E206964656E74697479204D6174726978323220616E642072657475726E732074686973204D617472697832322E
-		Function Identity() As PhysicsKit.Matrix22
+		Function Identity() As PKMatrix22
 		  ///
 		  ' Sets this Matrix22 to an identity Matrix22 and returns this Matrix22.
 		  '
@@ -204,7 +204,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D732074686520696E7665727365206F662074686973204D6174726978323220616E6420706C616365732074686520726573756C7420696E2074686973204D617472697832322E
-		Function Invert() As PhysicsKit.Matrix22
+		Function Invert() As PKMatrix22
 		  ///
 		  ' Performs the inverse of this Matrix22 and places the result in this Matrix22.
 		  '
@@ -215,7 +215,7 @@ Protected Class Matrix22
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
 		  
 		  Var a As Double = Self.M00
 		  Var b As Double = Self.M01
@@ -233,7 +233,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697832322062792074686520676976656E207363616C617220616E6420706C616365732074686520726573756C7420696E2074686973204D617472697832322E
-		Function Multiply(scalar As Double) As PhysicsKit.Matrix22
+		Function Multiply(scalar As Double) As PKMatrix22
 		  ///
 		  ' Multiplies this Matrix22 by the given scalar and places the result in this Matrix22.
 		  '
@@ -255,7 +255,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697832322062792074686520676976656E206D6174726978204D617472697832322C2072657475726E696E672074686973204D617472697832322E
-		Function Multiply(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Multiply(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Multiplies this Matrix22 by the given matrix Matrix22, returning this Matrix22.
 		  '
@@ -330,7 +330,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D756C7469706C6965732074686973204D617472697832322062792074686520676976656E207363616C61722072657475726E696E672061206E6577204D6174726978323220636F6E7461696E696E672074686520726573756C742E
-		Function Product(scalar As Double) As PhysicsKit.Matrix22
+		Function Product(scalar As Double) As PKMatrix22
 		  ///
 		  ' Multiplies this Matrix22 by the given scalar returning a new Matrix22 containing the result.
 		  '
@@ -348,7 +348,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577204D617472697832322074686174206973207468652070726F64756374206F662074686973204D6174726978323220616E642074686520676976656E204D617472697832322E
-		Function Product(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Product(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Returns a new Matrix22 that is the product of this Matrix22 and the given Matrix22.
 		  '
@@ -420,7 +420,7 @@ Protected Class Matrix22
 		  Var det As Double = Self.Determinant
 		  
 		  // Check for zero determinant.
-		  If Abs(det) > Epsilon.E Then det = 1.0 / det
+		  If Abs(det) > PhysicsKit.Epsilon.E Then det = 1.0 / det
 		  
 		  Var r As PKVector2 = New PKVector2
 		  r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)
@@ -432,7 +432,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5375627472616374732074686520676976656E204D617472697832322066726F6D2074686973204D617472697832322C2072657475726E696E672074686973204D617472697832322E
-		Function Subtract(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Subtract(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Subtracts the given Matrix22 from this Matrix22, returning this Matrix22.
 		  '
@@ -454,7 +454,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Sum(matrix As PhysicsKit.Matrix22) As PhysicsKit.Matrix22
+		Function Sum(matrix As PKMatrix22) As PKMatrix22
 		  ///
 		  ' Returns a new Matrix22 that is the sum of this Matrix22 and the given Matrix22.
 		  '
@@ -495,7 +495,7 @@ Protected Class Matrix22
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Transpose() As PhysicsKit.Matrix22
+		Function Transpose() As PKMatrix22
 		  ///
 		  ' Sets this Matrix22 to the transpose of this Matrix22 and returns this Matrix22.
 		  '

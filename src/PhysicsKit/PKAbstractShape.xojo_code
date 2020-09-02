@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AbstractShape
+Protected Class PKAbstractShape
 Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag Method, Flags = &h0, Description = 4D696E696D616C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
@@ -11,7 +11,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 		  ' - Raises: InvalidlArgumentException if radius is zero or less.
 		  ///
 		  
-		  mID = New UUID
+		  mID = New PhysicsKit.UUID
 		  
 		  Constructor(New PKVector2, radius)
 		  
@@ -30,7 +30,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 		  ' - Raises: NilObjectException if center is Nil.
 		  ///
 		  
-		  If mID Is Nil Then mID = New UUID
+		  If mID Is Nil Then mID = New PhysicsKit.UUID
 		  
 		  Self.Center = center
 		  Self.Radius = radius
@@ -294,7 +294,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 			  Return mID
 			End Get
 		#tag EndGetter
-		Private ID As UUID
+		Private ID As PhysicsKit.UUID
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 4964656E74697479205472616E73666F726D20696E7374616E63652E
@@ -302,7 +302,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 546865207368617065277320756E69717565206964656E7469666965722E
-		Private mID As UUID
+		Private mID As PhysicsKit.UUID
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865206D6178696D756D207261646975732E
