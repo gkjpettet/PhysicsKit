@@ -1,5 +1,5 @@
 #tag Class
-Protected Class UUID
+Protected Class PKUUID
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772055554944206F626A6563742077697468207468652073706563696669656420537472696E672076616C75652E
 		Sub Constructor()
 		  ///
@@ -149,8 +149,8 @@ Protected Class UUID
 		  ///
 		  
 		  If obj Is Nil Then Return False
-		  If obj IsA UUID = False Then Return False
-		  Return If(mValue.Compare(UUID(obj).Value, ComparisonOptions.CaseSensitive) = 0, True, False)
+		  If obj IsA PKUUID = False Then Return False
+		  Return If(mValue.Compare(PKUUID(obj).Value, ComparisonOptions.CaseSensitive) = 0, True, False)
 		  
 		End Function
 	#tag EndMethod

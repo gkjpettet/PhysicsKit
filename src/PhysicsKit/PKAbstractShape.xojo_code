@@ -11,7 +11,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 		  ' - Raises: InvalidlArgumentException if radius is zero or less.
 		  ///
 		  
-		  mID = New PhysicsKit.UUID
+		  mID = New PKUUID
 		  
 		  Constructor(New PKVector2, radius)
 		  
@@ -30,7 +30,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 		  ' - Raises: NilObjectException if center is Nil.
 		  ///
 		  
-		  If mID Is Nil Then mID = New PhysicsKit.UUID
+		  If mID Is Nil Then mID = New PKUUID
 		  
 		  Self.Center = center
 		  Self.Radius = radius
@@ -100,7 +100,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetID() As PhysicsKit.UUID
+		Function GetID() As PKUUID
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Return mID
@@ -294,7 +294,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 			  Return mID
 			End Get
 		#tag EndGetter
-		Private ID As PhysicsKit.UUID
+		Private ID As PKUUID
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 4964656E74697479205472616E73666F726D20696E7374616E63652E
@@ -302,7 +302,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 546865207368617065277320756E69717565206964656E7469666965722E
-		Private mID As PhysicsKit.UUID
+		Private mID As PKUUID
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865206D6178696D756D207261646975732E
