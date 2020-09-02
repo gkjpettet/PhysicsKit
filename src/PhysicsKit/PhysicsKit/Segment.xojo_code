@@ -239,7 +239,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.Feature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature
 		  ///
 		  ' Returns the feature farthest in the direction of n.
 		  '

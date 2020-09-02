@@ -1,6 +1,6 @@
 #tag Class
 Protected Class EdgeFeature
-Inherits PhysicsKit.Feature
+Inherits PKFeature
 	#tag Method, Flags = &h0, Description = 4372656174657320616E206564676520666561747572652E
 		Sub Constructor(vertex1 As PhysicsKit.PointFeature, vertex2 As PhysicsKit.PointFeature, max As PhysicsKit.PointFeature, edge As PKVector2, index As Integer)
 		  ///

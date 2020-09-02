@@ -1,6 +1,6 @@
 #tag Class
 Protected Class PointFeature
-Inherits PhysicsKit.Feature
+Inherits PKFeature
 	#tag Method, Flags = &h0, Description = 4F7074696F6E616C20636F6E7374727563746F722E20417373756D65732074686520676976656E20706F696E74206973206E6F7420696E64657865642E
 		Sub Constructor(point As PKVector2)
 		  ///
@@ -11,7 +11,7 @@ Inherits PhysicsKit.Feature
 		  ' - Parameter point: The vertex point.
 		  ///
 		  
-		  Constructor(point, Feature.NOT_INDEXED)
+		  Constructor(point, PKFeature.NOT_INDEXED)
 		  
 		End Sub
 	#tag EndMethod

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Feature
+Protected Class PKFeature
 	#tag Method, Flags = &h0
 		Sub Constructor(index As Integer)
 		  ///
