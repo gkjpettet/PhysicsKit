@@ -17,7 +17,7 @@ Protected Class PKLinkedVertexHull
 		  ' - Parameter point: The point.
 		  ///
 		  
-		  Var root As PhysicsKit.LinkedVertex = New PhysicsKit.LinkedVertex(point)
+		  Var root As PKLinkedVertex = New PKLinkedVertex(point)
 		  Self.LeftMost = root
 		  Self.RightMost = root
 		  Self.Size = 1
@@ -48,8 +48,8 @@ Protected Class PKLinkedVertexHull
 		  hull.LeftMost = left.LeftMost
 		  hull.RightMost = right.RightMost
 		  
-		  Var lu As PhysicsKit.LinkedVertex = left.RightMost
-		  Var ru As PhysicsKit.LinkedVertex = right.LeftMost
+		  Var lu As PKLinkedVertex = left.RightMost
+		  Var ru As PKLinkedVertex = right.LeftMost
 		  
 		  // We don't use strict inequalities when checking the result of getLocation
 		  // so we can remove coincident points in the hull.
@@ -60,8 +60,8 @@ Protected Class PKLinkedVertexHull
 		  Var limitLeftU As Integer = left.Size - 1
 		  
 		  Do
-		    Var prevLu As PhysicsKit.LinkedVertex = lu
-		    Var prevRu As PhysicsKit.LinkedVertex = ru
+		    Var prevLu As PKLinkedVertex = lu
+		    Var prevRu As PKLinkedVertex = ru
 		    
 		    While limitRightU > 0 And PhysicsKit.RobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) <= 0
 		      ru = ru.NextVertex
@@ -78,15 +78,15 @@ Protected Class PKLinkedVertexHull
 		  Loop
 		  
 		  // Same as before, for the other side.
-		  Var ll As PhysicsKit.LinkedVertex = left.RightMost
-		  Var rl As PhysicsKit.LinkedVertex = right.LeftMost
+		  Var ll As PKLinkedVertex = left.RightMost
+		  Var rl As PKLinkedVertex = right.LeftMost
 		  
 		  Var limitRightL As Integer = right.Size - 1
 		  Var limitLeftL As Integer = left.Size - 1
 		  
 		  Do
-		    Var prevLl As PhysicsKit.LinkedVertex = ll
-		    Var prevRl As PhysicsKit.LinkedVertex = rl
+		    Var prevLl As PKLinkedVertex = ll
+		    Var prevRl As PKLinkedVertex = rl
 		    
 		    While limitRightL > 0 And PhysicsKit.RobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) >= 0
 		      rl = rl.PreviousVertex
@@ -113,7 +113,7 @@ Protected Class PKLinkedVertexHull
 		  // of limitLeft/Right/L/U but it is not straightforward and there is no observable
 		  // speed gain. So use a simple loop instead.
 		  Var size As Integer = 0
-		  Var v As PhysicsKit.LinkedVertex = lu
+		  Var v As PKLinkedVertex = lu
 		  
 		  Do
 		    size = size + 1
@@ -140,7 +140,7 @@ Protected Class PKLinkedVertexHull
 		  Var points() As PKVector2
 		  points.ResizeTo(Self.Size - 1)
 		  
-		  Var vertex As PhysicsKit.LinkedVertex = Self.LeftMost
+		  Var vertex As PKLinkedVertex = Self.LeftMost
 		  
 		  Var iLimit As Integer = Self.Size - 1
 		  For i As Integer = 0 To iLimit
@@ -183,11 +183,11 @@ Protected Class PKLinkedVertexHull
 
 
 	#tag Property, Flags = &h0, Description = 546865207665727465782074686174206861732074686520736D616C6C657374207820636F6F7264696E6174652E
-		LeftMost As PhysicsKit.LinkedVertex
+		LeftMost As PKLinkedVertex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652076657274657820746861742068617320746865206C617267657374207820636F6F7264696E6174652E
-		RightMost As PhysicsKit.LinkedVertex
+		RightMost As PKLinkedVertex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 54686520746F74616C206E756D626572206F66207665727469636573206F6E207468652068756C6C2E

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class LinkedVertex
+Protected Class PKLinkedVertex
 	#tag Method, Flags = &h0
 		Sub Constructor(point As PKVector2)
 		  ///
@@ -35,7 +35,7 @@ Protected Class LinkedVertex
 
 
 	#tag Property, Flags = &h0, Description = 546865206E657874207665727465782E
-		NextVertex As PhysicsKit.LinkedVertex
+		NextVertex As PKLinkedVertex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652076657274657820706F696E742E
@@ -43,7 +43,7 @@ Protected Class LinkedVertex
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 5468652070726576696F7573207665727465782E
-		PreviousVertex As PhysicsKit.LinkedVertex
+		PreviousVertex As PKLinkedVertex
 	#tag EndProperty
 
 
