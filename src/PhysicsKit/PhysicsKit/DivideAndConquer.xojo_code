@@ -53,7 +53,7 @@ Implements  PKHullGenerator
 		  
 		  Try
 		    // Sort the points by the x coordinate, then the y coordinate.
-		    points.Sort(AddressOf MinXYPointComparator.Compare)
+		    points.Sort(AddressOf PKMinXYPointComparator.Compare)
 		  Catch e As NilObjectException
 		    // This will be hit if any of the points are Nil.
 		    Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)
