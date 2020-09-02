@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface Shiftable
+Protected Interface PKShiftable
 	#tag Method, Flags = &h0, Description = 5472616E736C6174657320746865206F626A65637420746F206D617463682074686520676976656E20636F6F7264696E6174652073686966742E
 		Sub Shift(shift As PKVector2)
 		  
