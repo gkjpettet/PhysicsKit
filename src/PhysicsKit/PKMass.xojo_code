@@ -31,7 +31,7 @@ Protected Class PKMass
 		  ///
 		  
 		  // Validate the input.
-		  If mass Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS)
+		  If mass Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS)
 		  
 		  // Setup the mass.
 		  Self.Type = mass.Type
@@ -61,13 +61,13 @@ Protected Class PKMass
 		  
 		  // Validate the input,
 		  If center Is Nil Then
-		    Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_CENTER)
+		    Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_CENTER)
 		  End If
 		  If mass < 0.0 Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_MASS)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_MASS)
 		  End If
 		  If inertia < 0.0 Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_INERTIA)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_INERTIA)
 		  End If
 		  
 		  // Create the mass.
@@ -137,10 +137,10 @@ Protected Class PKMass
 		  
 		  // Check the array for Nil or empty.
 		  If masses = Nil Then
-		    Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY)
+		    Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY)
 		  End If
 		  If masses.Count = 0 Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE)
 		  End If
 		  
 		  // Get the length of the masses array.
@@ -153,7 +153,7 @@ Protected Class PKMass
 		    If m <> Nil Then
 		      Return New PKMass(masses(0))
 		    Else
-		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
+		      Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
 		    End If
 		  End If
 		  
@@ -166,7 +166,7 @@ Protected Class PKMass
 		  For Each mass As PKMass In masses
 		    // Check for Nil mass.
 		    If mass = Nil Then
-		      Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
+		      Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)
 		    End If
 		    // Add the centers up (weighting them by their respective mass).
 		    Call c.Add(mass.Center.Product(mass.Mass))

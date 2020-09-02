@@ -46,8 +46,8 @@ Protected Class PKMatrix22
 		  ' - Raises: OutOfBoundsException if `values` does not have 4 elements.
 		  ///
 		  
-		  If values = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_MATRIX_NIL_ARRAY)
-		  If values.Count <> 4 Then Raise New OutOfBoundsException(PhysicsKit.Messages.GEOMETRY_MATRIX_INVALID_LENGTH_4)
+		  If values = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_MATRIX_NIL_ARRAY)
+		  If values.Count <> 4 Then Raise New OutOfBoundsException(PKMessages.GEOMETRY_MATRIX_INVALID_LENGTH_4)
 		  Self.M00 = values(0)
 		  Self.M01 = values(1)
 		  Self.M10 = values(2)

@@ -13,7 +13,7 @@ Protected Class AdaptiveDecimal
 		  ///
 		  
 		  If mSize >= Capacity then
-		    Raise New OutOfBoundsException(Messages.ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY)
+		    Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY)
 		  End If
 		  
 		  Components(mSize) = value
@@ -177,7 +177,7 @@ Protected Class AdaptiveDecimal
 		  ' - Raises: InvalidArgumentException if `length` is <= 0.
 		  ///
 		  
-		  If length <= 0 Then Raise New InvalidArgumentException(Messages.ADAPTIVE_DECIMAL_INVALID_LENGTH)
+		  If length <= 0 Then Raise New InvalidArgumentException(PKMessages.ADAPTIVE_DECIMAL_INVALID_LENGTH)
 		  
 		  Self.Components.ResizeTo(length - 1)
 		  mSize = 0
@@ -225,7 +225,7 @@ Protected Class AdaptiveDecimal
 		  ///
 		  
 		  If other.Components.Count > Self.Components.Count Then
-		    Raise New OutOfBoundsException(Messages.ADAPTIVE_DECIMAL_OTHER_COMPONENTS_TOO_LARGE)
+		    Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_OTHER_COMPONENTS_TOO_LARGE)
 		  End If
 		  
 		  Var index As Integer = 0
@@ -246,7 +246,7 @@ Protected Class AdaptiveDecimal
 		  ///
 		  
 		  If Not CheckInvariants Then
-		    Raise New RuntimeException(Messages.ADAPTIVE_DECIMAL_INVALID_REPRESENTATION)
+		    Raise New RuntimeException(PKMessages.ADAPTIVE_DECIMAL_INVALID_REPRESENTATION)
 		  End If
 		  
 		End Sub
@@ -374,7 +374,7 @@ Protected Class AdaptiveDecimal
 		  ///
 		  
 		  If index < 0 Or index >= mSize Then
-		    Raise New OutOfBoundsException(Messages.ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE)
+		    Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE)
 		  End If
 		  
 		  Return Self.Components(index)

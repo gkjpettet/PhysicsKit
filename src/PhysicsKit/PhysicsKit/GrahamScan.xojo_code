@@ -8,7 +8,7 @@ Implements  PKHullGenerator
 		  ///
 		  
 		  // Check for a Nil points array.
-		  If points Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_HULL_NIL_ARRAY)
+		  If points Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)
 		  
 		  // Get the size.
 		  Var size As Integer = points.Count
@@ -23,7 +23,7 @@ Implements  PKHullGenerator
 		  For i As Integer = 1 To iLimit
 		    Var p As PKVector2 = points(i)
 		    // Make sure the point is not Nil.
-		    If p Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_HULL_NIL_POINTS)
+		    If p Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)
 		    If p.Y < minY.Y Then
 		      minY = p
 		    ElseIf p.Y = minY.Y Then

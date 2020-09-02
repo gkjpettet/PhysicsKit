@@ -52,9 +52,9 @@ Protected Class Ray
 		  ' - Raises: InvalidArgumentException if `direction` is the zero vector.
 		  ///
 		  
-		  If start Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_RAY_NIL_START)
-		  If direction Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_RAY_NIL_DIRECTION)
-		  If direction.IsZero Then Raise New InvalidArgumentException(Messages.GEOMETRY_RAY_ZERO_DIRECTION)
+		  If start Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_RAY_NIL_START)
+		  If direction Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_RAY_NIL_DIRECTION)
+		  If direction.IsZero Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RAY_ZERO_DIRECTION)
 		  
 		  Self.Start = start
 		  Self.Direction = direction.GetNormalised
@@ -125,8 +125,8 @@ Protected Class Ray
 		  ' - Raises: InvalidArgumentException if `direction` is the zero vector.
 		  ///
 		  
-		  If direction Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_RAY_NIL_DIRECTION)
-		  If direction.IsZero Then Raise New InvalidArgumentException(Messages.GEOMETRY_RAY_ZERO_DIRECTION)
+		  If direction Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_RAY_NIL_DIRECTION)
+		  If direction.IsZero Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RAY_ZERO_DIRECTION)
 		  Self.Direction = direction
 		  
 		  
@@ -143,7 +143,7 @@ Protected Class Ray
 		  ' - Raises: NilObjectException if `start` is Nil.
 		  ///
 		  
-		  If start Is Nil Then Raise New NilObjectException(Messages.GEOMETRY_RAY_NIL_START)
+		  If start Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_RAY_NIL_START)
 		  Self.Start = start
 		  
 		End Sub

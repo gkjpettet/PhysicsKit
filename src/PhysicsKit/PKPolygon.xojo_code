@@ -614,17 +614,17 @@ Implements   PKConvex,  PKWound
 		  ///
 		  
 		  // Check the vertex array.
-		  If verts = Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_POLYGON_NIL_ARRAY)
+		  If verts = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_POLYGON_NIL_ARRAY)
 		  
 		  // Get the size.
 		  Var size As Integer = verts.Count
 		  
 		  // Check the size.
-		  If size < 3 Then Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_LESS_THAN_3_VERTICES)
+		  If size < 3 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_LESS_THAN_3_VERTICES)
 		  
 		  // Check for Nil vertices.
 		  For Each v As PKVector2 In verts
-		    If v Is Nil Then Raise New NilObjectException(PhysicsKit.Messages.GEOMETRY_POLYGON_NIL_VERTICES)
+		    If v Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_POLYGON_NIL_VERTICES)
 		  Next v
 		  
 		  // Check for convex.
@@ -637,7 +637,7 @@ Implements   PKConvex,  PKWound
 		    Var p2 As PKVector2 = If((i + 1 = size), verts(0), verts(i + 1))
 		    // Check for coincident vertices.
 		    If p1.Equals(p2) Then
-		      Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_COINCIDENT_VERTICES)
+		      Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_COINCIDENT_VERTICES)
 		    End If
 		    // Check the cross product for CCW winding.
 		    Var cross As Double = p0.Towards(p1).Cross(p1.Towards(p2))
@@ -647,7 +647,7 @@ Implements   PKConvex,  PKWound
 		    If Abs(cross) > PhysicsKit.Epsilon.E Then
 		      // Check for convexity.
 		      If sign <> 0.0 And tsign <> sign Then
-		        Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_NON_CONVEX)
+		        Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_NON_CONVEX)
 		      End If
 		    End If
 		    sign = tsign
@@ -655,12 +655,12 @@ Implements   PKConvex,  PKWound
 		  
 		  // Don't allow degenerate polygons.
 		  If Abs(area) <= PhysicsKit.Epsilon.E Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_ZERO_AREA)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_ZERO_AREA)
 		  End If
 		  
 		  // Check for CCW.
 		  If area < 0.0 Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_POLYGON_INVALID_WINDING)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_INVALID_WINDING)
 		  End If
 		  
 		  // If we've made it this far then continue.

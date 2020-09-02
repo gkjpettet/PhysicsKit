@@ -597,7 +597,7 @@ Protected Class PKRotation
 		  Var magnitude As Double = cost * cost + sint * sint
 		  
 		  If Abs(magnitude - 1) > PhysicsKit.Epsilon.E Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_ROTATION_INVALID_POINT)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_ROTATION_INVALID_POINT)
 		  End If
 		  
 		  Return New PKRotation(cost, sint)

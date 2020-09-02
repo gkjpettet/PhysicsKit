@@ -52,7 +52,7 @@ Protected Class Interval
 		  ///
 		  
 		  If min > max Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_INTERVAL_INVALID)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID)
 		  End If
 		  
 		  Self.Min = min
@@ -420,7 +420,7 @@ Protected Class Interval
 		  ///
 		  
 		  If max < Self.Min Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_INTERVAL_INVALID_MAXIMUM)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID_MAXIMUM)
 		  End If
 		  
 		  Self.Max = max
@@ -439,7 +439,7 @@ Protected Class Interval
 		  ///
 		  
 		  If min > Self.Max Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_INTERVAL_INVALID_MINIMUM)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID_MINIMUM)
 		  End If
 		  
 		  Self.Min = min

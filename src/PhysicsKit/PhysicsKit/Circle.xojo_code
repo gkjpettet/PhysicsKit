@@ -218,7 +218,7 @@ Implements  PKConvex
 		  ///
 		  
 		  If radius <= 0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_CIRCLE_INVALID_RADIUS)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_CIRCLE_INVALID_RADIUS)
 		  End If
 		  
 		  Return True

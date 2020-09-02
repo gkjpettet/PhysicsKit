@@ -502,11 +502,11 @@ Implements  PKConvex
 		  ///
 		  
 		  // Check the radius.
-		  If radius <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_RADIUS)
+		  If radius <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_RADIUS)
 		  
 		  // Check the theta.
 		  If theta <= 0 Or theta > MathsKit.PI Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_SLICE_INVALID_THETA)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_THETA)
 		  End If
 		  
 		  Return True

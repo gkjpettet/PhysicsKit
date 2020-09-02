@@ -29,7 +29,7 @@ Implements  PKTranslatable
 		  
 		  // Check the min and max.
 		  If minX > maxX Or minY > maxY Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_AABB_INVALID_MIN_MAX)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_AABB_INVALID_MIN_MAX)
 		  End If
 		  
 		  Self.MinX = minX
@@ -69,7 +69,7 @@ Implements  PKTranslatable
 		  ///
 		  
 		  If radius < 0 Then
-		    Raise New InvalidArgumentException(PhysicsKit.Messages.GEOMETRY_AABB_INVALID_RADIUS)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_AABB_INVALID_RADIUS)
 		  End If
 		  
 		  If center Is Nil Then

@@ -917,12 +917,12 @@ Implements   PKConvex,  PKWound
 		  ///
 		  
 		  // Make sure either point is not Nil.
-		  If point1 = Nil Then Raise New NilObjectException(Messages.GEOMETRY_SEGMENT_NIL_POINT1)
-		  If point2 = Nil Then Raise New NilObjectException(Messages.GEOMETRY_SEGMENT_NIL_POINT2)
+		  If point1 = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_SEGMENT_NIL_POINT1)
+		  If point2 = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_SEGMENT_NIL_POINT2)
 		  
 		  // Make sure the two points are not coincident.
 		  If point1.Equals(point2) Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_SEGMENT_SAME_POINT)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_SEGMENT_SAME_POINT)
 		  End If
 		  
 		  Return True

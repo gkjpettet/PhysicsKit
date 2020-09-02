@@ -43,7 +43,7 @@ Implements  PKHullGenerator
 		  ///
 		  
 		  // Check for a Nil array of points.
-		  If points = Nil Then Raise New NilObjectException(Messages.GEOMETRY_HULL_NIL_ARRAY)
+		  If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)
 		  
 		  // Get the size.
 		  Var size As Integer = points.Count
@@ -56,7 +56,7 @@ Implements  PKHullGenerator
 		    points.Sort(AddressOf MinXYPointComparator.Compare)
 		  Catch e As NilObjectException
 		    // This will be hit if any of the points are Nil.
-		    Raise New NilObjectException(Messages.GEOMETRY_HULL_NIL_POINTS)
+		    Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)
 		  End Try
 		  
 		  // No need to pre-process the input and remove coincident points.

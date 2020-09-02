@@ -1,5 +1,5 @@
 #tag Module
-Protected Module Messages
+Protected Module PKMessages
 	#tag Constant, Name = ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE, Type = String, Dynamic = False, Default = \"The requested index is out of range.", Scope = Protected
 	#tag EndConstant
 

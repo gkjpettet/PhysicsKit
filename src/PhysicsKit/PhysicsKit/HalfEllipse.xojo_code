@@ -187,7 +187,7 @@ Implements  PKConvex
 		  #Pragma Unused transform
 		  
 		  // This shape is not supported by SAT.
-		  Raise New UnsupportedOperationException(Messages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)
+		  Raise New UnsupportedOperationException(PKMessages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)
 		  
 		End Function
 	#tag EndMethod
@@ -348,7 +348,7 @@ Implements  PKConvex
 		  #Pragma Unused transform
 		  
 		  // This shape is not supported by SAT.
-		  Raise New UnsupportedOperationException(Messages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)
+		  Raise New UnsupportedOperationException(PKMessages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)
 		  
 		End Function
 	#tag EndMethod
@@ -694,10 +694,10 @@ Implements  PKConvex
 		  
 		  // Validate the width and height.
 		  If width <= 0.0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)
 		  End If
 		  If height <= 0.0 Then
-		    Raise New InvalidArgumentException(Messages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)
+		    Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)
 		  End If
 		  
 		  Return True

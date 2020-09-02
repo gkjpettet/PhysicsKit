@@ -306,8 +306,8 @@ Inherits PKPolygon
 		  ' - Raises: InvalidArgumentException if width or height is less than or equal to zero.
 		  ///
 		  
-		  If width <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_RECTANGLE_INVALID_WIDTH)
-		  If height <= 0 Then Raise New InvalidArgumentException(Messages.GEOMETRY_RECTANGLE_INVALID_HEIGHT)
+		  If width <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RECTANGLE_INVALID_WIDTH)
+		  If height <= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RECTANGLE_INVALID_HEIGHT)
 		  
 		  Return True
 		  
