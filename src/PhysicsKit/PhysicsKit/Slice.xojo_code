@@ -256,14 +256,14 @@ Implements  PKConvex
 		      Return Segment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(2), vector, transform)
 		    Else
 		      // It's the tip point.
-		      Return New PointFeature(transform.GetTransformed(Self.Vertices(0)))
+		      Return New PKPointFeature(transform.GetTransformed(Self.Vertices(0)))
 		    End If
 		  Else
 		    // Taken from `Slice.GetFarthestPoint`.
 		    Call localn.Multiply(Self.SliceRadius).Add(Self.Vertices(0))
 		    transform.TransformV(localn)
 		    
-		    Return New PointFeature(localn)
+		    Return New PKPointFeature(localn)
 		  End If
 		  
 		End Function

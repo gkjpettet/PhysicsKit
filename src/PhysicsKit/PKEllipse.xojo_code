@@ -160,7 +160,7 @@ Implements  PKConvex
 		  Var farthest As PKVector2 = Self.GetFarthestPoint(vector, transform)
 		  
 		  // For an ellipse the farthest feature along a vector will always be a vertex.
-		  Return New PhysicsKit.PointFeature(farthest)
+		  Return New PKPointFeature(farthest)
 		  
 		End Function
 	#tag EndMethod

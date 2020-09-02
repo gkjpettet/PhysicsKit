@@ -235,7 +235,7 @@ Implements  PKConvex
 		  If Abs(d1) < d Then
 		    // It's the farthest point.
 		    Var point As PKVector2 = Self.GetFarthestPoint(vector, transform)
-		    Return New PointFeature(point)
+		    Return New PKPointFeature(point)
 		  Else
 		    // Compute the vector to add/sub from the foci.
 		    Var v As PKVector2 = n1.Multiply(Self.CapRadius)

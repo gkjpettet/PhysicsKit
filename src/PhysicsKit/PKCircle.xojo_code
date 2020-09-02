@@ -116,14 +116,14 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PhysicsKit.PointFeature
+		Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKPointFeature
 		  // Part of the PhysicsKit.Convex interface.
 		  
 		  // Obtain the farthest point along the given vector.
 		  Var farthest As PKVector2 = Self.GetFarthestPoint(vector, transform)
 		  
 		  // For a circle the farthest feature along a vector will always be a vertex.
-		  Return New PhysicsKit.PointFeature(farthest)
+		  Return New PKPointFeature(farthest)
 		  
 		End Function
 	#tag EndMethod

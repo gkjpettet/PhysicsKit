@@ -2,7 +2,7 @@
 Protected Class EdgeFeature
 Inherits PKFeature
 	#tag Method, Flags = &h0, Description = 4372656174657320616E206564676520666561747572652E
-		Sub Constructor(vertex1 As PhysicsKit.PointFeature, vertex2 As PhysicsKit.PointFeature, max As PhysicsKit.PointFeature, edge As PKVector2, index As Integer)
+		Sub Constructor(vertex1 As PKPointFeature, vertex2 As PKPointFeature, max As PKPointFeature, edge As PKVector2, index As Integer)
 		  ///
 		  ' Creates an edge feature.
 		  ' - Parameter vertex1: The first vertex of the edge.
@@ -35,7 +35,7 @@ Inherits PKFeature
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetMaximum() As PhysicsKit.PointFeature
+		Function GetMaximum() As PKPointFeature
 		  ///
 		  ' Returns the maximum point.
 		  '
@@ -48,7 +48,7 @@ Inherits PKFeature
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666972737420766572746578206F662074686520656467652E
-		Function GetVertex1() As PhysicsKit.PointFeature
+		Function GetVertex1() As PKPointFeature
 		  ///
 		  ' Returns the first vertex of the edge.
 		  ' - Returns: PointFeature.
@@ -60,7 +60,7 @@ Inherits PKFeature
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865207365636F6E6420766572746578206F662074686520656467652E
-		Function GetVertex2() As PhysicsKit.PointFeature
+		Function GetVertex2() As PKPointFeature
 		  ///
 		  ' Returns the second vertex of the edge.
 		  ' - Returns: PointFeature.
@@ -115,15 +115,15 @@ Inherits PKFeature
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 54686520766572746578206F66206D6178696D756D2070726F6A656374696F6E20616C6F6E67206120566563746F72322E
-		Max As PhysicsKit.PointFeature
+		Max As PKPointFeature
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 54686520666972737420766572746578206F662074686520656467652E
-		Vertex1 As PhysicsKit.PointFeature
+		Vertex1 As PKPointFeature
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 546865207365636F6E6420766572746578206F662074686520656467652E
-		Vertex2 As PhysicsKit.PointFeature
+		Vertex2 As PKPointFeature
 	#tag EndProperty
 
 

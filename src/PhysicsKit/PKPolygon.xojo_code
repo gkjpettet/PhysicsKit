@@ -321,14 +321,14 @@ Implements   PKConvex,  PKWound
 		  
 		  // Create the maximum point for the feature (transform the maximum into world space).
 		  transform.TransformV(maximum)
-		  Var vm As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(maximum, index)
+		  Var vm As PKPointFeature = New PKPointFeature(maximum, index)
 		  
 		  // Is the left or right edge more perpendicular?
 		  If leftN.Dot(localn) < rightN.Dot(localn) Then
 		    Var l As Integer = If((index = count - 1), 0, index + 1)
 		    
 		    Var left As PKVector2 = transform.GetTransformed(Self.Vertices(l))
-		    Var vl As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(left, l)
+		    Var vl As PKPointFeature = New PKPointFeature(left, l)
 		    
 		    // Make sure the edge is the right winding.
 		    Return New PhysicsKit.EdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)
@@ -336,7 +336,7 @@ Implements   PKConvex,  PKWound
 		    Var r As Integer = If((index = 0), count - 1, index - 1)
 		    
 		    Var right As PKVector2 = transform.GetTransformed(Self.Vertices(r))
-		    Var vr As PhysicsKit.PointFeature = New PhysicsKit.PointFeature(right, r)
+		    Var vr As PKPointFeature = New PKPointFeature(right, r)
 		    
 		    // Make sure the edge is the right winding.
 		    Return New PhysicsKit.EdgeFeature(vr, vm, vm, right.Towards(maximum), index)

@@ -200,7 +200,7 @@ Inherits TestGroup
 		  Var t As PKTransform = New PKTransform
 		  Var y As PKVector2 = New PKVector2(0.0, -1.0)
 		  
-		  Var f As PointFeature = c.GetFarthestFeature(y, t)
+		  Var f As PKPointFeature = c.GetFarthestFeature(y, t)
 		  Assert.AreEqual( 0.000, f.GetPoint.X, 1.0e-3)
 		  Assert.AreEqual(-1.500, f.GetPoint.Y, 1.0e-3)
 		  

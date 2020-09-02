@@ -297,9 +297,9 @@ Implements   PKConvex,  PKWound
 		  End If
 		  
 		  // Return the points of the segment in the opposite direction as the other shape.
-		  Var vp1 As PointFeature = New PointFeature(p1, 0)
-		  Var vp2 As PointFeature = New PointFeature(p2, 1)
-		  Var vm As PointFeature = New PointFeature(max, index)
+		  Var vp1 As PKPointFeature = New PKPointFeature(p1, 0)
+		  Var vp2 As PKPointFeature = New PKPointFeature(p2, 1)
+		  Var vm As PKPointFeature = New PKPointFeature(max, index)
 		  
 		  // Make sure the edge is the right winding.
 		  If p1.Towards(p2).Right.Dot(vector) > 0 Then
