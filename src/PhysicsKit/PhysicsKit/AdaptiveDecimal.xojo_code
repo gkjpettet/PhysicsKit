@@ -422,13 +422,13 @@ Protected Class AdaptiveDecimal
 		  // The exact order of those operations is necessary for correct functionality.
 		  
 		  // Split a in two parts.
-		  Var ac As Double = RobustGeometry.SPLITTER * a
+		  Var ac As Double = PKRobustGeometry.SPLITTER * a
 		  Var abig As Double = ac - a
 		  Var ahi As Double = ac - abig
 		  Var alo As Double = a - ahi
 		  
 		  // Split b in two parts.
-		  Var bc As Double = RobustGeometry.SPLITTER * b
+		  Var bc As Double = PKRobustGeometry.SPLITTER * b
 		  Var bbig As Double = bc - b
 		  Var bhi As Double = bc - bbig
 		  Var blo As Double = b - bhi

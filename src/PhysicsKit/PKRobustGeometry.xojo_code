@@ -1,5 +1,5 @@
 #tag Class
-Protected Class RobustGeometry
+Protected Class PKRobustGeometry
 	#tag Method, Flags = &h0, Description = 506572666F726D732063726F73732070726F64756374206F6E20666F7572207072696D69746976657320616E642072657475726E732074686520726573756C742061732061206E6577204164617074697665446563696D616C2E
 		Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double) As PhysicsKit.AdaptiveDecimal
 		  ///
@@ -38,11 +38,11 @@ Protected Class RobustGeometry
 		  
 		  Var axby As Double = ax * by
 		  Var aybx As Double = bx * ay
-		  Var axbyTail As Double = AdaptiveDecimal.GetErrorComponentFromProduct(ax, by, axby)
-		  Var aybxTail As Double = AdaptiveDecimal.GetErrorComponentFromProduct(bx, ay, aybx)
+		  Var axbyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromProduct(ax, by, axby)
+		  Var aybxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromProduct(bx, ay, aybx)
 		  
 		  // Result can be Nil in which case AdaptiveDecimal.FromDiff will allocate a new one.
-		  Var newResult As AdaptiveDecimal = AdaptiveDecimal.FromDiff(axbyTail, axby, aybxTail, aybx, result)
+		  Var newResult As PhysicsKit.AdaptiveDecimal = PhysicsKit.AdaptiveDecimal.FromDiff(axbyTail, axby, aybxTail, aybx, result)
 		  
 		  Return newResult
 		  
@@ -111,7 +111,7 @@ Protected Class RobustGeometry
 		  
 		  // Calculate the cross product but with more precision than before
 		  // But don't bother yet to perform the differences acx, acy, bcx, bcy with full precision.
-		  Var B As AdaptiveDecimal = RobustGeometry.Cross(acx, acy, bcx, bcy)
+		  Var B As PhysicsKit.AdaptiveDecimal = PKRobustGeometry.Cross(acx, acy, bcx, bcy)
 		  
 		  Var det As Double = B.GetEstimation
 		  Var errorBound As Double = ERROR_BOUND_B * detSum
@@ -119,10 +119,10 @@ Protected Class RobustGeometry
 		  
 		  // Since we need more precision to produce the result at this point
 		  // we have to calculate the differences with full precision.
-		  Var acxTail As Double = AdaptiveDecimal.GetErrorComponentFromDifference(point.X, linePoint2.X, acx)
-		  Var acyTail As Double = AdaptiveDecimal.GetErrorComponentFromDifference(point.Y, linePoint2.Y, acy)
-		  Var bcxTail As Double = AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.X, linePoint2.X, bcx)
-		  Var bcyTail As Double = AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.Y, linePoint2.Y, bcy)
+		  Var acxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(point.X, linePoint2.X, acx)
+		  Var acyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(point.Y, linePoint2.Y, acy)
+		  Var bcxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.X, linePoint2.X, bcx)
+		  Var bcyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.Y, linePoint2.Y, bcy)
 		  
 		  If acxTail = 0 And acyTail = 0 And bcxTail = 0 And bcyTail = 0 Then
 		    // Trivial case: the extra precision was not needed after all.
@@ -139,16 +139,16 @@ Protected Class RobustGeometry
 		  // At this point we have to go full out and calculate all the products with full precision.
 		  
 		  // Re-usable buffer to store the results of the 3 cross products needed below
-		  Var buffer As AdaptiveDecimal = New AdaptiveDecimal(4)
+		  Var buffer As PhysicsKit.AdaptiveDecimal = New PhysicsKit.AdaptiveDecimal(4)
 		  
-		  Call RobustGeometry.Cross(acxTail, bcx, acyTail, bcy, buffer)
-		  Var C1 As AdaptiveDecimal = B.Sum(buffer)
+		  Call PKRobustGeometry.Cross(acxTail, bcx, acyTail, bcy, buffer)
+		  Var C1 As PhysicsKit.AdaptiveDecimal = B.Sum(buffer)
 		  
-		  Call RobustGeometry.Cross(acx, bcxTail, acy, bcyTail, buffer)
-		  Var C2 As AdaptiveDecimal = C1.Sum(buffer)
+		  Call PKRobustGeometry.Cross(acx, bcxTail, acy, bcyTail, buffer)
+		  Var C2 As PhysicsKit.AdaptiveDecimal = C1.Sum(buffer)
 		  
-		  Call RobustGeometry.Cross(acxTail, bcxTail, acyTail, bcyTail, buffer)
-		  Var D As AdaptiveDecimal = C2.Sum(buffer)
+		  Call PKRobustGeometry.Cross(acxTail, bcxTail, acyTail, bcyTail, buffer)
+		  Var D As PhysicsKit.AdaptiveDecimal = C2.Sum(buffer)
 		  
 		  // Return the most significant component of the last buffer D.
 		  // Reminder: components are non-overlapping so this is OK.

@@ -7,7 +7,7 @@ Protected Class ReferencePointComparator
 		  // The order of parameters here must match the one in `GrahamScan`
 		  // in order to obtain correct results and winding
 		  
-		  Var sign As Integer = MathsKit.Signum(RobustGeometry.GetLocation(p2, p1, Reference))
+		  Var sign As Integer = MathsKit.Signum(PKRobustGeometry.GetLocation(p2, p1, Reference))
 		  
 		  If sign = 0 Then
 		    // If the points are colinear we **must** choose the one that is more close to the reference point.

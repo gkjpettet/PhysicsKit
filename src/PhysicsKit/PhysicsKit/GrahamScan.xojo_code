@@ -70,7 +70,7 @@ Implements  PKHullGenerator
 		    // can produce incorrect results in edge cases.
 		    // The order of parameters here must match the one in ReferenceComparator
 		    // in order to obtain correct results and winding.
-		    Var location As Double = RobustGeometry.GetLocation(p3, p2, p1)
+		    Var location As Double = PKRobustGeometry.GetLocation(p3, p2, p1)
 		    
 		    If location < 0 Then
 		      // If it's to the left, then push the new point on

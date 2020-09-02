@@ -60,7 +60,7 @@ Implements  PKHullGenerator
 		      // Check the point relative to the current line.
 		      // Use the robust side of line test because otherwise this algorithm
 		      // can fall in an endless loop.
-		      Var location As Double = RobustGeometry.GetLocation(test, current, nextPoint)
+		      Var location As Double = PKRobustGeometry.GetLocation(test, current, nextPoint)
 		      If location < 0 Then
 		        nextPoint = test
 		      ElseIf location = 0 Then

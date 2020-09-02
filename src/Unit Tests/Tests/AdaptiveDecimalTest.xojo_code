@@ -125,9 +125,9 @@ Inherits TestGroup
 		    Var c As Double = System.Random.Number * 10 - 5
 		    Var d As Double = System.Random.Number * 10 - 5
 		    
-		    // Also check with the related `RobustGeometry.Cross` method.
-		    test = RobustGeometry.Cross(a, b, c, d)
-		    Assert.IsTrue(test.CheckInvariants, "RobustGeometry.Cross")
+		    // Also check with the related `PKRobustGeometry.Cross` method.
+		    test = PKRobustGeometry.Cross(a, b, c, d)
+		    Assert.IsTrue(test.CheckInvariants, "PKRobustGeometry.Cross")
 		  Next i
 		  
 		End Sub

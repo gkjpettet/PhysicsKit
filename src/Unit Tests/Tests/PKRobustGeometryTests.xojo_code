@@ -1,5 +1,5 @@
 #tag Class
-Protected Class RobustGeometryTests
+Protected Class PKRobustGeometryTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
@@ -58,7 +58,7 @@ Inherits TestGroup
 		Sub RandomisedTest2Test()
 		  ///
 		  ' Another randomised test but with uniform random points.
-		  ' This will mostly trigger the short path in RobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)
+		  ' This will mostly trigger the short path in PKRobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)
 		  ///
 		  
 		  // Constant seed so we always get the same sequence of randoms
@@ -71,7 +71,7 @@ Inherits TestGroup
 		    Var pc As PKVector2 = New PKVector2(System.Random.Number, System.Random.Number)
 		    
 		    Var exact As Double = GetLocationExact(pc, pa, pb)
-		    Var robust As Double = RobustGeometry.GetLocation(pc, pa, pb)
+		    Var robust As Double = PKRobustGeometry.GetLocation(pc, pa, pb)
 		    
 		    Assert.AreEqual(MathsKit.Signum(exact), MathsKit.Signum(robust))
 		  Next i
@@ -85,7 +85,7 @@ Inherits TestGroup
 		  ' Randomised test to check almost colinear vectors.
 		  ' Chose three random, almost colinear, points and then exhaustively check for all
 		  ' floating point values near the tested point. This will trigger the most
-		  ' complex paths in `RobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)`.
+		  ' complex paths in `PKRobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)`.
 		  ///
 		  
 		  #Pragma Warning "Broken and failing"
@@ -115,7 +115,7 @@ Inherits TestGroup
 		      For y As Integer = 0 To blockSize - 1
 		        For x As Integer = 0 To blockSize - 1
 		          Var exact As Double = GetLocationExact(pcOffset, pa, pb)
-		          Var robust As Double = RobustGeometry.GetLocation(pcOffset, pa, pb)
+		          Var robust As Double = PKRobustGeometry.GetLocation(pcOffset, pa, pb)
 		          
 		          Assert.AreEqual(MathsKit.Signum(exact), MathsKit.Signum(robust))
 		          
@@ -145,7 +145,7 @@ Inherits TestGroup
 		  ' - Returns: Boolean.
 		  ///
 		  
-		  // Copied from Polygon.Contains but uses RobustGeometry.GetLocation instead.
+		  // Copied from Polygon.Contains but uses PKRobustGeometry.GetLocation instead.
 		  
 		  // Start from the pair (p1 = last, p2 = first) so there's no need to check 
 		  // in the loop for wrap-around of the i + 1 vertice
@@ -154,7 +154,7 @@ Inherits TestGroup
 		  Var p2 As PKVector2 = vertices(0)
 		  
 		  // Get the location of the point relative to the first two vertices.
-		  Var last As Double = RobustGeometry.GetLocation(point, p1, p2)
+		  Var last As Double = PKRobustGeometry.GetLocation(point, p1, p2)
 		  
 		  // Loop through the rest of the vertices.
 		  Var iLimit As Integer = size - 2
@@ -167,7 +167,7 @@ Inherits TestGroup
 		    If point.Equals(p1) Or point.Equals(p2) Then Return True
 		    
 		    // Do side of line test.
-		    Var location As Double = RobustGeometry.GetLocation(point, p1, p2)
+		    Var location As Double = PKRobustGeometry.GetLocation(point, p1, p2)
 		    
 		    // Multiply the last location with this location if they are the same sign then 
 		    // the opertation will yield a positive result:

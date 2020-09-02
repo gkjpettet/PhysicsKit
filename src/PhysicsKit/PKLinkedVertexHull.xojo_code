@@ -63,12 +63,12 @@ Protected Class PKLinkedVertexHull
 		    Var prevLu As PKLinkedVertex = lu
 		    Var prevRu As PKLinkedVertex = ru
 		    
-		    While limitRightU > 0 And PhysicsKit.RobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) <= 0
+		    While limitRightU > 0 And PKRobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) <= 0
 		      ru = ru.NextVertex
 		      limitRightU = limitRightU - 1
 		    Wend
 		    
-		    While limitLeftU > 0 And PhysicsKit.RobustGeometry.GetLocation(lu.PreviousVertex.Point, lu.Point, ru.Point) <= 0
+		    While limitLeftU > 0 And PKRobustGeometry.GetLocation(lu.PreviousVertex.Point, lu.Point, ru.Point) <= 0
 		      lu = lu.PreviousVertex
 		      limitLeftU = limitLeftU - 1
 		    Wend
@@ -88,12 +88,12 @@ Protected Class PKLinkedVertexHull
 		    Var prevLl As PKLinkedVertex = ll
 		    Var prevRl As PKLinkedVertex = rl
 		    
-		    While limitRightL > 0 And PhysicsKit.RobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) >= 0
+		    While limitRightL > 0 And PKRobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) >= 0
 		      rl = rl.PreviousVertex
 		      limitRightL = limitRightL - 1
 		    Wend
 		    
-		    While limitLeftL > 0 And PhysicsKit.RobustGeometry.GetLocation(ll.NextVertex.Point, ll.Point, rl.Point) >= 0
+		    While limitLeftL > 0 And PKRobustGeometry.GetLocation(ll.NextVertex.Point, ll.Point, rl.Point) >= 0
 		      ll = ll.NextVertex
 		      limitLeftL = limitLeftL - 1
 		    Wend

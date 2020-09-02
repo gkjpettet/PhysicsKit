@@ -340,7 +340,7 @@ Inherits TestGroup
 		  
 		  // Make sure all the points are either on or contained in the hull.
 		  For Each p As PKVector2 In cloud
-		    If Not RobustGeometryTests.RobustPolygonContains(poly.GetVertices, p) Then
+		    If Not PKRobustGeometryTests.RobustPolygonContains(poly.GetVertices, p) Then
 		      Assert.Fail("Hull does not contain all points.")
 		    End If
 		  Next p
