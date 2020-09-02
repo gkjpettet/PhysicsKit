@@ -1,6 +1,6 @@
 #tag Class
 Protected Class AbstractShape
-Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
+Implements PhysicsKit.Shape, PKTransformable,  PKDataContainer
 	#tag Method, Flags = &h0, Description = 4D696E696D616C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
 		  ///

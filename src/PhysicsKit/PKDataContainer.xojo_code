@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface DataContainer
+Protected Interface PKDataContainer
 	#tag Method, Flags = &h0, Description = 476574732074686520637573746F6D207573657220646174612E2057696C6C2072657475726E204E696C206966206E6F74207365742E
 		Function GetUserData() As Variant
 		  
