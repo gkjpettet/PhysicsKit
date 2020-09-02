@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the contains method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKCircle = New PKCircle(2.0)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(2.0, 4.0)
@@ -64,8 +62,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the generated PKAABB.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var IDENTITY As PKTransform = New PKTransform
 		  
@@ -107,8 +103,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var c As PKCircle = New PKCircle(-1.0)
 		    #Pragma Unused c
@@ -129,8 +123,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
-		  
-		  Using PhysicsKit
 		  
 		  Try
 		    Var c As PKCircle = New PKCircle(1.0)
@@ -155,8 +147,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var c As PKCircle = New PKCircle(0.0)
 		    #Pragma Unused c
@@ -176,8 +166,6 @@ Inherits TestGroup
 		  ' Tests the GetAxes method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  
@@ -193,8 +181,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the farthest methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
@@ -228,8 +214,6 @@ Inherits TestGroup
 		  ' Tests the GetFoci method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
 		  
@@ -245,8 +229,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Project method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var c As PKCircle = New PKCircle(1.5)
 		  Var t As PKTransform = New PKTransform
@@ -277,8 +259,6 @@ Inherits TestGroup
 		  ' Tests the rotate methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // Centre is at 0,0.
 		  Var c As PKCircle = New PKCircle(1.0)
 		  
@@ -307,8 +287,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Translate methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  // Centre is at 0,0.
 		  Var c As PKCircle = New PKCircle(1.0)

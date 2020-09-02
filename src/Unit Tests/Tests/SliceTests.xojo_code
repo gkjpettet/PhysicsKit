@@ -37,8 +37,6 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.5, -0.3)
@@ -64,8 +62,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the generate PKAABB.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
@@ -103,8 +99,6 @@ Inherits TestGroup
 		  ' Tests a negative radius.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -125,8 +119,6 @@ Inherits TestGroup
 		  ///
 		  ' Tetss a negative theta.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -149,8 +141,6 @@ Inherits TestGroup
 		  ' Tests the constructor.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var slice As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
 		  // The circle centre should be the origin.
@@ -165,8 +155,6 @@ Inherits TestGroup
 		  ///
 		  ' Tetss a zero radius.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -189,8 +177,6 @@ Inherits TestGroup
 		  ' Tetss a zero theta.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -211,8 +197,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetAxes method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  
@@ -236,8 +220,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the farthest methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
@@ -281,8 +263,6 @@ Inherits TestGroup
 		  ' Tests the GetFoci method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var foci() As PKVector2 = e.GetFoci(IDENTITY)
 		  
@@ -300,8 +280,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Project method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Var t As PKTransform = New PKTransform
@@ -345,8 +323,6 @@ Inherits TestGroup
 		  ' Tests the Rotate method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  // Note: The centre is not at the origin.
 		  
@@ -376,8 +352,6 @@ Inherits TestGroup
 		  ' Verifies the output of the GetRadius and GetSliceRadius methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  Assert.AreEqual(1.000, e.GetSliceRadius, 1.0e-3)
 		  Assert.IsFalse(Abs(1.0 - e.GetRadius) < PKEpsilon.E)
@@ -391,8 +365,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Translate methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKSlice = New PKSlice(1.0, MathsKit.ToRadians(50))
 		  

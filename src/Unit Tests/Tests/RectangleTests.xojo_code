@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRectangle = New PKRectangle(1.0, 2.0)
 		  Var t As PKTransform = New PKTransform
 		  
@@ -66,8 +64,6 @@ Inherits TestGroup
 		  ' Tests the constructor with an invalid height.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -90,8 +86,6 @@ Inherits TestGroup
 		  ' Tests the constructor with an invalid width.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -112,8 +106,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests successful creation.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r As PKRectangle = New PKRectangle(2.0, 2.0)
 		  
@@ -142,8 +134,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetAxes method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r As PKRectangle = New PKRectangle(1.0, 1.0)
 		  Var t As PKTransform = New PKTransform
@@ -183,8 +173,6 @@ Inherits TestGroup
 		  ' Tests the GetRotation method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRectangle= PKGeometry.CreateRectangle(1, 1)
 		  r.Translate(1, 1)
 		  r.Rotate(MathsKit.ToRadians(30))
@@ -199,8 +187,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Project method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r As PKRectangle = New PKRectangle(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform

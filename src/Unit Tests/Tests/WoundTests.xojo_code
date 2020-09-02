@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the GetRadius(PKVector2) method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKVector2 = New PKVector2(1.0, 0.0)
 		  
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
@@ -61,8 +59,6 @@ Inherits TestGroup
 		  ' Tests the GetRadius method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Assert.AreEqual(0.500, p.GetRadius, 1.0e-3)
 		  
@@ -83,8 +79,6 @@ Inherits TestGroup
 		  ///
 		  ' Test to ensure that the entire set of vertices are returned.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var w As PKWound= PKGeometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _
@@ -108,8 +102,6 @@ Inherits TestGroup
 		  ///
 		  ' Test to ensure that the first element returned is the first vertex.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var w As PKWound= PKGeometry.CreatePolygon(Array(_
 		  New PKVector2(0.0, 0.0), _

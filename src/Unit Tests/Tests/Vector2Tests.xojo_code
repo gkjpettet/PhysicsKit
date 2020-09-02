@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the `Add` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 2.0)
 		  Var v2 As PKVector2 = New PKVector2(-2.0, 1.0)
 		  
@@ -66,8 +64,6 @@ Inherits TestGroup
 		  ' Tests the `Copy` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(1.0, 3.0)
 		  Var vc As PKVector2 = v.Copy
 		  
@@ -83,8 +79,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Create` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v1 As PKVector2 = New PKVector2
 		  Assert.AreEqual(0.0, v1.x)
@@ -124,8 +118,6 @@ Inherits TestGroup
 		  ' Test the `Cross` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
@@ -151,8 +143,6 @@ Inherits TestGroup
 		  ' Tests the `Distance` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2
 		  
 		  Assert.AreEqual(4.000, v.DistanceSquared(2.0, 0.0), 1.0e-3)
@@ -174,8 +164,6 @@ Inherits TestGroup
 		  ' Tests the `Divide` and `Quotient` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(2.0, 1.0)
 		  
 		  Var r As PKVector2 = v1.Quotient(-2.0)
@@ -194,8 +182,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Dot` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
@@ -219,8 +205,6 @@ Inherits TestGroup
 		  ' Tests the `Equals` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(1.0, 2.0)
 		  
 		  Assert.IsTrue(v.Equals(v))
@@ -239,8 +223,6 @@ Inherits TestGroup
 		  ' Tests the `GetAngleBetween` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(-1.0, 2.0)
 		  Var v2 As PKVector2 = New PKVector2(-2.0, -1.0)
 		  
@@ -255,8 +237,6 @@ Inherits TestGroup
 		  ///
 		  ' tests the `Get` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v As PKVector2 = New PKVector2(3.0, 4.0)
 		  
@@ -300,8 +280,6 @@ Inherits TestGroup
 		  ' Tests the `IsOrthogonal` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var v2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
@@ -323,8 +301,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `IsZero` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v As PKVector2 = New PKVector2
 		  
@@ -348,8 +324,6 @@ Inherits TestGroup
 		  ' Tests the `Left` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(11.0, 2.5)
 		  Call v.Left
 		  
@@ -364,8 +338,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Multiply` and `Product` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v1 As PKVector2 = New PKVector2(2.0, 1.0)
 		  
@@ -386,8 +358,6 @@ Inherits TestGroup
 		  ' Tests the `Negate` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(1.0, -6.0)
 		  
 		  Call v.Negate
@@ -403,8 +373,6 @@ Inherits TestGroup
 		  ' Tests the `Normalise` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(3.0, 4.0)
 		  Call v.Normalise
 		  
@@ -419,8 +387,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Project` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var v2 As PKVector2 = New PKVector2(0.5, 1.0)
@@ -439,8 +405,6 @@ Inherits TestGroup
 		  ' Tests the `Right` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v As PKVector2 = New PKVector2(11.0, 2.5)
 		  Call v.Right
 		  
@@ -455,8 +419,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Rotate` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v As PKVector2 = New PKVector2(2.0, 1.0)
 		  
@@ -484,8 +446,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Set` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v As PKVector2 = New PKVector2
 		  
@@ -516,8 +476,6 @@ Inherits TestGroup
 		  ' tests the `Subtract` and `Difference` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 2.0)
 		  Var v2 As PKVector2 = New PKVector2(-2.0, 1.0)
 		  
@@ -546,8 +504,6 @@ Inherits TestGroup
 		  ' Tests the `Towards` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var p1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var p2 As PKVector2 = New PKVector2(0.0, 1.0)
 		  
@@ -570,8 +526,6 @@ Inherits TestGroup
 		  ' Tests the `TripleProduct` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var v1 As PKVector2 = New PKVector2(1.0, 1.0)
 		  Var v2 As PKVector2 = New PKVector2(1.0, -1.0)
 		  
@@ -589,8 +543,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Zero` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var v As PKVector2 = New PKVector2(1.0, -2.0)
 		  

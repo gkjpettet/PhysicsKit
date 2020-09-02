@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests case for the Epsilon class.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // Ensure that the static variable is set.
 		  Assert.IsFalse(PKEpsilon.E = 0.0)
 		  

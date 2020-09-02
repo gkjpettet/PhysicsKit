@@ -37,8 +37,6 @@ Inherits TestGroup
 		  ' Tests the contains with radius method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(1.0, 1.0), New PKVector2(-1.0, -1.0))
 		  Var t As PKTransform = New PKTransform
 		  
@@ -55,8 +53,6 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As PKTransform = New PKTransform
 		  
@@ -71,8 +67,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the CreateAABB method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  
@@ -107,8 +101,6 @@ Inherits TestGroup
 		  ' Tests coincident points.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -129,8 +121,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests a failed Create using one Nil point.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -153,8 +143,6 @@ Inherits TestGroup
 		  ' Tests a failed Create using one Nil point.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -176,8 +164,6 @@ Inherits TestGroup
 		  ' Tests a successful creation.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.0, 2.0))
 		  
 		  Assert.AreEqual(0.500, s.center.x, 1.0e-3)
@@ -191,8 +177,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetAxes method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As PKTransform = New PKTransform
@@ -240,8 +224,6 @@ Inherits TestGroup
 		  ' Tests the get farthests methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
@@ -275,8 +257,6 @@ Inherits TestGroup
 		  ' Tests the GetFoci method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As PKTransform = New PKTransform
 		  
@@ -292,8 +272,6 @@ Inherits TestGroup
 		  ' Tests the GetLength method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  
 		  Assert.AreEqual(2.500, s.GetLength, 1.0e-3)
@@ -306,8 +284,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetLineIntersection method.
 		  //
-		  
-		  Using PhysicsKit
 		  
 		  // Normal case.
 		  Var p As PKVector2 = PKSegment.GetLineIntersection(_
@@ -396,8 +372,6 @@ Inherits TestGroup
 		  ' Tests the GetLocation method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // Test invalid line.
 		  Var loc As Double = PKSegment.GetLocation(New PKVector2(1.0, 1.0), New PKVector2, New PKVector2)
 		  Assert.AreEqual(0.000, loc, 1.0e-3)
@@ -434,8 +408,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the get closest point methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var pt As PKVector2 = New PKVector2(1.0, -1.0)
 		  
@@ -478,8 +450,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetSegmentIntersection method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var p As PKVector2 = PKSegment.GetSegmentIntersection(_
 		  New PKVector2(-3.0, -1.0), New PKVector2(3.0, 1.0), _
@@ -589,8 +559,6 @@ Inherits TestGroup
 		  ' Tests the Project method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 1.0), New PKVector2(1.5, 3.0))
 		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
@@ -630,8 +598,6 @@ Inherits TestGroup
 		  ' Tests the Rotate method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  s.Rotate(MathsKit.ToRadians(45), 0, 0)
 		  
@@ -649,8 +615,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Translate method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(0.0, 0.0), New PKVector2(1.0, 1.0))
 		  s.Translate(2.0, -1.0)

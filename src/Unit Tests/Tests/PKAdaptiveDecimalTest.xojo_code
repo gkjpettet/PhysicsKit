@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests for appending new components to anPKAdaptiveDecimal.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(5)
 		  
 		  Call ed.Append(1.0)
@@ -66,8 +64,6 @@ Inherits TestGroup
 		  ' Also checks that the result of various operations continues to satisfy those 
 		  ' invariants (as they should).
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var ed1 As PKAdaptiveDecimal = New PKAdaptiveDecimal(3)
 		  Call ed1.Append(1.0).Append(0.0).Append(0.2)
@@ -139,8 +135,6 @@ Inherits TestGroup
 		  ' Tests the Clear method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(2)
 		  Call ed.Append(0.1).Append(15.0)
 		  
@@ -158,8 +152,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the various ways to copy PKAdaptiveDecimals.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(2)
 		  Call ed.Append(0.1).Append(15.0)
@@ -197,8 +189,6 @@ Inherits TestGroup
 		  ' Test the various ways to create new PKAdaptiveDecimal instances.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(2)
 		  Assert.AreEqual(0, ed.Size)
 		  Assert.AreEqual(2, ed.Capacity)
@@ -235,8 +225,6 @@ Inherits TestGroup
 		  ' Test the method that estimates an PKAdaptiveDecimal's value with a Double.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(5)
 		  
 		  Assert.AreEqual(0.0, ed.GetEstimation)
@@ -264,8 +252,6 @@ Inherits TestGroup
 		  ///
 		  ' Test the method that negates the value of an PKAdaptiveDecimal.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(5)
 		  
@@ -298,8 +284,6 @@ Inherits TestGroup
 		  ' Test the normalise method that ensures an PKAdaptiveDecimal has at least one component.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(2)
 		  Assert.AreEqual(0, ed.Size)
 		  Call ed.Normalise
@@ -323,8 +307,6 @@ Inherits TestGroup
 		  ' Test the method that removes unnecessary zeros from an PKAdaptiveDecimal.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(6)
 		  
 		  Call ed.RemoveZeros
@@ -347,8 +329,6 @@ Inherits TestGroup
 		  ' Tests for methods that check the logical/physical size of an PKAdaptiveDecimal.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var ed As PKAdaptiveDecimal = New PKAdaptiveDecimal(2)
 		  Assert.AreEqual(0, ed.Size)
 		  Assert.AreEqual(2, ed.Capacity)
@@ -366,8 +346,6 @@ Inherits TestGroup
 		  ' Test the addition method. The Sum method is also throughly elsewhere
 		  ' with more randomised tests.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var ed1 As PKAdaptiveDecimal = PKAdaptiveDecimal.ValueOf(10.0)
 		  Var ed2 As PKAdaptiveDecimal = PKAdaptiveDecimal.ValueOf(3.0)
@@ -388,8 +366,6 @@ Inherits TestGroup
 		  ///
 		  ' Check InvalidArgumentException for creating an PKAdaptiveDecimal with negative capacity.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -413,8 +389,6 @@ Inherits TestGroup
 		  ' Check InvalidArgumentException for creating an PKAdaptiveDecimal with zero capacity.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -436,8 +410,6 @@ Inherits TestGroup
 		  ///
 		  ' Check OutOfBoundsException for negative index.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -461,8 +433,6 @@ Inherits TestGroup
 		  ' Check OutOfBoundsException for index bigger than capacity.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -484,8 +454,6 @@ Inherits TestGroup
 		  ///
 		  ' Check OutOfBoundsException for adding more components than the capacity.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -510,8 +478,6 @@ Inherits TestGroup
 		  ' Check that `EnsureInvariants` raises a RuntimeException if 
 		  ' the invariants do not hold.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  

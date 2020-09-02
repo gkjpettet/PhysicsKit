@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the Contains method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var p As PKVector2 = New PKVector2(0.8, -0.45)
@@ -67,8 +65,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the generated PKAABB.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
@@ -106,8 +102,6 @@ Inherits TestGroup
 		  ' Tests a negative height.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -128,8 +122,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests a negative width.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -152,8 +144,6 @@ Inherits TestGroup
 		  ' Tests the constructor.
 		  //
 		  
-		  Using PhysicsKit
-		  
 		  Var cap As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(1.000, x.x, 1.0e-3)
@@ -168,8 +158,6 @@ Inherits TestGroup
 		  ' Tests the constructor.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var cap As PKCapsule = New PKCapsule(1.0, 2.0)
 		  Var x As PKVector2 = cap.LocalXAxis
 		  Assert.AreEqual(0.000, x.x, 1.0e-3)
@@ -183,8 +171,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests a zero height.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -207,8 +193,6 @@ Inherits TestGroup
 		  ' Tests a zero width.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -229,8 +213,6 @@ Inherits TestGroup
 		  ///
 		  ' tests the GetAxes method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
@@ -254,8 +236,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Farthest methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
@@ -299,8 +279,6 @@ Inherits TestGroup
 		  ' Tests the GetFoci method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  Var foci() As PKVector2 = e.GetFoci(IDENTITY)
 		  
@@ -321,8 +299,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Project method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKCapsule = New PKCapsule(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
@@ -366,8 +342,6 @@ Inherits TestGroup
 		  ' Tests the Rotate methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  
 		  // Rotate about the centre.
@@ -395,8 +369,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Translate methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var e As PKCapsule = New PKCapsule(1.0, 0.5)
 		  

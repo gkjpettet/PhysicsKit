@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the `GetArea` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  // 4 * 1 = 4
 		  Assert.AreEqual(4.0, aabb.GetArea, 1.0E-4)
@@ -50,8 +48,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the contains point method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  
@@ -72,8 +68,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Contains` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  // Test overlap.
 		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
@@ -100,8 +94,6 @@ Inherits TestGroup
 		  ' Tests the successful copy of a PKAABB.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb1 As PKAABB = New PKAABB(New PKVector2(-3.0, 0.0), New PKVector2(-2.0, 2.0))
 		  Var aabb2 As PKAABB = New PKAABB(aabb1)
 		  Assert.AreDifferent(aabb1, aabb2)
@@ -120,8 +112,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
-		  
-		  Using PhysicsKit
 		  
 		  Try
 		    Var a As PKAABB = New PKAABB(0.0, 0.0, -1.0, 2.0)
@@ -144,8 +134,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var a As PKAABB = New PKAABB(New PKVector2(0.0, 0.0), New PKVector2(-1.0, 2.0))
 		    #Pragma Unused a
@@ -164,8 +152,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the creation of a PKAABB from a radius.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var aabb As PKAABB = New PKAABB(0.5)
 		  Assert.AreEqual(-0.500, aabb.GetMinX, 1.0e-3)
@@ -187,8 +173,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the successful creation of a PKAABB.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var a As PKAABB = New PKAABB(0.0, 0.0, 1.0, 1.0)
 		  Var b As PKAABB = New PKAABB(-2.0, 2.0, -1.0, 5.0)
@@ -218,8 +202,6 @@ Inherits TestGroup
 		  ' Tests the `IsDegenerate` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb As PKAABB = New PKAABB(0.0, 0.0, 0.0, 0.0)
 		  Assert.IsTrue(aabb.IsDegenerate)
 		  
@@ -242,8 +224,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Expand` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 4.0, 4.0)
 		  Var aabb2 As PKAABB = aabb.GetExpanded(2.0)
@@ -295,8 +275,6 @@ Inherits TestGroup
 		  ' Tests the `GetHeight` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
 		  Assert.AreEqual(1.0, aabb.getHeight)
@@ -310,8 +288,6 @@ Inherits TestGroup
 		  ' Tests the `GetWidth` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
 		  Assert.AreEqual(3.0, aabb.GetWidth)
@@ -324,8 +300,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the intersection methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 0.5)
@@ -359,8 +333,6 @@ Inherits TestGroup
 		  ' Tests the `Overlaps` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // Test overlap.
 		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 2.0)
@@ -386,8 +358,6 @@ Inherits TestGroup
 		  ' Tests the `GetPerimeter` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
 		  // 4 + 1 = 5 * 2 = 10
 		  Assert.AreEqual(10.0, aabb.GetPerimeter, 1.0E-4)
@@ -400,8 +370,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Translate` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
@@ -433,8 +401,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the union methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  //Ooverlapping PKAABBs.
 		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)

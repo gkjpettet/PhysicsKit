@@ -38,8 +38,6 @@ Inherits TestGroup
 		  ' the starting edge of the polygon.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array( _
 		  New PKVector2(0.0, 4.0), _
 		  New PKVector2(0.0, 2.0), _
@@ -63,8 +61,6 @@ Inherits TestGroup
 		  ' the starting edge of the polygon.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array( _
 		  New PKVector2(2.0, 0.0), _
 		  New PKVector2(4.0, 0.0), _
@@ -87,8 +83,6 @@ Inherits TestGroup
 		  ' Tests the Contains method against a point that is coincident with
 		  ' the starting edge of a polygon that has two coincident edges.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array( _
 		  New PKVector2(2.0, 0.0), _
@@ -114,8 +108,6 @@ Inherits TestGroup
 		  ' the starting edge of a polygon that has two coincident edges.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array( _
 		  New PKVector2(2.0, 0.0), _
 		  New PKVector2(4.0, 0.0), _
@@ -138,8 +130,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Contains method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array(_
 		  New PKVector2(0.0, 1.0), _
@@ -184,8 +174,6 @@ Inherits TestGroup
 		  ' Tests the CreateAABB method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As PKPolygon = New PKPolygon(vertices)
@@ -221,8 +209,6 @@ Inherits TestGroup
 		  ' Tests that the triangle is CCW.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -245,8 +231,6 @@ Inherits TestGroup
 		  ' Tests coincident points.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -265,8 +249,6 @@ Inherits TestGroup
 
 	#tag Method, Flags = &h0
 		Sub CreateDegenerateTest()
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -289,8 +271,6 @@ Inherits TestGroup
 		  ' Tests an array with Nil points.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -311,8 +291,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests non-convex points.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -336,8 +314,6 @@ Inherits TestGroup
 		  ' Tests not CCW.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -358,8 +334,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests not enough points.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -382,8 +356,6 @@ Inherits TestGroup
 		  ' Tests the constructor.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
@@ -405,8 +377,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the GetAxes method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
@@ -445,8 +415,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the farthest methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array(_
 		  New PKVector2(0.0, 1.0), _
@@ -492,8 +460,6 @@ Inherits TestGroup
 		  ' Tests the GetFoci method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), New PKVector2(-1.0, -1.0), _
 		  New PKVector2(1.0, -1.0))
 		  
@@ -512,8 +478,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests Nil point array.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -535,8 +499,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Project method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array(_
 		  New PKVector2(0.0, 1.0), _
@@ -572,8 +534,6 @@ Inherits TestGroup
 		  ' Tests the Rotate methods.
 		  //
 		  
-		  Using PhysicsKit
-		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))
 		  Var p As PKPolygon = New PKPolygon(vertices)
@@ -598,8 +558,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the Translate methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var vertices() As PKVector2 = Array(New PKVector2(0.0, 1.0), _
 		  New PKVector2(-1.0, -1.0), New PKVector2(1.0, -1.0))

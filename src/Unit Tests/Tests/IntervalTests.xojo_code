@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the clamp methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var i As PKInterval = New PKInterval(-1.0, 6.5)
 		  
 		  Assert.AreEqual(2.0, i.Clamp(2.0))
@@ -54,8 +52,6 @@ Inherits TestGroup
 		  ' Tests the copy constructor.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var i1 As PKInterval = New PKInterval(-1.0, 2.0)
 		  Var i2 As PKInterval = New PKInterval(i1)
 		  
@@ -71,8 +67,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the min > max.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  #Pragma BreakOnExceptions False
 		  
@@ -97,8 +91,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    #Pragma Unused i
@@ -117,8 +109,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the degenerate interval methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var i As PKInterval = New PKInterval(2.0, 2.0)
 		  
@@ -141,8 +131,6 @@ Inherits TestGroup
 		  ' Tests the distance method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
 		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)
 		  
@@ -162,8 +150,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the expand method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var i As PKInterval = New PKInterval(-2.0, 2.0)
 		  Var ci As PKInterval = Nil
@@ -219,8 +205,6 @@ Inherits TestGroup
 		  ' Tests the length method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var i As PKInterval = New PKInterval(-2.0, 2.0)
 		  Assert.AreEqual(4.0, i.GetLength)
 		  
@@ -248,8 +232,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Includes` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var i As PKInterval = New PKInterval(-2.5, 100.521)
 		  
@@ -280,8 +262,6 @@ Inherits TestGroup
 		  ' Tests the intersection methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
 		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)
 		  
@@ -308,8 +288,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the overlaps methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var i1 As PKInterval = New PKInterval(-2.0, 5.0)
 		  Var i2 As PKInterval = New PKInterval(-4.0, 1.0)
@@ -343,8 +321,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMax(-1.0)
@@ -364,8 +340,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
-		  
-		  Using PhysicsKit
 		  
 		  Try
 		    Var i As PKInterval = New PKInterval(0.0, 2.0)
@@ -388,8 +362,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMax(1.5)
@@ -411,8 +383,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMin(1.5)
@@ -431,8 +401,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the union methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
 		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)

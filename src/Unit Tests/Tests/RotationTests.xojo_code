@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the `Compare` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r1 As PKRotation = New PKRotation(MathsKit.ToRadians(10))
 		  Var r2 As PKRotation = New PKRotation(MathsKit.ToRadians(100))
 		  Var r3 As PKRotation = New PKRotation(MathsKit.ToRadians(100))
@@ -68,8 +66,6 @@ Inherits TestGroup
 		  ' Tests the `Copy` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRotation = New PKRotation(1.0, 3.0)
 		  Var rc As PKRotation = r.Copy
 		  
@@ -85,8 +81,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Create` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r1 As PKRotation = New PKRotation
 		  // Should default to zero angle.
@@ -168,8 +162,6 @@ Inherits TestGroup
 		  ' Tests the cross product methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r1 As PKRotation = New PKRotation(1.0, 0.0)
 		  Var r2 As PKRotation = New PKRotation(0.0, 1.0)
 		  Var v As PKVector2 = New PKVector2(-5.0, 0.0)
@@ -189,8 +181,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Dot` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r1 As PKRotation = New PKRotation(1.0, 0.0)
 		  Var r2 As PKRotation = New PKRotation(0.0, 1.0)
@@ -212,8 +202,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `equals` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r As PKRotation = New PKRotation(2.0)
 		  
@@ -247,8 +235,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `GetRotated` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var temp As PKRotation
 		  Var r1 As PKRotation = New PKRotation(MathsKit.ToRadians(0))
@@ -313,8 +299,6 @@ Inherits TestGroup
 		  ' Tests the `GetRotationBetween` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r1 As PKRotation = New PKRotation(MathsKit.ToRadians(10))
 		  Var r2 As PKRotation = New PKRotation(MathsKit.ToRadians(100))
 		  Var r3 As PKRotation = New PKRotation(MathsKit.ToRadians(100))
@@ -344,8 +328,6 @@ Inherits TestGroup
 		  ' Tests the `Get` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRotation = New PKRotation(1.5)
 		  
 		  Assert.AreEqual(Cos(1.5), r.GetCost)
@@ -359,8 +341,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Inverse` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r1 As PKRotation = New PKRotation(0.0)
 		  
@@ -393,8 +373,6 @@ Inherits TestGroup
 		  ' Tests the `IsIdentity` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRotation = New PKRotation
 		  
 		  Assert.IsTrue(r.IsIdentity)
@@ -417,8 +395,6 @@ Inherits TestGroup
 		  ' Tests the unit length property of rotations.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // For any angle, the corresponding Rotation is always a unit vector.
 		  For i As Integer = 0 to 999
 		    Var r As PKRotation = New PKRotation(MathsKit.ToRadians(i))
@@ -433,8 +409,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Rotate` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r1 As PKRotation = New PKRotation(MathsKit.ToRadians(0))
 		  
@@ -506,8 +480,6 @@ Inherits TestGroup
 		  ' Tests the `Set` methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRotation = New PKRotation(2.0)
 		  
 		  Var r2 As PKRotation = New PKRotation(3.0)
@@ -536,8 +508,6 @@ Inherits TestGroup
 		  ' Tests radians/degrees conversion methods.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRotation = New PKRotation(0.0, -1.0)
 		  
 		  Assert.AreEqual(-MathsKit.PI / 2, r.ToRadians, 1.0e-6)
@@ -556,8 +526,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests vector conversion methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var r As PKRotation = New PKRotation(MathsKit.ToRadians(30))
 		  Var v1 As PKVector2 = r.ToVector

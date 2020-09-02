@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Tests the `Copy` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, -1.0)
 		  t.Rotate(MathsKit.ToRadians(20), -2.0, 6.0)
@@ -57,8 +55,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `GetTransformed` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, 1.0)
@@ -95,8 +91,6 @@ Inherits TestGroup
 		  ' Tests the `Identity` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(5, 2)
 		  
@@ -113,8 +107,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the linear interpolation methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var p As PKVector2 = New PKVector2
 		  
@@ -177,8 +169,6 @@ Inherits TestGroup
 		  ' Tests the `Rotate` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var t As PKTransform = New PKTransform
 		  
 		  t.Rotate(MathsKit.ToRadians(30))
@@ -220,8 +210,6 @@ Inherits TestGroup
 		  ' Tests the `SetRotation` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.toRadians(45.0))
 		  tx.Translate(1.0, 0.0)
@@ -239,8 +227,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `SetTransform` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30))
@@ -265,8 +251,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `SetTranslation` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var tx As PKTransform = New PKTransform
 		  tx.Translate(1.0, 2.0)
@@ -295,8 +279,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the `Transform` methods.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, 1.0)
@@ -333,8 +315,6 @@ Inherits TestGroup
 		  ' Tests the `Translate` method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(2, -1)
 		  
@@ -351,8 +331,6 @@ Inherits TestGroup
 		  ///
 		  ' tests the `GetValues` method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var t As PKTransform = New PKTransform
 		  t.Translate(2.0, -1.0)

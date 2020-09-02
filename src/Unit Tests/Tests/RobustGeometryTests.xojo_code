@@ -47,8 +47,6 @@ Inherits TestGroup
 		  
 		  #Pragma Warning "Should use BigDecimal"
 		  
-		  Using PhysicsKit
-		  
 		  Return PKSegment.GetLocation(point, linePoint1, linePoint2)
 		  
 		End Function
@@ -89,8 +87,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma Warning "Broken and failing"
-		  
-		  Using PhysicsKit
 		  
 		  // Constant seed so we always get the same sequence of randoms
 		  System.Random.Seed = SEED

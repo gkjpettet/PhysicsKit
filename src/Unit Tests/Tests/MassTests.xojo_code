@@ -38,8 +38,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var masses() As PKMass
 		    Var m As PKMass = PKMass.Create(masses)
@@ -59,8 +57,6 @@ Inherits TestGroup
 		  ///
 		  ' Test the create method accepting an array of infinite Mass objects.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var m1 As PKMass = New PKMass
 		  Var m2 As PKMass = New PKMass
@@ -89,8 +85,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
 		    Var m2 As PKMass = New PKMass(New PKVector2, 2.0, 7.0)
@@ -117,8 +111,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var m As PKMass = PKMass.Create(Nil)
 		    #Pragma Unused m
@@ -137,8 +129,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the create method accepting an array of one Mass.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
 		  Var masses() As PKMass
@@ -164,8 +154,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var masses() As PKMass
 		    masses.AddRow(Nil)
@@ -186,8 +174,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the create method accepting an array of Mass objects.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var m1 As PKMass = New PKMass(New PKVector2( 1.0,  1.0), 3.00, 1.00)
 		  Var m2 As PKMass = New PKMass(New PKVector2(-1.0,  0.0), 0.50, 0.02)
@@ -213,8 +199,6 @@ Inherits TestGroup
 		  ' Test case for the circle create method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKCircle = New PKCircle(3.0)
 		  Var m As PKMass = c.CreateMass(2.0)
 		  
@@ -235,8 +219,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var m As PKMass = New PKMass(Nil)
 		    #Pragma Unused m
@@ -255,8 +237,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the create method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var m As PKMass = New PKMass(New PKVector2(1.0, 0.0), 2.0, 1.0)
 		  Var m2 As PKMass = New PKMass(m)
@@ -278,11 +258,9 @@ Inherits TestGroup
 		  ' Tests the create fixed angular velocity method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var m As PKMass = New PKMass(New PKVector2, 1.0, 0.0)
 		  Assert.IsFalse(m.IsInfinite)
-		  Assert.IsTrue(m.GetType = MassTypes.FixedAngularVelocity)
+		  Assert.IsTrue(m.GetType = PhysicsKit.MassTypes.FixedAngularVelocity)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 1.0)
 		  Assert.AreEqual(m.GetInertia, 0.0)
@@ -296,11 +274,9 @@ Inherits TestGroup
 		  ' Tests the create fixed linear velocity method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var m As PKMass = New PKMass(New PKVector2, 0, 1.0)
 		  Assert.IsFalse(m.IsInfinite)
-		  Assert.IsTrue(m.GetType = MassTypes.FixedLinearVelocity)
+		  Assert.IsTrue(m.GetType = PhysicsKit.MassTypes.FixedLinearVelocity)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 0.0)
 		  Assert.AreEqual(m.GetInertia, 1.0)
@@ -313,8 +289,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the create method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var m As PKMass = New PKMass(New PKVector2, 0, 0)
 		  Assert.IsTrue(m.IsInfinite)
@@ -332,8 +306,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
-		  
-		  Using PhysicsKit
 		  
 		  Try
 		    Var m As PKMass = New PKMass(New PKVector2, 1.0, -1.0)
@@ -356,8 +328,6 @@ Inherits TestGroup
 		  
 		  #Pragma BreakOnExceptions False
 		  
-		  Using PhysicsKit
-		  
 		  Try
 		    Var m As PKMass = New PKMass(New PKVector2, -1.0, 1.0)
 		    #Pragma Unused m
@@ -377,8 +347,6 @@ Inherits TestGroup
 		  ' Tests the polygon create method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(5, 0.5)
 		  Var m As PKMass = p.CreateMass(1.0)
 		  
@@ -395,8 +363,6 @@ Inherits TestGroup
 		  ' Test case for the Rectangle create method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var r As PKRectangle = New PKRectangle(1.0, 1.0)
 		  Var m As PKMass = r.CreateMass(1.5)
 		  
@@ -411,8 +377,6 @@ Inherits TestGroup
 		  ///
 		  ' Test case for the Segment create method.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  Var s As PKSegment = New PKSegment(New PKVector2(-1.0, 0.0), New PKVector2(1.0, 0.5))
 		  Var m As PKMass = s.CreateMass(1.0)
@@ -432,8 +396,6 @@ Inherits TestGroup
 		  ' Test the create method.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var m As PKMass = New PKMass(New PKVector2, 1.0, 1.0)
 		  Assert.IsTrue(m.GetCenter.Equals(New PKVector2))
 		  Assert.AreEqual(m.GetMass, 1.0)
@@ -449,8 +411,6 @@ Inherits TestGroup
 		  ///
 		  
 		  #Pragma BreakOnExceptions False
-		  
-		  Using PhysicsKit
 		  
 		  Try
 		    Var m As PKMass = New PKMass(Nil, 1.0, 1.0)
@@ -471,8 +431,6 @@ Inherits TestGroup
 		  ' Tests the inertia and COM calculatons for polygon shapes.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
 		  Var r As PKRectangle= PKGeometry.CreateSquare(1.0)
@@ -491,8 +449,6 @@ Inherits TestGroup
 		  ///
 		  ' Make sure the centre of mass does not effect the mass or inertia.
 		  ///
-		  
-		  Using PhysicsKit
 		  
 		  // A polygon of a simple shape should match a simple shape's mass and inertia.
 		  Var p As PKPolygon= PKGeometry.CreateUnitCirclePolygon(4, MathsKit.Hypot(0.5, 0.5))
@@ -513,13 +469,11 @@ Inherits TestGroup
 		  ' Tests setting the type of the Mass.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var c As PKCircle= PKGeometry.CreateCircle(2.0)
 		  Var mi As PKMass = c.CreateMass(1.0)
 		  
 		  // Setting the type should not alter the mass values.
-		  mi.SetType(MassTypes.Infinite)
+		  mi.SetType(PhysicsKit.MassTypes.Infinite)
 		  Assert.IsTrue(mi.IsInfinite)
 		  Assert.IsFalse(0.0 = mi.Mass)
 		  Assert.IsFalse(0.0 = mi.InvMass)
@@ -532,7 +486,7 @@ Inherits TestGroup
 		  Assert.AreEqual(0.0, mi.GetInertia)
 		  Assert.AreEqual(0.0, mi.GetInverseInertia)
 		  
-		  mi.SetType(MassTypes.FixedAngularVelocity)
+		  mi.SetType(PhysicsKit.MassTypes.FixedAngularVelocity)
 		  Assert.IsFalse(0.0 = mi.Mass)
 		  Assert.IsFalse(0.0 = mi.InvMass)
 		  Assert.IsFalse(0.0 = mi.Inertia)
@@ -540,7 +494,7 @@ Inherits TestGroup
 		  Assert.AreEqual(0.0, mi.GetInertia)
 		  Assert.AreEqual(0.0, mi.GetInverseInertia)
 		  
-		  mi.SetType(MassTypes.FixedLinearVelocity)
+		  mi.SetType(PhysicsKit.MassTypes.FixedLinearVelocity)
 		  Assert.IsFalse(0.0 = mi.Mass)
 		  Assert.IsFalse(0.0 = mi.InvMass)
 		  Assert.IsFalse(0.0 = mi.Inertia)

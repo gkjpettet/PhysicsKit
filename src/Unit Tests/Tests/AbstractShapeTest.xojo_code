@@ -36,8 +36,6 @@ Inherits TestGroup
 		  ' Make sure storage of user data is working.
 		  ///
 		  
-		  Using PhysicsKit
-		  
 		  Var s As TestSupportClasses.AbstractShapeTestClass = New TestSupportClasses.AbstractShapeTestClass
 		  
 		  // Should initially be Nil.
