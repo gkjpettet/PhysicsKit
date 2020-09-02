@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface Translatable
+Protected Interface PKTranslatable
 	#tag Method, Flags = &h0, Description = 5472616E736C6174657320746865206F626A6563742074686520676976656E20616D6F756E747320696E20746865207265737065637469766520646972656374696F6E732E
 		Sub Translate(x As Double, y As Double)
 		  
