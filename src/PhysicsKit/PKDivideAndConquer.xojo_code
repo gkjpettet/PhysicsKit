@@ -1,5 +1,5 @@
 #tag Class
-Protected Class DivideAndConquer
+Protected Class PKDivideAndConquer
 Implements  PKHullGenerator
 	#tag Method, Flags = &h0, Description = 526563757273697665206D6574686F6420746F2073756264697669646520616E64206D657267652074686520706F696E74732E
 		Function Divide(points() As PKVector2, first As Integer, last As Integer) As PKLinkedVertexHull
