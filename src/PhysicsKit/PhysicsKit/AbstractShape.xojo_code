@@ -170,7 +170,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(theta, 0.0, 0.0)
 		  
@@ -179,7 +179,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(New PKRotation(theta), x, y)
 		  
@@ -188,7 +188,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, point As PKVector2)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(theta, point.X, point.Y)
 		  
@@ -197,7 +197,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(r, 0.0, 0.0)
 		  
@@ -206,7 +206,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  ///
 		  ' Subclasses of AbstractShape should override just this method 
@@ -221,7 +221,7 @@ Implements PhysicsKit.DataContainer,PhysicsKit.Shape,PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, point As PKVector2)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(r, point.X, point.Y)
 		  

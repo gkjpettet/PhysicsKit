@@ -549,7 +549,7 @@ Implements PhysicsKit.Convex,PhysicsKit.Wound
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Super.Rotate(r, x, y)
 		  

@@ -636,7 +636,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.rotate(Cos(theta), Sin(theta))
 		  
@@ -669,7 +669,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(Cos(theta), Sin(theta), x, y)
 		  
@@ -705,7 +705,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(theta As Double, point As PKVector2)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(theta, point.X, point.Y)
 		  
@@ -714,7 +714,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(r.Cost, r.Sint)
 		  
@@ -723,7 +723,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, x As Double, y As Double)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(r.Cost, r.Sint, x, y)
 		  
@@ -732,7 +732,7 @@ Implements PKTransformable
 
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, point As PKVector2)
-		  // Part of the PhysicsKit.Rotatable interface.
+		  // Part of the PKRotatable interface.
 		  
 		  Self.Rotate(r, point.X, point.Y)
 		  

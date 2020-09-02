@@ -362,7 +362,7 @@ Implements PhysicsKit.Convex
 	#tag Method, Flags = &h0
 		Sub Rotate(r As PKRotation, x As Double, y As Double)
 		  ///
-		  ' - Note: Part of the PhysicsKit.Rotatable interface.
+		  ' - Note: Part of the PKRotatable interface.
 		  ///
 		  
 		  Super.Rotate(r, x, y)
