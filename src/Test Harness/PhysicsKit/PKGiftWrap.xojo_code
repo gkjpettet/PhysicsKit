@@ -1,6 +1,6 @@
 #tag Class
 Protected Class PKGiftWrap
-Implements  PKHullGenerator
+Implements PKHullGenerator
 	#tag Method, Flags = &h0
 		Function Generate(points() As PKVector2) As PKVector2()
 		  ///
@@ -42,7 +42,7 @@ Implements  PKHullGenerator
 		  Var current As PKVector2 = leftMost
 		  
 		  // Use a linked hash set to maintain insertion order but also prevent duplicate insertion.
-		  Var hull As PhysicsKit.Util.LinkedHashSetPKVector2 = New PhysicsKit.Util.LinkedHashSetPKVector2
+		  Var hull As PKLinkedHashSetVector2 = New PKLinkedHashSetVector2
 		  
 		  Do
 		    Call hull.Add(current)

@@ -1,7 +1,7 @@
 #tag Class
 Protected Class PKEllipse
 Inherits PKAbstractShape
-Implements  PKConvex
+Implements PKConvex
 	#tag Method, Flags = &h0
 		Sub Constructor(valid As Boolean, width As Double, height As Double)
 		  ///

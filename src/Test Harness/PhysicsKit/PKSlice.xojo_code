@@ -1,7 +1,7 @@
 #tag Class
 Protected Class PKSlice
 Inherits PKAbstractShape
-Implements  PKConvex
+Implements PKConvex
 	#tag Method, Flags = &h21
 		Private Sub Constructor(valid As Boolean, radius As Double, theta As Double, center As PKVector2)
 		  ///

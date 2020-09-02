@@ -1,6 +1,6 @@
 #tag Interface
 Protected Interface PKTransformable
-Implements PKRotatable,  PKTranslatable
+Implements PKRotatable,PKTranslatable
 	#tag Note, Name = About
 		Represents an object that is both PKRotatable and Translatable.
 		

@@ -1,6 +1,6 @@
 #tag Class
 Protected Class PKAbstractShape
-Implements  PKTransformable,   PKDataContainer,  PKShape
+Implements PKTransformable,PKDataContainer,PKShape
 	#tag Method, Flags = &h0, Description = 4D696E696D616C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
 		  ///

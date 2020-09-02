@@ -1,6 +1,6 @@
 #tag Class
 Protected Class PKAABB
-Implements  PKTranslatable
+Implements PKTranslatable
 	#tag Method, Flags = &h0, Description = 46756C6C20636F6E7374727563746F722E
 		Sub Constructor(radius As Double)
 		  ///
