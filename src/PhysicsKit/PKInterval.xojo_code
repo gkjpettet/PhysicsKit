@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Interval
+Protected Class PKInterval
 	#tag Method, Flags = &h0, Description = 4966207468652076616C75652069732077697468696E207468697320496E74657276616C2C20696E636C75736976652C207468656E2072657475726E73207468652076616C75652C20656C73652072657475726E732065697468657220746865206D6178206F72206D696E696D756D2076616C75652E
 		Function Clamp(value As Double) As Double
 		  ///
@@ -11,7 +11,7 @@ Protected Class Interval
 		  ' - Returns: Double.
 		  ///
 		  
-		  Return Interval.Clamp(value, Self.Min, Self.Max)
+		  Return PKInterval.Clamp(value, Self.Min, Self.Max)
 		  
 		End Function
 	#tag EndMethod
@@ -62,7 +62,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F707920636F6E7374727563746F722E
-		Sub Constructor(interval As PhysicsKit.Interval)
+		Sub Constructor(interval As PKInterval)
 		  ///
 		  ' Copy constructor.
 		  '
@@ -76,7 +76,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320547275652069662074686520676976656E20496E74657276616C20697320636F6E7461696E656420696E207468697320496E74657276616C2E
-		Function Contains(interval As PhysicsKit.Interval) As Boolean
+		Function Contains(interval As PKInterval) As Boolean
 		  ///
 		  ' Returns True if the given Interval is contained in this Interval.
 		  '
@@ -91,7 +91,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064697374616E6365206265747765656E207468652074776F20496E74657276616C732E2049662074686520676976656E20696E74657276616C206F7665726C617073207468697320696E74657276616C2C207A65726F2069732072657475726E65642E
-		Function Distance(interval As PhysicsKit.Interval) As Double
+		Function Distance(interval As PKInterval) As Double
 		  ///
 		  ' Returns the distance between the two Intervals.
 		  '
@@ -149,7 +149,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720496E74657276616C206F66207468697320696E74657276616C20657870616E6465642062792068616C662074686520676976656E20616D6F756E7420696E20626F746820646972656374696F6E732E
-		Function GetExpanded(value As Double) As PhysicsKit.Interval
+		Function GetExpanded(value As Double) As PKInterval
 		  ///
 		  ' Returns a new Interval of this interval expanded by half the given amount in both directions.
 		  '
@@ -175,13 +175,13 @@ Protected Class Interval
 		    max = p
 		  End If
 		  
-		  Return New Interval(min, max)
+		  Return New PKInterval(min, max)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E74657273656374696F6E206F662074686520676976656E20496E74657276616C20616E64207468697320496E74657276616C2061732061206E657720496E74657276616C2E
-		Function GetIntersection(interval As PhysicsKit.Interval) As PhysicsKit.Interval
+		Function GetIntersection(interval As PKInterval) As PKInterval
 		  ///
 		  ' Returns the intersection of the given Interval and this Interval as a new Interval.
 		  '
@@ -194,10 +194,10 @@ Protected Class Interval
 		  ///
 		  
 		  If Self.Overlaps(interval) Then
-		    Return New Interval(Max(interval.Min, Self.Min), Min(interval.Max, Self.Max))
+		    Return New PKInterval(Max(interval.Min, Self.Min), Min(interval.Max, Self.Max))
 		  End If
 		  
-		  Return New Interval(0, 0)
+		  Return New PKInterval(0, 0)
 		  
 		End Function
 	#tag EndMethod
@@ -242,7 +242,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520616D6F756E74206F66206F7665726C6170206265747765656E207468697320496E74657276616C20616E642074686520676976656E20496E74657276616C2E2052657475726E732030206966206E6F206F7665726C61702E
-		Function GetOverlap(interval As PhysicsKit.Interval) As Double
+		Function GetOverlap(interval As PKInterval) As Double
 		  ///
 		  ' Returns the amount of overlap between this Interval and the given Interval.
 		  '
@@ -266,7 +266,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520756E696F6E206F662074686520676976656E20496E74657276616C20616E64207468697320496E74657276616C2061732061206E657720496E74657276616C2E
-		Function GetUnion(interval As PhysicsKit.Interval) As PhysicsKit.Interval
+		Function GetUnion(interval As PKInterval) As PKInterval
 		  ///
 		  ' Returns the union of the given Interval and this Interval as a new Interval.
 		  ' 
@@ -275,7 +275,7 @@ Protected Class Interval
 		  ' - Returns: A new Interval.
 		  ///
 		  
-		  Return New Interval(Min(interval.Min, Self.Min), Max(interval.Max, Self.Max))
+		  Return New PKInterval(Min(interval.Min, Self.Min), Max(interval.Max, Self.Max))
 		  
 		End Function
 	#tag EndMethod
@@ -343,7 +343,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320496E74657276616C20746F2074686520696E74657273656374696F6E206F66207468697320496E74657276616C20616E642074686520676976656E20496E74657276616C2E204966207468652074776F20496E74657276616C7320617265206E6F74206F7665726C617070696E67207468656E2074686973206D6574686F642077696C6C206D616B65207468697320496E74657276616C207468652061207A65726F20646567656E657261746520496E74657276616C3A205B302C20305D2E
-		Sub Intersection(interval As PhysicsKit.Interval)
+		Sub Intersection(interval As PKInterval)
 		  ///
 		  ' Sets this Interval to the intersection of this Interval and the given Interval.
 		  '
@@ -395,7 +395,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732054727565206966207468652074776F20496E74657276616C73206F7665726C61702E
-		Function Overlaps(interval As PhysicsKit.Interval) As Boolean
+		Function Overlaps(interval As PKInterval) As Boolean
 		  ///
 		  ' Returns True if the two Intervals overlap.
 		  '
@@ -467,7 +467,7 @@ Protected Class Interval
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320496E74657276616C20746F2074686520756E696F6E206F66207468697320496E74657276616C20616E642074686520676976656E20496E74657276616C2E
-		Sub Union(interval As PhysicsKit.Interval)
+		Sub Union(interval As PKInterval)
 		  ///
 		  ' Sets this Interval to the union of this Interval and the given Interval.
 		  '

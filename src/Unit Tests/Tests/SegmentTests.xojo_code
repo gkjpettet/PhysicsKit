@@ -595,7 +595,7 @@ Inherits TestGroup
 		  Var t As PKTransform = New PKTransform
 		  Var n As PKVector2 = New PKVector2(1.0, 0.0)
 		  
-		  Var i As Interval = s.Project(n, t)
+		  Var i As PKInterval = s.Project(n, t)
 		  
 		  Assert.AreEqual(0.000, i.min, 1.0e-3)
 		  Assert.AreEqual(1.500, i.max, 1.0e-3)

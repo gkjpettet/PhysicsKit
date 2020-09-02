@@ -172,7 +172,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  // If the transform is not Nil then transform the center.
@@ -182,7 +182,7 @@ Implements  PKConvex
 		  Var c As Double = center.Dot(vector)
 		  
 		  // The interval is defined by the radius.
-		  Return New PhysicsKit.Interval(c - Self.Radius, c + Self.Radius)
+		  Return New PKInterval(c - Self.Radius, c + Self.Radius)
 		  
 		End Function
 	#tag EndMethod

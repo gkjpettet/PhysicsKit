@@ -44,7 +44,7 @@ Inherits PKAbstractShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(n As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(n As PKVector2, transform As PKTransform) As PKInterval
 		  #Pragma Unused n
 		  #Pragma Unused transform
 		  

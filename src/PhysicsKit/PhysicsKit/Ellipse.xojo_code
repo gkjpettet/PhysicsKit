@@ -546,7 +546,7 @@ Implements  PKConvex
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -564,7 +564,7 @@ Implements  PKConvex
 		  Var d As Double = p1.Dot(vector)
 		  
 		  // Get the interval along the axis.
-		  Return New Interval(2 * c - d, d)
+		  Return New PKInterval(2 * c - d, d)
 		  
 		End Function
 	#tag EndMethod

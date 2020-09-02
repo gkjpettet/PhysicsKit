@@ -677,7 +677,7 @@ Implements   PKConvex,  PKWound
 		  Var t As Double = ap_ab / ab2
 		  
 		  // Make sure t is in between 0.0 and 1.0.
-		  t = Interval.Clamp(t, 0.0, 1.0)
+		  t = PKInterval.Clamp(t, 0.0, 1.0)
 		  
 		  // Create the point on the line.
 		  Return line.Multiply(t).Add(linePoint1)
@@ -825,7 +825,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  /// 
 		  ' - Note: Part of the PhysicsKit.Shape interface.
 		  ///
@@ -848,7 +848,7 @@ Implements   PKConvex,  PKWound
 		    max = v
 		  End If
 		  
-		  Return New Interval(min, max)
+		  Return New PKInterval(min, max)
 		  
 		End Function
 	#tag EndMethod

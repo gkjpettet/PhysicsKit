@@ -205,7 +205,7 @@ Inherits TestGroup
 		  Var r As Rectangle = New Rectangle(2.0, 1.0)
 		  Var t As PKTransform = New PKTransform
 		  Var axis As PKVector2 = New PKVector2(1.0, 0.0)
-		  Var i As Interval = r.Project(axis, t)
+		  Var i As PKInterval = r.Project(axis, t)
 		  
 		  Assert.AreEqual(-1.000, i.min, 1.0e-3)
 		  Assert.AreEqual( 1.000, i.max, 1.0e-3)

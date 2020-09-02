@@ -255,7 +255,7 @@ Inherits PKPolygon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  // Get the center and vertices.
 		  Var center As PKVector2 = transform.GetTransformed(Self.Center)
 		  
@@ -268,7 +268,7 @@ Inherits PKPolygon
 		  Var e As Double = (Self.Width * 0.5) * Abs(projectAxis0.Dot(vector)) + _
 		  (Self.Height * 0.5) * Abs(projectAxis1.Dot(vector))
 		  
-		  Return New Interval(c - e, c + e)
+		  Return New PKInterval(c - e, c + e)
 		  
 		End Function
 	#tag EndMethod

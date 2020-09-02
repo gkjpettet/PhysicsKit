@@ -516,7 +516,7 @@ Implements   PKConvex,  PKWound
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Var v As Double = 0.0
@@ -542,7 +542,7 @@ Implements   PKConvex,  PKWound
 		    End If
 		  Next i
 		  
-		  Return New PhysicsKit.Interval(min, max)
+		  Return New PKInterval(min, max)
 		  
 		End Function
 	#tag EndMethod

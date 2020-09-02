@@ -148,7 +148,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2) As PhysicsKit.Interval
+		Function Project(vector As PKVector2) As PKInterval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  Return Self.Project(vector, IDENTITY)
@@ -157,7 +157,7 @@ Implements  PKTransformable,   PKDataContainer,  PKShape
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Project(vector As PKVector2, transform As PKTransform) As PhysicsKit.Interval
+		Function Project(vector As PKVector2, transform As PKTransform) As PKInterval
 		  // Part of the PhysicsKit.Shape interface.
 		  
 		  #Pragma Unused vector

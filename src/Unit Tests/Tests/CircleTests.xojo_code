@@ -255,7 +255,7 @@ Inherits TestGroup
 		  
 		  t.Translate(1.0, 0.5)
 		  
-		  Var i As Interval = c.Project(x, t)
+		  Var i As PKInterval = c.Project(x, t)
 		  
 		  Assert.AreEqual(-0.500, i.min, 1.0e-3)
 		  Assert.AreEqual( 2.500, i.max, 1.0e-3)

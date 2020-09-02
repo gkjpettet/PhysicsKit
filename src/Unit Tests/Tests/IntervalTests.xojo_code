@@ -38,10 +38,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i As Interval = New Interval(-1.0, 6.5)
+		  Var i As PKInterval = New PKInterval(-1.0, 6.5)
 		  
 		  Assert.AreEqual(2.0, i.Clamp(2.0))
-		  Assert.AreEqual(2.0, Interval.Clamp(2.0, -1.0, 6.5))
+		  Assert.AreEqual(2.0, PKInterval.Clamp(2.0, -1.0, 6.5))
 		  Assert.AreEqual(-1.0, i.Clamp(-2.0))
 		  Assert.AreEqual(6.5, i.Clamp(7.0))
 		  
@@ -56,8 +56,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i1 As Interval = New Interval(-1.0, 2.0)
-		  Var i2 As Interval = New Interval(i1)
+		  Var i1 As PKInterval = New PKInterval(-1.0, 2.0)
+		  Var i2 As PKInterval = New PKInterval(i1)
 		  
 		  Assert.AreDifferent(i2, i1)
 		  Assert.AreEqual(i1.min, i2.min)
@@ -77,7 +77,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, -1.0)
+		    Var i As PKInterval = New PKInterval(0.0, -1.0)
 		    #Pragma Unused i
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -100,7 +100,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, 2.0)
+		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    #Pragma Unused i
 		  Catch e As RuntimeException
 		    Assert.Fail("A runtime exception occurred during Interval construction.")
@@ -120,7 +120,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i As Interval = New Interval(2.0, 2.0)
+		  Var i As PKInterval = New PKInterval(2.0, 2.0)
 		  
 		  Assert.IsTrue(i.IsDegenerate)
 		  
@@ -143,13 +143,13 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i1 As Interval = New Interval(-2.0, 3.0)
-		  Var i2 As Interval = New Interval(-1.0, 4.0)
+		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
+		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)
 		  
 		  // Overlapping intervals should return 0.
 		  Assert.AreEqual(0.0, i1.Distance(i2))
 		  
-		  i2 = New Interval(4.0, 6.0)
+		  i2 = New PKInterval(4.0, 6.0)
 		  
 		  Assert.AreEqual(1.0, i1.Distance(i2))
 		  Assert.AreEqual(1.0, i2.Distance(i1))
@@ -165,8 +165,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i As Interval = New Interval(-2.0, 2.0)
-		  Var ci As Interval = Nil
+		  Var i As PKInterval = New PKInterval(-2.0, 2.0)
+		  Var ci As PKInterval = Nil
 		  
 		  // Test a normal expansion.
 		  ci = i.GetExpanded(2.0)
@@ -202,7 +202,7 @@ Inherits TestGroup
 		  Assert.AreEqual(0.0, i.max, 1.0e-3)
 		  
 		  // Make a copy.
-		  i = New Interval(-2.5, 1.5)
+		  i = New PKInterval(-2.5, 1.5)
 		  ci = i.GetExpanded(-6.0)
 		  Assert.AreEqual(-0.5, ci.min, 1.0e-3)
 		  Assert.AreEqual(-0.5, ci.max, 1.0e-3)
@@ -221,23 +221,23 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i As Interval = New Interval(-2.0, 2.0)
+		  Var i As PKInterval = New PKInterval(-2.0, 2.0)
 		  Assert.AreEqual(4.0, i.GetLength)
 		  
-		  i = New Interval(-1.0, 2.0)
+		  i = New PKInterval(-1.0, 2.0)
 		  Assert.AreEqual(3.0, i.GetLength)
 		  
-		  i = New Interval(-3.0, -1.0)
+		  i = New PKInterval(-3.0, -1.0)
 		  Assert.AreEqual(2.0, i.GetLength)
 		  
-		  i = New Interval(2.0, 3.0)
+		  i = New PKInterval(2.0, 3.0)
 		  Assert.AreEqual(1.0, i.GetLength)
 		  
-		  i = New Interval(-1.0, 2.0)
+		  i = New PKInterval(-1.0, 2.0)
 		  i.Expand(-4.0)
 		  Assert.AreEqual(0.0, i.GetLength)
 		  
-		  i = New Interval(-1.0, -1.0)
+		  i = New PKInterval(-1.0, -1.0)
 		  Assert.AreEqual(0.0, i.GetLength)
 		  
 		End Sub
@@ -251,7 +251,7 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i As Interval = New Interval(-2.5, 100.521)
+		  Var i As PKInterval = New PKInterval(-2.5, 100.521)
 		  
 		  Assert.IsTrue(i.IncludesExclusive(50.0))
 		  Assert.IsTrue(Not i.IncludesExclusive(100.521))
@@ -282,10 +282,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i1 As Interval = New Interval(-2.0, 3.0)
-		  Var i2 As Interval = New Interval(-1.0, 4.0)
+		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
+		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)
 		  
-		  Var u As Interval = i1.GetIntersection(i2)
+		  Var u As PKInterval = i1.GetIntersection(i2)
 		  Assert.AreEqual(-1.0, u.min)
 		  Assert.AreEqual(3.0, u.max)
 		  
@@ -295,7 +295,7 @@ Inherits TestGroup
 		  Assert.AreEqual(3.0, u.max)
 		  
 		  // Test intervals that don't overlap.
-		  Var i3 As Interval = New Interval(-3.0, -2.5)
+		  Var i3 As PKInterval = New PKInterval(-3.0, -2.5)
 		  u = i1.GetIntersection(i3)
 		  Assert.AreEqual(0.0, u.min)
 		  Assert.AreEqual(0.0, u.max)
@@ -311,8 +311,8 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i1 As Interval = New Interval(-2.0, 5.0)
-		  Var i2 As Interval = New Interval(-4.0, 1.0)
+		  Var i1 As PKInterval = New PKInterval(-2.0, 5.0)
+		  Var i2 As PKInterval = New PKInterval(-4.0, 1.0)
 		  
 		  Assert.IsTrue(i1.Overlaps(i2))
 		  // The reverse should work also.
@@ -346,7 +346,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, 2.0)
+		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMax(-1.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -368,7 +368,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, 2.0)
+		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMin(3.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -391,7 +391,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, 2.0)
+		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMax(1.5)
 		  Catch e As RuntimeException
 		    Assert.Fail("A RuntimeException occurred when setting a valid Interval max.")
@@ -414,7 +414,7 @@ Inherits TestGroup
 		  Using PhysicsKit
 		  
 		  Try
-		    Var i As Interval = New Interval(0.0, 2.0)
+		    Var i As PKInterval = New PKInterval(0.0, 2.0)
 		    i.SetMin(1.5)
 		  Catch e As RuntimeException
 		    Assert.Fail("Encountered a RuntimeException whilst setting a valid Interval min.")
@@ -434,10 +434,10 @@ Inherits TestGroup
 		  
 		  Using PhysicsKit
 		  
-		  Var i1 As Interval = New Interval(-2.0, 3.0)
-		  Var i2 As Interval = New Interval(-1.0, 4.0)
+		  Var i1 As PKInterval = New PKInterval(-2.0, 3.0)
+		  Var i2 As PKInterval = New PKInterval(-1.0, 4.0)
 		  
-		  Var u As Interval = i1.GetUnion(i2)
+		  Var u As PKInterval = i1.GetUnion(i2)
 		  Assert.AreEqual(-2.0, u.min)
 		  Assert.AreEqual(4.0, u.max)
 		  
@@ -447,7 +447,7 @@ Inherits TestGroup
 		  Assert.AreEqual(4.0, u.max)
 		  
 		  // Test intervals that don't overlap.
-		  Var i3 As Interval = New Interval(-3.0, -2.5)
+		  Var i3 As PKInterval = New PKInterval(-3.0, -2.5)
 		  u = i1.GetUnion(i3)
 		  Assert.AreEqual(-3.0, u.min)
 		  Assert.AreEqual(3.0, u.max)
