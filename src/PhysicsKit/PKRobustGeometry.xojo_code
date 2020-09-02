@@ -1,9 +1,9 @@
 #tag Class
 Protected Class PKRobustGeometry
 	#tag Method, Flags = &h0, Description = 506572666F726D732063726F73732070726F64756374206F6E20666F7572207072696D69746976657320616E642072657475726E732074686520726573756C742061732061206E6577204164617074697665446563696D616C2E
-		Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double) As PhysicsKit.AdaptiveDecimal
+		Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double) As PKAdaptiveDecimal
 		  ///
-		  ' Performs cross product on four primitives and also allocates a new AdaptiveDecimal
+		  ' Performs cross product on four primitives and also allocates a new PKAdaptiveDecimal
 		  ' with the appropriate capacity to store the result.
 		  '
 		  ' - Parameter ax: The x value of the vector a.
@@ -20,29 +20,29 @@ Protected Class PKRobustGeometry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D73207468652063726F73732070726F64756374206F662074776F20766563746F727320612C20622C2074686174206973206178202A206279202D206179202A20627820627574207769746820657874656E64656420707265636973696F6E20616E642073746F72657320746865203420636F6D706F6E656E7420726573756C7420696E2074686520676976656E204164617074697665446563696D616C2060726573756C7460206F7220637265617465732061206E6577206F6E652069662060726573756C7460206973204E696C2E
-		Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double, result As PhysicsKit.AdaptiveDecimal) As PhysicsKit.AdaptiveDecimal
+		Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double, result As PKAdaptiveDecimal) As PKAdaptiveDecimal
 		  ///
 		  ' Performs the cross product of two vectors a, b, that is ax * by - ay * bx but with extended precision
-		  ' and stores the 4 component result in the given AdaptiveDecimal `result`.
-		  ' In the same way as with `AdaptiveDecimal.Sum(AdaptiveDecimal, AdaptiveDecimal)` if `result` is Nil
+		  ' and stores the 4 component result in the given PKAdaptiveDecimal `result`.
+		  ' In the same way as with `PKAdaptiveDecimal.Sum(PKAdaptiveDecimal, PKAdaptiveDecimal)` if `result` is Nil
 		  ' a new one is allocated, otherwise the existing is cleared and used.
 		  '
 		  ' - Parameter ax: The x value of the vector a.
 		  ' - Parameter ay: The y value of the vector a.
 		  ' - Parameter bx: The x value of the vector b.
 		  ' - Parameter by: The y value of the vector b.
-		  ' - Parameter result: The AdaptiveDecimal in which the cross product is stored.
+		  ' - Parameter result: The PKAdaptiveDecimal in which the cross product is stored.
 		  '
-		  ' - Returns: AdaptiveDecimal.
+		  ' - Returns: PKAdaptiveDecimal.
 		  ///
 		  
 		  Var axby As Double = ax * by
 		  Var aybx As Double = bx * ay
-		  Var axbyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromProduct(ax, by, axby)
-		  Var aybxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromProduct(bx, ay, aybx)
+		  Var axbyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromProduct(ax, by, axby)
+		  Var aybxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromProduct(bx, ay, aybx)
 		  
-		  // Result can be Nil in which case AdaptiveDecimal.FromDiff will allocate a new one.
-		  Var newResult As PhysicsKit.AdaptiveDecimal = PhysicsKit.AdaptiveDecimal.FromDiff(axbyTail, axby, aybxTail, aybx, result)
+		  // Result can be Nil in which case PKAdaptiveDecimal.FromDiff will allocate a new one.
+		  Var newResult As PKAdaptiveDecimal = PKAdaptiveDecimal.FromDiff(axbyTail, axby, aybxTail, aybx, result)
 		  
 		  Return newResult
 		  
@@ -68,7 +68,7 @@ Protected Class PKRobustGeometry
 		  
 		  // This code is based on the original code by Jonathan Richard Shewchuk
 		  // For more details about the correctness and error bounds check the note
-		  // in the AdaptiveDecimal class and the corresponding paper of the author.
+		  // in the PKAdaptiveDecimal class and the corresponding paper of the author.
 		  
 		  // In the beginning try the simple-straightforward computation with floating point values
 		  // and no extra precision, as in `Segment.GetLocation`.
@@ -111,7 +111,7 @@ Protected Class PKRobustGeometry
 		  
 		  // Calculate the cross product but with more precision than before
 		  // But don't bother yet to perform the differences acx, acy, bcx, bcy with full precision.
-		  Var B As PhysicsKit.AdaptiveDecimal = PKRobustGeometry.Cross(acx, acy, bcx, bcy)
+		  Var B As PKAdaptiveDecimal = PKRobustGeometry.Cross(acx, acy, bcx, bcy)
 		  
 		  Var det As Double = B.GetEstimation
 		  Var errorBound As Double = ERROR_BOUND_B * detSum
@@ -119,10 +119,10 @@ Protected Class PKRobustGeometry
 		  
 		  // Since we need more precision to produce the result at this point
 		  // we have to calculate the differences with full precision.
-		  Var acxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(point.X, linePoint2.X, acx)
-		  Var acyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(point.Y, linePoint2.Y, acy)
-		  Var bcxTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.X, linePoint2.X, bcx)
-		  Var bcyTail As Double = PhysicsKit.AdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.Y, linePoint2.Y, bcy)
+		  Var acxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(point.X, linePoint2.X, acx)
+		  Var acyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(point.Y, linePoint2.Y, acy)
+		  Var bcxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.X, linePoint2.X, bcx)
+		  Var bcyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.Y, linePoint2.Y, bcy)
 		  
 		  If acxTail = 0 And acyTail = 0 And bcxTail = 0 And bcyTail = 0 Then
 		    // Trivial case: the extra precision was not needed after all.
@@ -139,16 +139,16 @@ Protected Class PKRobustGeometry
 		  // At this point we have to go full out and calculate all the products with full precision.
 		  
 		  // Re-usable buffer to store the results of the 3 cross products needed below
-		  Var buffer As PhysicsKit.AdaptiveDecimal = New PhysicsKit.AdaptiveDecimal(4)
+		  Var buffer As PKAdaptiveDecimal = New PKAdaptiveDecimal(4)
 		  
 		  Call PKRobustGeometry.Cross(acxTail, bcx, acyTail, bcy, buffer)
-		  Var C1 As PhysicsKit.AdaptiveDecimal = B.Sum(buffer)
+		  Var C1 As PKAdaptiveDecimal = B.Sum(buffer)
 		  
 		  Call PKRobustGeometry.Cross(acx, bcxTail, acy, bcyTail, buffer)
-		  Var C2 As PhysicsKit.AdaptiveDecimal = C1.Sum(buffer)
+		  Var C2 As PKAdaptiveDecimal = C1.Sum(buffer)
 		  
 		  Call PKRobustGeometry.Cross(acxTail, bcxTail, acyTail, bcyTail, buffer)
-		  Var D As PhysicsKit.AdaptiveDecimal = C2.Sum(buffer)
+		  Var D As PKAdaptiveDecimal = C2.Sum(buffer)
 		  
 		  // Return the most significant component of the last buffer D.
 		  // Reminder: components are non-overlapping so this is OK.
@@ -161,7 +161,7 @@ Protected Class PKRobustGeometry
 		Shared Sub Initialise()
 		  ///
 		  ' Initializer that computes the necessary splitter value and error bounds based on the machine epsilon.
-		  ' Also instantiates the internal AdaptiveDecimal variables.
+		  ' Also instantiates the internal PKAdaptiveDecimal variables.
 		  ///
 		  
 		  // Calculate the splitter and epsilon.

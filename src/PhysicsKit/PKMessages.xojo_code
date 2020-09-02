@@ -3,13 +3,13 @@ Protected Module PKMessages
 	#tag Constant, Name = ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE, Type = String, Dynamic = False, Default = \"The requested index is out of range.", Scope = Protected
 	#tag EndConstant
 
-	#tag Constant, Name = ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY, Type = String, Dynamic = False, Default = \"This AdaptiveDecimal has insufficient capacity to perform that operation.", Scope = Protected
+	#tag Constant, Name = ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY, Type = String, Dynamic = False, Default = \"This PKAdaptiveDecimal has insufficient capacity to perform that operation.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = ADAPTIVE_DECIMAL_INVALID_LENGTH, Type = String, Dynamic = False, Default = \"The `length` property must be greater than zero.", Scope = Protected
 	#tag EndConstant
 
-	#tag Constant, Name = ADAPTIVE_DECIMAL_INVALID_REPRESENTATION, Type = String, Dynamic = False, Default = \"This AdaptiveDecimal has an invalid representation.", Scope = Protected
+	#tag Constant, Name = ADAPTIVE_DECIMAL_INVALID_REPRESENTATION, Type = String, Dynamic = False, Default = \"This PKAdaptiveDecimal has an invalid representation.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = ADAPTIVE_DECIMAL_OTHER_COMPONENTS_TOO_LARGE, Type = String, Dynamic = False, Default = \"`other` has too many components to fit in this AdaptvieDecimal.", Scope = Protected

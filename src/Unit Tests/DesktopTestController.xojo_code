@@ -22,7 +22,7 @@ Inherits TestController
 		  group = New PKRobustGeometryTests(Self, "PKRobustGeometry") // Broken.
 		  group = New CapsuleTests(Self, "Capsule")
 		  group = New WoundTests(self, "Wound")
-		  group = New AdaptiveDecimalTest(Self, "AdaptiveDecimal")
+		  group = New PKAdaptiveDecimalTest(Self, "PKAdaptiveDecimal")
 		  group = New AbstractShapeTest(Self, "AbstractShape")
 		  group = New PolygonTests(Self, "Polygon")
 		  group = New RectangleTests(Self, "Rectangle")

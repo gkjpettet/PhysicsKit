@@ -1,15 +1,15 @@
 #tag Class
-Protected Class AdaptiveDecimal
+Protected Class PKAdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 417070656E64732061206E657720636F6D706F6E656E7420616674657220616C6C20746865206578697374696E6720636F6D706F6E656E74732E20526169736573204F75744F66426F756E6473457863657074696F6E2069662074686973204164617074697665446563696D616C20686173206E6F206D6F72652063617061636974792E
-		Function Append(value As Double) As PhysicsKit.AdaptiveDecimal
+		Function Append(value As Double) As PKAdaptiveDecimal
 		  ///
 		  ' Appends a new component after all the existing components.
 		  '
 		  ' - Parameter value: The component.
 		  '
-		  ' - Returns: This AdaptiveDecimal.
+		  ' - Returns: This PKAdaptiveDecimal.
 		  '
-		  ' - Raises: OutOfBoundsException if this AdaptiveDecimal has no capacity for more components.
+		  ' - Raises: OutOfBoundsException if this PKAdaptiveDecimal has no capacity for more components.
 		  ///
 		  
 		  If mSize >= Capacity then
@@ -25,13 +25,13 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 417070656E64732061206E657720636F6D706F6E656E7420616674657220616C6C20746865206578697374696E6720636F6D706F6E656E74732C20627574206F6E6C79206966206974206861732061206E6F6E207A65726F2076616C75652E
-		Function AppendNonZero(value As Double) As PhysicsKit.AdaptiveDecimal
+		Function AppendNonZero(value As Double) As PKAdaptiveDecimal
 		  ///
 		  ' Appends a new component after all the existing components, but only if it has a non zero value.
 		  '
 		  ' - Parameter value: The component.
 		  '
-		  ' - Returns: This AdaptiveDecimal.
+		  ' - Returns: This PKAdaptiveDecimal.
 		  ///
 		  
 		  If value <> 0.0 Then Call Append(value)
@@ -44,7 +44,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206D6178696D756D206E756D626572206F6620636F6D706F6E656E74732074686973204164617074697665446563696D616C2063616E20686F6C642E
 		Function Capacity() As Integer
 		  ///
-		  ' - Returns: The maximum number of components this AdaptiveDecimal can hold.
+		  ' - Returns: The maximum number of components this PKAdaptiveDecimal can hold.
 		  ///
 		  
 		  Return Self.Components.Count
@@ -55,14 +55,14 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 52657475726E73206120626F6F6C65616E2076616C75652064657363726962696E672069662074686973204164617074697665446563696D616C20697320612076616C696420726570726573656E746174696F6E2E
 		Function CheckInvariants() As Boolean
 		  ///
-		  ' Returns a boolean value describing if this AdaptiveDecimal is a valid representation 
+		  ' Returns a boolean value describing if this PKAdaptiveDecimal is a valid representation 
 		  ' as described in the `About` note for this class.
 		  ' Checks for the magnitude and non-overlapping property.
-		  ' The invariants can be violated if bad input components are appended to this AdaptiveDecimal.
+		  ' The invariants can be violated if bad input components are appended to this PKAdaptiveDecimal.
 		  ' The `Append` methods do not check for those conditions because there is a big overhead for the check.
 		  ' The output of the exposed operations must satisfy the invariants, given that their input also does so.
 		  '
-		  ' - Returns: True if this AdaptiveDecimal satisfies the described invariants.
+		  ' - Returns: True if this PKAdaptiveDecimal satisfies the described invariants.
 		  ///
 		  
 		  If mSize = 0 Then Return True
@@ -138,11 +138,11 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F7665732074686520636F6D706F6E656E7473206F662074686973204164617074697665446563696D616C20616E642072657475726E732074686973204164617074697665446563696D616C2E
-		Function Clear() As PhysicsKit.AdaptiveDecimal
+		Function Clear() As PKAdaptiveDecimal
 		  ///
-		  ' Removes the components of this AdaptiveDecimal.
+		  ' Removes the components of this PKAdaptiveDecimal.
 		  '
-		  ' - Returns This AdaptiveDecimal.
+		  ' - Returns This PKAdaptiveDecimal.
 		  ///
 		  
 		  mSize = 0
@@ -154,7 +154,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h1, Description = 496E7465726E616C2068656C70657220636F6E7374727563746F7220746F2063726561746520616E204164617074697665446563696D616C20776974682074776F20636F6D706F6E656E74732E
 		Protected Sub Constructor(a0 As Double, a1 As Double)
 		  ///
-		  ' Internal helper constructor to create an AdaptiveDecimal with two components.
+		  ' Internal helper constructor to create an PKAdaptiveDecimal with two components.
 		  '
 		  ' - Parameter a0: The component with the smallest magnitude.
 		  ' - Parameter a1: The component with the largest magnitude.
@@ -169,10 +169,10 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204164617074697665446563696D616C20776974682074686520737065636966696564206C656E6774682E2054686520696E697469616C204164617074697665446563696D616C206372656174656420646F6573206E6F7420636F6E7461696E20616E7920636F6D706F6E656E74732E
 		Sub Constructor(length As Integer)
 		  ///
-		  ' Creates a new AdaptiveDecimal with the specified length.
-		  ' The initial AdaptiveDecimal created does not contain any components.
+		  ' Creates a new PKAdaptiveDecimal with the specified length.
+		  ' The initial PKAdaptiveDecimal created does not contain any components.
 		  ' 
-		  ' - Parameter length: The maximum number of components this AdaptiveDecimal can store.
+		  ' - Parameter length: The maximum number of components this PKAdaptiveDecimal can store.
 		  '
 		  ' - Raises: InvalidArgumentException if `length` is <= 0.
 		  ///
@@ -186,11 +186,11 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4465657020636F707920636F6E7374727563746F722E
-		Sub Constructor(other As PhysicsKit.AdaptiveDecimal)
+		Sub Constructor(other As PKAdaptiveDecimal)
 		  ///
 		  ' Deep copy constructor.
 		  '
-		  ' - Parameter other: The AdaptiveDecimal to copy from.
+		  ' - Parameter other: The PKAdaptiveDecimal to copy from.
 		  ///
 		  
 		  For Each d As Double In other.Components
@@ -202,24 +202,24 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206465657020636F7079206F662074686973204164617074697665446563696D616C2E
-		Function Copy() As PhysicsKit.AdaptiveDecimal
+		Function Copy() As PKAdaptiveDecimal
 		  ///
-		  ' - Returns: A deep copy of this AdaptiveDecimal.
+		  ' - Returns: A deep copy of this PKAdaptiveDecimal.
 		  ///
 		  
-		  Return New AdaptiveDecimal(Self)
+		  Return New PKAdaptiveDecimal(Self)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F706965732074686520636F6D706F6E656E7473206F6620616E6F74686572204164617074697665446563696D616C20696E746F20746869732E20546865206361706163697479206F662074686973204164617074697665446563696D616C206973206E6F74206D6F64696669656420616E642069742073686F756C6420626520656E6F75676820746F20686F6C6420616C6C2074686520636F6D706F6E656E74732E20526169736573204F75744F66426F756E6473457863657074696F6E2E
-		Sub CopyFrom(other As PhysicsKit.AdaptiveDecimal)
+		Sub CopyFrom(other As PKAdaptiveDecimal)
 		  ///
-		  ' Copies the components of another AdaptiveDecimal into this one.
-		  ' The capacity of this AdaptiveDecimal is not modified and it should
+		  ' Copies the components of another PKAdaptiveDecimal into this one.
+		  ' The capacity of this PKAdaptiveDecimal is not modified and it should
 		  ' be enough to hold all the components.
 		  ' 
-		  ' - Parameter other: The AdaptiveDecimal to copy from.
+		  ' - Parameter other: The PKAdaptiveDecimal to copy from.
 		  '
 		  ' - Raises: OutOfBoundsException if other.Components is too large to fit into Self.Components.
 		  ///
@@ -253,47 +253,47 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function FromDiff(a As Double, b As Double) As PhysicsKit.AdaptiveDecimal
+		Shared Function FromDiff(a As Double, b As Double) As PKAdaptiveDecimal
 		  ///
-		  ' Creates an AdaptiveDecimal that holds the result of the difference of two double values.
+		  ' Creates an PKAdaptiveDecimal that holds the result of the difference of two double values.
 		  ' 
 		  ' - Parameter a: The first value.
 		  ' - Parameter b: The second value.
 		  '
-		  ' - Returns: A new AdaptiveDecimal that holds the resulting difference.
+		  ' - Returns: A new PKAdaptiveDecimal that holds the resulting difference.
 		  ///
 		  
 		  Var diff As Double = a - b
-		  Return New AdaptiveDecimal(GetErrorComponentFromDifference(a, b, diff), diff)
+		  Return New PKAdaptiveDecimal(GetErrorComponentFromDifference(a, b, diff), diff)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 476976656E2074776F20756E726F6C6C656420657870616E73696F6E73202861302C2061312920616E64202862302C2062312920706572666F726D732074686520646966666572656E6365202861302C20613129202D202862302C2062312920616E642073746F72657320746865203420636F6D706F6E656E7420726573756C7420696E2074686520676976656E204164617074697665446563696D616C2060726573756C7460206F722061206E6577206F6E65206966204E696C206973207061737365642E
-		Shared Function FromDiff(a0 As Double, a1 As Double, b0 As Double, b1 As Double, result As PhysicsKit.AdaptiveDecimal) As PhysicsKit.AdaptiveDecimal
+		Shared Function FromDiff(a0 As Double, a1 As Double, b0 As Double, b1 As Double, result As PKAdaptiveDecimal) As PKAdaptiveDecimal
 		  ///
 		  ' Given two unrolled expansions (a0, a1) and (b0, b1) performs the difference
-		  ' (a0, a1) - (b0, b1) and stores the 4 component result in the given AdaptiveDecimal `result`.
-		  ' In the same way as with `AdaptiveDecimal.Sum(AdaptiveDecimal, AdaptiveDecimal)` if `result` is Nil.
+		  ' (a0, a1) - (b0, b1) and stores the 4 component result in the given PKAdaptiveDecimal `result`.
+		  ' In the same way as with `PKAdaptiveDecimal.Sum(PKAdaptiveDecimal, PKAdaptiveDecimal)` if `result` is Nil.
 		  ' a new one is allocated, otherwise the existing is cleared and used.
 		  ' Does not perform zero elimination.
 		  ' This is also a helper method to allow fast computation of the cross product
-		  ' without the overhead of creating new AdaptiveDecimal and performing
+		  ' without the overhead of creating new PKAdaptiveDecimal and performing
 		  ' the generalized sum procedure.
 		  '
 		  ' - Parameter a0: The first component of a.
 		  ' - Parameter a1: The second component of a.
 		  ' - Parameter b0: The first component of b.
 		  ' - Parameter b1: The second component of b.
-		  ' - Parameter result: The AdaptiveDecimal in which the difference is stored.
+		  ' - Parameter result: The PKAdaptiveDecimal in which the difference is stored.
 		  '
-		  ' - Returns: AdaptiveDecimal.
+		  ' - Returns: PKAdaptiveDecimal.
 		  ///
 		  
 		  // The exact order of those operations is necessary for correct functionality.
 		  // Allocate a new instance of sufficient size if result is Nil or just clear.
 		  If result = Nil Then
-		    result = New AdaptiveDecimal(4)
+		    result = New PKAdaptiveDecimal(4)
 		  Else
 		    Call result.Clear
 		  End If
@@ -309,15 +309,15 @@ Protected Class AdaptiveDecimal
 		  
 		  // Diff (a0, a1) - b0, result = (x0, imm1, imm2)
 		  imm = a0 - b0
-		  x0 = AdaptiveDecimal.GetErrorComponentFromDifference(a0, b0, imm)
+		  x0 = PKAdaptiveDecimal.GetErrorComponentFromDifference(a0, b0, imm)
 		  imm2 = a1 + imm
-		  imm1 = AdaptiveDecimal.GetErrorComponentFromSum(a1, imm, imm2)
+		  imm1 = PKAdaptiveDecimal.GetErrorComponentFromSum(a1, imm, imm2)
 		  
 		  // Diff (imm1, imm2) - b1, result = (x1, x2, x3)
 		  imm = imm1 - b1
-		  x1 = AdaptiveDecimal.GetErrorComponentFromDifference(imm1, b1, imm)
+		  x1 = PKAdaptiveDecimal.GetErrorComponentFromDifference(imm1, b1, imm)
 		  x3 = imm2 + imm
-		  x2 = AdaptiveDecimal.GetErrorComponentFromSum(imm2, imm, x3)
+		  x2 = PKAdaptiveDecimal.GetErrorComponentFromSum(imm2, imm, x3)
 		  
 		  Call result.Append(x0)
 		  Call result.Append(x1)
@@ -330,35 +330,35 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4372656174657320616E204164617074697665446563696D616C207468617420686F6C64732074686520726573756C74206F66207468652070726F64756374206F662074776F20646F75626C652076616C7565732E
-		Shared Function FromProduct(a As Double, b As Double) As PhysicsKit.AdaptiveDecimal
+		Shared Function FromProduct(a As Double, b As Double) As PKAdaptiveDecimal
 		  ///
-		  '  Creates an AdaptiveDecimal that holds the result of the product of two double values.
+		  '  Creates an PKAdaptiveDecimal that holds the result of the product of two double values.
 		  ' 
 		  ' - Parameter a: The first value.
 		  ' - Parameter b: The second value.
 		  '
-		  ' - Returns: A new AdaptiveDecimal that holds the resulting product.
+		  ' - Returns: A new PKAdaptiveDecimal that holds the resulting product.
 		  ///
 		  
 		  Var product As Double = a * b
-		  Return New AdaptiveDecimal(GetErrorComponentFromProduct(a, b, product), a * b)
+		  Return New PKAdaptiveDecimal(GetErrorComponentFromProduct(a, b, product), a * b)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function FromSum(a As Double, b As Double) As PhysicsKit.AdaptiveDecimal
+		Shared Function FromSum(a As Double, b As Double) As PKAdaptiveDecimal
 		  ///
-		  ' Creates an AdaptiveDecimal that holds the result of the addition of two double values.
+		  ' Creates an PKAdaptiveDecimal that holds the result of the addition of two double values.
 		  '
 		  ' - Parameter a: The first value.
 		  ' - Parameter b: The second value.
 		  '
-		  ' - Returns: A new AdaptiveDecimal that holds the resulting sum.
+		  ' - Returns: A new PKAdaptiveDecimal that holds the resulting sum.
 		  ///
 		  
 		  Var sum As Double = a + b
-		  Return New AdaptiveDecimal(GetErrorComponentFromSum(a, b, sum), sum)
+		  Return New PKAdaptiveDecimal(GetErrorComponentFromSum(a, b, sum), sum)
 		  
 		End Function
 	#tag EndMethod
@@ -471,7 +471,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0
 		Function GetEstimation() As Double
 		  ///
-		  ' Computes an approximation for the value of this AdaptiveDecimal that fits in a double.
+		  ' Computes an approximation for the value of this PKAdaptiveDecimal that fits in a double.
 		  '
 		  ' - Returns: The approximation as a Double.
 		  ///
@@ -489,12 +489,12 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4E65676174657320746865206C6F676963616C2076616C7565206F662074686973204164617074697665446563696D616C2E2043616E206265207573656420776974682053756D20746F20706572666F726D207375627472616374696F6E2E2052657475726E732074686973204164617074697665446563696D616C2E
-		Function Negate() As PhysicsKit.AdaptiveDecimal
+		Function Negate() As PKAdaptiveDecimal
 		  ///
-		  ' Negates the logical value of this AdaptiveDecimal.
+		  ' Negates the logical value of this PKAdaptiveDecimal.
 		  ' This can be used with Sum to perform subtraction.
 		  '
-		  ' - Returns: This AdaptiveDecimal.
+		  ' - Returns: This PKAdaptiveDecimal.
 		  ///
 		  
 		  Var iLimit As Integer = mSize - 1
@@ -508,12 +508,12 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 456E73757265732074686973204164617074697665446563696D616C20686173206174206C65617374206F6E6520636F6D706F6E656E742E20546861742069732C20617070656E647320746865207A65726F2076616C7565206966207468657265206172652063757272656E746C79207A65726F20636F6D706F6E656E74732E
-		Function Normalise() As PhysicsKit.AdaptiveDecimal
+		Function Normalise() As PKAdaptiveDecimal
 		  ///
-		  ' Ensures this AdaptiveDecimal has at least one component.
+		  ' Ensures this PKAdaptiveDecimal has at least one component.
 		  ' That is, appends the zero value if there are currently zero components.
 		  '
-		  ' - Returns: This AdaptiveDecimal.
+		  ' - Returns: This PKAdaptiveDecimal.
 		  ///
 		  
 		  If mSize = 0 Then Call Append(0.0)
@@ -524,11 +524,11 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F76657320616C6C2074686520636F6D706F6E656E74732077697468207A65726F2076616C75652066726F6D2074686973204164617074697665446563696D616C20616E642072657475726E732074686973204164617074697665446563696D616C2E
-		Function RemoveZeros() As PhysicsKit.AdaptiveDecimal
+		Function RemoveZeros() As PKAdaptiveDecimal
 		  ///
-		  ' Removes all the components with zero value from this AdaptiveDecimal.
+		  ' Removes all the components with zero value from this PKAdaptiveDecimal.
 		  '
-		  ' - Return: This AdaptiveDecimal.
+		  ' - Return: This PKAdaptiveDecimal.
 		  ///
 		  
 		  Var limit As Integer = mSize - 1
@@ -546,7 +546,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206E756D626572206F6620636F6D706F6E656E74732074686973204164617074697665446563696D616C2063616E20686F6C642E
 		Function Size() As Integer
 		  ///
-		  ' Returns: The number of components this AdaptiveDecimal can hold.
+		  ' Returns: The number of components this PKAdaptiveDecimal can hold.
 		  ///
 		  
 		  Return mSize
@@ -555,14 +555,14 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D73206164646974696F6E20616E6420616C736F20616C6C6F63617465732061206E6577204164617074697665446563696D616C207769746820746865200A617070726F70726961746520636170616369747920746F2073746F72652074686520726573756C742E2052657475726E7320746865206E6577204164617074697665446563696D616C2E
-		Function Sum(f As PhysicsKit.AdaptiveDecimal) As PhysicsKit.AdaptiveDecimal
+		Function Sum(f As PKAdaptiveDecimal) As PKAdaptiveDecimal
 		  ///
-		  ' Performs addition and also allocates a new AdaptiveDecimal with the 
+		  ' Performs addition and also allocates a new PKAdaptiveDecimal with the 
 		  ' appropriate capacity to store the result.
 		  '
-		  ' - Parameter f: The AdaptiveDecimal to sum with this AdaptiveDecimal.
+		  ' - Parameter f: The PKAdaptiveDecimal to sum with this PKAdaptiveDecimal.
 		  '
-		  ' - Returns: A new AdaptiveDecimal that holds the result of the addition
+		  ' - Returns: A new PKAdaptiveDecimal that holds the result of the addition
 		  ///
 		  
 		  Return Sum(f, Nil)
@@ -571,34 +571,34 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320746865206164646974696F6E206F662074686973204164617074697665446563696D616C20776974682074686520676976656E204164617074697665446563696D616C2060666020616E642073746F7265732074686520726573756C7420696E207468652070726F7669646564204164617074697665446563696D616C2060726573756C74602E2049662060726573756C7460206973204E696C20697420637265617465732061206E6577204164617074697665446563696D616C2E
-		Function Sum(f As PhysicsKit.AdaptiveDecimal, result As PhysicsKit.AdaptiveDecimal) As PhysicsKit.AdaptiveDecimal
+		Function Sum(f As PKAdaptiveDecimal, result As PKAdaptiveDecimal) As PKAdaptiveDecimal
 		  ///
-		  ' Performs the addition of this AdaptiveDecimal with the given AdaptiveDecimal `f`
-		  ' and stores the result in the provided AdaptiveDecimal `result`.
-		  ' If `result` is Nil it allocates a new AdaptiveDecimal with the 
+		  ' Performs the addition of this PKAdaptiveDecimal with the given PKAdaptiveDecimal `f`
+		  ' and stores the result in the provided PKAdaptiveDecimal `result`.
+		  ' If `result` is Nil it allocates a new PKAdaptiveDecimal with the 
 		  ' appropriate capacity to store the result. Otherwise the components of `result`
 		  ' are cleared and the resulting value is stored there, assuming there is enough capacity.
 		  ' 
 		  ' Be careful that it must be `f` ≠ `result` ≠ `Self`.
 		  '
-		  ' - Parameter f: The AdaptiveDecimal to sum with this AdaptiveDecimal.
-		  ' - Parameter result: The AdaptiveDecimal in which the sum is stored or Nil to allocate a new one.
+		  ' - Parameter f: The PKAdaptiveDecimal to sum with this PKAdaptiveDecimal.
+		  ' - Parameter result: The PKAdaptiveDecimal in which the sum is stored or Nil to allocate a new one.
 		  '
-		  ' - Returns: The result as an AdaptiveDecimal.
+		  ' - Returns: The result as an PKAdaptiveDecimal.
 		  ///
 		  
-		  // The following algorithm performs addition of two AdaptiveDecimals
+		  // The following algorithm performs addition of two PKAdaptiveDecimals
 		  // It is based on the original fast_expansion_sum_zeroelim function written
 		  // by the author of the said paper.
 		  
 		  // Allocate a new instance of sufficient size if result is Nil or just clear.
 		  If result = Nil Then
-		    result = New AdaptiveDecimal(mSize + f.Size)
+		    result = New PKAdaptiveDecimal(mSize + f.Size)
 		  Else
 		    Call result.Clear
 		  End If
 		  
-		  Var e As AdaptiveDecimal = Self
+		  Var e As PKAdaptiveDecimal = Self
 		  
 		  // eIndex and fIndex are used to iterate the components of e and f accordingly.
 		  Var eIndex As Int32 = 0
@@ -642,7 +642,7 @@ Protected Class AdaptiveDecimal
 		      // append + zero elimination
 		      Call result.AppendNonZero(error)
 		      
-		      // If this AdaptiveDecimal has no more components then move to the epilogue.
+		      // If this PKAdaptiveDecimal has no more components then move to the epilogue.
 		      If eIndex >= e.Size Then Return SumEpilogue(carry, f, fIndex, result)
 		      
 		      enow = e.Get(eIndex)
@@ -656,7 +656,7 @@ Protected Class AdaptiveDecimal
 		      // append + zero elimination
 		      Call result.AppendNonZero(error)
 		      
-		      // If this AdaptiveDecimal has no more components then move to the epilogue.
+		      // If this PKAdaptiveDecimal has no more components then move to the epilogue.
 		      If fIndex >= f.Size Then Return sumEpilogue(carry, e, eIndex, result)
 		      
 		      fnow = f.Get(fIndex)
@@ -667,18 +667,18 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function SumEpilogue(carry As Double, e As PhysicsKit.AdaptiveDecimal, eIndex As Int32, result As PhysicsKit.AdaptiveDecimal) As PhysicsKit.AdaptiveDecimal
+		Protected Function SumEpilogue(carry As Double, e As PKAdaptiveDecimal, eIndex As Int32, result As PKAdaptiveDecimal) As PKAdaptiveDecimal
 		  ///
 		  ' Helper method to implement the sum procedure.
-		  ' Sums the remaining components of a single AdaptiveDecimal to the result
+		  ' Sums the remaining components of a single PKAdaptiveDecimal to the result
 		  ' and the initial carry value from previous computations.
 		  '
 		  ' - Parameter carry: The carry from previous computations.
-		  ' - Parameter e: The AdaptiveDecimal that probably has more components.
+		  ' - Parameter e: The PKAdaptiveDecimal that probably has more components.
 		  ' - Parameter eIndex: The index to the next component of e that has to be examined.
-		  ' - Parameter result: The AdaptiveDecimal in which the result is stored.
+		  ' - Parameter result: The PKAdaptiveDecimal in which the result is stored.
 		  '
-		  ' - Returns: The result as an AdaptiveDecimal.
+		  ' - Returns: The result as an PKAdaptiveDecimal.
 		  ///
 		  
 		  While eIndex < e.Size
@@ -702,7 +702,7 @@ Protected Class AdaptiveDecimal
 	#tag Method, Flags = &h0, Description = 52657475726E73206120537472696E6720726570726573656E746174696F6E206F662074686973204164617074697665446563696D616C2E
 		Function ToString() As String
 		  ///
-		  ' Returns a String representation of this AdaptiveDecimal.
+		  ' Returns a String representation of this PKAdaptiveDecimal.
 		  ///
 		  
 		  Var s() As String
@@ -724,15 +724,15 @@ Protected Class AdaptiveDecimal
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function ValueOf(value As Double) As PhysicsKit.AdaptiveDecimal
+		Shared Function ValueOf(value As Double) As PKAdaptiveDecimal
 		  ///
-		  ' Creates an AdaptiveDecimal with only a single component.
+		  ' Creates an PKAdaptiveDecimal with only a single component.
 		  '
 		  ' - Parameter value: The component.'
-		  ' - Returns: A new AdaptiveDecimal.
+		  ' - Returns: A new PKAdaptiveDecimal.
 		  ///
 		  
-		  Var ad As AdaptiveDecimal = New AdaptiveDecimal(1)
+		  Var ad As PKAdaptiveDecimal = New PKAdaptiveDecimal(1)
 		  Return ad.Append(value)
 		  
 		End Function
@@ -748,7 +748,7 @@ Protected Class AdaptiveDecimal
 		be found at <a href="http://www.cs.cmu.edu/~quake/robust.html">http://www.cs.cmu.edu/~quake/robust.html</a>
 		
 		Short description:
-		The value of this AdaptiveDecimal is represented as the sum of some components, where each 
+		The value of this PKAdaptiveDecimal is represented as the sum of some components, where each 
 		component is a double value. The components must be stored in increasing magnitude order, 
 		but there can be any amount of zeros between components. The components must also satisfy 
 		the non-overlapping property, that is the corresponding bit representation of adjacent 
