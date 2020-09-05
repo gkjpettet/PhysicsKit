@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1914216447">
+ <ObjName>PKLinkedVertexHull</ObjName>
+ <ObjContainerID>627859455</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>826163199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>599209983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(point As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Create a convex PKLinkedVertexHull of one point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var root As PKLinkedVertex = New PKLinkedVertex(point)</SourceLine>
+   <SourceLine>Self.LeftMost = root</SourceLine>
+   <SourceLine>Self.RightMost = root</SourceLine>
+   <SourceLine>Self.Size = 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Merge</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Merges the two given convex LinkedVertexHulls into one convex LinkedVertexHull.</CodeDescription>
+  <PartID>166875135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Merge(left As PKLinkedVertexHull, right As PKLinkedVertexHull) As PKLinkedVertexHull</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Merges the two given convex PKLinkedVertexHulls into one convex PKLinkedVertexHull.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The left PKLinkedVertexHull should contain only points whose x coordinates are</SourceLine>
+   <SourceLine>' less than all the points in the right PKLinkedVertexHull.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter left: The left convex PKLinkedVertexHull.</SourceLine>
+   <SourceLine>' - Parameter right: The right convex PKLinkedVertexHull.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKLinkedVertexHull representing the merged convex hull.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This merge algorithm handles all cases, including point-point and point-segment without </SourceLine>
+   <SourceLine>// special cases.</SourceLine>
+   <SourceLine>// It finds the upper and lower edges that connect the two hulls such that the resulting </SourceLine>
+   <SourceLine>// hull remains convex.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var hull As PKLinkedVertexHull = New PKLinkedVertexHull</SourceLine>
+   <SourceLine>hull.LeftMost = left.LeftMost</SourceLine>
+   <SourceLine>hull.RightMost = right.RightMost</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var lu As PKLinkedVertex = left.RightMost</SourceLine>
+   <SourceLine>Var ru As PKLinkedVertex = right.LeftMost</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We don't use strict inequalities when checking the result of getLocation</SourceLine>
+   <SourceLine>// so we can remove coincident points in the hull.</SourceLine>
+   <SourceLine>// As a result we must limit the number of loops that go to the left or right</SourceLine>
+   <SourceLine>// because else ru = ru.PreviousVertex can loop over and never terminate</SourceLine>
+   <SourceLine>// We can walk at most side.Size - 1 before looping over.</SourceLine>
+   <SourceLine>Var limitRightU As Integer = right.size - 1</SourceLine>
+   <SourceLine>Var limitLeftU As Integer = left.Size - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>Var prevLu As PKLinkedVertex = lu</SourceLine>
+   <SourceLine>Var prevRu As PKLinkedVertex = ru</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While limitRightU &gt; 0 And PKRobustGeometry.GetLocation(ru.NextVertex.Point, lu.Point, ru.Point) &lt;= 0</SourceLine>
+   <SourceLine>ru = ru.NextVertex</SourceLine>
+   <SourceLine>limitRightU = limitRightU - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While limitLeftU &gt; 0 And PKRobustGeometry.GetLocation(lu.PreviousVertex.Point, lu.Point, ru.Point) &lt;= 0</SourceLine>
+   <SourceLine>lu = lu.PreviousVertex</SourceLine>
+   <SourceLine>limitLeftU = limitLeftU - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If no progress is made there's nothing else to do.</SourceLine>
+   <SourceLine>If lu = prevLu And ru = prevRu Then Exit</SourceLine>
+   <SourceLine>Loop</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Same as before, for the other side.</SourceLine>
+   <SourceLine>Var ll As PKLinkedVertex = left.RightMost</SourceLine>
+   <SourceLine>Var rl As PKLinkedVertex = right.LeftMost</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var limitRightL As Integer = right.Size - 1</SourceLine>
+   <SourceLine>Var limitLeftL As Integer = left.Size - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>Var prevLl As PKLinkedVertex = ll</SourceLine>
+   <SourceLine>Var prevRl As PKLinkedVertex = rl</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While limitRightL &gt; 0 And PKRobustGeometry.GetLocation(rl.PreviousVertex.Point, ll.Point, rl.Point) &gt;= 0</SourceLine>
+   <SourceLine>rl = rl.PreviousVertex</SourceLine>
+   <SourceLine>limitRightL = limitRightL - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While limitLeftL &gt; 0 And PKRobustGeometry.GetLocation(ll.NextVertex.Point, ll.Point, rl.Point) &gt;= 0</SourceLine>
+   <SourceLine>ll = ll.NextVertex</SourceLine>
+   <SourceLine>limitLeftL = limitLeftL - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If no progress is made there's nothing else to do.</SourceLine>
+   <SourceLine>If ll = prevLl And rl = prevRl Then Exit</SourceLine>
+   <SourceLine>Loop</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Link the hull.</SourceLine>
+   <SourceLine>lu.NextVertex = ru</SourceLine>
+   <SourceLine>ru.PreviousVertex = lu</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>ll.PreviousVertex = rl</SourceLine>
+   <SourceLine>rl.NextVertex = ll</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We could compute size with a closed-form type based on the four values</SourceLine>
+   <SourceLine>// of limitLeft/Right/L/U but it is not straightforward and there is no observable</SourceLine>
+   <SourceLine>// speed gain. So use a simple loop instead.</SourceLine>
+   <SourceLine>Var size As Integer = 0</SourceLine>
+   <SourceLine>Var v As PKLinkedVertex = lu</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>size = size + 1</SourceLine>
+   <SourceLine>v = v.NextVertex</SourceLine>
+   <SourceLine>Loop Until v &lt;&gt; lu</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the size.</SourceLine>
+   <SourceLine>hull.Size = size</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the merged hull.</SourceLine>
+   <SourceLine>Return hull</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>left As PKLinkedVertexHull, right As PKLinkedVertexHull</ItemParams>
+  <ItemResult>PKLinkedVertexHull</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToArray</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new array representing this convex hull.</CodeDescription>
+  <PartID>2050584575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToArray() As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new array representing this convex hull.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: An array of PKVector2 objects.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var points() As PKVector2</SourceLine>
+   <SourceLine>points.ResizeTo(Self.Size - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertex As PKLinkedVertex = Self.LeftMost</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = Self.Size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>points(i) = vertex.Point</SourceLine>
+   <SourceLine>vertex = vertex.NextVertex</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this object.</CodeDescription>
+  <PartID>1065699327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this PKLinkedVertexHull.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("PKLinkedVertexHull[Size=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Size.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|LeftMostPoint=")</SourceLine>
+   <SourceLine>s.AddRow(Self.LeftMost.Point.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|RightMostPoint=")</SourceLine>
+   <SourceLine>s.AddRow(Self.RightMost.Point.ToString)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>528545791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a convex hull of LinkedVertexes.</NoteLine>
+   <NoteLine>The root vertex can be any point on the hull.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>LeftMost</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The vertex that has the smallest x coordinate.</CodeDescription>
+  <PartID>680427519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>LeftMost As PKLinkedVertex</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>LeftMost As PKLinkedVertex</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>RightMost</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The vertex that has the largest x coordinate.</CodeDescription>
+  <PartID>1072418815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>RightMost As PKLinkedVertex</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>RightMost As PKLinkedVertex</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Size</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The total number of vertices on the hull.</CodeDescription>
+  <PartID>101939199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Size As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Size As Integer</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Size</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

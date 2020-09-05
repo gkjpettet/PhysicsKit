@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1769062399">
+ <ObjName>PKHullGenerator</ObjName>
+ <ObjContainerID>627859455</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Generate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>407611391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Generate(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1128781823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents an algorithm used to create a convex hull of a given point set.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The hulls are returned as PKVector2 arrays that can then be used to create a Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Algorithms implementing this interface are intended for general use but does not imply that</NoteLine>
+   <NoteLine>the results produced would be appropriate for the core PhysicsKit engine.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Generate(ParamArray points As PKVector2) As PKVector2()</NoteLine>
+   <NoteLine>---------------------------------------------------</NoteLine>
+   <NoteLine>Returns a convex hull generated from the given point set in counter-clockwise point order.</NoteLine>
+   <NoteLine>Returns Nil if the given points array is Nil.</NoteLine>
+   <NoteLine>Returns the array unchanged if the length is less than or equal to 2.</NoteLine>
+   <NoteLine>- Parameter points: The point set or cloud.</NoteLine>
+   <NoteLine>- Returns: The convex hull vertices as a PKVector2 array.</NoteLine>
+   <NoteLine>- Raises: NilObjectException if points is Nil or contains Nil points.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

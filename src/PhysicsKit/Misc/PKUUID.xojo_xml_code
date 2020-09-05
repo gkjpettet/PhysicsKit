@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="234874879">
+ <ObjName>PKUUID</ObjName>
+ <ObjContainerID>2093301759</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new UUID object with the specified String value.</CodeDescription>
+  <PartID>1131730943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new random UUID.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter useDeclares: If True then will attempt to use declares to </SourceLine>
+   <SourceLine>'                          create the UUID (faster), otherwise will create </SourceLine>
+   <SourceLine>'                          them manually.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new UUID object.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes: </SourceLine>
+   <SourceLine>'   Adapted from code by Kem Tekinay: https://forum.xojo.com/18029-native-uuid-generation/2018/01</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var useDeclares As Boolean = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Try</SourceLine>
+   <SourceLine>#If TargetMacOS</SourceLine>
+   <SourceLine>Soft Declare Function NSClassFromString Lib "Cocoa" (clsName As CFStringRef) As Ptr</SourceLine>
+   <SourceLine>Soft Declare Function UUID Lib "Cocoa" Selector "UUID" (clsRef As ptr) As Ptr</SourceLine>
+   <SourceLine>Soft Declare Function UUIDString Lib "Cocoa" Selector "UUIDString" (obj_id As Ptr) As CFStringRef</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var classPtr As Ptr = NSClassFromString("NSUUID")</SourceLine>
+   <SourceLine>If classPtr = Nil Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var NSUUID As Ptr = UUID(classPtr)</SourceLine>
+   <SourceLine>mValue = UUIDString(NSUUID)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#ElseIf TargetWindows</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Const kLibName = "rpcrt4"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not System.IsFunctionAvailable("UuidCreate", kLibName) Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>ElseIf Not System.IsFunctionAvailable("UuidToStringA", kLibName) Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Soft Declare Function UUIDCreate Lib kLibName Alias "UuidCreate" (ByRef u As WindowsUUID ) As Integer</SourceLine>
+   <SourceLine>Soft Declare Function UUIDToString Lib kLibName Alias "UuidToStringA" (ByRef inUUID As WindowsUUID, ByRef outString As CString ) As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var u As WindowsUUID</SourceLine>
+   <SourceLine>If UUIDCreate(u) &lt;&gt; 0 Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var out As CString</SourceLine>
+   <SourceLine>If UUIDToString(u, out) &lt;&gt; 0 Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>mValue = out</SourceLine>
+   <SourceLine>mValue = mValue.DefineEncoding(Encodings.UTF8)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#ElseIf TargetLinux</SourceLine>
+   <SourceLine>Const kLibName = "uuid"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not System.IsFunctionAvailable("uuid_generate", kLibName) Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>ElseIf Not System.IsFunctionAvailable("uuid_unparse_upper", kLibName) Then</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Soft Declare Sub UUIDGenerate Lib kLibName Alias "uuid_generate" (ByRef u As LinuxUUID)</SourceLine>
+   <SourceLine>Soft Declare Sub UUIDUnparse Lib kLibName Alias "uuid_unparse_upper" (ByRef u As LinuxUUID, ByRef out As LinuxUUIDString)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var u As LinuxUUID</SourceLine>
+   <SourceLine>UUIDGenerate(u)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var out As LinuxUUIDString</SourceLine>
+   <SourceLine>UUIDUnparse(u, out)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mValue = out.Data</SourceLine>
+   <SourceLine>mValue = mValue.DefineEncoding(Encodings.UTF8)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#ElseIf TargetIOS</SourceLine>
+   <SourceLine>Soft Declare Function NSClassFromString Lib "Foundation" (clsName As CFStringRef) As Ptr</SourceLine>
+   <SourceLine>Soft Declare Function UUID Lib "Foundation" Selector "UUID" (clsRef As ptr) As Ptr</SourceLine>
+   <SourceLine>Soft Declare Function UUIDString Lib "Foundation" Selector "UUIDString" (obj_id As Ptr) As CFStringRef</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var classPtr As Ptr = NSClassFromString("NSUUID")</SourceLine>
+   <SourceLine>Var NSUUID As Ptr = UUID(classPtr)</SourceLine>
+   <SourceLine>mValue = UUIDString(NSUUID)</SourceLine>
+   <SourceLine>#Else</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>#EndIf</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Catch e As RuntimeException</SourceLine>
+   <SourceLine>useDeclares = False</SourceLine>
+   <SourceLine>If e IsA EndException Or e IsA ThreadEndException Then Raise e</SourceLine>
+   <SourceLine>End Try</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not useDeclares Then</SourceLine>
+   <SourceLine>// Fallback to manual creation.</SourceLine>
+   <SourceLine>// From http://www.cryptosys.net/pki/uuid-rfc4122.html</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Generate 16 random bytes (=128 bits).</SourceLine>
+   <SourceLine>// Adjust certain bits according to RFC 4122 section 4.4 as follows:</SourceLine>
+   <SourceLine>// - Set the four most significant bits of the 7th byte to 0100'B, so the high nibble is '4'</SourceLine>
+   <SourceLine>// - Set the two most significant bits of the 9th byte to 10'B, </SourceLine>
+   <SourceLine>//   so the high nibble will be one of '8', '9', 'A', or 'B'.</SourceLine>
+   <SourceLine>// - Convert the adjusted bytes to 32 hexadecimal digits.</SourceLine>
+   <SourceLine>// - Add four hyphen '-' characters to obtain blocks of 8, 4, 4, 4 and 12 hex digits</SourceLine>
+   <SourceLine>// - Output the resulting 36-character string "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma BackgroundTasks False</SourceLine>
+   <SourceLine>#Pragma BoundsChecking False</SourceLine>
+   <SourceLine>#Pragma NilObjectChecking False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>MessageDialog.Show("Generating manually!")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var randomBytes As MemoryBlock = Crypto.GenerateRandomBytes(16)</SourceLine>
+   <SourceLine>randomBytes.LittleEndian = False</SourceLine>
+   <SourceLine>Var p As Ptr = randomBytes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Adjust byte 7.</SourceLine>
+   <SourceLine>Var value As Byte = p.Byte(6)</SourceLine>
+   <SourceLine>value = value And CType(&amp;b00001111, Byte) // Turn off the first four bits.</SourceLine>
+   <SourceLine>value = value Or CType(&amp;b01000000, Byte) // Turn on the second bit.</SourceLine>
+   <SourceLine>p.Byte(6) = value</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Adjust byte 9.</SourceLine>
+   <SourceLine>value = p.Byte(8)</SourceLine>
+   <SourceLine>value = value And CType(&amp;b00111111, Byte) // Turn off the first two bits.</SourceLine>
+   <SourceLine>value = value Or CType(&amp;b10000000, Byte) // Turn on the first bit.</SourceLine>
+   <SourceLine>p.Byte(8) = value</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mValue = EncodeHex(randomBytes)</SourceLine>
+   <SourceLine>mValue = mValue.LeftB(8) + "-" + mValue.MidB(9, 4) + "-" + mValue.MidB(13, 4) + "-" + _</SourceLine>
+   <SourceLine>mValue.MidB(17, 4) + "-" + mValue.RightB(12)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>598007807</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this UUID is considered equal to the passed object.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If obj Is Nil Then Return False</SourceLine>
+   <SourceLine>If obj IsA PKUUID = False Then Return False</SourceLine>
+   <SourceLine>Return If(mValue.Compare(PKUUID(obj).Value, ComparisonOptions.CaseSensitive) = 0, True, False)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1722144767</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns this UUID as a String.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mValue</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>mValue</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>637368319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mValue As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mValue As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Value</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1260210175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Value As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Value As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mValue</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Value</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Structure>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>LinuxUUID</ItemName>
+  <ItemFlags>33</ItemFlags>
+  <ItemName>LinuxUUID</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>StructureAlignment = 1</Attributes>
+  <Visible>1</Visible>
+  <PartID>399257599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Bytes1 As String * 4</SourceLine>
+   <SourceLine>Bytes2 As String * 2</SourceLine>
+   <SourceLine>Bytes3 As String * 2</SourceLine>
+   <SourceLine>Bytes4 As String * 2</SourceLine>
+   <SourceLine>Bytes5 As String * 6</SourceLine>
+  </ItemSource>
+ </Structure>
+ <Structure>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>LinuxUUIDString</ItemName>
+  <ItemFlags>33</ItemFlags>
+  <ItemName>LinuxUUIDString</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>StructureAlignment = 1</Attributes>
+  <Visible>1</Visible>
+  <PartID>1465024511</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Data As String * 36</SourceLine>
+   <SourceLine>TrailingNull As String * 1</SourceLine>
+  </ItemSource>
+ </Structure>
+ <Structure>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>WindowsUUID</ItemName>
+  <ItemFlags>33</ItemFlags>
+  <ItemName>WindowsUUID</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>StructureAlignment = 1</Attributes>
+  <Visible>1</Visible>
+  <PartID>1253603327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Data1 As UInt32</SourceLine>
+   <SourceLine>Data2 As UInt16</SourceLine>
+   <SourceLine>Data3 As UInt16</SourceLine>
+   <SourceLine>Data4 As String * 8</SourceLine>
+  </ItemSource>
+ </Structure>
+</block>
+</RBProject>

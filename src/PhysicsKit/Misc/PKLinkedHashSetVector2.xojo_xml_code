@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="389670911">
+ <ObjName>PKLinkedHashSetVector2</ObjName>
+ <ObjContainerID>2093301759</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the specified element to this set if it is not already present. </CodeDescription>
+  <PartID>1882351615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(e As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the specified element to this set if it is not already present. </SourceLine>
+   <SourceLine>' More formally, adds the specified element `e` to this set if this set contains </SourceLine>
+   <SourceLine>' no element `e2` such that (`e=Nil ? e2=Nil : e.Equals(e2)`). </SourceLine>
+   <SourceLine>' If this set already contains the element, the call leaves the set unchanged and returns False.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If DataDictionary.HasKey(e) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>DataDictionary.Value(e) = True</SourceLine>
+   <SourceLine>DataArray.AddRow(e)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>e As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1103730687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>DataDictionary = New Dictionary</SourceLine>
+   <SourceLine>DataArray.ResizeTo(-1)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Size</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>785567743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Size() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the number of elements in this set.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return DataArray.Count</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToArray</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an array containing all of the elements in this set. </CodeDescription>
+  <PartID>1835491327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToArray() As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns an array containing all of the elements in this set. </SourceLine>
+   <SourceLine>' Returns the elements in the same order.</SourceLine>
+   <SourceLine>' The returned array will be "safe" in that no references to it are maintained by this set. </SourceLine>
+   <SourceLine>' In other words, this method allocates a new array.</SourceLine>
+   <SourceLine>' The caller is thus free to modify the returned array.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var result() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each v As PKVector2 In DataArray</SourceLine>
+   <SourceLine>result.AddRow(v)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToArray</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1198761983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToArray(result() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns an array containing all of the elements in this set. </SourceLine>
+   <SourceLine>' If the set fits in the specified array, it is returned therein. </SourceLine>
+   <SourceLine>' Otherwise, a new array is allocated and the size of this set.</SourceLine>
+   <SourceLine>' If this set fits in the specified array with room to spare (i.e., the array has more </SourceLine>
+   <SourceLine>' elements than this set), the element in the array immediately following the end of the </SourceLine>
+   <SourceLine>' set is set to Nil. (This is useful in determining the length of this set only if </SourceLine>
+   <SourceLine>' the caller knows that this set does not contain any null elements.)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If result.Count &lt; Self.Size Then</SourceLine>
+   <SourceLine>result.ResizeTo(-1)</SourceLine>
+   <SourceLine>For Each v As Variant In DataArray</SourceLine>
+   <SourceLine>result.Append(v)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var i As Integer = 0</SourceLine>
+   <SourceLine>For Each v As Variant In DataArray</SourceLine>
+   <SourceLine>result(i) = v</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine>If result.Count &gt; Self.Size Then result(i) = Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>result() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>DataArray()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>448747519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>DataArray() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>DataArray() As PKVector2</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>DataDictionary</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>667709439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>DataDictionary As Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>DataDictionary As Dictionary</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

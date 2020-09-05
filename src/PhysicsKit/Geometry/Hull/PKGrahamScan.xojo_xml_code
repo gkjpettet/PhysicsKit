@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1491810303">
+ <ObjName>PKGrahamScan</ObjName>
+ <ObjContainerID>627859455</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKHullGenerator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Generate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1257244671</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Generate(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.HullGenerator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil points array.</SourceLine>
+   <SourceLine>If points Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 2 Then Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the point of minimum y (choose the point of minimum x if there is a tie).</SourceLine>
+   <SourceLine>Var minY As PKVector2 = points(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 1 To iLimit</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine>// Make sure the point is not Nil.</SourceLine>
+   <SourceLine>If p Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)</SourceLine>
+   <SourceLine>If p.Y &lt; minY.Y Then</SourceLine>
+   <SourceLine>minY = p</SourceLine>
+   <SourceLine>ElseIf p.Y = minY.Y Then</SourceLine>
+   <SourceLine>If p.X &gt; minY.X Then minY = p</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the comparator for the array.</SourceLine>
+   <SourceLine>Var pc As PKReferencePointComparator = New PKReferencePointComparator(minY)</SourceLine>
+   <SourceLine>// Sort the array by angle.</SourceLine>
+   <SourceLine>points.Sort(AddressOf pc.Compare)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Build the hull.</SourceLine>
+   <SourceLine>Var stack() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Push</SourceLine>
+   <SourceLine>stack.AddRow(points(0))</SourceLine>
+   <SourceLine>stack.AddRow(points(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var i As Integer = 2</SourceLine>
+   <SourceLine>While i &lt; size</SourceLine>
+   <SourceLine>Var sSize As Integer = stack.Count</SourceLine>
+   <SourceLine>// If the stack size is one then just push the current point onto the stack</SourceLine>
+   <SourceLine>// thereby making a line segment.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If sSize = 1 Then</SourceLine>
+   <SourceLine>// Push.</SourceLine>
+   <SourceLine>stack.AddRow(points(i))</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>Continue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise get the top two items off the stack.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = stack(sSize - 2)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = stack(sSize - 1)</SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var p3 As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test if the current point is to the left of the line</SourceLine>
+   <SourceLine>// created by the top two items in the stack (the last edge</SourceLine>
+   <SourceLine>// on the current convex hull).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the robust side of line test because otherwise this algorithm</SourceLine>
+   <SourceLine>// can produce incorrect results in edge cases.</SourceLine>
+   <SourceLine>// The order of parameters here must match the one in ReferenceComparator</SourceLine>
+   <SourceLine>// in order to obtain correct results and winding.</SourceLine>
+   <SourceLine>Var location As Double = PKRobustGeometry.GetLocation(p3, p2, p1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If location &lt; 0 Then</SourceLine>
+   <SourceLine>// If it's to the left, then push the new point on</SourceLine>
+   <SourceLine>// the stack since it maintains convexity</SourceLine>
+   <SourceLine>stack.AddRow(p3)</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise the pop the previous point off the stack</SourceLine>
+   <SourceLine>// since this indicates that if we added the current</SourceLine>
+   <SourceLine>// point to the stack we would make a concave section pop.</SourceLine>
+   <SourceLine>Call stack.Pop</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the array.</SourceLine>
+   <SourceLine>Return stack</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>725972991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Graham Scan convex hull algorithm.</NoteLine>
+   <NoteLine>This algorithm handles coincident and colinear points by ignoring them during processing. This ensures</NoteLine>
+   <NoteLine>the produced hull will not have coincident or colinear vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm is O(n log n) where n is the number of input points.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

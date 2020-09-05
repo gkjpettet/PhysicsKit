@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1363619839">
+ <ObjName>PKDivideAndConquer</ObjName>
+ <ObjContainerID>627859455</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKHullGenerator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Divide</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Recursive method to subdivide and merge the points.</CodeDescription>
+  <PartID>1997557759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Divide(points() As PKVector2, first As Integer, last As Integer) As PKLinkedVertexHull</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Recursive method to subdivide and merge the points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The array of points.</SourceLine>
+   <SourceLine>' - Parameter first: The first index inclusive.</SourceLine>
+   <SourceLine>' - Parameter last: The last index exclusive.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The convex hull created as a Linked VertexHull.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the size of the hull we need to create.</SourceLine>
+   <SourceLine>Var size As Integer = last - first</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If size = 1 Then</SourceLine>
+   <SourceLine>// If we only have one point create a hull containing the one point.</SourceLine>
+   <SourceLine>Return New PKLinkedVertexHull(points(first))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise find the middle index.</SourceLine>
+   <SourceLine>Var mid As Integer = (first + last) / 2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the left convex hull.</SourceLine>
+   <SourceLine>Var left As PKLinkedVertexHull = Divide(points, first, mid)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the right convex hull.</SourceLine>
+   <SourceLine>Var right As PKLinkedVertexHull = Divide(points, mid, last)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Merge the two convex hulls.</SourceLine>
+   <SourceLine>Return PKLinkedVertexHull.Merge(left, right)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2, first As Integer, last As Integer</ItemParams>
+  <ItemResult>PKLinkedVertexHull</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Generate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>575539199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Generate(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.HullGenerator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil array of points.</SourceLine>
+   <SourceLine>If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 2 Then Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Try</SourceLine>
+   <SourceLine>// Sort the points by the x coordinate, then the y coordinate.</SourceLine>
+   <SourceLine>points.Sort(AddressOf PKMinXYPointComparator.Compare)</SourceLine>
+   <SourceLine>Catch e As NilObjectException</SourceLine>
+   <SourceLine>// This will be hit if any of the points are Nil.</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)</SourceLine>
+   <SourceLine>End Try</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// No need to pre-process the input and remove coincident points.</SourceLine>
+   <SourceLine>// Those are gracefully handled and removed in the main algorithm. </SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform the divide and conquer algorithm on the point cloud.</SourceLine>
+   <SourceLine>Var hull As PKLinkedVertexHull = Self.Divide(points, 0, size)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the array.</SourceLine>
+   <SourceLine>Return hull.ToArray</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>182403071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Divide and Conquer convex hull algorithm.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm handles coincident and colinear points by ignoring them during processing. This ensures</NoteLine>
+   <NoteLine>the produced hull will not have coincident or colinear vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm is O(n log n) where n is the number of input points.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="8200191">
+ <ObjName>PKGiftWrap</ObjName>
+ <ObjContainerID>627859455</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKHullGenerator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Generate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1846237183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Generate(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.HullGenerator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil array.</SourceLine>
+   <SourceLine>If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 2 Then Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the left most point.</SourceLine>
+   <SourceLine>Var x As Double = MathsKit.DOUBLE_MAX_VALUE</SourceLine>
+   <SourceLine>Var y As Double = MathsKit.DOUBLE_MAX_VALUE</SourceLine>
+   <SourceLine>Var leftMost As PKVector2</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil points.</SourceLine>
+   <SourceLine>If p = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the x coordinate.</SourceLine>
+   <SourceLine>If p.X &lt; x Then</SourceLine>
+   <SourceLine>x = p.X</SourceLine>
+   <SourceLine>leftMost = p</SourceLine>
+   <SourceLine>y = p.Y</SourceLine>
+   <SourceLine>ElseIf p.X = x And p.Y &lt; y Then</SourceLine>
+   <SourceLine>x = p.X</SourceLine>
+   <SourceLine>leftMost = p</SourceLine>
+   <SourceLine>y = p.Y</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var current As PKVector2 = leftMost</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use a linked hash set to maintain insertion order but also prevent duplicate insertion.</SourceLine>
+   <SourceLine>Var hull As PKLinkedHashSetVector2 = New PKLinkedHashSetVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>Call hull.Add(current)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check all the points to see if anything is more left than the next point.</SourceLine>
+   <SourceLine>Var nextPoint As PKVector2 = points(0)</SourceLine>
+   <SourceLine>If current = nextPoint Then nextPoint = points(1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points to find a more left point than the current.</SourceLine>
+   <SourceLine>Var jLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For j As Integer = 1 To jLimit</SourceLine>
+   <SourceLine>Var test As PKVector2 = points(j)</SourceLine>
+   <SourceLine>If test = current Then Continue</SourceLine>
+   <SourceLine>If test = nextPoint Then Continue</SourceLine>
+   <SourceLine>// Check the point relative to the current line.</SourceLine>
+   <SourceLine>// Use the robust side of line test because otherwise this algorithm</SourceLine>
+   <SourceLine>// can fall in an endless loop.</SourceLine>
+   <SourceLine>Var location As Double = PKRobustGeometry.GetLocation(test, current, nextPoint)</SourceLine>
+   <SourceLine>If location &lt; 0 Then</SourceLine>
+   <SourceLine>nextPoint = test</SourceLine>
+   <SourceLine>ElseIf location = 0 Then</SourceLine>
+   <SourceLine>// In the case of colinear or coincident verticies only select this vertex if </SourceLine>
+   <SourceLine>// it's farther away than the current vertex.</SourceLine>
+   <SourceLine>Var d1 As Double = test.DistanceSquared(current)</SourceLine>
+   <SourceLine>Var d2 As Double = nextPoint.DistanceSquared(current)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We also need to confirm that it's farther away in the </SourceLine>
+   <SourceLine>// direction of the current-&gt;next vector.</SourceLine>
+   <SourceLine>Var dot As Double = current.Towards(nextPoint).Dot(current.Towards(test))</SourceLine>
+   <SourceLine>If d1 &gt; d2 And dot &gt;= 0 Then</SourceLine>
+   <SourceLine>nextPoint = test</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If it's not farther, compute the winding.</SourceLine>
+   <SourceLine>Var l1 As PKVector2 = current.Towards(nextPoint)</SourceLine>
+   <SourceLine>Var l2 As PKVector2 = nextPoint.Towards(test)</SourceLine>
+   <SourceLine>Var cross As Double = l1.Cross(l2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the winding is anti-clockwise but the location test yielded they were colinear, </SourceLine>
+   <SourceLine>// then we encountered sufficient numeric error - trust the winding</SourceLine>
+   <SourceLine>// in these cases.</SourceLine>
+   <SourceLine>If cross &lt; 0 Then nextPoint = test</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>current = nextPoint</SourceLine>
+   <SourceLine>// loop until we repeat the first leftMost point</SourceLine>
+   <SourceLine>Loop Until leftMost = current</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Copy the set into an array.</SourceLine>
+   <SourceLine>Var hullPoints() As PKVector2</SourceLine>
+   <SourceLine>hullPoints.ResizeTo(hull.Size - 1)</SourceLine>
+   <SourceLine>Call hull.ToArray(hullPoints)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the array.</SourceLine>
+   <SourceLine>Return hullPoints</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>359405567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Gift Wrapping convex hull algorithm.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm handles coincident and colinear points by ignoring them during processing. This ensures</NoteLine>
+   <NoteLine>the produced hull will not have coincident or colinear vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm is O(nh) worst case where n is the number of points and h is the</NoteLine>
+   <NoteLine>number of sides in the resulting convex hull.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
