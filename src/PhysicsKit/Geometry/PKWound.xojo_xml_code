@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="425041919">
+ <ObjName>PKWound</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKShape</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>GetNormalIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an iterator for the normals.</CodeDescription>
+  <PartID>546490367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormalIterator() As Iterator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1624760319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormals() As PKVector2()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertexIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an iterator for the vertices.</CodeDescription>
+  <PartID>598341631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertexIterator() As Iterator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertices</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the array of vertices in local coordinates.</CodeDescription>
+  <PartID>602423295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertices() As PKVector2()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1624117247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a shape that is defined by vertices with line segment connections </NoteLine>
+   <NoteLine>with counter-clockwise winding.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetVertexIterator() As Iterator</NoteLine>
+   <NoteLine>-------------------------------</NoteLine>
+   <NoteLine>Returns an iterator for the vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The iterator returns a new Vector in the `Value` method.</NoteLine>
+   <NoteLine>This method is safer than `GetVertices()` since its not possible to </NoteLine>
+   <NoteLine>modify the array or its elements.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: A PKVector2 Iterator.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetNormalIterator() As Iterator</NoteLine>
+   <NoteLine>-------------------------------</NoteLine>
+   <NoteLine>Returns an iterator for the normals.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The iterator eturns a new PKVector2 in the `Value` method rather than the underlying value.</NoteLine>
+   <NoteLine>This method is safer than `GetNormals()` since its not possible to </NoteLine>
+   <NoteLine>modify the array or its elements.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: A PKVector2 Iterator.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetVertices() As PKVector2()</NoteLine>
+   <NoteLine>--------------------------</NoteLine>
+   <NoteLine>Returns the array of vertices in local coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>For performance, this array may be the internal storage array of the shape.</NoteLine>
+   <NoteLine>Both the array elements and their properties should not be modified via this method.</NoteLine>
+   <NoteLine>It's possible that this method will be deprecated and/or removed in later versions.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: PKVector2 array.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetNormals() As PKVector2()</NoteLine>
+   <NoteLine>-------------------------</NoteLine>
+   <NoteLine>Returns the array of edge normals in local coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>For performance, this array may be the internal storage array of the shape.</NoteLine>
+   <NoteLine>Both the array elements and their properties should not be modified via this method.</NoteLine>
+   <NoteLine>It's possible that this method will be deprecated and/or removed in later versions.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: PKVector2 array.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

@@ -1,0 +1,2399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="289665023">
+ <ObjName>PKVector2</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given vector components to this vector. Returns this vector.</CodeDescription>
+  <PartID>562542591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the given vector components to Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the vector to add.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the vector to add.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + x</SourceLine>
+   <SourceLine>Self.Y = Self.Y + y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given vector to this vector. Returns this vector.</CodeDescription>
+  <PartID>1488140287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the given vector to Self vector.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter vector: The vector to add.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + vector.X</SourceLine>
+   <SourceLine>Self.Y = Self.Y + vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Default constructor.</CodeDescription>
+  <PartID>1383690239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a unit length vector in the given direction (in radians).</CodeDescription>
+  <PartID>734654463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(direction As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a unit length vector in the given direction.</SourceLine>
+   <SourceLine>' - Parameter direction: The direction in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Cos(direction)</SourceLine>
+   <SourceLine>Self.Y = Sin(direction)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>direction As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Optional constructor.</CodeDescription>
+  <PartID>449511423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Optional constructor.</SourceLine>
+   <SourceLine>' - Parameter x: The X component.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Vector2 from the first point to the second point.</CodeDescription>
+  <PartID>2077720575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(x1 As Double, y1 As Double, x2 As Double, y2 As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a `PKVector2` from the first point to the second point.</SourceLine>
+   <SourceLine>' - Parameter x1 The X coordinate of the first point.</SourceLine>
+   <SourceLine>' - Parameter y1: The Y coordinate of the first point.</SourceLine>
+   <SourceLine>' - Parameter x2: The X coordinate of the second point.</SourceLine>
+   <SourceLine>' - Parameter: y2 The Y coordinate of the second point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x2 - x1</SourceLine>
+   <SourceLine>Self.Y = y2 - y1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x1 As Double, y1 As Double, x2 As Double, y2 As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copy constructor.</CodeDescription>
+  <PartID>1887612927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to copy from.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = vector.X</SourceLine>
+   <SourceLine>Self.Y = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Vector2 from the first point to the second point.</CodeDescription>
+  <PartID>247472127</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(p1 As PKVector2, p2 As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a {PKVector2} from the first point to the second point.</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = p2.X - p1.X</SourceLine>
+   <SourceLine>Self.Y = p2.Y - p1.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>p1 As PKVector2, p2 As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a copy of this Vector2.</CodeDescription>
+  <PartID>1230821375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a copy of Self PKVector2.</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X, Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Create</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Vector2 given the magnitude and direction. `direction` is in radians.</CodeDescription>
+  <PartID>165701631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Create(magnitude As Double, direction As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new PKVector2 given the magnitude and direction.</SourceLine>
+   <SourceLine>' - Parameter magnitude: The magnitude of the PKVector2.</SourceLine>
+   <SourceLine>' - Parameter direction: The direction of the PKVector2 in radians.</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x_ As Double = magnitude * Cos(direction)</SourceLine>
+   <SourceLine>Var y_ As Double = magnitude * Sin(direction)</SourceLine>
+   <SourceLine>Return New PKVector2(x_, y_)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>magnitude As Double, direction As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the cross product of this vector and the z value of the right vector as a new vector.</CodeDescription>
+  <PartID>1872089087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Cross(z As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the cross product of Self vector and the z value of the right vector </SourceLine>
+   <SourceLine>' as a new vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(-Self.Y * z, Self.X * z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>z As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the cross product of the this vector and the given vector components.</CodeDescription>
+  <PartID>2032584703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Cross(x As Double, y As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the cross product of the Self vector and the given vector components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the other vector.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the other vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * y - Self.Y * x</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the cross product of the this vector and the given vector.</CodeDescription>
+  <PartID>288049151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Cross(vector As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the cross product of the Self vector and the given vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to cross with.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * vector.Y - Self.Y * vector.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Difference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given vector components from this vector returning a new vector containing the result.</CodeDescription>
+  <PartID>1790081023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Difference(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given vector components from Self vector returning</SourceLine>
+   <SourceLine>' a new vector containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the vector to subtract.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the vector to subtract.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X - x, Self.Y - y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Difference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given vector from this vector returning a new vector containing the result.</CodeDescription>
+  <PartID>1882417151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Difference(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given vector from Self vector returning a new vector containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to subtract.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X - vector.X, Self.Y - vector.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Distance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1111597055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Distance(x As Double, y As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from Self point to the given point.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate of the point.</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dx As Double = Self.X - x</SourceLine>
+   <SourceLine>Var dy As Double = Self.Y - y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sqrt(dx * dx + dy * dy)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Distance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription><Hex bytes="57">52657475726E73207468652064697374616E63652066726F6D207468697320706F696E7420746F2074686520676976656E20706F696E742E0A</Hex></CodeDescription>
+  <PartID>1019756543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Distance(point As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from Self point to the given point.</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dx As Double = Self.X - point.X</SourceLine>
+   <SourceLine>Var dy As double = Self.Y - point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sqrt(dx * dx + dy * dy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DistanceSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point squared.</CodeDescription>
+  <PartID>123973631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function DistanceSquared(x As Double, y As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from Self point to the given point squared.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate of the point.</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dx As Double = Self.X - x</SourceLine>
+   <SourceLine>Var dy As Double = Self.Y - y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return dx * dx + dy * dy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DistanceSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point squared.</CodeDescription>
+  <PartID>1688133631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function DistanceSquared(point As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from Self point to the given point squared.</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dx As Double = Self.X - point.X</SourceLine>
+   <SourceLine>Var dy  As Double = Self.Y - point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return dx * dx + dy * dy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Divide</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Divides this vector by the given scalar and returns this vector.</CodeDescription>
+  <PartID>1007423487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Divide(scalar As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Divides Self vector by the given scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X / scalar</SourceLine>
+   <SourceLine>Self.Y = Self.Y / scalar</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Dot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>' Returns the dot product of the given vector components and this vector.</CodeDescription>
+  <PartID>430788607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Dot(x As Double, y As Double) As Double</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>' Returns the dot product of the given vector components and Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the other vector.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the other vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * x + Self.Y * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Dot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the dot product of the given vector and this vector.</CodeDescription>
+  <PartID>1094901759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Dot(vector As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the dot product of the given vector and Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The other vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * vector.X + Self.Y * vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the X and Y components of this Vector2 are the same as the given x and y components.</CodeDescription>
+  <PartID>172054527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(x As Double, y As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the X and Y components of Self PKVector2 are the same </SourceLine>
+   <SourceLine>' as the given x and y components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate of the PKVector2 to compare with.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate of the PKVector2 to compare with.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X = x And Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the X and Y components of this Vector2 are the same as the given Vector2.</CodeDescription>
+  <PartID>1787457535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(vector As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the X and Y components of Self PKVector2 are the same as the given PKVector2.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to compare with.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If vector = Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self = vector Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X = vector.X And Self.Y = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed object is the same object as this vector or is a Vector2 object with the same X and Y components.</CodeDescription>
+  <PartID>834783231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed object is the same object as this vector or is a </SourceLine>
+   <SourceLine>' PKVector2 object with the same X and Y components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter obj: The object to compare with.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If obj = Nil Then Return False</SourceLine>
+   <SourceLine>If obj = Self Then Return True</SourceLine>
+   <SourceLine>If obj IsA PKVector2 Then</SourceLine>
+   <SourceLine>Var v As PKVector2 = PKVector2(obj)</SourceLine>
+   <SourceLine>Return If(Self.X = v.X And Self.Y = v.Y, True, False)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAngleBetween</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the smallest angle between this vector and the given angle (in radians). Returns the angle in radians in the range -π to π.</CodeDescription>
+  <PartID>1403371519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAngleBetween(otherAngle As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the smallest angle between Self vector and the given angle (in radians).</SourceLine>
+   <SourceLine>' Returns the angle in radians in the range -π to π.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter otherAngle: The angle. Must be in the range -π to π.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The angle in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var a As Double = otherAngle - ATan2(Self.Y, Self.X)</SourceLine>
+   <SourceLine>If a &gt; MathsKit.PI Then Return a - PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If a &lt; -MathsKit.PI Then Return a + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>Return a</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>otherAngle As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAngleBetween</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the smallest angle (in radians) between the given vectors in the range -π to π.</CodeDescription>
+  <PartID>167440383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAngleBetween(vector As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the smallest angle (in radians) between the given vectors in the range -π to π.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The other vector.</SourceLine>
+   <SourceLine>' - Returns: The angle in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var a As Double = ATan2(vector.Y, vector.X) - ATan2(Self.Y, Self.X)</SourceLine>
+   <SourceLine>If a &gt; MathsKit.PI Then Return a - PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If a &lt; -MathsKit.PI then Return a + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>Return a</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetDirection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the direction of this vector as an angle in radians.</CodeDescription>
+  <PartID>527884287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetDirection() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the direction of Self vector as an angle in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The angle in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return ATan2(Self.Y, Self.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLeftHandOrthogonalVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns (as a new vector) the left-handed normal of this vector.</CodeDescription>
+  <PartID>702040063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLeftHandOrthogonalVector() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the left-handed normal of Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.Y, -Self.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMagnitude</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the magnitude of this vector.</CodeDescription>
+  <PartID>667297791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMagnitude() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the magnitude of Self vector.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The magnitude is just the pythagorean theorem.</SourceLine>
+   <SourceLine>Return Sqrt(Self.X * Self.X + Self.Y * Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMagnitudeSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the magnitude of this vector squared.</CodeDescription>
+  <PartID>678266879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMagnitudeSquared() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the magnitude of Self vector squared.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * Self.X + Self.Y * Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNegative</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new vector which is the negative of this vector.</CodeDescription>
+  <PartID>665024511</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNegative() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new vector which is the negative of Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(-Self.X, -Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormalised</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a unit vector of this vector as a new vector. Requires that the length of this vector is not zero.</CodeDescription>
+  <PartID>1224056831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormalised() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a unit vector of Self vector.</SourceLine>
+   <SourceLine>' Self method requires that the length of Self vector is not zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var magnitude As Double = Self.GetMagnitude</SourceLine>
+   <SourceLine>If magnitude &lt;= PKEpsilon.E then Return New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>magnitude = 1.0 / magnitude</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X * magnitude, Self.Y * magnitude)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRightHandOrthogonalVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns (as a new vector) the right-handed normal of this vector.</CodeDescription>
+  <PartID>1405366271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRightHandOrthogonalVector() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the right-handed normal of Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(-Self.Y, Self.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetXComponent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new vector whose X component matches this vector's.</CodeDescription>
+  <PartID>927289343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetXComponent() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new vector whose X component matches Self vector's.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetYComponent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new vector whose Y component matches this vector's.</CodeDescription>
+  <PartID>376422399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetYComponent() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new vector whose Y component matches Self vector's.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(0.0, Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Initialises shared properties. Used internally.</CodeDescription>
+  <PartID>2144008191</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Initialise()</SourceLine>
+   <SourceLine>// Initialises shared properties. Used internally.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>X_AXIS = New PKVector2(1.0, 0.0)</SourceLine>
+   <SourceLine>Y_AXIS = New PKVector2(0.0, 1.0)</SourceLine>
+   <SourceLine>INV_X_AXIS = New PKVector2(-1.0, 0.0)</SourceLine>
+   <SourceLine>INV_Y_AXIS = New PKVector2(0.0, -1.0)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the origin by the inverse angle -𝛝 and returns this vector.</CodeDescription>
+  <PartID>1665599487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(theta As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates about the origin by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(Cos(theta), -Sin(theta))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the given coordinates by the inverse angle -𝛝 (in radians) and then returns this vector.</CodeDescription>
+  <PartID>794216447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(theta As Double, x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates about the given coordinates by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate to rotate about.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(Cos(theta), -Sin(theta), x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this vector about the given point by the inverse angle -𝛝 (in radians). Returns this vector.</CodeDescription>
+  <PartID>2060320767</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(theta As Double, point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates Self vector about the given point by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>' - Parameter point: The point to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.InverseRotate(theta, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the origin by the inverse angle -𝛝 and returns this vector.</CodeDescription>
+  <PartID>915857407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(rotation As PKRotation) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates about the origin by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(rotation.Cost, -rotation.Sint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the given coordinates by the inverse angle -𝛝 and then returns this vector.</CodeDescription>
+  <PartID>1838518271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(rotation As PKRotation, x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' Rotates about the given coordinates by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate to rotate about.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(rotation.Cost, -rotation.Sint, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseRotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this vector about the given point by the inverse angle -𝛝 and then returns this vector.</CodeDescription>
+  <PartID>712970239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InverseRotate(rotation As PKRotation, point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates Self vector about the given point by the inverse angle -𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>' - Parameter point: The point to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.InverseRotate(rotation, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation, point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOrthogonal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vector components constitute a vector that is orthogonal (perpendicular) to this vector.</CodeDescription>
+  <PartID>698902527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOrthogonal(x As Double, y As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vector components constitute a vector that is </SourceLine>
+   <SourceLine>' orthogonal (perpendicular) to Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the dot product of Self vector and the given vector is zero then we </SourceLine>
+   <SourceLine>' know that they are perpendicular.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the vector to test against.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the vector to test against.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.X * x + Self.Y * y) &lt;= PKEpsilon.E</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOrthogonal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vector is orthogonal (perpendicular) to this vector.</CodeDescription>
+  <PartID>446357503</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOrthogonal(vector As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vector is orthogonal (perpendicular) to Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the dot product of Self vector and the given vector is zero then we know </SourceLine>
+   <SourceLine>' that they are perpendicular.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to test against.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.X * vector.X + Self.Y * vector.Y) &lt;= PKEpsilon.E</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsZero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this vector is the zero vector.</CodeDescription>
+  <PartID>747206655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsZero() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if Self vector is the zero vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.X) &lt;= PKEpsilon.E And Abs(Self.Y) &lt;= PKEpsilon.E</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Left</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this vector to the left-handed normal of this vector and then returns this vector.</CodeDescription>
+  <PartID>1233983487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Left() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets Self vector to the left-handed normal of Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var temp As Double = Self.X</SourceLine>
+   <SourceLine>Self.X = Self.Y</SourceLine>
+   <SourceLine>Self.Y = -temp</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Multiply</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this vector by the given scalar and returns this vector.</CodeDescription>
+  <PartID>1911967743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Multiply(scalar As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies Self vector by the given scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X * scalar</SourceLine>
+   <SourceLine>Self.Y = Self.Y * scalar</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Negate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Negates this vector and returns it.</CodeDescription>
+  <PartID>540350463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Negate() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Negates Self vector.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = -Self.X</SourceLine>
+   <SourceLine>Self.Y = -Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Normalise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts this vector into a unit vector and returns the magnitude before normalization. This method requires the length of this is not zero.</CodeDescription>
+  <PartID>1515499519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Normalise() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts Self vector into a unit vector and returns the magnitude before normalization.</SourceLine>
+   <SourceLine>' Self method requires the length of Self is not zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y)</SourceLine>
+   <SourceLine>If magnitude &lt;= PKEpsilon.E Then Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m As Double = 1.0 / magnitude</SourceLine>
+   <SourceLine>Self.X = Self.X * m</SourceLine>
+   <SourceLine>Self.Y = Self.Y * m</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return magnitude</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Product</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this vector by the given scalar returning a new vector containing the result.</CodeDescription>
+  <PartID>1400662015</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Product(scalar As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies Self vector by the given scalar returning a new vector containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Return: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X * scalar, Self.Y * scalar)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Projects this vector onto the given vector. Returns a new vector.</CodeDescription>
+  <PartID>1815056383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Projects Self vector onto the given vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to project onto.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dotProd As Double = Self.Dot(vector)</SourceLine>
+   <SourceLine>Var denominator As Double = vector.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If denominator &lt;= PKEpsilon.E Then Return New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>denominator = dotProd / denominator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(denominator * vector.X, denominator * vector.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Quotient</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Divides this vector by the given scalar returning a new vector containing the result.</CodeDescription>
+  <PartID>1234245631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Quotient(scalar As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Divides Self vector by the given scalar returning a new vector containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X / scalar, Self.Y / scalar)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Right</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this vector to the right-handed normal of this vector and returns this vector.</CodeDescription>
+  <PartID>604141567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Right() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets Self vector to the right-handed normal of Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var temp As Double = Self.X</SourceLine>
+   <SourceLine>Self.X = -Self.Y</SourceLine>
+   <SourceLine>Self.Y = temp</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the origin by `theta` (in radians) and returns this vector.</CodeDescription>
+  <PartID>120563711</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(theta As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates about the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(Cos(theta), Sin(theta))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper method that rotates about the origin by an angle Θ and returns this vector.</CodeDescription>
+  <PartID>1128257535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(cos As Double, sin As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper method that rotates about the origin by an angle Θ.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter cos: Cos(Θ)</SourceLine>
+   <SourceLine>' - Parameter sin: Sin(Θ)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = Self.X</SourceLine>
+   <SourceLine>Var y As Double = Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x * cos - y * sin</SourceLine>
+   <SourceLine>Self.Y = x * sin + y * cos</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>cos As Double, sin As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this vector by the specified angle (in radians) about the given coordinates and then returns this vector.</CodeDescription>
+  <PartID>403591167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(theta As Double, x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates Self vector about the given coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate to rotate about.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(Cos(theta), Sin(theta), x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper method that rotates about the given coordinates by an angle Θ and then returns this vector.</CodeDescription>
+  <PartID>1006788607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(cos As Double, sin As Double, x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper method that rotates about the given coordinates by an angle Θ.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter cos: Cos(Θ)</SourceLine>
+   <SourceLine>' - Parameter sin: Sin(Θ)</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate to rotate about.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tx As Double = (Self.X - x)</SourceLine>
+   <SourceLine>Var ty As Double = (Self.Y - y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = tx * cos - ty * sin + x</SourceLine>
+   <SourceLine>Self.Y = tx * sin + ty * cos + y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>cos As Double, sin As Double, x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this vector about the given point by the specified radians. Returns this vector.</CodeDescription>
+  <PartID>537489407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(theta As Double, point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates Self vector about the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The rotation angle in radians.</SourceLine>
+   <SourceLine>' - Parameter point: The point to rotate about.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(theta, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates about the origin by the passed Rotation and returns this vector.</CodeDescription>
+  <PartID>1487454207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(rotation As PKRotation) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates about the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(rotation.Cost, rotation.Sint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this vector about the given coordinates and then returns this vector.</CodeDescription>
+  <PartID>209100799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(rotation As PKRotation, x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates Self vector about the given coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate to rotate about.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(rotation.Cost, rotation.Sint, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the vector about the given point and the returns this vector.</CodeDescription>
+  <PartID>478334975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Rotate(rotation As PKRotation, point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Rotates the vector about the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>' - Paramter point: The point to rotate about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotate(rotation, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation, point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Vector2 to the given Vector2 and returns this Vector2.</CodeDescription>
+  <PartID>1987155967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Set(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets Self PKVector2 to the given PKVector2.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter x: The X component of the PKVector2 to set Self PKVector2 to.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the PKVector2 to set Self PKVector2 to.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' Returns: Self PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Vector2 to the given Vector2 and returns this Vector2.</CodeDescription>
+  <PartID>760018943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Set(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets Self PKVector2 to the given PKVector2.</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to set Self PKVector2 to.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = vector.X</SourceLine>
+   <SourceLine>Self.Y = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetDirection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the direction of this vector to the angle passed (in radians) and returns this vector.</CodeDescription>
+  <PartID>172007423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SetDirection(angle As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the direction of Self vector.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter angle: The angle in radians.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' Returns:Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y)</SourceLine>
+   <SourceLine>Self.X = magnitude * Cos(angle)</SourceLine>
+   <SourceLine>Self.Y = magnitude * Sin(angle)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>angle As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetMagnitude</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the magnitude of this vector. Returns this vector.</CodeDescription>
+  <PartID>993335295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SetMagnitude(magnitude As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the magnitude of Self vector.</SourceLine>
+   <SourceLine>' - Parameter magnitude: The magnitude.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the given magnitude.</SourceLine>
+   <SourceLine>If Abs(magnitude) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>Self.X = 0.0</SourceLine>
+   <SourceLine>Self.Y = 0.0</SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is Self vector a zero vector?</SourceLine>
+   <SourceLine>If Self.IsZero Then Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the magnitude.</SourceLine>
+   <SourceLine>Var mag As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Normalise and multiply by the new magnitude.</SourceLine>
+   <SourceLine>mag = magnitude / mag</SourceLine>
+   <SourceLine>Self.X = Self.X * mag</SourceLine>
+   <SourceLine>Self.Y = Self.Y * mag</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>magnitude As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Subtract</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given vector components from this vector and returns this vector.</CodeDescription>
+  <PartID>1663739903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Subtract(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given vector components from Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the vector to subtract.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the vector to subtract.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X - x</SourceLine>
+   <SourceLine>Self.Y = Self.Y - y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Subtract</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given vector from this vector and returns this vector.</CodeDescription>
+  <PartID>1614630911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Subtract(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given vector from Self vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to subtract from Self vector.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X - vector.X</SourceLine>
+   <SourceLine>Self.Y = Self.Y - vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds this vector and the given vector components returning a new Vector2 containing the result.</CodeDescription>
+  <PartID>1458122751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds Self vector and the given vector components returning a new PKVector2 </SourceLine>
+   <SourceLine>' containing the result.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter x: The X component.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X + x, Self.Y + y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds this vector and the given vector returning a new vector containing the result.</CodeDescription>
+  <PartID>904505343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds Self vector and the given vector returning a new vector containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to sum with.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X + vector.X, Self.Y + vector.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1320075263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a string representation of Self vector in the form: "(X, Y)".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return "(" + Self.X.ToString + ", " + Self.Y.ToString + ")"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Towards</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates and returns a new vector from this vector to the given vector.</CodeDescription>
+  <PartID>558893055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Towards(x As Double, y As Double) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates and returns a new vector from Self vector to the given vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The X component of the vector to travel towards.</SourceLine>
+   <SourceLine>' - Parameter y: The Y component of the vector to travel towards.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(x - Self.X, y - Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Towards</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates and returns a new vector from this vector to the given vector.</CodeDescription>
+  <PartID>1651597311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Towards(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates and returns a new vector from Self vector to the given vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The vector to travel towards.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(vector.X - Self.X, vector.Y - Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TripleProduct</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the triple product of the three vectors as a new vector.</CodeDescription>
+  <PartID>1788282879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function TripleProduct(a As PKVector2, b As PKVector2, c As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The triple product of three PKVector2 objects is defined as:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' a x (b x c)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' However, Self method performs the following triple product:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' (a x b) x c</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Self can be simplified to:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' -a * (b · c) + b * (a · c)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' or:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' b * (a · c) - a * (b · c)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>' - Parameter a: The `a` PKVector2 in the above equation.</SourceLine>
+   <SourceLine>' - Parameter b: The `b` PKVector2 in the above equation.</SourceLine>
+   <SourceLine>' - Parameter c: The `c` PKVector2 in the above equation.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Expanded version of above formula.</SourceLine>
+   <SourceLine>Var r As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dot As Double = a.X * b.Y - b.X * a.Y</SourceLine>
+   <SourceLine>r.X = -c.Y * dot</SourceLine>
+   <SourceLine>r.Y = c.X * dot</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, c As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Zero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this vector to the zero vector and returns this vector.</CodeDescription>
+  <PartID>1010800639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Zero() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets Self vector to the zero vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: Self vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = 0.0</SourceLine>
+   <SourceLine>Self.Y = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1112758271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Self class represents a vector or point in 2D space. </NoteLine>
+   <NoteLine>The operations PKVector2.SetMagnitude(Double), PKVector2.GetNormalized(), </NoteLine>
+   <NoteLine>PKVector2.Project(PKVector2) and PKVector2.Normalize() require the PKVector2 to be non-zero in length.</NoteLine>
+   <NoteLine>Some methods also return the vector to facilitate chaining.  For example:</NoteLine>
+   <NoteLine>Var a As PKVector2 = New PKVector2</NoteLine>
+   <NoteLine>a.Zero.Add(1, 2).Multiply(2)</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>INV_X_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>A vector representing the inverse x-axis. This vector should not be changed at runtime. Used internally</CodeDescription>
+  <PartID>575846399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared INV_X_AXIS As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>INV_X_AXIS As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>INV_Y_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>A vector representing the inverse y-axis. This vector should not be changed at runtime. Used internally</CodeDescription>
+  <PartID>2059831295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared INV_Y_AXIS As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>INV_Y_AXIS As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>X</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The magnitude of the X component of this Vector2.</CodeDescription>
+  <PartID>1734828031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>X As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>X As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>X_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>A vector representing the x-axis. This vector should not be changed at runtime. It is used internally.</CodeDescription>
+  <PartID>1966133247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared X_AXIS As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>X_AXIS As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Y</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The magnitude of the Y component of this Vector2.</CodeDescription>
+  <PartID>1929793535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Y As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Y As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Y_AXIS</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>A vector representing the y-axis. This vector should not be changed at runtime. It is used internally.</CodeDescription>
+  <PartID>401909759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Y_AXIS As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Y_AXIS As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>X</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Y</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

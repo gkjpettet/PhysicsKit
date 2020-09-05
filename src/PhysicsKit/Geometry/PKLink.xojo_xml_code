@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="2066259967">
+ <ObjName>PKLink</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKSegment</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>760971263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(point1 As PKVector2, point2 As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new link.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1: The first vertex.</SourceLine>
+   <SourceLine>' - Parameter point2: The last vertex.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(point1, point2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point1 As PKVector2, point2 As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNext</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the next link in the chain.</CodeDescription>
+  <PartID>1603301375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNext() As PKLink</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the next link in the chain.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Link.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.NextLink</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKLink</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPoint0</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the last vertex of the previous segment.</CodeDescription>
+  <PartID>180109311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPoint0() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the last vertex of the previous segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return If(Self.PreviousLink &lt;&gt; Nil, Self.PreviousLink.GetPoint1, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPoint3</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the first vertex of the next segment.</CodeDescription>
+  <PartID>297537535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPoint3() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the first vertex of the next segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return If(Self.NextLink &lt;&gt; Nil, Self.NextLink.getPoint2, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPrevious</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the previous link in the chain.</CodeDescription>
+  <PartID>2008655871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPrevious() As PKLink</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the previous link in the chain.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Link.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.PreviousLink</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKLink</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>637702143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Local rotation and translation will modify the next and previous links.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(theta, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to update the next/prev links to reflect the change in this link's vertices.</SourceLine>
+   <SourceLine>If Self.NextLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Call Self.NextLink.Vertices(0).Set(Self.vertices(1))</SourceLine>
+   <SourceLine>// Update normals.</SourceLine>
+   <SourceLine>UpdateNormals(Self.NextLink)</SourceLine>
+   <SourceLine>UpdateLength(Self.NextLink)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.PreviousLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Call Self.PreviousLink.Vertices(1).Set(Self.Vertices(0))</SourceLine>
+   <SourceLine>// Update normals.</SourceLine>
+   <SourceLine>UpdateNormals(Self.PreviousLink)</SourceLine>
+   <SourceLine>UpdateLength(Self.PreviousLink)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetNext</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the next link in the chain.</CodeDescription>
+  <PartID>1139161087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetNext(nextLink As PKLink)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the next link in the chain.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method will also:</SourceLine>
+   <SourceLine>' 1. Unlink the current next (if applicable) and this link</SourceLine>
+   <SourceLine>' 2. Link the given next and this link</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter nextLink: The next link.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.NextLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Self.NextLink.PreviousLink = Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.NextLink = nextLink</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If nextLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>nextLink.PreviousLink = Self</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>nextLink As PKLink</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetPrevious</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the previous link in the chain.</CodeDescription>
+  <PartID>153905151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetPrevious(previousLink As PKLink)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the previous link in the chain.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method will also:</SourceLine>
+   <SourceLine>' 1. Unlink the current previous (if applicable) and this link.</SourceLine>
+   <SourceLine>' 2.Link the given previous and this link.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter previous: The previous link.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.PreviousLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Self.PreviousLink.NextLink = Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.PreviousLink = previousLink</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If previousLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>previousLink.NextLink = Self</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>previousLink As PKLink</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>377851903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Link.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("Link[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Length=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Length.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2126589951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to update the next/prev links to reflect the change in this link's vertices.</SourceLine>
+   <SourceLine>If Self.NextLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Call Self.NextLink.Vertices(0).Set(Self.Vertices(1))</SourceLine>
+   <SourceLine>UpdateLength(Self.NextLink)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.PreviousLink &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Call Self.PreviousLink.vertices(1).Set(Self.Vertices(0))</SourceLine>
+   <SourceLine>UpdateLength(Self.PreviousLink)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>UpdateLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Updates the length and radius of the given Segment.</CodeDescription>
+  <PartID>2073503743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub UpdateLength(segment As PKSegment)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Updates the length and radius of the given Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' When rotating or translating a link in a link chain, the connected links</SourceLine>
+   <SourceLine>' will need their lengths and maximum radius recomputed to match the change.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter segment: The segment to update.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var length As Double = segment.Vertices(0).Distance(segment.Vertices(1))</SourceLine>
+   <SourceLine>segment.Length = length</SourceLine>
+   <SourceLine>segment.Radius = length * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>segment As PKSegment</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>UpdateNormals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Updates the normals of the given Segment.</CodeDescription>
+  <PartID>2027425791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub UpdateNormals(segment As PKSegment)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Updates the normals of the given Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' When rotating a link in a link chain, the connected links</SourceLine>
+   <SourceLine>' will need their normals recomputed to match the change.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter segment: The segment to update.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As PKVector2 = segment.Vertices(0).Towards(segment.Vertices(1))</SourceLine>
+   <SourceLine>segment.Normals(0) = v.Copy</SourceLine>
+   <SourceLine>Call segment.Normals(0).Normalise</SourceLine>
+   <SourceLine>segment.Normals(1) = v.Right</SourceLine>
+   <SourceLine>Call segment.Normals(1).Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>segment As PKSegment</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>350588927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>This class is a specialization of the Segment class that provides smooth sliding across</NoteLine>
+   <NoteLine>a chain of line segments. This is achieved by storing the connectivity information between the</NoteLine>
+   <NoteLine>links. With this, a correction process is performed to avoid the 'internal edge' problem.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A Link is an infinitely thin line segment and will behave like the Segment class in</NoteLine>
+   <NoteLine>collision response.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Like the Segment class, this class can be locally rotated or translated. However, doing</NoteLine>
+   <NoteLine>so will also translate/rotated the next or previous Links.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>For ease of use, it's recommended to use the Geometry class to create chains of Links.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>NextLink</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The next link in the chain.</CodeDescription>
+  <PartID>1437206527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>NextLink As PKLink</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>NextLink As PKLink</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>PreviousLink</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The previous link in the chain.</CodeDescription>
+  <PartID>1499441151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PreviousLink As PKLink</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PreviousLink As PKLink</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Length</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

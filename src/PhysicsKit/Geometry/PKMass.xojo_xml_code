@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1921173503">
+ <ObjName>PKMass</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Default constructor.</CodeDescription>
+  <PartID>260907007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates and infinite mass centred at the origin.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Type = PhysicsKit.MassTypes.Infinite</SourceLine>
+   <SourceLine>Self.Center = New PKVector2</SourceLine>
+   <SourceLine>Self.Mass = 0.0</SourceLine>
+   <SourceLine>Self.Inertia = 0.0</SourceLine>
+   <SourceLine>Self.InvMass = 0.0</SourceLine>
+   <SourceLine>Self.InvInertia = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copy constructor.</CodeDescription>
+  <PartID>1762299903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(mass As PKMass)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Performs a deep copy.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter mass: The Mass to copy.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `mass` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If mass Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Setup the mass.</SourceLine>
+   <SourceLine>Self.Type = mass.Type</SourceLine>
+   <SourceLine>Self.Center = mass.Center.Copy</SourceLine>
+   <SourceLine>Self.Mass = mass.Mass</SourceLine>
+   <SourceLine>Self.Inertia = mass.Inertia</SourceLine>
+   <SourceLine>Self.InvMass = mass.InvMass</SourceLine>
+   <SourceLine>Self.InvInertia = mass.InvInertia</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>mass As PKMass</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>79026175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(center As PKVector2, mass As Double, inertia As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full Constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: The `center` parameter will be copied.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter center: The centre of Mass in local coordinates.</SourceLine>
+   <SourceLine>' - Parameter mass: The mass in kg.</SourceLine>
+   <SourceLine>' - Parameter inertia: The inertia tensor in kg·m²</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `center` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `mass` or `inertia` is less than zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input,</SourceLine>
+   <SourceLine>If center Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_CENTER)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If mass &lt; 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_MASS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If inertia &lt; 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_INERTIA)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the mass.</SourceLine>
+   <SourceLine>Self.Type = PhysicsKit.MassTypes.Normal</SourceLine>
+   <SourceLine>Self.Center = center.Copy</SourceLine>
+   <SourceLine>Self.Mass = mass</SourceLine>
+   <SourceLine>Self.Inertia = inertia</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the inverse mass.</SourceLine>
+   <SourceLine>If mass &gt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>Self.InvMass = 1.0 / mass</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.InvMass = 0.0</SourceLine>
+   <SourceLine>Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the inverse inertia.</SourceLine>
+   <SourceLine>If inertia &gt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>Self.InvInertia = 1.0 / inertia</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.InvInertia = 0.0</SourceLine>
+   <SourceLine>Self.Type = PhysicsKit.MassTypes.FixedAngularVelocity</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if both the mass and inertia are zero.</SourceLine>
+   <SourceLine>If mass &lt;= PKEpsilon.E And inertia &lt;= PKEpsilon.E Then Self.Type = PhysicsKit.MassTypes.Infinite</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2, mass As Double, inertia As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copies this Mass and returns it as a new Mass instance.</CodeDescription>
+  <PartID>194164735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copies this Mass.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Mass instance.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Create</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Mass object from the given array of masses.</CodeDescription>
+  <PartID>2128660479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Create(masses() As PKMass) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a Mass object from the given array of masses.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Uses the Parallel Axis Theorem to obtain the inertia tensor about</SourceLine>
+   <SourceLine>' the center of all the given masses:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Idis = Icm + mr²</SourceLine>
+   <SourceLine>' Itotal = ∑ Idis</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The center for the resulting mass will be a mass weighted center.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method will produce unexpected results if any mass contained in the list is infinite.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter masses: The array of Mass objects to combine.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Mass instance.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `masses` is Nil or contains Nil elements.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `masses` is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the array for Nil or empty.</SourceLine>
+   <SourceLine>If masses = Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If masses.Count = 0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_MASS_INVALID_MASS_ARRAY_SIZE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the length of the masses array.</SourceLine>
+   <SourceLine>Var size As Integer = masses.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a list of one.</SourceLine>
+   <SourceLine>If size = 1 Then</SourceLine>
+   <SourceLine>// Check for Nil item.</SourceLine>
+   <SourceLine>Var m As PKMass = masses(0)</SourceLine>
+   <SourceLine>If m &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Return New PKMass(masses(0))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialize the new mass values.</SourceLine>
+   <SourceLine>Var c As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var m As Double = 0.0</SourceLine>
+   <SourceLine>Var I As Double = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the masses.</SourceLine>
+   <SourceLine>For Each mass As PKMass In masses</SourceLine>
+   <SourceLine>// Check for Nil mass.</SourceLine>
+   <SourceLine>If mass = Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_MASS_NIL_MASS_ARRAY_ELEMENT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Add the centers up (weighting them by their respective mass).</SourceLine>
+   <SourceLine>Call c.Add(mass.Center.Product(mass.Mass))</SourceLine>
+   <SourceLine>// Sum the masses.</SourceLine>
+   <SourceLine>m = M + mass.Mass</SourceLine>
+   <SourceLine>Next mass</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The mass will never be negative but could be zero if all the masses are infinite.</SourceLine>
+   <SourceLine>If m &gt; 0.0 Then</SourceLine>
+   <SourceLine>// Compute the center by dividing by the total mass.</SourceLine>
+   <SourceLine>Call c.Divide(m)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// After obtaining the new center of mass we need to compute the interia tensor about the center</SourceLine>
+   <SourceLine>// using the parallel axis theorem:</SourceLine>
+   <SourceLine>// `Idis = Icm + mr^2` where `r` is the perpendicular distance between the two parallel axes.</SourceLine>
+   <SourceLine>For Each mass As PKMass In masses</SourceLine>
+   <SourceLine>// Compute the distance from the new center to the current mass's center.</SourceLine>
+   <SourceLine>Var d2 As Double = mass.Center.DistanceSquared(c)</SourceLine>
+   <SourceLine>// Compute `Idis`:</SourceLine>
+   <SourceLine>Var Idis As Double = mass.Inertia + mass.Mass * d2</SourceLine>
+   <SourceLine>// Add it to the sum.</SourceLine>
+   <SourceLine>I = I + Idis</SourceLine>
+   <SourceLine>Next mass</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finally create the Mass.</SourceLine>
+   <SourceLine>Return New PKMass(c, m, I)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>masses() As PKMass</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>227833855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(other As Variant) As Boolean</SourceLine>
+   <SourceLine>If other Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If other IsA PKMass Then</SourceLine>
+   <SourceLine>Var o As PKMass = PKMass(other)</SourceLine>
+   <SourceLine>If Self.Type = o.Type And _</SourceLine>
+   <SourceLine>Self.Mass = o.Mass And _ </SourceLine>
+   <SourceLine>Self.Inertia = o.Inertia And _</SourceLine>
+   <SourceLine>Self.Center.Equals(o.Center) Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the center of mass.</CodeDescription>
+  <PartID>1686757375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCenter() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the center of mass.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Center</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInertia</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the inertia tensor.</CodeDescription>
+  <PartID>1636820991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInertia() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the inertia tensor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedAngularVelocity Then</SourceLine>
+   <SourceLine>Return 0.0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.Inertia</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseInertia</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the inverse inertia tensor.</CodeDescription>
+  <PartID>464127999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInverseInertia() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the inverse inertia tensor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedangularVelocity Then</SourceLine>
+   <SourceLine>Return 0.0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.InvInertia</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the inverse mass.</CodeDescription>
+  <PartID>2004412415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInverseMass() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the inverse mass.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity Then</SourceLine>
+   <SourceLine>Return 0.0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.InvMass</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the mass.</CodeDescription>
+  <PartID>1194182655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMass() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the mass.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Type = PhysicsKit.MassTypes.Infinite Or Self.Type = PhysicsKit.MassTypes.FixedLinearVelocity Then</SourceLine>
+   <SourceLine>Return 0.0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.Mass</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the mass type.</CodeDescription>
+  <PartID>1667311615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetType() As PhysicsKit.MassTypes</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the mass type.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: MassTypes.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Type</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PhysicsKit.MassTypes</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsInfinite</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1154916351</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsInfinite() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this Mass object is of type MassTypes.INFINITE.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A mass will still be treated as an infinite mass in physical modeling if the</SourceLine>
+   <SourceLine>' mass and inertia are zero. This method simply checks the mass type.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Type = PhysicsKit.MassTypes.Infinite</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1162293247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetType(type As PhysicsKit.MassTypes)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the mass type.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter type: The mass type.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Type = type</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>type As PhysicsKit.MassTypes</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Mass instance in the form: "Mass[Type=type|Center=c|Mass=m|Inertia=i]".</CodeDescription>
+  <PartID>1823141887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Mass instance in the form: </SourceLine>
+   <SourceLine>' "Mass[Type=type|Center=c|Mass=m|Inertia=i]".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Mass[Type=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Type.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Center=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Center.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Mass=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Mass.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Inertia=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Inertia.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>Center</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The center of mass.</CodeDescription>
+  <PartID>1410179071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Center As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Center As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Inertia</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The inertia tensor in kg·m2</CodeDescription>
+  <PartID>926621695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Inertia As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Inertia As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>InvInertia</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The inverse inertia tensor.</CodeDescription>
+  <PartID>1168691199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>InvInertia As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>InvInertia As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>InvMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The inverse mass.</CodeDescription>
+  <PartID>1044584447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>InvMass As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>InvMass As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Mass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The mass in kg.</CodeDescription>
+  <PartID>1682341887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Mass As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Mass As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Type</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The mass type</CodeDescription>
+  <PartID>1120319487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Type As PhysicsKit.MassTypes</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Type As PhysicsKit.MassTypes</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Type</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>PhysicsKit.MassTypes</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Normal</ItemDef>
+    <ItemDef>1 - Infinite</ItemDef>
+    <ItemDef>2 - FixedAngularVelocity</ItemDef>
+    <ItemDef>3 - FixedLinearVelocity</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Inertia</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>InvInertia</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>InvMass</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Mass</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

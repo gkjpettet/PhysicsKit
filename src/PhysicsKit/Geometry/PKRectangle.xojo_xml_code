@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="468801535">
+ <ObjName>PKRectangle</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKPolygon</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validated constructor. The centre of the rectangle will be the origin.</CodeDescription>
+  <PartID>849715199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, width As Double, height As Double, vertices() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The centre of the rectangle will be the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called .</SourceLine>
+   <SourceLine>' - Parameter width: The width.</SourceLine>
+   <SourceLine>' - Parameter height: The height.</SourceLine>
+   <SourceLine>' - Parameter vertices: The rectangle vertices.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(New PKVector2, vertices(0).GetMagnitude, vertices, Array( _</SourceLine>
+   <SourceLine>New PKVector2(0.0, -1.0), New PKVector2(1.0, 0.0), New PKVector2(0.0, 1.0), _</SourceLine>
+   <SourceLine>New PKVector2(-1.0, 0.0)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the width and height</SourceLine>
+   <SourceLine>Self.Width = width</SourceLine>
+   <SourceLine>Self.Height = height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, width As Double, height As Double, vertices() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor. The centre of the rectangle will be the origin. A rectangle must have a width and height greater than zero. Throws InvalidArgumentException.</CodeDescription>
+  <PartID>1915117567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(width As Double, height As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The centre of the rectangle will be the origin.</SourceLine>
+   <SourceLine>' A rectangle must have a width and height greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width.</SourceLine>
+   <SourceLine>' - Parameter height: The height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Constructor(Validate(width, height), width, height, Array( _</SourceLine>
+   <SourceLine>New PKVector2(-width * 0.5, -height * 0.5), New PKVector2( width * 0.5, -height * 0.5), _</SourceLine>
+   <SourceLine>New PKVector2( width * 0.5,  height * 0.5), New PKVector2(-width * 0.5,  height * 0.5)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>668715007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>// Put the point in local coordinates.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the centre and vertices.</SourceLine>
+   <SourceLine>Var c As PKVector2 = Self.Center</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(0)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(1)</SourceLine>
+   <SourceLine>Var p4 As PKVector2 = Self.Vertices(3)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the width and height squared.</SourceLine>
+   <SourceLine>Var widthSquared As Double = p1.DistanceSquared(p2)</SourceLine>
+   <SourceLine>Var heightSquared As Double = p1.DistanceSquared(p4)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// I could call the polygon one instead of this method, but I'm not sure which is faster.</SourceLine>
+   <SourceLine>Var projectAxis0 As PKVector2 = p1.Towards(p2)</SourceLine>
+   <SourceLine>Var projectAxis1 As PKVector2 = p1.Towards(p4)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from the centroid to the point.</SourceLine>
+   <SourceLine>Var toPoint As PKVector2 = c.Towards(p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the projection of this vector onto the vector from the centroid to the edge.</SourceLine>
+   <SourceLine>If toPoint.Project(projectAxis0).GetMagnitudeSquared &lt;= (widthSquared * 0.25) Then</SourceLine>
+   <SourceLine>// If the projection of the v vector onto the x separating axis is</SourceLine>
+   <SourceLine>// smaller than the half width then we know that the point is within the x bounds of the rectangle.</SourceLine>
+   <SourceLine>If toPoint.Project(projectAxis1).GetMagnitudeSquared &lt;= (heightSquared * 0.25) Then</SourceLine>
+   <SourceLine>// If the projection of the v vector onto the y separating axis is </SourceLine>
+   <SourceLine>// smaller than the half height then we know that the point is within the y bounds of the rectangle.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return False if they do not intersect.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1145829375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>// Since we know that this is a rectangle we can get away with much fewer</SourceLine>
+   <SourceLine>// comparisons to find the correct PKAABB. Each vertex maps to one point of the</SourceLine>
+   <SourceLine>// PKAABB, we have to find in which of the four possible rotation states this</SourceLine>
+   <SourceLine>// rectangle currently is. This is done below by comparing the first two vertices.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// It's more convenient to use transform.GetTransformed instead but we can</SourceLine>
+   <SourceLine>// split to transform.GetTransformedX/Y to save 4 PKVector2 allocations 'for free'.</SourceLine>
+   <SourceLine>Var v0x As Double = transform.GetTransformedX(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var v0y As Double = transform.GetTransformedY(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var v1x As Double = transform.GetTransformedX(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var v1y As Double = transform.GetTransformedY(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var v2x As Double = transform.GetTransformedX(Self.Vertices(2))</SourceLine>
+   <SourceLine>Var v2y As Double = transform.GetTransformedY(Self.Vertices(2))</SourceLine>
+   <SourceLine>Var v3x As Double = transform.GetTransformedX(Self.Vertices(3))</SourceLine>
+   <SourceLine>Var v3y As Double = transform.GetTransformedY(Self.Vertices(3))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If v0y &gt; v1y Then</SourceLine>
+   <SourceLine>If v0x &lt; v1x Then</SourceLine>
+   <SourceLine>Return New PKAABB(v0x, v1y, v2x, v3y)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return New PKAABB(v1x, v2y, v3x, v0y)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If v0x &lt; v1x Then</SourceLine>
+   <SourceLine>Return New PKAABB(v3x, v0y, v1x, v2y)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return New PKAABB(v2x, v3y, v0x, v1y)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Mass object using the geometric properties of this Rectangle and the given density (in kg/m²).</CodeDescription>
+  <PartID>88063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a Mass object using the geometric properties of this Rectangle and the given density.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' m = d * h * w</SourceLine>
+   <SourceLine>' I = m * (h² + w²) / 12</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter density: The density in kg/m²</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The Mass of this Rectangle.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var height As Double = Self.Height</SourceLine>
+   <SourceLine>Var width As Double = Self.Width</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the mass.</SourceLine>
+   <SourceLine>Var mass As Double = density * height * width</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the inertia tensor.</SourceLine>
+   <SourceLine>Var inertia As Double = mass * (height * height + width * width) / 12.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Since we know that a rectangle has only four points that are</SourceLine>
+   <SourceLine>// evenly distributed we can feel safe using the averaging method for the centroid.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, mass, inertia)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1925885951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>// Create an array to hold the axes.</SourceLine>
+   <SourceLine>Var axes() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the normals to the surfaces, since this is a </SourceLine>
+   <SourceLine>// rectangle we only have two axes to test against.</SourceLine>
+   <SourceLine>axes.AddRow(transform.GetTransformedR(Self.Normals(1)))</SourceLine>
+   <SourceLine>axes.AddRow(transform.GetTransformedR(Self.Normals(2)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the closest point to each focus.</SourceLine>
+   <SourceLine>For Each focus As PKVector2 In foci</SourceLine>
+   <SourceLine>// Create a place for the closest point</SourceLine>
+   <SourceLine>Var closest As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var d As Double = focus.DistanceSquared(closest)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the minimum distance vertex.</SourceLine>
+   <SourceLine>For j As Integer = 1 To 3</SourceLine>
+   <SourceLine>// get the vertex</SourceLine>
+   <SourceLine>Var vertex As PKVector2 = Self.Vertices(j)</SourceLine>
+   <SourceLine>// Transform it into world space.</SourceLine>
+   <SourceLine>vertex = transform.GetTransformed(vertex)</SourceLine>
+   <SourceLine>// Get the squared distance to the focus.</SourceLine>
+   <SourceLine>Var dt As Double = focus.DistanceSquared(vertex)</SourceLine>
+   <SourceLine>// Compare with the last distance.</SourceLine>
+   <SourceLine>If dt &lt; d Then</SourceLine>
+   <SourceLine>// If it's closer then save it.</SourceLine>
+   <SourceLine>closest = vertex</SourceLine>
+   <SourceLine>d = dt</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Once we have found the closest point create a vector from the focal point to the point.</SourceLine>
+   <SourceLine>Var axis As PKVector2 = focus.Towards(closest)</SourceLine>
+   <SourceLine>// Normalise the axis.</SourceLine>
+   <SourceLine>Call axis.Normalise</SourceLine>
+   <SourceLine>// Add it to the array.</SourceLine>
+   <SourceLine>axes.AddRow(axis)</SourceLine>
+   <SourceLine>Next focus</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return all the axes.</SourceLine>
+   <SourceLine>Return axes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the height.</CodeDescription>
+  <PartID>2114666495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the Rotation object that represents the local rotation.</CodeDescription>
+  <PartID>1494949887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotation() As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: The Rotation object that represents the local rotation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Normals(1) is already a unit vector representing the local axis so we can </SourceLine>
+   <SourceLine>// just return it as a Rotation.</SourceLine>
+   <SourceLine>Return New PKRotation(Self.Normals(1).X, Self.Normals(1).Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationAngle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the rotation (in radians) about the local center in radians in the range [-π, π].</CodeDescription>
+  <PartID>681603071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationAngle() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the rotation about the local center in radians in the range [-π, π].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The rotation in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// When the shape is created, Normals(1) will always be the positive x-axis.</SourceLine>
+   <SourceLine>// We can get the rotation by comparing it to the positive x-axis since the </SourceLine>
+   <SourceLine>// normal vectors are rotated with the vertices when a shape is rotated.</SourceLine>
+   <SourceLine>Return ATan2(Self.Normals(1).Y, Self.Normals(1).X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the width.</CodeDescription>
+  <PartID>1955715071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWidth() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the width.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Width</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>915496959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>// Get the center and vertices.</SourceLine>
+   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the project axes.</SourceLine>
+   <SourceLine>Var projectAxis0 As PKVector2 = transform.GetTransformedR(Self.Normals(1))</SourceLine>
+   <SourceLine>Var projectAxis1 As PKVector2 = transform.GetTransformedR(Self.Normals(2))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the shape on the axis.</SourceLine>
+   <SourceLine>Var c As Double = center.Dot(vector)</SourceLine>
+   <SourceLine>Var e As Double = (Self.Width * 0.5) * Abs(projectAxis0.Dot(vector)) + _</SourceLine>
+   <SourceLine>(Self.Height * 0.5) * Abs(projectAxis1.Dot(vector))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(c - e, c + e)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>35725311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Rectangle.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Rectangle[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Width=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Width.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Height=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Height.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning True if valid or throwing an InvalidArgumentException if invalid.</CodeDescription>
+  <PartID>1330989055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(width As Double, height As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Paramter width: The width.</SourceLine>
+   <SourceLine>' - Parameter height: The height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If width &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RECTANGLE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>If height &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_RECTANGLE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>121374719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of a Rectangle Convex Shape.</NoteLine>
+   <NoteLine>This class represents both axis-aligned and oriented rectangles and squares.</NoteLine>
+   <NoteLine>A Rectangle must have a width and height greater than zero.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Height</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The Rectangle's height.</CodeDescription>
+  <PartID>997603327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Height As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Height As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Width</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The Rectangle's width.</CodeDescription>
+  <PartID>1973454847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Width As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Width As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Width</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

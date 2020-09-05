@@ -1,0 +1,1891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1507340287">
+ <ObjName>PKTransform</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKTransformable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Default public constructor.</CodeDescription>
+  <PartID>1930037247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default public constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Private constructor for some copy and internal operations.</CodeDescription>
+  <PartID>44072959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(cost As Double, sint As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Private constructor for some copy and internal operations.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter cost: The cosine.</SourceLine>
+   <SourceLine>' - Parameter sint: The negative sine.</SourceLine>
+   <SourceLine>' - Parameter x: The x translation.</SourceLine>
+   <SourceLine>' - Parameter y: The y translation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Cost = cost</SourceLine>
+   <SourceLine>Self.Sint = sint</SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>cost As Double, sint As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Public copy constructor.</CodeDescription>
+  <PartID>1071452159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(t As PKTransform)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Public copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter t: The transform to copy.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Cost = t.Cost</SourceLine>
+   <SourceLine>Self.Sint = t.Sint</SourceLine>
+   <SourceLine>Self.X = t.X</SourceLine>
+   <SourceLine>Self.Y = t.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>t As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 and places the result in the given Vector2.</CodeDescription>
+  <PartID>1792358399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 and places the result in the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>vector.X = Self.Cost * x - Self.Sint * y + Self.X</SourceLine>
+   <SourceLine>vector.Y = Self.Sint * x + Self.Cost * y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copies this Transform.</CodeDescription>
+  <PartID>414863359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKTransform</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copies this Transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKTransform(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseTransformed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inverse transforms the given Vector2 and returns a new Vector2 containing the result.</CodeDescription>
+  <PartID>1376966655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInverseTransformed(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inverse transforms the given PKVector2 and returns a new PKVector2 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tv As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var tx As Double = vector.X - Self.X</SourceLine>
+   <SourceLine>Var ty As Double = vector.Y - Self.Y</SourceLine>
+   <SourceLine>tv.X = Self.Cost * tx + Self.Sint * ty</SourceLine>
+   <SourceLine>tv.Y = -Self.Sint * tx + Self.Cost * ty</SourceLine>
+   <SourceLine>Return tv</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseTransformed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inverse transforms the given Vector2 and returns the result in the destination Vector2.</CodeDescription>
+  <PartID>1415090175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GetInverseTransformed(vector As PKVector2, destination As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inverse transforms the given PKVector2 and returns the result in the destination PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>' - Parameter destination: The PKVector2 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tx As Double = vector.X - Self.X</SourceLine>
+   <SourceLine>Var ty As Double = vector.Y - Self.Y</SourceLine>
+   <SourceLine>destination.X = Self.Cost * tx + Self.Sint * ty</SourceLine>
+   <SourceLine>destination.Y = -Self.Sint * tx + Self.Cost * ty</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, destination As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseTransformedR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inverse transforms the given Vector2 only by the rotation and returns a new Vector2 containing the result.</CodeDescription>
+  <PartID>313978879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInverseTransformedR(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inverse transforms the given PKVector2 only by the rotation and returns</SourceLine>
+   <SourceLine>' a new PKVector2 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The transpose of a rotation matrix is the inverse.</SourceLine>
+   <SourceLine>v.X = Self.Cost * x + Self.Sint * y</SourceLine>
+   <SourceLine>v.Y = -Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverseTransformedR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 only by the rotation and returns the result in the destination Vector2.</CodeDescription>
+  <PartID>987817983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GetInverseTransformedR(vector As PKVector2, destination As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 only by the rotation and returns the result in the</SourceLine>
+   <SourceLine>' destination PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>' - Parameter destination: The PKVector2 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The transpose of a rotation matrix is the inverse.</SourceLine>
+   <SourceLine>destination.X = Self.Cost * x + Self.Sint * y</SourceLine>
+   <SourceLine>destination.Y = -Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, destination As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>507592703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotation() As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the Rotation object representing the rotation of this Transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: Rotation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKRotation.Of_(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationAngle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the rotation angle in the range [-π, π].</CodeDescription>
+  <PartID>1048100863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationAngle() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the rotation angle in the range [-π, π].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Copied from Rotation class. See there for more info.</SourceLine>
+   <SourceLine>Var acos As Double = ACos(Self.Cost)</SourceLine>
+   <SourceLine>Var angle As Double = If((Self.Sint &gt;= 0), acos, -acos)</SourceLine>
+   <SourceLine>Return angle</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>692914175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationTransform() As PKTransform</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Transform including only the rotation of this Transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As PKTransform = New PKTransform(Self.Cost, Self.Sint, 0, 0)</SourceLine>
+   <SourceLine>Return t</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 and returns a new Vector2 containing the result.</CodeDescription>
+  <PartID>1549830143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransformed(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 and returns a new PKVector2 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tv As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>tv.X = Self.Cost * x - Self.Sint * y + Self.X</SourceLine>
+   <SourceLine>tv.Y = Self.Sint * x + Self.Cost * y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return tv</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 and returns the result in `destination`.</CodeDescription>
+  <PartID>1318113279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GetTransformed(vector As PKVector2, destination As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 and returns the result in `destination`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>' - Parameter destination: The PKVector2 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>destination.X = Self.Cost * x - Self.Sint * y + Self.X</SourceLine>
+   <SourceLine>destination.Y = Self.Sint * x + Self.Cost * y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, destination As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformedR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 only by the rotation and returns a new Vector2 containing the result.</CodeDescription>
+  <PartID>436533247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransformedR(vector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 only by the rotation and returns a new </SourceLine>
+   <SourceLine>' PKVector2 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>v.X = Self.Cost * x - Self.Sint * y</SourceLine>
+   <SourceLine>v.Y = Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine>Return v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformedR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 only by the rotation and returns the result in the destination Vector2.</CodeDescription>
+  <PartID>211359743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GetTransformedR(vector As PKVector2, destination As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 only by the rotation and returns the result in the</SourceLine>
+   <SourceLine>' destination PKVector2.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>' - Parameter destination: The PKVector2 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>destination.X = Self.Cost * x - Self.Sint * y</SourceLine>
+   <SourceLine>destination.Y = Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, destination As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformedX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms only the X coordinate of the given Vector2 and returns the result.</CodeDescription>
+  <PartID>703330303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransformedX(vector As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms only the X coordinate of the given PKVector2 and returns the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The transformed X coordinate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Cost * vector.X - Self.Sint * vector.Y + Self.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransformedY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms only the Y coordinate of the given Vector2 and returns the result.</CodeDescription>
+  <PartID>1349351423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransformedY(vector As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms only the Y coordinate of the given PKVector2 and returns the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The transformed Y coordinate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Sint * vector.X + Self.Cost * vector.Y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranslation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the translation vector as a new Vector2.</CodeDescription>
+  <PartID>1902030847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranslation() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the translation vector as a new PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.X, Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranslationTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2051284991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranslationTransform() As PKTransform</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Transform including only the translation of this Transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As PKTransform = New PKTransform(1.0, 0.0, Self.X, Self.Y)</SourceLine>
+   <SourceLine>Return t</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranslationX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the X translation.</CodeDescription>
+  <PartID>768217087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranslationX() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the X translation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranslationY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2066003967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranslationY() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the Y translation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetValues</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the values stored in this transform. The values are in the order (00, 01, x, 10, 11, y).</CodeDescription>
+  <PartID>2142767103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetValues() As Double()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the values stored in this transform.</SourceLine>
+   <SourceLine>' The values are in the order of 00, 01, x, 10, 11, y.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: A Double array.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Array(Self.Cost, -Self.Sint, Self.X, Self.Sint, Self.Cost, Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Identity</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Transform to the identity.</CodeDescription>
+  <PartID>1227583487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Identity()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this Transform to the identity.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Cost = 1</SourceLine>
+   <SourceLine>Self.Sint = 0</SourceLine>
+   <SourceLine>Self.X = 0</SourceLine>
+   <SourceLine>Self.Y = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Initialises shared properties.</CodeDescription>
+  <PartID>1186336767</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Initialise()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Initialises shared properties.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mIDENTITY = New PKTransform</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inverse transforms the given Vector2 and places the result in the given Vector2.</CodeDescription>
+  <PartID>1216301055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub InverseTransform(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inverse transforms the given PKVector2 and places the result in the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X - Self.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y - Self.Y</SourceLine>
+   <SourceLine>vector.X = Self.Cost * x + Self.Sint * y</SourceLine>
+   <SourceLine>vector.Y = -Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InverseTransformR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 only by the rotation and returns the result in the given Vector2</CodeDescription>
+  <PartID>1134467071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub InverseTransformR(vector As PKVector2)</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 only by the rotation and returns the</SourceLine>
+   <SourceLine>' result in the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The transpose of a rotation matrix is the inverse.</SourceLine>
+   <SourceLine>vector.X = Self.Cost * x + Self.Sint * y</SourceLine>
+   <SourceLine>vector.Y = -Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2090139647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Lerp(end_ As PKTransform, alpha As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates this transform linearly by `alpha` towards the given `end_` Transform.</SourceLine>
+   <SourceLine>' Interpolating from one angle to another can have two results depend_ing on the</SourceLine>
+   <SourceLine>'  direction of the rotation.  If a rotation was from 30 to 200 the rotation could</SourceLine>
+   <SourceLine>'  be 170 or -190.  This interpolation method will always choose the smallest</SourceLine>
+   <SourceLine>'  rotation (regardless of sign) as the rotation direction.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter end_: Theend_d Transform.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Interpolate the position.</SourceLine>
+   <SourceLine>Var x As Double = Self.X + alpha * (end_.X - Self.X)</SourceLine>
+   <SourceLine>Var y As Double = Self.Y + alpha * (end_.Y - Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angle.</SourceLine>
+   <SourceLine>// Get the start and end rotations.</SourceLine>
+   <SourceLine>// It's key that these methods use atan2 because it ensures that the angles are always within</SourceLine>
+   <SourceLine>// the range -π &lt; 𝛝 &lt; π therefore no normalization has to be done.</SourceLine>
+   <SourceLine>Var rs As Double = Self.GetRotationAngle</SourceLine>
+   <SourceLine>Var re As Double = end_.GetRotationAngle</SourceLine>
+   <SourceLine>// Make sure we use the smallest rotation as described in the comments above.</SourceLine>
+   <SourceLine>// There are two possible rotations depending on the direction, we always choose the smaller</SourceLine>
+   <SourceLine>Var diff As Double = re - rs</SourceLine>
+   <SourceLine>If diff &lt; -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If diff &gt; MathsKit.PI Then diff = diff - PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>// Interpolate.</SourceLine>
+   <SourceLine>// It's OK if this method produces an angle outside the range of -π &lt; 𝛝 &lt; π</SourceLine>
+   <SourceLine>// since the `Rotate` method uses sin and cos which are not bounded.</SourceLine>
+   <SourceLine>Var a As Double = diff * alpha + rs</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set this transform to the interpolated transform.</SourceLine>
+   <SourceLine>// The following performs the following calculations:</SourceLine>
+   <SourceLine>// Self.Identity()</SourceLine>
+   <SourceLine>// Self.Rotate(a)</SourceLine>
+   <SourceLine>// Self.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Cost = Cos(a)</SourceLine>
+   <SourceLine>Self.Sint = Sin(a)</SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>end_ As PKTransform, alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Interpolates linearly by alpha towards the given `end_` transform placing the result in the given Transform.</CodeDescription>
+  <PartID>2065793023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Lerp(end_ As PKTransform, alpha As Double, result As PKTransform)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates linearly by alpha towards the given `end_` transform placing</SourceLine>
+   <SourceLine>' the result in the given Transform.</SourceLine>
+   <SourceLine>' Interpolating from one angle to another can have two results depending on the</SourceLine>
+   <SourceLine>' direction of the rotation.  If a rotation was from 30 to 200 the rotation could</SourceLine>
+   <SourceLine>' be 170 or -190.  This interpolation method will always choose the smallest</SourceLine>
+   <SourceLine>' rotation (regardless of sign) as the rotation direction.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter end_: The end Transform.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>' - Parameter result: The Transform to place the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Interpolate the position.</SourceLine>
+   <SourceLine>Var x As Double = Self.X + alpha * (end_.X - Self.X)</SourceLine>
+   <SourceLine>Var y As Double = Self.Y + alpha * (end_.Y - Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angle.</SourceLine>
+   <SourceLine>// Get the start and end rotations. It's key that these methods use atan2 because</SourceLine>
+   <SourceLine>// it ensures that the angles are always within the range -π &lt; 𝛝 &lt; π therefore no</SourceLine>
+   <SourceLine>// normalization has to be done.</SourceLine>
+   <SourceLine>Var rs As Double = Self.GetRotationAngle</SourceLine>
+   <SourceLine>Var re As Double = end_.GetRotationAngle</SourceLine>
+   <SourceLine>// Make sure we use the smallest rotation as described in the comments above. </SourceLine>
+   <SourceLine>// There are two possible rotations depending on the direction, we always choose the smaller.</SourceLine>
+   <SourceLine>Var diff As Double = re - rs</SourceLine>
+   <SourceLine>If diff &lt; -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If diff &gt; MathsKit.PI Then diff = diff - PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>// Interpolate.</SourceLine>
+   <SourceLine>// It's OK if this method produces an angle outside the range of -π &lt; theta &lt; π</SourceLine>
+   <SourceLine>// since the `Rotate` method uses sin and cos which are not bounded.</SourceLine>
+   <SourceLine>Var a As Double = diff * alpha + rs</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the result transform to the interpolated Transform.</SourceLine>
+   <SourceLine>// The following performs the following calculations:</SourceLine>
+   <SourceLine>// result.Identity</SourceLine>
+   <SourceLine>// result.Rotate(a)</SourceLine>
+   <SourceLine>// result.Translate(x, y)</SourceLine>
+   <SourceLine>result.Cost = Cos(a)</SourceLine>
+   <SourceLine>result.Sint = Sin(a)</SourceLine>
+   <SourceLine>result.X = x</SourceLine>
+   <SourceLine>result.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>end_ As PKTransform, alpha As Double, result As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Interpolates this transform linearly, by alpha, given the change in position and the change in angle.</CodeDescription>
+  <PartID>127940607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Lerp(dp As PKVector2, da As Double, alpha As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates this transform linearly, by alpha, given the change in </SourceLine>
+   <SourceLine>' position (Δp) and the change in angle (Δa).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter dp: The change in position.</SourceLine>
+   <SourceLine>' - Parameter da: The change in angle.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.RotateOnly(da * alpha)</SourceLine>
+   <SourceLine>Self.Translate(dp.X * alpha, dp.Y * alpha)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>dp As PKVector2, da As Double, alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Interpolates this transform linearly, by alpha, given the change in position and the change in angle and places it into result.</CodeDescription>
+  <PartID>361494527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Lerp(dp As PKVector2, da As Double, alpha As Double, result As PKTransform)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates this transform linearly, by alpha, given the change in </SourceLine>
+   <SourceLine>' position (Δp) and the change in angle (Δa) and places it into result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter dp: The change in position.</SourceLine>
+   <SourceLine>' - Parameter da: The change in angle.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>' - Parameter result: The Transform to place the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>result.Set(Self)</SourceLine>
+   <SourceLine>result.RotateOnly(da * alpha)</SourceLine>
+   <SourceLine>result.Translate(dp.X * alpha, dp.Y * alpha)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>dp As PKVector2, da As Double, alpha As Double, result As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerped</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Interpolates linearly by alpha towards the given `end_` transform returning a new Transform containing the result.</CodeDescription>
+  <PartID>237789183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Lerped(end_ As PKTransform, alpha As Double) As PKTransform</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates linearly by alpha towards the given `end_` transform returning</SourceLine>
+   <SourceLine>' a new Transform containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Interpolating from one angle to another can have two results depending on the</SourceLine>
+   <SourceLine>' direction of the rotation.  If a rotation was from 30 to 200 the rotation could</SourceLine>
+   <SourceLine>' be 170 or -190.  This interpolation method will always choose the smallest</SourceLine>
+   <SourceLine>' rotation (regardless of sign) as the rotation direction.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter end_: The end Transform.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Interpolate the position.</SourceLine>
+   <SourceLine>Var x As Double = Self.X + alpha * (end_.X - Self.X)</SourceLine>
+   <SourceLine>Var y As Double = Self.Y + alpha * (end_.Y - Self.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angle.</SourceLine>
+   <SourceLine>// Get the start and end rotations. It's key that these methods use atan2 because</SourceLine>
+   <SourceLine>// it ensures that the angles are always within the range -π &lt; 𝛝 &lt; π therefore no</SourceLine>
+   <SourceLine>// normalization has to be done.</SourceLine>
+   <SourceLine>Var rs As Double = Self.GetRotationAngle</SourceLine>
+   <SourceLine>Var re As Double = end_.GetRotationAngle</SourceLine>
+   <SourceLine>// Make sure we use the smallest rotation as described in the comments above.</SourceLine>
+   <SourceLine>// There are two possible rotations depending on the direction, we always choose the smaller.</SourceLine>
+   <SourceLine>Var diff As Double = re - rs</SourceLine>
+   <SourceLine>If diff &lt; -MathsKit.PI Then diff = diff + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If diff &gt; MathsKit.PI Then diff = diff - PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>// Interpolate.</SourceLine>
+   <SourceLine>// It's OK if this method produces an angle outside the range of -π &lt; 𝛝 &lt; π</SourceLine>
+   <SourceLine>// since the `Rotate` method uses sin and cos which are not bounded.</SourceLine>
+   <SourceLine>Var a As Double = diff * alpha + rs</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the interpolated Transform.</SourceLine>
+   <SourceLine>// The following performs the following calculations:</SourceLine>
+   <SourceLine>// tx.Rotate(a)</SourceLine>
+   <SourceLine>// tx.=Translate(x, y)</SourceLine>
+   <SourceLine>Var tx As PKTransform = New PKTransform(Cos(a), Sin(a), x, y)</SourceLine>
+   <SourceLine>Return tx</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>end_ As PKTransform, alpha As Double</ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Lerped</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Interpolates this transform linearly, by alpha, given the change in position and the change in angle and returns the result as a new Transform.</CodeDescription>
+  <PartID>1357082623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Lerped(dp As PKVector2, da As Double, alpha As Double) As PKTransform</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Interpolates this transform linearly, by alpha, given the change in </SourceLine>
+   <SourceLine>' position (Δp) and the change in angle (Δa) and returns the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter dp: The change in position.</SourceLine>
+   <SourceLine>' - Parameter da: The change in angle.</SourceLine>
+   <SourceLine>' - Parameter alpha: The amount to interpolate.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var result As PKTransform = New PKTransform(Self)</SourceLine>
+   <SourceLine>result.RotateOnly(da * alpha)</SourceLine>
+   <SourceLine>result.Translate(dp.X * alpha, dp.Y * alpha)</SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>dp As PKVector2, da As Double, alpha As Double</ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>701104127</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.rotate(Cos(theta), Sin(theta))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper method to rotate this Transform by an angle 𝛝..</CodeDescription>
+  <PartID>488280063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(c As Double, s As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper method to rotate this Transform by an angle 𝛝.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter c: Cos(𝛝).</SourceLine>
+   <SourceLine>' - Parameter s: Sin(𝛝).</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform an optimized version of matrix multiplication.</SourceLine>
+   <SourceLine>Var cost As Double = c * Self.Cost - s * Self.Sint</SourceLine>
+   <SourceLine>Var sint As Double = s * Self.Cost + c * Self.Sint</SourceLine>
+   <SourceLine>Var x As Double = c * Self.X - s * Self.Y</SourceLine>
+   <SourceLine>Var y As Double = s * Self.X + c * Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the new values.</SourceLine>
+   <SourceLine>Self.Cost = cost</SourceLine>
+   <SourceLine>Self.Sint = sint</SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>c As Double, s As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>756606975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Rotate(Cos(theta), Sin(theta), x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper method to rotate this Transform by an angle 𝛝 around a point.</CodeDescription>
+  <PartID>1961107455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(c As Double, s As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper method to rotate this Transform by an angle 𝛝 around a point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter c: Cos(𝛝).</SourceLine>
+   <SourceLine>' - Parameter s: Sin(𝛝).</SourceLine>
+   <SourceLine>' - Parameter x: The X coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The Y coordinate of the point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform an optimized version of the matrix multiplication:</SourceLine>
+   <SourceLine>// M(new) = inverse(T) * R * T * M(old)</SourceLine>
+   <SourceLine>Var cost As Double = c * Self.Cost - s * Self.Sint</SourceLine>
+   <SourceLine>Var sint As Double = s * Self.Cost + c * Self.Sint</SourceLine>
+   <SourceLine>Self.Cost = cost</SourceLine>
+   <SourceLine>Self.Sint = sint</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var cx As Double = Self.X - x</SourceLine>
+   <SourceLine>Var cy As Double = Self.Y - y</SourceLine>
+   <SourceLine>Self.X = c * cx - s * cy + x</SourceLine>
+   <SourceLine>Self.Y = s * cx + c * cy + y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>c As Double, s As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1488793599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, point As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Rotate(theta, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1981532159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Rotate(r.Cost, r.Sint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2104070143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Rotate(r.Cost, r.Sint, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>830121983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, point As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Rotate(r, point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RotateOnly</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>861599743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RotateOnly(theta As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Helper method for some `Lerp` methods.</SourceLine>
+   <SourceLine>' Performs rotation but leaves translation intact.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The angle of rotation in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform rotation by theta but leave x and y intact.</SourceLine>
+   <SourceLine>Var cos As Double = Cos(theta)</SourceLine>
+   <SourceLine>Var sin As Double = Sin(theta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var cost As Double = cos * Self.Cost - sin * Self.Sint</SourceLine>
+   <SourceLine>Var sint As Double = sin * Self.Cost + cos * Self.Sint</SourceLine>
+   <SourceLine>Self.Cost = cost</SourceLine>
+   <SourceLine>Self.Sint = sint</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this transform to the given transform.</CodeDescription>
+  <PartID>692580351</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Set(t As PKTransform)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this transform to the given transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter t: The transform to copy.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Cost = t.Cost</SourceLine>
+   <SourceLine>Self.Sint = t.Sint</SourceLine>
+   <SourceLine>Self.X = t.X</SourceLine>
+   <SourceLine>Self.Y = t.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>t As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1806977023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SetRotation(theta As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the rotation and returns the previous rotation (in the range [-π, π]).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter theta: The angle in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the current rotation.</SourceLine>
+   <SourceLine>Var r As Double = Self.GetRotationAngle</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get rid of the current rotation and rotate by the new theta.</SourceLine>
+   <SourceLine>Self.Cost = Cos(theta)</SourceLine>
+   <SourceLine>Self.Sint = Sin(theta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the previous amount.</SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>969379839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SetRotation(rotation As PKRotation) As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the rotation and returns the previous rotation as a new Rotation object.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter rotation: The Rotation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Rotation object representing the old rotation of this Transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the current rotation.</SourceLine>
+   <SourceLine>Var r As PKRotation = GetRotation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get rid of the current rotation and rotate by the new rotation.</SourceLine>
+   <SourceLine>Self.Cost = rotation.Cost</SourceLine>
+   <SourceLine>Self.Sint = rotation.Sint</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the previous rotation object.</SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>rotation As PKRotation</ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTranslation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the translation.</CodeDescription>
+  <PartID>649848831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTranslation(x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the translation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The translation along the x axis.</SourceLine>
+   <SourceLine>' - Parameter y The translation along the y axis.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTranslation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1992581119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTranslation(translation As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the translation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter translation: The translation along both axes.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.SetTranslation(translation.X, translation.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>translation As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTranslationX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1155276799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTranslationX(x As Double)</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>' Sets the translation along the X axis.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The translation along the x axis.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTranslationY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1331585023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTranslationY(y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the translation along the Y axis.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter y: The translation along the y axis.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Transform in the format: "[cost sint | x ][sint cost | y ]".</CodeDescription>
+  <PartID>1963755519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Transform in the format: </SourceLine>
+   <SourceLine>' "[cost sint | x ][sint cost | y ]".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine>s.AddRow(Self.Cost.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>Var negSint As Double = -Self.Sint</SourceLine>
+   <SourceLine>s.AddRow(negSint.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" | ")</SourceLine>
+   <SourceLine>s.AddRow(Self.X.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine>s.AddRow(Self.Sint.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.Cost.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" | ")</SourceLine>
+   <SourceLine>s.AddRow(Self.Y.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TransformR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 only by the rotation and returns the result in the given Vector2.</CodeDescription>
+  <PartID>619579391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TransformR(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 only by the rotation and returns the</SourceLine>
+   <SourceLine>' result in the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>vector.X = Self.Cost * x - Self.Sint * y</SourceLine>
+   <SourceLine>vector.Y = Self.Sint * x + Self.Cost * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TransformV</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the given Vector2 and places the result in the given Vector2. Renamed from `Transform.Transform`.</CodeDescription>
+  <PartID>1105326079</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TransformV(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms the given PKVector2 and places the result in the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Renamed from `Transform.Transform` to avoid deprecation warning from Xojo.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>vector.X = Self.Cost * x - Self.Sint * y + Self.X</SourceLine>
+   <SourceLine>vector.Y = Self.Sint * x + Self.Cost * y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TransformX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms only the X coordinate of the given Vector2 and places the result in the X field of the given Vector2.</CodeDescription>
+  <PartID>2100250623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TransformX(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms only the X coordinate of the given PKVector2 and places the result </SourceLine>
+   <SourceLine>' in the X field of the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>vector.X = Self.Cost * vector.X - Self.Sint * vector.Y + Self.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TransformY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms only the Y coordinate of the given Vector2 and places the result in the Y field of the given Vector2.</CodeDescription>
+  <PartID>146329599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TransformY(vector As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Transforms only the Y coordinate of the given PKVector2 and places the </SourceLine>
+   <SourceLine>' result in the Y field of the given PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector2 to transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>vector.Y = Self.Sint * vector.X + Self.Cost * vector.Y + Self.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1493577727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + x</SourceLine>
+   <SourceLine>Self.Y = Self.Y + y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2118393855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(vector As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + vector.X</SourceLine>
+   <SourceLine>Self.Y = Self.Y + vector.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1183502335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a transformation matrix.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Cost</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The cosine of the rotation angle.</CodeDescription>
+  <PartID>1042321407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Cost As Double = 1</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Cost As Double = 1</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>IDENTITY</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>Deprecated = "Create your own instances of Transform instead."</Attributes>
+  <Visible>1</Visible>
+  <PartID>1008191487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( Deprecated = "Create your own instances of Transform instead." ) Shared IDENTITY As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>IDENTITY As PKTransform</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mIDENTITY</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>mIDENTITY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2002851839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mIDENTITY As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mIDENTITY As PKTransform</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Sint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The sine of the rotation angle.</CodeDescription>
+  <PartID>1691170815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sint As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Sint As Double = 0</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>X</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The X translation.</CodeDescription>
+  <PartID>693735423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>X As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>X As Double = 0</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Y</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The Y translation.</CodeDescription>
+  <PartID>278003711</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Y As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Y As Double = 0</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Cost</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>1</PropertyValue>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Sint</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>X</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Y</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

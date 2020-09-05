@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1368289279">
+ <ObjName>PKCapsule</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2072424447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, width As Double, height As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates an axis-aligned capsule centered on the origin with the caps on ends </SourceLine>
+   <SourceLine>' of the larger dimension.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(Max(width, height) * 0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Determine the major and minor axis.</SourceLine>
+   <SourceLine>Var major As Double = width</SourceLine>
+   <SourceLine>Var minor As Double = height</SourceLine>
+   <SourceLine>Var vertical As Boolean = False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If width &lt; height Then</SourceLine>
+   <SourceLine>major = height</SourceLine>
+   <SourceLine>minor = width</SourceLine>
+   <SourceLine>vertical = True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the width.</SourceLine>
+   <SourceLine>Self.Length = major</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The cap radius is half the height.</SourceLine>
+   <SourceLine>Self.CapRadius = minor * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Generate the cap focal points on the major axis.</SourceLine>
+   <SourceLine>Var f As Double = (major - minor) * 0.5</SourceLine>
+   <SourceLine>Self.Foci.ResizeTo(1)</SourceLine>
+   <SourceLine>If vertical Then</SourceLine>
+   <SourceLine>Self.Foci(0) = New PKVector2(0, -f)</SourceLine>
+   <SourceLine>Self.Foci(1) = New PKVector2(0,  f)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the local x-axis (to the y-axis).</SourceLine>
+   <SourceLine>Self.LocalXAxis = New PKVector2(0.0, 1.0)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.Foci(0) = New PKVector2(-f, 0)</SourceLine>
+   <SourceLine>Self.foci(1) = New PKVector2( f, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the local x-axis.</SourceLine>
+   <SourceLine>Self.LocalXAxis = New PKVector2(1.0, 0.0)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, width As Double, height As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>469272575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(width As Double, height As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates an axis-aligned capsule centered on the origin with the caps on ends </SourceLine>
+   <SourceLine>' of the larger dimension.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException thrown if `width` or `height` are less than or equal to zero or </SourceLine>
+   <SourceLine>'           if the `width` and `height` are near equal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Validate(width, height), width, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1910824959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A capsule is just a radially expanded line segment.</SourceLine>
+   <SourceLine>Var p As PKVector2 = PKSegment.GetPointOnSegmentClosestToPoint(point, _</SourceLine>
+   <SourceLine>transform.GetTransformed(Self.Foci(0)), transform.GetTransformed(Self.Foci(1)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var r2 As Double = Self.CapRadius * Self.CapRadius</SourceLine>
+   <SourceLine>Var d2 As Double = p.DistanceSquared(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return d2 &lt;= r2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>806080511</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of x axis.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.getFarthestPoint(PKVector2.X_AXIS, transform)</SourceLine>
+   <SourceLine>Var c As Double = transform.GetTransformedX(Self.Center)</SourceLine>
+   <SourceLine>Var minX As Double = 2 * c - p1.x</SourceLine>
+   <SourceLine>Var maxX As Double = p1.x</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of y axis</SourceLine>
+   <SourceLine>p1 = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform)</SourceLine>
+   <SourceLine>c = transform.GetTransformedY(Self.Center)</SourceLine>
+   <SourceLine>Var minY As Double = 2 * c - p1.Y</SourceLine>
+   <SourceLine>Var maxY As Double = p1.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(minX, minY, maxX, maxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1736329215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The mass of a capsule is the mass of the rectangular section plus the mass</SourceLine>
+   <SourceLine>// of two half circles (really just one circle).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var h As Double = Self.CapRadius * 2.0</SourceLine>
+   <SourceLine>Var w As Double = Self.Length - h</SourceLine>
+   <SourceLine>Var r2 As Double = Self.CapRadius * Self.CapRadius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the rectangular area.</SourceLine>
+   <SourceLine>Var ra As Double = w * h</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compuate the circle area.</SourceLine>
+   <SourceLine>Var ca As Double = r2 * MathsKit.PI</SourceLine>
+   <SourceLine>Var rm As Double = density * ra</SourceLine>
+   <SourceLine>Var cm As Double = density * ca</SourceLine>
+   <SourceLine>Var m As Double = rm + cm</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The inertia is slightly different. It's the inertia of the rectangular</SourceLine>
+   <SourceLine>// region plus the inertia of half a circle moved from the centre.</SourceLine>
+   <SourceLine>Var d As Double = w * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Parallel axis theorem I2 = Ic + m * d^2</SourceLine>
+   <SourceLine>Var cI As Double = 0.5 * cm * r2 + cm * d * d</SourceLine>
+   <SourceLine>Var rI As Double = rm * (h * h + w * w) / 12.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the rectangular inertia and cicle inertia.</SourceLine>
+   <SourceLine>Var I As Double = rI + cI</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, m, I)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1884766207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for given foci.</SourceLine>
+   <SourceLine>If foci &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>// We need to include the shortest vector from foci to foci.</SourceLine>
+   <SourceLine>Var axes() As PKVector2</SourceLine>
+   <SourceLine>axes.ResizeTo(foci.Count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>axes(0) = transform.GetTransformedR(Self.LocalXAxis)</SourceLine>
+   <SourceLine>axes(1) = transform.GetTransformedR(Self.LocalXAxis.GetRightHandOrthogonalVector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var f1 As PKVector2 = transform.GetTransformed(Self.Foci(0))</SourceLine>
+   <SourceLine>Var f2 As PKVector2 = transform.GetTransformed(Self.foci(1))</SourceLine>
+   <SourceLine>Var iLimit As Integer = foci.Count - 1</SourceLine>
+   <SourceLine>For i as Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the one closest to the given focus.</SourceLine>
+   <SourceLine>Var d1 As Double = f1.DistanceSquared(foci(i))</SourceLine>
+   <SourceLine>Var d2 As Double = f2.DistanceSquared(foci(i))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As PKVector2</SourceLine>
+   <SourceLine>If d1 &lt; d2 Then</SourceLine>
+   <SourceLine>v = f1.towards(foci(i))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>v = f2.Towards(foci(i))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call v.Normalise</SourceLine>
+   <SourceLine>axes(2 + i) = v</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return axes</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// If there were no foci given then just return the normal axes for the rectangular region.</SourceLine>
+   <SourceLine>Return Array(_</SourceLine>
+   <SourceLine>transform.GetTransformedR(Self.LocalXAxis), _</SourceLine>
+   <SourceLine>transform.GetTransformedR(Self.LocalXAxis.GetRightHandOrthogonalVector))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCapRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the end cap radius.</CodeDescription>
+  <PartID>2033131519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCapRadius() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the end cap radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.CapRadius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1028708351</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test whether the given direction is within a certain angle of the</SourceLine>
+   <SourceLine>// local x axis. if so, use the edge feature rather than the point.</SourceLine>
+   <SourceLine>Var localAxis As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine>Var n1 As PKVector2 = Self.LocalXAxis.GetLeftHandOrthogonalVector</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the squared length of the localaxis and add the fudge factor</SourceLine>
+   <SourceLine>// should always 1.0 * factor since localaxis is normalised.</SourceLine>
+   <SourceLine>Var d As Double = localAxis.Dot(localAxis) * PKCapsule.EDGE_FEATURE_SELECTION_CRITERIA</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the normal onto the localaxis normal.</SourceLine>
+   <SourceLine>Var d1 As Double= localAxis.Dot(n1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We only need to test one normal since we only care about its projection length.</SourceLine>
+   <SourceLine>// We can later determine which direction by the sign of the projection.</SourceLine>
+   <SourceLine>If Abs(d1) &lt; d Then</SourceLine>
+   <SourceLine>// It's the farthest point.</SourceLine>
+   <SourceLine>Var point As PKVector2 = Self.GetFarthestPoint(vector, transform)</SourceLine>
+   <SourceLine>Return New PKPointFeature(point)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Compute the vector to add/sub from the foci.</SourceLine>
+   <SourceLine>Var v As PKVector2 = n1.Multiply(Self.CapRadius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute an expansion amount based on the width of the shape.</SourceLine>
+   <SourceLine>Var e As PKVector2 = Self.LocalXAxis.Product(Self.Length * 0.5 * EDGE_FEATURE_EXPANSION_FACTOR)</SourceLine>
+   <SourceLine>If d1 &gt; 0 Then</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Foci(0).Sum(v).Subtract(e)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Foci(1).Sum(v).Add(e)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the full bottom side.</SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(p1, p2, vector, transform)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Foci(0).Difference(v).Subtract(e)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Foci(1).Difference(v).Add(e)</SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(p1, p2, vector, transform)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>563599359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the given direction is normalised.</SourceLine>
+   <SourceLine>Call vector.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A capsule is just a radially expanded line segment.</SourceLine>
+   <SourceLine>Var p As PKVector2 = PKSegment.GetFarthestPoint(Self.Foci(0), Self.Foci(1), vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Apply the radial expansion.</SourceLine>
+   <SourceLine>Return p.Add(vector.Product(Self.CapRadius))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1571622911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the cap foci.</SourceLine>
+   <SourceLine>Return Array(transform.GetTransformed(Self.Foci(0)), transform.GetTransformed(Self.Foci(1)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the largest dimension of the capsule's bounding rectangle.</CodeDescription>
+  <PartID>1495433215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLength() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the length of the capsule.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The length is the largest dimension of the capsule's bounding rectangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1666050047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.GetRotationRadius(center, Self.Foci) + Self.CapRadius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the Rotation object that represents the local rotation.</CodeDescription>
+  <PartID>835620863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotation() As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: The Rotation object that represents the local rotation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// localXAxis is already a unit vector so we can just return it as a Rotation.</SourceLine>
+   <SourceLine>Return New PKRotation(Self.LocalXAxis.X, Self.LocalXAxis.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationAngle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the rotation about the local center in radians in the range [-π, π].</CodeDescription>
+  <PartID>1911498751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationAngle() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the rotation about the local center in radians in the range [-π, π].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The rotation in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return ATan2(Self.LocalXAxis.Y, Self.LocalXAxis.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>331862015</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>// Get the world space farthest point.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.GetFarthestPoint(vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the center in world space.</SourceLine>
+   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the center onto the axis.</SourceLine>
+   <SourceLine>Var c As Double = center.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the point onto the axis.</SourceLine>
+   <SourceLine>Var d As Double = p1.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the interval along the axis.</SourceLine>
+   <SourceLine>Return New PKInterval(2 * c - d, d)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>846028799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the foci.</SourceLine>
+   <SourceLine>Call Self.Foci(0).Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.foci(1).Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the local x-axis.</SourceLine>
+   <SourceLine>Call Self.LocalXAxis.Rotate(r)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Capsule.</CodeDescription>
+  <PartID>963698687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Capsule.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() as String</SourceLine>
+   <SourceLine>s.AddRow("Capsule[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Width=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Length.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|CapRadius=")</SourceLine>
+   <SourceLine>s.AddRow(Self.CapRadius.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1446000639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the foci.</SourceLine>
+   <SourceLine>Call Self.Foci(0).Add(x, y)</SourceLine>
+   <SourceLine>Call Self.Foci(1).Add(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning true if valid or throwing an exception if invalid. Raises InvalidArgumentExceptions.</CodeDescription>
+  <PartID>1971167231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(width As Double, height As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning true if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `width` or `height` are less than or equal to zero or </SourceLine>
+   <SourceLine>'           if the `width` and `height` are near equal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the width and height.</SourceLine>
+   <SourceLine>If width &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>If height &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for basically a circle.</SourceLine>
+   <SourceLine>If Abs(width - height) &lt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_DEGENERATE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2029314047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of a Capsule Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A capsule can be described as a rectangle with two half circle caps on both ends. A capsule is created</NoteLine>
+   <NoteLine>by specifying the bounding rectangle of the entire Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>If the height is larger than the width the caps will be on the top and bottom of the shape. Otherwise</NoteLine>
+   <NoteLine>the caps are on the left and right ends of the shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A capsule's width and height must be larger than zero and cannot be equal. A Circle should be used</NoteLine>
+   <NoteLine>instead of an equal width/height capsule for both performance and stability.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>EDGE_FEATURE_SELECTION_CRITERIA</NoteLine>
+   <NoteLine>-------------------------------</NoteLine>
+   <NoteLine>The Capsule shape has two edge features which could be returned from the </NoteLine>
+   <NoteLine>`GetFarthestFeature(PKVector2, Transform)` method. Under normal floating point conditions </NoteLine>
+   <NoteLine>the edges will never be selected as the farthest features. Due to this,</NoteLine>
+   <NoteLine>stacking of capsule shapes is very unstable (or any resting contact that involves the edge). </NoteLine>
+   <NoteLine>We introduce this factor (% of projected normal) to help select the edge in cases where </NoteLine>
+   <NoteLine>the collision normal is nearly parallel to the edge normal.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>EDGE_FEATURE_EXPANSION_FACTOR</NoteLine>
+   <NoteLine>-----------------------------</NoteLine>
+   <NoteLine>Because we are selecting an edge even when the farthest feature should be a vertex, when the </NoteLine>
+   <NoteLine>edges are clipped against each other (in the ClippingManifoldSolver) they will not overlap. </NoteLine>
+   <NoteLine>Due to this, we introduce an expansion value (% of the width) that expands the edge feature </NoteLine>
+   <NoteLine>so that in these cases a collision manifold is still generated.</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>CapRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The end cap radius.</CodeDescription>
+  <PartID>1751003135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>CapRadius As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>CapRadius As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Foci()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The focal points for the caps.</CodeDescription>
+  <PartID>447787007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Foci() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Foci() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Length</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The bounding rectangle width.</CodeDescription>
+  <PartID>232040447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Length As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Length As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>LocalXAxis</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The local x-axis.</CodeDescription>
+  <PartID>1459152895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>LocalXAxis As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>LocalXAxis As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>CapRadius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Length</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>EDGE_FEATURE_EXPANSION_FACTOR</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>When the edges are clipped against each other (in the ClippingManifoldSolver) they may not overlap. This expands the edge feature so that a collision manifold is still generated.</CodeDescription>
+  <PartID>2012731391</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.1</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>EDGE_FEATURE_SELECTION_CRITERIA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Helps select the edge in cases where the collision normal is nearly parallel to the edge normal.</CodeDescription>
+  <PartID>230631423</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.98</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

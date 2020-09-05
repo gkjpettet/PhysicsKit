@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1142224895">
+ <ObjName>PKCircle</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validated constructor. Creates a new Circle centered on the origin with the given radius.</CodeDescription>
+  <PartID>1596209151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, radius As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new Circle centered on the origin with the given radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, radius As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor. Creates a new Circle centered on the origin with the given radius. Throws InvalidArgumentException.</CodeDescription>
+  <PartID>885139455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(radius As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new Circle centered on the origin with the given radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Validate(radius), radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>radius As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1712760831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the center.</SourceLine>
+   <SourceLine>Var v As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the transformed radius squared.</SourceLine>
+   <SourceLine>Var radiusSquared As Double = Self.Radius * Self.Radius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from the center to the given point.</SourceLine>
+   <SourceLine>Call v.Subtract(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If v.GetMagnitudeSquared &lt;= radiusSquared Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>94844927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the transform is not Nil then transform the center.</SourceLine>
+   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return a new PKAABB.</SourceLine>
+   <SourceLine>Return New PKAABB(center, Self.Radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>979795967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' m = d * π * r²</SourceLine>
+   <SourceLine>' I = m * r² / 2</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var r2 As Double = Self.Radius * Self.Radius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the mass.</SourceLine>
+   <SourceLine>Var mass As Double = density * MathsKit.PI * r2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the inertia tensor.</SourceLine>
+   <SourceLine>Var inertia As Double = mass * r2 * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the center supplied to the circle.</SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, mass, inertia)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>652814335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Circular shapes are handled specifically in the SAT algorithm since</SourceLine>
+   <SourceLine>' they have an infinite number of axes. As a result this method returns Nil.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Nil.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused foci</SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A circle has infinite separating axes and zero voronoi regions therefore we return Nil.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1212719103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKPointFeature</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Obtain the farthest point along the given vector.</SourceLine>
+   <SourceLine>Var farthest As PKVector2 = Self.GetFarthestPoint(vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// For a circle the farthest feature along a vector will always be a vertex.</SourceLine>
+   <SourceLine>Return New PKPointFeature(farthest)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKPointFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1345101823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the axis is normalised.</SourceLine>
+   <SourceLine>Var nAxis As PKVector2 = vector.GetNormalised</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the transformed center.</SourceLine>
+   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the radius along the vector to the center to get the farthest point.</SourceLine>
+   <SourceLine>center.X = center.X + (Self.Radius * nAxis.X)</SourceLine>
+   <SourceLine>center.Y = center.Y + (Self.Radius * nAxis.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the new point.</SourceLine>
+   <SourceLine>Return center</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2119335935</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var foci(0) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A circle only has one focus.</SourceLine>
+   <SourceLine>foci(0) = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return foci</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>141162495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Radius + center.Distance(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1643003903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the transform is not Nil then transform the center.</SourceLine>
+   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the center onto the given axis.</SourceLine>
+   <SourceLine>Var c As Double = center.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The interval is defined by the radius.</SourceLine>
+   <SourceLine>Return New PKInterval(c - Self.Radius, c + Self.Radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Circle in the form:  "Circle[ID=id|Center=(X,Y)|Radius=radius]".</CodeDescription>
+  <PartID>1343270911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Circle in the form: </SourceLine>
+   <SourceLine>' "Circle[ID=id|Center=(X,Y)|Radius=radius]".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Circle[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning True if valid or throwing an InvalidArgumentException if invalid.</CodeDescription>
+  <PartID>593995775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(radius As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True or raises an exception.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If radius &lt;= 0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_CIRCLE_INVALID_RADIUS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>radius As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

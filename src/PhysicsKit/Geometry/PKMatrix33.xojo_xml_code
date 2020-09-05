@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1651738623">
+ <ObjName>PKMatrix33</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given Matrix33 to this Matrix33, returning this Matrix33.</CodeDescription>
+  <PartID>230486015</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the given Matrix33 to this Matrix33, returning this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `Self = Self + m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to add.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = Self.M00 + matrix.M00 </SourceLine>
+   <SourceLine>Self.M01 = Self.M01 + matrix.M01 </SourceLine>
+   <SourceLine>Self.M02 = Self.M02 + matrix.M02</SourceLine>
+   <SourceLine>Self.M10 = Self.M10 + matrix.M10 </SourceLine>
+   <SourceLine>Self.M11 = Self.M11 + matrix.M11 </SourceLine>
+   <SourceLine>Self.M12 = Self.M12 + matrix.M12</SourceLine>
+   <SourceLine>Self.M20 = Self.M20 + matrix.M20 </SourceLine>
+   <SourceLine>Self.M21 = Self.M21 + matrix.M21 </SourceLine>
+   <SourceLine>Self.M22 = Self.M22 + matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1477343231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1855385599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(values() As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The given array should be in the same order as the </SourceLine>
+   <SourceLine>'* `Matrix33(Double, Double, Double, Double, Double, Double, Double, Double, Double)` constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Parameter values: The values array.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `values` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `values` does not have 9 elements.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If values Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_MATRIX_NIL_ARRAY)</SourceLine>
+   <SourceLine>If values.Count &lt;&gt; 9 Then Raise New OutOfBoundsException(PKMessages.GEOMETRY_MATRIX_INVALID_LENGTH_9)</SourceLine>
+   <SourceLine>Self.M00 = values(0)</SourceLine>
+   <SourceLine>Self.M01 = values(1)</SourceLine>
+   <SourceLine>Self.M02 = values(2)</SourceLine>
+   <SourceLine>Self.M10 = values(3)</SourceLine>
+   <SourceLine>Self.M11 = values(4)</SourceLine>
+   <SourceLine>Self.M12 = values(5)</SourceLine>
+   <SourceLine>Self.M20 = values(6)</SourceLine>
+   <SourceLine>Self.M21 = values(7)</SourceLine>
+   <SourceLine>Self.M22 = values(8)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>values() As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>991254527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(m00 As Double, m01 As Double, m02 As Double, m10 As Double, m11 As Double, m12 As Double, m20 As Double, m21 As Double, m22 As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter m00: The element at 0,0.</SourceLine>
+   <SourceLine>' - Parameter m01: The element at 0,1.</SourceLine>
+   <SourceLine>' - Parameter m02: The element at 0,2.</SourceLine>
+   <SourceLine>' - Parameter m10: The element at 1,0.</SourceLine>
+   <SourceLine>' - Parameter m11: The element at 1,1.</SourceLine>
+   <SourceLine>' - Parameter m12: The element at 1,2.</SourceLine>
+   <SourceLine>' - Parameter m20: The element at 2,0.</SourceLine>
+   <SourceLine>' - Parameter m21: The element at 2,1.</SourceLine>
+   <SourceLine>' - Parameter m22: The element at 2,2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = m00</SourceLine>
+   <SourceLine>Self.M01 = m01</SourceLine>
+   <SourceLine>Self.M02 = m02</SourceLine>
+   <SourceLine>Self.M10 = m10</SourceLine>
+   <SourceLine>Self.M11 = m11</SourceLine>
+   <SourceLine>Self.M12 = m12</SourceLine>
+   <SourceLine>Self.M20 = m20</SourceLine>
+   <SourceLine>Self.M21 = m21</SourceLine>
+   <SourceLine>Self.M22 = m22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>m00 As Double, m01 As Double, m02 As Double, m10 As Double, m11 As Double, m12 As Double, m20 As Double, m21 As Double, m22 As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>278638591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(matrix As PKMatrix33)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to copy.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = matrix.M00 </SourceLine>
+   <SourceLine>Self.M01 = matrix.M01 </SourceLine>
+   <SourceLine>Self.M02 = matrix.M02</SourceLine>
+   <SourceLine>Self.M10 = matrix.M10 </SourceLine>
+   <SourceLine>Self.M11 = matrix.M11 </SourceLine>
+   <SourceLine>Self.M12 = matrix.M12</SourceLine>
+   <SourceLine>Self.M20 = matrix.M20 </SourceLine>
+   <SourceLine>Self.M21 = matrix.M21 </SourceLine>
+   <SourceLine>Self.M22 = matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>493651967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a copy of this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMatrix33(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Determinant</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1602576383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Determinant() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the determinant of this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.M00 * Self.M11 * Self.M22 + _</SourceLine>
+   <SourceLine>Self.M01 * Self.M12 * Self.M20 + _</SourceLine>
+   <SourceLine>Self.M02 * Self.M10 * Self.M21 - _</SourceLine>
+   <SourceLine>Self.M20 * Self.M11 * Self.M02 - _</SourceLine>
+   <SourceLine>Self.M21 * Self.M12 * Self.M00 - _</SourceLine>
+   <SourceLine>Self.M22 * Self.M10 * Self.M01</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Difference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Matrix33 that is the difference of this Matrix33 and the given Matrix33.</CodeDescription>
+  <PartID>1880457215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Difference(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Matrix33 that is the difference of this Matrix33 and the given Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `r = Self - m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to subtract.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make a copy of this matrix and perform the subtraction.</SourceLine>
+   <SourceLine>Return Self.Copy.Subtract(matrix)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed object is considered equal to this Matrix33.</CodeDescription>
+  <PartID>161083391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed object is considered equal to this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If obj Is Nil Then Return False</SourceLine>
+   <SourceLine>If obj = Self Then Return True</SourceLine>
+   <SourceLine>If obj IsA PKMatrix33 Then</SourceLine>
+   <SourceLine>Var other As PKMatrix33 = PKMatrix33(obj)</SourceLine>
+   <SourceLine>If other.M00 = Self.m00 And _</SourceLine>
+   <SourceLine>other.M01 = Self.M01 And _</SourceLine>
+   <SourceLine>other.M02 = Self.M02 And _</SourceLine>
+   <SourceLine>other.M10 = Self.M10 And _</SourceLine>
+   <SourceLine>other.M11 = Self.M11 And _ </SourceLine>
+   <SourceLine>other.M12 = Self.M12 And _ </SourceLine>
+   <SourceLine>other.M20 = Self.M20 And _</SourceLine>
+   <SourceLine>other.M21 = Self.M21 And _</SourceLine>
+   <SourceLine>other.M22 = Self.M22 Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetInverse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1626021887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetInverse() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Matrix33 containing the inverse of this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make a copy of this matrix and perform the inversion.</SourceLine>
+   <SourceLine>Return Self.Copy.Invert</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranspose</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1177026559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranspose() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the the transpose of this Matrix33 in a new Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var rm As PKMatrix33 = New PKMatrix33</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>rm.M00 = Self.M00</SourceLine>
+   <SourceLine>rm.M01 = Self.M10</SourceLine>
+   <SourceLine>rm.M02 = Self.M20</SourceLine>
+   <SourceLine>rm.M10 = Self.M01</SourceLine>
+   <SourceLine>rm.M11 = Self.M11</SourceLine>
+   <SourceLine>rm.M12 = Self.M21</SourceLine>
+   <SourceLine>rm.M20 = Self.M02</SourceLine>
+   <SourceLine>rm.M21 = Self.M12</SourceLine>
+   <SourceLine>rm.M22 = Self.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return rm</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Identity</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>398555135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Identity() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this Matrix33 to an identity Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = 1</SourceLine>
+   <SourceLine>Self.M01 = 0</SourceLine>
+   <SourceLine>Self.M02 = 0</SourceLine>
+   <SourceLine>Self.M10 = 0</SourceLine>
+   <SourceLine>Self.M11 = 1</SourceLine>
+   <SourceLine>Self.M12 = 0</SourceLine>
+   <SourceLine>Self.M20 = 0</SourceLine>
+   <SourceLine>Self.M21 = 0</SourceLine>
+   <SourceLine>Self.M22 = 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Invert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1176838143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Invert() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the inverse of this Matrix33 and places the result in this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the determinant.</SourceLine>
+   <SourceLine>Var det As Double = Self.determinant()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero determinant.</SourceLine>
+   <SourceLine>If Abs(det) &gt; PKEpsilon.E Then det = 1.0 / det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the cofactor determinants and apply the signs and transpose the matrix </SourceLine>
+   <SourceLine>// and multiply by the inverse of the determinant.</SourceLine>
+   <SourceLine>Var m00 As Double =  det * (Self.M11 * Self.M22 - Self.M12 * Self.M21)</SourceLine>
+   <SourceLine>Var m01 As Double = -det * (Self.M01 * Self.M22 - Self.M21 * Self.M02) // actually m10 in the cofactor matrix</SourceLine>
+   <SourceLine>Var m02 As Double =  det * (Self.M01 * Self.M12 - Self.M11 * Self.M02) // actually m20 in the cofactor matrix</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m10 As Double = -det * (Self.M10 * Self.M22 - Self.M20 * Self.M12) // actually m01 in the cofactor matrix</SourceLine>
+   <SourceLine>Var m11 As Double =  det * (Self.M00 * Self.M22 - Self.M20 * Self.M02)</SourceLine>
+   <SourceLine>Var m12 As Double = -det * (Self.M00 * Self.M12 - Self.M10 * Self.M02) // actually m21 in the cofactor matrix</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m20 As Double =  det * (Self.M10 * Self.M21 - Self.M20 * Self.M11) // actually m02 in the cofactor matrix</SourceLine>
+   <SourceLine>Var m21 As Double = -det * (Self.M00 * Self.M21 - Self.M20 * Self.M01) // actually m12 in the cofactor matrix</SourceLine>
+   <SourceLine>Var m22 As Double =  det * (Self.M00 * Self.M11 - Self.M10 * Self.M01)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = M00</SourceLine>
+   <SourceLine>Self.M01 = m01</SourceLine>
+   <SourceLine>Self.M02 = m02</SourceLine>
+   <SourceLine>Self.M10 = M10</SourceLine>
+   <SourceLine>Self.M11 = m11</SourceLine>
+   <SourceLine>Self.M12 = m12</SourceLine>
+   <SourceLine>Self.M20 = M20</SourceLine>
+   <SourceLine>Self.M21 = m21</SourceLine>
+   <SourceLine>Self.M22 = m22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Multiply</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1363081215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Multiply(scalar As Double) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this Matrix33 by the given scalar and places the result in this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ` Self = Self * scalar`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar to multiply by.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = Self.M00 * scalar</SourceLine>
+   <SourceLine>Self.M01 = Self.M01 * scalar</SourceLine>
+   <SourceLine>Self.M02 = Self.M02 * scalar</SourceLine>
+   <SourceLine>Self.M10 = Self.M10 * scalar</SourceLine>
+   <SourceLine>Self.M11 = Self.M11 * scalar</SourceLine>
+   <SourceLine>Self.M12 = Self.M12 * scalar</SourceLine>
+   <SourceLine>Self.M20 = Self.M20 * scalar</SourceLine>
+   <SourceLine>Self.M21 = Self.M21 * scalar</SourceLine>
+   <SourceLine>Self.M22 = Self.M22 * scalar</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Multiply</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this Matrix33 by the given matrix Matrix33, returning this Matrix33.</CodeDescription>
+  <PartID>1006034943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Multiply(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this Matrix33 by the given matrix Matrix33, returning this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `Self = Self * m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to subtract.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m00 As Double = Self.M00</SourceLine>
+   <SourceLine>Var m01 As Double = Self.M01</SourceLine>
+   <SourceLine>Var m02 As Double = Self.M02</SourceLine>
+   <SourceLine>Var m10 As Double = Self.M10</SourceLine>
+   <SourceLine>Var m11 As Double = Self.M11</SourceLine>
+   <SourceLine>Var m12 As Double = Self.M12</SourceLine>
+   <SourceLine>Var m20 As Double = Self.M20</SourceLine>
+   <SourceLine>Var m21 As Double = Self.M21</SourceLine>
+   <SourceLine>Var m22 As Double = Self.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Row 1.</SourceLine>
+   <SourceLine>Self.M00 = m00 * matrix.M00 + m01 * matrix.M10 + m02 * matrix.M20</SourceLine>
+   <SourceLine>Self.M01 = m00 * matrix.M01 + m01 * matrix.M11 + m02 * matrix.M21</SourceLine>
+   <SourceLine>Self.M02 = m00 * matrix.M02 + m01 * matrix.M12 + m02 * matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Row 2.</SourceLine>
+   <SourceLine>Self.M10 = m10 * matrix.M00 + m11 * matrix.M10 + m12 * matrix.M20</SourceLine>
+   <SourceLine>Self.M11 = m10 * matrix.M01 + m11 * matrix.M11 + m12 * matrix.M21</SourceLine>
+   <SourceLine>Self.M12 = m10 * matrix.M02 + m11 * matrix.M12 + m12 * matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Row 3.</SourceLine>
+   <SourceLine>Self.M20 = m20 * matrix.M00 + m21 * matrix.M10 + m22 * matrix.M20</SourceLine>
+   <SourceLine>Self.M21 = m20 * matrix.M01 + m21 * matrix.M11 + m22 * matrix.M21</SourceLine>
+   <SourceLine>Self.M22 = m20 * matrix.M02 + m21 * matrix.M12 + m22 * matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Multiply</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this Matrix33 by the given Vector3 and places the result in the given Vector3.</CodeDescription>
+  <PartID>1944813567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Multiply(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this Matrix33 by the given PKVector3 and places the result in the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `v = Self * v`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to multiply.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The passed PKVector3 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>Var z As Double = vector.Z</SourceLine>
+   <SourceLine>vector.X = Self.M00 * x + Self.M01 * y + Self.M02 * z</SourceLine>
+   <SourceLine>vector.Y = Self.M10 * x + Self.M11 * y + Self.M12 * z</SourceLine>
+   <SourceLine>vector.Z = Self.M20 * x + Self.M21 * y + Self.M22 * z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return vector</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MultiplyT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1010737151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MultiplyT(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies the given PKVector3 by this Matrix33 and places the result in the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `v = vT * Self`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to multiply.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The passed PKVector3 containing the result.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = vector.X</SourceLine>
+   <SourceLine>Var y As Double = vector.Y</SourceLine>
+   <SourceLine>Var z As Double = vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>vector.X = Self.M00 * x + Self.M10 * y + Self.M20 * z</SourceLine>
+   <SourceLine>vector.Y = Self.M01 * x + Self.M11 * y + Self.M21 * z</SourceLine>
+   <SourceLine>vector.Z = Self.M02 * x + Self.M12 * y + Self.M22 * z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return vector</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Product</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1880309759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Product(scalar As Double) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this Matrix33 by the given scalar returning a new Matrix33 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `r = Self * scalar`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar to multiply by.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make a copy of this matrix and perform the scalar multiplication.</SourceLine>
+   <SourceLine>Return Self.Copy.Multiply(scalar)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Product</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1699688447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Product(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Matrix33 that is the product of this Matrix33 and the given Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `r = Self * m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to multiply.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make a copy of this matrix and perform the multiplication.</SourceLine>
+   <SourceLine>Return Self.Copy.Multiply(matrix)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Product</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this Matrix33 by the given Vector3 returning the result in a new Vector3.</CodeDescription>
+  <PartID>1043089407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Product(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this Matrix33 by the given PKVector3 returning the result in a new PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `r = Self * v`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to multiply.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Multiply(vector.Copy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ProductT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1511925759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ProductT(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies the given  PKVector3 by this Matrix33 returning the result in a new PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `r = vT * Self`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to multiply.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MultiplyT(vector.Copy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Solve22</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Solves `Ax = b` returning `x` as a new Vector2.</CodeDescription>
+  <PartID>451844095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Solve22(b As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Solves the system of linear equations:</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Ax = b</SourceLine>
+   <SourceLine>' Multiply by A⁻¹ on both sides</SourceLine>
+   <SourceLine>' x = A¹b</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter b: The b PKVector2.</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the 2D determinant.</SourceLine>
+   <SourceLine>Var det As Double = Self.M00 * Self.M11 - Self.M01 * Self.M10</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero determinant.</SourceLine>
+   <SourceLine>If Abs(det) &gt; PKEpsilon.E Then det = 1.0 / det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var r As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>r.X = det * (Self.M11 * b.X - Self.M01 * b.Y)</SourceLine>
+   <SourceLine>r.Y = det * (Self.M00 * b.Y - Self.M10 * b.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>b As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Solve33</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Solves `Ax = b` and returns `x` as a Vector3.</CodeDescription>
+  <PartID>1434089471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Solve33(b As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Solves the system of linear equations:</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Ax = b</SourceLine>
+   <SourceLine>' Multiply by A⁻¹ on both sides</SourceLine>
+   <SourceLine>' x = A⁻¹b</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter b: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the determinant.</SourceLine>
+   <SourceLine>Var det As Double = Self.Determinant</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero determinant.</SourceLine>
+   <SourceLine>If Abs(det) &gt; PKEpsilon.E Then det = 1.0 / det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var r As PKVector3 = New PKVector3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m00 As Double =  Self.M11 * Self.M22 - Self.M12 * Self.M21</SourceLine>
+   <SourceLine>Var m01 As Double = -Self.M01 * Self.M22 + Self.M21 * Self.M02</SourceLine>
+   <SourceLine>Var m02 As Double =  Self.M01 * Self.M12 - Self.M11 * Self.M02</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m10 As Double = -Self.M10 * Self.M22 + Self.M20 * Self.M12</SourceLine>
+   <SourceLine>Var m11 As Double =  Self.M00 * Self.M22 - Self.M20 * Self.M02</SourceLine>
+   <SourceLine>Var m12 As Double = -Self.M00 * Self.M12 + Self.M10 * Self.M02</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m20 As Double =  Self.M10 * Self.M21 - Self.M20 * Self.M11</SourceLine>
+   <SourceLine>Var m21 As Double = -Self.M00 * Self.M21 + Self.M20 * Self.M01</SourceLine>
+   <SourceLine>Var m22 As Double =  Self.M00 * Self.M11 - Self.M10 * Self.M01</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>r.X = det * (m00 * b.X + m01 * b.Y + m02 * b.Z)</SourceLine>
+   <SourceLine>r.Y = det * (m10 * b.X + m11 * b.Y + m12 * b.Z)</SourceLine>
+   <SourceLine>r.Z = det * (m20 * b.X + m21 * b.Y + m22 * b.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>b As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Subtract</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given Matrix33 from this Matrix33, returning this Matrix33.</CodeDescription>
+  <PartID>1601583103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Subtract(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given Matrix33 from this Matrix33, returning this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' `Self = Self - m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to subtract.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.M00 = Self.M00 - matrix.M00</SourceLine>
+   <SourceLine>Self.M01 = Self.M01 - matrix.M01</SourceLine>
+   <SourceLine>Self.M02 = Self.M02 - matrix.M02</SourceLine>
+   <SourceLine>Self.M10 = Self.M10 - matrix.M10</SourceLine>
+   <SourceLine>Self.M11 = Self.M11 - matrix.M11</SourceLine>
+   <SourceLine>Self.M12 = Self.M12 - matrix.M12</SourceLine>
+   <SourceLine>Self.M20 = Self.M20 - matrix.M20</SourceLine>
+   <SourceLine>Self.M21 = Self.M21 - matrix.M21</SourceLine>
+   <SourceLine>Self.M22 = Self.M22 - matrix.M22</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Matrix33 that is the sum of this Matrix33 and the given Matrix33.</CodeDescription>
+  <PartID>393863167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(matrix As PKMatrix33) As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Matrix33 that is the sum of this Matrix33 and the given Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ` r = Self + m`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter matrix: The Matrix33 to add.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make a copy of this matrix and perform the addition.</SourceLine>
+   <SourceLine>Return Self.Copy.Add(matrix)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>matrix As PKMatrix33</ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Matrix33.</CodeDescription>
+  <PartID>901908479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine>s.AddRow(Self.M00.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M01.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M02.ToString)</SourceLine>
+   <SourceLine>s.AddRow("][")</SourceLine>
+   <SourceLine>s.AddRow(Self.M10.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M11.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M12.ToString)</SourceLine>
+   <SourceLine>s.AddRow("][")</SourceLine>
+   <SourceLine>s.AddRow(Self.M20.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M21.ToString)</SourceLine>
+   <SourceLine>s.AddRow(" ")</SourceLine>
+   <SourceLine>s.AddRow(Self.M22.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Transpose</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>937144319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Transpose() As PKMatrix33</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this Matrix33 to the transpose of this Matrix33.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This Matrix33.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Switch 01 and 10.</SourceLine>
+   <SourceLine>s = Self.M01</SourceLine>
+   <SourceLine>Self.M01 = Self.M10</SourceLine>
+   <SourceLine>Self.M10 = s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Switch 02 and 20.</SourceLine>
+   <SourceLine>s = Self.M02</SourceLine>
+   <SourceLine>Self.M02 = Self.M20</SourceLine>
+   <SourceLine>Self.M20 = s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Switch 12 and 21.</SourceLine>
+   <SourceLine>s = Self.M12</SourceLine>
+   <SourceLine>Self.M12 = Self.M21</SourceLine>
+   <SourceLine>Self.M21 = s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMatrix33</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1054855167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a 3x3 Matrix.</NoteLine>
+   <NoteLine>Used to solve 3x3 systems of equations.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>M00</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 0,0.</CodeDescription>
+  <PartID>1547855871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M00 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M00 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M01</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 0,1.</CodeDescription>
+  <PartID>682792959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M01 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M01 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M02</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 0,2.</CodeDescription>
+  <PartID>1572923391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M02 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M02 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M10</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 1,0.</CodeDescription>
+  <PartID>148606975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M10 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M10 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M11</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 1,1.</CodeDescription>
+  <PartID>1430065151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M11 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M11 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M12</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 1,2.</CodeDescription>
+  <PartID>578985983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M12 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M12 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M20</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 2,0.</CodeDescription>
+  <PartID>1957701631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M20 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M20 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M21</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 2,1.</CodeDescription>
+  <PartID>581877759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M21 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M21 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>M22</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The element at 2,2.</CodeDescription>
+  <PartID>1660514303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>M22 As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>M22 As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M00</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M01</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M02</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M10</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M11</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M12</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M20</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M21</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>M22</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

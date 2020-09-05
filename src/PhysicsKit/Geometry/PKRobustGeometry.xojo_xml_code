@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="2077497343">
+ <ObjName>PKRobustGeometry</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs cross product on four primitives and returns the result as a new AdaptiveDecimal.</CodeDescription>
+  <PartID>1245401087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs cross product on four primitives and also allocates a new PKAdaptiveDecimal</SourceLine>
+   <SourceLine>' with the appropriate capacity to store the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter ax: The x value of the vector a.</SourceLine>
+   <SourceLine>' - Parameter ay: The y value of the vector a.</SourceLine>
+   <SourceLine>' - Parameter bx: The x value of the vector b.</SourceLine>
+   <SourceLine>' - Parameter by: The y value of the vector b.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new AdaptiveResult.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Cross(ax, ay, bx, by, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ax As Double, ay As Double, bx As Double, by As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the cross product of two vectors a, b, that is ax * by - ay * bx but with extended precision and stores the 4 component result in the given AdaptiveDecimal `result` or creates a new one if `result` is Nil.</CodeDescription>
+  <PartID>947478527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Cross(ax As Double, ay As Double, bx As Double, by As Double, result As PKAdaptiveDecimal) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the cross product of two vectors a, b, that is ax * by - ay * bx but with extended precision</SourceLine>
+   <SourceLine>' and stores the 4 component result in the given PKAdaptiveDecimal `result`.</SourceLine>
+   <SourceLine>' In the same way as with `PKAdaptiveDecimal.Sum(PKAdaptiveDecimal, PKAdaptiveDecimal)` if `result` is Nil</SourceLine>
+   <SourceLine>' a new one is allocated, otherwise the existing is cleared and used.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter ax: The x value of the vector a.</SourceLine>
+   <SourceLine>' - Parameter ay: The y value of the vector a.</SourceLine>
+   <SourceLine>' - Parameter bx: The x value of the vector b.</SourceLine>
+   <SourceLine>' - Parameter by: The y value of the vector b.</SourceLine>
+   <SourceLine>' - Parameter result: The PKAdaptiveDecimal in which the cross product is stored.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var axby As Double = ax * by</SourceLine>
+   <SourceLine>Var aybx As Double = bx * ay</SourceLine>
+   <SourceLine>Var axbyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromProduct(ax, by, axby)</SourceLine>
+   <SourceLine>Var aybxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromProduct(bx, ay, aybx)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Result can be Nil in which case PKAdaptiveDecimal.FromDiff will allocate a new one.</SourceLine>
+   <SourceLine>Var newResult As PKAdaptiveDecimal = PKAdaptiveDecimal.FromDiff(axbyTail, axby, aybxTail, aybx, result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return newResult</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ax As Double, ay As Double, bx As Double, by As Double, result As PKAdaptiveDecimal</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Robust side-of-line test. Computes the same value with `Segment.GetLocation(Vector2, Vector2, Vector2)` but with higher precision.</CodeDescription>
+  <PartID>1804998655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetLocation(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Robust side-of-line test.</SourceLine>
+   <SourceLine>' Computes the same value with `Segment.GetLocation(PKVector2, PKVector2, PKVector2)` but with</SourceLine>
+   <SourceLine>' enough precision so the sign of the result is correct for any PKVector2s pa, pb, pc.</SourceLine>
+   <SourceLine>' This implementation uses more precision as-needed only for the hardest cases.</SourceLine>
+   <SourceLine>' For the majority of inputs this will be only slightly slower than the corresponding call</SourceLine>
+   <SourceLine>' to `Segment.GetLocation(PKVector2, PKVector2, PKVector2)` but in the hard cases can be 5-25 times slower.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Parameter linePoint1: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter linePoint2: The second point of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This code is based on the original code by Jonathan Richard Shewchuk</SourceLine>
+   <SourceLine>// For more details about the correctness and error bounds check the note</SourceLine>
+   <SourceLine>// in the PKAdaptiveDecimal class and the corresponding paper of the author.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// In the beginning try the simple-straightforward computation with floating point values</SourceLine>
+   <SourceLine>// and no extra precision, as in `Segment.GetLocation`.</SourceLine>
+   <SourceLine>Var detLeft As Double = (point.X - linePoint2.X) * (linePoint1.Y - linePoint2.Y)</SourceLine>
+   <SourceLine>Var detRight As Double = (point.Y - linePoint2.Y) * (linePoint1.X - linePoint2.X)</SourceLine>
+   <SourceLine>Var det As Double = detLeft - detRight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If detLeft = 0 Or detRight = 0 Or (detLeft &gt; 0) &lt;&gt; (detRight &gt; 0) Then</SourceLine>
+   <SourceLine>Return det</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var detSum As Double = Abs(detLeft + detRight)</SourceLine>
+   <SourceLine>If Abs(det) &gt;= ERROR_BOUND_A * detSum Then</SourceLine>
+   <SourceLine>// This will cover the vast majority of cases.</SourceLine>
+   <SourceLine>Return det</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// For the few harder cases we need to use the adaptive precision implementation.</SourceLine>
+   <SourceLine>Return GetLocationAdaptive(point, linePoint1, linePoint2, detSum)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocationAdaptive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The extended precision implementation for the side-of-line test.</CodeDescription>
+  <PartID>1800617983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetLocationAdaptive(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2, detSum As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The extended precision implementation for the side-of-line test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Parameter linePoint1: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter linePoint2: The second point of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var acx As Double = point.X - linePoint2.X</SourceLine>
+   <SourceLine>Var acy As Double = point.Y - linePoint2.Y</SourceLine>
+   <SourceLine>Var bcx As Double = linePoint1.X - linePoint2.X</SourceLine>
+   <SourceLine>Var bcy As Double = linePoint1.Y - linePoint2.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Calculate the cross product but with more precision than before</SourceLine>
+   <SourceLine>// But don't bother yet to perform the differences acx, acy, bcx, bcy with full precision.</SourceLine>
+   <SourceLine>Var B As PKAdaptiveDecimal = PKRobustGeometry.Cross(acx, acy, bcx, bcy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var det As Double = B.GetEstimation</SourceLine>
+   <SourceLine>Var errorBound As Double = ERROR_BOUND_B * detSum</SourceLine>
+   <SourceLine>If Abs(det) &gt;= errorBound Then Return det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Since we need more precision to produce the result at this point</SourceLine>
+   <SourceLine>// we have to calculate the differences with full precision.</SourceLine>
+   <SourceLine>Var acxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(point.X, linePoint2.X, acx)</SourceLine>
+   <SourceLine>Var acyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(point.Y, linePoint2.Y, acy)</SourceLine>
+   <SourceLine>Var bcxTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.X, linePoint2.X, bcx)</SourceLine>
+   <SourceLine>Var bcyTail As Double = PKAdaptiveDecimal.GetErrorComponentFromDifference(linePoint1.Y, linePoint2.Y, bcy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If acxTail = 0 And acyTail = 0 And bcxTail = 0 And bcyTail = 0 Then</SourceLine>
+   <SourceLine>// Trivial case: the extra precision was not needed after all.</SourceLine>
+   <SourceLine>Return det</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>errorBound = ERROR_BOUND_C * detSum + RESULT_ERROR_BOUND * Abs(det)</SourceLine>
+   <SourceLine>// But don't use full precision to calculate the following cross products with the tail values.</SourceLine>
+   <SourceLine>det = det + ((acx * bcyTail + bcy * acxTail) - (acy * bcxTail + bcx * acyTail))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Abs(det) &gt;= errorBound Then Return det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This case is so rare that we don't know if there are any inputs going into it</SourceLine>
+   <SourceLine>// At this point we have to go full out and calculate all the products with full precision.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Re-usable buffer to store the results of the 3 cross products needed below</SourceLine>
+   <SourceLine>Var buffer As PKAdaptiveDecimal = New PKAdaptiveDecimal(4)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call PKRobustGeometry.Cross(acxTail, bcx, acyTail, bcy, buffer)</SourceLine>
+   <SourceLine>Var C1 As PKAdaptiveDecimal = B.Sum(buffer)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call PKRobustGeometry.Cross(acx, bcxTail, acy, bcyTail, buffer)</SourceLine>
+   <SourceLine>Var C2 As PKAdaptiveDecimal = C1.Sum(buffer)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call PKRobustGeometry.Cross(acxTail, bcxTail, acyTail, bcyTail, buffer)</SourceLine>
+   <SourceLine>Var D As PKAdaptiveDecimal = C2.Sum(buffer)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the most significant component of the last buffer D.</SourceLine>
+   <SourceLine>// Reminder: components are non-overlapping so this is OK.</SourceLine>
+   <SourceLine>Return D.Get(D.Size - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2, detSum As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>558438399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Initialise()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Initializer that computes the necessary splitter value and error bounds based on the machine epsilon.</SourceLine>
+   <SourceLine>' Also instantiates the internal PKAdaptiveDecimal variables.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Calculate the splitter and epsilon.</SourceLine>
+   <SourceLine>Var everyOther As Boolean = True</SourceLine>
+   <SourceLine>Var epsilon As Double = 1.0</SourceLine>
+   <SourceLine>Var splitterMut As Int32 = 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While 1.0 + epsilon &gt; 1.0</SourceLine>
+   <SourceLine>If everyOther Then splitterMut = splitterMut * 2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>epsilon = epsilon * 0.5</SourceLine>
+   <SourceLine>everyOther = Not everyOther</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>splitterMut = splitterMut + 1.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mSPLITTER = splitterMut</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute bounds.</SourceLine>
+   <SourceLine>mRESULT_ERROR_BOUND = (3 + 8 * epsilon) * epsilon</SourceLine>
+   <SourceLine>mERROR_BOUND_A = (3 + 16 * epsilon) * epsilon</SourceLine>
+   <SourceLine>mERROR_BOUND_B = (2 + 12 * epsilon) * epsilon</SourceLine>
+   <SourceLine>mERROR_BOUND_C = (9 + 64 * epsilon) * epsilon * epsilon</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>368332799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>This class provides geometric routines that have guarantees about some properties</NoteLine>
+   <NoteLine>of their floating point results and operations.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>ERROR_BOUND_A</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Error bounds used to adaptively use as much precision is required for a correct result.</CodeDescription>
+  <PartID>1292619775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared ERROR_BOUND_A As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ERROR_BOUND_A As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mERROR_BOUND_A</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>ERROR_BOUND_B</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Error bounds used to adaptively use as much precision is required for a correct result.</CodeDescription>
+  <PartID>1600354303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared ERROR_BOUND_B As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ERROR_BOUND_B As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mERROR_BOUND_B</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>ERROR_BOUND_C</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Error bounds used to adaptively use as much precision is required for a correct result.</CodeDescription>
+  <PartID>1137156095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared ERROR_BOUND_C As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ERROR_BOUND_C As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mERROR_BOUND_C</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>mERROR_BOUND_A</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2042261503</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mERROR_BOUND_A As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mERROR_BOUND_A As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mERROR_BOUND_B</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1584238591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mERROR_BOUND_B As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mERROR_BOUND_B As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mERROR_BOUND_C</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1879625727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mERROR_BOUND_C As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mERROR_BOUND_C As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mRESULT_ERROR_BOUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>408012799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mRESULT_ERROR_BOUND As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mRESULT_ERROR_BOUND As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mSPLITTER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1708419071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared mSPLITTER As Int32</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mSPLITTER As Int32</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>RESULT_ERROR_BOUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Error bounds used to adaptively use as much precision is required for a correct result.</CodeDescription>
+  <PartID>2067562495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared RESULT_ERROR_BOUND As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>RESULT_ERROR_BOUND As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mRESULT_ERROR_BOUND</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>SPLITTER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>A constant that  AdaptiveDecimal uses to split Doubles when calculating multiplication errors.</CodeDescription>
+  <PartID>1613475839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared SPLITTER As Int32</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SPLITTER As Int32</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return mSPLITTER</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

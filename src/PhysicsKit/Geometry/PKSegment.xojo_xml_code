@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1372399615">
+ <ObjName>PKSegment</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex,PKWound</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validated constructor. Creates a new segment using the given points.  The center will be the average of the points.</CodeDescription>
+  <PartID>2062796799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, vertices() As PKVector2, segment As PKVector2, length As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new segment using the given points.  The center will be the average of the points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter point1: The first point.</SourceLine>
+   <SourceLine>' - Parameter point2: The second point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(PKGeometry.GetAverageCenter(vertices), length * 0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Assign the verices.</SourceLine>
+   <SourceLine>Self.Vertices = vertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the normals.</SourceLine>
+   <SourceLine>Self.Normals.ResizeTo(1)</SourceLine>
+   <SourceLine>Self.Normals(0) = segment.Copy</SourceLine>
+   <SourceLine>Call Self.Normals(0).Normalise</SourceLine>
+   <SourceLine>Self.Normals(1) = segment.Right</SourceLine>
+   <SourceLine>Call Self.Normals(1).Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the length.</SourceLine>
+   <SourceLine>Self.Length = length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, vertices() As PKVector2, segment As PKVector2, length As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new segment using the given points.  The center will be the average of the points. A segment's points cannot be Nil or the same point. Throws.</CodeDescription>
+  <PartID>1961805823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(point1 As PKVector2, point2 As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new segment using the given points.  The center will be the average of the points.</SourceLine>
+   <SourceLine>' A segment's points cannot be Nil or the same point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1: The first point.</SourceLine>
+   <SourceLine>' - Parameter point2: The second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point1` or `point2` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `point1` = `point2`.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Validate(point1, point2), Array(point1, point2), _</SourceLine>
+   <SourceLine>point1.Towards(point2), point1.Distance(point2))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point1 As PKVector2, point2 As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>248152063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Should almost always return False since this shape represents an infinitely</SourceLine>
+   <SourceLine>' thin line segment. Use the `Contains(PKVector2, Transform, double)` method instead </SourceLine>
+   <SourceLine>' for better, though technically inaccurate, results.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Put the point in local coordinates.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a reference to the end points.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(0)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the location of the given point relative to this segment.</SourceLine>
+   <SourceLine>Var value As Double = PKSegment.GetLocation(p, p1, p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// See if the point is on the line created by this line segment.</SourceLine>
+   <SourceLine>If Abs(value) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>Var distSqrd As Double = p1.DistanceSquared(p2)</SourceLine>
+   <SourceLine>If p.DistanceSquared(p1) &lt;= distSqrd And p.DistanceSquared(p2) &lt;= distSqrd Then</SourceLine>
+   <SourceLine>// If the distance to the point from both points is less than or equal</SourceLine>
+   <SourceLine>// to the length of the segment squared then we know its on the line segment.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// If the point is further away from either point than the length of the</SourceLine>
+   <SourceLine>// segment then its not on the segment.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point is inside this Shape.</CodeDescription>
+  <PartID>1098223615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform, radius As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point is inside this Shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given point lies on an edge the point is considered to be inside the Shape.</SourceLine>
+   <SourceLine>' The given point is assumed to be in world space.</SourceLine>
+   <SourceLine>' If the radius is greater than zero then the point is tested to be within the </SourceLine>
+   <SourceLine>' shape expanded radially by the radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: World space point.</SourceLine>
+   <SourceLine>' - Parameter transform: Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter radius: The expansion radius. In the range [0, ∞].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the radius is zero or less then perform the normal procedure.</SourceLine>
+   <SourceLine>If radius &lt;= 0 Then</SourceLine>
+   <SourceLine>Return Contains(point, transform)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Put the point in local coordinates.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise act like the segment is two circles and a rectangle.</SourceLine>
+   <SourceLine>If Self.Vertices(0).DistanceSquared(p) &lt;= radius * radius Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>ElseIf Self.Vertices(1).DistanceSquared(p) &lt;= radius * radius Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// See if the point is in the rectangle portion.</SourceLine>
+   <SourceLine>Var l As PKVector2 = Self.Vertices(0).Towards(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(0).Towards(p)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(1).Towards(p)</SourceLine>
+   <SourceLine>If l.Dot(p1) &gt; 0 And -l.Dot(p2) &gt; 0 Then</SourceLine>
+   <SourceLine>Var dist As Double = p1.Project(l.GetRightHandOrthogonalVector).GetMagnitudeSquared</SourceLine>
+   <SourceLine>If dist &lt;= radius * radius Then Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform, radius As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>990777343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Be aware that this method could produce an infinitely thin</SourceLine>
+   <SourceLine>' PKAABB if this segment is aligned to either the x or y-axis.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the transformed points.</SourceLine>
+   <SourceLine>Var p0 As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(Self.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the PKAABB.</SourceLine>
+   <SourceLine>Return PKAABB.CreateAABBFromPoints(p0, p1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>981463039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a Mass object using the geometric properties of this Segment and the given density.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' m = d * length</SourceLine>
+   <SourceLine>' I = l² * m / 12</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter density: The density in kg/m²</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The Mass of this Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var length As Double = Self.Length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the mass.</SourceLine>
+   <SourceLine>Var mass As Double = density * length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the inertia tensor.</SourceLine>
+   <SourceLine>Var inertia As Double = length * length * mass / 12.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Since we know that a line segment has only two points we can</SourceLine>
+   <SourceLine>// feel safe using the averaging method for the centroid.</SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, mass, inertia)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>338124799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of foci.</SourceLine>
+   <SourceLine>Var size As Integer = If(foci &lt;&gt; Nil, foci.Count, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create an array to hold the axes.</SourceLine>
+   <SourceLine>Var axes() As PKVector2</SourceLine>
+   <SourceLine>axes.ResizeTo(size + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var n As Integer = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = transform.GetTransformed(Self.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use both the edge and its normal.</SourceLine>
+   <SourceLine>axes(n) = transform.GetTransformedR(Self.Normals(1))</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>axes(n) = transform.GetTransformedR(Self.Normals(0))</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var axis As PKVector2</SourceLine>
+   <SourceLine>// Add the voronoi region axes if point is supplied.</SourceLine>
+   <SourceLine>For Each f As PKVector2 In foci</SourceLine>
+   <SourceLine>// Find the closest point.</SourceLine>
+   <SourceLine>If p1.DistanceSquared(f) &lt; p2.DistanceSquared(f) Then</SourceLine>
+   <SourceLine>axis = p1.Towards(f)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>axis = p2.Towards(f)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Normalise the axis.</SourceLine>
+   <SourceLine>Call axis.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the axis to the array.</SourceLine>
+   <SourceLine>axes(n) = axis</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>Next f</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return all the axes.</SourceLine>
+   <SourceLine>Return axes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1053018111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the feature farthest in the direction of n.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' For a Segment, it's always the Segment itself.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The direction.</SourceLine>
+   <SourceLine>' - Parameter transform: The local to world space Transform of this Convex Shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: EdgeFeature.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the farthest feature on the given segment. This will always return the segment itself, but must return it with the correct winding and the correct maximum. Throws NilObjectException.</CodeDescription>
+  <PartID>1653301247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetFarthestFeature(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PKEdgeFeature</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the farthest feature on the given segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This will always return the segment itself, but must return it with the correct winding</SourceLine>
+   <SourceLine>' and the correct maximum.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter v1: The first segment vertex.</SourceLine>
+   <SourceLine>' - Parameter v2: The second segment vertex.</SourceLine>
+   <SourceLine>' - Parameter vector: The direction.</SourceLine>
+   <SourceLine>' - Parameter transform: The local to world space Transform of this Convex Shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: New PKEdgeFeature.'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The farthest feature for a line is always the line itself.</SourceLine>
+   <SourceLine>Var max As PKVector2 = Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(v1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = transform.GetTransformed(v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project them onto the vector.</SourceLine>
+   <SourceLine>Var dot1 As Double = vector.Dot(p1)</SourceLine>
+   <SourceLine>Var dot2 As Double = vector.Dot(p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the greatest projection.</SourceLine>
+   <SourceLine>Var index As Integer = 0</SourceLine>
+   <SourceLine>If dot1 &gt;= dot2 Then</SourceLine>
+   <SourceLine>max = p1</SourceLine>
+   <SourceLine>index = 0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>max = p2</SourceLine>
+   <SourceLine>index = 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the points of the segment in the opposite direction as the other shape.</SourceLine>
+   <SourceLine>Var vp1 As PKPointFeature = New PKPointFeature(p1, 0)</SourceLine>
+   <SourceLine>Var vp2 As PKPointFeature = New PKPointFeature(p2, 1)</SourceLine>
+   <SourceLine>Var vm As PKPointFeature = New PKPointFeature(max, index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the edge is the right winding.</SourceLine>
+   <SourceLine>If p1.Towards(p2).Right.Dot(vector) &gt; 0 Then</SourceLine>
+   <SourceLine>Return New PKEdgeFeature(vp2, vp1, vm, p2.Towards(p1), 0)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return New PKEdgeFeature(vp1, vp2, vm, p1.Towards(p2), 0)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKEdgeFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1090334719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestPoint(Self.Vertices(0), Self.Vertices(1), vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the farthest point on the given segment. Throws NilObjectException.</CodeDescription>
+  <PartID>945348607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetFarthestPoint(v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the farthest point on the given segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter v1: The first point of the segment.</SourceLine>
+   <SourceLine>' - Parameter v2: The second point of the segment.</SourceLine>
+   <SourceLine>' - Parameter vector: The direction.</SourceLine>
+   <SourceLine>' - Parameter transform: The local to world space Transform of this Convex Shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `v1`, `v2`, `vector`, or `transform` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertices and the centre.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(v1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = transform.GetTransformed(v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project them onto the vector.</SourceLine>
+   <SourceLine>Var dot1 As Double = vector.Dot(p1)</SourceLine>
+   <SourceLine>Var dot2 As Double = vector.Dot(p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the greatest projection.</SourceLine>
+   <SourceLine>If dot1 &gt;= dot2 Then</SourceLine>
+   <SourceLine>Return p1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return p2</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>v1 As PKVector2, v2 As PKVector2, vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1960962047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Not applicable to this shape.  Always returns Nils.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Nil.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the length of the line Segment.</CodeDescription>
+  <PartID>736813055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLength() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the length of the line Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLineIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the line intersection of the given Segment and this Segment. Assumes that both this and the given segment are in the same space (either local or world space). May return Nil. Throws NilObjectException.</CodeDescription>
+  <PartID>913250303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLineIntersection(segment As PKSegment) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the line intersection of the given Segment and this Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method treats this segment and the given segment as defining **lines** rather than segments.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that both this and the given segment are in the same space (either</SourceLine>
+   <SourceLine>' local or world space).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter segment: The other segment.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: PKVector2 or Nil if the lines are parallel or coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given segment is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Segment.GetLineIntersection(Self.Vertices(0), _</SourceLine>
+   <SourceLine>Self.Vertices(1), segment.Vertices(0), segment.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>segment As PKSegment</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLineIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the intersection point of the two lines or Nil if they are parallel or coincident. Throws NilObjectException.</CodeDescription>
+  <PartID>512557055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetLineIntersection(ap1 As PKVector2, ap2 As PKVector2, bp1 As PKVector2, bp2 As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the intersection point of the two lines or Nil if they are parallel or coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If we let:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' A = Ap2 - Ap1</SourceLine>
+   <SourceLine>' B = Bp2 - Bp1</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' We can create two parametric equations:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Q = Ap1 + taA</SourceLine>
+   <SourceLine>' Q = Bp1 + tbB</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Where Q is the intersection point:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Ap1 + taA = Bp1 + tbB</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' We can solve for tb by applying the cross product with A on both sides:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' (Ap1 + taA) x A = (Bp1 + tbB) x A</SourceLine>
+   <SourceLine>' Ap1 x A = Bp1 x A + tbB x A</SourceLine>
+   <SourceLine>' (Ap1 - Bp1) x A = tbB x A</SourceLine>
+   <SourceLine>' tb = ((Ap1 - Bp1) x A) / (B x A)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If B x A = 0 then the lines are parallel.  If both the top and bottom are zero </SourceLine>
+   <SourceLine>' then the lines are coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter ap1: The first point of the first line.</SourceLine>
+   <SourceLine>' - Parameter ap2: The second point of the first line.</SourceLine>
+   <SourceLine>' - Parameter bp1: The first point of the second line.</SourceLine>
+   <SourceLine>' - Parameter bp2: The second point of the second line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The intersection point as a PKVector2 or Nil if the lines are parallel or coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `ap1`, `ap2`, `bp1` or `bp2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var A As PKVector2 = ap1.Towards(ap2)</SourceLine>
+   <SourceLine>Var B As PKVector2 = bp1.Towards(bp2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the bottom.</SourceLine>
+   <SourceLine>Var BxA As Double = B.Cross(A)</SourceLine>
+   <SourceLine>If Abs(BxA) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// The lines are parallel and don't intersect.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the top.</SourceLine>
+   <SourceLine>Var ambxA As Double = ap1.Difference(bp1).Cross(A)</SourceLine>
+   <SourceLine>If Abs(ambxA) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// The lines are coincident.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute tb.</SourceLine>
+   <SourceLine>Var tb As Double = ambxA / BxA</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the intersection point.</SourceLine>
+   <SourceLine>Return B.Product(tb).Add(bp1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ap1 As PKVector2, ap2 As PKVector2, bp1 As PKVector2, bp2 As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Determines where the point is relative to the given line. Throws NilObjectException.</CodeDescription>
+  <PartID>1732489215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetLocation(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Determines where the point is relative to the given line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Set L = linePoint2 - linePoint1</SourceLine>
+   <SourceLine>' Set P = point - linePoint1</SourceLine>
+   <SourceLine>' location = L.cross(P)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Returns 0 if the point lies on the line created from the line segment.</SourceLine>
+   <SourceLine>' Assuming a right handed coordinate system:</SourceLine>
+   <SourceLine>'   Returns &lt; 0 if the point lies on the right side of the line.</SourceLine>
+   <SourceLine>'   Returns &gt; 0 if the point lies on the left side of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Assumes all points are in world space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Parameter linePoint1: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter linePoint2: The second point of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return (linePoint2.X - linePoint1.X) * (point.Y - linePoint1.Y) - _</SourceLine>
+   <SourceLine>(point.X - linePoint1.X) * (linePoint2.Y - linePoint1.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormalIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2144120831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormalIterator() As Iterator</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKWoundIterator(Self.Normals)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1810903039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormals() As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Normals</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPoint1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns point1 in local coordinates.</CodeDescription>
+  <PartID>325992447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPoint1() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns point1 in local coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Vertices(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPoint2</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns point2 in local coordinates.</CodeDescription>
+  <PartID>480253951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPoint2() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns point2 in local coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Vertices(1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPointOnLineClosestToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the point on the line that this Segment defines closest to the given point. Works in this Segment's local space. Throws NilObjectException.</CodeDescription>
+  <PartID>104216575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPointOnLineClosestToPoint(point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the point on the **line** that this Segment defines closest to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method works in this Segment's local space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The local space point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException: If the given point is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetPointOnLineClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPointOnLineClosestToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the point on the given line closest to the given point. Throws NilObjectException.</CodeDescription>
+  <PartID>1042616319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetPointOnLineClosestToPoint(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the point on the given line closest to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Project the point onto the line:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Vline = P₁ - P₀</SourceLine>
+   <SourceLine>' Vpoint = P₀ - P</SourceLine>
+   <SourceLine>' Pclosest = Vpoint.project(Vline)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Assumes all points are in world space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Parameter linePoint1: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter linePoint2: The second point of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from the point to the first line point.</SourceLine>
+   <SourceLine>Var p1ToP As PKVector2 = point.Difference(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector representing the line.</SourceLine>
+   <SourceLine>Var line As PKVector2 = linePoint2.Difference(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the length squared of the line.</SourceLine>
+   <SourceLine>Var ab2 As Double = line.Dot(line)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check ab2 for zero (linePoint1 = linePoint2).</SourceLine>
+   <SourceLine>If ab2 &lt;= PKEpsilon.E Then Return linePoint1.Copy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the projection of AP on AB.</SourceLine>
+   <SourceLine>Var ap_ab As Double = p1ToP.Dot(line)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the position from the first line point to the projection.</SourceLine>
+   <SourceLine>Var t As Double = ap_ab / ab2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the point on the line.</SourceLine>
+   <SourceLine>Return line.Multiply(t).Add(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPointOnSegmentClosestToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the point on this Segment closest to the given point. This method works in this Segment's local space. Throws NilObjectException.</CodeDescription>
+  <PartID>1968257023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPointOnSegmentClosestToPoint(point As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the point on this Segment closest to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method works in this Segment's local space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The local space point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Retiurns: PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given point is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetPointOnSegmentClosestToPoint(point, Self.Vertices(0), Self.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPointOnSegmentClosestToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the point on the given line segment closest to the given point. Assumes all points are in world space. Throws NilObjectException.</CodeDescription>
+  <PartID>658837503</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetPointOnSegmentClosestToPoint(point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the point on the given line segment closest to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the point closest to the given point is on the line created by the</SourceLine>
+   <SourceLine>' given line segment, but is not on the line segment then either of the segment's</SourceLine>
+   <SourceLine>' end points will be returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Assumes all points are in world space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>' - Parameter linePoint1: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter linePoint2: The second point of the line.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point`, `linePoint1`, or `linePoint2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from the point to the first line point.</SourceLine>
+   <SourceLine>Var p1ToP As PKVector2 = point.Difference(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector representing the line.</SourceLine>
+   <SourceLine>Var line As PKVector2 = linePoint2.Difference(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the length squared of the line.</SourceLine>
+   <SourceLine>Var ab2 As Double = line.Dot(line)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the projection of AP on AB.</SourceLine>
+   <SourceLine>Var ap_ab As Double = p1ToP.Dot(line)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check ab2 for zero (linePoint1 = linePoint2).</SourceLine>
+   <SourceLine>If ab2 &lt;= PKEpsilon.E Then Return linePoint1.Copy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the position from the first line point to the projection.</SourceLine>
+   <SourceLine>Var t As Double = ap_ab / ab2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure t is in between 0.0 and 1.0.</SourceLine>
+   <SourceLine>t = PKInterval.Clamp(t, 0.0, 1.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the point on the line.</SourceLine>
+   <SourceLine>Return line.Multiply(t).Add(linePoint1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point As PKVector2, linePoint1 As PKVector2, linePoint2 As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>593852415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.GetRotationRadius(center, Self.Vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetSegmentIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the intersection of the given Segment and this Segment. Assumes that both this and the given segment are in the same space (either local or world space). Throws NilObjectException.</CodeDescription>
+  <PartID>1730365439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetSegmentIntersection(segment As PKSegment) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the intersection of the given Segment and this Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that both this and the given segment are in the same space (either</SourceLine>
+   <SourceLine>' local or world space).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter segment: The other segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2 or Nil (if the segments do not intersect, are parallel, or are coincident).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given segment is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Segment.GetSegmentIntersection(Self.Vertices(0), Self.Vertices(1), _</SourceLine>
+   <SourceLine>segment.Vertices(0), segment.vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>segment As PKSegment</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetSegmentIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the intersection point of the two line segments or Nil if they are parallel, coincident or don't intersect. Throws NilObjectException.</CodeDescription>
+  <PartID>155316223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetSegmentIntersection(ap1 As PKVector2, ap2 As PKVector2, bp1 As PKVector2, bp2 As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the intersection point of the two line segments or Nil if they are parallel, coincident</SourceLine>
+   <SourceLine>' or don't intersect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If we let:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' A = Ap2 - Ap1</SourceLine>
+   <SourceLine>' B = Bp2 - Bp1</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' We can create two parametric equations:</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Q = Ap1 + taA</SourceLine>
+   <SourceLine>' Q = Bp1 + tbB</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Where Q is the intersection point:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Ap1 + taA = Bp1 + tbB</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' We can solve for tb by applying the cross product with A on both sides:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' (Ap1 + taA) x A = (Bp1 + tbB) x A</SourceLine>
+   <SourceLine>' Ap1 x A = Bp1 x A + tbB x A</SourceLine>
+   <SourceLine>' (Ap1 - Bp1) x A = tbB x A</SourceLine>
+   <SourceLine>' tb = ((Ap1 - Bp1) x A) / (B x A)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If B x A = 0 then the segments are parallel. If the top = 0 then they don't intersect. If both the</SourceLine>
+   <SourceLine>' top and bottom are zero then the segments are coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If tb or ta &lt; 0 or &gt; 1 then the segments do not intersect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter ap1: The first point of the first line segment.</SourceLine>
+   <SourceLine>' - Parameter ap2: The second point of the first line segment.</SourceLine>
+   <SourceLine>' - Parameter bp1: The first point of the second line segment.</SourceLine>
+   <SourceLine>' - Parameter bp2: The second point of the second line segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The intersection point as a PKVector2 or </SourceLine>
+   <SourceLine>'            Nil if the line segments don't intersect, are parallel, or are coincident.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `ap1`, `ap2`, `bp1`, or `bp2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var A As PKVector2 = ap1.Towards(ap2)</SourceLine>
+   <SourceLine>Var B As PKVector2 = bp1.Towards(bp2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the bottom.</SourceLine>
+   <SourceLine>Var BxA As Double = B.Cross(A)</SourceLine>
+   <SourceLine>If Abs(BxA) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// The line segments are parallel and don't intersect.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the top.</SourceLine>
+   <SourceLine>Var ambxA As Double = ap1.Difference(bp1).Cross(A)</SourceLine>
+   <SourceLine>If Abs(ambxA) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// The line segments are coincident.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute tb.</SourceLine>
+   <SourceLine>Var tb As Double = ambxA / BxA</SourceLine>
+   <SourceLine>If tb &lt; 0.0 Or tb &gt; 1.0 Then</SourceLine>
+   <SourceLine>// No intersection.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the intersection point.</SourceLine>
+   <SourceLine>Var ip As PKVector2 = B.Product(tb).Add(bp1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Since both are segments we need to verify that ta is also valid.</SourceLine>
+   <SourceLine>// Compute ta.</SourceLine>
+   <SourceLine>Var ta As Double= ip.Difference(ap1).Dot(A) / A.Dot(A)</SourceLine>
+   <SourceLine>If ta &lt; 0.0 Or ta &gt; 1.0 Then</SourceLine>
+   <SourceLine>// No intersection.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return ip</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ap1 As PKVector2, ap2 As PKVector2, bp1 As PKVector2, bp2 As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertexIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>597886975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertexIterator() As Iterator</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKWoundIterator(Self.Vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertices</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1656391679</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertices() As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Vertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1849108479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As Double = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = transform.GetTransformed(Self.Vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the first.</SourceLine>
+   <SourceLine>Var min As Double = vector.Dot(p1)</SourceLine>
+   <SourceLine>Var max As Double = min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the second.</SourceLine>
+   <SourceLine>v = vector.Dot(p2)</SourceLine>
+   <SourceLine>If v &lt; min Then</SourceLine>
+   <SourceLine>min = v</SourceLine>
+   <SourceLine>ElseIf v &gt; max Then</SourceLine>
+   <SourceLine>max = v</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(min, max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>363352063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call Self.Vertices(0).Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.Vertices(1).Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.Normals(0).Rotate(r)</SourceLine>
+   <SourceLine>Call Self.Normals(1).Rotate(r)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Segment.</CodeDescription>
+  <PartID>871307263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Segment[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Length=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Length.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>397307903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine>Call Self.Vertices(0).Add(x, y)</SourceLine>
+   <SourceLine>Call Self.Vertices(1).Add(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning True if valid or throwing an exception if invalid.</CodeDescription>
+  <PartID>1448642559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(point1 As PKVector2, point2 As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1: The first point.</SourceLine>
+   <SourceLine>' - Parameter point2: The second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True or raises.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point1` or `point2` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `point1` = `point2`.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure either point is not Nil.</SourceLine>
+   <SourceLine>If point1 = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_SEGMENT_NIL_POINT1)</SourceLine>
+   <SourceLine>If point2 = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_SEGMENT_NIL_POINT2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the two points are not coincident.</SourceLine>
+   <SourceLine>If point1.Equals(point2) Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_SEGMENT_SAME_POINT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point1 As PKVector2, point2 As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1742133247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of a Line Segment Convex Shape.</NoteLine>
+   <NoteLine>This class represents a line segment that is infinitely thin.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Length</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The segment length.</CodeDescription>
+  <PartID>879906815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Length As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Length As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Normals()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The segment normals.</CodeDescription>
+  <PartID>686192639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Normals() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Normals() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Vertices()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The segment vertices.</CodeDescription>
+  <PartID>1822883839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Vertices() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Vertices() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Length</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

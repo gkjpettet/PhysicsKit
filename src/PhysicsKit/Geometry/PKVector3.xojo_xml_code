@@ -1,0 +1,1613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1461110783">
+ <ObjName>PKVector3</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given Vector3 to this Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>384137215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the given PKVector3 to this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + x</SourceLine>
+   <SourceLine>Self.Y = Self.Y + y</SourceLine>
+   <SourceLine>Self.Z = Self.Z + z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Add</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given Vector3 to this Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>1943726079</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Add(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds the given PKVector3 to this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X + vector.X</SourceLine>
+   <SourceLine>Self.Y = Self.Y + vector.Y</SourceLine>
+   <SourceLine>Self.Z = Self.Z + vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1618876415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1942902783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(x As Double, y As Double, z As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Optional constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component.</SourceLine>
+   <SourceLine>' - Parameter y: The y component.</SourceLine>
+   <SourceLine>' - Parameter z: The z component.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x</SourceLine>
+   <SourceLine>Self.Y = y</SourceLine>
+   <SourceLine>Self.Z = z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2024519679</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(x1 As Double, y1 As Double, z1 As Double, x2 As Double, y2 As Double, z2 As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a PKVector3 from the first point to the second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x1: The x coordinate of the first point.</SourceLine>
+   <SourceLine>' - Parameter y1: The y coordinate of the first point.</SourceLine>
+   <SourceLine>' - Parameter z1: The z coordinate of the first point.</SourceLine>
+   <SourceLine>' - Parameter x2: The x coordinate of the second point.</SourceLine>
+   <SourceLine>' - Parameter y2: The y coordinate of the second point.</SourceLine>
+   <SourceLine>' - Parameter z2: The z coordinate of the second point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = x2 - x1</SourceLine>
+   <SourceLine>Self.Y = y2 - y1</SourceLine>
+   <SourceLine>Self.Z = z2 - z1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x1 As Double, y1 As Double, z1 As Double, x2 As Double, y2 As Double, z2 As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>549533695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(vector As PKVector3)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to copy from.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = vector.X</SourceLine>
+   <SourceLine>Self.Y = vector.Y</SourceLine>
+   <SourceLine>Self.Z = vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1907191807</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(p1 As PKVector3, p2 As PKVector3)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a PKVector3 from the first point to the second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = p2.X - p1.X</SourceLine>
+   <SourceLine>Self.Y = p2.Y - p1.Y</SourceLine>
+   <SourceLine>Self.Z = p2.Z - p1.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>p1 As PKVector3, p2 As PKVector3</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a copy of this Vector3.</CodeDescription>
+  <PartID>1001654271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKVector3</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>' Returns a copy of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X, Self.Y, Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the cross product of the this Vector3 and the given Vector3 as a new Vector3.</CodeDescription>
+  <PartID>326463487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Cross(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the cross product of the this PKVector3 and the given PKVector3 as a new PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.Y * z - Self.Z * y, _</SourceLine>
+   <SourceLine>Self.Z * x - Self.X * z, _</SourceLine>
+   <SourceLine>Self.X * y - Self.Y * x)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Cross</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the cross product of the this Vector3 and the given Vector3 as a new Vector3.</CodeDescription>
+  <PartID>622616575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Cross(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the cross product of the this PKVector3 and the given PKVector3 as a new PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.Y * vector.Z - Self.Z * vector.Y, _</SourceLine>
+   <SourceLine>Self.Z * vector.X - Self.X * vector.Z, _</SourceLine>
+   <SourceLine>Self.X * vector.Y - Self.Y * vector.X)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Difference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given Vector3 from this Vector3 returning a new Vector3 containing the result.</CodeDescription>
+  <PartID>2102468607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Difference(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given PKVector3 from this PKVector3 returning a new PKVector3 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X - x, Self.Y - y, Self.Z - z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Difference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given Vector3 from this Vector3 returning a new Vector3 containing the result.</CodeDescription>
+  <PartID>1475348479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Difference(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given PKVector3 from this PKVector3 returning a new PKVector3 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X - vector.X, Self.Y - vector.Y, Self.Z - vector.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Distance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point.</CodeDescription>
+  <PartID>1971900415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Distance(x As Double, y As Double, z As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from this point to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The y coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter z: The z coordinate of the point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var xd As Double = Self.X - x</SourceLine>
+   <SourceLine>Var yd As Double = Self.Y - y</SourceLine>
+   <SourceLine>Var zd As Double = Self.Z - z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sqrt(xd * xd + yd * yd + zd * zd)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Distance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point.</CodeDescription>
+  <PartID>1803495423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Distance(point As PKVector3) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from this point to the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var xd As Double = Self.X - point.X</SourceLine>
+   <SourceLine>Var yd As Double = Self.Y - point.Y</SourceLine>
+   <SourceLine>Var zd As Double = Self.Z - point.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sqrt(xd * xd + yd * yd + zd * zd)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector3</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DistanceSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point squared.</CodeDescription>
+  <PartID>438632447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function DistanceSquared(x As Double, y As Double, z As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from this point to the given point squared.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The y coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter z: The z coordinate of the point.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var xd As Double = Self.X - x</SourceLine>
+   <SourceLine>Var yd As Double = Self.Y - y</SourceLine>
+   <SourceLine>Var zd As Double = Self.Z - z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return xd * xd + yd * yd + zd * zd</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DistanceSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance from this point to the given point squared.</CodeDescription>
+  <PartID>1866536959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function DistanceSquared(point As PKVector3) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance from this point to the given point squared.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var xd As Double = Self.X - point.X</SourceLine>
+   <SourceLine>Var yd As Double = Self.Y - point.Y</SourceLine>
+   <SourceLine>Var zd As Double = Self.Z - point.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return xd * xd + yd * yd + zd * zd</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector3</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Dot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the dot product of the given Vector3 and this Vector3.</CodeDescription>
+  <PartID>424206335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Dot(x As Double, y As Double, z As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the dot product of the given PKVector3 and this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * x + Self.Y * y + Self.Z * z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Dot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the dot product of the given Vector3 and this Vector3.</CodeDescription>
+  <PartID>1264332799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Dot(vector As PKVector3) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the dot product of the given PKVector3 and this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the x, y and z components of this Vector3 are the same as the given x, y and z components.</CodeDescription>
+  <PartID>190459903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(x As Double, y As Double, z As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the x, y and z components of this PKVector3 are the same </SourceLine>
+   <SourceLine>' as the given x, y and z components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x coordinate of the PKVector3 to compare to.</SourceLine>
+   <SourceLine>' - Parameter y: The y coordinate of the PKVector3 to compare to.</SourceLine>
+   <SourceLine>' - Parameter z: The z coordinate of the PKVector3 to compare to.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X = x And Self.Y = y And Self.Z = z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>' Returns True if the x, y and z components of this Vector3 are the same as the given Vector3.</CodeDescription>
+  <PartID>1682982911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(vector As PKVector3) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the x, y and z components of this PKVector3 are the same as the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to compare to.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If vector Is Nil Then Return False</SourceLine>
+   <SourceLine>If Self = vector Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.X = vector.X And Self.Y = vector.Y And Self.Z = vector.Z</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed object is considered equal to this Vector3.</CodeDescription>
+  <PartID>838811647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed object is considered equal to this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If obj Is Nil Then Return False</SourceLine>
+   <SourceLine>If obj = Self Then Return True</SourceLine>
+   <SourceLine>If obj IsA PKVector3 Then</SourceLine>
+   <SourceLine>Var other As PKVector3 = PKVector3(obj)</SourceLine>
+   <SourceLine>If Self.X = other.X And _</SourceLine>
+   <SourceLine>Self.Y = other.Y And _</SourceLine>
+   <SourceLine>Self.Z = other.Z Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMagnitude</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the magnitude of this Vector3.</CodeDescription>
+  <PartID>1197674495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMagnitude() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the magnitude of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The magnitude is just the pathagorean theorem.</SourceLine>
+   <SourceLine>Return Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMagnitudeSquared</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the magnitude of this Vector3 squared.</CodeDescription>
+  <PartID>1818914815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMagnitudeSquared() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the magnitude of this PKVector3 squared.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNegative</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Vector3 which is the negative of this Vector3.</CodeDescription>
+  <PartID>1015506943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNegative() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new PKVector3 which is the negative of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(-Self.X, -Self.Y, -Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormalised</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new unit Vector3 of this Vector3.</CodeDescription>
+  <PartID>1530531839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormalised() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new unit PKVector3 of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method requires that the length of this PKVector3 is not zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)</SourceLine>
+   <SourceLine>If magnitude &lt;= PKEpsilon.E Then Return New PKVector3</SourceLine>
+   <SourceLine>magnitude = 1.0 / magnitude</SourceLine>
+   <SourceLine>Return New PKVector3(Self.X * magnitude, Self.Y * magnitude, Self.Z * magnitude)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetXComponent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the x component of this Vector3 as a new Vector3.</CodeDescription>
+  <PartID>2040936447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetXComponent() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the x component of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X, 0.0, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetYComponent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the y component of this Vector3 as a new Vector3.</CodeDescription>
+  <PartID>1700042751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetYComponent() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the y component of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(0.0, Self.Y, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetZComponent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the z component of this Vector3 as a new Vector3.</CodeDescription>
+  <PartID>57677823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetZComponent() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the z component of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(0.0, 0.0, Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOrthogonal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given Vector3 is orthogonal (perpendicular) to this Vector3.</CodeDescription>
+  <PartID>1594941439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOrthogonal(x As Double, y As Double, z As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given PKVector3 is orthogonal (perpendicular) to this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the dot product of this vector and the given vector is</SourceLine>
+   <SourceLine>' zero then we know that they are perpendicular.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.X * x + Self.Y * y + Self.Z * z) &lt;= PKEpsilon.E</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOrthogonal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given Vector3 is orthogonal (perpendicular) to this Vector3.</CodeDescription>
+  <PartID>950548479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOrthogonal(vector As PKVector3) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given PKVector3 is orthogonal (perpendicular) to this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the dot product of this vector and the given vector is</SourceLine>
+   <SourceLine>' zero then we know that they are perpendicular.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return If(Abs(Self.X * vector.X + Self.Y * vector.Y + Self.Z * vector.Z) &lt;= PKEpsilon.E, True, False)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsZero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this Vector3 is the zero Vector3.</CodeDescription>
+  <PartID>1883105279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsZero() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this PKVector3 is the zero PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.X) &lt;= PKEpsilon.E And Abs(Self.Y) &lt;= PKEpsilon.E And Abs(Self.Z) &lt;= PKEpsilon.E</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Multiply</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this Vector3 by the given scalar and returns this Vector3.</CodeDescription>
+  <PartID>1584500735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Multiply(scalar As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this PKVector3 by the given scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X * scalar</SourceLine>
+   <SourceLine>Self.Y = Self.Y * scalar</SourceLine>
+   <SourceLine>Self.Z = Self.Z * scalar</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Negate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Negates this Vector3 and returns it.</CodeDescription>
+  <PartID>716947455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Negate() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Negates this PKVector3 and returns it.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = -Self.X</SourceLine>
+   <SourceLine>Self.Y = -Self.Y</SourceLine>
+   <SourceLine>Self.Z = -Self.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Normalise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts this Vector3 into a unit Vector3 and returns the magnitude before normalisation.</CodeDescription>
+  <PartID>2102841343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Normalise() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts this PKVector3 into a unit PKVector3 and returns the magnitude before normalisation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method requires that the length of this PKVector3 is not zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var magnitude As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)</SourceLine>
+   <SourceLine>If magnitude &lt;= PKEpsilon.E Then Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var m As Double = 1.0 / magnitude</SourceLine>
+   <SourceLine>Self.X = Self.X * m</SourceLine>
+   <SourceLine>Self.Y = Self.Y * m</SourceLine>
+   <SourceLine>Self.Z = Self.Z * m</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return magnitude</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Product</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Multiplies this Vector3 by the given scalar returning a new Vector3 containing the result.</CodeDescription>
+  <PartID>103327743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Product(scalar As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Multiplies this PKVector3 by the given scalar returning a new PKVector3 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' -Parameter scalar: The scalar.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X * scalar, Self.Y * scalar, Self.Z * scalar)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>scalar As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Projects this vector onto the given Vector3 and returns a new Vector3.</CodeDescription>
+  <PartID>1353635839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Projects this vector onto the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method requires that the length of the given PKVector3 is not zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dotProd As Double = Self.Dot(vector)</SourceLine>
+   <SourceLine>Var denominator As Double = vector.Dot(vector)</SourceLine>
+   <SourceLine>If denominator &lt;= PKEpsilon.E Then Return New PKVector3</SourceLine>
+   <SourceLine>denominator = dotProd / denominator</SourceLine>
+   <SourceLine>Return New PKVector3(denominator * vector.X, denominator * vector.Y, denominator * vector.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Vector3 to the given Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>2132066303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Set(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this PKVector3 to the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3 to set this PKVector3 to.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3 to set this PKVector3 to.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3 to set this PKVector3 to.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = X</SourceLine>
+   <SourceLine>Self.Y = Y</SourceLine>
+   <SourceLine>Self.Z = Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Vector3 to the given Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>713977855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Set(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this PKVector3 to the given PKVector3.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3 to set this PKVector3 to.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = vector.X</SourceLine>
+   <SourceLine>Self.Y = vector.Y</SourceLine>
+   <SourceLine>Self.Z = vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetMagnitude</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the magnitude of this Vector3 and returns it.</CodeDescription>
+  <PartID>1491687423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SetMagnitude(magnitude As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the magnitude of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter magnitude: The magnitude.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the given magnitude.</SourceLine>
+   <SourceLine>If Abs(magnitude) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>Self.X = 0.0</SourceLine>
+   <SourceLine>Self.Y = 0.0</SourceLine>
+   <SourceLine>Self.Z = 0.0</SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is this vector a zero vector?</SourceLine>
+   <SourceLine>If Self.IsZero Then Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the magnitude.</SourceLine>
+   <SourceLine>Var mag As Double = Sqrt(Self.X * Self.X + Self.Y * Self.Y + Self.Z * Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Normalise and multiply by the new magnitude.</SourceLine>
+   <SourceLine>mag = magnitude / mag</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X * mag</SourceLine>
+   <SourceLine>Self.Y = Self.Y * mag</SourceLine>
+   <SourceLine>Self.Z = Self.Z * mag</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>magnitude As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Subtract</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given Vector3 from this Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>272568319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Subtract(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given PKVector3 from this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X - X</SourceLine>
+   <SourceLine>Self.Y = Self.Y - Y</SourceLine>
+   <SourceLine>Self.Z = Self.Z - Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Subtract</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Subtracts the given Vector3 from this Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>1510094847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Subtract(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Subtracts the given PKVector3 from this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = Self.X - vector.X</SourceLine>
+   <SourceLine>Self.Y = Self.Y - vector.Y</SourceLine>
+   <SourceLine>Self.Z = Self.Z - vector.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds this Vector3 and the given Vector3 returning a new Vector3 containing the result.</CodeDescription>
+  <PartID>1438814207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds this PKVector3 and the given PKVector3 returning a new PKVector3 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X + x, Self.Y + y, Self.Z + z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds this Vector3 and the given Vector3 returning a new Vector3 containing the result.</CodeDescription>
+  <PartID>1058023423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds this PKVector3 and the given PKVector3 returning a new PKVector3 containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(Self.X + vector.X, Self.Y + vector.Y, Self.Z + vector.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Vector3.</CodeDescription>
+  <PartID>1880569855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("(")</SourceLine>
+   <SourceLine>s.AddRow(Self.X.ToString)</SourceLine>
+   <SourceLine>s.AddRow(", ")</SourceLine>
+   <SourceLine>s.AddRow(Self.Y.ToString)</SourceLine>
+   <SourceLine>s.AddRow(", ")</SourceLine>
+   <SourceLine>s.AddRow(Self.Z.ToString)</SourceLine>
+   <SourceLine>s.AddRow(")")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Towards</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Vector3 from this Vector3 to the given Vector3.</CodeDescription>
+  <PartID>467769343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Towards(x As Double, y As Double, z As Double) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a PKVector3 from this PKVector3 to the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter y: The y component of the PKVector3.</SourceLine>
+   <SourceLine>' - Parameter z: The z component of the PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(x - Self.X, y - Self.Y, z - Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double, z As Double</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Towards</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Vector3 from this Vector3 to the given Vector3.</CodeDescription>
+  <PartID>1700827135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Towards(vector As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a PKVector3 from this PKVector3 to the given PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector3(vector.X - Self.X, vector.Y - Self.Y, vector.Z - Self.Z)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TripleProduct</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The triple product of Vector3s is defined as `(a x b) x c`.</CodeDescription>
+  <PartID>173504511</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function TripleProduct(a As PKVector3, b As PKVector3, c As PKVector3) As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The triple product of PKVector3s is defined as: `a x (b x c)`</SourceLine>
+   <SourceLine>' However, this method performs the following triple product: `(a x b) x c`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This can be simplified to: `-a * (b · c) + b * (a · c)`</SourceLine>
+   <SourceLine>' or: `b * (a · c) - a * (b · c)`</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The a PKVector3 in the above equation.</SourceLine>
+   <SourceLine>' - Parameter b: The b PKVector3 in the above equation.</SourceLine>
+   <SourceLine>' - Parameter c: The c PKVector3 in the above equation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Expanded version of above formula.</SourceLine>
+   <SourceLine>Var r As PKVector3 = New PKVector3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform a.dot(c)</SourceLine>
+   <SourceLine>Var ac As Double = a.X * c.X + a.Y * c.Y + a.Z * c.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform b.dot(c)</SourceLine>
+   <SourceLine>Var bc As Double = b.X * c.X + b.Y * c.Y + b.Z * c.Z</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform b * a.dot(c) - a * b.dot(c)</SourceLine>
+   <SourceLine>r.X = b.X * ac - a.X * bc</SourceLine>
+   <SourceLine>r.Y = b.Y * ac - a.Y * bc</SourceLine>
+   <SourceLine>r.Z = b.Z * ac - a.Z * bc</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As PKVector3, b As PKVector3, c As PKVector3</ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Zero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the Vector3 to the zero Vector3 and returns this Vector3.</CodeDescription>
+  <PartID>1102516223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Zero() As PKVector3</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the PKVector3 to the zero PKVector3 and returns this PKVector3.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKVector3.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.X = 0.0</SourceLine>
+   <SourceLine>Self.Y = 0.0</SourceLine>
+   <SourceLine>Self.Z = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector3</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1070645247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>This class represents a vector or point in 3D space.</NoteLine>
+   <NoteLine>Used to solve 3x3 systems of equations.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>X</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The magnitude of the X component.</CodeDescription>
+  <PartID>898256895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>X As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>X As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Y</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The magnitude of the Y component.</CodeDescription>
+  <PartID>1066180607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Y As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Y As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Z</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The magnitude of the Z component.</CodeDescription>
+  <PartID>1626165247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Z As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Z As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>X</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Y</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Z</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

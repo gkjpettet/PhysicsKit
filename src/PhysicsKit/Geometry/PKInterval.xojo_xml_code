@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="132151295">
+ <ObjName>PKInterval</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Clamp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>If the value is within this Interval, inclusive, then returns the value, else returns either the max or minimum value.</CodeDescription>
+  <PartID>535369727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Clamp(value As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' If the value is within this Interval, inclusive, then returns the value, else</SourceLine>
+   <SourceLine>' returns either the max or minimum value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The value to clamp.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKInterval.Clamp(value, Self.Min, Self.Max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Clamp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a number clamped between two other numbers. Assumes that `min` &lt;= `max`.</CodeDescription>
+  <PartID>541956095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Clamp(value As Double, min As Double, max As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a number clamped between two other numbers.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that min &lt;= max.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The value to clamp.</SourceLine>
+   <SourceLine>' - Parameter min: The min value.</SourceLine>
+   <SourceLine>' - Parameter max: The max value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If value &lt;= max And value &gt;= min Then</SourceLine>
+   <SourceLine>Return value</SourceLine>
+   <SourceLine>ElseIf max &lt; value Then</SourceLine>
+   <SourceLine>Return max</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return min</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>value As Double, min As Double, max As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor.</CodeDescription>
+  <PartID>126031871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(min As Double, max As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>' - Parameter min: The minimum value.</SourceLine>
+   <SourceLine>' - Parameter max: The maximum value.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if min &gt; max.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If min &gt; max Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Min = min</SourceLine>
+   <SourceLine>Self.Max = max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>min As Double, max As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copy constructor.</CodeDescription>
+  <PartID>1042425855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(interval As PKInterval)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to copy.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Min = interval.Min</SourceLine>
+   <SourceLine>Self.Max = interval.Max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given Interval is contained in this Interval.</CodeDescription>
+  <PartID>856221695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(interval As PKInterval) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given Interval is contained in this Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return interval.Min &gt; Self.Min And interval.Max &lt; Self.Max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Distance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the distance between the two Intervals. If the given interval overlaps this interval, zero is returned.</CodeDescription>
+  <PartID>635852799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Distance(interval As PKInterval) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the distance between the two Intervals.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given interval overlaps this interval, zero is returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to check distance against.'</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure they arent overlapping.</SourceLine>
+   <SourceLine>If Not Self.Overlaps(interval) Then</SourceLine>
+   <SourceLine>// The distance is calculated by taking the max of one - the min of the other</SourceLine>
+   <SourceLine>// the interval whose max will be used is determined by the interval with the max</SourceLine>
+   <SourceLine>// less than the other's min.</SourceLine>
+   <SourceLine>If Self.Max &lt; interval.Min Then</SourceLine>
+   <SourceLine>Return interval.Min - Self.Max</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Self.Min - interval.Max</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If they are overlapping then return 0.</SourceLine>
+   <SourceLine>Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Expand</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Expands this Interval by half the given amount in both directions.</CodeDescription>
+  <PartID>1821235199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Expand(value As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Expands this Interval by half the given amount in both directions.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The value can be negative to shrink the interval. However, if the value is</SourceLine>
+   <SourceLine>' greater than the current length of the interval, the interval can become</SourceLine>
+   <SourceLine>' invalid. In this case, the interval will become a degenerate interval at</SourceLine>
+   <SourceLine>' the mid point of the min and max.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The value to expand by.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e As Double = value * 0.5</SourceLine>
+   <SourceLine>Self.Min = Self.Min - e</SourceLine>
+   <SourceLine>Self.Max = Self.Max + e</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Verify the interval is still valid.</SourceLine>
+   <SourceLine>If value &lt; 0.0 And Self.Min &gt; Self.Max Then</SourceLine>
+   <SourceLine>// If its not then set the min/max to the middle value of their current values.</SourceLine>
+   <SourceLine>Var p As Double = (Self.Min + Self.Max) * 0.5</SourceLine>
+   <SourceLine>Self.Min = p</SourceLine>
+   <SourceLine>Self.Max = p</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetExpanded</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Interval of this interval expanded by half the given amount in both directions.</CodeDescription>
+  <PartID>1118691327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetExpanded(value As Double) As PKInterval</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Interval of this interval expanded by half the given amount in both directions.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The value can be negative to shrink the interval. However, if the value is</SourceLine>
+   <SourceLine>' greater than the current length of the interval, the interval will be </SourceLine>
+   <SourceLine>' invalid. In this case, the interval returned will be a degenerate interval at</SourceLine>
+   <SourceLine>' the mid point of the min and max.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The value to expand by.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: A new Interval.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e As Double = value * 0.5</SourceLine>
+   <SourceLine>Var min As Double = Self.Min - e</SourceLine>
+   <SourceLine>Var max As Double = Self.Max + e</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Verify the interval is still valid.</SourceLine>
+   <SourceLine>If value &lt; 0.0 And min &gt; max Then</SourceLine>
+   <SourceLine>// If its not then set the min/max to the middle value of their current values.</SourceLine>
+   <SourceLine>Var p As Double = (min + max) * 0.5</SourceLine>
+   <SourceLine>min = p</SourceLine>
+   <SourceLine>max = p</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(min, max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the intersection of the given Interval and this Interval as a new Interval.</CodeDescription>
+  <PartID>2141585407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetIntersection(interval As PKInterval) As PKInterval</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the intersection of the given Interval and this Interval as a new Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the two Intervals are not overlapping then this method will make this Interval</SourceLine>
+   <SourceLine>' the a zero degenerate Interval: [0, 0].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to intersect with.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Interval.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Overlaps(interval) Then</SourceLine>
+   <SourceLine>Return New PKInterval(Max(interval.Min, Self.Min), Min(interval.Max, Self.Max))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(0, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1196810239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLength() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the length of this interval from its min to its max.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Max - Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMax</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum value for this Interval.</CodeDescription>
+  <PartID>1049739263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMax() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum value for this Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the minimum value for this Interval.</CodeDescription>
+  <PartID>1639280639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMin() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the minimum value for this Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetOverlap</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the amount of overlap between this Interval and the given Interval. Returns 0 if no overlap.</CodeDescription>
+  <PartID>344557567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetOverlap(interval As PKInterval) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the amount of overlap between this Interval and the given Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method tests to if the Intervals overlap first.  If they do then</SourceLine>
+   <SourceLine>' the overlap is returned, if they do not then 0 is returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to test against.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: Double (0 if no overlap).</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure they overlap.</SourceLine>
+   <SourceLine>If Self.Overlaps(interval) Then</SourceLine>
+   <SourceLine>Return Min(Self.Max, interval.Max) - Max(Self.Min, interval.Min)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// No overlap.</SourceLine>
+   <SourceLine>Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetUnion</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the union of the given Interval and this Interval as a new Interval.</CodeDescription>
+  <PartID>502122495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetUnion(interval As PKInterval) As PKInterval</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the union of the given Interval and this Interval as a new Interval.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter interval: The other Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Interval.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(Min(interval.Min, Self.Min), Max(interval.Max, Self.Max))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IncludesExclusive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given value is within this Interval exlcuding the maximum and minimum.</CodeDescription>
+  <PartID>1041121279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IncludesExclusive(value As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given value is within this Interval exlcuding the maximum and minimum.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The test value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value &lt; Self.Max And value &gt; Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IncludesInclusive</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given value is within this Interval including the maximum and minimum.</CodeDescription>
+  <PartID>365338623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IncludesInclusive(value As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given value is within this Interval including the maximum and minimum.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The test value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value &lt;= Self.Max And value &gt;= Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IncludesInclusiveMax</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given value is within this Interval including the maximum and excluding the minimum.</CodeDescription>
+  <PartID>680390655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IncludesInclusiveMax(value As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given value is within this Interval including the </SourceLine>
+   <SourceLine>' maximum and excluding the minimum.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The test value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value &lt;= Self.Max And value &gt; Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IncludesInclusiveMin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given value is within this Interval including the minimum and excluding the maximum.</CodeDescription>
+  <PartID>2139846655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IncludesInclusiveMin(value As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given value is within this Interval including the </SourceLine>
+   <SourceLine>' minimum and excluding the maximum.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The test value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value &lt; Self.Max And value &gt;= Self.Min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Intersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Interval to the intersection of this Interval and the given Interval. If the two Intervals are not overlapping then this method will make this Interval the a zero degenerate Interval: [0, 0].</CodeDescription>
+  <PartID>1678440447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Intersection(interval As PKInterval)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this Interval to the intersection of this Interval and the given Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the two Intervals are not overlapping then this method will make this Interval</SourceLine>
+   <SourceLine>' the a zero degenerate Interval: [0, 0].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to intersect with.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.Overlaps(interval) Then</SourceLine>
+   <SourceLine>Self.Min = Max(interval.Min, Self.Min)</SourceLine>
+   <SourceLine>Self.Max = Min(interval.Max, Self.Max)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.Min = 0</SourceLine>
+   <SourceLine>Self.Max = 0</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsDegenerate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this Interval is degenerate. An Interval is degenerate if it equals [a, a].</CodeDescription>
+  <PartID>1443094527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsDegenerate() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this Interval is degenerate.</SourceLine>
+   <SourceLine>' An Interval is degenerate if it equals [a, a].</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Min = Self.Max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsDegenerate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this Interval is degenerate given the allowed error. An Interval is degenerate given some error if: `max - min &lt;= error`</CodeDescription>
+  <PartID>975968255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsDegenerate(error As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this Interval is degenerate given the allowed error.</SourceLine>
+   <SourceLine>' An Interval is degenerate given some error if: `max - min &lt;= error`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter error: The margin of error.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.Max - Self.Min) &lt;= error</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>error As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Overlaps</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the two Intervals overlap.</CodeDescription>
+  <PartID>106962943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Overlaps(interval As PKInterval) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the two Intervals overlap.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The Interval to test against.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Not(Self.Min &gt; interval.Max Or interval.Min &gt; Self.Max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetMax</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the maximum for this interval.</CodeDescription>
+  <PartID>1626949631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetMax(max As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the maximum for this interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter max: The maximum value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if max &lt; min.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If max &lt; Self.Min Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID_MAXIMUM)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Max = max</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>max As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetMin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the minimum for this interval.</CodeDescription>
+  <PartID>94834687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetMin(min As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the minimum for this interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter min: The minimum value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if min &gt; max.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If min &gt; Self.Max Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_INTERVAL_INVALID_MINIMUM)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Min = min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>min As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Interval in the format: "[min, max]".</CodeDescription>
+  <PartID>1464377343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Interval in the format: "[min, max]".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine>s.AddRow(Self.Min.ToString)</SourceLine>
+   <SourceLine>s.AddRow(", ")</SourceLine>
+   <SourceLine>s.AddRow(Self.Max.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Union</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this Interval to the union of this Interval and the given Interval.</CodeDescription>
+  <PartID>356931583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Union(interval As PKInterval)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this Interval to the union of this Interval and the given Interval.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the two Intervals are not overlapping then this method will</SourceLine>
+   <SourceLine>' return one Interval that represents an Interval enclosing both Intervals.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter interval: The other Interval.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Min = Min(interval.Min, Self.Min)</SourceLine>
+   <SourceLine>Self.Max = Max(interval.Max, Self.Max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>interval As PKInterval</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1355548671</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a one dimensional numeric Interval.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Max</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The maximum value.</CodeDescription>
+  <PartID>1746108415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Max As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Max As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Min</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The minimum value.</CodeDescription>
+  <PartID>1438787583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Min As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Min As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Min</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Max</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

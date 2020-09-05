@@ -1,0 +1,2905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1393102847">
+ <ObjName>PKGeometry</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Cleanse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new array containing the 'cleansed' version of the given listing of polygon points. Ensures the polygon has CCW winding, removes colinear vertices, and removes coincident vertices.</CodeDescription>
+  <PartID>451340287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Cleanse(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new array containing the 'cleansed' version of the given listing of polygon points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method ensures the polygon has CCW winding, removes colinear vertices, and </SourceLine>
+   <SourceLine>' removes coincident vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given array is empty, the array is returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The list polygon points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The same array, cleansed.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `points` is Nil or if points contains Nil elements.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil array.</SourceLine>
+   <SourceLine>If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size of the points array.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size = 0 Then Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a result array.</SourceLine>
+   <SourceLine>Var result() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var winding As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var point As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the adjacent points.</SourceLine>
+   <SourceLine>Var prevPoint As PKVector2 = points(If(i - 1 &lt; 0, size - 1, i - 1))</SourceLine>
+   <SourceLine>Var nextPoint As PKVector2 = points(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If point Is Nil Or prevPoint Is Nil Or nextPoint Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is this point equal to the next?</SourceLine>
+   <SourceLine>Var diff As PKVector2 = point.Difference(nextPoint)</SourceLine>
+   <SourceLine>If diff.IsZero Then Continue // Skip this point.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the edge vectors.</SourceLine>
+   <SourceLine>Var prevToPoint As PKVector2 = prevPoint.Towards(point)</SourceLine>
+   <SourceLine>Var pointToNext As PKVector2 = point.Towards(nextPoint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the previous point is equal to this point.</SourceLine>
+   <SourceLine>// Since the next point is not equal to this point, if this is true we still need </SourceLine>
+   <SourceLine>// to add the point because it is the last of a string of coincident vertices.</SourceLine>
+   <SourceLine>If Not prevToPoint.IsZero Then</SourceLine>
+   <SourceLine>// Compute the cross product.</SourceLine>
+   <SourceLine>Var cross As Double = prevToPoint.Cross(pointToNext)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the cross product is near zero then point is a colinear point.</SourceLine>
+   <SourceLine>If Abs(cross) &lt;= PKEpsilon.E Then Continue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Sum the current signed area.</SourceLine>
+   <SourceLine>winding = winding + point.Cross(nextPoint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise the point is valid.</SourceLine>
+   <SourceLine>result.AddRow(point)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the winding.</SourceLine>
+   <SourceLine>If winding &lt; 0 Then PKGeometry.ReverseWinding(result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateCapsule</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Capsule bounded by the given rectangle width and height. The capsule will be axis-aligned and centered on the origin with the caps on the ends of the largest dimension.</CodeDescription>
+  <PartID>638003199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateCapsule(width As Double, height As Double) As PKCapsule</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Capsule bounded by the given rectangle width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The capsule will be axis-aligned and centered on the origin with the caps on the</SourceLine>
+   <SourceLine>' ends of the largest dimension.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If width and height are equal use a Circle shape instead.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Capsule.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `width` or `height` are less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKCapsule(width, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKCapsule</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateCircle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Circle with the given radius centered on the origin. Throws InvalidArgumentException.</CodeDescription>
+  <PartID>619132927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateCircle(radius As Double) As PKCircle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Circle with the given radius centered on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Circle instance.'</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if radius is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKCircle(radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>radius As Double</ItemParams>
+  <ItemResult>PKCircle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>960131071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateEllipse(width As Double, height As Double) As PKEllipse</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Ellipse bounded by the given rectangle width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The ellipse will be axis-aligned and centered on the origin.</SourceLine>
+   <SourceLine>' If width and height are equal use a Circle shape instead.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height are less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKEllipse(width, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKEllipse</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateEquilateralTriangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an equilateral Triangle with the centre at the origin. Raises InvalidArgumentException.</CodeDescription>
+  <PartID>1154138111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateEquilateralTriangle(height As Double) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates an equilateral Triangle with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter height: The height of the triangle in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If height &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute `a` where height = a * sqrt(3) / 2.0 (a is the width of the base).</SourceLine>
+   <SourceLine>Var a As Double = 2.0 * height * INV_SQRT_3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the triangle.</SourceLine>
+   <SourceLine>Return PKGeometry.CreateIsoscelesTriangle(a, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>height As Double</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateHalfEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1465063423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateHalfEllipse(width As Double, height As Double) As PKHalfEllipse</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new HalfEllipse bounded by the given rectangle width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The ellipse will be axis-aligned with the base of the half ellipse on the x-axis. The given height</SourceLine>
+   <SourceLine>' is the height of the half, not the height of the full ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If width and height are equal use a Slice shape with `theta = MathsKit.PI` instead.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new HalfEllipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height are less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKHalfEllipse(width, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKHalfEllipse</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateHalfEllipseAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1550106623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateHalfEllipseAtOrigin(width As Double, height As Double) As PKHalfEllipse</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new HalfEllipse bounded by the given rectangle width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The ellipse will be axis-aligned with the base of the half ellipse on the x-axis. The given height</SourceLine>
+   <SourceLine>' is the height of the half, not the height of the full ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If width and height are equal use a Slice shape with `theta = MathsKit.PI` instead.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new HalfEllipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height are less than or equal to zero</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var half As PKHalfEllipse = New PKHalfEllipse(width, height)</SourceLine>
+   <SourceLine>Var c As PKVector2 = half.GetCenter</SourceLine>
+   <SourceLine>half.Translate(-c.X, -c.Y)</SourceLine>
+   <SourceLine>Return half</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKHalfEllipse</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateHorizontalSegment</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Segment with the given length with the centre at the origin. Raises InvalidArgumentException.</CodeDescription>
+  <PartID>1667500031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateHorizontalSegment(length As Double) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Segment with the given length with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter length: The length of the segment in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if length is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the length.</SourceLine>
+   <SourceLine>If length &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_LENGTH)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var startV As PKVector2 = New PKVector2(-length * 0.5, 0.0)</SourceLine>
+   <SourceLine>Var endV As PKVector2 = New PKVector2(length * 0.5, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKSegment(startV, endV)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>length As Double</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateIsoscelesTriangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an isosceles Triangle with the centre at the origin. Raises InvalidArgumentException.</CodeDescription>
+  <PartID>1164855295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateIsoscelesTriangle(width As Double, height As Double) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates an isosceles Triangle with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width of the base in metres.</SourceLine>
+   <SourceLine>' - Parameter height: The height in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the width.</SourceLine>
+   <SourceLine>If width &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_WIDTH)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the height.</SourceLine>
+   <SourceLine>If height &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var top As PKVector2 = New PKVector2(0.0, height)</SourceLine>
+   <SourceLine>Var left As PKVector2 = New PKVector2(-width * 0.5, 0.0)</SourceLine>
+   <SourceLine>Var right As PKVector2 = New PKVector2(width * 0.5, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the triangle</SourceLine>
+   <SourceLine>Var t As PKTriangle = New PKTriangle(top, left, right)</SourceLine>
+   <SourceLine>Var center As PKVector2 = t.GetCenter</SourceLine>
+   <SourceLine>t.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return t</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateLinks</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a list of Links for the given vertices. If `closed` is True, an extra link is created joining the last and first vertices in the array.</CodeDescription>
+  <PartID>1793552383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateLinks(vertices() As PKVector2, closed As Boolean) As PKLink()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a list of Links for the given vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the `closed` parameter is True, an extra link is created joining the last and first</SourceLine>
+   <SourceLine>' vertices in the array.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertices: The poly-line vertices.</SourceLine>
+   <SourceLine>' - Parameter closed: True if the shape should be enclosed.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: An array of Link objects.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the array of vertices is Nil or </SourceLine>
+   <SourceLine>'           an element of the vertex array is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the array of vertices doesn't contain two or more elements.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the vertex array.</SourceLine>
+   <SourceLine>If vertices Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertex length.</SourceLine>
+   <SourceLine>Var size As Integer = vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The size must be larger than 1 (2 or more).</SourceLine>
+   <SourceLine>If size &lt; 2 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Generate the links.</SourceLine>
+   <SourceLine>Var links() As PKLink</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 2</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = vertices(i).Copy</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = vertices(i + 1).Copy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil segment vertices.</SourceLine>
+   <SourceLine>If p1 Is Nil Or p2 Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var link As PKLink = New PKLink(p1, p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Link up the previous and this link.</SourceLine>
+   <SourceLine>If i &gt; 0 Then</SourceLine>
+   <SourceLine>Var prev As PKLink = links(i - 1)</SourceLine>
+   <SourceLine>link.SetPrevious(prev)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add link to the array of links.</SourceLine>
+   <SourceLine>links.AddRow(link)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If closed Then</SourceLine>
+   <SourceLine>// Create a link to span the first and last vertex.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = vertices(0).Copy</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = vertices(size - 1).Copy</SourceLine>
+   <SourceLine>Var link As PKLink = New PKLink(p1, p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Wire it up.</SourceLine>
+   <SourceLine>Var prev As PKLink = links(links.Count - 1)</SourceLine>
+   <SourceLine>Var nextLink As PKLink = links(0)</SourceLine>
+   <SourceLine>link.SetPrevious(prev)</SourceLine>
+   <SourceLine>link.SetNext(nextLink)</SourceLine>
+   <SourceLine>links.AddRow(link)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return links</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>vertices() As PKVector2, closed As Boolean</ItemParams>
+  <ItemResult>PKLink()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygon</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1070487551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygon(vertices() As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Polygon with the given vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of both the array and the vertices within the array to </SourceLine>
+   <SourceLine>' create the new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The centre of the Polygon will be computed using the area weighted method.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertices: The array of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `vertices` is Nil or an element of `vertices` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `vertices` contains less than 3 non-Nil vertices.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the vertices array.</SourceLine>
+   <SourceLine>If vertices = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_VERTICES_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points and copy them.</SourceLine>
+   <SourceLine>Var verts() As PKVector2</SourceLine>
+   <SourceLine>For Each vertex As PKVector2 In vertices</SourceLine>
+   <SourceLine>// Check for Nil points.</SourceLine>
+   <SourceLine>If vertex &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>verts.AddRow(vertex.Copy)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POLYGON_POINT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(verts)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>vertices() As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalCapsule</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a capsule using `count` number of vertices on each cap, centered on the origin.  The caps will be on the ends of the largest dimension. The returned polygon will have `4 + 2 * count` number of vertices.</CodeDescription>
+  <PartID>35407871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalCapsule(count As Integer, width As Double, height As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a capsule using `count` number of vertices on each</SourceLine>
+   <SourceLine>' cap, centered on the origin.  The caps will be on the ends of the largest dimension.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The returned polygon will have `4 + 2 * count` number of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use for one cap. Must be &gt;= 1.</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If count &lt; 1 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_COUNT)</SourceLine>
+   <SourceLine>If width &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>If height &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CAPSULE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the width and height are close enough to being equal, just return a circle.</SourceLine>
+   <SourceLine>If Abs(width - height) &lt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>Return PKGeometry.CreatePolygonalCircle(count, width)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var pin As Double = MathsKit.PI / (count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// 4 rect verts plus 2 * circle half verts.</SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo((4 + 2 * count) - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var c As Double = Cos(pin)</SourceLine>
+   <SourceLine>Var s As Double = Sin(pin)</SourceLine>
+   <SourceLine>Var t As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the major and minor axes.</SourceLine>
+   <SourceLine>Var major As Double = width</SourceLine>
+   <SourceLine>Var minor As Double = height</SourceLine>
+   <SourceLine>Var vertical As Boolean = False</SourceLine>
+   <SourceLine>If width &lt; height Then</SourceLine>
+   <SourceLine>major = height</SourceLine>
+   <SourceLine>minor = width</SourceLine>
+   <SourceLine>vertical = True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the radius from the minor axis.</SourceLine>
+   <SourceLine>Var radius As Double = minor * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the x/y offsets.</SourceLine>
+   <SourceLine>Var offset As Double = major * 0.5 - radius</SourceLine>
+   <SourceLine>Var ox As Double = 0</SourceLine>
+   <SourceLine>Var oy As Double = 0</SourceLine>
+   <SourceLine>If vertical Then</SourceLine>
+   <SourceLine>// Aligned to the y.</SourceLine>
+   <SourceLine>oy = offset</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Aligned to the x.</SourceLine>
+   <SourceLine>ox = offset</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var n As Integer = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Right cap.</SourceLine>
+   <SourceLine>Var ao As Double = If(vertical, 0, MathsKit.PI * 0.5)</SourceLine>
+   <SourceLine>Var x As Double = radius * Cos(pin - ao)</SourceLine>
+   <SourceLine>Var y As Double = radius * Sin(pin - ao)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = count - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(x + ox, y + oy)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Apply the rotation matrix.</SourceLine>
+   <SourceLine>t = x</SourceLine>
+   <SourceLine>x = c * x - s * y</SourceLine>
+   <SourceLine>y = s * t + c * y</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add in top/left vertices.</SourceLine>
+   <SourceLine>If vertical Then</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(-radius,  oy)</SourceLine>
+   <SourceLine>n =n + 1</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(-radius, -oy)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(ox, radius)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(-ox, radius)</SourceLine>
+   <SourceLine>n =n + 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Left cap.</SourceLine>
+   <SourceLine>ao = If(vertical, MathsKit.PI, MathsKit.PI * 0.5)</SourceLine>
+   <SourceLine>x = radius * Cos(pin + ao)</SourceLine>
+   <SourceLine>y = radius * Sin(pin + ao)</SourceLine>
+   <SourceLine>iLimit = count - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(x - ox, y - oy)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Apply the rotation matrix.</SourceLine>
+   <SourceLine>t = x</SourceLine>
+   <SourceLine>x = c * x - s * y</SourceLine>
+   <SourceLine>y = s * t + c * y</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add in bottom/right vertices.</SourceLine>
+   <SourceLine>If vertical Then</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(radius, -oy)</SourceLine>
+   <SourceLine>n =n + 1</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(radius,  oy)</SourceLine>
+   <SourceLine>n =n + 1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(-ox, -radius)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>vertices(n) = New PKVector2(ox, -radius)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, width As Double, height As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalCircle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a circle with count number of vertices centered on the origin.</CodeDescription>
+  <PartID>1662408703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalCircle(count As Integer, radius As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a circle with count number of vertices centered</SourceLine>
+   <SourceLine>' on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. Must be greater than 2.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circle. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 3 or `radius` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.CreatePolygonalCircle(count, radius, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalCircle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a circle with count number of vertices centered on the origin.</CodeDescription>
+  <PartID>715988991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalCircle(count As Integer, radius As Double, theta As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a circle with count number of vertices centered</SourceLine>
+   <SourceLine>' on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. Must be greater than or equal to 3.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circle. Must be greater than zero.</SourceLine>
+   <SourceLine>' - Parameter theta: The radial offset for the points in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 3 or `radius` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If count &lt; 3 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CIRCLE_INVALID_COUNT)</SourceLine>
+   <SourceLine>If radius &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_CIRCLE_INVALID_RADIUS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var pin As Double= PKGeometry.TWO_PI / count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the resulting output is an even number of vertices.</SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(count - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var c As Double = Cos(pin)</SourceLine>
+   <SourceLine>Var s As Double = Sin(pin)</SourceLine>
+   <SourceLine>Var t As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x As Double = radius</SourceLine>
+   <SourceLine>Var y As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise at theta if necessary.</SourceLine>
+   <SourceLine>If theta &lt;&gt; 0 Then</SourceLine>
+   <SourceLine>x = radius * Cos(theta)</SourceLine>
+   <SourceLine>y = radius * Sin(theta)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>vertices(i) = New PKVector2(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Apply the rotation matrix.</SourceLine>
+   <SourceLine>t = x</SourceLine>
+   <SourceLine>x = c * x - s * y</SourceLine>
+   <SourceLine>y = s * t + c * y</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of an ellipse with `count` number of vertices centered on the origin. `count` must be &gt;= 4 and even.</CodeDescription>
+  <PartID>991502335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalEllipse(count As Integer, width As Double, height As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of an ellipse with `count` number of vertices centered</SourceLine>
+   <SourceLine>' on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. Must be &gt;= 4. </SourceLine>
+   <SourceLine>'                    Should be even, if not, count - 1 vertices will be generated.</SourceLine>
+   <SourceLine>' - Parameter width: The width of the ellipse.</SourceLine>
+   <SourceLine>' - Parameter height: The height of the ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidlArgumentException if `count` &lt; 4 or `width` &lt;= 0 or `height` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If count &lt; 4 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_ELLIPSE_INVALID_COUNT)</SourceLine>
+   <SourceLine>If width &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_ELLIPSE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>If height &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_ELLIPSE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var a As Double = width * 0.5</SourceLine>
+   <SourceLine>Var b As Double = height * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var n2 As Integer = count / 2</SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var pin2 As Double = MathsKit.PI / n2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the resulting output is an even number of vertices.</SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo((n2 * 2) - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the parametric equations:</SourceLine>
+   <SourceLine>// x = a * cos(t)</SourceLine>
+   <SourceLine>// y = b * sin(t)</SourceLine>
+   <SourceLine>Var j As Integer = 0</SourceLine>
+   <SourceLine>For i As Integer = 0 To n2</SourceLine>
+   <SourceLine>Var t As Double = pin2 * i</SourceLine>
+   <SourceLine>// Since the under side of the ellipse is the same as the top side, only with a </SourceLine>
+   <SourceLine>// negated y, lets save some time by creating the under side at the same time.</SourceLine>
+   <SourceLine>Var x As Double = a * Cos(t)</SourceLine>
+   <SourceLine>Var y As Double = b * Sin(t)</SourceLine>
+   <SourceLine>If i &gt; 0 Then vertices(vertices.Count - j) = New PKVector2(x, -y)</SourceLine>
+   <SourceLine>vertices(j) = New PKVector2(x, y)</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, width As Double, height As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalHalfEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a half ellipse with `count` number of vertices with the base at the origin. Returns a polygon with `count + 2` vertices.</CodeDescription>
+  <PartID>779249663</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalHalfEllipse(count As Integer, width As Double, height As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a half ellipse with `count` number of vertices with the</SourceLine>
+   <SourceLine>' base at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns a polygon with `count + 2` vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The height is the total height of the half not the half height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Prameter count: The number of vertices to use. Must be &gt;= 1.</SourceLine>
+   <SourceLine>' - Parameter width: The width of the half ellipse.</SourceLine>
+   <SourceLine>' - Parameter height: The height of the half ellipse. Should be the total height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 1 or `width` &lt;= 0 or `height` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If count &lt; 1 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_COUNT)</SourceLine>
+   <SourceLine>If width &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>If height &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var a As Double = width * 0.5</SourceLine>
+   <SourceLine>Var b As Double = height * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var inc As Double = MathsKit.PI / (count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the resulting output is an even number of vertices.</SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the start and end vertices.</SourceLine>
+   <SourceLine>vertices(0) = New PKVector2(a, 0)</SourceLine>
+   <SourceLine>vertices(count + 1) = New PKVector2(-a, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the parametric equations:</SourceLine>
+   <SourceLine>// x = a * cos(t)</SourceLine>
+   <SourceLine>// y = b * sin(t)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i As Integer = 1 To count</SourceLine>
+   <SourceLine>Var t As Double = inc * i</SourceLine>
+   <SourceLine>// Since the under side of the ellipse is the same as the top side, only with a </SourceLine>
+   <SourceLine>// negated y, lets save some time by creating the under side at the same time.</SourceLine>
+   <SourceLine>Var x As Double = a * Cos(t)</SourceLine>
+   <SourceLine>Var y As Double = b * Sin(t)</SourceLine>
+   <SourceLine>vertices(i) = New PKVector2(x, y)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, width As Double, height As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalHalfEllipseAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a half ellipse with count number of vertices centered on the origin. Returns a polygon with `count + 2` vertices.</CodeDescription>
+  <PartID>7636991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalHalfEllipseAtOrigin(count As Integer, width As Double, height As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a half ellipse with count number of vertices centered</SourceLine>
+   <SourceLine>' on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns a polygon with `count + 2` vertices.</SourceLine>
+   <SourceLine>' The height is the total height of the half not the half height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. </SourceLine>
+   <SourceLine>'                    Should be even, if not, `count - 1` vertices will be generated.</SourceLine>
+   <SourceLine>' - Parameter width:The width of the half ellipse.</SourceLine>
+   <SourceLine>' - Parameter height: The height of the half ellipse. Should be the total height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 1 or `width` &lt;= 0 or `height` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var polygon As PKPolygon= PKGeometry.CreatePolygonalHalfEllipse(count, width, height)</SourceLine>
+   <SourceLine>Var center As PKVector2 = polygon.GetCenter</SourceLine>
+   <SourceLine>polygon.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine>Return polygon</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, width As Double, height As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalSlice</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a Slice with `count` number of vertices with the circle centred centered on the origin.</CodeDescription>
+  <PartID>346456063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalSlice(count As Integer, radius As Double, theta As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a Slice with `count` number of vertices with the</SourceLine>
+   <SourceLine>' circle centred centered on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method returns a polygon with count + 3 vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. Must be &gt;= 1.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circle. Must be &gt; 0.</SourceLine>
+   <SourceLine>' - Parameter theta: The arc length of the slice in radians. Must be &gt; 0.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Raises: InvalidArgumentException thrown if `count` &lt; 1 or `radius` &lt;= 0 or or `theta` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the input.</SourceLine>
+   <SourceLine>If count &lt; 1 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_COUNT)</SourceLine>
+   <SourceLine>If radius &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_RADIUS)</SourceLine>
+   <SourceLine>If theta &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_THETA)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var pin As Double = theta / (count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the resulting output is an even number of vertices.</SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(count + 2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var c As Double = Cos(pin)</SourceLine>
+   <SourceLine>Var s As Double = Sin(pin)</SourceLine>
+   <SourceLine>Var t As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise at minus theta.</SourceLine>
+   <SourceLine>Var x As Double = radius * Cos(-theta * 0.5)</SourceLine>
+   <SourceLine>Var y As Double = radius * Sin(-theta * 0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the first and last points of the arc.</SourceLine>
+   <SourceLine>vertices(0) = New PKVector2(x, y)</SourceLine>
+   <SourceLine>vertices(count + 1) = New PKVector2(x, -y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i As Integer = 1 To count</SourceLine>
+   <SourceLine>// Apply the rotation matrix.</SourceLine>
+   <SourceLine>t = x</SourceLine>
+   <SourceLine>x = c * x - s * y</SourceLine>
+   <SourceLine>y = s * t + c * y</SourceLine>
+   <SourceLine>// Add a point.</SourceLine>
+   <SourceLine>vertices(i) = New PKVector2(x, y)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finish off by adding the origin.</SourceLine>
+   <SourceLine>vertices(count + 2) = New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonalSliceAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Polygon in the shape of a Slice with count number of vertices centered on the origin. Returns a polygon with `count + 3` vertices.</CodeDescription>
+  <PartID>1850071039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonalSliceAtOrigin(count As Integer, radius As Double, theta As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Polygon in the shape of a Slice with count number of vertices centered on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method returns a polygon with `count + 3` vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to use. Must be &gt;= 1.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circle. Must be &gt; 0.</SourceLine>
+   <SourceLine>' - Parameter theta: The arc length of the slice in radians. Must be &gt; 0.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException thrown if `count` &lt; 1 or `radius` &lt;= 0 or `theta` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var polygon As PKPolygon= PKGeometry.CreatePolygonalSlice(count, radius, theta)</SourceLine>
+   <SourceLine>Var center As PKVector2 = polygon.GetCenter</SourceLine>
+   <SourceLine>polygon.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine>Return polygon</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreatePolygonAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Polygon, using the given vertices, centered at the origin. Makes a copy of the array and the vertices within the array to create the new Polygon. throws NilObjectExceptions and InvalidArgumentExceptions.</CodeDescription>
+  <PartID>1882437631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreatePolygonAtOrigin(vertices() As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Polygon, using the given vertices, centered at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of both the array and the vertices within the array to </SourceLine>
+   <SourceLine>' create the new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method translates the Polygon vertices so that the centre is at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertices: The array of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `vertices` is Nil or an element of vertices is Nil.</SourceLine>
+   <SourceLine>' - Raises InvalidArgumentException if `vertices` contains less than 3 non-Nill vertices.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var p As PKPolygon= PKGeometry.CreatePolygon(vertices)</SourceLine>
+   <SourceLine>Var center As PKVector2 = p.GetCenter</SourceLine>
+   <SourceLine>p.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return p</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>vertices() As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateRectangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Rectangle with the given width (m) and height (m),  centered at the origin.</CodeDescription>
+  <PartID>1154258943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateRectangle(width As Double, height As Double) As PKRectangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Rectangle with the given width and height centered at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width in metres.</SourceLine>
+   <SourceLine>' - Parameter height: The height in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Rectangle.'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKRectangle(width, height)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKRectangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateRightTriangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a right angle Triangle with the centre at the origin. `width` and `height` are in metres. Raises InvalidArgumentExceptions.</CodeDescription>
+  <PartID>1205700607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateRightTriangle(width As Double, height As Double) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a right angle Triangle with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width of the base in metres.</SourceLine>
+   <SourceLine>' - Parameter height: The height in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `width` or `height` is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.CreateRightTriangle(width, height, False)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateRightTriangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a right angle Triangle with the centre at the origin. `width` and `height` are in metres. Raises InvalidArgumentExceptions.</CodeDescription>
+  <PartID>1920057343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateRightTriangle(width As Double, height As Double, mirror As Boolean) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a right angle Triangle with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width of the base in metres.</SourceLine>
+   <SourceLine>' - Parameter height: The height in metres.</SourceLine>
+   <SourceLine>' - Parameter mirror: True if the triangle should be mirrored along the y-axis.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `width` or `height` is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the width.</SourceLine>
+   <SourceLine>If width &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_WIDTH)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the height.</SourceLine>
+   <SourceLine>If height &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_HEIGHT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var top As PKVector2 = New PKVector2(0.0, height)</SourceLine>
+   <SourceLine>Var left As PKVector2 = New PKVector2(0.0, 0.0)</SourceLine>
+   <SourceLine>Var right As PKVector2 = New PKVector2(If(mirror, -width, width), 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As PKTriangle</SourceLine>
+   <SourceLine>If mirror Then</SourceLine>
+   <SourceLine>// Make sure it has anti-clockwise winding.</SourceLine>
+   <SourceLine>t = New PKTriangle(top, right, left)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>t = New PKTriangle(top, left, right)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var center As PKVector2 = t.GetCenter</SourceLine>
+   <SourceLine>t.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return t</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double, mirror As Boolean</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSegment</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Segment from the origin to the given end point. Makes a copy of the given point to create the Segment. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>1266733055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSegment(endPoint As PKVector2) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Segment from the origin to the given end point</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of the given point to create the Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter endPoint: The end point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `endPoint` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.CreateSegment(New PKVector2, endPoint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>endPoint As PKVector2</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSegment</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Segment with the given points. Makes a copy of the given points to create the Segment. The centre of the Segment will be the average of the two points. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>1911676927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSegment(p1 As PKVector2, p2 As PKVector2) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Segment with the given points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of the given points to create the Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The centre of the Segment will be the average of the two points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `p1` or `p2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If p1 Is Nil Or p2 Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SEGMENT_POINT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKSegment(p1.Copy, p2.Copy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>p1 As PKVector2, p2 As PKVector2</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSegmentAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Segment with the given points. Makes a copy of the given points to create the Segment. Ttranslates the Segment vertices so that the centre is at the origin. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>1361395711</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSegmentAtOrigin(p1 As PKVector2, p2 As PKVector2) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Segment with the given points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of the given points to create the Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method translates the Segment vertices so that the centre is at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `p1` or `p2` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s As PKSegment= PKGeometry.createSegment(p1, p2)</SourceLine>
+   <SourceLine>Var center As PKVector2 = s.GetCenter</SourceLine>
+   <SourceLine>s.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>p1 As PKVector2, p2 As PKVector2</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSlice</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Slice with the given circle radius and arc length theta (in radians).</CodeDescription>
+  <PartID>1272772607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSlice(radius As Double, theta As Double) As PKSlice</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Slice with the given circle radius and arc length theta.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A Slice is an arbitrary slice of a circle. The specified radius is the radius</SourceLine>
+   <SourceLine>' 0f the circle. The slice will be positioned With the _circle centre_ on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Theta is the total arc length of the slice specified in radians. Theta is halved, putting</SourceLine>
+   <SourceLine>' half the arc length below the x-axis and half above.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Theta cannot be greater than π.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The circle radius.</SourceLine>
+   <SourceLine>' - Parameter theta: The total arc length in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Slice.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if radius is &lt;= 0, if theta &lt;= 0 or theta &gt; π.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKSlice(radius, theta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKSlice</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSliceAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Slice with the given circle radius and arc length theta (in radians). The slice will be positioned with the centroid at the origin.</CodeDescription>
+  <PartID>418633727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSliceAtOrigin(radius As Double, theta As Double) As PKSlice</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Slice with the given circle radius and arc length theta.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A Slice is an arbitrary slice of a circle. The specified radius is the radius</SourceLine>
+   <SourceLine>' of the circle. The slice will be positioned with the _centroid_ at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Theta is the total arc length of the slice specified in radians. Theta is halved, putting</SourceLine>
+   <SourceLine>' half the arc length below the x-axis and half above.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Theta cannot be greater than π.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The circle radius.</SourceLine>
+   <SourceLine>' - Parameter theta: The total arc length in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Slice.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if radius &lt;= 0, if theta &lt;= 0 or theta &gt; π.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var slice As PKSlice = New PKSlice(radius, theta)</SourceLine>
+   <SourceLine>slice.Translate(-slice.Center.X, -slice.Center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return slice</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKSlice</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateSquare</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a square with the given size (in metres), centered at the origin. Throws InvalidArgumentException.</CodeDescription>
+  <PartID>1919713279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateSquare(size As Double) As PKRectangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a square (equal height and width Rectangle) with the given size, centered at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter size: The size in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Rectangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if size is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKRectangle(size, size)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>size As Double</ItemParams>
+  <ItemResult>PKRectangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateTriangle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Triangle, using the given points. Makes a copy of the given points to create the Triangle. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>671520767</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateTriangle(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Triangle, using the given points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of the given points to create the Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The centre of the Triangle will be computed using the area weighted method.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>' - Parameter p3: The third point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NiObjectException if `p1`, `p2`, or `p3` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If p1 Is Nil Or p2 Is Nil Or p3 Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_TRIANGLE_POINT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKTriangle(p1.Copy, p2.Copy, p3.Copy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>p1 As PKVector2, p2 As PKVector2, p3 As PKVector2</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateTriangleAtOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Triangle with the given points centered at the origin. Makes a copy of the given points to create the Triangle. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>1107089407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateTriangleAtOrigin(p1 As PKVector2, p2 As PKVector2, p3 As PKVector2) As PKTriangle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Triangle with the given points centered at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method makes a copy of the given points to create the Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p1: The first point.</SourceLine>
+   <SourceLine>' - Parameter p2: The second point.</SourceLine>
+   <SourceLine>' - Parameter p3: The third point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Triangle.'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `p1`, `p2`, or `p3` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As PKTriangle= PKGeometry.CreateTriangle(p1, p2, p3)</SourceLine>
+   <SourceLine>Var center As PKVector2 = t.GetCenter</SourceLine>
+   <SourceLine>t.Translate(-center.X, -center.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return t</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>p1 As PKVector2, p2 As PKVector2, p3 As PKVector2</ItemParams>
+  <ItemResult>PKTriangle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateUnitCirclePolygon</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new  Polygon with `count` number of points, where the points are evenly distributed around the unit circle.  The resulting Polygon will be centered on the origin.</CodeDescription>
+  <PartID>895916031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new  Polygon with `count` number of points, where the points are </SourceLine>
+   <SourceLine>' evenly distributed around the unit circle.  The resulting Polygon will be centered on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The radius parameter is the distance from the centre of the polygon to each vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius from the centre to each vertex in meters.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 3 or radius &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.CreateUnitCirclePolygon(count, radius, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateUnitCirclePolygon</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new Polygon with count number of points, where the points are evenly distributed around the unit circle. The resulting Polygon will be centered on the origin.</CodeDescription>
+  <PartID>2133157887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateUnitCirclePolygon(count As Integer, radius As Double, theta As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new Polygon with count number of points, where the points are evenly </SourceLine>
+   <SourceLine>' distributed around the unit circle. The resulting Polygon will be centered on the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The `radius` parameter is the distance from the centre of the polygon to each vertex.</SourceLine>
+   <SourceLine>' The `theta` parameter is a vertex angle offset used to rotate all the vertices by the given amount.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius from the centre to each vertex in meters.</SourceLine>
+   <SourceLine>' - Parameter theta: The vertex angle offset in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `count` &lt; 3 or `radius` &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the count.</SourceLine>
+   <SourceLine>If count &lt; 3 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_VERTICES_SIZE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the radius.</SourceLine>
+   <SourceLine>If radius &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_RADIUS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Call the more efficient method here.</SourceLine>
+   <SourceLine>Return PKGeometry.CreatePolygonalCircle(count, radius, theta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>count As Integer, radius As Double, theta As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateVerticalSegment</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new Segment with the given length with the centre at the origin. `length` is in metres. Raises InvalidArgumentExceptions.</CodeDescription>
+  <PartID>927021055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateVerticalSegment(length As Double) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new Segment with the given length with the centre at the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter length: The length of the segment in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `length` is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the length.</SourceLine>
+   <SourceLine>If length &lt;= 0.0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_LENGTH)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var start As PKVector2 = New PKVector2(0.0, -length * 0.5)</SourceLine>
+   <SourceLine>Var endPoint As PKVector2 = New PKVector2(0.0, length * 0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKSegment(start, endPoint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>length As Double</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Flip</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Flips the given polygon about the given line and returns the result as a new Polygon. This method assumes that the line is through the origin.</CodeDescription>
+  <PartID>347131903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Flip(polygon As PKPolygon, axis As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about the given line and returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that the line is through the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>' - Parameter axis:The axis to flip about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon or axis is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given axis is the zero vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.Flip(polygon, axis, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, axis As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Flip</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1055227903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Flip(polygon As PKPolygon, axis As PKVector2, point As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about the given line and returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>' - Parameter axis: The axis to flip about.</SourceLine>
+   <SourceLine>' - Parameter point: The point to flip about. If Nil, the polygon's centre is used.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon or axis is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given axis is the zero vector.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for valid input.</SourceLine>
+   <SourceLine>If polygon Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_FLIP_POLYGON)</SourceLine>
+   <SourceLine>If axis Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_FLIP_AXIS)</SourceLine>
+   <SourceLine>If axis.IsZero Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_ZERO_FLIP_AXIS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Just use the centre of the polygon if the given point is Nil.</SourceLine>
+   <SourceLine>If point Is Nil Then point = polygon.GetCenter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Flip about the axis and point. Make sure the axis is normalised.</SourceLine>
+   <SourceLine>Call axis.Normalise</SourceLine>
+   <SourceLine>Var pv() As PKVector2 = polygon.GetVertices</SourceLine>
+   <SourceLine>Var nv() As PKVector2</SourceLine>
+   <SourceLine>nv.ResizeTo(pv.Count - 1)</SourceLine>
+   <SourceLine>Var iLimit As Integer = pv.Count - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>Var v0 As PKVector2 = pv(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Centre on the origin.</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = v0.Difference(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the projection of the point onto the axis.</SourceLine>
+   <SourceLine>Var proj As Double = v1.Dot(axis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the point on the axis.</SourceLine>
+   <SourceLine>Var vp As PKVector2 = axis.Product(proj)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the point past the projection.</SourceLine>
+   <SourceLine>Var rv As PKVector2 = vp.Add(vp.X - v1.X, vp.Y - v1.Y)</SourceLine>
+   <SourceLine>nv(i) = rv.Add(point)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the winding.</SourceLine>
+   <SourceLine>If PKGeometry.GetWinding(nv) &lt; 0 Then PKGeometry.ReverseWinding(nv)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(nv)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, axis As PKVector2, point As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FlipAlongTheXAxis</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Flips the given polygon about its center along the x-axis and returns the result as a new Polygon. Assumes that the line is through the origin.</CodeDescription>
+  <PartID>1904992255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FlipAlongTheXAxis(polygon As PKPolygon) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about its center along the x-axis and returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that the line is through the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.Flip(polygon, PKVector2.X_AXIS, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FlipAlongTheXAxis</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Flips the given polygon about the given point along the x-axis and returns the result as a new Polygon.</CodeDescription>
+  <PartID>1975953407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FlipAlongTheXAxis(polygon As PKPolygon, point As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about the given point along the x-axis and </SourceLine>
+   <SourceLine>' returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>' - Parameter point: The point to flip about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.Flip(polygon, PKVector2.X_AXIS, point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, point As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FlipAlongTheYAxis</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Flips the given polygon about its center along the y-axis and returns the result as a new Polygon. Assumes that the line is through the origin.</CodeDescription>
+  <PartID>1020241919</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FlipAlongTheYAxis(polygon As PKPolygon) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about its center along the y-axis and returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes that the line is through the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.Flip(polygon, PKVector2.Y_AXIS, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FlipAlongTheYAxis</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Flips the given polygon about the given point along the y-axis and returns the result as a new Polygon.</CodeDescription>
+  <PartID>142454783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FlipAlongTheYAxis(polygon As PKPolygon, point As PKVector2) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Flips the given polygon about the given point along the y-axis and</SourceLine>
+   <SourceLine>' returns the result as a new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to flip.</SourceLine>
+   <SourceLine>' - Parameter point: The point To flip about.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given Polygon is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.Flip(polygon, PKVector2.Y_AXIS, point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, point As PKVector2</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAreaWeightedCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the area weighted centroid for the given points.</CodeDescription>
+  <PartID>478719999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetAreaWeightedCenter(points() As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the area weighted centroid for the given points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A Polygon's centroid must be computed by the area weighted method since the</SourceLine>
+   <SourceLine>' average method can be bias to one side if there are more points on that one</SourceLine>
+   <SourceLine>' side than another.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The Polygon points.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Returns: The area weighted centroid as a PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `points` is Nil or an element of `points` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `points` is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Calculate the average centre.</SourceLine>
+   <SourceLine>// Note that this also performs the necessary checks and raises any exceptions needed.</SourceLine>
+   <SourceLine>Var ac As PKVector2= PKGeometry.GetAverageCenter(points)</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise perform the computation.</SourceLine>
+   <SourceLine>Var center As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var area As Double = 0.0</SourceLine>
+   <SourceLine>// Loop through the vertices.</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get two vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = points(i)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = If(i + 1 &lt; size, points(i + 1), points(0))</SourceLine>
+   <SourceLine>p1 = p1.Difference(ac)</SourceLine>
+   <SourceLine>p2 = p2.Difference(ac)</SourceLine>
+   <SourceLine>// Perform the cross product (yi * x(i+1) - y(i+1) * xi)</SourceLine>
+   <SourceLine>Var d As Double = p1.Cross(p2)</SourceLine>
+   <SourceLine>// Multiply by half.</SourceLine>
+   <SourceLine>Var triangleArea As Double = 0.5 * d</SourceLine>
+   <SourceLine>// Add it to the total area.</SourceLine>
+   <SourceLine>area = area + triangleArea</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Area weighted centroid</SourceLine>
+   <SourceLine>// (p1 + p2) * (D / 3)</SourceLine>
+   <SourceLine>// = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 3</SourceLine>
+   <SourceLine>// We will divide by the total area later.</SourceLine>
+   <SourceLine>Call center.Add(p1.Add(p2).Multiply(INV_3).Multiply(triangleArea))</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero area.</SourceLine>
+   <SourceLine>If Abs(area) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// Zero area can only happen if all the points are the same point </SourceLine>
+   <SourceLine>// in which case just return a copy of the first.</SourceLine>
+   <SourceLine>Return points(0).Copy</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finish the centroid calculation by dividing by the total area.</SourceLine>
+   <SourceLine>Call center.Divide(area).Add(ac)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the centre.</SourceLine>
+   <SourceLine>Return center</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAverageCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the centroid of the given points by performing an average.</CodeDescription>
+  <PartID>1779890175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetAverageCenter(points() As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the centroid of the given points by performing an average.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The list of points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: The centroid as a PKVector2.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `points` is Nil or an element of `points` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `points` is an empty array.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil array</SourceLine>
+   <SourceLine>If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty array.</SourceLine>
+   <SourceLine>If points.Count = 0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE_POINT_ARRAY1)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an array of one point.</SourceLine>
+   <SourceLine>If size = 1 Then</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(0)</SourceLine>
+   <SourceLine>// Make sure it's not Nil.</SourceLine>
+   <SourceLine>If p Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)</SourceLine>
+   <SourceLine>// Return a copy.</SourceLine>
+   <SourceLine>Return p.Copy</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise perform the average.</SourceLine>
+   <SourceLine>Var ac As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>For Each point As PKVector2 In points</SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If point Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)</SourceLine>
+   <SourceLine>Call ac.Add(point)</SourceLine>
+   <SourceLine>Next point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return ac.Divide(size)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCounterClockwiseEdgeNormals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an array of normalised vectors representing the normals of all the edges given the vertices.</CodeDescription>
+  <PartID>459581439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetCounterClockwiseEdgeNormals(vertices() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns an array of normalised vectors representing the normals of all the</SourceLine>
+   <SourceLine>' edges given the vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method assumes counter-clockwise ordering.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertices: The vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns PKVector2 array or Nil if the given `vertices` array is Nil or empty.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `vertices` contains a Nil element.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If vertices = Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var size As Integer = vertices.Count</SourceLine>
+   <SourceLine>If size = 0 Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var normals() As PKVector2</SourceLine>
+   <SourceLine>normals.ResizeTo(size - 1)</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the edge points.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = vertices(i)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = If((i + 1 = size), vertices(0), vertices(i + 1))</SourceLine>
+   <SourceLine>// Create the edge and get its left perpedicular vector.</SourceLine>
+   <SourceLine>Var n As PKVector2 = p1.Towards(p2).Left</SourceLine>
+   <SourceLine>// Normalise it.</SourceLine>
+   <SourceLine>Call n.Normalise</SourceLine>
+   <SourceLine>normals(i) = n</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return normals</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>vertices() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum radius of the given vertices rotated about the origin. If the vertices array is Nil or empty, zero is returned.</CodeDescription>
+  <PartID>471791615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetRotationRadius(ParamArray vertices As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum radius of the given vertices rotated about the origin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the vertices array is Nil or empty, zero is returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertices: The polygon vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.GetRotationRadius(New PKVector2, vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ParamArray vertices As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum radius of the given vertices rotated about the given centre. If the `vertices` array is Nil or empty, zero is returned. If `center` is Nil the origin will be used instead.</CodeDescription>
+  <PartID>249661439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetRotationRadius(center As PKVector2, vertices() As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum radius of the given vertices rotated about the given center.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the vertices array is Nil or empty, zero is returned.</SourceLine>
+   <SourceLine>' If center is Nil the origin will be used instead.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter center: The center point.</SourceLine>
+   <SourceLine>' - Parameter vertices: The polygon vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the vertices.</SourceLine>
+   <SourceLine>If vertices = Nil Then Return 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the centre.</SourceLine>
+   <SourceLine>If center = Nil Then center = New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the length.</SourceLine>
+   <SourceLine>If vertices.Count = 0 Then Return 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the maximum radius from the centre.</SourceLine>
+   <SourceLine>Var r2 As Double = 0.0</SourceLine>
+   <SourceLine>For Each v As PKVector2 In vertices</SourceLine>
+   <SourceLine>// Validate each vertex.</SourceLine>
+   <SourceLine>If v &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Var r2t As Double = center.DistanceSquared(v)</SourceLine>
+   <SourceLine>// Keep the largest.</SourceLine>
+   <SourceLine>r2 = Max(r2, r2t)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the radius.</SourceLine>
+   <SourceLine>Return Sqrt(r2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>center As PKVector2, vertices() As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWinding</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the winding, Clockwise or Counter-Clockwise, for the given array of points of a polygon. Returns negative for Clockwise winding; positive for Counter-Clockwise winding. Raises NilObjectExceptions and InvalidArgumentExceptions.</CodeDescription>
+  <PartID>801939455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetWinding(points() As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the winding, Clockwise or Counter-Clockwise, for the given array of points of a polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method determines the winding by computing a signed "area".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The points of a polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Negative for Clockwise winding positive for Counter-Clockwise winding.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `points` is Nil or an element of points is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `points` contains less than 2 elements</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil array.</SourceLine>
+   <SourceLine>If points Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// the Size must be larger than 1.</SourceLine>
+   <SourceLine>If size &lt; 2 then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SIZE_POINT_ARRAY2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Determine the winding by computing a signed "area".</SourceLine>
+   <SourceLine>Var area As Double = 0.0</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the current point and the next point.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = points(i)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = points(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If p1 Is Nil Or p2 Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY_ELEMENTS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the signed area.</SourceLine>
+   <SourceLine>area = area + p1.Cross(p2)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the area.</SourceLine>
+   <SourceLine>Return area</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MinkowskiSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the Minkowski Sum of the given Polygon and Circle. Use the `count` parameter to specify the number of vertices to use per round corner.</CodeDescription>
+  <PartID>642289663</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MinkowskiSum(circle As PKCircle, polygon As PKPolygon, count As Integer) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the Minkowski Sum of the given Polygon and Circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Use the count parameter to specify the number of vertices to use per round corner.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given polygon has _n_ number of vertices, the returned polygon will have </SourceLine>
+   <SourceLine>' _n * 2 + n * count_ number of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method is O(n) where n is the number of vertices in the given polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon.</SourceLine>
+   <SourceLine>' - Parameter circle: The circle to add to the polygon.</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon or circle is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.MinkowskiSum(polygon, circle, count)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>circle As PKCircle, polygon As PKPolygon, count As Integer</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MinkowskiSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new polygon that has been radially expanded. This is equivalent to the Minkowski sum of a circle, of the given radius, and the given polygon.</CodeDescription>
+  <PartID>1789882367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MinkowskiSum(polygon As PKPolygon, radius As Double, count As Integer) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new polygon that has been radially expanded. This is equivalent to the Minkowski sum of</SourceLine>
+   <SourceLine>' a circle, of the given radius, and the given polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Use the `count` parameter to specify the number of vertices to use per round corner.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given polygon has _n_ number of vertices, the returned polygon will have </SourceLine>
+   <SourceLine>' _n * 2 + n * count_ number of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method is O(n) where n is the number of vertices in the given polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon to expand radially.</SourceLine>
+   <SourceLine>' - Parameter radius: The radial expansion. Must be greater than zero.</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectrException if the given polygon is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// check for valid input</SourceLine>
+   <SourceLine>If polygon Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_MINKOWSKI_SUM_POLYGON)</SourceLine>
+   <SourceLine>If radius &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_MINKOWSKI_SUM_RADIUS)</SourceLine>
+   <SourceLine>If count &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_MINKOWSKI_SUM_COUNT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertices() As PKVector2 = polygon.Vertices</SourceLine>
+   <SourceLine>Var normals() As PKVector2 = polygon.Normals</SourceLine>
+   <SourceLine>Var size As Integer = vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var nVerts() As PKVector2</SourceLine>
+   <SourceLine>nVerts.ResizeTo((size * 2 + size * count) - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform the expansion.</SourceLine>
+   <SourceLine>Var j As Integer = 0</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = vertices(i)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = vertices(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine>Var normal As PKVector2 = normals(i)</SourceLine>
+   <SourceLine>Var nv1 As PKVector2 = normal.Product(radius).Add(v1)</SourceLine>
+   <SourceLine>Var nv2 As PKVector2 = normal.Product(radius).Add(v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Generate the previous polygonal arc with count vertices.</SourceLine>
+   <SourceLine>// Compute (circular) angle between the edges.</SourceLine>
+   <SourceLine>Var cv1 As PKVector2</SourceLine>
+   <SourceLine>If i = 0 Then</SourceLine>
+   <SourceLine>// If it's the first iteration, then we need to compute the last vertex's new position.</SourceLine>
+   <SourceLine>Var tn As PKVector2 = normals(size - 1)</SourceLine>
+   <SourceLine>cv1 = v1.Towards(tn.Product(radius).Add(v1))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>cv1 = v1.Towards(nVerts(j - 1))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Var cv2 As PKVector2 = v1.Towards(nv1)</SourceLine>
+   <SourceLine>Var theta As Double = cv1.GetAngleBetween(cv2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the angular increment.</SourceLine>
+   <SourceLine>Var pin As Double = theta / (count + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var c As Double = Cos(pin)</SourceLine>
+   <SourceLine>Var s As Double = Sin(pin)</SourceLine>
+   <SourceLine>Var t As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the start theta.</SourceLine>
+   <SourceLine>Var sTheta As Double = PKVector2.X_AXIS.GetAngleBetween(normals(If(i - 1 &lt; 0, size - 1, i - 1)))</SourceLine>
+   <SourceLine>If sTheta &lt; 0 Then</SourceLine>
+   <SourceLine>sTheta = sTheta + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise at minus theta.</SourceLine>
+   <SourceLine>Var x As Double = radius * Cos(sTheta)</SourceLine>
+   <SourceLine>Var y As Double = radius * Sin(sTheta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var kLimit As Integer = count - 1</SourceLine>
+   <SourceLine>For k As Integer = 0 To kLimit</SourceLine>
+   <SourceLine>// aAply the rotation matrix.</SourceLine>
+   <SourceLine>t = x</SourceLine>
+   <SourceLine>x = c * x - s * y</SourceLine>
+   <SourceLine>y = s * t + c * y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add a point.</SourceLine>
+   <SourceLine>nVerts(j) = New PKVector2(x, y)</SourceLine>
+   <SourceLine>Call nverts(j).Add(v1)</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>Next k</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>nVerts(j) = nv1</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>nVerts(j) = nv2</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(nVerts)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, radius As Double, count As Integer</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MinkowskiSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the Minkowski Sum of the given Polygon and Circle. Use the `count` parameter to specify the number of vertices to use per round corner.</CodeDescription>
+  <PartID>1191282687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MinkowskiSum(polygon As PKPolygon, circle As PKCircle, count As Integer) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the Minkowski Sum of the given Polygon and Circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Use the `count` parameter to specify the number of vertices to use per round corner.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given polygon has _n_ number of vertices, the returned polygon will have </SourceLine>
+   <SourceLine>' _n * 2 + n * count_ number of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method is O(n) where n is the number of vertices in the given polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon.</SourceLine>
+   <SourceLine>' - Parameter circle: The circle to add to the polygon.</SourceLine>
+   <SourceLine>' - Parameter count: The number of vertices to add for each rounded corner. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon or circle is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius or count is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If circle Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_MINKOWSKI_SUM_CIRCLE)</SourceLine>
+   <SourceLine>Return PKGeometry.MinkowskiSum(polygon, circle.Radius, count)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, circle As PKCircle, count As Integer</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MinkowskiSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the Minkowski Sum of the given convex shapes. The shapes MUST implement both the Convex and Wound interfaces.</CodeDescription>
+  <PartID>254056447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MinkowskiSum(convex1 As Variant, convex2 As Variant) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the Minkowski Sum of the given convex shapes.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method computes the Minkowski Sum in O(n + m) time where n and m are the number</SourceLine>
+   <SourceLine>' of vertices of the first and second convex respectively.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method accepts any Convex Wound shape which basically means Polygons orSegments.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method raises an InvalidArgumentException if two Segments are supplied</SourceLine>
+   <SourceLine>' that are colinear (in this case the resulting Minkowski sum would be another segment</SourceLine>
+   <SourceLine>' rather than a polygon).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter convex1: The first convex.</SourceLine>
+   <SourceLine>' - Parameter convex2: The second convex.</SourceLine>
+   <SourceLine>' - Both parameters must implement the Convex AND Wound interfaces.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `convex1` or `convex2` are Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if both `convex1` and `convex2` are Segments and are colinear.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if either `convex1` or `convex2` are NOT both Convex AND Wound.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If convex1 Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)</SourceLine>
+   <SourceLine>If convex2 Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_MINKOWSKI_SUM_CONVEX)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Since Xojo doens't implement generics like Java does, validate the correct </SourceLine>
+   <SourceLine>// types have been passed.</SourceLine>
+   <SourceLine>If convex1 IsA PKConvex = False Or convex1 IsA PKWound = False Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX1)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If convex2 IsA PKConvex = False Or convex2 IsA PKWound = False Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_MINKOWSKI_SUM_INVALID_CONVEX2)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var p1v() As PKVector2 = PKWound(convex1).GetVertices</SourceLine>
+   <SourceLine>Var p2v() As PKVector2 = PKWound(convex2).GetVertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for two segments.</SourceLine>
+   <SourceLine>If convex1 IsA Segment And convex2 IsA Segment Then</SourceLine>
+   <SourceLine>// Check if they are colinear.</SourceLine>
+   <SourceLine>Var s1 As PKVector2 = p1v(0).Towards(p1v(1))</SourceLine>
+   <SourceLine>Var s2 As PKVector2 = p2v(0).Towards(p2v(1))</SourceLine>
+   <SourceLine>If s1.Cross(s2) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_MINKOWSKI_SUM_SEGMENTS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var c1 As Integer = p1v.Count</SourceLine>
+   <SourceLine>Var c2 As Integer = p2v.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the minimum y-coordinate vertex in the first polygon.</SourceLine>
+   <SourceLine>// In the case of a tie, use the minimum x-coordinate vertex.</SourceLine>
+   <SourceLine>Var i As Integer = 0</SourceLine>
+   <SourceLine>Var j As Integer = 0</SourceLine>
+   <SourceLine>Var min As PKVector2 = New PKVector2(MathsKit.DOUBLE_MAX_VALUE, MathsKit.DOUBLE_MAX_VALUE)</SourceLine>
+   <SourceLine>Var kLimit As Integer = c1 - 1</SourceLine>
+   <SourceLine>For k As Integer = 0 To kLimit</SourceLine>
+   <SourceLine>Var v As PKVector2 = p1v(k)</SourceLine>
+   <SourceLine>If v.Y &lt; min.Y Then</SourceLine>
+   <SourceLine>Call min.Set(v)</SourceLine>
+   <SourceLine>i = k</SourceLine>
+   <SourceLine>Elseif v.Y = Min.Y Then</SourceLine>
+   <SourceLine>If v.X &lt; Min.X Then</SourceLine>
+   <SourceLine>Call min.Set(v)</SourceLine>
+   <SourceLine>i = k</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next k</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the minimum y-coordinate vertex in the second polygon.</SourceLine>
+   <SourceLine>// In the case of a tie, use the minimum x-coordinate vertex.</SourceLine>
+   <SourceLine>Call min.Set(MathsKit.DOUBLE_MAX_VALUE, MathsKit.DOUBLE_MAX_VALUE)</SourceLine>
+   <SourceLine>kLimit = c2 - 1</SourceLine>
+   <SourceLine>For k As Integer = 0 To kLimit</SourceLine>
+   <SourceLine>Var v As PKVector2 = p2v(k)</SourceLine>
+   <SourceLine>If v.Y &lt; min.Y Then</SourceLine>
+   <SourceLine>Call min.Set(v)</SourceLine>
+   <SourceLine>j = k</SourceLine>
+   <SourceLine>ElseIf v.Y = min.Y Then</SourceLine>
+   <SourceLine>If v.X &lt; min.X Then</SourceLine>
+   <SourceLine>Call min.Set(v)</SourceLine>
+   <SourceLine>j = k</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next k</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Iterate through the vertices.</SourceLine>
+   <SourceLine>Var n1 As Integer = c1 + i</SourceLine>
+   <SourceLine>Var n2 As Integer = c2 + j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The maximum number of vertices for the output shape is m + n</SourceLine>
+   <SourceLine>Var sum() As PKVector2</SourceLine>
+   <SourceLine>While i &lt;= n1 And j &lt;= n2</SourceLine>
+   <SourceLine>// Get the current edges.</SourceLine>
+   <SourceLine>Var v1s As PKVector2 = p1v(i Mod c1)</SourceLine>
+   <SourceLine>Var v1e As PKVector2 = p1v((i + 1) Mod c1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v2s As PKVector2 = p2v(j Mod c2)</SourceLine>
+   <SourceLine>Var v2e As PKVector2 = p2v((j + 1) Mod c2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the vertex to the final output.</SourceLine>
+   <SourceLine>// On the first iteration we can assume this is a correct</SourceLine>
+   <SourceLine>// one since we started at the minimum y-coordinate vertices.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// On subsequent interations we can assume this is a correct</SourceLine>
+   <SourceLine>// one since the angle condition was used to increment the vertex index.</SourceLine>
+   <SourceLine>sum.AddRow(v1s.sum(v2s))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the edge vectors.</SourceLine>
+   <SourceLine>Var e1 As PKVector2 = v1s.Towards(v1e)</SourceLine>
+   <SourceLine>Var e2 As PKVector2 = v2s.Towards(v2e)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the angles between the x-axis in the range [-π, π].</SourceLine>
+   <SourceLine>Var a1 As Double = PKVector2.X_AXIS.GetAngleBetween(e1)</SourceLine>
+   <SourceLine>Var a2 As Double = PKVector2.X_AXIS.GetAngleBetween(e2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Put the angles in the range [0, 2π].</SourceLine>
+   <SourceLine>If a1 &lt; 0 Then a1 = a1 + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine>If a2 &lt; 0 Then a2 = a2 + PKGeometry.TWO_PI</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Determine which vertex to use next.</SourceLine>
+   <SourceLine>If a1 &lt; a2 Then</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>ElseIf a1 &gt; a2 Then</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(sum)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>convex1 As Variant, convex2 As Variant</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ReverseWinding</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Reverses the order of the polygon points within the given array. Raises NilObjectExceptions.</CodeDescription>
+  <PartID>142471167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub ReverseWinding(points() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Reverses the order of the polygon points within the given array.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method performs a simple array reverse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points: The polygon points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `points` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil array.</SourceLine>
+   <SourceLine>If points Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POINT_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the length.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 1 Then Return</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise perform the swapping loop.</SourceLine>
+   <SourceLine>Var i As Integer = 0</SourceLine>
+   <SourceLine>Var j As Integer = size - 1</SourceLine>
+   <SourceLine>Var temp As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While j &gt; i</SourceLine>
+   <SourceLine>temp = points(j)</SourceLine>
+   <SourceLine>points(j) = points(i)</SourceLine>
+   <SourceLine>points(i) = temp</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>j = j - 1</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given capsule.</CodeDescription>
+  <PartID>1800636415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(capsule As PKCapsule, scale As Double) As PKCapsule</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given capsule.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter capsule: The capsule.</SourceLine>
+   <SourceLine>' - Paramater scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Capsule.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given capsule is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If capsule Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine>Return New PKCapsule(capsule.GetLength * scale, capsule.GetCapRadius * 2.0 * scale)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>capsule As PKCapsule, scale As Double</ItemParams>
+  <ItemResult>PKCapsule</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given circle.</CodeDescription>
+  <PartID>1305137151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(circle As PKCircle, scale As Double) As PKCircle</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter circle: The circle.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given circle is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If circle Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine>Return New PKCircle(circle.Radius * scale)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>circle As PKCircle, scale As Double</ItemParams>
+  <ItemResult>PKCircle</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given ellipse.</CodeDescription>
+  <PartID>20860927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(ellipse As PKEllipse, scale As Double) As PKEllipse</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter ellipse: The ellipse.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returnsl: A new Ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given ellipse is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If ellipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine>Return New PKEllipse(ellipse.GetWidth * scale, ellipse.GetHeight * scale)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ellipse As PKEllipse, scale As Double</ItemParams>
+  <ItemResult>PKEllipse</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given half-ellipse.</CodeDescription>
+  <PartID>1317122047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(halfEllipse As PKHalfEllipse, scale As Double) As PKHalfEllipse</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given half-ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter halfEllipse: The half-ellipse.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returnsl: A new HalfEllipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given half-ellipse is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If halfEllipse Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine>Return New PKHalfEllipse(halfEllipse.GetWidth * scale, halfEllipse.GetHeight * scale)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>halfEllipse As PKHalfEllipse, scale As Double</ItemParams>
+  <ItemResult>PKHalfEllipse</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given polygon.</CodeDescription>
+  <PartID>835188735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(polygon As PKPolygon, scale As Double) As PKPolygon</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon: The polygon.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given polygon is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If polygon Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var oVertices() As PKVector2 = polygon.Vertices</SourceLine>
+   <SourceLine>Var size As Integer = oVertices.Count - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(size)</SourceLine>
+   <SourceLine>Var center As PKVector2 = polygon.Center</SourceLine>
+   <SourceLine>For i As Integer = 0 To size</SourceLine>
+   <SourceLine>vertices(i) = center.Towards(oVertices(i)).Multiply(scale).Add(center)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPolygon(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>polygon As PKPolygon, scale As Double</ItemParams>
+  <ItemResult>PKPolygon</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given segment.</CodeDescription>
+  <PartID>1906702335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(segment As PKSegment, scale As Double) As PKSegment</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter segment: The segment.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Segment.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given segment is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If segment Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var length As Double = segment.GetLength * scale * 0.5</SourceLine>
+   <SourceLine>Var n As PKVector2 = segment.Vertices(0).Towards(segment.Vertices(1))</SourceLine>
+   <SourceLine>Call n.Normalise</SourceLine>
+   <SourceLine>Call n.Multiply(length)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKSegment(segment.Center.Sum(n.X, n.Y), segment.Center.Difference(n.X, n.Y))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>segment As PKSegment, scale As Double</ItemParams>
+  <ItemResult>PKSegment</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a (new) scaled version of the given slice.</CodeDescription>
+  <PartID>1147799551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Scale(slice As PKSlice, scale As Double) As PKSlice</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a scaled version of the given slice.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter slice: The slice.</SourceLine>
+   <SourceLine>' - Parameter scale: The scale. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Slice.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if the given slice is Nil.</SourceLine>
+   <SourceLine>' - Raises:" InvalidArgumentException if the given scale is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If slice Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_NIL_SHAPE)</SourceLine>
+   <SourceLine>If scale &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_INVALID_SCALE)</SourceLine>
+   <SourceLine>Return New PKSlice(slice.GetSliceRadius * scale, slice.GetTheta)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>slice As PKSlice, scale As Double</ItemParams>
+  <ItemResult>PKSlice</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1949577215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Contains static methods to perform standard geometric operations.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class can be used to create Shapes of varying types via the `Create` methods.</NoteLine>
+   <NoteLine>While {@link Shape}s can be created using their constructors as well, the methods here can place their</NoteLine>
+   <NoteLine>centres on the origin and also make copies of the given input to avoid reuse issues.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class also contains various helper methods for cleaning vector arrays and lists and performing</NoteLine>
+   <NoteLine>various operations on Shapes.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>INV_3</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2132901887</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.3333333333333333</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>INV_SQRT_3</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The value of the inverse of the square root of 3: 1/Sqrt(3)</CodeDescription>
+  <PartID>143579135</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.5773502691896258</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>TWO_PI</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>2 * ∏ constant</CodeDescription>
+  <PartID>1102237695</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>6.2831853071800001</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

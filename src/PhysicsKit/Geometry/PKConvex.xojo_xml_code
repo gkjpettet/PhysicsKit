@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="483287039">
+ <ObjName>PKConvex</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKShape</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an array of separating axes to test for this shape.</CodeDescription>
+  <PartID>585846783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>622888959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the point farthest in the direction of the given vector.  If two points are equally distant along the given vector, the first one is used.</CodeDescription>
+  <PartID>1387517951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription><Hex bytes="119">52657475726E7320616E206172726179206F6620776F726C6420737061636520666F636920706F696E747320666F722063697263756C6172206375727665642065646765732E2052657475726E73204E696C2069662074686520536861706520686173207A65726F206375727665642065646765732E0A</Hex></CodeDescription>
+  <PartID>1740988415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1884588031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a convex shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A convex shape is a shape that, given a line, the line will only intersect at </NoteLine>
+   <NoteLine>most 2 non-coincident non-colinear edges.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Working with convex shapes specifically allows collision detection algorithms to be very</NoteLine>
+   <NoteLine>fast.  If non-convex shapes are required, they are typically handled by attaching multiple</NoteLine>
+   <NoteLine>convex shapes together.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetAxes(foci() As Vectors, transform As PKTransform) As PKVector2()</NoteLine>
+   <NoteLine>---------------------------------------------------------------</NoteLine>
+   <NoteLine>Returns an array of separating axes to test for this shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The `foci` parameter is an array of **circular** focal points of the other `Shape`.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>If foci points are given, this method will return the separating axes for this Shape's voronoi regions </NoteLine>
+   <NoteLine>also. The points in the foci array are assumed to be in world space.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The returned axes are normalized and in world space.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Parameter foci: The world space points representing foci of curved Shapes. Can be Nil.</NoteLine>
+   <NoteLine>- Parameter transform: The local to world space `Transform` of this `Convex Shape`.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: An array of PKVector2 objects.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Raises: UnsupportedOperationException if this shape doesn't support this method.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFoci(transform As PKTransform) As PKVector2()</NoteLine>
+   <NoteLine>--------------------------------------------</NoteLine>
+   <NoteLine>Returns an array of world space foci points for **circular** curved edges.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This method returns Nil if the `Shape` has zero curved edges.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The returned points are in world space.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Parameter transform: The local to world space `Transform` of this `Convex Shape`.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: An array of PKVector2 objects.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Raises: UnsupportedOperationException if this shape doesn't support this method.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</NoteLine>
+   <NoteLine>------------------------------------------------------------------------</NoteLine>
+   <NoteLine>Returns the `Feature farthest in the direction of the given vector.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The returned feature is in world space.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Parameter vector: The direction.</NoteLine>
+   <NoteLine>- Parameter transform: The local to world space `Transform` of this convex shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: Feature.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</NoteLine>
+   <NoteLine>----------------------------------------------------------------------</NoteLine>
+   <NoteLine>Returns the point farthest in the direction of the given vector.  If two points are </NoteLine>
+   <NoteLine>equally distant along the given vector, the first one is used.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The returned point is in world space.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Parameter vector: The direction.</NoteLine>
+   <NoteLine>- Parameter transform: The local to world space `Transform` of this convex shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>- Returns: PKVector2.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

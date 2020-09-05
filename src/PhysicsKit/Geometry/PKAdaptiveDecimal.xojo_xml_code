@@ -1,0 +1,1250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="643526655">
+ <ObjName>PKAdaptiveDecimal</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Append</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Appends a new component after all the existing components. Raises OutOfBoundsException if this AdaptiveDecimal has no more capacity.</CodeDescription>
+  <PartID>1281421311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Append(value As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Appends a new component after all the existing components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The component.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if this PKAdaptiveDecimal has no capacity for more components.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If mSize &gt;= Capacity then</SourceLine>
+   <SourceLine>Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_INSUFFICIENT_CAPACITY)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Components(mSize) = value</SourceLine>
+   <SourceLine>mSize = mSize + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AppendNonZero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Appends a new component after all the existing components, but only if it has a non zero value.</CodeDescription>
+  <PartID>566487039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AppendNonZero(value As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Appends a new component after all the existing components, but only if it has a non zero value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The component.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If value &lt;&gt; 0.0 Then Call Append(value)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Capacity</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum number of components this AdaptiveDecimal can hold.</CodeDescription>
+  <PartID>394956799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Capacity() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: The maximum number of components this PKAdaptiveDecimal can hold.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Components.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CheckInvariants</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a boolean value describing if this AdaptiveDecimal is a valid representation.</CodeDescription>
+  <PartID>1142036479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CheckInvariants() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a boolean value describing if this PKAdaptiveDecimal is a valid representation </SourceLine>
+   <SourceLine>' as described in the `About` note for this class.</SourceLine>
+   <SourceLine>' Checks for the magnitude and non-overlapping property.</SourceLine>
+   <SourceLine>' The invariants can be violated if bad input components are appended to this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>' The `Append` methods do not check for those conditions because there is a big overhead for the check.</SourceLine>
+   <SourceLine>' The output of the exposed operations must satisfy the invariants, given that their input also does so.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if this PKAdaptiveDecimal satisfies the described invariants.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If mSize = 0 Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Holds the last value that needs to be checked.</SourceLine>
+   <SourceLine>// This skips all 0 except for maybe the first component (which is ok to be 0).</SourceLine>
+   <SourceLine>Var lastValue As Double = Self.Get(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = mSize - 1</SourceLine>
+   <SourceLine>For i As Integer = 1 To iLimit</SourceLine>
+   <SourceLine>Var currentValue As Double = Self.Get(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If currentValue &lt;&gt; 0 then</SourceLine>
+   <SourceLine>// The magnitude of previous non-zero elements must be smaller.</SourceLine>
+   <SourceLine>If Abs(currentValue) &lt; Abs(lastValue) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A number n in the floating point representation can be written as</SourceLine>
+   <SourceLine>// n = +/- 0.1xxxxx...x * 2 ^ exp</SourceLine>
+   <SourceLine>//   mantissa ^~~~~~~~^       ^~~ exponent</SourceLine>
+   <SourceLine>// where the above x are the binary digits either 0 or 1 except for the first digit </SourceLine>
+   <SourceLine>// after the decimal point which is always 1. The exponent part is essentially a shift </SourceLine>
+   <SourceLine>// of the decimal point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we have two numbers a, b with a &gt; b then they're non-overlapping if a's lower set bit to</SourceLine>
+   <SourceLine>// be to the left of b's higher set bit *after those have been scaled by their exponents accordingly*.</SourceLine>
+   <SourceLine>// The sign is irrelevant for Self.</SourceLine>
+   <SourceLine>// a = -0.10101011 * 2^5 = -10101.011</SourceLine>
+   <SourceLine>// b = 0.111001 * 2^-1 = 0.0111001</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we align a and b we can see that they overlap</SourceLine>
+   <SourceLine>// -10101.011</SourceLine>
+   <SourceLine>//      0.0111001</SourceLine>
+   <SourceLine>//         ^^ overlap</SourceLine>
+   <SourceLine>// They would also overlap if b's exponent was -2 (for a single bit)</SourceLine>
+   <SourceLine>// only if b's exponent where less than -2 then there would be no overlap.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the value of the exponents</SourceLine>
+   <SourceLine>Var exp1 As Int32 = MathsKit.GetExponent(lastValue)</SourceLine>
+   <SourceLine>Var exp2 As Int32 = MathsKit.GetExponent(currentValue)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the significants (the binary representation of the mantissa part).</SourceLine>
+   <SourceLine>// The first, always 1 bit is not actually stored, so we'll add it ourselves.</SourceLine>
+   <SourceLine>Var mantissa1 As Int64 = (MathsKit.DoubleToBits(lastValue) And SIGNIF_BIT_MASK) Or IMPLICIT_MANTISSA_BIT</SourceLine>
+   <SourceLine>Var mantissa2 As Int64 = (MathsKit.DoubleToBits(currentValue) And SIGNIF_BIT_MASK) Or IMPLICIT_MANTISSA_BIT</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We want to find the logical location of the most significant bit in the smallest component</SourceLine>
+   <SourceLine>// and of the least significant bit in the largest component, accounting for the exponents as well</SourceLine>
+   <SourceLine>// In the following convention bit numbering is done from the higher to the lowest bit.</SourceLine>
+   <SourceLine>// Note that the first bit of the double representation won't be the first in the long below.</SourceLine>
+   <SourceLine>// This is logical since the mantissa is fewer bits wide than a long, but it's not a problem</SourceLine>
+   <SourceLine>// since both the msd and lsd will have the same difference.</SourceLine>
+   <SourceLine>Var msd1 As Int32 = MathsKit.NumberOfLeadingZeros(mantissa1)</SourceLine>
+   <SourceLine>Var lsd2 As Int32 = 64 - MathsKit.NumberOfTrailingZeros(mantissa2) - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Apply the exponents.</SourceLine>
+   <SourceLine>// The exponents are essentially shifts in the bit positions.</SourceLine>
+   <SourceLine>msd1 = msd1 - exp1</SourceLine>
+   <SourceLine>lsd2 = lsd2 - exp2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finally check for the non-overlapping property.</SourceLine>
+   <SourceLine>// We want the lower bit of the currentValue's representation to be higher than</SourceLine>
+   <SourceLine>// lastValue's higher bit.</SourceLine>
+   <SourceLine>If Not(lsd2 &lt; msd1) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Update the last non-zero value.</SourceLine>
+   <SourceLine>lastValue = currentValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Clear</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the components of this AdaptiveDecimal and returns this AdaptiveDecimal.</CodeDescription>
+  <PartID>219357183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Clear() As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the components of this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper constructor to create an AdaptiveDecimal with two components.</CodeDescription>
+  <PartID>1827170303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(a0 As Double, a1 As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper constructor to create an PKAdaptiveDecimal with two components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a0: The component with the smallest magnitude.</SourceLine>
+   <SourceLine>' - Parameter a1: The component with the largest magnitude.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Components.AddRow(a0)</SourceLine>
+   <SourceLine>Self.Components.AddRow(a1)</SourceLine>
+   <SourceLine>mSize = 2</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a0 As Double, a1 As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new AdaptiveDecimal with the specified length. The initial AdaptiveDecimal created does not contain any components.</CodeDescription>
+  <PartID>1489887231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(length As Integer)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new PKAdaptiveDecimal with the specified length.</SourceLine>
+   <SourceLine>' The initial PKAdaptiveDecimal created does not contain any components.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter length: The maximum number of components this PKAdaptiveDecimal can store.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `length` is &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If length &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.ADAPTIVE_DECIMAL_INVALID_LENGTH)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Components.ResizeTo(length - 1)</SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>length As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Deep copy constructor.</CodeDescription>
+  <PartID>1810669567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(other As PKAdaptiveDecimal)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Deep copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter other: The PKAdaptiveDecimal to copy from.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each d As Double In other.Components</SourceLine>
+   <SourceLine>Self.Components.AddRow(d)</SourceLine>
+   <SourceLine>Next d</SourceLine>
+   <SourceLine>mSize = other.Size</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As PKAdaptiveDecimal</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a deep copy of this AdaptiveDecimal.</CodeDescription>
+  <PartID>556738559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: A deep copy of this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAdaptiveDecimal(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CopyFrom</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copies the components of another AdaptiveDecimal into this. The capacity of this AdaptiveDecimal is not modified and it should be enough to hold all the components. Raises OutOfBoundsException.</CodeDescription>
+  <PartID>2009040895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub CopyFrom(other As PKAdaptiveDecimal)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copies the components of another PKAdaptiveDecimal into this one.</SourceLine>
+   <SourceLine>' The capacity of this PKAdaptiveDecimal is not modified and it should</SourceLine>
+   <SourceLine>' be enough to hold all the components.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter other: The PKAdaptiveDecimal to copy from.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if other.Components is too large to fit into Self.Components.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If other.Components.Count &gt; Self.Components.Count Then</SourceLine>
+   <SourceLine>Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_OTHER_COMPONENTS_TOO_LARGE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = 0</SourceLine>
+   <SourceLine>For Each d As Double In other.Components</SourceLine>
+   <SourceLine>Self.Components(index) = d</SourceLine>
+   <SourceLine>index = index + 1</SourceLine>
+   <SourceLine>Next d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mSize = other.Size</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As PKAdaptiveDecimal</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>EnsureInvariants</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Raises a RuntimeException if `CheckInvariants()` returns False.</CodeDescription>
+  <PartID>124000255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub EnsureInvariants()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Raises: RuntimeException if `CheckInvariants()` returns False.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not CheckInvariants Then</SourceLine>
+   <SourceLine>Raise New RuntimeException(PKMessages.ADAPTIVE_DECIMAL_INVALID_REPRESENTATION)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FromDiff</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>125931519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FromDiff(a As Double, b As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates an PKAdaptiveDecimal that holds the result of the difference of two double values.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAdaptiveDecimal that holds the resulting difference.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var diff As Double = a - b</SourceLine>
+   <SourceLine>Return New PKAdaptiveDecimal(GetErrorComponentFromDifference(a, b, diff), diff)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FromDiff</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Given two unrolled expansions (a0, a1) and (b0, b1) performs the difference (a0, a1) - (b0, b1) and stores the 4 component result in the given AdaptiveDecimal `result` or a new one if Nil is passed.</CodeDescription>
+  <PartID>692656127</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FromDiff(a0 As Double, a1 As Double, b0 As Double, b1 As Double, result As PKAdaptiveDecimal) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Given two unrolled expansions (a0, a1) and (b0, b1) performs the difference</SourceLine>
+   <SourceLine>' (a0, a1) - (b0, b1) and stores the 4 component result in the given PKAdaptiveDecimal `result`.</SourceLine>
+   <SourceLine>' In the same way as with `PKAdaptiveDecimal.Sum(PKAdaptiveDecimal, PKAdaptiveDecimal)` if `result` is Nil.</SourceLine>
+   <SourceLine>' a new one is allocated, otherwise the existing is cleared and used.</SourceLine>
+   <SourceLine>' Does not perform zero elimination.</SourceLine>
+   <SourceLine>' This is also a helper method to allow fast computation of the cross product</SourceLine>
+   <SourceLine>' without the overhead of creating new PKAdaptiveDecimal and performing</SourceLine>
+   <SourceLine>' the generalized sum procedure.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a0: The first component of a.</SourceLine>
+   <SourceLine>' - Parameter a1: The second component of a.</SourceLine>
+   <SourceLine>' - Parameter b0: The first component of b.</SourceLine>
+   <SourceLine>' - Parameter b1: The second component of b.</SourceLine>
+   <SourceLine>' - Parameter result: The PKAdaptiveDecimal in which the difference is stored.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The exact order of those operations is necessary for correct functionality.</SourceLine>
+   <SourceLine>// Allocate a new instance of sufficient size if result is Nil or just clear.</SourceLine>
+   <SourceLine>If result = Nil Then</SourceLine>
+   <SourceLine>result = New PKAdaptiveDecimal(4)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Call result.Clear</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// x0-x1-x2-x3 store the resulting components with increasing magnitude.</SourceLine>
+   <SourceLine>Var x0, x1, x2, x3 As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Variable to store immediate results for each pair of Diff/Sum.</SourceLine>
+   <SourceLine>Var imm As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Variables to store immediate results across the two pairs .</SourceLine>
+   <SourceLine>Var imm1, imm2 As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Diff (a0, a1) - b0, result = (x0, imm1, imm2)</SourceLine>
+   <SourceLine>imm = a0 - b0</SourceLine>
+   <SourceLine>x0 = PKAdaptiveDecimal.GetErrorComponentFromDifference(a0, b0, imm)</SourceLine>
+   <SourceLine>imm2 = a1 + imm</SourceLine>
+   <SourceLine>imm1 = PKAdaptiveDecimal.GetErrorComponentFromSum(a1, imm, imm2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Diff (imm1, imm2) - b1, result = (x1, x2, x3)</SourceLine>
+   <SourceLine>imm = imm1 - b1</SourceLine>
+   <SourceLine>x1 = PKAdaptiveDecimal.GetErrorComponentFromDifference(imm1, b1, imm)</SourceLine>
+   <SourceLine>x3 = imm2 + imm</SourceLine>
+   <SourceLine>x2 = PKAdaptiveDecimal.GetErrorComponentFromSum(imm2, imm, x3)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call result.Append(x0)</SourceLine>
+   <SourceLine>Call result.Append(x1)</SourceLine>
+   <SourceLine>Call result.Append(x2)</SourceLine>
+   <SourceLine>Call result.Append(x3)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a0 As Double, a1 As Double, b0 As Double, b1 As Double, result As PKAdaptiveDecimal</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FromProduct</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an AdaptiveDecimal that holds the result of the product of two double values.</CodeDescription>
+  <PartID>928169983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FromProduct(a As Double, b As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>'  Creates an PKAdaptiveDecimal that holds the result of the product of two double values.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAdaptiveDecimal that holds the resulting product.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var product As Double = a * b</SourceLine>
+   <SourceLine>Return New PKAdaptiveDecimal(GetErrorComponentFromProduct(a, b, product), a * b)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FromSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1839290367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FromSum(a As Double, b As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates an PKAdaptiveDecimal that holds the result of the addition of two double values.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAdaptiveDecimal that holds the resulting sum.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var sum As Double = a + b</SourceLine>
+   <SourceLine>Return New PKAdaptiveDecimal(GetErrorComponentFromSum(a, b, sum), sum)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the component at the specified index. Raises OutOfBoundsException.</CodeDescription>
+  <PartID>1856126975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Get(index As Integer) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Parameter index: The index of the component to return.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The component at the specified position.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if the index is not in the range [0, size].</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If index &lt; 0 Or index &gt;= mSize Then</SourceLine>
+   <SourceLine>Raise New OutOfBoundsException(PKMessages.ADAPTIVE_DECIMAL_INDEX_OUT_OF_RANGE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Components(index)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetErrorComponentFromDifference</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Given two values a, b and their difference = fl(a - b) calculates the value error for which fl(a) - fl(b) = fl(a - b) + fl(error).</CodeDescription>
+  <PartID>206723071</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetErrorComponentFromDifference(a As Double, b As Double, diff As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Given two values a, b and their difference = fl(a - b) calculates the value error for which</SourceLine>
+   <SourceLine>' fl(a) - fl(b) = fl(a - b) + fl(error).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>' - Parameter diff: Their difference, must always be diff = fl(a - b)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns The error as a Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The exact order of those operations is necessary for correct functionality.</SourceLine>
+   <SourceLine>Var bvirt As Double = a - diff</SourceLine>
+   <SourceLine>Var avirt As Double = diff + bvirt</SourceLine>
+   <SourceLine>Var bround As Double = bvirt - b</SourceLine>
+   <SourceLine>Var around As Double = a - avirt</SourceLine>
+   <SourceLine>Var error As Double = around + bround</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return error</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double, diff As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetErrorComponentFromProduct</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Given two values a, b and their product = fl(a * b) calculates the value error for which fl(a) * fl(b) = fl(a * b) + fl(error).</CodeDescription>
+  <PartID>815411199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetErrorComponentFromProduct(a As Double, b As Double, product As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Given two values a, b and their product = fl(a * b) calculates the value error for which</SourceLine>
+   <SourceLine>' fl(a) * fl(b) = fl(a * b) + fl(error).</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>' - Parameter product: Their product, must always be product = fl(a * b)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The error as a Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The exact order of those operations is necessary for correct functionality.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Split a in two parts.</SourceLine>
+   <SourceLine>Var ac As Double = PKRobustGeometry.SPLITTER * a</SourceLine>
+   <SourceLine>Var abig As Double = ac - a</SourceLine>
+   <SourceLine>Var ahi As Double = ac - abig</SourceLine>
+   <SourceLine>Var alo As Double = a - ahi</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Split b in two parts.</SourceLine>
+   <SourceLine>Var bc As Double = PKRobustGeometry.SPLITTER * b</SourceLine>
+   <SourceLine>Var bbig As Double = bc - b</SourceLine>
+   <SourceLine>Var bhi As Double = bc - bbig</SourceLine>
+   <SourceLine>Var blo As Double = b - bhi</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var error1 As Double = product - (ahi * bhi)</SourceLine>
+   <SourceLine>Var error2 As Double = error1 - (alo * bhi)</SourceLine>
+   <SourceLine>Var error3 As Double = error2 - (ahi * blo)</SourceLine>
+   <SourceLine>Var error As Double = alo * blo - error3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return error</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double, product As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetErrorComponentFromSum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Given two values a, b and their sum = fl(a + b) calculates the value error for which fl(a) + fl(b) = fl(a + b) + fl(error).</CodeDescription>
+  <PartID>1655529471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetErrorComponentFromSum(a As Double, b As Double, sum As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Given two values a, b and their sum = fl(a + b) calculates the value error for which</SourceLine>
+   <SourceLine>' fl(a) + fl(b) = fl(a + b) + fl(error).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first value.</SourceLine>
+   <SourceLine>' - Parameter b: The second value.</SourceLine>
+   <SourceLine>' - Parameter sum: Their sum, must always be sum = fl(a + b)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The error as a Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The exact order of those operations is necessary for correct functionality .</SourceLine>
+   <SourceLine>Var bvirt As Double = sum - a</SourceLine>
+   <SourceLine>Var avirt As Double = sum - bvirt</SourceLine>
+   <SourceLine>Var bround As Double = b - bvirt</SourceLine>
+   <SourceLine>Var around As Double = a - avirt</SourceLine>
+   <SourceLine>Var error As Double = around + bround</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return error</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>a As Double, b As Double, sum As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetEstimation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1439469567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetEstimation() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes an approximation for the value of this PKAdaptiveDecimal that fits in a double.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The approximation as a Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var value As Double = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = mSize - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>value = value + Components(i)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Negate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Negates the logical value of this AdaptiveDecimal. Can be used with Sum to perform subtraction. Returns this AdaptiveDecimal.</CodeDescription>
+  <PartID>813922303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Negate() As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Negates the logical value of this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>' This can be used with Sum to perform subtraction.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = mSize - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>Components(i) = -Components(i)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Normalise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Ensures this AdaptiveDecimal has at least one component. That is, appends the zero value if there are currently zero components.</CodeDescription>
+  <PartID>1850210303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Normalise() As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Ensures this PKAdaptiveDecimal has at least one component.</SourceLine>
+   <SourceLine>' That is, appends the zero value if there are currently zero components.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If mSize = 0 Then Call Append(0.0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveZeros</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes all the components with zero value from this AdaptiveDecimal and returns this AdaptiveDecimal.</CodeDescription>
+  <PartID>1096208383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveZeros() As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes all the components with zero value from this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Return: This PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var limit As Integer = mSize - 1</SourceLine>
+   <SourceLine>Call Self.Clear</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i As Integer = 0 To limit</SourceLine>
+   <SourceLine>Call AppendNonZero(Components(i))</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Size</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of components this AdaptiveDecimal can hold.</CodeDescription>
+  <PartID>1557487615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Size() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns: The number of components this PKAdaptiveDecimal can hold.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mSize</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription><Hex bytes="143">506572666F726D73206164646974696F6E20616E6420616C736F20616C6C6F63617465732061206E6577204164617074697665446563696D616C207769746820746865200A617070726F70726961746520636170616369747920746F2073746F72652074686520726573756C742E2052657475726E7320746865206E6577204164617074697665446563696D616C2E</Hex></CodeDescription>
+  <PartID>1661083647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(f As PKAdaptiveDecimal) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs addition and also allocates a new PKAdaptiveDecimal with the </SourceLine>
+   <SourceLine>' appropriate capacity to store the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter f: The PKAdaptiveDecimal to sum with this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAdaptiveDecimal that holds the result of the addition</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sum(f, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>f As PKAdaptiveDecimal</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Sum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the addition of this AdaptiveDecimal with the given AdaptiveDecimal `f` and stores the result in the provided AdaptiveDecimal `result`. If `result` is Nil it creates a new AdaptiveDecimal.</CodeDescription>
+  <PartID>598325247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Sum(f As PKAdaptiveDecimal, result As PKAdaptiveDecimal) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the addition of this PKAdaptiveDecimal with the given PKAdaptiveDecimal `f`</SourceLine>
+   <SourceLine>' and stores the result in the provided PKAdaptiveDecimal `result`.</SourceLine>
+   <SourceLine>' If `result` is Nil it allocates a new PKAdaptiveDecimal with the </SourceLine>
+   <SourceLine>' appropriate capacity to store the result. Otherwise the components of `result`</SourceLine>
+   <SourceLine>' are cleared and the resulting value is stored there, assuming there is enough capacity.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' Be careful that it must be `f` ≠ `result` ≠ `Self`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter f: The PKAdaptiveDecimal to sum with this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>' - Parameter result: The PKAdaptiveDecimal in which the sum is stored or Nil to allocate a new one.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The result as an PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The following algorithm performs addition of two PKAdaptiveDecimals</SourceLine>
+   <SourceLine>// It is based on the original fast_expansion_sum_zeroelim function written</SourceLine>
+   <SourceLine>// by the author of the said paper.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Allocate a new instance of sufficient size if result is Nil or just clear.</SourceLine>
+   <SourceLine>If result = Nil Then</SourceLine>
+   <SourceLine>result = New PKAdaptiveDecimal(mSize + f.Size)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Call result.Clear</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e As PKAdaptiveDecimal = Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// eIndex and fIndex are used to iterate the components of e and f accordingly.</SourceLine>
+   <SourceLine>Var eIndex As Int32 = 0</SourceLine>
+   <SourceLine>Var fIndex As Int32 = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// enow = e[eIndex] and fnow = f[fIndex] is the current component examined for e and f</SourceLine>
+   <SourceLine>Var enow As Double = e.Get(eIndex)</SourceLine>
+   <SourceLine>Var fnow As Double = f.Get(fIndex)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// sum will be used to store the sum needed for the getErrorComponentFromSum method</SourceLine>
+   <SourceLine>// error will store the error as returned from getErrorComponentFromSum method</SourceLine>
+   <SourceLine>// carry will store the value that will be summed in the next sum.</SourceLine>
+   <SourceLine>Var carry, sum, error As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Each time we need the next component in increasing magnitude.</SourceLine>
+   <SourceLine>// (fnow &gt; enow) = (fnow &gt; -enow)</SourceLine>
+   <SourceLine>If Abs(enow) &lt;= Abs(fnow) Then</SourceLine>
+   <SourceLine>carry = enow</SourceLine>
+   <SourceLine>eIndex = eIndex + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If eIndex &gt;= e.Size Then Return SumEpilogue(carry, f, fIndex, result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>enow = e.Get(eIndex)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>carry = fnow</SourceLine>
+   <SourceLine>fIndex = fIndex + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If fIndex &gt;= f.Size Then Return SumEpilogue(carry, e, eIndex, result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>fnow = f.Get(fIndex)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While True</SourceLine>
+   <SourceLine>If Abs(enow) &lt;= Abs(fnow) Then</SourceLine>
+   <SourceLine>// Perform the addition with the carry from the previous iteration.</SourceLine>
+   <SourceLine>sum = carry + enow</SourceLine>
+   <SourceLine>error = GetErrorComponentFromSum(carry, enow, sum)</SourceLine>
+   <SourceLine>eIndex = eIndex + 1</SourceLine>
+   <SourceLine>carry = sum</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// append + zero elimination</SourceLine>
+   <SourceLine>Call result.AppendNonZero(error)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If this PKAdaptiveDecimal has no more components then move to the epilogue.</SourceLine>
+   <SourceLine>If eIndex &gt;= e.Size Then Return SumEpilogue(carry, f, fIndex, result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>enow = e.Get(eIndex)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Perform the addition with the carry from the previous iteration.</SourceLine>
+   <SourceLine>sum = carry + fnow</SourceLine>
+   <SourceLine>error = GetErrorComponentFromSum(carry, fnow, sum)</SourceLine>
+   <SourceLine>fIndex = fIndex + 1</SourceLine>
+   <SourceLine>carry = sum</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// append + zero elimination</SourceLine>
+   <SourceLine>Call result.AppendNonZero(error)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If this PKAdaptiveDecimal has no more components then move to the epilogue.</SourceLine>
+   <SourceLine>If fIndex &gt;= f.Size Then Return sumEpilogue(carry, e, eIndex, result)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>fnow = f.Get(fIndex)</SourceLine>
+   <SourceLine>End If                </SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>f As PKAdaptiveDecimal, result As PKAdaptiveDecimal</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SumEpilogue</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>233846783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SumEpilogue(carry As Double, e As PKAdaptiveDecimal, eIndex As Int32, result As PKAdaptiveDecimal) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Helper method to implement the sum procedure.</SourceLine>
+   <SourceLine>' Sums the remaining components of a single PKAdaptiveDecimal to the result</SourceLine>
+   <SourceLine>' and the initial carry value from previous computations.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter carry: The carry from previous computations.</SourceLine>
+   <SourceLine>' - Parameter e: The PKAdaptiveDecimal that probably has more components.</SourceLine>
+   <SourceLine>' - Parameter eIndex: The index to the next component of e that has to be examined.</SourceLine>
+   <SourceLine>' - Parameter result: The PKAdaptiveDecimal in which the result is stored.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The result as an PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While eIndex &lt; e.Size</SourceLine>
+   <SourceLine>Var enow As Double = e.Get(eIndex)</SourceLine>
+   <SourceLine>Var sum As Double = carry + enow</SourceLine>
+   <SourceLine>Var error As Double = GetErrorComponentFromSum(carry, enow, sum)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>carry = sum</SourceLine>
+   <SourceLine>Call result.AppendNonZero(error)</SourceLine>
+   <SourceLine>eIndex = eIndex + 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call result.AppendNonZero(carry)</SourceLine>
+   <SourceLine>Call result.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>carry As Double, e As PKAdaptiveDecimal, eIndex As Int32, result As PKAdaptiveDecimal</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this AdaptiveDecimal.</CodeDescription>
+  <PartID>1854017535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = mSize - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>s.AddRow(Components(i).ToString)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If i &lt; mSize - 1 Then s.AddRow(", ")</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("] ~= ")</SourceLine>
+   <SourceLine>s.AddRow(GetEstimation.ToString)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ValueOf</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>162099199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function ValueOf(value As Double) As PKAdaptiveDecimal</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates an PKAdaptiveDecimal with only a single component.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter value: The component.'</SourceLine>
+   <SourceLine>' - Returns: A new PKAdaptiveDecimal.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var ad As PKAdaptiveDecimal = New PKAdaptiveDecimal(1)</SourceLine>
+   <SourceLine>Return ad.Append(value)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>value As Double</ItemParams>
+  <ItemResult>PKAdaptiveDecimal</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>743020543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>This is an implementation of multi-precision decimals based on the original work by </NoteLine>
+   <NoteLine>Jonathan Richard Shewchuk, "Routines for Arbitrary Precision Floating-point Arithmetic </NoteLine>
+   <NoteLine>and Fast Robust Geometric Predicates".</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>More information about the algorithms, the original code in C and proofs of correctness can all</NoteLine>
+   <NoteLine>be found at &lt;a href="http://www.cs.cmu.edu/~quake/robust.html"&gt;http://www.cs.cmu.edu/~quake/robust.html&lt;/a&gt;</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Short description:</NoteLine>
+   <NoteLine>The value of this PKAdaptiveDecimal is represented as the sum of some components, where each </NoteLine>
+   <NoteLine>component is a double value. The components must be stored in increasing magnitude order, </NoteLine>
+   <NoteLine>but there can be any amount of zeros between components. The components must also satisfy </NoteLine>
+   <NoteLine>the non-overlapping property, that is the corresponding bit representation of adjacent </NoteLine>
+   <NoteLine>components must not overlap. See `CheckInvariants()` and the corresponding paper for more info.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This code **requires** that the floating point model is IEEE-754 with round-to-even in order</NoteLine>
+   <NoteLine>to work properly in all cases and fulfill the above properties. This is a port from Java where this holds True and</NoteLine>
+   <NoteLine>I'm hoping it's true for Xojo...</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Components()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The array storing this AdaptiveDecimal's component values.</CodeDescription>
+  <PartID>926986239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Components() As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Components() As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>IMPLICIT_MANTISSA_BIT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The implicit bit in the mantissa of a Double.</CodeDescription>
+  <PartID>220016639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared IMPLICIT_MANTISSA_BIT As Int64 = &amp;h0010000000000000</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>IMPLICIT_MANTISSA_BIT As Int64 = &amp;h0010000000000000</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The number of components this AdaptiveDecimal currently contains.</CodeDescription>
+  <PartID>1016350719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mSize As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mSize As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>SIGNIF_BIT_MASK</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The mask to get the mantissa of a double as per the standard. Taken from `MathsKit.DOUBLE_SIGNIF_BIT_MASK`.</CodeDescription>
+  <PartID>1957945343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared SIGNIF_BIT_MASK As Int64 = &amp;h000FFFFFFFFFFFFF</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SIGNIF_BIT_MASK As Int64 = &amp;h000FFFFFFFFFFFFF</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

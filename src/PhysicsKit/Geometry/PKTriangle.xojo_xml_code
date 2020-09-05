@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="194473983">
+ <ObjName>PKTriangle</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKPolygon</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a new triangle using the given points. The centre will be the area weighted center of the points. Raises NilObjectExceptions and InvalidArgumentExceptions.</CodeDescription>
+  <PartID>1553258495</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(point1 As PKVector2, point2 As PKVector2, point3 As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new triangle using the given points. The centre will be the area</SourceLine>
+   <SourceLine>' weighted center of the points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A triangle must have 3 non-Nil points of which one is not colinear with the other two.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1: The first point.</SourceLine>
+   <SourceLine>' - Parameter point2: The second point.</SourceLine>
+   <SourceLine>' - Parameter point3: The third point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `point1`, `point2`, or `point3` is Nil.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `point1`, `point2`, and `point3` contain </SourceLine>
+   <SourceLine>'           coincident points or have clockwise winding.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(Array(point1, point2, point3))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point1 As PKVector2, point2 As PKVector2, point3 As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2063753215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the point is inside the Triangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The equation of a plane is: `N · (P - A) = 0`</SourceLine>
+   <SourceLine>' Where `A` is any point on the plane.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Create two axes (PKVector2s). We will choose Vab and Vac.</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Vac = C - A</SourceLine>
+   <SourceLine>' Vab = B - A</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Where `A`, `B`, and `C` are the vertices of the Triangle.</SourceLine>
+   <SourceLine>' From this we can say that you can get to any point on the plane by going </SourceLine>
+   <SourceLine>' some `u` distance on Vac and some `v` distance on Vab where `A` is the origin.</SourceLine>
+   <SourceLine>' `P = A + u * Vac + v * Vab`</SourceLine>
+   <SourceLine>' Simplifing `P - A`</SourceLine>
+   <SourceLine>' `Vpa = u * Vac + v * Vab</SourceLine>
+   <SourceLine>' We still need another equation to solve for `u` and `v`:</SourceLine>
+   <SourceLine>' Dot the equation by `Vac` to get `Vpa · Vac = (u * Vac + v * Vab) · Vac`</SourceLine>
+   <SourceLine>' Dot the equation by `Vab` to get the other `Vpa · Vab = (u * Vac + v * Vab) · Vab`</SourceLine>
+   <SourceLine>' Distribute out both equations:</SourceLine>
+   <SourceLine>' `Vpa · Vac = u * Vac · Vac + v * Vab · Vac</SourceLine>
+   <SourceLine>' `Vpa · Vab = u * Vac · Vab + v * Vab · Vab</SourceLine>
+   <SourceLine>' Solving the first equation for `u`:</SourceLine>
+   <SourceLine>' `u = (Vpa · Vac - v * Vab · Vac) / (Vac · Vac)&lt;/p&gt;</SourceLine>
+   <SourceLine>' Substitute one into the other:</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Vpa · Vab = (Vpa · Vac - v * Vab · Vac) / (Vac · Vac) * Vac · Vab + v * Vab · Vab</SourceLine>
+   <SourceLine>' Vpa · Vab = (Vpa · Vac / Vac · Vac) * Vac · Vab - v * (Vab · Vac / Vac · Vac) * Vac · Vab + v * Vab · Vab</SourceLine>
+   <SourceLine>' Vpa · Vab = (Vpa · Vac / Vac · Vac) * Vac · Vab + v * (Vab · Vab - (Vab · Vac / Vac · Vac) * Vac · Vab)</SourceLine>
+   <SourceLine>' v = (Vpa · Vab - (Vpa · Vac / Vac · Vac) * Vac · Vab) / (Vab · Vab - (Vab · Vac / Vac · Vac) * Vac · Vab)</SourceLine>
+   <SourceLine>' ```</SourceLine>
+   <SourceLine>' Which reduces to:</SourceLine>
+   <SourceLine>' `v = ((Vpa · Vab) * (Vac · Vac) - (Vpa · Vac) * (Vac · Vab)) / ((Vab · Vab) * (Vac · Vac) - (Vab · Vac) * (Vac · Vab))`</SourceLine>
+   <SourceLine>' Once `v` is obtained use either equation to obtain `u`:</SourceLine>
+   <SourceLine>' `u = (v * Vab · Vab - Vpa · Vab) / Vac · Vab`</SourceLine>
+   <SourceLine>' We know that the point is inside the Triangle if `u` and `v` are greater than zero </SourceLine>
+   <SourceLine>' and `u + v` is less than one.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: World space point.</SourceLine>
+   <SourceLine>' - Parameter transform: The Shape's transform.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var u, v As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Put the point into local coordinates.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(0)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(1)</SourceLine>
+   <SourceLine>Var p3 As PKVector2 = Self.Vertices(2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector representing edge ab.</SourceLine>
+   <SourceLine>Var ab As PKVector2 = p1.Towards(p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector representing edge ac.</SourceLine>
+   <SourceLine>Var ac As PKVector2 = p1.Towards(p3)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from a to the point.</SourceLine>
+   <SourceLine>Var pa As PKVector2 = p1.towards(p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dot00 As Double = ac.Dot(ac)</SourceLine>
+   <SourceLine>Var dot01 As Double = ac.Dot(ab)</SourceLine>
+   <SourceLine>Var dot02 As Double = ac.Dot(pa)</SourceLine>
+   <SourceLine>Var dot11 As Double = ab.Dot(ab)</SourceLine>
+   <SourceLine>Var dot12 As Double = ab.Dot(pa)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var denominator As Double = dot00 * dot11 - dot01 * dot01</SourceLine>
+   <SourceLine>Var invD As Double = 1.0 / denominator</SourceLine>
+   <SourceLine>u = (dot11 * dot02 - dot01 * dot12) * invD</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Don't bother going any farther if u is less than zero.</SourceLine>
+   <SourceLine>If u &lt;= 0 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>v = (dot00 * dot12 - dot01 * dot02) * invD</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return v &gt; 0 And (u + v &lt;= 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1139380223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Triangle instance.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Triangle[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1782650879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of a Triangle Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A Triangle must have one vertex which is not colinear with the other two.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class is provided to enhance performance of some of the methods contained in</NoteLine>
+   <NoteLine>the Convex and Shape interfaces.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

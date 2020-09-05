@@ -1,0 +1,1234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="918413311">
+ <ObjName>PKHalfEllipse</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>997281791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, width As Double, height As Double, center As PKVector2, vertexLeft As PKVector2, vertexRight As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This creates an axis-aligned half ellipse fitting inside a rectangle of the given width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter width: The width.</SourceLine>
+   <SourceLine>' - Parameter height: The height.</SourceLine>
+   <SourceLine>' - Parameter center: The centre.</SourceLine>
+   <SourceLine>' - Parameter vertexLeft: The first vertex.</SourceLine>
+   <SourceLine>' - Parameter vertexRight: The second vertex.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(center, center.Distance(vertexRight))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set Height. Width can be computed as halfWidth * 2 when needed.</SourceLine>
+   <SourceLine>Self.Height = height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the major and minor axis lengths (the x,y radii).</SourceLine>
+   <SourceLine>Self.HalfWidth = width * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the ellipse centre.</SourceLine>
+   <SourceLine>Self.EllipseCenter = New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initially the half ellipse is aligned to the world space x axis.</SourceLine>
+   <SourceLine>Self.Rotation = New PKRotation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Setup the vertices.</SourceLine>
+   <SourceLine>Self.VertexLeft = vertexLeft</SourceLine>
+   <SourceLine>Self.VertexRight = vertexRight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, width As Double, height As Double, center As PKVector2, vertexLeft As PKVector2, vertexRight As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1086490623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(width As Double, height As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This creates an axis-aligned half ellipse fitting inside a rectangle of the given width and height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width.</SourceLine>
+   <SourceLine>' - Parameter height: The height of the half.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if either the width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(_</SourceLine>
+   <SourceLine>Validate(width, height), _</SourceLine>
+   <SourceLine>width, _</SourceLine>
+   <SourceLine>height, _</SourceLine>
+   <SourceLine>New PKVector2(0, (4.0 * height) / (3.0 * MathsKit.PI)), _</SourceLine>
+   <SourceLine>New PKVector2(-width * 0.5, 0), _</SourceLine>
+   <SourceLine>New PKVector2( width * 0.5, 0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1816023039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Equation of an ellipse:</SourceLine>
+   <SourceLine>// (x - h)^2/a^2 + (y - k)^2/b^2 = 1</SourceLine>
+   <SourceLine>// For a point to be inside the ellipse, we can plug in the point into this equation </SourceLine>
+   <SourceLine>// and verify that the value is less than or equal to one.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the world space point into local coordinates.</SourceLine>
+   <SourceLine>Var localPoint As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Account for local rotation.</SourceLine>
+   <SourceLine>Call localPoint.InverseRotate(Self.Rotation, Self.EllipseCenter)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate into local coordinates.</SourceLine>
+   <SourceLine>Var x As Double = (localPoint.X - Self.EllipseCenter.X)</SourceLine>
+   <SourceLine>Var y As Double = (localPoint.Y - Self.EllipseCenter.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// For half ellipse we have an early out.</SourceLine>
+   <SourceLine>If y &lt; 0 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x2 As Double = x * x</SourceLine>
+   <SourceLine>Var y2 As Double = y * y</SourceLine>
+   <SourceLine>Var a2 As Double = Self.HalfWidth * Self.HalfWidth</SourceLine>
+   <SourceLine>Var b2 As Double = Self.Height * Self.Height</SourceLine>
+   <SourceLine>Var value As Double = x2 / a2 + y2 / b2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return value &lt;= 1.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>555462655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Fast computation of HalfEllipse PKAABB without resorting to getFarthestPoint related methods</SourceLine>
+   <SourceLine>// Based on the Ellipse PKAABB calculation + adjusting the result for the missing side</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// First calculate the Ellipse PKAABB.</SourceLine>
+   <SourceLine>// Taken from `Ellipse.CreateAABB` with slight modifications.</SourceLine>
+   <SourceLine>Var u As PKVector2 = Self.Rotation.ToVector</SourceLine>
+   <SourceLine>transform.TransformR(u)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x2 As Double = u.X * u.X</SourceLine>
+   <SourceLine>Var y2 As Double = u.Y * u.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var hw2 As Double = Self.HalfWidth * Self.HalfWidth</SourceLine>
+   <SourceLine>Var hh2 As Double = Self.Height * Self.Height // half height squared.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var aabbHalfWidth As Double = Sqrt(x2 * hw2 + y2 * hh2)</SourceLine>
+   <SourceLine>Var aabbHalfHeight As Double = Sqrt(y2 * hw2 + x2 * hh2) </SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var cx As Double = transform.GetTransformedX(Self.EllipseCenter)</SourceLine>
+   <SourceLine>Var cy As Double = transform.GetTransformedY(Self.EllipseCenter)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var minx As Double = cx - aabbHalfWidth</SourceLine>
+   <SourceLine>Var miny As Double = cy - aabbHalfHeight</SourceLine>
+   <SourceLine>Var maxx As Double = cx + aabbHalfWidth</SourceLine>
+   <SourceLine>Var maxy As Double = cy + aabbHalfHeight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Now adjust for the missing side.</SourceLine>
+   <SourceLine>// Every time one point will come from the Ellipse PKAABB and the other from the left and </SourceLine>
+   <SourceLine>// right vertices. Depending on the total rotation u, there are four possible cases.</SourceLine>
+   <SourceLine>If u.Y &gt; 0 Then</SourceLine>
+   <SourceLine>If u.X &gt; 0 Then</SourceLine>
+   <SourceLine>maxx = transform.GetTransformedX(Self.VertexRight)</SourceLine>
+   <SourceLine>miny = transform.GetTransformedY(Self.VertexLeft)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>maxx = transform.GetTransformedX(Self.VertexLeft)</SourceLine>
+   <SourceLine>maxy = transform.GetTransformedY(Self.VertexRight)    </SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If u.X &gt; 0 Then</SourceLine>
+   <SourceLine>minx = transform.GetTransformedX(Self.VertexLeft)</SourceLine>
+   <SourceLine>miny = transform.GetTransformedY(Self.VertexRight)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>minx = transform.GetTransformedX(Self.VertexRight)</SourceLine>
+   <SourceLine>maxy = transform.GetTransformedY(Self.VertexLeft)    </SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(minx, miny, maxx, maxy)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1623877631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var area As Double = MathsKit.PI * Self.HalfWidth * Self.Height</SourceLine>
+   <SourceLine>Var m As Double = area * density * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Moment of inertia given by: http://www.efunda.com/math/areas/ellipticalhalf.cfm</SourceLine>
+   <SourceLine>Var I As Double = m * (Self.HalfWidth * Self.HalfWidth + Self.Height * Self.Height) * INERTIA_CONSTANT</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, m, I)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1648183295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' This method is not supported by this shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: UnsupportedOperationException when called.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused foci</SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This shape is not supported by SAT.</SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException(PKMessages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetEllipseCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1440079871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetEllipseCenter() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the centre of the ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.EllipseCenter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>988123135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var localAxis As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Invert the local rotation.</SourceLine>
+   <SourceLine>Call localAxis.InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If localAxis.Y &gt; 0 Then</SourceLine>
+   <SourceLine>// It's the farthest point.</SourceLine>
+   <SourceLine>GetFarthestPointOnAlignedEllipse(localAxis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Include local rotation (inverse again to restore the original rotation).</SourceLine>
+   <SourceLine>Call localAxis.Rotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the radius along the vector to the centre to get the farthest point.</SourceLine>
+   <SourceLine>Call localAxis.Add(Self.EllipseCenter)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>transform.TransformV(localAxis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPointFeature(localAxis)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Below code is equivalent to</SourceLine>
+   <SourceLine>// Return Segment.GetFarthestFeature(Self.vertexLeft, Self.vertexRight, vector, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the vertices to world space</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(Self.VertexLeft)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = transform.GetTransformed(Self.VertexRight)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The vector p1-&gt;p2 is always CCW winding.</SourceLine>
+   <SourceLine>Var vp1 As PKPointFeature = New PKPointFeature(p1, 0)</SourceLine>
+   <SourceLine>Var vp2 As PKPointFeature = New PKPointFeature(p2, 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Choose the vertex that maximizes v.Dot(vector)</SourceLine>
+   <SourceLine>// localAxis is vector in local space and we can choose the correct vertex by</SourceLine>
+   <SourceLine>// checking if localAxis points to the left or right.</SourceLine>
+   <SourceLine>Var vmax As PKPointFeature = If((localAxis.X &lt;= 0), vp1, vp2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKEdgeFeature(vp1, vp2, vmax, p1.Towards(p2), 0)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Modifies the given local space axis into the farthest point along that axis and additionally returns it.</CodeDescription>
+  <PartID>1376135167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(localAxis As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Modifies the given local space axis into the farthest point along that axis and</SourceLine>
+   <SourceLine>' additionally returns it.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter localAxis: The direction vector in local space.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// localAxis is already in local coordinates.</SourceLine>
+   <SourceLine>// Invert the local rotation.</SourceLine>
+   <SourceLine>Call localAxis.InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If localAxis.Y &lt;= 0 Then</SourceLine>
+   <SourceLine>If localAxis.X &gt;= 0 Then</SourceLine>
+   <SourceLine>Call localAxis.Set(Self.vertexRight)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Call localAxis.Set(Self.VertexLeft)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Return localAxis</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>GetFarthestPointOnAlignedEllipse(localAxis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Include local rotation (inverse again to restore the original rotation).</SourceLine>
+   <SourceLine>Call localAxis.Rotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the radius along the vector to the center to get the farthest point.</SourceLine>
+   <SourceLine>Call localAxis.Add(Self.EllipseCenter)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return localAxis</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localAxis As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>642953215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Convert the world space vector(n) to local space.</SourceLine>
+   <SourceLine>Var localAxis As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Private implementation.</SourceLine>
+   <SourceLine>localAxis = Self.GetFarthestPoint(localAxis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then convert back into world space coordinates.</SourceLine>
+   <SourceLine>transform.TransformV(localAxis)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return localAxis</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPointOnAlignedEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the farthest point along the given local space axis assuming the ellipse and the given axis are aligned.</CodeDescription>
+  <PartID>620773375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GetFarthestPointOnAlignedEllipse(localAxis As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the farthest point along the given local space axis assuming the</SourceLine>
+   <SourceLine>' ellipse and the given axis are aligned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Typically this means that the ellipse Is axis-aligned, but it could also</SourceLine>
+   <SourceLine>' mean that the ellipse is not axis-aligned, but the given local space axis</SourceLine>
+   <SourceLine>' has been rotated to match the alignment Of the ellipse.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// An ellipse is a circle with a non-uniform scaling transformation applied</SourceLine>
+   <SourceLine>// so we can achieve that by scaling the input axis by the major and minor axis lengths.</SourceLine>
+   <SourceLine>localAxis.X = localAxis.X * Self.HalfWidth</SourceLine>
+   <SourceLine>localAxis.Y = localAxis.Y * Self.Height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then normalise it.</SourceLine>
+   <SourceLine>Call localAxis.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then scale again to get a point in the ellipse.</SourceLine>
+   <SourceLine>localAxis.X = localAxis.X * Self.HalfWidth</SourceLine>
+   <SourceLine>localAxis.Y = localAxis.Y * Self.Height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localAxis As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>148479999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' This method is not supported by this shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: UnsupportedOperationException when called.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This shape is not supported by SAT.</SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException(PKMessages.GEOMETRY_HALF_ELLIPSE_SAT_NOT_SUPPORTED)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHalfWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the half width.</CodeDescription>
+  <PartID>850059263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHalfWidth() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the half width.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.HalfWidth</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the height.</CodeDescription>
+  <PartID>2033612799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the height.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Height</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaxDistanceEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>623302655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaxDistanceEllipse(point As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum distance from the given point to the ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to translate/rotate the point so that this ellipse is</SourceLine>
+   <SourceLine>// considered centered at the origin with it's semi-major axis aligned</SourceLine>
+   <SourceLine>// with the x-axis and its semi-minor axis aligned with the y-axis.</SourceLine>
+   <SourceLine>Var p As PKVector2 = point.Difference(Self.EllipseCenter).InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the farthest point.</SourceLine>
+   <SourceLine>Var fp As PKVector2 = PKEllipse.GetFarthestPointOnEllipse(Self.HalfWidth, Self.Height, p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the distance between the two points. The distance will be the</SourceLine>
+   <SourceLine>// same if we translate/rotate the points back to the real position and rotation, so don't bother.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return p.Distance(fp)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaxDistanceHalfEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>767193087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaxDistanceHalfEllipse(point As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum distance between the given point and the half ellipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var a As Double = Self.HalfWidth</SourceLine>
+   <SourceLine>Var b As Double = Self.Height</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to translate/rotate the point so that this ellipse is</SourceLine>
+   <SourceLine>// considered centered at the origin with it's semi-major axis aligned</SourceLine>
+   <SourceLine>// with the x-axis and its semi-minor axis aligned with the y-axis.</SourceLine>
+   <SourceLine>Var p As PKVector2 = point.Difference(Self.EllipseCenter).InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the point is below the x axis, then we only need to perform the ellipse code.</SourceLine>
+   <SourceLine>If p.Y &lt; 0 Then Return Self.GetMaxDistanceEllipse(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Move the point to the 1st quadrant to conform my formulation.</SourceLine>
+   <SourceLine>If p.X &lt; 0 Then p.X = -p.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the point is above the evolute, then we only need to evaluate</SourceLine>
+   <SourceLine>// the max distance of the two vertices.</SourceLine>
+   <SourceLine>// Evolute: (ax)^2/3 + (by)^2/3 = (a^2 - b^2)^2/3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the y coordinate of the point on the evolute at p.X</SourceLine>
+   <SourceLine>// ey = ((b^2 - a^2)^2/3 - (ax)^2/3)^3/2 / b</SourceLine>
+   <SourceLine>Var ab As Double = (b * b - a * a)</SourceLine>
+   <SourceLine>Var ab2r3 As Double = MathsKit.Cbrt(ab * ab)</SourceLine>
+   <SourceLine>Var ax As Double = a * p.X</SourceLine>
+   <SourceLine>Var ax2r3 As Double = MathsKit.Cbrt(ax * ax)</SourceLine>
+   <SourceLine>Var top As Double = ab2r3 - ax2r3</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If top &lt; 0 Then</SourceLine>
+   <SourceLine>// The evolute isn't defined at p.X</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceToVertices(point)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>top = Sqrt(top)</SourceLine>
+   <SourceLine>Var ey As Double = (top * top * top) / b</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If p.y &gt; ey Then</SourceLine>
+   <SourceLine>// The point is above the evolute.</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceToVertices(point)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if p.x is close to zero (if it is, then m will be infinity).</SourceLine>
+   <SourceLine>If Abs(p.x) &lt; 1e-16 Then</SourceLine>
+   <SourceLine>// Compare the distance to the points and the height.</SourceLine>
+   <SourceLine>Var d1 As Double = Self.Height - p.Y</SourceLine>
+   <SourceLine>Var d2 As Double = Self.GetMaxDistanceToVertices(point)</SourceLine>
+   <SourceLine>Return If(d1 &gt; d2, d1, d2)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Else compute the bounds for the unimodal region for golden section to work.</SourceLine>
+   <SourceLine>// Compute the slope of the evolute at x</SourceLine>
+   <SourceLine>// m = -a^2/3 * sqrt((b^2 - a^2)^2/3 - (ax)^2/3) / (bx^1/3)</SourceLine>
+   <SourceLine>Var xr3 As Double = MathsKit.Cbrt(p.X)</SourceLine>
+   <SourceLine>Var a2r3 As Double = MathsKIt.Cbrt(a * a)</SourceLine>
+   <SourceLine>Var m As Double = (-a2r3 * top) / (b * xr3)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then compute the ellipse intersect of m, ex, and ey</SourceLine>
+   <SourceLine>// y - ey = m(x - ex)</SourceLine>
+   <SourceLine>// (x / a)^2 + (y / b)^2 = 1</SourceLine>
+   <SourceLine>// Solve for y then substitute.</SourceLine>
+   <SourceLine>// Then examine terms to get quadratic equation parameters.</SourceLine>
+   <SourceLine>// qa = a^2m^2 + b^2</SourceLine>
+   <SourceLine>// qb = 2a^2mey - 2a^2m^2ex</SourceLine>
+   <SourceLine>// qc = a^2m^2ex^2 - 2a^2mexey + a^2ey^2 - b^2a^2</SourceLine>
+   <SourceLine>Var a2 As Double = a * a</SourceLine>
+   <SourceLine>Var b2 As Double = b * b</SourceLine>
+   <SourceLine>Var m2 As Double = m * m</SourceLine>
+   <SourceLine>Var x2 As Double = p.x * p.x</SourceLine>
+   <SourceLine>Var y2 As Double = ey * ey</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute quadratic equation parameters.</SourceLine>
+   <SourceLine>Var qa As Double = a2 * m2 + b2</SourceLine>
+   <SourceLine>Var qb As Double = 2 * a2 * m * ey - 2 * a2 * m2 * p.X</SourceLine>
+   <SourceLine>Var qc As Double = a2 * m2 * x2 - 2 * a2 * m * p.X * ey + a2 * y2 - b2 * a2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the quadratic equation to limit the search space.</SourceLine>
+   <SourceLine>Var b24ac As Double = qb * qb - 4 * qa * qc</SourceLine>
+   <SourceLine>If b24ac &lt; 0 Then</SourceLine>
+   <SourceLine>// This would mean that the line from the evolute at p.x doesn't</SourceLine>
+   <SourceLine>// intersect with the ellipse, which shouldn't be possible.</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceToVertices(point)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var xmin As Double = (-qb - Sqrt(b24ac)) / (2 * qa)</SourceLine>
+   <SourceLine>Var xmax As Double = 0 </SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the farthest point on the ellipse.</SourceLine>
+   <SourceLine>Var s As PKVector2 = PKEllipse.GetFarthestPointOnBoundedEllipse(xmin, xmax, a, b, p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then compare that with the farthest point of the two vertices.</SourceLine>
+   <SourceLine>Var d1 As Double = s.Distance(p)</SourceLine>
+   <SourceLine>Var d2 As Double = Self.GetMaxDistanceToVertices(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return If(d1 &gt; d2, d1, d2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaxDistanceToVertices</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1257242623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaxDistanceToVertices(point As PKVector2) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum distance between the two vertices of the ellipse and the given point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the maximum radius from the centre.</SourceLine>
+   <SourceLine>Var leftR As Double = point.DistanceSquared(Self.VertexLeft)</SourceLine>
+   <SourceLine>Var rightR As Double = point.DistanceSquared(Self.VertexRight)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Keep the largest.</SourceLine>
+   <SourceLine>Var r2 As Double = Max(leftR, rightR)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Sqrt(r2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1186854911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// It turns out that a half ellipse is even more annoying than an ellipse.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the half ellipse is wider than it is tall.</SourceLine>
+   <SourceLine>If Self.HalfWidth &gt;= Self.Height Then</SourceLine>
+   <SourceLine>// We have two solutions based on the point location.</SourceLine>
+   <SourceLine>// If the point is below the half ellipse, then we need to perform</SourceLine>
+   <SourceLine>// a golden section search like the ellipse code.</SourceLine>
+   <SourceLine>If PKSegment.GetLocation(center, Self.VertexLeft, Self.VertexRight) &lt;= 0 Then</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceEllipse(center)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise we can just take the greater distance of the vertices.</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceToVertices(center)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise we have even more conditions.</SourceLine>
+   <SourceLine>Return Self.GetMaxDistanceHalfEllipse(center)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a copy of the Rotation object that represents the local rotation.</CodeDescription>
+  <PartID>2052239359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotation() As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: A copy of the Rotation object that represents the local rotation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotation.Copy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationAbgle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1079498751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationAbgle() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the rotation about the local centre in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The rotation in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotation.ToRadians</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the width.</CodeDescription>
+  <PartID>1602148351</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWidth() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the width.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.HalfWidth * 2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Initialises shared properties.</CodeDescription>
+  <PartID>1264340991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Initialise()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Initialises shared properties.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>INERTIA_CONSTANT = MathsKit.PI / 8.0 - 8.0 / (9.0 * MathsKit.PI)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>585086975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the world space farthest point.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.GetFarthestPoint(vector, transform)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.GetFarthestPoint(vector.GetNegative, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the point onto the axis.</SourceLine>
+   <SourceLine>Var d1 As Double = p1.Dot(vector)</SourceLine>
+   <SourceLine>Var d2 As Double = p2.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the interval along the axis.</SourceLine>
+   <SourceLine>Return New PKInterval(d2, d1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1139789823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the local axis as well.</SourceLine>
+   <SourceLine>Call Self.Rotation.Rotate(r)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Call Self.VertexLeft.Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.VertexRight.Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.EllipseCenter.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1527951359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this HalfEllipse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("HalfEllipse[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Width=")</SourceLine>
+   <SourceLine>s.AddRow(Self.GetWidth.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Height=")</SourceLine>
+   <SourceLine>s.AddRow(Self.GetHeight.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>423892991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the centroid.</SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the pie vertices.</SourceLine>
+   <SourceLine>Call Self.VertexLeft.Add(x, y)</SourceLine>
+   <SourceLine>Call Self.VertexRight.Add(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the ellipse centre.</SourceLine>
+   <SourceLine>Call Self.EllipseCenter.Add(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1744015359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(width As Double, height As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or raising an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The bounding rectangle width.</SourceLine>
+   <SourceLine>' - Parameter height: The bounding rectangle height.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if either the width or height is less than or equal to zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate the width and height.</SourceLine>
+   <SourceLine>If width &lt;= 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_WIDTH)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If height &lt;= 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_HALF_ELLIPSE_INVALID_HEIGHT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1973520383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of an Half-Ellipse Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A half ellipse must have a width and height greater than zero and the height parameter is the </NoteLine>
+   <NoteLine>height of the half.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This shape is only supported by the GJK collision detection algorithm.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>An `UnsupportedOperationException` is raised when this shape is used with SAT.  If you are using</NoteLine>
+   <NoteLine>or are planning on using the SAT collision detection algorithm, you can use the </NoteLine>
+   <NoteLine>`Geometry.CreatePolygonalHalfEllipse(int, double, double)` method to create a half ellipse</NoteLine>
+   <NoteLine>Polygon approximation. Another option is to use the GJK or your own collision detection</NoteLine>
+   <NoteLine>algorithm for this shape only and use SAT on others.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>EllipseCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The ellipse centre.</CodeDescription>
+  <PartID>1332688895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>EllipseCenter As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>EllipseCenter As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>HalfWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The half-width.</CodeDescription>
+  <PartID>1128343551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>HalfWidth As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>HalfWidth As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Height</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The ellipse height.</CodeDescription>
+  <PartID>916953087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Height As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Height As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>INERTIA_CONSTANT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>he half ellipse inertia constant.</CodeDescription>
+  <PartID>608479231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared INERTIA_CONSTANT As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>INERTIA_CONSTANT As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Rotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The local rotation.</CodeDescription>
+  <PartID>1553537023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Rotation As PKRotation</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Rotation As PKRotation</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>VertexLeft</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The first vertex of the bottom.</CodeDescription>
+  <PartID>1660399615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>VertexLeft As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>VertexLeft As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>VertexRight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The second vertex of the bottom.</CodeDescription>
+  <PartID>673425407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>VertexRight As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>VertexRight As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HalfWidth</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

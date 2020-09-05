@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1407696895">
+ <ObjName>PKPolygon</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex,PKWound</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validated constructor. Creates a new Polygon using the given vertices.  The centre of the polygon is calculated using an area weighted method.</CodeDescription>
+  <PartID>61542399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, vertices() As PKVector2, center As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new Polygon using the given vertices.  The centre of the polygon</SourceLine>
+   <SourceLine>' is calculated using an area weighted method.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter vertices(): The polygon vertices.</SourceLine>
+   <SourceLine>' - Parameter center: The center of the polygon.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(center, PKGeometry.GetRotationRadius(center, vertices))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the vertices.</SourceLine>
+   <SourceLine>Self.Vertices = vertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the normals.</SourceLine>
+   <SourceLine>Self.Normals = PKGeometry.GetCounterClockwiseEdgeNormals(vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, vertices() As PKVector2, center As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor. Creates a new Polygon using the given vertices. The center of the polygon is calculated using an area weighted method. Throws exceptions.</CodeDescription>
+  <PartID>465289215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(verts() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Creates a new Polygon using the given vertices. The center of the polygon</SourceLine>
+   <SourceLine>' is calculated using an area weighted method.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A polygon must have 3 or more vertices, of which one is not colinear with the other two.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A polygon must also be convex and have counter-clockwise winding.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter verts: The array of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if vertices is Nil or contains a Nil element.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if vertices contains less than 3 points,</SourceLine>
+   <SourceLine>'           contains coincident points, is not convex, or has clockwise winding</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Validate(verts), verts, PKGeometry.GetAreaWeightedCenter(verts))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>verts() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor for subclasses.</CodeDescription>
+  <PartID>586037247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(center As PKVector2, radius As Double, vertices() As PKVector2, normals() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor for subclasses.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter center: The center.</SourceLine>
+   <SourceLine>' - Parameter radius: The rotation radius.</SourceLine>
+   <SourceLine>' - Paramater vertices(): The vertices.</SourceLine>
+   <SourceLine>' - Parameter normals(): The normals.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor(center, radius)</SourceLine>
+   <SourceLine>Self.Vertices = vertices</SourceLine>
+   <SourceLine>Self.Normals = normals</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2, radius As Double, vertices() As PKVector2, normals() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>522100735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the polygon is convex then do a simple inside test.</SourceLine>
+   <SourceLine>// If the the sign of the location of the point on the side of an edge (or line)</SourceLine>
+   <SourceLine>// is always the same and the polygon is convex then we know that the</SourceLine>
+   <SourceLine>// point lies inside the polygon.</SourceLine>
+   <SourceLine>// This method doesn't care about vertex winding.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inverse transform the point to put it in local coordinates.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Start from the pair (p1 = last, p2 = first) so there's no </SourceLine>
+   <SourceLine>// need to check in the loop for wrap-around of the i + 1 vertice.</SourceLine>
+   <SourceLine>Var size As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(size - 1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the location of the point relative to the first two vertices.</SourceLine>
+   <SourceLine>Var last As Double = PKSegment.GetLocation(p, p1, p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop through the rest of the vertices.</SourceLine>
+   <SourceLine>For i As Integer = 0 To size - 2</SourceLine>
+   <SourceLine>// p1 is now p2.</SourceLine>
+   <SourceLine>p1 = p2</SourceLine>
+   <SourceLine>// p2 is the next point.</SourceLine>
+   <SourceLine>p2 = Self.Vertices(i + 1)</SourceLine>
+   <SourceLine>// Check if they are equal (one of the vertices).</SourceLine>
+   <SourceLine>If p.Equals(p1) Or p.Equals(p2) Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Do side of line test.</SourceLine>
+   <SourceLine>Var location As Double = PKSegment.GetLocation(p, p1, p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Multiply the last location with this location.</SourceLine>
+   <SourceLine>// If they are the same sign then the opertation will yield a positive result</SourceLine>
+   <SourceLine>// -x * -y = +xy, x * y = +xy, -x * y = -xy, x * -y = -xy</SourceLine>
+   <SourceLine>If last * location &lt; 0 Then</SourceLine>
+   <SourceLine>// reminder: (-0.0 &lt; 0.0) evaluates to false and not true</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Update the last location, but only if it's not zero.</SourceLine>
+   <SourceLine>// A location of zero indicates that the point lies ON the line</SourceLine>
+   <SourceLine>// through p1 and p2. We can ignore these values because the</SourceLine>
+   <SourceLine>// convexity requirement of the shape will ensure that if it's outside, a sign will change.</SourceLine>
+   <SourceLine>If Abs(location) &gt; PKEpsilon.E Then last = location</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1884927999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the first point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialize min and max values.</SourceLine>
+   <SourceLine>Var minX As Double = p.X</SourceLine>
+   <SourceLine>Var maxX As Double = p.X</SourceLine>
+   <SourceLine>Var minY As Double = p.Y</SourceLine>
+   <SourceLine>Var maxY As Double = p.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the rest of the vertices.</SourceLine>
+   <SourceLine>Var iLimit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 1 To iLimit</SourceLine>
+   <SourceLine>// Get the next point.</SourceLine>
+   <SourceLine>Var px As Double = transform.GetTransformedX(Self.Vertices(i))</SourceLine>
+   <SourceLine>Var py As Double = transform.GetTransformedY(Self.Vertices(i))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compare the x values.</SourceLine>
+   <SourceLine>If px &lt; minX Then</SourceLine>
+   <SourceLine>minX = px</SourceLine>
+   <SourceLine>ElseIf px &gt; maxX Then</SourceLine>
+   <SourceLine>maxX = px</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compare the y values.</SourceLine>
+   <SourceLine>If py &lt; minY Then</SourceLine>
+   <SourceLine>minY = py</SourceLine>
+   <SourceLine>ElseIf py &gt; maxY Then</SourceLine>
+   <SourceLine>maxY = py</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the PKAABB.</SourceLine>
+   <SourceLine>Return New PKAABB(minX, minY, maxX, maxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a Mass object using the geometric properties of this Polygon and the given density.</CodeDescription>
+  <PartID>1336211455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a Mass object using the geometric properties of this Polygon and the given density.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A Polygon's centroid must be computed by the area weighted method since the</SourceLine>
+   <SourceLine>' average method can be bias to one side if there are more points on that one side than another.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter density: The density in kg/m².</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The Mass of this Polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Can't use normal centroid calculation since it will be weighted towards sides</SourceLine>
+   <SourceLine>// that have larger distribution of points.</SourceLine>
+   <SourceLine>Var center As PKVector2 = new PKVector2</SourceLine>
+   <SourceLine>Var area As Double = 0.0</SourceLine>
+   <SourceLine>Var I As Double = 0.0</SourceLine>
+   <SourceLine>Var n As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the average centre.</SourceLine>
+   <SourceLine>Var ac As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var kLimit As Integer = n - 1</SourceLine>
+   <SourceLine>For k As Integer = 0 To kLimit</SourceLine>
+   <SourceLine>Call ac.Add(Self.Vertices(k))</SourceLine>
+   <SourceLine>Next k</SourceLine>
+   <SourceLine>Call ac.Divide(n)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop through the vertices using two variables to avoid branches in the loop.</SourceLine>
+   <SourceLine>Var i1 As Integer = n - 1</SourceLine>
+   <SourceLine>Var i2 As Integer = 0</SourceLine>
+   <SourceLine>While i2 &lt; n</SourceLine>
+   <SourceLine>// Get two vertices.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.Vertices(i1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.Vertices(i2)</SourceLine>
+   <SourceLine>// Get the vector from the center to the point.</SourceLine>
+   <SourceLine>p1 = p1.Difference(ac)</SourceLine>
+   <SourceLine>p2 = p2.Difference(ac)</SourceLine>
+   <SourceLine>// Perform the cross product (yi * x(i+1) - y(i+1) * xi).</SourceLine>
+   <SourceLine>Var D As Double = p1.Cross(p2)</SourceLine>
+   <SourceLine>// Multiply by half.</SourceLine>
+   <SourceLine>Var triangleArea As Double = 0.5 * D</SourceLine>
+   <SourceLine>// Add it to the total area.</SourceLine>
+   <SourceLine>area = area + triangleArea</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Area weighted centroid.</SourceLine>
+   <SourceLine>// (p1 + p2) * (D / 6)</SourceLine>
+   <SourceLine>// = (x1 + x2) * (yi * x(i+1) - y(i+1) * xi) / 6</SourceLine>
+   <SourceLine>// We will divide by the total area later.</SourceLine>
+   <SourceLine>center.X = center.X + ((p1.X + p2.X) * PKGeometry.INV_3 * triangleArea)</SourceLine>
+   <SourceLine>center.Y = center.Y + ((p1.Y + p2.Y) * PKGeometry.INV_3 * triangleArea)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// (yi * x(i+1) - y(i+1) * xi) * (p2^2 + p2 . p1 + p1^2)</SourceLine>
+   <SourceLine>I = I + (triangleArea * (p2.Dot(p2) + p2.Dot(p1) + p1.Dot(p1)))</SourceLine>
+   <SourceLine>// We will do the m / 6A = (d / 6) when we have the area summed up.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>i1 = i2</SourceLine>
+   <SourceLine>i2 = i2 + 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the mass.</SourceLine>
+   <SourceLine>Var m As Double = density * area</SourceLine>
+   <SourceLine>// Finish the centroid calculation by dividing by the total area</SourceLine>
+   <SourceLine>// and adding in the average centre.</SourceLine>
+   <SourceLine>Call center.Divide(area)</SourceLine>
+   <SourceLine>Var c As PKVector2 = center.Sum(ac)</SourceLine>
+   <SourceLine>// Finish the inertia tensor by dividing by the total area and multiplying by d / 6</SourceLine>
+   <SourceLine>I = I * ((density / 6.0))</SourceLine>
+   <SourceLine>// Shift the axis of rotation to the area weighted center</SourceLine>
+   <SourceLine>// (center is the vector from the average center to the area weighted center since</SourceLine>
+   <SourceLine>// the average center is used as the origin).</SourceLine>
+   <SourceLine>I = I - (m * center.GetMagnitudeSquared)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(c, m, I)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1990014975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size of the foci list.</SourceLine>
+   <SourceLine>Var fociSize As Integer = If(foci &lt;&gt; Nil, foci.Count, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of vertices this polygon has.</SourceLine>
+   <SourceLine>Var size As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The axes of a polygon are created from the normal of the edges</SourceLine>
+   <SourceLine>// plus the closest point to each focus.</SourceLine>
+   <SourceLine>Var axes() As PKVector2</SourceLine>
+   <SourceLine>axes.ResizeTo(size + fociSize - 1)</SourceLine>
+   <SourceLine>Var n As Integer = 0</SourceLine>
+   <SourceLine>// Loop over the edge normals and put them into world space.</SourceLine>
+   <SourceLine>For Each v As PKVector2 In Self.Normals</SourceLine>
+   <SourceLine>// Transform it into world space and add it to the list.</SourceLine>
+   <SourceLine>axes(n) = transform.GetTransformedR(v)</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the focal points and find the closest points on the polygon to the focal points.</SourceLine>
+   <SourceLine>For Each f As PKVector2 In foci</SourceLine>
+   <SourceLine>// Create a place for the closest point.</SourceLine>
+   <SourceLine>Var closest As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var d As Double = f.DistanceSquared(closest)</SourceLine>
+   <SourceLine>// Find the minimum distance vertex.</SourceLine>
+   <SourceLine>Var jLimit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For j As Integer = 1 To jLimit</SourceLine>
+   <SourceLine>// Get the vertex.</SourceLine>
+   <SourceLine>Var p As PKVector2 = Self.Vertices(j)</SourceLine>
+   <SourceLine>// Transform it into world space.</SourceLine>
+   <SourceLine>p = transform.GetTransformed(p)</SourceLine>
+   <SourceLine>// Get the squared distance to the focus.</SourceLine>
+   <SourceLine>Var dt As Double = f.DistanceSquared(p)</SourceLine>
+   <SourceLine>// Compare with the last distance.</SourceLine>
+   <SourceLine>If dt &lt; d Then</SourceLine>
+   <SourceLine>// If it's closer then save it.</SourceLine>
+   <SourceLine>closest = p</SourceLine>
+   <SourceLine>d = dt</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine>// Once we have found the closest point create a vector from the focal point to the point.</SourceLine>
+   <SourceLine>Var axis As PKVector2 = f.Towards(closest)</SourceLine>
+   <SourceLine>// Normalise it.</SourceLine>
+   <SourceLine>Call axis.Normalise</SourceLine>
+   <SourceLine>// Add it to the array.</SourceLine>
+   <SourceLine>axes(n) = axis</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>Next f</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return all the axes.</SourceLine>
+   <SourceLine>Return axes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1466179583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKEdgeFeature</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the normal into local space.</SourceLine>
+   <SourceLine>Var localn As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = GetFarthestVertexIndex(localn)</SourceLine>
+   <SourceLine>Var count As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var maximum As PKVector2 = New PKVector2(Self.Vertices(index))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Once we have the point of maximum, see which edge is most perpendicular.</SourceLine>
+   <SourceLine>Var leftN As PKVector2 = Self.Normals(If(index = 0, count - 1, index - 1))</SourceLine>
+   <SourceLine>Var rightN As PKVector2 = Self.Normals(index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the maximum point for the feature (transform the maximum into world space).</SourceLine>
+   <SourceLine>transform.TransformV(maximum)</SourceLine>
+   <SourceLine>Var vm As PKPointFeature = New PKPointFeature(maximum, index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the left or right edge more perpendicular?</SourceLine>
+   <SourceLine>If leftN.Dot(localn) &lt; rightN.Dot(localn) Then</SourceLine>
+   <SourceLine>Var l As Integer = If((index = count - 1), 0, index + 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var left As PKVector2 = transform.GetTransformed(Self.Vertices(l))</SourceLine>
+   <SourceLine>Var vl As PKPointFeature = New PKPointFeature(left, l)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the edge is the right winding.</SourceLine>
+   <SourceLine>Return New PKEdgeFeature(vm, vl, vm, maximum.Towards(left), index + 1)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var r As Integer = If((index = 0), count - 1, index - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var right As PKVector2 = transform.GetTransformed(Self.Vertices(r))</SourceLine>
+   <SourceLine>Var vr As PKPointFeature = New PKPointFeature(right, r)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the edge is the right winding.</SourceLine>
+   <SourceLine>Return New PKEdgeFeature(vr, vm, vm, right.Towards(maximum), index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKEdgeFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1940285439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the normal into local space.</SourceLine>
+   <SourceLine>Var localn As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the index of the farthest point.</SourceLine>
+   <SourceLine>Var index As Integer = GetFarthestVertexIndex(localn)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the point into world space and return.</SourceLine>
+   <SourceLine>Return transform.GetTransformed(Self.Vertices(index))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestVertexIndex</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal helper method that returns the index of the point that is farthest in direction of a vector.</CodeDescription>
+  <PartID>26261503</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestVertexIndex(vector As PKVector2) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal helper method that returns the index of the point that is </SourceLine>
+   <SourceLine>' farthest in direction of a vector.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vector: The direction.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The index of the farthest vertex in that direction.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The sequence a(n) = vector.dot(vertices[n]) has a maximum, a minimum and is </SourceLine>
+   <SourceLine>// monotonic (though not strictly monotonic) between those extrema.</SourceLine>
+   <SourceLine>// All indices are considered in modular arithmetic. I choose the initial index to be 0.</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Based on that I follow this approach:</SourceLine>
+   <SourceLine>// We start from an initial index n0. We want to an adjacent to n0 index n1 for which a(n1) &gt; a(n0).</SourceLine>
+   <SourceLine>// If no such index exists then n0 is the maximum. Else we start in </SourceLine>
+   <SourceLine>// direction of n1 (i.e. left or right of n0) and while a(n) increases we continue to </SourceLine>
+   <SourceLine>// that direction. When the next number of the sequence does not increases anymore</SourceLine>
+   <SourceLine>// we can stop and we have found max{a(n)}.</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Although the idea is simple we need to be careful with some edge cases and the </SourceLine>
+   <SourceLine>// correctness of the algorithm in all cases.</SourceLine>
+   <SourceLine>// Although the sequence is not strictly monotonic the absence of equalities is intentional </SourceLine>
+   <SourceLine>// and wields the correct answer (see below).</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// The correctness of this method relies on some properties:</SourceLine>
+   <SourceLine>// 1) If n0 and n1 are two adjacent indices and a(n0) = a(n1) then a(n0) and a(n1) are </SourceLine>
+   <SourceLine>//    either max{a(n)} or min{a(n)}.</SourceLine>
+   <SourceLine>//    This holds for all convex polygons. This property can guarantee that if our initial </SourceLine>
+   <SourceLine>//    index is n0 or n1 then it does not matter to which side (left or right) we start searching.</SourceLine>
+   <SourceLine>// 2) The polygon has no coincident vertices.</SourceLine>
+   <SourceLine>//    This guarantees us that there are no adjacent n0, n1, n2 for which a(n0) = a(n1) = a(n2)</SourceLine>
+   <SourceLine>//    and that only two adjacent n0, n1 can exist with a(n0) = a(n1). This is important because if</SourceLine>
+   <SourceLine>//    those adjacent n0, n1, n2 existed the code below would always return the initial index, </SourceLine>
+   <SourceLine>//    without knowing if it's a minimum or maximum. But since only two adjacent indices can </SourceLine>
+   <SourceLine>//    exist with a(n0) = a(n1) the code below will always start searching in one direction and </SourceLine>
+   <SourceLine>//    because of 1) this will give us the correct answer.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The initial starting index and the corresponding dot product.</SourceLine>
+   <SourceLine>Var maxIndex As Integer = 0</SourceLine>
+   <SourceLine>Var n As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine>Var max As Double = vector.Dot(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var candidateMax As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>candidateMax = vector.Dot(Self.Vertices(1))</SourceLine>
+   <SourceLine>If max &lt; candidateMax Then</SourceLine>
+   <SourceLine>// Search to the right.</SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>max = candidateMax</SourceLine>
+   <SourceLine>maxIndex = maxIndex + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Exit?</SourceLine>
+   <SourceLine>If maxIndex + 1 &gt;= n Then</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>candidateMax = vector.Dot(Self.Vertices(maxIndex + 1))</SourceLine>
+   <SourceLine>If max &gt;= candidateMax Then Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Loop</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>candidateMax = vector.Dot(Self.Vertices(n - 1))</SourceLine>
+   <SourceLine>If max &lt; candidateMax Then</SourceLine>
+   <SourceLine>maxIndex = n</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Search to the left.</SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>max = candidateMax</SourceLine>
+   <SourceLine>maxIndex = maxIndex - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Exit?</SourceLine>
+   <SourceLine>If maxIndex &lt;= 0 Then</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>candidateMax = vector.Dot(Self.Vertices(maxIndex - 1))</SourceLine>
+   <SourceLine>If max &gt; candidateMax Then Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Loop</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return maxIndex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1509228543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>'   Not applicable to this shape. Always returns Nil.</SourceLine>
+   <SourceLine>'   Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormalIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>81524735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormalIterator() As Iterator</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKWoundIterator(Self.Normals)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetNormals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>328941567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetNormals() As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Normals</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>373475327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKGeometry.GetRotationRadius(center, Self.Vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertexIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>392222719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertexIterator() As Iterator</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKWoundIterator(Self.Vertices)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetVertices</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1626802175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetVertices() As PKVector2()</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Wound interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Vertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>312827903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v As Double = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the first point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the point onto the vector.</SourceLine>
+   <SourceLine>Var min As Double = vector.Dot(p)</SourceLine>
+   <SourceLine>Var max As Double = min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the rest of the vertices.</SourceLine>
+   <SourceLine>Var limit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 1 To limit</SourceLine>
+   <SourceLine>// Get the next point.</SourceLine>
+   <SourceLine>p = transform.GetTransformed(Self.Vertices(i))</SourceLine>
+   <SourceLine>// Project it onto the vector.</SourceLine>
+   <SourceLine>v = vector.Dot(p)</SourceLine>
+   <SourceLine>If v &lt; min Then</SourceLine>
+   <SourceLine>min = v</SourceLine>
+   <SourceLine>ElseIf v &gt; max Then</SourceLine>
+   <SourceLine>max = v</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKInterval(min, max)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>522461183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var limit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To limit</SourceLine>
+   <SourceLine>Call Self.Vertices(i).Rotate(r, x, y)</SourceLine>
+   <SourceLine>Call Self.Normals(i).Rotate(r)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Polygon in the form: "Polygon[ID=id|Center=(X,Y)|Radius=radius|Vertices={(X,Y),n}]".</CodeDescription>
+  <PartID>1834541055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Polygon in the form:</SourceLine>
+   <SourceLine>' "Polygon[ID=id|Center=(X,Y)|Radius=radius|Vertices={(X,Y),n}]".</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Polygon[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Vertices={")</SourceLine>
+   <SourceLine>For i As Integer = 0 To Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>If i &lt;&gt; 0 Then s.AddRow(",")</SourceLine>
+   <SourceLine>s.AddRow(Self.Vertices(i).ToString)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine>s.AddRow("}")</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>117223423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine>For Each v As PKVector2 In Self.Vertices</SourceLine>
+   <SourceLine>Call v.Add(x, y)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning True if valid or throwing an exception if invalid.</CodeDescription>
+  <PartID>1402226687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(verts() As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter verts: The array of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True or raises an exception.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if verts is Nil or contains a Nil element.</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if verts contains less than 3 points, </SourceLine>
+   <SourceLine>'           contains coincident points, is not convex, or has clockwise winding.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the vertex array.</SourceLine>
+   <SourceLine>If verts = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_POLYGON_NIL_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = verts.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt; 3 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_LESS_THAN_3_VERTICES)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil vertices.</SourceLine>
+   <SourceLine>For Each v As PKVector2 In verts</SourceLine>
+   <SourceLine>If v Is Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_POLYGON_NIL_VERTICES)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for convex.</SourceLine>
+   <SourceLine>Var area As Double = 0.0</SourceLine>
+   <SourceLine>Var sign As Double = 0.0</SourceLine>
+   <SourceLine>Var limit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 to limit</SourceLine>
+   <SourceLine>Var p0 As PKVector2 = If((i - 1 &lt; 0), verts(size - 1), verts(i - 1))</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = verts(i)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = If((i + 1 = size), verts(0), verts(i + 1))</SourceLine>
+   <SourceLine>// Check for coincident vertices.</SourceLine>
+   <SourceLine>If p1.Equals(p2) Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_COINCIDENT_VERTICES)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Check the cross product for CCW winding.</SourceLine>
+   <SourceLine>Var cross As Double = p0.Towards(p1).Cross(p1.Towards(p2))</SourceLine>
+   <SourceLine>Var tsign As Double = MathsKit.Signum(cross)</SourceLine>
+   <SourceLine>area = area + cross</SourceLine>
+   <SourceLine>// Check for colinear edges (for now its allowed).</SourceLine>
+   <SourceLine>If Abs(cross) &gt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>// Check for convexity.</SourceLine>
+   <SourceLine>If sign &lt;&gt; 0.0 And tsign &lt;&gt; sign Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_NON_CONVEX)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>sign = tsign</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Don't allow degenerate polygons.</SourceLine>
+   <SourceLine>If Abs(area) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_ZERO_AREA)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for CCW.</SourceLine>
+   <SourceLine>If area &lt; 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_POLYGON_INVALID_WINDING)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we've made it this far then continue.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>verts() As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Validates the constructor input returning True if valid or throwing an exception if invalid.</CodeDescription>
+  <PartID>1431511039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(ParamArray verts As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Wrapper to facilitate passing a variable number of vertices to the Validate method.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Validate(verts)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>ParamArray verts As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>617254911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of an arbitrary polygon Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A Polygon must have at least 3 vertices where one of which is not colinear with the other two.</NoteLine>
+   <NoteLine>A Polygon must also be Convex and have counter-clockwise winding of points.</NoteLine>
+   <NoteLine>A polygon cannot have coincident vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Normals()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The polygon normals.</CodeDescription>
+  <PartID>2108764159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Normals() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Normals() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Vertices()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The polygon vertices.</CodeDescription>
+  <PartID>639279103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Vertices() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Vertices() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

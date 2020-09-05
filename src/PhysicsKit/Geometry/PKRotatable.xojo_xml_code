@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1633466367">
+ <ObjName>PKRotatable</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the object about the origin by the angle specified in radians.</CodeDescription>
+  <PartID>383584255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the object about the given coordinates by the specified angle inm radians.</CodeDescription>
+  <PartID>1155749887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the object about the given point by the angle specified in radians.</CodeDescription>
+  <PartID>2104217599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, point As PKVector2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the object about the origin by the amount specified by the Rotation parameter.</CodeDescription>
+  <PartID>485660671</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription> Rotates the object about the given point by the specified rotation amount.</CodeDescription>
+  <PartID>1689384959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the object about the given point by the specified amount of rotation.</CodeDescription>
+  <PartID>1559152639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, point As PKVector2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>596991999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Interface representing an object that can be rotated.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(theta As Double)</NoteLine>
+   <NoteLine>-----------------------</NoteLine>
+   <NoteLine>Rotates the object about the origin by the angle specified in radians.</NoteLine>
+   <NoteLine>- Parameter theta: The angle of rotation in radians.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(r As PKRotation)</NoteLine>
+   <NoteLine>---------------------</NoteLine>
+   <NoteLine>Rotates the object about the origin</NoteLine>
+   <NoteLine>- Parameter r: The Rotation representing the rotation amount.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(theta As Double, point As PKVector2)</NoteLine>
+   <NoteLine>-----------------------------------------</NoteLine>
+   <NoteLine>Rotates the object about the given point.</NoteLine>
+   <NoteLine>- Parameter theta: The angle of rotation in radians.</NoteLine>
+   <NoteLine>- Parameter point: The point to rotate about.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(r As PKRotation, point As PKVector2)</NoteLine>
+   <NoteLine>---------------------------------------</NoteLine>
+   <NoteLine>Rotates the object about the given point.</NoteLine>
+   <NoteLine>- Parameter rotation: The Rotation representing the rotation amount.</NoteLine>
+   <NoteLine>- Parameter point: The point to rotate about.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(theta As Double, x As Double, y As Double)</NoteLine>
+   <NoteLine>-------------------------------------------------</NoteLine>
+   <NoteLine>Rotates the object about the given coordinates.</NoteLine>
+   <NoteLine>- Parameter theta: The angle of rotation in radians.</NoteLine>
+   <NoteLine>- Parameter x: The x coordinate to rotate about.</NoteLine>
+   <NoteLine>- Parameter y: The y coordinate to rotate about.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Rotate(r As PKRotation, x As Double, y As Double)</NoteLine>
+   <NoteLine>-----------------------------------------------</NoteLine>
+   <NoteLine>Rotates the object about the given point.</NoteLine>
+   <NoteLine>- Parameter r: The Rotation representing the rotation amount.</NoteLine>
+   <NoteLine>- Parameter x: The x coordinate to rotate about.</NoteLine>
+   <NoteLine>- Parameter y: The y coordinate to rotate about.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

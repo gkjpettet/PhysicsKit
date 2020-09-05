@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="336588799">
+ <ObjName>PKSlice</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractShape</Superclass>
+ <Interfaces>PKConvex</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1511974911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(valid As Boolean, radius As Double, theta As Double, center As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validated constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method creates a slice of a circle with the **circle centre** at the origin</SourceLine>
+   <SourceLine>' and half of theta below the x-axis and half above.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter valid: Always True or this constructor would not be called.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circular section.</SourceLine>
+   <SourceLine>' - Parameter theta: The angular extent in radians. Must be &gt; 0 and &lt;= π</SourceLine>
+   <SourceLine>' - Parameter center: The centre.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused valid</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tmpV As PKVector2 = New PKVector2(radius, 0)</SourceLine>
+   <SourceLine>Super.Constructor(center, Max(center.X, center.Distance(tmpV.Rotate(0.5*theta))))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.SliceRadius = radius</SourceLine>
+   <SourceLine>Self.Alpha = theta * 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the triangular section of the pie (and cache cos(alpha)).</SourceLine>
+   <SourceLine>Self.CosAlpha = Cos(Self.Alpha)</SourceLine>
+   <SourceLine>Var x As Double = radius * (Self.CosAlpha)</SourceLine>
+   <SourceLine>Var y As Double = radius * Sin(Self.Alpha)</SourceLine>
+   <SourceLine>Self.Vertices = Array(_</SourceLine>
+   <SourceLine>New PKVector2, _ // the origin</SourceLine>
+   <SourceLine>New PKVector2(x, y), _ // the top point</SourceLine>
+   <SourceLine>New PKVector2(x, -y)) // the bottom point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var v1 As PKVector2 = Self.Vertices(1).Towards(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = Self.Vertices(0).Towards(Self.Vertices(2))</SourceLine>
+   <SourceLine>Call v1.Left.Normalise</SourceLine>
+   <SourceLine>Call v2.Left.Normalise</SourceLine>
+   <SourceLine>Self.Normals = Array(v1, v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initially the slice is aligned to the world space x axis.</SourceLine>
+   <SourceLine>Self.Rotation = New PKRotation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>valid As Boolean, radius As Double, theta As Double, center As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2018938879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(radius As Double, theta As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This method creates a slice of a circle with the **circle centre** at the origin</SourceLine>
+   <SourceLine>' and half of theta below the x-axis and half above.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circular section.</SourceLine>
+   <SourceLine>' - Parameter theta: The angular extent in radians. Must be &gt; 0 and &lt;= π</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if `radius` is &lt;= 0 or `theta` is &lt;= 0 or `theta` &gt; 180 degrees.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Validate(radius, theta), _</SourceLine>
+   <SourceLine>radius, _</SourceLine>
+   <SourceLine>theta, _</SourceLine>
+   <SourceLine>New PKVector2(2.0 * radius * Sin(theta * 0.5) / (1.5 * theta), 0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>radius As Double, theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2113781759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2, transform As PKTransform) As Boolean</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// See if the point is in the circle, transform the point into local space.</SourceLine>
+   <SourceLine>Var lp As PKVector2 = transform.GetInverseTransformed(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the transformed radius squared.</SourceLine>
+   <SourceLine>Var radiusSquared As Double = Self.SliceRadius * Self.SliceRadius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector from the circle centre to the given point.</SourceLine>
+   <SourceLine>Var v As PKVector2 = Self.Vertices(0).Towards(lp)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If v.GetMagnitudeSquared &lt;= radiusSquared Then</SourceLine>
+   <SourceLine>// If it's in the circle then we need to make sure its in the section.</SourceLine>
+   <SourceLine>If PKSegment.GetLocation(lp, Self.Vertices(0), Self.Vertices(1)) &lt;= 0 And _</SourceLine>
+   <SourceLine>PKSegment.GetLocation(lp, Self.Vertices(0), Self.Vertices(2)) &gt;= 0 Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If it's not in the circle then no other checks need to be performed.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1477609471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of x axis</SourceLine>
+   <SourceLine>Var minX As Double = Self.GetFarthestPoint(PKVector2.INV_X_AXIS, transform).X</SourceLine>
+   <SourceLine>Var maxX As Double = Self.GetFarthestPoint(PKVector2.X_AXIS, transform).X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of y axis</SourceLine>
+   <SourceLine>Var minY As Double = Self.GetFarthestPoint(PKVector2.INV_Y_AXIS, transform).Y</SourceLine>
+   <SourceLine>Var maxY As Double = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform).Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(minX, minY, maxX, maxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateMass</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>981227519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateMass(density As Double) As PKMass</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Area of a circular section is a = r^2 * alpha</SourceLine>
+   <SourceLine>Var r2 As Double = Self.SliceRadius * Self.SliceRadius</SourceLine>
+   <SourceLine>Var m As Double = density * r2 * Self.Alpha</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inertia about z: http://www.efunda.com/math/areas/CircularSection.cfm</SourceLine>
+   <SourceLine>Var sina As Double = Sin(Self.Alpha)</SourceLine>
+   <SourceLine>Var I As Double = _</SourceLine>
+   <SourceLine>1.0 / 18.0 * r2 * r2 * (9.0 * Self.Alpha * Self.Alpha - 8.0 * sina * sina) / Self.Alpha</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKMass(Self.Center, m, I)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>density As Double</ItemParams>
+  <ItemResult>PKMass</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAxes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>992487423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetAxes(foci() As PKVector2, transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size of the foci list.</SourceLine>
+   <SourceLine>Var fociSize As Integer = If(foci &lt;&gt; Nil, foci.Count, 0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of vertices this polygon has.</SourceLine>
+   <SourceLine>Var size As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The axes of a polygon are created from the normal of the edges</SourceLine>
+   <SourceLine>// plus the closest point to each focus.</SourceLine>
+   <SourceLine>Var axes() As PKVector2</SourceLine>
+   <SourceLine>axes.ResizeTo(fociSize + 1)</SourceLine>
+   <SourceLine>Var n As Integer = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the normals of the sides.</SourceLine>
+   <SourceLine>axes(n) = transform.GetTransformedR(Self.Normals(0))</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine>axes(n) = transform.GetTransformedR(Self.Normals(1))</SourceLine>
+   <SourceLine>n = n + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the focal points and find the closest points on the polygon to the focal points.</SourceLine>
+   <SourceLine>Var focus As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = fociSize - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the current focus.</SourceLine>
+   <SourceLine>Var f As PKVector2 = foci(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a place for the closest point.</SourceLine>
+   <SourceLine>Var closest As PKVector2 = focus</SourceLine>
+   <SourceLine>Var d As Double = f.DistanceSquared(closest)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the minimum distance vertex.</SourceLine>
+   <SourceLine>Var jLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For j As Integer = 1 To jLimit</SourceLine>
+   <SourceLine>// Get the vertex.</SourceLine>
+   <SourceLine>Var p As PKVector2 = Self.Vertices(j)</SourceLine>
+   <SourceLine>// Transform it into world space.</SourceLine>
+   <SourceLine>p = transform.GetTransformed(p)</SourceLine>
+   <SourceLine>// Get the squared distance to the focus.</SourceLine>
+   <SourceLine>Var dt As Double = f.DistanceSquared(p)</SourceLine>
+   <SourceLine>// Compare with the last distance.</SourceLine>
+   <SourceLine>If dt &lt; d Then</SourceLine>
+   <SourceLine>// If it's closer then save it.</SourceLine>
+   <SourceLine>closest = p</SourceLine>
+   <SourceLine>d = dt</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Once we have found the closest point create  a vector from the focal point to the point.</SourceLine>
+   <SourceLine>Var axis As PKVector2 = f.Towards(closest)</SourceLine>
+   <SourceLine>// Normalise it.</SourceLine>
+   <SourceLine>Call axis.Normalise</SourceLine>
+   <SourceLine>// Add it to the array.</SourceLine>
+   <SourceLine>axes(n) = axis</SourceLine>
+   <SourceLine>n =n + 1</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return all the axes.</SourceLine>
+   <SourceLine>Return axes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>foci() As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCircleCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the tip of the pie shape. This is the centre of the circle.</CodeDescription>
+  <PartID>22833151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCircleCenter() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the tip of the pie shape.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This is the centre of the circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'- Returns: PKVector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Vertices(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestFeature</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1688561663</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestFeature(vector As PKVector2, transform As PKTransform) As PKFeature</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var localn As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine>Var localnRotated As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to normalize localn in order for localnRotated.x &lt; cosAlpha to work</SourceLine>
+   <SourceLine>// and we also use that to compute the farthest point in the circle part of the slice.</SourceLine>
+   <SourceLine>Call localn.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Include rotation if needed.</SourceLine>
+   <SourceLine>// Note that the vertices are already rotated and we need both the rotated and not rotated </SourceLine>
+   <SourceLine>// localn vector</SourceLine>
+   <SourceLine>If Not Self.Rotation.IsIdentity Then</SourceLine>
+   <SourceLine>localnRotated = localn.Copy.InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>localnRotated = localn</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If localnRotated.X &lt; Self.CosAlpha Then</SourceLine>
+   <SourceLine>// Check if this section is nearly a half circle.</SourceLine>
+   <SourceLine>If Self.CosAlpha &lt;= 1.0e-6 Then</SourceLine>
+   <SourceLine>// If so, we want to return the full back side.</SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(Self.Vertices(1), Self.Vertices(2), vector, transform)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise check which side its on.</SourceLine>
+   <SourceLine>If localnRotated.Y &gt; 0 Then</SourceLine>
+   <SourceLine>// It's the top segment.</SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(1), vector, transform)</SourceLine>
+   <SourceLine>ElseIf localnRotated.Y &lt; 0 Then</SourceLine>
+   <SourceLine>// It's the bottom segment.</SourceLine>
+   <SourceLine>Return PKSegment.GetFarthestFeature(Self.Vertices(0), Self.Vertices(2), vector, transform)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// It's the tip point.</SourceLine>
+   <SourceLine>Return New PKPointFeature(transform.GetTransformed(Self.Vertices(0)))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Taken from `Slice.GetFarthestPoint`.</SourceLine>
+   <SourceLine>Call localn.Multiply(Self.SliceRadius).Add(Self.Vertices(0))</SourceLine>
+   <SourceLine>transform.TransformV(localn)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKPointFeature(localn)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKFeature</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFarthestPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>966854655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFarthestPoint(vector As PKVector2, transform As PKTransform) As PKVector2</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var localn As PKVector2 = transform.GetInverseTransformedR(vector)</SourceLine>
+   <SourceLine>Var localnRotated As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to normalize localn in order for localnRotated.x &lt; cosAlpha to work</SourceLine>
+   <SourceLine>// and we also use that to compute the farthest point in the circle part of the slice</SourceLine>
+   <SourceLine>Call localn.Normalise</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Include rotation if needed</SourceLine>
+   <SourceLine>// Note that the vertices are already rotated and we need both the rotated and not rotated localn vector</SourceLine>
+   <SourceLine>If Not Self.Rotation.IsIdentity Then</SourceLine>
+   <SourceLine>localnRotated = localn.Copy.InverseRotate(Self.Rotation)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>localnRotated = localn</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If localnRotated.X &lt; Self.CosAlpha Then</SourceLine>
+   <SourceLine>Var edge As Double = Self.Vertices(0).Dot(localn)</SourceLine>
+   <SourceLine>Var maxIndex As Integer = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Based on the sign of localnRotated.Y we can rule out one vertex.</SourceLine>
+   <SourceLine>If localnRotated.Y &lt; 0 Then</SourceLine>
+   <SourceLine>If Self.Vertices(2).Dot(localn) &gt; edge Then maxIndex = 2</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If Self.Vertices(1).Dot(localn) &gt; edge Then maxIndex = 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var point As PKVector2 = New PKVector2(Self.Vertices(maxIndex))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Transform the point into world space.</SourceLine>
+   <SourceLine>transform.TransformV(point)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return point</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// NOTE: taken from `Circle.GetFarthestPoint` with some modifications.</SourceLine>
+   <SourceLine>Call localn.Multiply(Self.SliceRadius).Add(Self.Vertices(0))</SourceLine>
+   <SourceLine>transform.TransformV(localn)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return localn</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFoci</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>705607679</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFoci(transform As PKTransform) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Convex interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Array(transform.GetTransformed(Self.Vertices(0)))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1923844095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRadius(center As PKVector2) As Double</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the given center in region A?</SourceLine>
+   <SourceLine>// \    /)</SourceLine>
+   <SourceLine>//  \  /  )</SourceLine>
+   <SourceLine>//   \/    )</SourceLine>
+   <SourceLine>//A  /\    )</SourceLine>
+   <SourceLine>//  /  \  )</SourceLine>
+   <SourceLine>// /    \)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If PKSegment.GetLocation(center, Self.Vertices(1), Self.Vertices(0)) &lt;= 0 And _</SourceLine>
+   <SourceLine>PKSegment.GetLocation(center, Self.Vertices(2), Self.Vertices(0)) &gt;= 0 Then</SourceLine>
+   <SourceLine>// It's the slice radius plus the distance from the centre to the tip of the slice.</SourceLine>
+   <SourceLine>Return Self.SliceRadius + center.Distance(Self.Vertices(0))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise its the rotation radius of the triangular section.</SourceLine>
+   <SourceLine>Return PKGeometry.GetRotationRadius(center, Self.Vertices)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1386004479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotation() As PKRotation</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Returns: The Rotation object that represents the local rotation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotation.Copy</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKRotation</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationAngle</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1356441599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationAngle() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the rotation about the local centre in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The rotation in radians.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Rotation.ToRadians</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetSliceRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the slice radius. This is the radius passed in at creation.</CodeDescription>
+  <PartID>802643967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetSliceRadius() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the slice radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' This is the radius passed in at creation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.SliceRadius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTheta</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>177735679</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTheta() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the angular extent of the slice in radians.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Alpha * 2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Project</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1489053695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Project(vector As PKVector2, transform As PKTransform) As PKInterval</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the world space farthest point.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.GetFarthestPoint(vector, transform)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = Self.GetFarthestPoint(vector.GetNegative, transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Project the point onto the axis.</SourceLine>
+   <SourceLine>Var d1 As Double = p1.Dot(vector)</SourceLine>
+   <SourceLine>Var d2 As Double = p2.Dot(vector)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the interval along the axis.</SourceLine>
+   <SourceLine>Return New PKInterval(d2, d1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2, transform As PKTransform</ItemParams>
+  <ItemResult>PKInterval</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>466653183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Super.Rotate(r, x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the pie vertices.</SourceLine>
+   <SourceLine>for Each v As PKVector2 In Self.Vertices</SourceLine>
+   <SourceLine>Call v.Rotate(r, x, y)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the pie normals.</SourceLine>
+   <SourceLine>For Each n As PKVector2 In Self.Normals</SourceLine>
+   <SourceLine>Call n.Rotate(r)</SourceLine>
+   <SourceLine>Next n</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Rotate the local x axis.</SourceLine>
+   <SourceLine>Call Self.Rotation.Rotate(r)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this Slice.</CodeDescription>
+  <PartID>658853887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this Slice.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Slice[")</SourceLine>
+   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Radius=")</SourceLine>
+   <SourceLine>s.AddRow(Self.SliceRadius.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Theta=")</SourceLine>
+   <SourceLine>s.AddRow(Self.GetTheta.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>495493119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the centroid.</SourceLine>
+   <SourceLine>Super.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the pie vertices.</SourceLine>
+   <SourceLine>For Each v As PKVector2 In Self.Vertices</SourceLine>
+   <SourceLine>Call v.Add(x, y)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Validate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>337008639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Validate(radius As Double, theta As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Validates the constructor input returning True if valid or throwing an exception if invalid.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circular section.</SourceLine>
+   <SourceLine>' - Parameter theta: The angular extent in radians. Must be &gt; 0 and &lt;= π</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' Returns: True</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException `radius` is &lt;=0 or `theta` is &lt;= 0 or `theta` is &gt; 180 degrees.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the radius.</SourceLine>
+   <SourceLine>If radius &lt;= 0 Then Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_RADIUS)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the theta.</SourceLine>
+   <SourceLine>If theta &lt;= 0 Or theta &gt; MathsKit.PI Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_SLICE_INVALID_THETA)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>radius As Double, theta As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1266024447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of a Slice Convex Shape.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A slice is a piece of a Circle.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This shape can represent any slice of a circle up to 180 degrees (half circle).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Alpha</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Half the total circular section in radians.</CodeDescription>
+  <PartID>2111186943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Alpha As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Alpha As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>CosAlpha</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Cosine of half the total circular section in radians.</CodeDescription>
+  <PartID>821100543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>CosAlpha As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>CosAlpha As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Normals()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The normals of the polygonal sides</CodeDescription>
+  <PartID>1412941823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Normals() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Normals() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Rotation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The local rotation in radians.</CodeDescription>
+  <PartID>36132863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Rotation As PKRotation</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Rotation As PKRotation</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>SliceRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The radius passed in at creation</CodeDescription>
+  <PartID>1873631231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>SliceRadius As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SliceRadius As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Vertices()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The vertices of the slice.</CodeDescription>
+  <PartID>492148735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Vertices() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Vertices() As PKVector2</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Radius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Alpha</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>CosAlpha</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>SliceRadius</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

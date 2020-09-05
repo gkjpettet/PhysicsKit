@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1502513151">
+ <ObjName>PKAABB</ObjName>
+ <ObjContainerID>124669951</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKTranslatable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor.</CodeDescription>
+  <PartID>1300166655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(radius As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of a circle fitting inside a PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(Nil, radius)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>radius As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor.</CodeDescription>
+  <PartID>112019455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(minX As Double, minY As Double, maxX As Double, maxY As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>' </SourceLine>
+   <SourceLine>' - Parameter minX: The minimum x extent.</SourceLine>
+   <SourceLine>' - Parameter minY: The minimum y extent.</SourceLine>
+   <SourceLine>' - Parameter maxX: The maximum x extent.</SourceLine>
+   <SourceLine>' - Parameter maxY: The maximum y extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if minX or minY are greater than the permitted maximum.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the min and max.</SourceLine>
+   <SourceLine>If minX &gt; maxX Or minY &gt; maxY Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_AABB_INVALID_MIN_MAX)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = minX</SourceLine>
+   <SourceLine>Self.MinY = minY</SourceLine>
+   <SourceLine>Self.MaxX = maxX</SourceLine>
+   <SourceLine>Self.MaxY = maxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>minX As Double, minY As Double, maxX As Double, maxY As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Copy constructor.</CodeDescription>
+  <PartID>1448507391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to copy.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = aabb.MinX</SourceLine>
+   <SourceLine>Self.MinY = aabb.MinY</SourceLine>
+   <SourceLine>Self.MaxX = aabb.MaxX</SourceLine>
+   <SourceLine>Self.MaxY = aabb.MaxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an AABB for a circle with the given center and radius.</CodeDescription>
+  <PartID>1970448383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(center As PKVector2, radius As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>' Creates a PKAABB for a circle with the given center and radius.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter center: The center of the circle.</SourceLine>
+   <SourceLine>' - Parameter radius: The radius of the circle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the given radius is less than zero.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If radius &lt; 0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_AABB_INVALID_RADIUS)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If center Is Nil Then</SourceLine>
+   <SourceLine>Self.MinX = -radius</SourceLine>
+   <SourceLine>Self.MinY = -radius</SourceLine>
+   <SourceLine>Self.MaxX =  radius</SourceLine>
+   <SourceLine>Self.MaxY =  radius</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.MinX = center.X - radius</SourceLine>
+   <SourceLine>Self.MinY = center.Y - radius</SourceLine>
+   <SourceLine>Self.MaxX = center.X + radius</SourceLine>
+   <SourceLine>Self.MaxY = center.Y + radius</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2, radius As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Full constructor.</CodeDescription>
+  <PartID>1344184319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(min As PKVector2, max As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter min: The minimum extent.</SourceLine>
+   <SourceLine>' - Parameter max: The maximum extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if either coordinate of the given min is greater </SourceLine>
+   <SourceLine>'           than the given max.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(min.X, min.Y, max.X, max.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>min As PKVector2, max As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>200722431</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(x As Double, y As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point's coordinates are contained within this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter x: The x coordinate of the point.</SourceLine>
+   <SourceLine>' - Parameter y: The y coordinate of the point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinX &lt;= x And _</SourceLine>
+   <SourceLine>Self.MaxX &gt;= x And _</SourceLine>
+   <SourceLine>Self.MinY &lt;= y And _</SourceLine>
+   <SourceLine>Self.MaxY &gt;= y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1527500799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(aabb As PKAABB) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given PKAABB is contained within this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to test.</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinX &lt;= aabb.MinX And _</SourceLine>
+   <SourceLine>Self.MaxX &gt;= aabb.MaxX And _</SourceLine>
+   <SourceLine>Self.MinY &lt;= aabb.MinY And _</SourceLine>
+   <SourceLine>Self.MaxY &gt;= aabb.MaxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point is contained within this AABB.</CodeDescription>
+  <PartID>492816383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point is contained within this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point: The point to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Contains(point.X, point.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a copy of this AABB.</CodeDescription>
+  <PartID>83881983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a copy of this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(Self)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABBFromPoints</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates the valid AABB defined by the two points: A(point1x, point1y) and B(point2x, point2y).</CodeDescription>
+  <PartID>736364543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateAABBFromPoints(point1X As Double, point1Y As Double, point2X As Double, point2Y As Double) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates the valid PKAABB defined by the two points: A(point1x, point1y) and B(point2x, point2y).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1x: The x coordinate of point A.</SourceLine>
+   <SourceLine>' - Parameter point1y: The y coordinate of point A.</SourceLine>
+   <SourceLine>' - Parameter point2x: The x coordinate of point B.</SourceLine>
+   <SourceLine>' - Parameter point2y: The y coordinate of point B.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The one and only one valid PKAABB formed by A and B.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If point2x &lt; point1x Then</SourceLine>
+   <SourceLine>Var temp As Double = point1x</SourceLine>
+   <SourceLine>point1x = point2x</SourceLine>
+   <SourceLine>point2x = temp</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If point2y &lt; point1y then</SourceLine>
+   <SourceLine>Var temp As double = point1y</SourceLine>
+   <SourceLine>point1y = point2y</SourceLine>
+   <SourceLine>point2y = temp</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(point1x, point1y, point2x, point2y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point1X As Double, point1Y As Double, point2X As Double, point2Y As Double</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABBFromPoints</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates the valid AABB defined by the two points `point1` and `point2`.</CodeDescription>
+  <PartID>974438399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function CreateAABBFromPoints(point1 As PKVector2, point2 As PKVector2) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates the valid PKAABB defined by the two points `point1` and `point2`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point1: The first point.</SourceLine>
+   <SourceLine>' - Parameter point2: The second point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The one and only one valid PKAABB formed by 'point1' and 'point2'.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return CreateAABBFromPoints(point1.X, point1.Y, point2.X, point2.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>point1 As PKVector2, point2 As PKVector2</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Expand</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Expands this AABB by half the given expansion in each direction and then returns this AABB.</CodeDescription>
+  <PartID>222867455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Expand(expansion As Double) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Expands this PKAABB by half the given expansion in each direction and</SourceLine>
+   <SourceLine>' then returns this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The expansion can be negative to shrink the PKAABB.  However, if the expansion is</SourceLine>
+   <SourceLine>' greater than the current width/height, the PKAABB can become invalid.  In this </SourceLine>
+   <SourceLine>' case, the PKAABB will become a degenerate PKAABB at the mid point of the min and max for </SourceLine>
+   <SourceLine>' the respective coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter expansion: The expansion amount.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e As Double = expansion * 0.5</SourceLine>
+   <SourceLine>Self.MinX = Self.MinX - e</SourceLine>
+   <SourceLine>Self.MinY = Self.MinY - e</SourceLine>
+   <SourceLine>Self.MaxX = Self.MaxX + e</SourceLine>
+   <SourceLine>Self.MaxY = Self.MaxY + e</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We only need to verify the new PKAABB if the expansion was inwardly.</SourceLine>
+   <SourceLine>If expansion &lt; 0 Then</SourceLine>
+   <SourceLine>// If the aabb is invalid then set the min/max(es) to the middle value of their current values.</SourceLine>
+   <SourceLine>If Self.MinX &gt; Self.MaxX Then</SourceLine>
+   <SourceLine>Var mid As Double = (Self.MinX + Self.MaxX) * 0.5</SourceLine>
+   <SourceLine>Self.MinX = mid</SourceLine>
+   <SourceLine>Self.MaxX = mid</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Self.MinY &gt; Self.MaxY Then</SourceLine>
+   <SourceLine>Var mid As Double = (Self.MinY + Self.MaxY) * 0.5</SourceLine>
+   <SourceLine>Self.MinY = mid</SourceLine>
+   <SourceLine>Self.MaxY = mid</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>expansion As Double</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetArea</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>453965823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetArea() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the area of this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return (Self.MaxX - Self.MinX) * (Self.MaxY - Self.MinY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetExpanded</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new AABB of this AABB expanded by half the given expansion in both the x and y directions.</CodeDescription>
+  <PartID>165978111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetExpanded(expansion As Double) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new PKAABB of this PKAABB expanded by half the given expansion</SourceLine>
+   <SourceLine>' in both the x and y directions.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' The expansion can be negative to shrink the PKAABB.  However, if the expansion is</SourceLine>
+   <SourceLine>' greater than the current width/height, the PKAABB can become invalid.  In this </SourceLine>
+   <SourceLine>' case, the PKAABB will become a degenerate PKAABB at the mid point of the min and max for </SourceLine>
+   <SourceLine>' the respective coordinates.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter expansion: The expansion amount.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Copy.Expand(expansion)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>expansion As Double</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the height of this AABB.</CodeDescription>
+  <PartID>1868875775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the height of this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MaxY - Self.MinY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the intersection of this AABB and the given AABB returning the result in a new AABB.</CodeDescription>
+  <PartID>397819903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetIntersection(aabb As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the intersection of this PKAABB and the given PKAABB returning</SourceLine>
+   <SourceLine>' the result in a new PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given PKAABB does not overlap this PKAABB, a zero PKAABB is returned.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to intersect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Copy.Intersection(aabb)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaxX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>92225535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaxX() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum x extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MaxX</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaxY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum y extent.</CodeDescription>
+  <PartID>223127551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaxY() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum y extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MaxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMinX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the minimum x extent.</CodeDescription>
+  <PartID>675579903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMinX() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the minimum x extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinX</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMinY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1613905919</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMinY() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the minimum y extent.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPerimeter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1940850687</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPerimeter() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the perimeter of this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return 2 * (Self.MaxX - Self.MinX + Self.MaxY - Self.MinY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTranslated</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new AABB of this AABB translated by the given translation amount.</CodeDescription>
+  <PartID>1913360383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTranslated(translation As PKVector2) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new PKAABB of this PKAABB translated by the given translation amount.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter translation: The translation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(_</SourceLine>
+   <SourceLine>Self.MinX + translation.X, _</SourceLine>
+   <SourceLine>Self.MinY + translation.Y, _</SourceLine>
+   <SourceLine>Self.MaxX + translation.X, _</SourceLine>
+   <SourceLine>Self.MaxY + translation.Y)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>translation As PKVector2</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetUnion</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs a union of this AABB and the given AABB returning a new AABB containing the result.</CodeDescription>
+  <PartID>1690906623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetUnion(aabb As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs a union of this PKAABB and the given PKAABB returning</SourceLine>
+   <SourceLine>' a new PKAABB containing the result.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to union.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The resulting union as a new PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Copy.Union(aabb)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the width of this AABB.</CodeDescription>
+  <PartID>2004406271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWidth() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the width of this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Double.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MaxX - Self.MinX</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Intersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the intersection of this AABB and the given AABB placing the result into this AABB and then returns this AABB.</CodeDescription>
+  <PartID>773140479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Intersection(aabb As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the intersection of this PKAABB and the given PKAABB placing</SourceLine>
+   <SourceLine>' the result into this PKAABB and then returns this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' If the given PKAABB does not overlap this PKAABB, this PKAABB is set to a zero PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to intersect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = Max(Self.MinX, aabb.MinX)</SourceLine>
+   <SourceLine>Self.MinY = Max(Self.MinY, aabb.MinY)</SourceLine>
+   <SourceLine>Self.MaxX = Min(Self.MaxX, aabb.MaxX)</SourceLine>
+   <SourceLine>Self.MaxY = Min(Self.MaxY, aabb.MaxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a bad PKAABB.</SourceLine>
+   <SourceLine>If Self.minX &gt; Self.maxX Or Self.minY &gt; Self.maxY Then</SourceLine>
+   <SourceLine>// The two PKAABBs were not overlapping. Set this PKAABB to a degenerate one.</SourceLine>
+   <SourceLine>Self.MinX = 0.0</SourceLine>
+   <SourceLine>Self.MinY = 0.0</SourceLine>
+   <SourceLine>Self.MaxX = 0.0</SourceLine>
+   <SourceLine>Self.MaxY = 0.0</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsDegenerate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this AABB is degenerate.</CodeDescription>
+  <PartID>5259263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsDegenerate() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this PKAABB is degenerate.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' A degenerate PKAABB is one where its min and max x or y coordinates are equal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinX = Self.MaxX Or Self.MinY = Self.MaxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsDegenerate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this AABB is degenerate given the specified error.</CodeDescription>
+  <PartID>873281535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsDegenerate(error As Double) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this PKAABB is degenerate given the specified error.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' a PKAABB is degenerate given some error if:</SourceLine>
+   <SourceLine>' max - min &lt;= error for either the x or y coordinate.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter error: The allowed error.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Abs(Self.MaxX - Self.MinX) &lt;= error Or Abs(Self.MaxY - Self.MinY) &lt;= error</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>error As Double</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Overlaps</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given AABB and this AABB overlap.</CodeDescription>
+  <PartID>228444159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Overlaps(aabb As PKAABB) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given PKAABB and this PKAABB overlap.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Boolean.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.MinX &lt;= aabb.MaxX And _</SourceLine>
+   <SourceLine>Self.MaxX &gt;= aabb.MinX And _</SourceLine>
+   <SourceLine>Self.MinY &lt;= aabb.MaxY And _</SourceLine>
+   <SourceLine>Self.MaxY &gt;= aabb.MinY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Set</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this AABB to the given AABB's value and returns this AABB.</CodeDescription>
+  <PartID>1564209151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Set(aabb As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets this PKAABB to the given PKAABB's value and returns this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to copy.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = aabb.MinX</SourceLine>
+   <SourceLine>Self.MinY = aabb.MinY</SourceLine>
+   <SourceLine>Self.MaxX = aabb.MaxX</SourceLine>
+   <SourceLine>Self.MaxY = aabb.MaxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a String representation of this AABB in the format: "AABB[Min=(x,y)|Max=(x,y)]".</CodeDescription>
+  <PartID>911407103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a String representation of this PKAABB in the format: "AABB[Min=(x,y)|Max=(x,y)]".</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("AABB[Min=")</SourceLine>
+   <SourceLine>s.AddRow("(")</SourceLine>
+   <SourceLine>s.AddRow(Self.MinX.ToString)</SourceLine>
+   <SourceLine>s.AddRow(", ")</SourceLine>
+   <SourceLine>s.AddRow(Self.MinY.ToString)</SourceLine>
+   <SourceLine>s.AddRow(")")</SourceLine>
+   <SourceLine>s.AddRow("|Max=")</SourceLine>
+   <SourceLine>s.AddRow("(")</SourceLine>
+   <SourceLine>s.AddRow(Self.MaxX.ToString)</SourceLine>
+   <SourceLine>s.AddRow(", ")</SourceLine>
+   <SourceLine>s.AddRow(Self.MaxY.ToString)</SourceLine>
+   <SourceLine>s.AddRow(")")</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1844250623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = Self.MinX + x</SourceLine>
+   <SourceLine>Self.MinY = Self.MinY + y</SourceLine>
+   <SourceLine>Self.MaxX = Self.MaxX + x</SourceLine>
+   <SourceLine>Self.MaxY = Self.MaxY + y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1590419455</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(vector As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PhysicsKit.Translatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Translate(vector.X, vector.Y)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Union</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs a union of this AABB and the given AABB placing the result of the union into this AABB and then returns this AABB.</CodeDescription>
+  <PartID>198248447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Union(aabb As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs a union of this PKAABB and the given PKAABB placing</SourceLine>
+   <SourceLine>' the result of the union into this PKAABB and then returns this PKAABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb: The PKAABB to union.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This PKAABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = Min(Self.MinX, aabb.MinX)</SourceLine>
+   <SourceLine>Self.MinY = Min(Self.MinY, aabb.MinY)</SourceLine>
+   <SourceLine>Self.MaxX = Max(Self.MaxX, aabb.MaxX)</SourceLine>
+   <SourceLine>Self.MaxY = Max(Self.MaxY, aabb.MaxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>261474303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of an Axis-Aligned Bounding Box.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>a PKAABB has minimum and maximum coordinates that define the box.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>a PKAABB can be unioned or intersected with other PKAABBs to combine them into </NoteLine>
+   <NoteLine>another PKAABB. If an intersection produces no result, a degenerate PKAABB is returned.</NoteLine>
+   <NoteLine>A degenerate PKAABB can be tested by the `IsDegenerate()` methods and </NoteLine>
+   <NoteLine>is defined as a PKAABB who's maximum and minimum are equal.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>AABBs can also be tested for overlap and (full) containment using the `Overlaps(AABB)`</NoteLine>
+   <NoteLine>and `Contains(AABB)` method.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The `Expand(Double)` method can be used to expand the bounds of the PKAABB by some amount.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>MaxX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The maximum extent along the x-axis</CodeDescription>
+  <PartID>928260095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>MaxX As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>MaxX As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>MaxY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The maximum extent along the y-axis</CodeDescription>
+  <PartID>1147928575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>MaxY As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>MaxY As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>MinX</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The minimum extent along the x-axis.</CodeDescription>
+  <PartID>360574975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>MinX As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>MinX As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>MinY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The minimum extent along the y-axis</CodeDescription>
+  <PartID>177645567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>MinY As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>MinY As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MinX</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MaxX</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MaxY</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MinY</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
