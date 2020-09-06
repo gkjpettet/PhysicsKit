@@ -1034,6 +1034,115 @@
   <ItemParams>aabb As PKAABB</ItemParams>
   <ItemResult>PKAABB</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Union</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs a union of the given AABBs and places the result into this AABB and then returns this AABB.</CodeDescription>
+  <PartID>1159706623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Union(aabb1 As PKAABB, aabb2 As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs a union of the given AABBs and places the result into this AABB and then </SourceLine>
+   <SourceLine>' returns this AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb1: The first AABB</SourceLine>
+   <SourceLine>' - Parameter aabb2: The second AABB</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This AABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = Min(aabb1.MinX, aabb2.MinX)</SourceLine>
+   <SourceLine>Self.MinY = Min(aabb1.MinY, aabb2.MinY)</SourceLine>
+   <SourceLine>Self.MaxX = Max(aabb1.MaxX, aabb2.MaxX)</SourceLine>
+   <SourceLine>Self.MaxY = Max(aabb1.MaxY, aabb2.MaxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb1 As PKAABB, aabb2 As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Intersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the intersection of the given AABBs and places the result into this AABB and then returns this AABB.</CodeDescription>
+  <PartID>878653439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Intersection(aabb1 As PKAABB, aabb2 As PKAABB) As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the intersection of the given AABBs and places the result into this AABB and </SourceLine>
+   <SourceLine>' then returns this AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter aabb1: The first AABB to intersect.</SourceLine>
+   <SourceLine>' - Parameter aabb2: The second AABB to intersect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: This AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' If the given AABBs do not overlap, this AABB is set to a zero AABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.MinX = Max(aabb1.MinX, aabb2.MinX)</SourceLine>
+   <SourceLine>Self.MinY = Max(aabb1.MinY, aabb2.MinY)</SourceLine>
+   <SourceLine>Self.MaxX = Min(aabb1.MaxX, aabb2.MaxX)</SourceLine>
+   <SourceLine>Self.MaxY = Min(aabb1.MaxY, aabb2.MaxY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a bad AABB.</SourceLine>
+   <SourceLine>If Self.MinX &gt; Self.MaxX Or Self.MinY &gt; Self.MaxY Then</SourceLine>
+   <SourceLine>// The two AABBs were not overlapping. Set this AABB to a degenerate one.</SourceLine>
+   <SourceLine>Self.MinX = 0.0</SourceLine>
+   <SourceLine>Self.MinY = 0.0</SourceLine>
+   <SourceLine>Self.MaxX = 0.0</SourceLine>
+   <SourceLine>Self.MaxY = 0.0</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb1 As PKAABB, aabb2 As PKAABB</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the center of the AABB as a new Vector2.</CodeDescription>
+  <PartID>960172031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCenter() As PKVector2</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the center of the AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: A new Vector2.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKVector2(Self.MinX + (Self.MaxX - Self.MinX) * 0.5, _</SourceLine>
+   <SourceLine>Self.MinY + (Self.MaxY - Self.MinY) * 0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>

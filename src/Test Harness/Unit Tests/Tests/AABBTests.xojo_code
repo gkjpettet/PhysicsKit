@@ -147,6 +147,25 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 4372656174657320616E20414142422066726F6D2061206E65676174697665207261646975732E
+		Sub CreateRadiusNegativeTest()
+		  // Creates an AABB from a negative radius.
+		  
+		  #Pragma BreakOnExceptions False
+		  
+		  Try
+		    Var a As PKAABB = New PKAABB(New PKVector2(-1.0, 1.0), -1.0)
+		    #Pragma Unused a
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub CreateRadiusTest()
 		  ///
