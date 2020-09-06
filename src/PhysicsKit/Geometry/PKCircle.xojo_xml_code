@@ -103,31 +103,6 @@
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>CreateAABB</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>94844927</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
-   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// If the transform is not Nil then transform the center.</SourceLine>
-   <SourceLine>Var center As PKVector2 = transform.GetTransformed(Self.Center)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Return a new PKAABB.</SourceLine>
-   <SourceLine>Return New PKAABB(center, Self.Radius)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>transform As PKTransform</ItemParams>
-  <ItemResult>PKAABB</ItemResult>
- </Method>
- <Method>
   <ItemName>CreateMass</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
