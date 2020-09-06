@@ -848,6 +848,43 @@
   <ItemParams></ItemParams>
   <ItemResult>PKMatrix22</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Invert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the inverse of this Matrix22 and places the result in the given Matrix22.</CodeDescription>
+  <PartID>599664639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Invert(dest As PKMatrix22)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the inverse of this Matrix22 and places the result in the given Matrix22.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter dest: The destination for the inverse.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the determinant</SourceLine>
+   <SourceLine>Var det As Double = Self.Determinant</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero determinant.</SourceLine>
+   <SourceLine>If Abs(det) &gt; PKEpsilon.E Then</SourceLine>
+   <SourceLine>det = 1.0 / det</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dest.M00 =  det * Self.M11</SourceLine>
+   <SourceLine>dest.M01 = -det * Self.M01</SourceLine>
+   <SourceLine>dest.M10 = -det * Self.M10</SourceLine>
+   <SourceLine>dest.M11 =  det * Self.M00</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>dest As PKMatrix22</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
