@@ -64,6 +64,33 @@
   <ItemParams>Extends mt As PhysicsKit.MassTypes</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the hash code for the given Double.</CodeDescription>
+  <PartID>1966764031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode(Extends d As Double) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the hash code for the given Double.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends d: The double to get the hash code for.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var temp As Variant = MathsKit.DoubleToBits(d)</SourceLine>
+   <SourceLine>Return temp Xor MathsKit.RShiftU64(temp, 32)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends d As Double</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
   <Compatibility></Compatibility>

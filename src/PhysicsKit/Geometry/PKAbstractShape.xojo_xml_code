@@ -4,6 +4,7 @@
  <ObjName>PKAbstractShape</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Superclass>PKObject</Superclass>
  <Interfaces>PKTransformable,PKDataContainer,PKShape</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -24,8 +25,6 @@
    <SourceLine>'</SourceLine>
    <SourceLine>' - Raises: InvalidlArgumentException if radius is zero or less.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>mID = New PKUUID</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Constructor(New PKVector2, radius)</SourceLine>
    <SourceLine></SourceLine>
@@ -56,8 +55,6 @@
    <SourceLine>' - Raises: InvalidArgumentException if radius is zero or less.</SourceLine>
    <SourceLine>' - Raises: NilObjectException if center is Nil.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>If mID Is Nil Then mID = New PKUUID</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Self.Center = center</SourceLine>
    <SourceLine>Self.Radius = radius</SourceLine>
@@ -203,27 +200,6 @@
   <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult>PKVector2</ItemResult>
- </Method>
- <Method>
-  <ItemName>GetID</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>1560567807</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetID() As PKUUID</SourceLine>
-   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Return mID</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>PKUUID</ItemResult>
  </Method>
  <Method>
   <ItemName>GetRadius</ItemName>
@@ -546,8 +522,8 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As STring</SourceLine>
-   <SourceLine>s.AddRow("ID=")</SourceLine>
-   <SourceLine>s.AddRow(Self.ID.ToString)</SourceLine>
+   <SourceLine>s.AddRow("HashCode=")</SourceLine>
+   <SourceLine>s.AddRow(Self.HashCode.ToString)</SourceLine>
    <SourceLine>s.AddRow("|Center=")</SourceLine>
    <SourceLine>s.AddRow(Self.Center.ToString)</SourceLine>
    <SourceLine>s.AddRow("|Radius=")</SourceLine>
@@ -687,33 +663,6 @@
   <IsShared>0</IsShared>
  </Property>
  <Property>
-  <ItemName>ID</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>1538131967</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>ID As PKUUID</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>ID As PKUUID</ItemDeclaration>
-  <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Return mID</SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
   <ItemName>IDENTITY</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
@@ -728,22 +677,6 @@
   <ItemDeclaration>IDENTITY As PKTransform</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
   <IsShared>1</IsShared>
- </Property>
- <Property>
-  <ItemName>mID</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>The shape's unique identifier.</CodeDescription>
-  <PartID>1320511487</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>mID As PKUUID</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>mID As PKUUID</ItemDeclaration>
-  <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>Radius</ItemName>

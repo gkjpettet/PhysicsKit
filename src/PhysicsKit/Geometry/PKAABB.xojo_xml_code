@@ -4,7 +4,7 @@
  <ObjName>PKAABB</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKTranslatable</Interfaces>
+ <Interfaces>PKTranslatable, PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -1171,6 +1171,33 @@
   <IsShared>0</IsShared>
   <ItemParams>obj As Variant</ItemParams>
   <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1050345471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>Const prime = 31</SourceLine>
+   <SourceLine>Var result As Integer = 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>result = prime * result + Self.MaxX.HashCode</SourceLine>
+   <SourceLine>result = prime * result + Self.MaxY.HashCode</SourceLine>
+   <SourceLine>result = prime * result + Self.MinX.HashCode</SourceLine>
+   <SourceLine>result = prime * result + Self.MinY.HashCode</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

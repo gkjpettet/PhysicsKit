@@ -4,7 +4,7 @@
  <ObjName>PKTransform</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKTransformable</Interfaces>
+ <Interfaces>PKTransformable, PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>

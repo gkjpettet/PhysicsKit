@@ -77,6 +77,7 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] SingleTypedFallbackCondition.java
 		- [ ] TypedFallbackCondition.java
 	- [ ] TypeFilter.java
+- [x] Copyable.java
 - [x] DataContainer.java
 - [ ] dynamics
 	- [ ] AABBBroadphaseFilter.java

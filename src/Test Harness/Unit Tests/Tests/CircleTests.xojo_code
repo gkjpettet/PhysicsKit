@@ -126,7 +126,6 @@ Inherits TestGroup
 		  
 		  Try
 		    Var c As PKCircle = New PKCircle(1.0)
-		    Assert.IsNotNil(c.GetID)
 		    Assert.AreEqual(0.0, c.Center.X)
 		    Assert.AreEqual(0.0, c.Center.Y)
 		    Assert.AreEqual(1.0, c.Radius)

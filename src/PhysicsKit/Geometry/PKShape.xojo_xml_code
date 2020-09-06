@@ -123,25 +123,6 @@
   <ItemResult>PKVector2</ItemResult>
  </Method>
  <Method>
-  <ItemName>GetID</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>Returns the unique identifier for this shape instance. Deprectaed: ID schemes should be implemented by the user where needed.</CodeDescription>
-  <PartID>1239803903</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetID() As PKUUID</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>PKUUID</ItemResult>
- </Method>
- <Method>
   <ItemName>GetRadius</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
