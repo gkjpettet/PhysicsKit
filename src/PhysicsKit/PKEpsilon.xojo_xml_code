@@ -80,6 +80,7 @@
   <ItemName>E</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The double precision floating point machine epsilon approximation.</CodeDescription>
   <PartID>1685768191</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
