@@ -485,6 +485,75 @@
   <ItemParams>width As Double, height As Double</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1245011967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>' Since we know that this is a rectangle we can get away with much fewer</SourceLine>
+   <SourceLine>' comparisons to find the correct AABB. Each vertex maps to one point of the</SourceLine>
+   <SourceLine>' AABB, we have to find in which of the four possible rotation states this</SourceLine>
+   <SourceLine>' rectangle currently is. This is done below by comparing the first two vertices.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// It's more convenient to use transform.GetTransformed instead but we can</SourceLine>
+   <SourceLine>// split to transform.GetTransformedX/Y to save 4 Vector2 allocations 'for free'.</SourceLine>
+   <SourceLine>Var v0x As Double = transform.GetTransformedX(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var v0y As Double = transform.GetTransformedY(Self.Vertices(0))</SourceLine>
+   <SourceLine>Var v1x As Double = transform.GetTransformedX(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var v1y As Double = transform.GetTransformedY(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var v2x As Double = transform.GetTransformedX(Self.Vertices(2))</SourceLine>
+   <SourceLine>Var v2y As Double = transform.GetTransformedY(Self.Vertices(2))</SourceLine>
+   <SourceLine>Var v3x As Double = transform.GetTransformedX(Self.Vertices(3))</SourceLine>
+   <SourceLine>Var v3y As Double = transform.GetTransformedY(Self.Vertices(3))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If v0y &gt; v1y Then</SourceLine>
+   <SourceLine>If v0x &lt; v1x Then</SourceLine>
+   <SourceLine>aabb.MinX = v0x</SourceLine>
+   <SourceLine>aabb.MinY = v1y</SourceLine>
+   <SourceLine>aabb.MaxX = v2x</SourceLine>
+   <SourceLine>aabb.MaxY = v3y</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>aabb.MinX = v1x</SourceLine>
+   <SourceLine>aabb.MinY = v2y</SourceLine>
+   <SourceLine>aabb.MaxX = v3x</SourceLine>
+   <SourceLine>aabb.MaxY = v0y</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If v0x &lt; v1x Then</SourceLine>
+   <SourceLine>aabb.MinX = v3x</SourceLine>
+   <SourceLine>aabb.MinY = v0y</SourceLine>
+   <SourceLine>aabb.MaxX = v1x</SourceLine>
+   <SourceLine>aabb.MaxY = v2y</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>aabb.MinX = v2x</SourceLine>
+   <SourceLine>aabb.MinY = v3y</SourceLine>
+   <SourceLine>aabb.MaxX = v0x</SourceLine>
+   <SourceLine>aabb.MaxY = v1y</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
