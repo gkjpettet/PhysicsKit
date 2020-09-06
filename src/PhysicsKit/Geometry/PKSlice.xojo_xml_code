@@ -764,6 +764,47 @@
   <ItemParams>radius As Double, theta As Double</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2074957823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of x axis.</SourceLine>
+   <SourceLine>Var minX As Double = Self.GetFarthestPoint(PKVector2.INV_X_AXIS, transform).X</SourceLine>
+   <SourceLine>Var maxX As Double = Self.GetFarthestPoint(PKVector2.X_AXIS, transform).X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of y axis.</SourceLine>
+   <SourceLine>Var minY As Double = Self.GetFarthestPoint(PKVector2.INV_Y_AXIS, transform).Y</SourceLine>
+   <SourceLine>Var maxY As Double = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform).Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>aabb.MaxX = maxX</SourceLine>
+   <SourceLine>aabb.MaxY = maxY</SourceLine>
+   <SourceLine>aabb.MinX = minX</SourceLine>
+   <SourceLine>aabb.MinY = minY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
