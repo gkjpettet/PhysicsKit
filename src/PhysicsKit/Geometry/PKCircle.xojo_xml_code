@@ -393,6 +393,42 @@
   <ItemParams>radius As Double</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the AABB from this Shape after applying the given transformation and places the result in the given AABB.</CodeDescription>
+  <PartID>1205434367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the transform is not Nil then transform the centre.</SourceLine>
+   <SourceLine>Var center As PKVector2= transform.GetTransformed(Self.Center)</SourceLine>
+   <SourceLine>aabb.MinX = center.X - Self.Radius</SourceLine>
+   <SourceLine>aabb.MinY = center.Y - Self.Radius</SourceLine>
+   <SourceLine>aabb.MaxX = center.X + Self.Radius</SourceLine>
+   <SourceLine>aabb.MaxY = center.Y + Self.Radius</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Name</ObjName>
