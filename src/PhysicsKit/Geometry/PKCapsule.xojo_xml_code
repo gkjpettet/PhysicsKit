@@ -683,6 +683,52 @@
   <ItemParams>width As Double, height As Double</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the AABB from this Shape after applying the given transformation and places the result in the given AABB.</CodeDescription>
+  <PartID>1525338111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of x axis.</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = Self.GetFarthestPoint(PKVector2.X_AXIS, transform)</SourceLine>
+   <SourceLine>Var c As Double = transform.GetTransformedX(Self.Center)</SourceLine>
+   <SourceLine>Var minX As Double = 2 * c - p1.X</SourceLine>
+   <SourceLine>Var maxX As Double = p1.X</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Inlined projection of y axis.</SourceLine>
+   <SourceLine>p1 = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform)</SourceLine>
+   <SourceLine>c = transform.GetTransformedY(Self.Center)</SourceLine>
+   <SourceLine>Var minY As Double = 2 * c - p1.Y</SourceLine>
+   <SourceLine>Var maxY As Double = p1.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>aabb.MaxX = maxX</SourceLine>
+   <SourceLine>aabb.MaxY = maxY</SourceLine>
+   <SourceLine>aabb.MinX = minX</SourceLine>
+   <SourceLine>aabb.minY = minY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
