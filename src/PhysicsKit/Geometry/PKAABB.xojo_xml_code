@@ -1143,6 +1143,35 @@
   <ItemParams></ItemParams>
   <ItemResult>PKVector2</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>26679295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>If obj = Nil Then Return False</SourceLine>
+   <SourceLine>If Self = obj Then Return True</SourceLine>
+   <SourceLine>If obj IsA PKAABB Then</SourceLine>
+   <SourceLine>Var other As PKAABB = PKAABB(obj)</SourceLine>
+   <SourceLine>Return Self.MaxX = other.MaxX And _</SourceLine>
+   <SourceLine>Self.MinX = other.MinX And _</SourceLine>
+   <SourceLine>Self.MaxY = other.MaxY And _</SourceLine>
+   <SourceLine>Self.MinY = other.MinY</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
