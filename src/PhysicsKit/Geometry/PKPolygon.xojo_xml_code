@@ -958,6 +958,73 @@
   <ItemParams>ParamArray verts As PKVector2</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the AABB from this Shape after applying the given transformation and places the result in the given AABB.</CodeDescription>
+  <PartID>772597759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>' Fast computation of HalfEllipse AABB without resorting to GetFarthestPoint related methods</SourceLine>
+   <SourceLine>' Based on the Ellipse AABB calculation + adjusting the result for the missing side.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the first point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise min and max values.</SourceLine>
+   <SourceLine>Var minX As Double = p.X</SourceLine>
+   <SourceLine>Var maxX As Double = p.X</SourceLine>
+   <SourceLine>Var minY As Double = p.Y</SourceLine>
+   <SourceLine>Var maxY As Double = p.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the rest of the vertices.</SourceLine>
+   <SourceLine>Var size As Integer = Self.Vertices.Ubound</SourceLine>
+   <SourceLine>For i As Integer = 1 To size</SourceLine>
+   <SourceLine>// Get the next point p = transform.GetTransformed(Self.vertices(i))</SourceLine>
+   <SourceLine>Var px As Double = transform.GetTransformedX(Self.Vertices(i))</SourceLine>
+   <SourceLine>Var py As Double = transform.GetTransformedY(Self.Vertices(i))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compare the x values.</SourceLine>
+   <SourceLine>If px &lt; minX Then</SourceLine>
+   <SourceLine>minX = px</SourceLine>
+   <SourceLine>ElseIf px &gt; maxX Then</SourceLine>
+   <SourceLine>maxX = px</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compare the y values.</SourceLine>
+   <SourceLine>If py &lt; minY Then</SourceLine>
+   <SourceLine>minY = py</SourceLine>
+   <SourceLine>ElseIf py &gt; maxY Then</SourceLine>
+   <SourceLine>maxY = py</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>aabb.MinX = minX</SourceLine>
+   <SourceLine>aabb.MinY = minY</SourceLine>
+   <SourceLine>aabb.MaxX = maxX</SourceLine>
+   <SourceLine>aabb.MaxY = maxY</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
