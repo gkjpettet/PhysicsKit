@@ -53,12 +53,15 @@ Inherits TestGroup
 		  
 		  // Test containment.
 		  Assert.IsTrue(aabb.Contains(0.0, 0.5))
+		  Assert.IsTrue(aabb.Contains(New PKVector2(0.0, 0.5)))
 		  
 		  // Test no containment.
 		  Assert.IsFalse(aabb.Contains(0.0, 2.0))
+		  Assert.IsFalse(aabb.Contains(New PKVector2(0.0, 2.0)))
 		  
 		  // Test on edge.
 		  Assert.IsTrue(aabb.Contains(0.0, 1.0))
+		  Assert.IsTrue(aabb.Contains(New PKVector2(0.0, 1.0)))
 		  
 		End Sub
 	#tag EndMethod
@@ -239,6 +242,26 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub EqualsTest()
+		  ///
+		  ' Tests the Equals method.
+		  ///
+		  
+		  Var aabb1 As PKAABB = New PKAABB(-2.0, 0.0, 2.0, 1.0)
+		  Var aabb2 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 2.0)
+		  Var aabb3 As PKAABB = New PKAABB(-1.0, -2.0, 5.0, 2.0)
+		  
+		  Assert.IsFalse(aabb1.Equals(Nil))
+		  Assert.IsTrue(aabb1.Equals(aabb1))
+		  Assert.IsFalse(aabb1.Equals(aabb2))
+		  Assert.IsFalse(aabb1.Equals(aabb3))
+		  Assert.IsTrue(aabb2.Equals(aabb3))
+		  Assert.IsFalse(aabb1.Equals(New PKVector2))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub ExpandTest()
 		  ///
 		  ' Tests the `Expand` method.
@@ -330,8 +353,20 @@ Inherits TestGroup
 		  Assert.AreEqual(0.5, aabbr.GetMaxY, 1.0E-4)
 		  
 		  // Test using separated aabbs (should give a zero PKAABB).
-		  VAR aabb3 AS PKAABB = New PKAABB(-4.0, 2.0, -3.0, 4.0)
+		  Var aabb3 As PKAABB = New PKAABB(-4.0, 2.0, -3.0, 4.0)
 		  aabbr = aabb1.GetIntersection(aabb3)
+		  Assert.AreEqual(0.0, aabbr.GetMinX, 1.0E-4)
+		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)
+		  Assert.AreEqual(0.0, aabbr.GetMaxX, 1.0E-4)
+		  Assert.AreEqual(0.0, aabbr.GetMaxY, 1.0E-4)
+		  
+		  Call aabbr.Intersection(aabb1, aabb2)
+		  Assert.AreEqual(-1.0, aabbr.GetMinX, 1.0E-4)
+		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)
+		  Assert.AreEqual(2.0, aabbr.GetMaxX, 1.0E-4)
+		  Assert.AreEqual(0.5, aabbr.GetMaxY, 1.0E-4)
+		  
+		  Call aabbr.Intersection(aabb1, aabb3)
 		  Assert.AreEqual(0.0, aabbr.GetMinX, 1.0E-4)
 		  Assert.AreEqual(0.0, aabbr.GetMinY, 1.0E-4)
 		  Assert.AreEqual(0.0, aabbr.GetMaxX, 1.0E-4)
@@ -342,6 +377,7 @@ Inherits TestGroup
 		  Assert.AreEqual(0.0, aabb1.GetMinY, 1.0E-4)
 		  Assert.AreEqual(2.0, aabb1.GetMaxX, 1.0E-4)
 		  Assert.AreEqual(0.5, aabb1.GetMaxY, 1.0E-4)
+		  
 		  
 		End Sub
 	#tag EndMethod
