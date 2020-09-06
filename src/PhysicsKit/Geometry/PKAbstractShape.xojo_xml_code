@@ -635,6 +635,41 @@
   <ItemParams>aabb As PKAABB</ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the AABB from this Shape after applying the given transformation and places the result in the given AABB.</CodeDescription>
+  <PartID>1430005759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine>#Pragma Unused aabb</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException(_</SourceLine>
+   <SourceLine>"The ComputeAABB(transform, aabb) method must be implemented by the AbstractShape subclass.")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Property>
   <ItemName>Center</ItemName>
   <Compatibility></Compatibility>
