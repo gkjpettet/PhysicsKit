@@ -4,6 +4,7 @@
  <ObjName>PKAdaptiveDecimal</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -1171,7 +1172,7 @@
   <PartID>220016639</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared IMPLICIT_MANTISSA_BIT As Int64 = &amp;h0010000000000000</SourceLine>
+   <SourceLine>Shared IMPLICIT_MANTISSA_BIT As Int64</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -1203,7 +1204,7 @@
   <PartID>1957945343</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared SIGNIF_BIT_MASK As Int64 = &amp;h000FFFFFFFFFFFFF</SourceLine>
+   <SourceLine>Shared SIGNIF_BIT_MASK As Int64</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
