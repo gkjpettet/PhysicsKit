@@ -145,10 +145,10 @@
    <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
    <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Unused transform</SourceLine>
+   <SourceLine>Var aabb As PKAABB = New PKAABB(0,0,0,0)</SourceLine>
+   <SourceLine>Self.ComputeAABB(transform, aabb)</SourceLine>
+   <SourceLine>Return aabb</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Raise New UnsupportedOperationException(_</SourceLine>
-   <SourceLine>"The CreateAABB(Transform) method must be implemented by the AbstractShape subclass.")</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>

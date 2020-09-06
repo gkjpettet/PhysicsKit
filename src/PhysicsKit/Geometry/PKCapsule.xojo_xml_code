@@ -138,41 +138,6 @@
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>CreateAABB</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>806080511</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
-   <SourceLine>/// </SourceLine>
-   <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Inlined projection of x axis.</SourceLine>
-   <SourceLine>Var p1 As PKVector2 = Self.getFarthestPoint(PKVector2.X_AXIS, transform)</SourceLine>
-   <SourceLine>Var c As Double = transform.GetTransformedX(Self.Center)</SourceLine>
-   <SourceLine>Var minX As Double = 2 * c - p1.x</SourceLine>
-   <SourceLine>Var maxX As Double = p1.x</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Inlined projection of y axis</SourceLine>
-   <SourceLine>p1 = Self.GetFarthestPoint(PKVector2.Y_AXIS, transform)</SourceLine>
-   <SourceLine>c = transform.GetTransformedY(Self.Center)</SourceLine>
-   <SourceLine>Var minY As Double = 2 * c - p1.Y</SourceLine>
-   <SourceLine>Var maxY As Double = p1.Y</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Return New PKAABB(minX, minY, maxX, maxY)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>transform As PKTransform</ItemParams>
-  <ItemResult>PKAABB</ItemResult>
- </Method>
- <Method>
   <ItemName>CreateMass</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
