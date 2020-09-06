@@ -1103,8 +1103,8 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Perform an optimized version of matrix multiplication.</SourceLine>
-   <SourceLine>Var cost As Double = c * Self.Cost - s * Self.Sint</SourceLine>
-   <SourceLine>Var sint As Double = s * Self.Cost + c * Self.Sint</SourceLine>
+   <SourceLine>Var cost As Double = PKInterval.Clamp(c * Self.Cost - s * Self.Sint, -1.0, 1.0)</SourceLine>
+   <SourceLine>Var sint As Double = PKInterval.Clamp(s * Self.Cost + c * Self.Sint, -1.0, 1.0)</SourceLine>
    <SourceLine>Var x As Double = c * Self.X - s * Self.Y</SourceLine>
    <SourceLine>Var y As Double = s * Self.X + c * Self.Y</SourceLine>
    <SourceLine></SourceLine>
@@ -1164,8 +1164,8 @@
    <SourceLine></SourceLine>
    <SourceLine>// Perform an optimized version of the matrix multiplication:</SourceLine>
    <SourceLine>// M(new) = inverse(T) * R * T * M(old)</SourceLine>
-   <SourceLine>Var cost As Double = c * Self.Cost - s * Self.Sint</SourceLine>
-   <SourceLine>Var sint As Double = s * Self.Cost + c * Self.Sint</SourceLine>
+   <SourceLine>Var cost As Double = PKInterval.Clamp(c * Self.Cost - s * Self.Sint, -1.0, 1.0)</SourceLine>
+   <SourceLine>Var sint As Double = PKInterval.Clamp(s * Self.Cost + c * Self.Sint, -1.0, 1.0)</SourceLine>
    <SourceLine>Self.Cost = cost</SourceLine>
    <SourceLine>Self.Sint = sint</SourceLine>
    <SourceLine></SourceLine>
@@ -1173,7 +1173,6 @@
    <SourceLine>Var cy As Double = Self.Y - y</SourceLine>
    <SourceLine>Self.X = c * cx - s * cy + x</SourceLine>
    <SourceLine>Self.Y = s * cx + c * cy + y</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -1284,11 +1283,11 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Perform rotation by theta but leave x and y intact.</SourceLine>
-   <SourceLine>Var cos As Double = Cos(theta)</SourceLine>
-   <SourceLine>Var sin As Double = Sin(theta)</SourceLine>
+   <SourceLine>Var cos As Double = Xojo.Math.Cos(theta)</SourceLine>
+   <SourceLine>Var sin As Double = Xojo.Math.Sin(theta)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var cost As Double = cos * Self.Cost - sin * Self.Sint</SourceLine>
-   <SourceLine>Var sint As Double = sin * Self.Cost + cos * Self.Sint</SourceLine>
+   <SourceLine>Var cost As Double = PKInterval.Clamp(cos * Self.Cost - sin * Self.Sint, -1.0, 1.0)</SourceLine>
+   <SourceLine>Var sint As Double = PKInterval.Clamp(sin * Self.Cost + cos * Self.Sint, -1.0, 1.0)</SourceLine>
    <SourceLine>Self.Cost = cost</SourceLine>
    <SourceLine>Self.Sint = sint</SourceLine>
    <SourceLine></SourceLine>
@@ -1708,6 +1707,30 @@
   <ItemParams>vector As PKVector2</ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsIdentity</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this Transform is an identity transform.</CodeDescription>
+  <PartID>890759167</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsIdentity() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this Transform is an identity transform.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Cost = 1.0 And Self.Sint = 0.0 And Self.X = 0.0 And Self.Y = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -1745,7 +1768,7 @@
   <PartID>1008191487</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Attributes( Deprecated = "Create your own instances of Transform instead." ) Shared IDENTITY As PKTransform</SourceLine>
+   <SourceLine>Shared IDENTITY As PKTransform</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
