@@ -955,6 +955,62 @@
   <ItemParams>width As Double, height As Double</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ComputeAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the AABB from this Shape after applying the given transformation and places the result in the given AABB.</CodeDescription>
+  <PartID>856629247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ComputeAABB(transform As PKTransform, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the AABB from this Shape after applying the given transformation and places the </SourceLine>
+   <SourceLine>' result in the given AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter transform: The Transform for this Shape.</SourceLine>
+   <SourceLine>' - Parameter aabb: The destination AABB.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Part of the PKShape interface.</SourceLine>
+   <SourceLine>' Fast computation of Ellipse AABB without resorting to GetFarthestPoint related methods</SourceLine>
+   <SourceLine>' Also see http://www.iquilezles.org/www/articles/ellipses/ellipses.htm</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// `u` is a unit vector with the world and local rotation.</SourceLine>
+   <SourceLine>Var u As PKVector2 = Self.Rotation.ToVector</SourceLine>
+   <SourceLine>transform.TransformR(u)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var x2 As Double = u.X * u.X</SourceLine>
+   <SourceLine>Var y2 As Double = u.Y * u.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Half width half height squared.</SourceLine>
+   <SourceLine>Var hw2 As Double = Self.HalfWidth * Self.HalfWidth</SourceLine>
+   <SourceLine>Var hh2 As Double = Self.HalfHeight * Self.HalfHeight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Calculate the resulting AABB's half width and half height.</SourceLine>
+   <SourceLine>Var aabbHalfWidth As Double = Sqrt(x2 * hw2 + y2 * hh2)</SourceLine>
+   <SourceLine>Var aabbHalfHeight As Double = Sqrt(y2 * hw2 + x2 * hh2) </SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute world centre.</SourceLine>
+   <SourceLine>Var cx As Double = transform.GetTransformedX(Self.Center)</SourceLine>
+   <SourceLine>Var cy As Double = transform.GetTransformedY(Self.Center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Combine to form the ellipse AABB.</SourceLine>
+   <SourceLine>aabb.MinX = cx - aabbHalfWidth</SourceLine>
+   <SourceLine>aabb.MinY = cy - aabbHalfHeight</SourceLine>
+   <SourceLine>aabb.MaxX = cx + aabbHalfWidth</SourceLine>
+   <SourceLine>aabb.MaxY = cy + aabbHalfHeight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
