@@ -4,6 +4,7 @@
  <ObjName>PKMass</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
