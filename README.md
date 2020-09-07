@@ -5,27 +5,17 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 Ported `RobustGeometry.java` but its test are failing.
 
 ## Main Files To Port
-- [ ] BinarySearchTree.java
-- [ ] BinarySearchTreeIterator.java
-- [ ] BinarySearchTreeNode.java
-- [ ] BinarySearchTreeSearchCriteria.java
 - [ ] collision
-	- [ ] AbstractBounds.java
-	- [ ] AbstractCollidable.java
-	- [ ] AxisAlignedBounds.java
-	- [ ] Bounds.java
-	- [ ] BoundsAdaptor.java
-	- [ ] BoundsListener.java
 	- [ ] broadphase
+		- [ ] AABBBroadphaseProxy.java
 		- [ ] AbstractBroadphaseDetector.java
 		- [ ] BatchBroadphaseDetector.java
 		- [ ] BroadphaseDetector.java
 		- [ ] BroadphaseFilter.java
-		- [ ] BroadphaseFilterAdaptro.java
+		- [ ] BroadphaseFilterAdaptor.java
 		- [ ] BroadphaseItem.java
-		- [ ] BroadphaseKey.java
+		- [ ] BroadphasePair.java
 		- [ ] BruteForceBroadphase.java
-		- [ ] BruteForceBroadphaseNode.java
 		- [ ] DefaultBroadphaseFilter.java
 		- [ ] DynamicAABBTree.java
 		- [ ] DynamicAABBTreeLeaf.java
@@ -34,25 +24,19 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] LazyAABBTreeLeaf.java
 		- [ ] LazyAABBTreeNode.java
 		- [ ] Sap.java
-		- [ ] SapProxy.java				
-	- [ ] CategoryFilter.java
-	- [ ] Collidable.java
-	- [ ] Collisions.java
 	- [ ] continuous
 		- [ ] ConservativeAdvancement.java
 		- [ ] TimeOfImpact.java
-		- [ ] TimeOfImpactDetector.java		
-	- [ ] Filter.java
-	- [ ] Fixture.java
-	- [ ] FixtureIterator.java
+		- [ ] TimeOfImpactDetector.java
 	- [ ] manifold
 		- [ ] ClippingManifoldSolver.java
 		- [ ] IndexedManifoldPointId.java
 		- [ ] Manifold.java
+		- [ ] ManifoldPoint.java
 		- [ ] ManifoldPointId.java
-		- [ ] ManifoldSolver.java		
+		- [ ] ManifoldSolver.java	
 	- [ ] narrowphase
-		- [ ] AbstractFallbackPosition.java
+		- [ ] AbstractFallbackCondition.java
 		- [ ] CircleDetector.java
 		- [ ] DistanceDetector.java
 		- [ ] Epa.java
@@ -76,19 +60,28 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] Separation.java
 		- [ ] SingleTypedFallbackCondition.java
 		- [ ] TypedFallbackCondition.java
+	- [ ] AbstractBounds.java
+	- [ ] AbstractCollidable.java
+	- [ ] AbstractCollisionBody.java
+	- [ ] AbstractCollisionItem.java
+	- [ ] AbstractCollisionPair.java
+	- [ ] AxisAlignedBounds.java
+	- [ ] BasicCollisionItem.java
+	- [ ] BasicCollisionPair.java
+	- [ ] Bounds.java
+	- [ ] BoundsAdaptor.java
+	- [ ] BoundsListener.java
+	- [ ] CategoryFilter.java
+	- [ ] Collidable.java
+	- [ ] CollisionBody.java
+	- [ ] CollisionItem.java
+	- [ ] CollisionPair.java
+	- [ ] Collisions.java	
+	- [ ] Filter.java
+	- [ ] Fixture.java
+	- [ ] FixtureIterator.java	
 	- [ ] TypeFilter.java
-- [x] Copyable.java
-- [x] DataContainer.java
 - [ ] dynamics
-	- [ ] AABBBroadphaseFilter.java
-	- [ ] Body.java
-	- [ ] BodyFixture.java
-	- [ ] BodyIterator.java
-	- [ ] Capacity.java
-	- [ ] CoefficientMixer.java
-	- [ ] CollisionAdaptor.java
-	- [ ] CollisionListener.java
-	- [ ] Constraint.java
 	- [ ] contact
 		- [ ] Contact.java
 		- [ ] ContactAdaptor.java
@@ -99,27 +92,17 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] ContactManager.java
 		- [ ] ContactPoint.java
 		- [ ] ContactPointId.java
+		- [ ] ContactUpdateHandler.java
 		- [ ] DefaultContactManager.java
+		- [ ] ForceCollisionTimeOfImpactSolver.java
 		- [ ] PersistedContactPoint.java
 		- [ ] SequentialImpulses.java
 		- [ ] SimpleContactManager.java
+		- [ ] SolvableContact.java
+		- [ ] SolvedContact.java
 		- [ ] SolvedContactPoint.java
 		- [ ] TimeOfImpactSolver.java
 		- [ ] WarmStartingContactManager.java
-	- [ ] ContactEdge.java
-	- [ ] ContinuousDetectionMode.java
-	- [ ] ConvexCastAdaptor.java
-	- [ ] ConvexCastListener.java
-	- [ ] ConvexCastResult.java
-	- [ ] DestructionAdaptor.java
-	- [ ] DestructionListener.java
-	- [ ] DetectAdaptor.java
-	- [ ] DetectBroadphaseFilter.java
-	- [ ] DetectListener.java
-	- [ ] DetectResult.java
-	- [ ] Force.java
-	- [ ] InteractionEdge.java
-	- [ ] Island.java
 	- [ ] joint
 		- [ ] AngleJoint.java
 		- [ ] DistanceJoint.java
@@ -134,8 +117,33 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] RopeJoint.java
 		- [ ] WeldJoint.java
 		- [ ] WheelJoint.java
+	- [ ] AABBBroadphaseFilter.java
+	- [ ] AbstractPhysicsBody.java
+	- [ ] Body.java
+	- [ ] BodyFixture.java
+	- [ ] BodyIterator.java
+	- [ ] Capacity.java
+	- [ ] CoefficientMixer.java
+	- [ ] CollisionAdaptor.java
+	- [ ] CollisionListener.java
+	- [ ] Constraint.java
+	- [ ] ContactEdge.java
+	- [ ] ContinuousDetectionMode.java
+	- [ ] ConvexCastAdaptor.java
+	- [ ] ConvexCastListener.java
+	- [ ] ConvexCastResult.java
+	- [ ] DestructionAdaptor.java
+	- [ ] DestructionListener.java
+	- [ ] DetectAdaptor.java
+	- [ ] DetectBroadphaseFilter.java
+	- [ ] DetectListener.java
+	- [ ] DetectResult.java
+	- [ ] Force.java
+	- [ ] InteractionEdge.java
+	- [ ] Island.java
 	- [ ] JointEdge.java
 	- [ ] JointIterator.java
+	- [ ] PhysicsBody.java
 	- [ ] RaycastAdaptor.java
 	- [ ] RaycastBroadphaseFilter.java
 	- [ ] RaycastListener.java
@@ -148,14 +156,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [ ] TimeOfImpactListener.java
 	- [ ] Torque.java
 	- [ ] World.java
-- [x] Epsilon.java
 - [ ] geometry
-	- [x] AABB.java
-	- [x] AbstractShape.java
-	- [x] AdaptiveDecimal.java
-	- [x] Capsule.java
-	- [x] Circle.java
-	- [x] Convex.java
 	- [ ] decompose
 		- [ ] Bayazit.java
 		- [ ] ClosestEdgeToVertexSearchCriteria.java
@@ -176,12 +177,7 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] SweepLineVertex.java
 		- [ ] SweepLineVertexType.java
 		- [ ] Triangulator.java
-	- [x] EdgeFeature.java
-	- [x] Ellipse.java
-	- [x] Feature.java
-	- [x] Geometry.java
-	- [x] HalfEllipse.java
-	- [ ] hull
+	- [x] hull
 		- [x] DivideAndConquer.java
 		- [x] GiftWrap.java
 		- [x] GrahamScan.java
@@ -191,6 +187,17 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [x] MinXYPointComparator.java
 		- [x] MonotoneChain.java
 		- [x] ReferencePointComparator.java
+	- [x] AABB.java
+	- [x] AbstractShape.java
+	- [x] AdaptiveDecimal.java
+	- [x] Capsule.java
+	- [x] Circle.java
+	- [x] Convex.java
+	- [x] EdgeFeature.java
+	- [x] Ellipse.java
+	- [x] Feature.java
+	- [x] Geometry.java
+	- [x] HalfEllipse.java
 	- [x] Interval.java
 	- [x] Link.java
 	- [x] Mass.java
@@ -216,7 +223,56 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] Vector3.java
 	- [x] Wound.java
 	- [x] WoundIterator.java
+- [ ] world
+	- [ ] listener
+		- [ ] BoundsListener.java
+		- [ ] BoundsListenerAdaptor.java
+		- [ ] CollisionListener.java
+		- [ ] CollisionListenerAdaptor.java
+		- [ ] ContactListener.java
+		- [ ] ContactListenerAdaptor.java
+		- [ ] DestructionListener.java
+		- [ ] DestructionListenerAdaptor.java
+		- [ ] StepListener.java
+		- [ ] StepListenerAdaptor.java
+		- [ ] TimeOfImpactListener.java
+		- [ ] TimeOfImpactListenerAdaptor.java
+		- [ ] WorldEventListener.java
+	- [ ] result
+		- [ ] ConvexCastResult.java
+		- [ ] ConvexDetectResult.java
+		- [ ] DetectResult.java
+		- [ ] RaycaseResult.java
+	- [ ] AbstractCollisionWorld.java
+	- [ ] AbstractPhysicsWorld.java
+	- [ ] BroadphaseCollisionData.java
+	- [ ] BroadphaseFilter.java
+	- [ ] BroadphaseFilterAdaptor.java
+	- [ ] CoefficientMixer.java
+	- [ ] CollisionBodyBroadphaseFilter.java
+	- [ ] CollisionData.java
+	- [ ] CollisionItemAdaptor.java
+	- [ ] CollisionWorld.java
+	- [ ] ConstraintGraph.java
+	- [ ] ConstraintGraphNode.java
+	- [ ] ContactCollisionData.java
+	- [ ] DetectFilter.java
+	- [ ] Island.java
+	- [ ] ManifoldCollisionData.java
+	- [ ] NarrowphaseCollisionData.java
+	- [ ] PhysicsBodyBroadphaseFilter.java
+	- [ ] PhysicsWorld.java
+	- [ ] World.java
+	- [ ] WorldCollisionData.java
+- [ ] BinarySearchTree.java
+- [ ] BinarySearchTreeIterator.java
+- [ ] BinarySearchTreeNode.java
+- [ ] BinarySearchTreeSearchCriteria.java
+- [x] Copyable.java
+- [x] DataContainer.java
+- [x] Epsilon.java
 - [ ] Listener.java
+- [ ] Ownable.java
 - [ ] Reference.java
 - [ ] UnitConversion.java
 - [ ] Version.java
@@ -323,7 +379,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] MassTest.java
 	- [x] Matrix22Test.java
 	- [x] Matrix33Test.java
-	- [x] MonotoneChainTest.java
+	- [ ] MonotoneChainTest.java
 	- [x] PolygonTest.java
 	- [x] RayTest.java
 	- [x] RectangleTest.java
