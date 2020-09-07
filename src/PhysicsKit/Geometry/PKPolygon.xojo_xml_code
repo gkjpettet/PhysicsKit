@@ -183,59 +183,6 @@
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>CreateAABB</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>1884927999</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
-   <SourceLine>// Part of the PhysicsKit.Shape interface.</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Get the first point.</SourceLine>
-   <SourceLine>Var p As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Initialize min and max values.</SourceLine>
-   <SourceLine>Var minX As Double = p.X</SourceLine>
-   <SourceLine>Var maxX As Double = p.X</SourceLine>
-   <SourceLine>Var minY As Double = p.Y</SourceLine>
-   <SourceLine>Var maxY As Double = p.Y</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Loop over the rest of the vertices.</SourceLine>
-   <SourceLine>Var iLimit As Integer = Self.Vertices.LastRowIndex</SourceLine>
-   <SourceLine>For i As Integer = 1 To iLimit</SourceLine>
-   <SourceLine>// Get the next point.</SourceLine>
-   <SourceLine>Var px As Double = transform.GetTransformedX(Self.Vertices(i))</SourceLine>
-   <SourceLine>Var py As Double = transform.GetTransformedY(Self.Vertices(i))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Compare the x values.</SourceLine>
-   <SourceLine>If px &lt; minX Then</SourceLine>
-   <SourceLine>minX = px</SourceLine>
-   <SourceLine>ElseIf px &gt; maxX Then</SourceLine>
-   <SourceLine>maxX = px</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Compare the y values.</SourceLine>
-   <SourceLine>If py &lt; minY Then</SourceLine>
-   <SourceLine>minY = py</SourceLine>
-   <SourceLine>ElseIf py &gt; maxY Then</SourceLine>
-   <SourceLine>maxY = py</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine>Next i</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Create the PKAABB.</SourceLine>
-   <SourceLine>Return New PKAABB(minX, minY, maxX, maxY)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>transform As PKTransform</ItemParams>
-  <ItemResult>PKAABB</ItemResult>
- </Method>
- <Method>
   <ItemName>CreateMass</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
