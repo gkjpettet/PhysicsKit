@@ -133,53 +133,6 @@
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>CreateAABB</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>1145829375</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
-   <SourceLine>// Since we know that this is a rectangle we can get away with much fewer</SourceLine>
-   <SourceLine>// comparisons to find the correct PKAABB. Each vertex maps to one point of the</SourceLine>
-   <SourceLine>// PKAABB, we have to find in which of the four possible rotation states this</SourceLine>
-   <SourceLine>// rectangle currently is. This is done below by comparing the first two vertices.</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// It's more convenient to use transform.GetTransformed instead but we can</SourceLine>
-   <SourceLine>// split to transform.GetTransformedX/Y to save 4 PKVector2 allocations 'for free'.</SourceLine>
-   <SourceLine>Var v0x As Double = transform.GetTransformedX(Self.Vertices(0))</SourceLine>
-   <SourceLine>Var v0y As Double = transform.GetTransformedY(Self.Vertices(0))</SourceLine>
-   <SourceLine>Var v1x As Double = transform.GetTransformedX(Self.Vertices(1))</SourceLine>
-   <SourceLine>Var v1y As Double = transform.GetTransformedY(Self.Vertices(1))</SourceLine>
-   <SourceLine>Var v2x As Double = transform.GetTransformedX(Self.Vertices(2))</SourceLine>
-   <SourceLine>Var v2y As Double = transform.GetTransformedY(Self.Vertices(2))</SourceLine>
-   <SourceLine>Var v3x As Double = transform.GetTransformedX(Self.Vertices(3))</SourceLine>
-   <SourceLine>Var v3y As Double = transform.GetTransformedY(Self.Vertices(3))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>If v0y &gt; v1y Then</SourceLine>
-   <SourceLine>If v0x &lt; v1x Then</SourceLine>
-   <SourceLine>Return New PKAABB(v0x, v1y, v2x, v3y)</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>Return New PKAABB(v1x, v2y, v3x, v0y)</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>If v0x &lt; v1x Then</SourceLine>
-   <SourceLine>Return New PKAABB(v3x, v0y, v1x, v2y)</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>Return New PKAABB(v2x, v3y, v0x, v1y)</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>transform As PKTransform</ItemParams>
-  <ItemResult>PKAABB</ItemResult>
- </Method>
- <Method>
   <ItemName>CreateMass</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
