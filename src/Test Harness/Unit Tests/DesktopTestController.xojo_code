@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New MonotoneChainTests(Self, "MonotoneChain")
 		  group = New GrahamScanTests(Self, "GrahamScan")
 		  group = New GiftWrapTests(Self, "GiftWrap")
 		  group = New Vector3Tests(Self, "PKVector3")
@@ -22,8 +23,8 @@ Inherits TestController
 		  'group = New RobustGeometryTests(Self, "RobustGeometry") // Broken.
 		  group = New CapsuleTests(Self, "Capsule")
 		  group = New WoundTests(self, "Wound")
-		  group = New PKAdaptiveDecimalTest(Self, "PKAdaptiveDecimal")
-		  group = New AbstractShapeTest(Self, "AbstractShape")
+		  group = New PKAdaptiveDecimalTests(Self, "PKAdaptiveDecimal")
+		  group = New AbstractShapeTests(Self, "AbstractShape")
 		  group = New PolygonTests(Self, "Polygon")
 		  group = New RectangleTests(Self, "Rectangle")
 		  group = New CircleTests(Self, "Circle")

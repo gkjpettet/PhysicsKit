@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AbstractShapeTest
+Protected Class AbstractShapeTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()

@@ -12,6 +12,7 @@
   <ItemName>Generate</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns a convex hull generated from the given point set in counter-clockwise point order. May return Nil.</CodeDescription>
   <PartID>269656063</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>

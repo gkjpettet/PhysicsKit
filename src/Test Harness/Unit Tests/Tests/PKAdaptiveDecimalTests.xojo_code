@@ -1,5 +1,5 @@
 #tag Class
-Protected Class PKAdaptiveDecimalTest
+Protected Class PKAdaptiveDecimalTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
