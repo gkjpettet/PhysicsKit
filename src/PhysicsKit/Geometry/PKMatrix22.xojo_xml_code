@@ -4,6 +4,7 @@
  <ObjName>PKMatrix22</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -884,6 +885,114 @@
   <IsShared>0</IsShared>
   <ItemParams>dest As PKMatrix22</ItemParams>
   <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>NormMax</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the max-norm of this matrix.</CodeDescription>
+  <PartID>415309823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function NormMax() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the max-norm of this matrix.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Just the max of the absolute values.</SourceLine>
+   <SourceLine>Return Max(Abs(Self.M00), Max(Abs(Self.m01), Max(Abs(Self.m10), Abs(Self.m11))))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>NormInfinity</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the infinity-norm of this matrix.</CodeDescription>
+  <PartID>1487341567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function NormInfinity() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the infinity-norm of this matrix.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The max of the sum of the absolute values of the rows.</SourceLine>
+   <SourceLine>Var row1 As Double = Abs(Self.M00) + Abs(Self.M01)</SourceLine>
+   <SourceLine>Var row2 As Double = Abs(Self.M10) + Abs(Self.M11)</SourceLine>
+   <SourceLine>Return Max(row1, row2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Norm1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the 1-norm of this matrix.</CodeDescription>
+  <PartID>1157394431</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Norm1() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the 1-norm of this matrix.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The max of the sum of the absolute values of the columns.</SourceLine>
+   <SourceLine>Var col1 As Double = Abs(Self.M00) + Abs(Self.M10)</SourceLine>
+   <SourceLine>Var col2 As Double = Abs(Self.M01) + Abs(Self.M11)</SourceLine>
+   <SourceLine>Return Max(col1, col2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>NormFrobenius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the frobenius-norm of this matrix.</CodeDescription>
+  <PartID>539426815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function NormFrobenius() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the frobenius-norm of this matrix.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The square root of the sum of all the elements squared.</SourceLine>
+   <SourceLine>Return Sqrt(Self.M00 * Self.M00 + _</SourceLine>
+   <SourceLine>Self.M10 * Self.M10 + _</SourceLine>
+   <SourceLine>Self.M01 * Self.M01 + _</SourceLine>
+   <SourceLine>Self.M11 * Self.M11)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>
