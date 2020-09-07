@@ -212,12 +212,10 @@
    <SourceLine>' - Note: Part of the PhysicsKit.Shape interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>// Get the transformed points.</SourceLine>
-   <SourceLine>Var p0 As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
-   <SourceLine>Var p1 As PKVector2 = transform.GetTransformed(Self.Vertices(1))</SourceLine>
+   <SourceLine>Var aabb As PKAABB = New PKAABB(0,0,0,0)</SourceLine>
+   <SourceLine>Self.ComputeAABB(transform, aabb)</SourceLine>
+   <SourceLine>Return aabb</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>// Create the PKAABB.</SourceLine>
-   <SourceLine>Return PKAABB.CreateAABBFromPoints(p0, p1)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
