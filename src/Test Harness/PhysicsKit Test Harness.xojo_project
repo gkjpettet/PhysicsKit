@@ -103,6 +103,7 @@ Class=PKLinkedHashSetVector2;../PhysicsKit/Misc/PKLinkedHashSetVector2.xojo_xml_
 Class=PKUUID;../PhysicsKit/Misc/PKUUID.xojo_xml_code;&h00000000526F9FFF;&h000000007CC53FFF;false
 Class=PKObject;../PhysicsKit/Misc/PKObject.xojo_xml_code;&h000000003579A7FF;&h000000007CC53FFF;false
 Interface=PKCopyable;../PhysicsKit/PKCopyable.xojo_xml_code;&h000000005D4DB7FF;&h0000000033118FFF;false
+Class=PKMonotoneChain;../PhysicsKit/Geometry/Hull/PKMonotoneChain.xojo_xml_code;&h00000000465CF7FF;&h00000000256C5FFF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

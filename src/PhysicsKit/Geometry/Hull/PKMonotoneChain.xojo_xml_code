@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1296453631">
+ <ObjName>PKMonotoneChain</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKHullGenerator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Generate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>269656063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Generate(points() As PKVector2) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKHullGenerator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil array.</SourceLine>
+   <SourceLine>If points = Nil Then Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_ARRAY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt;= 2 Then Return points</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Try</SourceLine>
+   <SourceLine>// Sort the points.</SourceLine>
+   <SourceLine>points.Sort(AddressOf PKMinXYPointComparator.Compare)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Catch e As NilObjectException</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_HULL_NIL_POINTS)</SourceLine>
+   <SourceLine>End Try</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This algorithm is very resilient to errors even with the vastly imprecise </SourceLine>
+   <SourceLine>// `PKSegment.GetLocation`. But we still implement it with `PKRobustGeometry.GetLocation`</SourceLine>
+   <SourceLine>// in order to provide better coincident point removal and consistent results</SourceLine>
+   <SourceLine>// with the rest algorithms; the added overhead is quite small.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the points whose x values are the smallest and largest.</SourceLine>
+   <SourceLine>Var minmin As Integer= 0</SourceLine>
+   <SourceLine>Var minmax As Integer = 0</SourceLine>
+   <SourceLine>Var maxmin As Integer = 0</SourceLine>
+   <SourceLine>Var maxmax As Integer = 0</SourceLine>
+   <SourceLine>// minmin == minmax if there exists only one point who has the smallest</SourceLine>
+   <SourceLine>// x coordinate, likewise, maxmin == maxmax if there exists only one point</SourceLine>
+   <SourceLine>// who has the largest x coordinate.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var limit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 1 To limit</SourceLine>
+   <SourceLine>// Get the current values.</SourceLine>
+   <SourceLine>Var minxminy As PKVector2 = points(minmin)</SourceLine>
+   <SourceLine>Var minxmaxy As PKVector2 = points(minmax)</SourceLine>
+   <SourceLine>Var maxxminy As PKVector2 = points(maxmin)</SourceLine>
+   <SourceLine>Var maxxmaxy As PKVector2 = points(maxmax)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check against the minimum x.</SourceLine>
+   <SourceLine>If p.X &lt; minxminy.X Then</SourceLine>
+   <SourceLine>// It's the new minimum.</SourceLine>
+   <SourceLine>minmin = i</SourceLine>
+   <SourceLine>minmax = i</SourceLine>
+   <SourceLine>ElseIf p.X = minxminy.X Then</SourceLine>
+   <SourceLine>// If they are equal then we need to check the y coordinate.</SourceLine>
+   <SourceLine>If p.Y &gt; minxmaxy.Y Then</SourceLine>
+   <SourceLine>minmax = i</SourceLine>
+   <SourceLine>ElseIf p.Y &lt; minxminy.Y Then</SourceLine>
+   <SourceLine>minmin = i</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check against the maximum x.</SourceLine>
+   <SourceLine>If p.X &gt; maxxminy.X Then</SourceLine>
+   <SourceLine>// It's the new maximum.</SourceLine>
+   <SourceLine>maxmin = i</SourceLine>
+   <SourceLine>maxmax = i</SourceLine>
+   <SourceLine>ElseIf p.X = maxxminy.X Then</SourceLine>
+   <SourceLine>// If they are equal then we need to check the y coordinate.</SourceLine>
+   <SourceLine>If p.Y &gt; maxxmaxy.Y Then</SourceLine>
+   <SourceLine>maxmax = i</SourceLine>
+   <SourceLine>ElseIf p.Y &lt; maxxminy.Y Then</SourceLine>
+   <SourceLine>maxmin = i</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Build the lower convex hull.</SourceLine>
+   <SourceLine>Var lower() As PKVector2</SourceLine>
+   <SourceLine>Var lp1 As PKVector2 = points(maxmin)</SourceLine>
+   <SourceLine>Var lp2 As PKVector2 = points(minmin)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Push.</SourceLine>
+   <SourceLine>lower.AddRow(points(minmin))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points between the min and max.</SourceLine>
+   <SourceLine>For i As Integer = (minmax + 1) To maxmin</SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Where is it relative to the dividing line?</SourceLine>
+   <SourceLine>If PKRobustGeometry.GetLocation(p, lp1, lp2) &gt;= 0.0 Then</SourceLine>
+   <SourceLine>// If it's on or to the left of the dividing line check if this invalidates any points currently</SourceLine>
+   <SourceLine>// in the convex hull.</SourceLine>
+   <SourceLine>Var lSize As Integer = lower.Count</SourceLine>
+   <SourceLine>While lSize &gt;= 2</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = lower(lSize - 1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = lower(lSize - 2)</SourceLine>
+   <SourceLine>// Check if the point is to the left of the last edge in the current convex hull.</SourceLine>
+   <SourceLine>If PKRobustGeometry.GetLocation(p, p2, p1) &gt; 0.0 Then</SourceLine>
+   <SourceLine>// If so, we can safely add the new point and maintain convexity.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Otherwise we need to remove the top point because it creates a concavity.</SourceLine>
+   <SourceLine>lower.Remove(lSize - 1)</SourceLine>
+   <SourceLine>lSize = lsize - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// When we're done always add the point (it will be removed later if it creates a concavity).</SourceLine>
+   <SourceLine>lower.AddRow(p)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Build the upper convex hull.</SourceLine>
+   <SourceLine>Var upper() As PKVector2</SourceLine>
+   <SourceLine>Var up1 As PKVector2 = points(minmax)</SourceLine>
+   <SourceLine>Var up2 As PKVector2 = points(maxmax)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Push.</SourceLine>
+   <SourceLine>upper.AddRow(points(maxmax))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points between the min and max.</SourceLine>
+   <SourceLine>Var i As Integer = maxmax - 1</SourceLine>
+   <SourceLine>While i &gt;= minmax</SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Where is it relative to the dividing line?</SourceLine>
+   <SourceLine>If PKRobustGeometry.GetLocation(p, up1, up2) &gt;= 0.0 Then</SourceLine>
+   <SourceLine>// If its on or to the left of the dividing line check if this invalidates any points currently</SourceLine>
+   <SourceLine>// in the convex hull.</SourceLine>
+   <SourceLine>Var uSize As Integer = upper.Count</SourceLine>
+   <SourceLine>While uSize &gt;= 2</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = upper(uSize - 1)</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = upper(uSize - 2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the point is to the left of the last edge in the current convex hull.</SourceLine>
+   <SourceLine>If PKRobustGeometry.GetLocation(p, p2, p1) &gt; 0.0 Then</SourceLine>
+   <SourceLine>// If so, we can safely add the new point and maintain convexity.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Otherwise we need to remove the top point because it creates a concavity.</SourceLine>
+   <SourceLine>upper.Remove(uSize - 1)</SourceLine>
+   <SourceLine>uSize = uSize - 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// When we're done always add the point (it will be removed later if it creates a concavity).</SourceLine>
+   <SourceLine>upper.AddRow(p)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>i = i -1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the first element of the upper hull is the same as the last element of the lower hull.</SourceLine>
+   <SourceLine>If upper(0) = lower(lower.Count - 1) Then upper.Remove(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Likewise check the first element of the lower hull with the last element of the upper hull.</SourceLine>
+   <SourceLine>If lower(0) = upper(upper.Count - 1) Then lower.Remove(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Append all the upper hull points to the lower hull creating the complete convex hull.</SourceLine>
+   <SourceLine>For Each v As PKVector2 In upper</SourceLine>
+   <SourceLine>lower.AddRow(v)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the hull.</SourceLine>
+   <SourceLine>Return lower</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>857745407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Andrew's Monotone Chain convex hull algorithm.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This implementation is not sensitive to colinear points and returns only the points of the convex hull.</NoteLine>
+   <NoteLine>This algorithm is O(n log n) worst case where n is the number of points.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
