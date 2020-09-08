@@ -278,108 +278,142 @@ Ported `RobustGeometry.java` but its test are failing.
 - [ ] Version.java
 
 ## Tests To Port
-- [ ] BalancedBinarySearchTreeTest.java
-- [ ] BinarySearchTreeTest.java
 - [ ] collision
-	- [ ] AbstractTest.java
+	- [ ] broadphase
+		- [ ] BroadphaseItemTest.java
+		- [ ] BroadphasePairTest.java
+		- [ ] BroadphaseTest.java
+	- [ ] continuous
+		- [ ] ConservativeAdvancementTest.java
+	- [ ] manifold
+		- [ ] ClippingManifoldSolverTest.java
+		- [ ] IndexedManifoldPointIdTest.java
+		- [ ] ManifoldPointIdTest.java
+		- [ ] MainfoldPointTest.java
+		- [ ] ManifoldTest.java
+	- [ ] narrowphase
+		- [ ] FallbackNarrowphaseDetectorTest.java
+		- [ ] GkjRaycastTest.java
+		- [ ] SegmentDetectorTest.java
+	- [ ] shapes
+		- [ ] AbstractNarrowphaseShapeTest.java
+		- [ ] CapsuleCapsuleTest.java
+		- [ ] CapsuleSliceTest.java
+		- [ ] CircleCapsuleTest.java
+		- [ ] CircleCircleTest.java
+		- [ ] CircleEllipseTest.java
+		- [ ] CircleHalfEllipseTest.java
+		- [ ] CirclePolygonTest.java
+		- [ ] CircleRectangleTest.java
+		- [ ] CircleSegmentTest.java
+		- [ ] CircleSliceTest.java
+		- [ ] CircleTriangleTest.java
+		- [ ] EllipseCapsuleTest.java
+		- [ ] EllipseEllipseTest.java
+		- [ ] EllipseHalfEllipseTest.java
+		- [ ] EllipseSliceTest.java
+		- [ ] HalfEllipseCapsuleTest.java
+		- [ ] HalfEllipseHalfEllipseTest.java
+		- [ ] HalfEllipseSliceTest.java
+		- [ ] PolygonCapsuleTest.java
+		- [ ] PolygonEllipseTest.java
+		- [ ] PolygonHalfEllipseTest.java
+		- [ ] PolygonPolygonTest.java
+		- [ ] PolygonRectangleTest.java
+		- [ ] PolygonSegmentTest.java
+		- [ ] PolygonSliceTest.java
+		- [ ] PolygonTriangleTest.java
+		- [ ] RectangleCapsuleTest.java
+		- [ ] RectangleEllipseTest.java
+		- [ ] RectangleHalfEllipseTest.java
+		- [ ] PolygonPolygonTest.java
+		- [ ] PolygonRectangleTest.java
+		- [ ] PolygonSegmentTest.java
+		- [ ] PolygonSliceTest.java
+		- [ ] PolygonTriangleTest.java
+		- [ ] RectangleCapsuleTest.java
+		- [ ] RectangleEllipseTest.java
+		- [ ] RectangleHalfEllipseTest.java
+		- [ ] RectangleRectangleTest.java
+		- [ ] RectangleSegmentTest.java
+		- [ ] RectangleSliceTest.java
+		- [ ] RectangleTriangleTest.java
+		- [ ] SegmentCapsuleTest.java
+		- [ ] SegmentEllipseTest.java
+		- [ ] SegmentHalfEllipseTest.java
+		- [ ] SegmentSegmentTest.java
+		- [ ] SegmentSliceTest.java
+		- [ ] SegmentTriangleTest.java
+		- [ ] SliceSliceTest.java
+		- [ ] TriangleCapsuleTest.java
+		- [ ] TriangleEllipseTest.java
+		- [ ] TriangleHalfEllipseTest.java
+		- [ ] TriangleSliceTest.java
+		- [ ] TriangleTriangleTest.java 
+	- [ ] AbstractBoundsTest.java
+	- [ ] AbstractCollisionBodyTest.java
+	- [ ] AbstractCollisionItemTest.java
+	- [ ] AbstractCollisionPairTest.java
 	- [ ] AxisAlignedBoundsTest.java
-	- [ ] BroadphaseTest.java
-	- [ ] CapsuleCapsuleTest.java
-	- [ ] CapsuleSliceTest.java
+	- [ ] BasicCollisionItemTest.java
+	- [ ] BasicCollisionPairTest.java
 	- [ ] CategoryFilterTest.java
-	- [ ] CircleCapsuleTest.java
-	- [ ] CircleCircleTest.java
-	- [ ] CircleEllipseTest.java
-	- [ ] CircleHalfEllipseTest.java
-	- [ ] CirclePolygonTest.java
-	- [ ] CircleRectangleTest.java
-	- [ ] CircleSegmentTest.java
-	- [ ] CircleSliceTest.java
-	- [ ] CircleTriangleTest.java
-	- [ ] CollidableTest.java
-	- [ ] ConservativeAdvancementTest.java
+	- [ ] CollisionsTest.java
 	- [ ] DefaultFilterTest.java
-	- [ ] EllipseCapsuleTest.java
-	- [ ] EllipseEllipseTest.java
-	- [ ] EllipseHalfEllipseTest.java
-	- [ ] EllipseSliceTest.java
-	- [ ] FallbackNarrowphaseDetectorTest.java
 	- [ ] FixtureTest.java
-	- [ ] GjkRaycastTest.java
-	- [ ] HalfEllipseCapsuleTest.java
-	- [ ] HalfEllipseHalfEllipseTest.java
-	- [ ] HalfEllipseSliceTest.java
-	- [ ] PolygonCapsuleTest.java
-	- [ ] PolygonEllipseTest.java
-	- [ ] PolygonHalfEllipseTest.java
-	- [ ] PolygonPolygonTest.java
-	- [ ] PolygonRectangleTest.java
-	- [ ] PolygonSegmentTest.java
-	- [ ] PolygonSliceTest.java
-	- [ ] PolygonTriangleTest.java
-	- [ ] RectangleCapsuleTest.java
-	- [ ] RectangleEllipseTest.java
-	- [ ] RectangleHalfEllipseTest.java
-	- [ ] RectangleRectangleTest.java
-	- [ ] RectangleSegmentTest.java
-	- [ ] RectangleSliceTest.java
-	- [ ] RectangleTriangleTest.java
-	- [ ] SegmentCapsuleTest.java
-	- [ ] SegmentDetectorTest.java
-	- [ ] SegmentEllipseTest.java
-	- [ ] SegmentHalfEllipseTest.java
-	- [ ] SegmentSegmentTest.java
-	- [ ] SegmentSliceTest.java
-	- [ ] SegmentTriangleTest.java
-	- [ ] SliceSliceTest.java
-	- [ ] TriangleCapsuleTest.java
-	- [ ] TriangleEllipseTest.java
-	- [ ] TriangleHalfEllipseTest.java
-	- [ ] TriangleSliceTest.java
-	- [ ] TriangleTriangleTest.java
+	- [ ] TestCollisionBody.java
 	- [ ] TypeFilterTest.java
 - [ ] dynamics
-	- [ ] AngleJointTest.java
+	- [ ] contact
+		- [ ] ContactConstraintIDTest.java
+		- [ ] ContactConstraintTest.java
+		- [ ] ContactManagerTest.java
+	- [ ] joint
+		- [ ] AbstractJointTest.java
+		- [ ] AngleJointTest.java
+		- [ ] DistanceJointTest.java
+		- [ ] FrictionJointTest.java
+		- [ ] MotorJointTest.java
+		- [ ] PinJointTest.java
+		- [ ] PrismaticJointTest.java
+		- [ ] PulleyJointTest.java
+		- [ ] RevoluteJointTest.java
+		- [ ] RopeJointTest.java
+		- [ ] WeldJointTest.java
+		- [ ] WheelJointTest.java
+	- [ ] AbstractPhysicsBodyTest.java
 	- [ ] BodyFixtureTest.java
 	- [ ] BodyTest.java
 	- [ ] CapacityTest.java
-	- [ ] ContactConstraintIDTest.java
-	- [ ] ContactManagerTest.java
-	- [ ] DistanceJointTest.java
 	- [ ] ForceTest.java
-	- [ ] FrictionJointTest.java
 	- [ ] IslandTest.java
-	- [ ] PinJointTest.java
-	- [ ] PrismaticJointTest.java
-	- [ ] PulleyJointTest.java
-	- [ ] RevoluteJointTest.java
-	- [ ] RopeJointTest.java
 	- [ ] SettingsTest.java
+	- [ ] TimeStepTest.java
 	- [ ] TorqueTest.java
-	- [ ] WeldJointTest.java
-	- [ ] WheelJointTest.java
 	- [ ] WorldTest.java
-- [x] EpsilonTest.java
 - [ ] geometry
+	- [ ] decompose
+		- [ ] AbstractDecomposeTest.java
+		- [ ] BayazitTest.java
+		- [ ] EarClippingTest.java
+		- [ ] SweepLineTest.java			
+	- [ ] hull
+		- [ ] DivideAndConquerTest.java
+		- [x] GiftWrapTest.java
+		- [x] GrahamScanTest.java	
+		- [x] MonotoneChainTest.java			
 	- [x] AABBTest.java
-	- [ ] AbstractDecomposeTest.java
 	- [x] AbstractShapeTest.java
 	- [x] AdaptiveDecimalTest.java
-	- [ ] BayazitTest.java
 	- [x] CapsuleTest.java
 	- [x] CircleTest.java
-	- [ ] DivideAndConquerTest.java
-	- [ ] EarClippingTest.java
 	- [x] EllipseTest.java
 	- [x] GeometryTest.java
-	- [x] GiftWrapTest.java
-	- [x] GrahamScanTest.java
 	- [x] HalfEllipseTest.java
 	- [x] IntervalTest.java
 	- [x] MassTest.java
 	- [x] Matrix22Test.java
 	- [x] Matrix33Test.java
-	- [ ] MonotoneChainTest.java
 	- [x] PolygonTest.java
 	- [x] RayTest.java
 	- [x] RectangleTest.java
@@ -387,12 +421,39 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] RotationTest.java
 	- [x] SegmentTest.java
 	- [x] SliceTest.java
-	- [ ] SweepLineTest.java
 	- [x] TransformTest.java
 	- [ ] TriangleTest.java
 	- [x] Vector2Test.java
 	- [x] Vector3Test.java
 	- [x] WoundTest.java
+- [ ] simulation
+	- [ ] DistanceJointSimulationtest.java
+	- [ ] ForceSimulationTest.java
+	- [ ] FrictionJointSimulationTest.java
+	- [ ] PinJointSimulationtest.java
+	- [ ] TorquaSimulationTest.java
+- [ ] world
+	- [ ] listener
+		- [ ] ListenerAdaptersTest.java
+	- [ ] result
+		- [ ] DetectResultTest.java
+	- [ ] AbstractCollisionWorldTest.java
+	- [ ] AbstractPhysicsWorldTest.java
+	- [ ] BroadphaseFilterAdaptorTest.java
+	- [ ] CoefficientMixerTest.java
+	- [ ] CollisionBodyBroadphaseFilterTest.java
+	- [ ] CollisionItemAdaptorTest.java
+	- [ ] ConstraintGraphTest.java
+	- [ ] DetectFilterTest.java
+	- [ ] IslandTest.java
+	- [ ] PhysicsBodyBroadphaseFilterTest.java
+	- [ ] WorldTest.java
+- [ ] BalancedBinarySearchTreeTest.java
+- [ ] BinarySearchTreeTest.java
+- [x] EpsilonTest.java
+- [ ] InconsistentElementType.java
+- [ ] MessagesTest.java
+- [ ] ReferenceTest.java
 - [ ] UnitConversionTest.java
 - [ ] VersionTest.java
 
