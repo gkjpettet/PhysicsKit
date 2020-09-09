@@ -422,7 +422,7 @@ Ported `RobustGeometry.java` but its test are failing.
 	- [x] SegmentTest.java
 	- [x] SliceTest.java
 	- [x] TransformTest.java
-	- [ ] TriangleTest.java
+	- [x] TriangleTest.java
 	- [x] Vector2Test.java
 	- [x] Vector3Test.java
 	- [x] WoundTest.java

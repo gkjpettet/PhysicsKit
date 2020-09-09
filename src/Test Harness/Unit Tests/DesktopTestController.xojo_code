@@ -7,7 +7,8 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
-		  group = New RobustGeometryTests(Self, "RobustGeometry") // Broken.
+		  group = New TriangleTests(Self, "Triangle")
+		  group = New RobustGeometryTests(Self, "RobustGeometry")
 		  group = New MonotoneChainTests(Self, "MonotoneChain")
 		  group = New GrahamScanTests(Self, "GrahamScan")
 		  group = New GiftWrapTests(Self, "GiftWrap")
