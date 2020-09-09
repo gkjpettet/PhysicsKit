@@ -86,8 +86,6 @@ Inherits TestGroup
 		  ' complex paths in `PKRobustGeometry.GetLocation(PKVector2, PKVector2, PKVector2)`.
 		  ///
 		  
-		  #Pragma Warning "Broken and failing"
-		  
 		  // Constant seed so we always get the same sequence of randoms
 		  System.Random.Seed = SEED
 		  

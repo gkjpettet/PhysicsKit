@@ -91,9 +91,9 @@ Protected Class Assert
 		  If diff <= (Abs(tolerance) + 0.00000001) Then
 		    Pass()
 		  Else
-		    'Fail(FailEqualMessage(Format(expected, "-#########.##########"), Format(actual, "-#########.##########")), message)
 		    Fail(FailEqualMessage(expected.ToText(Xojo.Core.Locale.Current, "#########.##########"), actual.ToText(Xojo.Core.Locale.Current, "#########.##########")), message)
 		  End If
+		  
 		End Sub
 	#tag EndMethod
 
