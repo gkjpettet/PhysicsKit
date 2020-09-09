@@ -3,17 +3,7 @@ Protected Class EllipseTests
 Inherits TestGroup
 	#tag Event
 		Sub Setup()
-		  Prop2 = Prop2 + 1
-		  
 		  IDENTITY = New PKTransform
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub TearDown()
-		  Prop2 = Prop2 - 1
-		  
-		  
 		End Sub
 	#tag EndEvent
 
@@ -377,18 +367,6 @@ Inherits TestGroup
 	#tag Property, Flags = &h21
 		Private IDENTITY As PKTransform
 	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Prop1 As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Shared Prop2 As Integer
-	#tag EndProperty
-
-
-	#tag Using, Name = PhysicsKit
-	#tag EndUsing
 
 
 	#tag ViewBehavior

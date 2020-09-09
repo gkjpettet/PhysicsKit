@@ -2,21 +2,6 @@
 Protected Class TransformTests
 Inherits TestGroup
 	#tag Event
-		Sub Setup()
-		  Prop2 = Prop2 + 1
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub TearDown()
-		  Prop2 = Prop2 - 1
-		  
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
 		  #pragma unused err
 		  
@@ -345,15 +330,6 @@ Inherits TestGroup
 		  
 		End Sub
 	#tag EndMethod
-
-
-	#tag Property, Flags = &h21
-		Private Prop1 As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private Shared Prop2 As Integer
-	#tag EndProperty
 
 
 	#tag ViewBehavior
