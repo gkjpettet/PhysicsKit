@@ -156,7 +156,7 @@
    <SourceLine>Do</SourceLine>
    <SourceLine>size = size + 1</SourceLine>
    <SourceLine>v = v.NextVertex</SourceLine>
-   <SourceLine>Loop Until v &lt;&gt; lu</SourceLine>
+   <SourceLine>Loop Until v = lu</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Set the size.</SourceLine>
    <SourceLine>hull.Size = size</SourceLine>
