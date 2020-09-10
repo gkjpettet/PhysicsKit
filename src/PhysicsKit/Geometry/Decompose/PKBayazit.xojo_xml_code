@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="353060863">
+ <ObjName>PKBayazit</ObjName>
+ <ObjContainerID>1397843967</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKDecomposer</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Decompose</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the decomposition on the given polygon returning a list of Convex shapes.</CodeDescription>
+  <PartID>987729919</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Decompose(points() As PKVector2) As PKConvex()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKDecomposer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil array.</SourceLine>
+   <SourceLine>If points Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_DECOMPOSE_NIL_ARRAY)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of points.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt; 4 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_INVALID_SIZE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the winding order.</SourceLine>
+   <SourceLine>Var winding As Double = PKGeometry.GetWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Reverse the array if the points are in clockwise order.</SourceLine>
+   <SourceLine>If winding &lt; 0.0 Then PKGeometry.ReverseWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create an array for the points to go in.</SourceLine>
+   <SourceLine>Var polygon() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Copy the points to the list.</SourceLine>
+   <SourceLine>For Each p As PKVector2 In points</SourceLine>
+   <SourceLine>polygon.AddRow(p)</SourceLine>
+   <SourceLine>Next p</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create an array for the polygons to live.</SourceLine>
+   <SourceLine>Var polygons() As PKConvex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decompose the polygon.</SourceLine>
+   <SourceLine>Self.DecomposePolygon(polygon, polygons)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the result.</SourceLine>
+   <SourceLine>Return polygons</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKConvex()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DecomposePolygon</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal recursive method to decompose the given polygon into convex sub-polygons.</CodeDescription>
+  <PartID>719392767</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub DecomposePolygon(polygon() As PKVector2, polygons() As PKConvex)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal recursive method to decompose the given polygon into convex sub-polygons.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon(): The polygon to decompose.</SourceLine>
+   <SourceLine>' - Parameter polygons(): The array to store the convex polygons resulting from the decomposition.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the size of the given polygon.</SourceLine>
+   <SourceLine>Var size As Integer = polygon.Count</SourceLine>
+   <SourceLine>Var polygonLastRowIndex As Integer = polygon.LastRowIndex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise.</SourceLine>
+   <SourceLine>Var upperIntersection As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var lowerIntersection As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine>Var upperDistance As Double = MathsKit.DOUBLE_MAX_VALUE</SourceLine>
+   <SourceLine>Var lowerDistance As Double = MathsKit.DOUBLE_MAX_VALUE</SourceLine>
+   <SourceLine>Var closestDistance As Double = MathsKit.DOUBLE_MAX_VALUE</SourceLine>
+   <SourceLine>Var upperIndex, lowerIndex, closestIndex As Integer = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var lower() As PKVector2</SourceLine>
+   <SourceLine>Var upper() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over all the vertices.</SourceLine>
+   <SourceLine>For i As Integer = 0 To polygonLastRowIndex</SourceLine>
+   <SourceLine>// Get the current vertex.</SourceLine>
+   <SourceLine>Var p As PKVector2 = polygon(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the adjacent vertices.</SourceLine>
+   <SourceLine>Var p0 As PKVector2 = polygon(If(i - 1 &lt; 0, size - 1, i - 1))</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = polygon(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the vertex is a reflex vertex.</SourceLine>
+   <SourceLine>If IsReflex(p0, p, p1) Then</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the vertices to determine if both extended</SourceLine>
+   <SourceLine>// adjacent edges intersect one edge (in which case a steiner point will be added).</SourceLine>
+   <SourceLine>For j As Integer = 0 To polygonLastRowIndex</SourceLine>
+   <SourceLine>Var q As PKVector2 = polygon(j)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the adjacent vertices.</SourceLine>
+   <SourceLine>Var q0 As PKVector2 = polygon(If(j - 1 &lt; 0, size - 1, j - 1))</SourceLine>
+   <SourceLine>Var q1 As PKVector2 = polygon(If(j + 1 = size, 0, j + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a storage location for the intersection point.</SourceLine>
+   <SourceLine>Var s As PKVector2 = New PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Extend the previous edge.</SourceLine>
+   <SourceLine>// Does the line p0-&gt;p go between the vertices q and q0?</SourceLine>
+   <SourceLine>If Left(p0, p, q) And RightOn(p0, p, q0) Then</SourceLine>
+   <SourceLine>// Get the intersection point.</SourceLine>
+   <SourceLine>If Self.GetIntersection(p0, p, q, q0, s) Then</SourceLine>
+   <SourceLine>// Make sure the intersection point is to the right of</SourceLine>
+   <SourceLine>// the edge p1-&gt;p (this makes sure it's inside the polygon).</SourceLine>
+   <SourceLine>If Right(p1, p, s) Then</SourceLine>
+   <SourceLine>// Get the distance from p to the intersection point s.</SourceLine>
+   <SourceLine>Var dist As Double = p.DistanceSquared(s)</SourceLine>
+   <SourceLine>// Only save the smallest.</SourceLine>
+   <SourceLine>If dist &lt; lowerDistance Then</SourceLine>
+   <SourceLine>lowerDistance = dist</SourceLine>
+   <SourceLine>Call lowerIntersection.Set(s)</SourceLine>
+   <SourceLine>lowerIndex = j</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Extend the next edge.</SourceLine>
+   <SourceLine>// Does the line p1-&gt;p go between q and q1?</SourceLine>
+   <SourceLine>If Left(p1, p, q1) And RightOn(p1, p, q) Then</SourceLine>
+   <SourceLine>// Get the intersection point.</SourceLine>
+   <SourceLine>If Self.GetIntersection(p1, p, q, q1, s) Then</SourceLine>
+   <SourceLine>// Make sure the intersection point is to the left of</SourceLine>
+   <SourceLine>// the edge p0-&gt;p (this makes sure its inside the polygon).</SourceLine>
+   <SourceLine>If Left(p0, p, s) Then</SourceLine>
+   <SourceLine>// Get the distance from p to the intersection point s.</SourceLine>
+   <SourceLine>Var dist As Double = p.DistanceSquared(s)</SourceLine>
+   <SourceLine>// Only save the smallest.</SourceLine>
+   <SourceLine>If dist &lt; upperDistance Then</SourceLine>
+   <SourceLine>upperDistance = dist</SourceLine>
+   <SourceLine>Call upperIntersection.Set(s)</SourceLine>
+   <SourceLine>upperIndex = j</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the lower index and upper index are equal then this means</SourceLine>
+   <SourceLine>// that the range of p only included an edge (both extended previous </SourceLine>
+   <SourceLine>// and next edges of p only intersected the same edge, therefore no</SourceLine>
+   <SourceLine>// point exists within that range to connect to).</SourceLine>
+   <SourceLine>If lowerIndex = (upperIndex + 1) Mod size Then</SourceLine>
+   <SourceLine>// Create a steiner point in the middle.</SourceLine>
+   <SourceLine>Var s As PKVector2 = upperIntersection.Sum(lowerIntersection).Multiply(0.5)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Partition the polygon.</SourceLine>
+   <SourceLine>If i &lt; upperIndex Then</SourceLine>
+   <SourceLine>lower.AddAll(polygon.subList(i, upperIndex + 1))</SourceLine>
+   <SourceLine>lower.AddRow(s)</SourceLine>
+   <SourceLine>upper.AddRow(s)</SourceLine>
+   <SourceLine>If lowerIndex &lt;&gt; 0 Then upper.AddAll(polygon.subList(lowerIndex, size))</SourceLine>
+   <SourceLine>upper.addAll(polygon.subList(0, i + 1))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If i &lt;&gt; 0 Then lower.addAll(polygon.subList(i, size))</SourceLine>
+   <SourceLine>lower.addAll(polygon.subList(0, upperIndex + 1))</SourceLine>
+   <SourceLine>lower.AddRow(s)</SourceLine>
+   <SourceLine>upper.AddRow(s)</SourceLine>
+   <SourceLine>upper.addAll(polygon.subList(lowerIndex, i + 1))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise we need to find the closest "visible" point to p.</SourceLine>
+   <SourceLine>If lowerIndex &gt; upperIndex Then</SourceLine>
+   <SourceLine>upperIndex = upperIndex + size</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>closestIndex = lowerIndex</SourceLine>
+   <SourceLine>// Find the closest visible point.</SourceLine>
+   <SourceLine>For j As Integer = lowerIndex to upperIndex</SourceLine>
+   <SourceLine>Var jmod As Integer = j Mod size</SourceLine>
+   <SourceLine>Var q As PKVector2 = polygon(jmod)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If q = p Or q = p0 Or q = p1 Then Continue</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the distance first, since this is generally</SourceLine>
+   <SourceLine>// a much faster operation than checking if its visible.</SourceLine>
+   <SourceLine>Var dist As Double = p.DistanceSquared(q)</SourceLine>
+   <SourceLine>If dist &lt; closestDistance Then</SourceLine>
+   <SourceLine>If Self.IsVisible(polygon, i, jmod) Then</SourceLine>
+   <SourceLine>closestDistance = dist</SourceLine>
+   <SourceLine>closestIndex = jmod</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Once we find the closest partition the polygon.</SourceLine>
+   <SourceLine>If i &lt; closestIndex Then</SourceLine>
+   <SourceLine>lower.addAll(polygon.subList(i, closestIndex + 1))</SourceLine>
+   <SourceLine>If closestIndex &lt;&gt; 0 Then upper.addAll(polygon.subList(closestIndex, size))</SourceLine>
+   <SourceLine>upper.addAll(polygon.subList(0, i + 1))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If i &lt;&gt; 0 Then lower.addAll(polygon.subList(i, size))</SourceLine>
+   <SourceLine>lower.addAll(polygon.subList(0, closestIndex + 1))</SourceLine>
+   <SourceLine>upper.addAll(polygon.subList(closestIndex, i + 1))</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decompose the smaller first.</SourceLine>
+   <SourceLine>If lower.Count &lt; upper.Count Then</SourceLine>
+   <SourceLine>DecomposePolygon(lower, polygons)</SourceLine>
+   <SourceLine>DecomposePolygon(upper, polygons)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>DecomposePolygon(upper, polygons)</SourceLine>
+   <SourceLine>DecomposePolygon(lower, polygons)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the given polygon contains a reflex vertex, then return.</SourceLine>
+   <SourceLine>Return</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we get here, we know the given polygon has 0 reflex vertices</SourceLine>
+   <SourceLine>// and is therefore convex, add it to the list of convex polygons.</SourceLine>
+   <SourceLine>If polygon.Count &lt; 3 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_CROSSING_EDGES)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>polygons.AddRow(PKGeometry.CreatePolygon(polygon))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>polygon() As PKVector2, polygons() As PKConvex</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetIntersection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given lines intersect and returns the intersection point in the p parameter.</CodeDescription>
+  <PartID>1618302975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetIntersection(a1 As PKVector2, a2 As PKVector2, b1 As PKVector2, b2 As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given lines intersect and returns the intersection point in the p parameter.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a1: The first point of the first line.</SourceLine>
+   <SourceLine>' - Parameter a2: The second point of the first line.</SourceLine>
+   <SourceLine>' - Parameter b1: The first point of the second line.</SourceLine>
+   <SourceLine>' - Parameter b2: The second point of the second line.</SourceLine>
+   <SourceLine>' - Parameter p: The destination object for the intersection point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute S1 and S2.</SourceLine>
+   <SourceLine>Var s1 As PKVector2 = a1.Difference(a2)</SourceLine>
+   <SourceLine>Var s2 As PKVector2 = b1.Difference(b2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the cross product (the determinant if we used matrix solving techniques).</SourceLine>
+   <SourceLine>Var det As Double = s1.Cross(s2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the matrix isn't singular (the lines could be parallel).</SourceLine>
+   <SourceLine>If Abs(det) &lt;= PKEpsilon.E Then</SourceLine>
+   <SourceLine>// Return False since there is no way that the segments could be intersecting.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Pre-divide the determinant.</SourceLine>
+   <SourceLine>det = 1.0 / det</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute t2.</SourceLine>
+   <SourceLine>Var t2 As Double = det * (a1.Cross(s1) - b1.Cross(s1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the intersection point.</SourceLine>
+   <SourceLine>// P = B1(1.0 - t2) + B2(t2)</SourceLine>
+   <SourceLine>p.X = b1.X * (1.0 - t2) + b2.X * t2</SourceLine>
+   <SourceLine>p.Y = b1.Y * (1.0 - t2) + b2.Y * t2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return that they intersect.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a1 As PKVector2, a2 As PKVector2, b1 As PKVector2, b2 As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsReflex</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vertex, b, is a reflex vertex. (I.e: a vertex who's interior angle is greater than 180 degrees).</CodeDescription>
+  <PartID>1220147199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsReflex(p0 As PKVector2, p As PKVector2, p1 As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vertex, b, is a reflex vertex.</SourceLine>
+   <SourceLine>' A reflex vertex is a vertex who's interior angle is greater than 180 degrees.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p0: The vertex to test.</SourceLine>
+   <SourceLine>' - Parameter p: The previous vertex.</SourceLine>
+   <SourceLine>' - Parameter p1: The next vertex.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the point p is to the right of the line p0-p1 then the point is a reflex vertex.</SourceLine>
+   <SourceLine>Return Right(p1, p0, p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>p0 As PKVector2, p As PKVector2, p1 As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsVisible</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the vertex at index i can see the vertex at index j.</CodeDescription>
+  <PartID>1810137087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsVisible(polygon() As PKVector2, i As Integer, j As Integer) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the vertex at index i can see the vertex at index j.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter polygon(): The current polygon.</SourceLine>
+   <SourceLine>' - Parameter i: The ith vertex.</SourceLine>
+   <SourceLine>' - Parameter j: The jth vertex.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s As Integer = polygon.Count</SourceLine>
+   <SourceLine>Var iv0, iv, iv1 As PKVector2</SourceLine>
+   <SourceLine>Var jv0, jv, jv1 As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iv0 = polygon(If(i = 0, s - 1, i - 1))</SourceLine>
+   <SourceLine>iv = polygon(i)</SourceLine>
+   <SourceLine>iv1 = polygon(If(i + 1 = s, 0, i + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>jv0 = polygon(If(j = 0, s - 1, j - 1))</SourceLine>
+   <SourceLine>jv = polygon(j)</SourceLine>
+   <SourceLine>jv1 = polygon(If(j + 1 = s, 0, j + 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Can i see j?</SourceLine>
+   <SourceLine>If Self.IsReflex(iv0, iv, iv1) Then</SourceLine>
+   <SourceLine>If LeftOn(iv, iv0, jv) And RightOn(iv, iv1, jv) Then Return False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If RightOn(iv, iv1, jv) Or LeftOn(iv, iv0, jv) Then Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Can j see i?</SourceLine>
+   <SourceLine>If Self.IsReflex(jv0, jv, jv1) Then</SourceLine>
+   <SourceLine>If LeftOn(jv, jv0, iv) And RightOn(jv, jv1, iv) Then Return False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If RightOn(jv, jv1, iv) Or LeftOn(jv, jv0, iv) Then Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the segment from i to j doesn't intersect any edges.</SourceLine>
+   <SourceLine>Var kLimit As Integer = s - 1</SourceLine>
+   <SourceLine>For k As Integer = 0 To kLimit</SourceLine>
+   <SourceLine>Var ki1 As Integer = If(k + 1 = s, 0, k + 1)</SourceLine>
+   <SourceLine>If k = i Or k = j Or ki1 = i Or ki1 = j Then Continue</SourceLine>
+   <SourceLine>Var k1 As PKVector2 = polygon(k)</SourceLine>
+   <SourceLine>Var k2 As PKVector2 = polygon(ki1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var in_ As PKVector2 = PKSegment.GetSegmentIntersection(iv, jv, k1, k2)</SourceLine>
+   <SourceLine>If in_ &lt;&gt; Nil Then Return False</SourceLine>
+   <SourceLine>Next k</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>polygon() As PKVector2, i As Integer, j As Integer</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Left</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point p is to the left of the line created by a-b.</CodeDescription>
+  <PartID>438085631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Left(a As PKVector2, b As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point p is to the left of the line created by a-b.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter b: The second point of the line.</SourceLine>
+   <SourceLine>' - Parameter p: The point to test.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetLocation(p, a, b) &gt; 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>LeftOn</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point p is to the left or on the line created by a-b.</CodeDescription>
+  <PartID>1682016255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function LeftOn(a As PKVector2, b As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point p is to the left or on the line created by a-b.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter b: The second point of the line.</SourceLine>
+   <SourceLine>' - Parameter p: The point to test.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetLocation(p, a, b) &gt;= 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Right</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point p is to the right of the line created by a-b.</CodeDescription>
+  <PartID>1875085311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Right(a As PKVector2, b As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point p is to the right of the line created by a-b.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter b: The second point of the line.</SourceLine>
+   <SourceLine>' - Parameter p: The point to test.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetLocation(p, a, b) &lt; 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RightOn</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point p is to the right or on the line created by a-b.</CodeDescription>
+  <PartID>2098157567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RightOn(a As PKVector2, b As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point p is to the right or on the line created by a-b.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first point of the line.</SourceLine>
+   <SourceLine>' - Parameter b: The second point of the line.</SourceLine>
+   <SourceLine>' - Parameter p: The point to test.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSegment.GetLocation(p, a, b) &lt;= 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>302540799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Bayazit convex decomposition algorithm for simple polygons.</NoteLine>
+   <NoteLine>This algorithm is a O(nr) complexity algorithm where n is the number of input vertices and r is </NoteLine>
+   <NoteLine>the number of output convex polygons.</NoteLine>
+   <NoteLine>This algorithm can achieve optimal decompositions, however this is not guaranteed.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

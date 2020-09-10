@@ -155,7 +155,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] World.java
 - [ ] geometry
 	- [ ] decompose
-		- [ ] Bayazit.java
+		- [x] Bayazit.java
 		- [ ] ClosestEdgeToVertexSearchCriteria.java
 		- [x] Decomposer.java
 		- [ ] DoubleEdgeList.java

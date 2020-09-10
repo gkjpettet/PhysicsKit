@@ -91,6 +91,98 @@
   <ItemParams>Extends d As Double</ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
+ <Method>
+  <ItemName>AddAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Appends the elements in `array2` to the end of `array1` in the order they appear in `array2`.</CodeDescription>
+  <PartID>2031968255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub AddAll(Extends array1() As PKVector2, array2() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Appends the elements in `array2` to the end of `array1` in the order they appear in `array2`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends array1(): The array to append to.</SourceLine>
+   <SourceLine>' - Parameter array2(): An array containing elements to be appended to `array1`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Mutates `array1` but does not modify `array2`.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each v As PKVector2 In array2</SourceLine>
+   <SourceLine>array1.AddRow(v)</SourceLine>
+   <SourceLine>Next v</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends array1() As PKVector2, array2() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SubList</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new array comprising the elements in `original` between the specified (inclusive) `fromIndex` and (exclusive) `toIndex`.</CodeDescription>
+  <PartID>1477908479</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SubList(Extends original() As PKVector2, fromIndex As Integer, toIndex As Integer) As PKVector2()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new array comprising the elements in `original` between the specified </SourceLine>
+   <SourceLine>' (inclusive) `fromIndex` and (exclusive) `toIndex`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends original(): The donating original array.</SourceLine>
+   <SourceLine>' - Parameter fromIndex: low (inclusive) endpoint of the subList.</SourceLine>
+   <SourceLine>' - Parameter toIndex: high (exclusive) endpoint of the subList.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if an index value is out of range (fromIndex &lt; 0 or toIndex &gt; Count).</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if the indices are out of order (fromIndex &gt; toIndex).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' If `fromIndex = toIndex`, the returned array is empty.</SourceLine>
+   <SourceLine>' The Java implementation of this method ensures that the returned list (array) is backed by </SourceLine>
+   <SourceLine>' this list (array), so non-structural changes in the returned list are reflected in the</SourceLine>
+   <SourceLine>' original array, and vice-versa. This is **not** possible with Xojo.</SourceLine>
+   <SourceLine>' Returns a new array and does not alter the original array.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Warning "NOTE: Non-identical re-implementation of this Java method"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var result() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return an empty array if the indices are equal.</SourceLine>
+   <SourceLine>If fromIndex = toIndex Then Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Validate indices.</SourceLine>
+   <SourceLine>If fromIndex &lt; 0 Or toIndex &gt; original.Count Then</SourceLine>
+   <SourceLine>Raise New OutOfBoundsException("Invalid index in PKVector2.SubList")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If fromIndex &gt; toIndex Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException("`fromIndex` must be smaller or equal to `toIndex`")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the array to return.</SourceLine>
+   <SourceLine>Var limit As Integer = toIndex - 1</SourceLine>
+   <SourceLine>For i As Integer = fromIndex To limit</SourceLine>
+   <SourceLine>result.AddRow(original(i))</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends original() As PKVector2, fromIndex As Integer, toIndex As Integer</ItemParams>
+  <ItemResult>PKVector2()</ItemResult>
+ </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
   <Compatibility></Compatibility>
