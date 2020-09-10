@@ -1,9 +1,6 @@
 # PhysicsKit
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
-## Port Progress
-Ported `RobustGeometry.java` but its test are failing.
-
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
@@ -397,8 +394,8 @@ Ported `RobustGeometry.java` but its test are failing.
 		- [ ] BayazitTest.java
 		- [ ] EarClippingTest.java
 		- [ ] SweepLineTest.java			
-	- [ ] hull
-		- [ ] DivideAndConquerTest.java
+	- [x] hull
+		- [x] DivideAndConquerTest.java
 		- [x] GiftWrapTest.java
 		- [x] GrahamScanTest.java	
 		- [x] MonotoneChainTest.java			

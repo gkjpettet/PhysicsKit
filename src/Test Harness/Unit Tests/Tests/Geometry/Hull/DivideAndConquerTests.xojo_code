@@ -16,6 +16,331 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub DAC10Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(-7.725662343635252, 3.239314248048395), _
+		  New PKVector2(-7.725662343635252, 9.244107520658332), _
+		  New PKVector2(-7.725662343635252, 5.6066430781506575), _
+		  New PKVector2(-5.985432177897989, 1.0634285355681339), _
+		  New PKVector2(2.7404621676247265, -4.946792659796997))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC11Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  // Coincident vertices.
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(-5.214810023866061, -5.581528163221621), _
+		  New PKVector2(-3.2956195481849493, 6.700146933201903), _
+		  New PKVector2(2.159226322162535, -2.2353877725618476), _
+		  New PKVector2(4.84788802330902, -6.921113359457114), _
+		  New PKVector2(4.84788802330902, -6.921113359457114))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC12Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  // Coincident vertices.
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(-0.33826889474805055, 8.329321811558497), _
+		  New PKVector2(-3.5586156659982215, -3.467244912905423), _
+		  New PKVector2(-3.5586156659982215, -4.566140779700733), _
+		  New PKVector2(-3.5586156659982215, -3.05702346750299), _
+		  New PKVector2(1.1178446483487536, -3.05702346750299))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC13Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  // Coincident vertices.
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(-0.9025337983824699, 4.56709308364953), _
+		  New PKVector2(-5.5168621708920345, 0.34366552069341916), _
+		  New PKVector2(-2.400927400987851, 3.19563523962121), _
+		  New PKVector2(-9.419896312210547, 3.19563523962121))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC14Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  // Coincident vertices.
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(5.916275853509346, -4.228267720344762), _
+		  New PKVector2(8.31483976082672, -0.3807196367883092), _
+		  New PKVector2(3.9941738969349405, -0.491971233546733), _
+		  New PKVector2(-5.952110964171484, -0.7480752942332325))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC22Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(-0.9726201659613243, -0.061797000490076304), _
+		  New PKVector2(-0.49116488082909115, 0.7678687827639961), _
+		  New PKVector2(-0.48739204883444187, -0.9956524492331893), _
+		  New PKVector2(-0.4537370168301149, -0.6616125022480972), _
+		  New PKVector2(-0.34908102882750347, -0.7747234303505055), _
+		  New PKVector2(-0.33139487141988466, 0.03531605400219706), _
+		  New PKVector2(-0.280521830078756, -0.8019885163611113), _
+		  New PKVector2(-0.18129485409799484, -0.20967044425834414), _
+		  New PKVector2(0.06567685427976788, 0.08518030687971767), _
+		  New PKVector2(0.18792402577067557, -0.47162922175654987), _
+		  New PKVector2(0.4819840632260479, 0.36769528256486916), _
+		  New PKVector2(0.5215540748770324, 0.47445238228262654), _
+		  New PKVector2(0.527334528883231, 0.4308651755136941), _
+		  New PKVector2(0.6152877195482263, 0.7025685140058535), _
+		  New PKVector2(0.7757776753703407, 0.3215448776809937), _
+		  New PKVector2(0.7785392212464266, 0.7209603726626324), _
+		  New PKVector2(0.8940177489295154, -0.1882690653739989))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC2Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a failure case.
+		  ///
+		  
+		  Try
+		    Var cloud() As PKVector2 = Array( _
+		    New PKVector2(23.854242711277, 1.0), _
+		    New PKVector2(57.707453390935676, 1.0),  _
+		    New PKVector2(13.0, 1.0), _
+		    New PKVector2(27.918475169266998, 1.0))
+		    
+		    TestCloud(cloud)
+		    
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC3Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(1.5, 1.0), _
+		  New PKVector2(2.0, 1.0), _
+		  New PKVector2(2.5, 1.0), _
+		  New PKVector2(3.5, 1.0), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(5.0, 0.0))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC4Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(9135172.538699752, 1594.2921033236523), _
+		  New PKVector2(1.0, 3436.444789677664), _
+		  New PKVector2(53371.47726301303, 63.201463180191396), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(0.09713620217398017, 286668.0866273699), _
+		  New PKVector2(104.83526669412421, 579.583503857007))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC5Part2Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(334.68865889609134, 3.955720227287777E-23), _
+		  New PKVector2(5.758935896542613E22, 8.12199057379559E21), _
+		  New PKVector2(69464.96179292782, 0.05006981639456297), _
+		  New PKVector2(0.03735960666625501, 0.3783853688716485))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC5Part3Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(334.68865889609134, 3.955720227287777E-23), _
+		  New PKVector2(5.758935896542613E22, 8.12199057379559E21), _
+		  New PKVector2(400.758935896542613E21, 8.12199057379559E20), _
+		  New PKVector2(69464.96179292782, 0.05006981639456297), _
+		  New PKVector2(0.03735960666625501, 0.3783853688716485))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC5Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(69464.96179292782, 0.05006981639456297), _
+		  New PKVector2(0.03735960666625501, 0.3783853688716485), _
+		  New PKVector2(334.68865889609134, 3.955720227287777E-23), _
+		  New PKVector2(5.758935896542613E22, 8.12199057379559E21))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC6Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(9.67305424383519, 114.09907896473986), _
+		  New PKVector2(1.0, 1161.9752606517477), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(1.0, 10.546088997659012), _
+		  New PKVector2(22.088494561091807, 230.94365885699824), _
+		  New PKVector2(2.8366426821689994, 1.0), _
+		  New PKVector2(8.944224404040732, 6.315177488492587), _
+		  New PKVector2(1.0, 59.98064323348245), _
+		  New PKVector2(9.24861145190379, 8404.268678968832), _
+		  New PKVector2(1.0, 0.03504029713737921), _
+		  New PKVector2(1.0, 82.55330004652801))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC7Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(1.0, 1.5767304065549268E12), _
+		  New PKVector2(1.870841152451107, 6.534140012505794E23), _
+		  New PKVector2(1.9603053816739006E12, 9.074076290143341E10), _
+		  New PKVector2(3260266.640396411, 7.796498271329308E7), _
+		  New PKVector2(28.709287118505284, 82447.5698720256), _
+		  New PKVector2(1.8463774403168068E15, 0.013098511687408589), _
+		  New PKVector2(3740193.601814064, 4682.6340006396895), _
+		  New PKVector2(3170758.3618271016, 2.131083797649407E7), _
+		  New PKVector2(143.83527343008367, 3.2294659543003845E15), _
+		  New PKVector2(1.0, 5.956908518731977E17), _
+		  New PKVector2(2.0531014115467064E-7, 2306510.1010659263), _
+		  New PKVector2(1.2474786776966758E20, 1.4802417824918536E11), _
+		  New PKVector2(1.0, 15.084034859698757))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC8Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(24.00000000000005, 24.000000000000053), _
+		  New PKVector2(54.85, 6), _
+		  New PKVector2(24.000000000000068, 24.000000000000071), _
+		  New PKVector2(54.850000000000357, 61.000000000000121), _
+		  New PKVector2(24, 6), _
+		  New PKVector2(6, 6))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DAC9Test()
+		  ///
+		  ' Tests the Divide and Conquer class against a prior failure case.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Array( _
+		  New PKVector2(23, 1.0), _
+		  New PKVector2(57, 1.0), _
+		  New PKVector2(13, 1.0), _
+		  New PKVector2(27, 10.0))
+		  
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub DACRandom1Test()
 		  ///
 		  ' Tests the Divide and Conquer class against the random point cloud.
@@ -23,6 +348,18 @@ Inherits TestGroup
 		  
 		  Var cloud() AS PKVector2 = Generate(0)
 		  // Var cloud() AS PKVector2 = GenerateSeed0
+		  TestCloud(cloud)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DACRandom2Test()
+		  ///
+		  ' Tests the Divide and Conquer class against the random point cloud.
+		  ///
+		  
+		  Var cloud() As PKVector2 = Generate(5)
 		  TestCloud(cloud)
 		  
 		End Sub
@@ -52,91 +389,6 @@ Inherits TestGroup
 		  
 		  Return cloud
 		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21, Description = 52657475726E732061202272616E646F6D2220706F696E7420636C6F7564206261736564206F6E2073656564696E67204A61766127732052616E646F6D20636C6173732077697468206030602E
-		Private Function GenerateSeed0() As PKVector2()
-		  ///
-		  ' Returns a "random" point cloud based on seeding Java's Random class with `0`.
-		  ' Equivalent to dyn4j's `Generate(0)` method.
-		  ///
-		  
-		  Return Array( _
-		  New PKVector2(-0.5189271686570283, 0.2748348507002165), _
-		  New PKVector2(0.10087401023526787, 0.19509055559440358), _
-		  New PKVector2(-0.33356320104670045, -0.229621630518563), _
-		  New PKVector2(0.9696830803996179, 0.7583650357449603), _
-		  New PKVector2(0.8824983589642288, -0.45009206792903034), _
-		  New PKVector2(-0.7422056982524465, -0.7067966847069636), _
-		  New PKVector2(-0.9535237550322211, 0.09347951439693114), _
-		  New PKVector2(0.9289737213537002, -0.7910186274980566), _
-		  New PKVector2(0.2502927269311186, -0.17840760901787656), _
-		  New PKVector2(0.552624582549865, 0.981445571429566), _
-		  New PKVector2(-0.025534305939714397, 0.49248281064466104), _
-		  New PKVector2(0.4663041403899877, 0.6345941428186488), _
-		  New PKVector2(0.6777807000940366, 0.05339886920973225), _
-		  New PKVector2(0.7986700232229871, -0.7321203188262155), _
-		  New PKVector2(-0.8338752035501702, 0.9571486802956806), _
-		  New PKVector2(0.4447142383776974, 0.4300620277009488), _
-		  New PKVector2(-0.7135592293988064, -0.07408436315515421), _
-		  New PKVector2(-0.9910287956342296, -0.8570033702402118), _
-		  New PKVector2(-0.3031595404166709, -0.3224606929284928), _
-		  New PKVector2(0.7187131027092959, 0.9430939777034255), _
-		  New PKVector2(0.7314917604280766, 0.2251622094197363), _
-		  New PKVector2(-0.6420240309423655, -0.564859175580628), _
-		  New PKVector2(0.7089743340845813, -0.9806530053980513), _
-		  New PKVector2(0.38458601390586655, 0.5426259323413591), _
-		  New PKVector2(0.4253748562913786, -0.5775292501402076), _
-		  New PKVector2(0.5661849795343588, 0.8906664779192579), _
-		  New PKVector2(-0.9715272897926641, -0.2115928944453378), _
-		  New PKVector2(0.7075815506161456, 0.5720849016291052), _
-		  New PKVector2(0.986943910011628, 0.766208811962958), _
-		  New PKVector2(-0.6594169395045921, 0.9241378364150772), _
-		  New PKVector2(0.44859006715773764, 0.35470832249974893), _
-		  New PKVector2(0.6087908344492714, -0.1171464526484165), _
-		  New PKVector2(-0.07582401942801109, 0.7056549331989215), _
-		  New PKVector2(0.003669700411470078, 0.9838859608204338), _
-		  New PKVector2(0.9385398198808321, -0.2937878556417637), _
-		  New PKVector2(-0.9054682616077412, -0.8567527531643988), _
-		  New PKVector2(-0.9417849745567284, -0.0326596197897997), _
-		  New PKVector2(0.9439002419074904, 0.978234301502811), _
-		  New PKVector2(0.5348842060309797, 0.002794702024459861), _
-		  New PKVector2(-0.48894937820711304, -0.38168362550362467), _
-		  New PKVector2(0.696561000544685, -0.8958309236520334), _
-		  New PKVector2(-0.9796490909275415, -0.2922940605825761), _
-		  New PKVector2(-0.826524289668545, 0.7006230305286114), _
-		  New PKVector2(-0.9926461952885992, -0.38421366473105456), _
-		  New PKVector2(0.06321711249759532, 0.8376284036771464), _
-		  New PKVector2(-0.44557994786257726, 0.7485244205663888), _
-		  New PKVector2(0.21976302702552708, 0.8172784193934717), _
-		  New PKVector2(-0.9110187596864099, 0.2934478020777791), _
-		  New PKVector2(-0.006392472754687795, 0.01340319190570538), _
-		  New PKVector2(0.04137763978589892, -0.26727851097200794), _
-		  New PKVector2(-0.04472617648615729, 0.4079394106852692), _
-		  New PKVector2(-0.35446440351355735, -0.9766903234469044), _
-		  New PKVector2(0.4020778763648092, 0.4907057207831018), _
-		  New PKVector2(0.21457649712523552, -0.5298365482716678), _
-		  New PKVector2(-0.2219136328927429, 0.8229367236859715), _
-		  New PKVector2(-0.6652218228311861, -0.9921729387655582), _
-		  New PKVector2(-0.4702083450950567, 0.7856339143123703), _
-		  New PKVector2(-0.40486347017843705, -0.14219104134052496), _
-		  New PKVector2(0.37510327636772756, -0.18300713059794815), _
-		  New PKVector2(-0.2938950011135606, 0.34351713499907377), _
-		  New PKVector2(0.4808343603387655, 0.7888704490126863), _
-		  New PKVector2(0.1599155665373344, 0.02151095989651952), _
-		  New PKVector2(-0.37606052613241703, 0.0804588083428397), _
-		  New PKVector2(0.9462153023499189, 0.22727520505451748), _
-		  New PKVector2(-0.9456618762622269, 0.37803502908268394), _
-		  New PKVector2(0.2605785519124091, 0.6356750121701042), _
-		  New PKVector2(0.48223669286894855, 0.262860161463758), _
-		  New PKVector2(-0.3702153029820894, 0.5007032758898953), _
-		  New PKVector2(-0.6195605274827549, -0.754997344990497), _
-		  New PKVector2(0.4265779920707864, 0.8660862642130771), _
-		  New PKVector2(-0.37778244647320847, 0.059065551224976254), _
-		  New PKVector2(-0.6420441109635837, -0.7722359507246734), _
-		  New PKVector2(0.3678826629361227, -0.2414999360319654), _
-		  New PKVector2(0.18485808524851732, 0.8812185304342397))
 		End Function
 	#tag EndMethod
 
