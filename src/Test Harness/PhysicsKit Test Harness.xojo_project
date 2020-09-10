@@ -30,6 +30,7 @@ Folder=Framework;Unit Tests/Framework;&h000000003E1A9B41;&h000000002516B04D;fals
 Folder=Tests;Unit Tests/Tests;&h0000000044C729E7;&h000000002516B04D;false
 Folder=Geometry;Unit Tests/Tests/Geometry;&h00000000246387FF;&h0000000044C729E7;false
 Folder=Hull;Unit Tests/Tests/Geometry/Hull;&h0000000009E937FF;&h00000000246387FF;false
+Class=DivideAndConquerTests;Unit Tests/Tests/Geometry/Hull/DivideAndConquerTests.xojo_code;&h0000000045313FFF;&h0000000009E937FF;false
 Class=GiftWrapTests;Unit Tests/Tests/Geometry/Hull/GiftWrapTests.xojo_code;&h00000000279DEFFF;&h0000000009E937FF;false
 Class=GrahamScanTests;Unit Tests/Tests/Geometry/Hull/GrahamScanTests.xojo_code;&h00000000647FB7FF;&h0000000009E937FF;false
 Class=MonotoneChainTests;Unit Tests/Tests/Geometry/Hull/MonotoneChainTests.xojo_code;&h000000006EF557FF;&h0000000009E937FF;false
