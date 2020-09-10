@@ -862,5 +862,35 @@
   <ItemDef>The flip axis cannot be the zero vector.</ItemDef>
   <ItemFlags>1</ItemFlags>
  </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_DECOMPOSE_NIL_ARRAY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1756030975</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>Cannot decompose a null array of points.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_DECOMPOSE_INVALID_SIZE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1273362431</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The polygon must have 4 or more vertices.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_DECOMPOSE_CROSSING_EDGES</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1571684351</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A simple polygon cannot have crossing edges.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
 </block>
 </RBProject>
