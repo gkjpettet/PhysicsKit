@@ -118,7 +118,7 @@ Inherits TestGroup
 		  vertices(8) = New PKVector2(1.0, 0.3)
 		  vertices(9) = New PKVector2(0.25, -0.5)
 		  
-		  // Decompose the poly
+		  // Decompose the poly.
 		  Var result() As PKConvex = Self.Algo.Decompose(vertices)
 		  
 		  // The result should have less than or equal to n - 2 convex shapes.

@@ -114,6 +114,7 @@ Class=PKObject;../PhysicsKit/Misc/PKObject.xojo_xml_code;&h000000003579A7FF;&h00
 Interface=PKCopyable;../PhysicsKit/PKCopyable.xojo_xml_code;&h000000005D4DB7FF;&h0000000033118FFF;false
 Interface=PKDecomposer;../PhysicsKit/Geometry/Decompose/PKDecomposer.xojo_xml_code;&h000000002F7E5FFF;&h00000000535167FF;false
 Class=PKBayazit;../PhysicsKit/Geometry/Decompose/PKBayazit.xojo_xml_code;&h0000000003399FFF;&h00000000535167FF;false
+Class=AbstractDecomposeTest;Unit Tests/Tests/Geometry/Decompose/AbstractDecomposeTest.xojo_code;&h00000000297487FF;&h000000002749DFFF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
