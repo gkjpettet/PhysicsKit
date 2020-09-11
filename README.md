@@ -390,7 +390,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] WorldTest.java
 - [ ] geometry
 	- [ ] decompose
-		- [ ] AbstractDecomposeTest.java
+		- [x] AbstractDecomposeTest.java
 		- [ ] BayazitTest.java
 		- [ ] EarClippingTest.java
 		- [ ] SweepLineTest.java			

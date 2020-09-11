@@ -1,6 +1,6 @@
 #tag Class
 Protected Class BayazitTests
-Inherits TestGroup
+Inherits AbstractDecomposeTest
 	#tag Event
 		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
 		  #pragma unused err
