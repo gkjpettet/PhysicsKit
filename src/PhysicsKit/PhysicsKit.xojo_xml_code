@@ -110,6 +110,10 @@
    <SourceLine>' Mutates `array1` but does not modify `array2`.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>#Pragma BoundsChecking False</SourceLine>
+   <SourceLine>#Pragma StackOverflowChecking False</SourceLine>
+   <SourceLine>#Pragma NilObjectChecking False</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>For Each v As PKVector2 In array2</SourceLine>
    <SourceLine>array1.AddRow(v)</SourceLine>
    <SourceLine>Next v</SourceLine>
@@ -150,6 +154,10 @@
    <SourceLine>' original array, and vice-versa. This is **not** possible with Xojo.</SourceLine>
    <SourceLine>' Returns a new array and does not alter the original array.</SourceLine>
    <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma BoundsChecking False</SourceLine>
+   <SourceLine>#Pragma StackOverflowChecking False</SourceLine>
+   <SourceLine>#Pragma NilObjectChecking False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>#Pragma Warning "NOTE: Non-identical re-implementation of this Java method"</SourceLine>
    <SourceLine></SourceLine>

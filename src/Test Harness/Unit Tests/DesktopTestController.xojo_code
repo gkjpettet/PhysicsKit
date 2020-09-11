@@ -38,6 +38,13 @@ Inherits TestController
 		  group = New RotationTests(Self, "Rotation")
 		  group = New Vector2Tests(Self, "PKVector2")
 		  
+		  // We'll exclude some long running tests (they have previously passed but they 
+		  // take a long time to complete). Comment out `FilterTests` below to run them all.
+		  Var includePatterns() As String
+		  Var excludePatterns() As String = Array( _
+		  "Bayazit.SuccessNazcaHeron", _
+		  "Bayazit.SuccessNazcaMonkey")
+		  FilterTests(includePatterns, excludePatterns)
 		End Sub
 	#tag EndEvent
 
