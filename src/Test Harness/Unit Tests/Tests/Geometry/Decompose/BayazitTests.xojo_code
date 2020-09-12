@@ -40,6 +40,186 @@ Inherits AbstractDecomposeTest
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection1Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.1, -0.2), _
+		    New PKVector2(0.15, 0.0), _
+		    New PKVector2(0.2, 0.07), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection2Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection3Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.1, -0.2), _
+		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection4Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.22574647794211955, 0.3562272754868271), _
+		    New PKVector2(-0.24724056392833493, -0.06552204150010887), _
+		    New PKVector2(0.2551995234048088, -0.4678431592201415), _
+		    New PKVector2(-0.11272047497863902, -0.40936273068655504))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection5Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(0.187521000630546, -0.2171227524343904), _
+		    New PKVector2(-0.05418163781638374, -0.4552384293706746), _
+		    New PKVector2(-0.12615265827683775, 0.08842525905551823), _
+		    New PKVector2(-0.4197343412893181, -0.45293439849558936))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailSelfIntersection6Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(0.1595990921676319, 0.20158036631684495), _
+		    New PKVector2(0.3627243978540108, -0.2125801642934565), _
+		    New PKVector2(0.4972213824759445, -0.2197501458724339), _
+		    New PKVector2(-0.17530050402164232, -0.10202036313267437))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DecomposeFailureDegenerateGusAsfTest()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on degenerate data.
+		  ///
+		  
+		  Try
+		    // Degenerate polygon.
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(70.5, 360.0), _
+		    New PKVector2(70.947212,360.89444), _
+		    New PKVector2(71.394424,361.78884899999997), _
+		    New PKVector2(71.158356,361.316711), _
+		    New PKVector2(70.71114299999999,360.422302))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Decompose(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub LessThan4VerticesTest()
 		  ///
 		  ' Tests passing an array of vertices with less than 4 elements.
