@@ -25,7 +25,7 @@ Inherits TestGroup
 		  Assert.IsFalse(PKEpsilon.E = 0.0)
 		  
 		  // Ensure the compute method returns in a finite number of iterations.
-		  Call PKEpsilon.Compute
+		  'Call PKEpsilon.Compute
 		  
 		  // Ensure that the epsilon adds nothing to the number 1.
 		  Assert.AreEqual(1.0, 1.0 + PKEpsilon.E)

@@ -21,7 +21,6 @@
    <SourceLine>// slower than regular properties.</SourceLine>
    <SourceLine>PKAbstractShape.Initialise</SourceLine>
    <SourceLine>PKEllipse.Initialise</SourceLine>
-   <SourceLine>PKEpsilon.Initialise</SourceLine>
    <SourceLine>PKHalfEllipse.Initialise</SourceLine>
    <SourceLine>PKRobustGeometry.Initialise</SourceLine>
    <SourceLine>PKTransform.Initialise</SourceLine>
