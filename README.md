@@ -173,7 +173,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [ ] SweepLineState.java
 		- [ ] SweepLineVertex.java
 		- [ ] SweepLineVertexType.java
-		- [ ] Triangulator.java
+		- [x] Triangulator.java
 	- [x] hull
 		- [x] DivideAndConquer.java
 		- [x] GiftWrap.java
