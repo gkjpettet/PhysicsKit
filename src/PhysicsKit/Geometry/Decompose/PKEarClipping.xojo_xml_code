@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="604153855">
+ <ObjName>PKEarClipping</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKDecomposer, PKTriangulator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Decompose</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the decomposition on the given polygon returning a list of Convex shapes.</CodeDescription>
+  <PartID>65253375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Decompose(points() As PKVector2) As PKConvex()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKDecomposer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Triangulate.</SourceLine>
+   <SourceLine>Var dcel As PKDoubleEdgeList = Self.CreateTriangulation(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform the Hertel-Mehlhorn algorithm to reduce the number of convex pieces.</SourceLine>
+   <SourceLine>dcel.HertelMehlhorn</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the convex pieces.</SourceLine>
+   <SourceLine>Return dcel.GetConvexDecomposition</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKConvex()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Triangulate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the triangulation on the given polygon returning an array of PKTriangles.</CodeDescription>
+  <PartID>736159743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Triangulate(points() As PKVector2) As PKTriangle()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKTriangulator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Triangulate.</SourceLine>
+   <SourceLine>Var dcel As PKDoubleEdgeList = Self.CreateTriangulation(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the triangulation.</SourceLine>
+   <SourceLine>Return dcel.GetTriangulation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKTriangle()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateTriangulation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a triangulation of the given simple polygon and places it into the returned doubly-connected edge list.</CodeDescription>
+  <PartID>1911369727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateTriangulation(points() As PKVector2) As PKDoubleEdgeList</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a triangulation of the given simple polygon and places it into the returned</SourceLine>
+   <SourceLine>' doubly-connected edge list (DCEL).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points(): The sample polygon vertices.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil array.</SourceLine>
+   <SourceLine>If points Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_DECOMPOSE_NIL_ARRAY)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of points.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt; 4 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_INVALID_SIZE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the winding order.</SourceLine>
+   <SourceLine>Var winding As Double = PKGeometry.GetWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Reverse the array if the points are in clockwise order.</SourceLine>
+   <SourceLine>If winding &lt; 0.0 Then PKGeometry.ReverseWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a DCEL to store the decomposition.</SourceLine>
+   <SourceLine>Var dcel As PKDoubleEdgeList = New PKDoubleEdgeList(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a doubly link list for the vertices.</SourceLine>
+   <SourceLine>Var root As PKEarClippingVertex</SourceLine>
+   <SourceLine>Var curr As PKEarClippingVertex</SourceLine>
+   <SourceLine>Var prev As PKEarClippingVertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get the current point.</SourceLine>
+   <SourceLine>Var p As PKVector2 = points(i)</SourceLine>
+   <SourceLine>// Create the vertex.</SourceLine>
+   <SourceLine>curr = New PKEarClippingVertex(p)</SourceLine>
+   <SourceLine>// Get the vertices around the current point.</SourceLine>
+   <SourceLine>Var p0 As PKVector2 = points(If(i = 0, size - 1, i - 1))</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = points(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine>// Create the vectors representing the V.</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = p.Towards(p0)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = p.Towards(p1)</SourceLine>
+   <SourceLine>// Check for coincident vertices.</SourceLine>
+   <SourceLine>If v2.IsZero Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_COINCIDENT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Check the angle between the two vectors.</SourceLine>
+   <SourceLine>If v1.Cross(v2) &gt;= 0.0 Then</SourceLine>
+   <SourceLine>// This means this vertex is a reflex vertex.</SourceLine>
+   <SourceLine>curr.Reflex = True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise its a convex vertex.</SourceLine>
+   <SourceLine>curr.Reflex = False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Set the previous.</SourceLine>
+   <SourceLine>curr.PreviousVertex = prev</SourceLine>
+   <SourceLine>// Set the previous node's next to the current node.</SourceLine>
+   <SourceLine>If prev &lt;&gt; Nil Then prev.NextVertex = curr</SourceLine>
+   <SourceLine>// Set the current point's reference vertex.</SourceLine>
+   <SourceLine>curr.Index = i</SourceLine>
+   <SourceLine>// Set the new previous to the current.</SourceLine>
+   <SourceLine>prev = curr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If root Is Nil Then root = curr</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finally wire up the first and last nodes.</SourceLine>
+   <SourceLine>root.PreviousVertex = prev</SourceLine>
+   <SourceLine>prev.NextVertex = root</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the ear flag.</SourceLine>
+   <SourceLine>Var node As PKEarClippingVertex = root</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Set the ear flag.</SourceLine>
+   <SourceLine>node.Ear = Self.IsEar(node, size)</SourceLine>
+   <SourceLine>// Go to the next vertex.</SourceLine>
+   <SourceLine>node = node.NextVertex</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decompose the linked list into the triangles.</SourceLine>
+   <SourceLine>node = root</SourceLine>
+   <SourceLine>Var n As Integer = size</SourceLine>
+   <SourceLine>// Stop when we only have 3 vertices left.</SourceLine>
+   <SourceLine>While n &gt; 3</SourceLine>
+   <SourceLine>// Is the node an ear node?</SourceLine>
+   <SourceLine>If node.Ear Then</SourceLine>
+   <SourceLine>// Create a diagonal for this ear.</SourceLine>
+   <SourceLine>dcel.AddHalfEdges(node.NextVertex.Index, node.PreviousVertex.Index)</SourceLine>
+   <SourceLine>// Get the previous and next nodes.</SourceLine>
+   <SourceLine>Var pNode As PKEarClippingVertex = node.PreviousVertex</SourceLine>
+   <SourceLine>Var nNode As PKEarClippingVertex = node.NextVertex</SourceLine>
+   <SourceLine>// Remove this node from the list.</SourceLine>
+   <SourceLine>pNode.NextVertex = node.NextVertex</SourceLine>
+   <SourceLine>nNode.PreviousVertex = node.PreviousVertex</SourceLine>
+   <SourceLine>// Re-evaluate the adjacent vertices reflexive-ness only if its reflex.</SourceLine>
+   <SourceLine>// (convex vertices will remain convex).</SourceLine>
+   <SourceLine>If pNode.Reflex Then</SourceLine>
+   <SourceLine>// Determine if it is still reflex.</SourceLine>
+   <SourceLine>pNode.Reflex = Self.IsReflex(pNode)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If nNode.Reflex Then</SourceLine>
+   <SourceLine>// Determine if it is still reflex.</SourceLine>
+   <SourceLine>nNode.Reflex = Self.IsReflex(nNode)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Re-evaluate the ear-ness of the adjacent vertices.</SourceLine>
+   <SourceLine>If Not pNode.Reflex Then</SourceLine>
+   <SourceLine>pNode.Ear = Self.IsEar(pNode, n)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Re-evaluate the ear-ness of the adjacent vertices.</SourceLine>
+   <SourceLine>If Not nNode.Reflex Then</SourceLine>
+   <SourceLine>nNode.Ear = Self.IsEar(nNode, n)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>n = n - 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>node = node.NextVertex</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return dcel</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKDoubleEdgeList</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsReflex</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vertex is a reflex vertex.</CodeDescription>
+  <PartID>212738047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsReflex(vertex As PKEarClippingVertex) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vertex is a reflex vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' A reflex vertex is a vertex who's adjacent vertices create an an angle greater </SourceLine>
+   <SourceLine>' than 180 degrees (or the cross product is positive) for CCW vertex winding.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the triangle points.</SourceLine>
+   <SourceLine>Var p As PKVector2 = vertex.Point</SourceLine>
+   <SourceLine>Var p0 As PKVector2 = vertex.PreviousVertex.Point</SourceLine>
+   <SourceLine>Var p1 As PKVector2  = vertex.NextVertex.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create vectors from the current point.</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = p.Towards(p0)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = p.Towards(p1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for reflex.</SourceLine>
+   <SourceLine>If v1.Cross(v2) &lt; 0.0 Then</SourceLine>
+   <SourceLine>// It's not reflex any more.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKEarClippingVertex</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsEar</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vertex is considered an ear vertex.</CodeDescription>
+  <PartID>1797799935</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsEar(vertex As PKEarClippingVertex, n As Integer) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vertex is considered an ear vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex to test for ear-ness.</SourceLine>
+   <SourceLine>' - Parameter n: The number of vertices.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' A vertex is an ear vertex if the triangle created by the adjacent vertices</SourceLine>
+   <SourceLine>' of the given vertex does not contain any other vertices within it.</SourceLine>
+   <SourceLine>' A reflex vertex cannot be an ear.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Reflex vertices cannot be ears.</SourceLine>
+   <SourceLine>If vertex.Reflex Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var ear As Boolean = True</SourceLine>
+   <SourceLine>// Get the triangle created by this point and its adjacent vertices.</SourceLine>
+   <SourceLine>Var a As PKVector2 = vertex.Point</SourceLine>
+   <SourceLine>Var b As PKVector2 = vertex.NextVertex.Point</SourceLine>
+   <SourceLine>Var c As PKVector2 = vertex.PreviousVertex.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if any other points in the linked list are contained within this triangle.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Don't check any points on the triangle for containment.</SourceLine>
+   <SourceLine>Var tNode As PKEarClippingVertex = vertex.NextVertex.NextVertex</SourceLine>
+   <SourceLine>Var jLimit As Integer = n - 4</SourceLine>
+   <SourceLine>For j As Integer = 0 To jLimit</SourceLine>
+   <SourceLine>// We only need to test reflex nodes.</SourceLine>
+   <SourceLine>If tNode.Reflex Then</SourceLine>
+   <SourceLine>// Then check for containment.</SourceLine>
+   <SourceLine>If Self.Contains(a, b, c, tNode.Point) Then</SourceLine>
+   <SourceLine>// If there exists a vertex that is contained in the triangle</SourceLine>
+   <SourceLine>// then we can immediately exit the loop</SourceLine>
+   <SourceLine>ear = False</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Test the next vertex.</SourceLine>
+   <SourceLine>tNode = tNode.NextVertex</SourceLine>
+   <SourceLine>Next j</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return ear</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKEarClippingVertex, n As Integer</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point, p, is contained in the triangle created by a, b, and c.</CodeDescription>
+  <PartID>1727500287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(a As PKVector2, b As PKVector2, c As PKVector2, p As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point, p, is contained in the triangle created by a, b, and c.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter a: The first point of the triangle.</SourceLine>
+   <SourceLine>' - Parameter b: The second point of the triangle.</SourceLine>
+   <SourceLine>' - Parameter c: The third point of the triangle.</SourceLine>
+   <SourceLine>' - Parameter p: The point to test for containment.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a vector representing edge ab.</SourceLine>
+   <SourceLine>Var ab As PKVector2 = a.Towards(b)</SourceLine>
+   <SourceLine>// Create a vector representing edge ac.</SourceLine>
+   <SourceLine>Var ac As PKVector2 = a.Towards(c)</SourceLine>
+   <SourceLine>// Create a vector from a to the point.</SourceLine>
+   <SourceLine>Var pa As PKVector2 = a.Towards(p)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var dot00 As Double = ac.Dot(ac)</SourceLine>
+   <SourceLine>Var dot01 As Double = ac.Dot(ab)</SourceLine>
+   <SourceLine>Var dot02 As Double = ac.Dot(pa)</SourceLine>
+   <SourceLine>Var dot11 As Double = ab.Dot(ab)</SourceLine>
+   <SourceLine>Var dot12 As Double = ab.Dot(pa)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var denominator As Double = dot00 * dot11 - dot01 * dot01</SourceLine>
+   <SourceLine>Var u As Double = (dot11 * dot02 - dot01 * dot12) / denominator</SourceLine>
+   <SourceLine>Var v As Double = (dot00 * dot12 - dot01 * dot02) / denominator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return u &gt; 0 And v &gt; 0 And (u + v &lt;= 1 + CONTAINS_EPSILON)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>a As PKVector2, b As PKVector2, c As PKVector2, p As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1181661183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Implementation of the Ear Clipping convex decomposition algorithm for simple polygons.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm operates only on simple polygons.  A simple polygon is a polygon that</NoteLine>
+   <NoteLine>has vertices that are connected by edges where:</NoteLine>
+   <NoteLine> - Edges can only intersect at vertices</NoteLine>
+   <NoteLine> - Vertices have at most two edge connections</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This implementation does not handle polygons with holes, but accepts both counter-clockwise</NoteLine>
+   <NoteLine>and clockwise polygons.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The polygon to decompose must be 4 or more vertices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm creates a valid triangulation (N - 2) triangles, then employs the Hertel-Mehlhorn</NoteLine>
+   <NoteLine>algorithm to reduce the number of convex pieces.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This algorithm is O(n²).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>CONTAINS_EPSILON</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Precomputed epsilon for checking for near containment of vertices within triangles.</CodeDescription>
+  <PartID>863537151</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.00000001</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

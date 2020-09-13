@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1319456767">
+ <ObjName>PKDoubleEdgeList</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>634722303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(points() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points(): The points of the simple polygon.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Initialize(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Initialises the DCEL class given the points of the polygon.</CodeDescription>
+  <PartID>1643257855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Initialize(points() As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Initialises the DCEL class given the points of the polygon.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points(): The points of the polygon.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We will always have exactly one face at the beginning.</SourceLine>
+   <SourceLine>Var face As PKDoubleEdgeListFace = New PKDoubleEdgeListFace</SourceLine>
+   <SourceLine>Self.Faces.AddRow(face)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var prevLeftEdge As PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine>Var prevRightEdge As PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the points creating the vertices and half edges for the data structure.</SourceLine>
+   <SourceLine>For Each point As PKVector2 In points</SourceLine>
+   <SourceLine>Var vertex As PKDoubleEdgeListVertex = New PKDoubleEdgeListVertex(point)</SourceLine>
+   <SourceLine>Var left As PKDoubleEdgeListHalfEdge = New PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine>Var right As PKDoubleEdgeListHalfEdge = New PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create and populate the left and right half edges.</SourceLine>
+   <SourceLine>left.Face = face</SourceLine>
+   <SourceLine>left.NextEdge = Nil</SourceLine>
+   <SourceLine>left.Origin = vertex</SourceLine>
+   <SourceLine>left.Twin = right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>right.Face = Nil</SourceLine>
+   <SourceLine>right.NextEdge = prevRightEdge</SourceLine>
+   <SourceLine>right.Origin = Nil</SourceLine>
+   <SourceLine>right.Twin = left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the edges the edge list.</SourceLine>
+   <SourceLine>Self.Edges.AddRow(left)</SourceLine>
+   <SourceLine>Self.Edges.AddRow(right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Populate the vertex.</SourceLine>
+   <SourceLine>vertex.Leaving = left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the vertex to the vertices list.</SourceLine>
+   <SourceLine>Self.Vertices.AddRow(vertex)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous next edge to this left edge.</SourceLine>
+   <SourceLine>If prevLeftEdge &lt;&gt; Nil Then prevLeftEdge.NextEdge = left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous right edge origin to this vertex.</SourceLine>
+   <SourceLine>If prevRightEdge &lt;&gt; Nil Then prevRightEdge.Origin = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the new previous edges.</SourceLine>
+   <SourceLine>prevLeftEdge = left</SourceLine>
+   <SourceLine>prevRightEdge = right</SourceLine>
+   <SourceLine>Next point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the last left edge's next pointer to the first left edge we created.</SourceLine>
+   <SourceLine>Var firstLeftEdge As PKDoubleEdgeListHalfEdge = Self.Edges(0)</SourceLine>
+   <SourceLine>prevLeftEdge.NextEdge = firstLeftEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the first right edge's next pointer to the last right edge we created</SourceLine>
+   <SourceLine>// (note that right edges are at odd indices).</SourceLine>
+   <SourceLine>Var firstRightEdge As PKDoubleEdgeListHalfEdge = Self.Edges(1)</SourceLine>
+   <SourceLine>firstRightEdge.NextEdge = prevRightEdge</SourceLine>
+   <SourceLine>// Set the last right edge's origin to the first vertex in the list.</SourceLine>
+   <SourceLine>prevRightEdge.Origin = Self.Vertices(0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the edge of the only face to the first left edge</SourceLine>
+   <SourceLine>// (note that the interior of each face has CCW winding).</SourceLine>
+   <SourceLine>face.Edge = firstLeftEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AddHalfEdges</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds two half edges to this DCEL object given the vertices to connect.</CodeDescription>
+  <PartID>1213483007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub AddHalfEdges(i As Integer, j As Integer)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds two half edges to this DCEL object given the vertices to connect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter i: The first vertex index.</SourceLine>
+   <SourceLine>' - Parameter j: The second vertex index.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method assumes that no crossing edges will be added.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertex1 As PKDoubleEdgeListVertex = Self.Vertices(i)</SourceLine>
+   <SourceLine>Var vertex2 As PKDoubleEdgeListVertex = Self.Vertices(j)</SourceLine>
+   <SourceLine>Self.AddHalfEdges(vertex1, vertex2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>i As Integer, j As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AddHalfEdges</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds two half edges to this DCEL object given the vertices to connect.</CodeDescription>
+  <PartID>67725311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub AddHalfEdges(v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Adds two half edges to this DCEL object given the vertices to connect.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter v1: The first vertex.</SourceLine>
+   <SourceLine>' - Parameter v2: The second vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method assumes that no crossing edges will be added.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Adding an edge splits the current face into two facesso we need to create a new face.</SourceLine>
+   <SourceLine>Var face As PKDoubleEdgeListFace = New PKDoubleEdgeListFace</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the new half edges for the new edge.</SourceLine>
+   <SourceLine>Var left As PKDoubleEdgeListHalfEdge = New PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine>Var right As PKDoubleEdgeListHalfEdge = New PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the reference face for these two vertices the reference face is the face on which </SourceLine>
+   <SourceLine>// both the given vertices are on.</SourceLine>
+   <SourceLine>Var referenceDoubleEdgeListFace As PKDoubleEdgeListFace = Self.GetReferenceFace(v1, v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the previous edges for these vertices that are on the reference face.</SourceLine>
+   <SourceLine>Var prev1 As PKDoubleEdgeListHalfEdge = Self.GetPreviousEdge(v1, referenceDoubleEdgeListFace)</SourceLine>
+   <SourceLine>Var prev2 As PKDoubleEdgeListHalfEdge = Self.GetPreviousEdge(v2, referenceDoubleEdgeListFace)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for self intersection before setting up half edges.</SourceLine>
+   <SourceLine>If PKSegment.GetSegmentIntersection( _</SourceLine>
+   <SourceLine>prev1.Origin.Point, _</SourceLine>
+   <SourceLine>prev1.NextEdge.Origin.Point,  _</SourceLine>
+   <SourceLine>prev2.Origin.Point,  _</SourceLine>
+   <SourceLine>prev2.NextEdge.Origin.Point) &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException("The input must be a simple polygon. Edges " + _</SourceLine>
+   <SourceLine>prev1.Origin.Point.ToString + " -&gt; " + _</SourceLine>
+   <SourceLine>prev1.NextEdge.Origin.Point.ToString + " and " + prev2.Origin.Point.ToString + " -&gt; " + _</SourceLine>
+   <SourceLine>prev2.NextEdge.Origin.Point.ToString + " cross each other.")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>face.Edge = left</SourceLine>
+   <SourceLine>referenceDoubleEdgeListFace.Edge = right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Setup both half edges.</SourceLine>
+   <SourceLine>left.Face = face</SourceLine>
+   <SourceLine>left.NextEdge = prev2.NextEdge</SourceLine>
+   <SourceLine>left.Origin = v1</SourceLine>
+   <SourceLine>left.Twin = right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>right.Face = referenceDoubleEdgeListFace</SourceLine>
+   <SourceLine>right.NextEdge = prev1.NextEdge</SourceLine>
+   <SourceLine>right.Origin = v2</SourceLine>
+   <SourceLine>right.Twin = left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous edge's next pointers to the new half edges.</SourceLine>
+   <SourceLine>prev1.NextEdge = left</SourceLine>
+   <SourceLine>prev2.NextEdge = right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the new face for all the edges in the left list.</SourceLine>
+   <SourceLine>Var curr As PKDoubleEdgeListHalfEdge = left.NextEdge</SourceLine>
+   <SourceLine>While curr &lt;&gt; left</SourceLine>
+   <SourceLine>curr.Face = face</SourceLine>
+   <SourceLine>curr = curr.NextEdge</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the new edges to the list.</SourceLine>
+   <SourceLine>Self.Edges.AddRow(left)</SourceLine>
+   <SourceLine>Self.Edges.AddRow(right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the new face to the list.</SourceLine>
+   <SourceLine>Self.Faces.AddRow(face)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPreviousEdge</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Walks around the given face and finds the previous edge for the given vertex.</CodeDescription>
+  <PartID>1582790655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPreviousEdge(vertex As PKDoubleEdgeListVertex, face As PKDoubleEdgeListFace) As PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Walks around the given face and finds the previous edge for the given vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex to find the previous edge for.</SourceLine>
+   <SourceLine>' - Parameter face: The face the edge should lie on.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The previous edge.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method assumes that the given vertex will be on the given face.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the vertex on the given face and return the edge that points to it.</SourceLine>
+   <SourceLine>Var twin As PKDoubleEdgeListHalfEdge = vertex.Leaving.Twin</SourceLine>
+   <SourceLine>Var edge As PKDoubleEdgeListHalfEdge = vertex.Leaving.Twin.NextEdge.Twin</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Look at all the edges that have their destination as this vertex.</SourceLine>
+   <SourceLine>While edge &lt;&gt; twin</SourceLine>
+   <SourceLine>// We can't use the `GetPrevious` method on the leaving edge since this doesn't </SourceLine>
+   <SourceLine>// give us the right previous edge in all cases.  The real criteria is to find the </SourceLine>
+   <SourceLine>// edge that has this vertex as the destination and has the same face as the given face.</SourceLine>
+   <SourceLine>If edge.Face = face Then Return edge</SourceLine>
+   <SourceLine>edge = edge.NextEdge.Twin</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we get here then its the last edge.</SourceLine>
+   <SourceLine>Return edge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKDoubleEdgeListVertex, face As PKDoubleEdgeListFace</ItemParams>
+  <ItemResult>PKDoubleEdgeListHalfEdge</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetReferenceFace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Finds the face that both vertices are on. </CodeDescription>
+  <PartID>388222975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetReferenceFace(v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex) As PKDoubleEdgeListFace</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Finds the face that both vertices are on. </SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter v1: The first vertex.</SourceLine>
+   <SourceLine>' - Parameter v2: The second vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' If the given vertices are connected then the first common face is returned.</SourceLine>
+   <SourceLine>' If the given vertices do not have a common face the first vertex's leaving</SourceLine>
+   <SourceLine>' edge's face is returned.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the leaving edge faces are already the same then just return.</SourceLine>
+   <SourceLine>If v1.Leaving.Face = v2.Leaving.Face Then Return v1.Leaving.Face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over all the edges whose destination is the first vertex (constant time).</SourceLine>
+   <SourceLine>Var e1 As PKDoubleEdgeListHalfEdge = v1.Leaving.Twin.NextEdge.Twin</SourceLine>
+   <SourceLine>While e1 &lt;&gt; v1.Leaving.Twin</SourceLine>
+   <SourceLine>// Loop over all the edges whose destination is the second vertex (constant time).</SourceLine>
+   <SourceLine>Var e2 As PKDoubleEdgeListHalfEdge = v2.Leaving.Twin.NextEdge.Twin</SourceLine>
+   <SourceLine>While e2 &lt;&gt; v2.Leaving.Twin</SourceLine>
+   <SourceLine>// If we find a common face, that must be the reference face.</SourceLine>
+   <SourceLine>If e1.Face = e2.Face Then Return e1.Face</SourceLine>
+   <SourceLine>e2 = e2.NextEdge.Twin</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine>e1 = e1.NextEdge.Twin</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we don't find a common face then return v1.Leaving.Face.</SourceLine>
+   <SourceLine>Return v1.Leaving.Face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex</ItemParams>
+  <ItemResult>PKDoubleEdgeListFace</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveHalfEdges</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the half edges specified by the given interior edge index.</CodeDescription>
+  <PartID>837285887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RemoveHalfEdges(index As Integer)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the half edges specified by the given interior edge index.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter index: The index of the interior half edge to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method removes both halves of the edge.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e As PKDoubleEdgeListHalfEdge = Self.Edges(index)</SourceLine>
+   <SourceLine>Self.RemoveHalfEdges(index, e)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveHalfEdges</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the given half edge and its twin.</CodeDescription>
+  <PartID>1141616639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RemoveHalfEdges(edge As PKDoubleEdgeListHalfEdge)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the given half edge and its twin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter edge: The half edge to remove.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = Self.Edges.IndexOf(edge)</SourceLine>
+   <SourceLine>Self.RemoveHalfEdges(index, edge)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>edge As PKDoubleEdgeListHalfEdge</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveHalfEdges</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the given half edge and its twin.</CodeDescription>
+  <PartID>1970274303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RemoveHalfEdges(index As Integer, edge As PKDoubleEdgeListHalfEdge)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the given half edge and its twin.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter index: The index of the given edge.</SourceLine>
+   <SourceLine>' - Parameter edge: The half edge to remove.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Wire up the two end points to remove the edge.</SourceLine>
+   <SourceLine>Var face As PKDoubleEdgeListFace = edge.Twin.Face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We only need to re-wire the internal edges.</SourceLine>
+   <SourceLine>Var ePrev As PKDoubleEdgeListHalfEdge = edge.GetPrevious</SourceLine>
+   <SourceLine>Var tPrev As PKDoubleEdgeListHalfEdge = edge.Twin.GetPrevious</SourceLine>
+   <SourceLine>Var eNext As PKDoubleEdgeListHalfEdge = edge.NextEdge</SourceLine>
+   <SourceLine>Var tNext As PKDoubleEdgeListHalfEdge = edge.Twin.NextEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>ePrev.NextEdge = tNext</SourceLine>
+   <SourceLine>tPrev.NextEdge = eNext</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>face.Edge = eNext</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the face.</SourceLine>
+   <SourceLine>Var te As PKDoubleEdgeListHalfEdge = eNext</SourceLine>
+   <SourceLine>While te &lt;&gt; tNext</SourceLine>
+   <SourceLine>te.Face = face</SourceLine>
+   <SourceLine>te = te.NextEdge</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove the unneeded face.</SourceLine>
+   <SourceLine>Self.Faces.Remove(edge.Face)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove the edges.</SourceLine>
+   <SourceLine>Self.Edges.RemoveRowAt(index) // The edge.</SourceLine>
+   <SourceLine>Self.Edges.RemoveRowAt(index) // The edge's twin.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer, edge As PKDoubleEdgeListHalfEdge</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetConvexDecomposition</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the convex decomposition of this DCEL assuming that the remaining faces are all convex polygons.</CodeDescription>
+  <PartID>1238730751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetConvexDecomposition() As PKConvex()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the convex decomposition of this DCEL assuming that the remaining </SourceLine>
+   <SourceLine>' faces are all convex polygons.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var convexes() As PKConvex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
+   <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>
+   <SourceLine>// Get the number of Edges ( = the number of vertices) on this face.</SourceLine>
+   <SourceLine>Var size As Integer = face.GetEdgeCount</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the reference edge of the face.</SourceLine>
+   <SourceLine>Var left As PKDoubleEdgeListHalfEdge = face.Edge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(size - 1)</SourceLine>
+   <SourceLine>vertices(0) = left.Origin.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var j As Integer = 1</SourceLine>
+   <SourceLine>While left &lt;&gt; face.Edge</SourceLine>
+   <SourceLine>vertices(j) = left.Origin.Point</SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If vertices.Count &lt; 3 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_CROSSING_EDGES)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var p As PKPolygon = PKGeometry.CreatePolygon(vertices)</SourceLine>
+   <SourceLine>convexes.AddRow(p)</SourceLine>
+   <SourceLine>Next face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return convexes</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKConvex()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTriangulation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the triangulation of this DCEL assuming that the remaining faces are all triangles.</CodeDescription>
+  <PartID>971218943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTriangulation() As PKTriangle()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the triangulation of this DCEL assuming that the remaining faces are all triangles.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var triangles() As PKTriangle</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of faces.</SourceLine>
+   <SourceLine>Var fSize As Integer = Self.Faces.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
+   <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>
+   <SourceLine>// Get the number of Edges ( = the number of vertices) on this face.</SourceLine>
+   <SourceLine>Var size As Integer = face.GetEdgeCount</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the reference edge of the face.</SourceLine>
+   <SourceLine>Var left As PKDoubleEdgeListHalfEdge = face.Edge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var vertices() As PKVector2</SourceLine>
+   <SourceLine>vertices.ResizeTo(size - 1)</SourceLine>
+   <SourceLine>vertices(0) = left.Origin.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var j As Integer = 1</SourceLine>
+   <SourceLine>While left &lt;&gt; face.Edge</SourceLine>
+   <SourceLine>vertices(j) = left.Origin.Point</SourceLine>
+   <SourceLine>j = J + 1</SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The vertices should form a triangle.</SourceLine>
+   <SourceLine>If vertices.Count &lt;&gt; 3 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_CROSSING_EDGES)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the triangle.</SourceLine>
+   <SourceLine>Var t As PKTriangle = PKGeometry.CreateTriangle(vertices(0), vertices(1), vertices(2))</SourceLine>
+   <SourceLine>triangles.AddRow(t)</SourceLine>
+   <SourceLine>Next face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return triangles</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTriangle()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TriangulateYMonotonePolygons</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs a triangulation of the DCEL assuming all faces are Monotone Y polygons.</CodeDescription>
+  <PartID>2048591871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TriangulateYMonotonePolygons()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs a triangulation of the DCEL assuming all faces are Monotone Y polygons.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var monotonePolygons() As PKMonotonePolygon = Self.GetYMonotonePolygons</SourceLine>
+   <SourceLine>Var limit As Integer = monotonePolygons.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To limit</SourceLine>
+   <SourceLine>Self.TriangulateYMonotonePolygon(monotonePolygons(i))</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TriangulateYMonotonePolygon</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Triangulates the given y-monotone polygon adding the new diagonals to this DCEL.</CodeDescription>
+  <PartID>1277675519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TriangulateYMonotonePolygon(monotonePolygon As PKMonotonePolygon)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Triangulates the given y-monotone polygon adding the new diagonals to this DCEL.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter monotonePolygon: The monotone polygon (x or y) to triangulate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a stack to support triangulation.</SourceLine>
+   <SourceLine>Var stack() As PKMonotoneVertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the sorted monotone vertices.</SourceLine>
+   <SourceLine>Var vertices() As PKMonotoneVertex = monotonePolygon.Vertices</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// A monotone polygon can be triangulated in O(n) time.</SourceLine>
+   <SourceLine>// Push the first two onto the stack.</SourceLine>
+   <SourceLine>stack.AddRow(vertices(0))</SourceLine>
+   <SourceLine>stack.AddRow(vertices(1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var i As Integer = 2</SourceLine>
+   <SourceLine>While stack.Count &gt; 0</SourceLine>
+   <SourceLine>// Get the next vertex in the sorted list.</SourceLine>
+   <SourceLine>Var v As PKMonotoneVertex = vertices(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the bottom and top elements of the stack.</SourceLine>
+   <SourceLine>Var vBot As PKMonotoneVertex= stack(0)</SourceLine>
+   <SourceLine>Var vTop As PKMonotoneVertex = stack(stack.LastRowIndex)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the current vertex adjacent to the bottom element but not to the top element?</SourceLine>
+   <SourceLine>If v.IsAdjacent(vBot) And Not v.IsAdjacent(vTop) Then</SourceLine>
+   <SourceLine>// Create the triangles and pop all the points.</SourceLine>
+   <SourceLine>While stack.Count &gt; 1</SourceLine>
+   <SourceLine>// Pop.</SourceLine>
+   <SourceLine>Var vt As PKMonotoneVertex = stack.Pop</SourceLine>
+   <SourceLine>// Create diagonal.</SourceLine>
+   <SourceLine>Self.AddHalfEdges(v.Data, vt.Data)</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine>// Clear the bottom point.</SourceLine>
+   <SourceLine>stack.RemoveAllRows</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Push the remaining edge.</SourceLine>
+   <SourceLine>stack.AddRow(vTop)</SourceLine>
+   <SourceLine>stack.AddRow(v)</SourceLine>
+   <SourceLine>ElseIf v.IsAdjacent(vTop) And Not v.IsAdjacent(vBot) Then</SourceLine>
+   <SourceLine>Var cross As Double = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var sSize As Integer = stack.Count</SourceLine>
+   <SourceLine>While sSize &gt; 1</SourceLine>
+   <SourceLine>Var vt As PKMonotoneVertex = stack(sSize - 1)</SourceLine>
+   <SourceLine>Var vt1 As PKMonotoneVertex = stack(sSize - 2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var p1 As PKVector2 = v.Data.Point</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = vt.Data.Point</SourceLine>
+   <SourceLine>Var p3 As PKVector2 = vt1.Data.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// What chain is the current vertex on?</SourceLine>
+   <SourceLine>If v.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left Or _</SourceLine>
+   <SourceLine> v.ChainType = PKMonotoneVertex.MonotoneChainTypes.Bottom Then</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = p2.Towards(p3)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = p2.Towards(p1)</SourceLine>
+   <SourceLine>cross = v1.Cross(v2)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = p1.Towards(p2)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = p3.Towards(p2)</SourceLine>
+   <SourceLine>cross = v1.Cross(v2)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the angle is less than pi before we create a triangle from the points.</SourceLine>
+   <SourceLine>If cross &lt; -PKEpsilon.E Then</SourceLine>
+   <SourceLine>// Add the half edges.</SourceLine>
+   <SourceLine>Self.AddHalfEdges(v.Data, vt1.Data)</SourceLine>
+   <SourceLine>// Remove the top element.</SourceLine>
+   <SourceLine>// Pop.</SourceLine>
+   <SourceLine>Call stack.Pop</SourceLine>
+   <SourceLine>sSize = sSize - 1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Once we find an angle that is greater than pi then</SourceLine>
+   <SourceLine>// we can quit and move to the next vertex in the sorted list.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine>stack.AddRow(v)</SourceLine>
+   <SourceLine>ElseIf v.IsAdjacent(vTop) And v.isAdjacent(vBot) Then</SourceLine>
+   <SourceLine>// Create the triangles and pop all the points.</SourceLine>
+   <SourceLine>// Pop.</SourceLine>
+   <SourceLine>Call stack.Pop</SourceLine>
+   <SourceLine>While stack.Count &gt; 1</SourceLine>
+   <SourceLine>// Pop.</SourceLine>
+   <SourceLine>Var vt As PKMonotoneVertex= stack.Pop</SourceLine>
+   <SourceLine>// Create diagonal.</SourceLine>
+   <SourceLine>Self.AddHalfEdges(v.Data, vt.Data)</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine>// We are done.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>i = i + 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>monotonePolygon As PKMonotonePolygon</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetYMonotonePolygons</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a list of y-monotone polygons from the faces of this DCEL.</CodeDescription>
+  <PartID>2093860863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetYMonotonePolygons() As PKMonotonePolygon()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a list of y-monotone polygons from the faces of this DCEL.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method assumes that all faces within this DCEL are y-monotone and does not</SourceLine>
+   <SourceLine>' perform any verification of this assumption.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of faces.</SourceLine>
+   <SourceLine>Var fSize As Integer = Self.Faces.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a list to store the y-monotone polygons.</SourceLine>
+   <SourceLine>Var yMonotonePolygons() As PKMonotonePolygon</SourceLine>
+   <SourceLine>yMonotonePolygons.ResizeTo(fSize - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
+   <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>
+   <SourceLine>// Each face contains a y-monotone polygon.  We need to obtain a sorted</SourceLine>
+   <SourceLine>// doubly-linked list of the vertices to triangulate easily.  We can create</SourceLine>
+   <SourceLine>// the doubly-linked list while finding the maximum vertex in O(n) time.  </SourceLine>
+   <SourceLine>// We can sort the list in O(n) time using the doubly-linked list we just created.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of Edges ( = the number of vertices) on this face.</SourceLine>
+   <SourceLine>Var size As Integer = face.GetEdgeCount</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the reference edge of the face.</SourceLine>
+   <SourceLine>Var left As PKDoubleEdgeListHalfEdge = face.Edge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the first vertex.</SourceLine>
+   <SourceLine>Var root As PKMonotoneVertex = New PKMonotoneVertex(left.Origin)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Move to the next origin.</SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Build the doubly linked list of vertices.</SourceLine>
+   <SourceLine>Var prev As PKMonotoneVertex = root</SourceLine>
+   <SourceLine>Var curr As PKMonotoneVertex = Nil</SourceLine>
+   <SourceLine>Var max As PKMonotoneVertex = root</SourceLine>
+   <SourceLine>While left &lt;&gt; face.Edge</SourceLine>
+   <SourceLine>// Create a new vertex.</SourceLine>
+   <SourceLine>curr = New PKMonotoneVertex(left.Origin)</SourceLine>
+   <SourceLine>curr.PreviousVertex = prev</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous vertex's next pointer to the new one.</SourceLine>
+   <SourceLine>prev.NextVertex = curr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the point with maximum y.</SourceLine>
+   <SourceLine>Var p As PKVector2 = curr.Data.Point</SourceLine>
+   <SourceLine>Var q As PKVector2 = max.Data.Point</SourceLine>
+   <SourceLine>// Compare the y values.</SourceLine>
+   <SourceLine>Var diff As Double = p.Y - q.Y</SourceLine>
+   <SourceLine>If diff = 0.0 Then</SourceLine>
+   <SourceLine>// If they are near zero then compare the x values.</SourceLine>
+   <SourceLine>diff = p.X - q.X</SourceLine>
+   <SourceLine>If diff &lt; 0 Then max = curr</SourceLine>
+   <SourceLine>ElseIf diff &gt; 0.0 Then</SourceLine>
+   <SourceLine>max = curr</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Move to the next point.</SourceLine>
+   <SourceLine>left = left.NextEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous to the current.</SourceLine>
+   <SourceLine>prev = curr</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Wire up the last and first vertices.</SourceLine>
+   <SourceLine>root.PreviousVertex = curr</SourceLine>
+   <SourceLine>curr.NextVertex = root</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a sorted array of vertices.</SourceLine>
+   <SourceLine>Var sorted() As PKMonotoneVertex</SourceLine>
+   <SourceLine>sorted.ResizeTo(size - 1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The first point is the vertex with maximum y.</SourceLine>
+   <SourceLine>sorted.AddRow(max)</SourceLine>
+   <SourceLine>// Default the location to the left chain.</SourceLine>
+   <SourceLine>max.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform a O(n) sorting routine starting from the maximum y vertex.</SourceLine>
+   <SourceLine>Var currLeft As PKMonotoneVertex = max.NextVertex</SourceLine>
+   <SourceLine>Var currRight As PKMonotoneVertex= max.PreviousVertex</SourceLine>
+   <SourceLine>Var j As Integer = 1</SourceLine>
+   <SourceLine>While j &lt; size</SourceLine>
+   <SourceLine>// Get the left and right chain points.</SourceLine>
+   <SourceLine>Var l As PKVector2 = currLeft.Data.Point</SourceLine>
+   <SourceLine>Var r As PKVector2 = currRight.Data.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Which has the smaller y?</SourceLine>
+   <SourceLine>Var diff As Double = l.Y - r.Y</SourceLine>
+   <SourceLine>// If it's equal compare the x values.</SourceLine>
+   <SourceLine>If diff = 0 Then diff = r.X - l.X</SourceLine>
+   <SourceLine>If diff &gt; 0 Then</SourceLine>
+   <SourceLine>sorted.AddRow(currLeft)</SourceLine>
+   <SourceLine>currLeft.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left</SourceLine>
+   <SourceLine>currLeft = currLeft.NextVertex</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sorted.AddRow(currRight)</SourceLine>
+   <SourceLine>currRight.ChainType = PKMonotoneVertex.MonotoneChainTypes.Right</SourceLine>
+   <SourceLine>currRight = currRight.PreviousVertex</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>j = j + 1</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine>// Set the last point's chain to the right.</SourceLine>
+   <SourceLine>sorted(size - 1).ChainType = PKMonotoneVertex.MonotoneChainTypes.Right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add a new y-monotone polygon to the list.</SourceLine>
+   <SourceLine>yMonotonePolygons.AddRow(New PKMonotonePolygon(PKMonotonePolygon.MonotonePolygonTypes.Y, sorted))</SourceLine>
+   <SourceLine>Next face</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return yMonotonePolygons</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKMonotonePolygon()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HertelMehlhorn</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the Hertel-Mehlhorn algorithm on the given DCEL assuming that it is a valid triangulation.</CodeDescription>
+  <PartID>225916927</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub HertelMehlhorn()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs the Hertel-Mehlhorn algorithm on the given DCEL assuming that</SourceLine>
+   <SourceLine>' it is a valid triangulation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method will remove unnecessary diagonals and remove faces that get merged</SourceLine>
+   <SourceLine>' leaving a convex decomposition.</SourceLine>
+   <SourceLine>' This method is guaranteed to produce a convex decomposition with no more than</SourceLine>
+   <SourceLine>' 4 times the minimum number of convex pieces.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over all the edges and see which we can remove.</SourceLine>
+   <SourceLine>Var vSize As Integer = Self.Vertices.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This method will remove any unnecessary diagonals (those that do not</SourceLine>
+   <SourceLine>// form reflex vertices when removed). This method is O(n) where n is the</SourceLine>
+   <SourceLine>// number of diagonals added to the original DCEL. We can start processing</SourceLine>
+   <SourceLine>// diagonals after all the initial diagonals (the initial diagonals are the</SourceLine>
+   <SourceLine>// edges of the original polygon). We can also skip every other half edge</SourceLine>
+   <SourceLine>// since each edge is stored with its twin in the next index.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var i As Integer = vSize * 2</SourceLine>
+   <SourceLine>while i &lt; Self.Edges.Count</SourceLine>
+   <SourceLine>// See if removing this edge creates a reflex vertex at the end points.</SourceLine>
+   <SourceLine>Var e As PKDoubleEdgeListHalfEdge = Self.Edges(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test the first end point.</SourceLine>
+   <SourceLine>Var v1 As PKDoubleEdgeListVertex = e.Origin</SourceLine>
+   <SourceLine>Var v0 As PKDoubleEdgeListVertex = e.GetPrevious.Origin</SourceLine>
+   <SourceLine>Var v2 As PKDoubleEdgeListVertex = e.Twin.NextEdge.NextEdge.Origin</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if removing this half edge creates a reflex vertex at the</SourceLine>
+   <SourceLine>// origin vertex of this half edge.</SourceLine>
+   <SourceLine>If IsReflex(v0, v1, v2) Then</SourceLine>
+   <SourceLine>// if it did, then we cannot remove this edge so skip the next one and continue.</SourceLine>
+   <SourceLine>i = i + 2</SourceLine>
+   <SourceLine>Continue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test the other end point.</SourceLine>
+   <SourceLine>v1 = e.Twin.Origin</SourceLine>
+   <SourceLine>v0 = e.Twin.GetPrevious.Origin</SourceLine>
+   <SourceLine>v2 = e.NextEdge.NextEdge.Origin</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if removing this half edge creates a reflex vertex at the</SourceLine>
+   <SourceLine>// origin of this half edge's twin.</SourceLine>
+   <SourceLine>If IsReflex(v0, v1, v2) Then</SourceLine>
+   <SourceLine>// if it did, then we cannot remove this edge so skip the next one and continue.</SourceLine>
+   <SourceLine>i = i + 2</SourceLine>
+   <SourceLine>Continue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise we can remove this edge.</SourceLine>
+   <SourceLine>Self.RemoveHalfEdges(i, e)</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsReflex</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given vertices create a reflex vertex.</CodeDescription>
+  <PartID>1085353983</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsReflex(v0 As PKDoubleEdgeListVertex, v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given vertices create a reflex vertex.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter v0: The previous vertex.</SourceLine>
+   <SourceLine>' - Parameter v1: The vertex.</SourceLine>
+   <SourceLine>' - Parameter v2: The next vertex.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var p0 As PKVector2 = v0.Point</SourceLine>
+   <SourceLine>Var p1 As PKVector2 = v1.Point</SourceLine>
+   <SourceLine>Var p2 As PKVector2 = v2.Point</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var e1 As PKVector2 = p0.Towards(p1)</SourceLine>
+   <SourceLine>Var e2 As PKVector2 = p1.Towards(p2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the angle between the two edges (we assume CCW winding).</SourceLine>
+   <SourceLine>Var cross As Double = e1.Cross(e2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If cross &lt; 0 then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>v0 As PKDoubleEdgeListVertex, v1 As PKDoubleEdgeListVertex, v2 As PKDoubleEdgeListVertex</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1525641215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Highly specialized Doubly Connected Edge List (DCEL) used to store vertices of a </NoteLine>
+   <NoteLine>simple polygon and then be used to create and store triangulations and convex decompositions </NoteLine>
+   <NoteLine>of that same polygon.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Upon creation and initialization, the vertices, edges, and faces lists are</NoteLine>
+   <NoteLine>populated. The vertices list will have the same indexing as the source PKVector2().</NoteLine>
+   <NoteLine>The edges list will have edges with the same indexing as the source PKVector2() with </NoteLine>
+   <NoteLine>the exception that twin vertices are stored in odd indices.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Since this implementation only handles simple polygons, only one PKDoubleEdgeListFace will </NoteLine>
+   <NoteLine>be created when the DCEL is created. As more PKDoubleEdgeListHalfEdges are added the number </NoteLine>
+   <NoteLine>of faces will increase.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>PKDoubleEdgeListHalfEdges are added to the DCEL via </NoteLine>
+   <NoteLine>the `AddHalfEdges(PKDoubleEdgeListVertex, PKDoubleEdgeListVertex)` method.</NoteLine>
+   <NoteLine>It's the responsibility of the calling class(es) to store references to the DCEL vertices. </NoteLine>
+   <NoteLine>This can be achieved since the indexing of the vertices list is the same as the </NoteLine>
+   <NoteLine>source PKVector2().</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>No check is performed to ensure that a pair of PKDoubleEdgeListHalfEdges are added that </NoteLine>
+   <NoteLine>already exist.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Vertices()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The list of nodes.</CodeDescription>
+  <PartID>350109695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Vertices() As PKDoubleEdgeListVertex</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Vertices() As PKDoubleEdgeListVertex</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Edges()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The list of half edges.</CodeDescription>
+  <PartID>1615198207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Edges() As PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Edges() As PKDoubleEdgeListHalfEdge</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Faces()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The list of faces.</CodeDescription>
+  <PartID>1306689535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Faces() As PKDoubleEdgeListFace</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Faces() As PKDoubleEdgeListFace</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

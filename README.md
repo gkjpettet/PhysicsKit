@@ -158,16 +158,16 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [x] Bayazit.java
 		- [ ] ClosestEdgeToVertexSearchCriteria.java
 		- [x] Decomposer.java
-		- [ ] DoubleEdgeList.java
-		- [ ] DoubleEdgeListFace.java
-		- [ ] DoubleEdgeListHalfEdge.java
-		- [ ] DoubleEdgeListVertex.java
-		- [ ] EarClipping.java
-		- [ ] EarClippingVertex.java
-		- [ ] MonotoneChainType.java
-		- [ ] MonotonePolygon.java
-		- [ ] MonotonePolygonType.java
-		- [ ] MonotoneVertex.java
+		- [x] DoubleEdgeList.java
+		- [x] DoubleEdgeListFace.java
+		- [x] DoubleEdgeListHalfEdge.java
+		- [x] DoubleEdgeListVertex.java
+		- [x] EarClipping.java
+		- [x] EarClippingVertex.java
+		- [x] MonotoneChainType.java
+		- [x] MonotonePolygon.java
+		- [x] MonotonePolygonType.java
+		- [x] MonotoneVertex.java
 		- [ ] SweepLine.java
 		- [ ] SweepLineEdge.java
 		- [ ] SweepLineState.java

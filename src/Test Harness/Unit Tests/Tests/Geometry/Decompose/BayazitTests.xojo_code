@@ -573,6 +573,8 @@ Inherits AbstractDecomposeTest
 		  ' Tests the ear clipping implementation against the Nazca heron data string.
 		  ///
 		  
+		  #Pragma Warning "TODO: This test passes but is **really** slow"
+		  
 		  Var vertices() As PKVector2 = Parse(NAZCA_HERON_DATA)
 		  
 		  // Decompose the poly.
@@ -589,6 +591,8 @@ Inherits AbstractDecomposeTest
 		  ///
 		  ' Tests the ear clipping implementation against the Nazca monkey data string.
 		  ///
+		  
+		  #Pragma Warning "TODO: This test passes but is **really** slow"
 		  
 		  Var vertices() As PKVector2 = Parse(NAZCA_MONKEY_DATA)
 		  

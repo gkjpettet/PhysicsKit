@@ -892,5 +892,15 @@
   <ItemDef>A simple polygon cannot have crossing edges.</ItemDef>
   <ItemFlags>1</ItemFlags>
  </Constant>
+ <Constant>
+  <ItemName>GEOMETRY_DECOMPOSE_COINCIDENT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>20246527</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>The polygon cannot have coincident vertices.</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
 </block>
 </RBProject>

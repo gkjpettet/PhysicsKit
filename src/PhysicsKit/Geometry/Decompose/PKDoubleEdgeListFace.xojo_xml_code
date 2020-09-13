@@ -1,86 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
-<block type="Module" ID="2126809087">
- <ObjName>PKEpsilon</ObjName>
- <ObjContainerID>856788991</ObjContainerID>
+<block type="Module" ID="164452351">
+ <ObjName>PKDoubleEdgeListFace</ObjName>
+ <ObjContainerID>0</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
  <Method>
-  <ItemName>Constructor</ItemName>
+  <ItemName>ToString</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <PartID>233314303</PartID>
+  <PartID>1255514111</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Constructor()</SourceLine>
-   <SourceLine>// Hidden default constructor.</SourceLine>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>Return "Face[Edge=" + Self.Edge.ToString + "]"</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>Compute</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>541437951</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function Compute() As Double</SourceLine>
-   <SourceLine>Var e As Double = 0.5</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>While (1.0 + e &gt; 1.0)</SourceLine>
-   <SourceLine>e = e * 0.5</SourceLine>
-   <SourceLine>Wend</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Return e</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
-  <ItemResult>Double</ItemResult>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetEdgeCount</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of edges on this face.</CodeDescription>
+  <PartID>550789119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetEdgeCount() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the number of edges on this face.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var edge As PKDoubleEdgeListHalfEdge = Self.Edge</SourceLine>
+   <SourceLine>Var count As Integer = 0</SourceLine>
+   <SourceLine>If edge &lt;&gt; Nil Then count = count + 1</SourceLine>
+   <SourceLine>While edge.NextEdge &lt;&gt; Self.Edge</SourceLine>
+   <SourceLine>count = count + 1</SourceLine>
+   <SourceLine>edge = edge.NextEdge</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <PartID>1538975743</PartID>
+  <PartID>236093439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>About</NoteLine>
-   <NoteLine>The original Java code computes machine epsilon upon first access of `E` using this code:</NoteLine>
-   <NoteLine></NoteLine>
-   <NoteLine>```xojo</NoteLine>
-   <NoteLine>Var e As Double = 0.5</NoteLine>
-   <NoteLine></NoteLine>
-   <NoteLine>While (1.0 + e &gt; 1.0)</NoteLine>
-   <NoteLine>  e = e * 0.5</NoteLine>
-   <NoteLine>Wend</NoteLine>
-   <NoteLine></NoteLine>
-   <NoteLine>Return e</NoteLine>
-   <NoteLine>```</NoteLine>
-   <NoteLine></NoteLine>
-   <NoteLine>This seems to return `0.0000000000000001` (or 2^-53) which I believe is the </NoteLine>
-   <NoteLine>standard epsilon for IEEE double precision numbers. Rather than compute the value</NoteLine>
-   <NoteLine>upon initialisation (and therefore force us to have to access `E` via a computed </NoteLine>
-   <NoteLine>property) I have switched to using `E` as a precomputed constants. This provides a </NoteLine>
-   <NoteLine>small perforance increase as it avoid a method call when accessing `E` (which is done</NoteLine>
-   <NoteLine>frequently in the engine).</NoteLine>
+   <NoteLine>Represents a face in the PkDoubleEdgeList.</NoteLine>
    <NoteLine></NoteLine>
    <NoteLine></NoteLine>
   </ItemSource>
   <ItemFlags>0</ItemFlags>
  </Note>
+ <Property>
+  <ItemName>Edge</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>An edge of the edge list enclosing this face.</CodeDescription>
+  <PartID>1890654207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Edge As PKDoubleEdgeListHalfEdge</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Edge As PKDoubleEdgeListHalfEdge</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Name</ObjName>
@@ -115,17 +122,11 @@
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
   </ViewProperty>
+  <ViewProperty>
+   <ObjName>Edge</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
  </ViewBehavior>
- <Constant>
-  <ItemName>E</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>An approximation of machine epsilon.</CodeDescription>
-  <PartID>292810751</PartID>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemType>2</ItemType>
-  <ItemDef>0.0000000000000001</ItemDef>
-  <ItemFlags>0</ItemFlags>
- </Constant>
 </block>
 </RBProject>
