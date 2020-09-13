@@ -1,6 +1,10 @@
 # PhysicsKit
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
+## Issues
+Major issue with Xojo's lack of generics with the `MonotoneVertex` and `MonotonePolygon` classes. 
+Need to unpick my use of Variant. Perhaps make `MonotoneVertex` a subclass of `DoubleEdgeListVertex`?
+
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
