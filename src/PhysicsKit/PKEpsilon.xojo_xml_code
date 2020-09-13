@@ -26,6 +26,30 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Compute</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>541437951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Compute() As Double</SourceLine>
+   <SourceLine>Var e As Double = 0.5</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While (1.0 + e &gt; 1.0)</SourceLine>
+   <SourceLine>e = e * 0.5</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return e</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -57,6 +81,51 @@
   </ItemSource>
   <ItemFlags>0</ItemFlags>
  </Note>
+ <Property>
+  <ItemName>E</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1964873727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property E As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>E As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static E_ As Double = Compute</SourceLine>
+   <SourceLine>Return E_</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>E_</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1544372223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared E_ As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>E_ As Double</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Name</ObjName>
@@ -93,7 +162,7 @@
   </ViewProperty>
  </ViewBehavior>
  <Constant>
-  <ItemName>E</ItemName>
+  <ItemName>E_PRECOMPUTED</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>292810751</PartID>

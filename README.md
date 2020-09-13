@@ -391,7 +391,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [ ] geometry
 	- [ ] decompose
 		- [x] AbstractDecomposeTest.java
-		- [ ] BayazitTest.java
+		- [x] BayazitTest.java
 		- [ ] EarClippingTest.java
 		- [ ] SweepLineTest.java			
 	- [x] hull
