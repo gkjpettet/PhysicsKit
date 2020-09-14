@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="64647167">
  <ObjName>PKMonotonePolygon</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -188,11 +188,11 @@
   <PartID>1213591551</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Vertices() As Variant</SourceLine>
+   <SourceLine>Vertices() As PKMonotoneVertex</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>Vertices() As Variant</ItemDeclaration>
+  <ItemDeclaration>Vertices() As PKMonotoneVertex</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
  </Property>
@@ -234,6 +234,11 @@
    <ObjName>Type</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>MonotonePolygonTypes</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Y</ItemDef>
+    <ItemDef>1 - X</ItemDef>
+   </Enumeration>
   </ViewProperty>
  </ViewBehavior>
  <Enumeration>

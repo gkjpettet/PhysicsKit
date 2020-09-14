@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1820999679">
  <ObjName>PKMonotoneVertex</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -135,11 +135,11 @@
   <PartID>1982425087</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>NextVertex As PKDoubleEdgeListVertex</SourceLine>
+   <SourceLine>NextVertex As PKMonotoneVertex</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>NextVertex As PKDoubleEdgeListVertex</ItemDeclaration>
+  <ItemDeclaration>NextVertex As PKMonotoneVertex</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
  </Property>
@@ -151,11 +151,11 @@
   <PartID>212156415</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>PreviousVertex As PKDoubleEdgeListVertex</SourceLine>
+   <SourceLine>PreviousVertex As PKMonotoneVertex</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>PreviousVertex As PKDoubleEdgeListVertex</ItemDeclaration>
+  <ItemDeclaration>PreviousVertex As PKMonotoneVertex</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
  </Property>
@@ -208,6 +208,18 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ChainType</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>MonotoneChainTypes</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Left</ItemDef>
+    <ItemDef>1 - Right</ItemDef>
+    <ItemDef>2 - Top</ItemDef>
+    <ItemDef>3 - Bottom</ItemDef>
+   </Enumeration>
   </ViewProperty>
  </ViewBehavior>
  <Enumeration>

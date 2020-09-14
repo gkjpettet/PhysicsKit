@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1319456767">
  <ObjName>PKDoubleEdgeList</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -425,7 +425,7 @@
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the unneeded face.</SourceLine>
-   <SourceLine>Self.Faces.Remove(edge.Face)</SourceLine>
+   <SourceLine>Call Self.Faces.Remove(edge.Face)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the edges.</SourceLine>
    <SourceLine>Self.Edges.RemoveRowAt(index) // The edge.</SourceLine>
@@ -510,9 +510,6 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var triangles() As PKTriangle</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// Get the number of faces.</SourceLine>
-   <SourceLine>Var fSize As Integer = Self.Faces.Count</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
    <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>

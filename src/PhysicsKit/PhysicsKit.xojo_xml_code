@@ -190,6 +190,43 @@
   <ItemParams>Extends original() As PKVector2, fromIndex As Integer, toIndex As Integer</ItemParams>
   <ItemResult>PKVector2()</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the specified face from this array of PKDoubleEdgeListFaces (if present). Returns True if successful or False if not present in the array.</CodeDescription>
+  <PartID>675332095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(Extends delf() As PKDoubleEdgeListFace, face As PKDoubleEdgeListFace) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the specified face from this array of PKDoubleEdgeListFaces (if present). Returns True if</SourceLine>
+   <SourceLine>' successful or False if not present in the array.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends delf(): The array to remove from.</SourceLine>
+   <SourceLine>' - Parameter face: The face to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if removed or False if not present.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = delf.IndexOf(face)</SourceLine>
+   <SourceLine>If index = -1 Then</SourceLine>
+   <SourceLine>// Not in the array.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>delf.RemoveRowAt(index)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends delf() As PKDoubleEdgeListFace, face As PKDoubleEdgeListFace</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
   <Compatibility></Compatibility>
