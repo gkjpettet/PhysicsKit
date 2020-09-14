@@ -1,5 +1,5 @@
 #tag Class
-Protected Class BayazitTests
+Protected Class EarClippingTests
 Inherits AbstractDecomposeTest
 	#tag Event
 		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
@@ -22,192 +22,12 @@ Inherits AbstractDecomposeTest
 		  ///
 		  
 		  Try
-		    Var vertices(4) As PKVector2
-		    vertices(0) = New PKVector2(1.0, 2.0)
-		    vertices(1) = New PKVector2(-1.0, 2.0)
-		    vertices(2) = New PKVector2(-1.0, 2.0)
-		    vertices(3) = New PKVector2(-1.0, 0.5)
-		    vertices(4) = New PKVector2(0.5, -1.0)
-		    Call Self.Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection1Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
 		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
-		    New PKVector2(0.1, -0.2), _
-		    New PKVector2(0.15, 0.0), _
-		    New PKVector2(0.2, 0.07), _
-		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
-		    New PKVector2(0.3079072605141815, -0.20863138522549773))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection2Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
-		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
-		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
-		    New PKVector2(0.3079072605141815, -0.20863138522549773))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection3Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
-		    New PKVector2(0.1, -0.2), _
-		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
-		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
-		    New PKVector2(0.3079072605141815, -0.20863138522549773))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection4Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(-0.22574647794211955, 0.3562272754868271), _
-		    New PKVector2(-0.24724056392833493, -0.06552204150010887), _
-		    New PKVector2(0.2551995234048088, -0.4678431592201415), _
-		    New PKVector2(-0.11272047497863902, -0.40936273068655504))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection5Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(0.187521000630546, -0.2171227524343904), _
-		    New PKVector2(-0.05418163781638374, -0.4552384293706746), _
-		    New PKVector2(-0.12615265827683775, 0.08842525905551823), _
-		    New PKVector2(-0.4197343412893181, -0.45293439849558936))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailSelfIntersection6Test()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
-		  ///
-		  
-		  Try
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(0.1595990921676319, 0.20158036631684495), _
-		    New PKVector2(0.3627243978540108, -0.2125801642934565), _
-		    New PKVector2(0.4972213824759445, -0.2197501458724339), _
-		    New PKVector2(-0.17530050402164232, -0.10202036313267437))
-		    
-		    // Decompose the poly.
-		    Call Algorithm.Decompose(vertices)
-		  Catch e As InvalidArgumentException
-		    Assert.Pass
-		    Return
-		  End Try
-		  
-		  Assert.Fail("Expected an InvalidArgumentException")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub DecomposeFailureDegenerateGusAsfTest()
-		  ///
-		  ' Tests the triangulation to confirm it fails properly on degenerate data.
-		  ///
-		  
-		  Try
-		    // Degenerate polygon.
-		    Var vertices() As PKVector2 = Array( _
-		    New PKVector2(70.5, 360.0), _
-		    New PKVector2(70.947212,360.89444), _
-		    New PKVector2(71.394424,361.78884899999997), _
-		    New PKVector2(71.158356,361.316711), _
-		    New PKVector2(70.71114299999999,360.422302))
-		    
-		    // Decompose the poly.
+		    New PKVector2(1.0, 2.0), _
+		    New PKVector2(-1.0, 2.0), _
+		    New PKVector2(-1.0, 2.0), _
+		    New PKVector2(-1.0, 0.5), _
+		    New PKVector2(0.5, -1.0))
 		    Call Algorithm.Decompose(vertices)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
@@ -226,8 +46,8 @@ Inherits AbstractDecomposeTest
 		  ///
 		  
 		  Try
-		    Var vertices(2) As PKVector2 = Array(New PKVector2, New PKVector2, New PKVector2)
-		    Call Self.Algorithm.Decompose(vertices)
+		    Var vertices() As PKVector2 = Array(New PKVector2, New PKVector2, New PKVector2)
+		    Call Algorithm.Decompose(vertices)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -245,7 +65,8 @@ Inherits AbstractDecomposeTest
 		  ///
 		  
 		  Try
-		    Call Self.Algorithm.Decompose(Nil)
+		    Var points() As PKVector2 = Nil
+		    Call Algorithm.Decompose(points)
 		  Catch e As NilObjectException
 		    Assert.Pass
 		    Return
@@ -263,12 +84,12 @@ Inherits AbstractDecomposeTest
 		  ///
 		  
 		  Try
-		    Var vertices(4) As PKVector2
-		    vertices(0) = New PKVector2(1.0, 2.0)
-		    vertices(1) = New PKVector2(-1.0, 2.0)
-		    vertices(2) = Nil
-		    vertices(3) = New PKVector2(-1.0, 0.5)
-		    vertices(4) = New PKVector2(0.5, -1.0)
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(1.0, 2.0), _
+		    New PKVector2(-1.0, 2.0), _
+		    Nil, _
+		    New PKVector2(-1.0, 0.5), _
+		    New PKVector2(0.5, -1.0))
 		    Call Algorithm.Decompose(vertices)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -283,12 +104,10 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub NsoftTriangulateFailureTest()
 		  ///
-		  ' Tests the bayazit algorithm with a sample provided by nsoft.
+		  ' Tests the triangulation with a sample provided by nsoft.
 		  ///
 		  
-		  #Pragma BreakOnExceptions True
-		  
-		  // Degenerate ploygon.
+		  // Degenerate polygon.
 		  Var vertices() As PKVector2 = Array( _
 		  New PKVector2(9.761856, 2.894968), _
 		  New PKVector2(9.814371999999999, 2.941328), _
@@ -447,11 +266,12 @@ Inherits AbstractDecomposeTest
 		  New PKVector2(10.185554999999999, 9.1016), _
 		  New PKVector2(10.114765, 9.105283))
 		  
-		  // Decompose the poly.
-		  Var result() As PKConvex = Algorithm.Decompose(vertices)
+		  // Decompose the poly
+		  Var result() As PKConvex = Algorithm.Triangulate(vertices)
 		  
 		  // The result should have n - 2 triangles shapes.
-		  Assert.IsTrue(result.Count <= vertices.Count - 2)
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -461,17 +281,17 @@ Inherits AbstractDecomposeTest
 		  ' Tests the implementation against a 10 vertex non-convex polygon.
 		  ///
 		  
-		  Var vertices(9) As PKVector2
-		  vertices(0) = New PKVector2(2.0, 0.5)
-		  vertices(1) = New PKVector2(1.0, 1.0)
-		  vertices(2) = New PKVector2(-0.25, 0.25)
-		  vertices(3) = New PKVector2(-0.75, 1.5)
-		  vertices(4) = New PKVector2(-1.0, 2.0)
-		  vertices(5) = New PKVector2(-1.0, 0.0)
-		  vertices(6) = New PKVector2(-0.5, -0.75)
-		  vertices(7) = New PKVector2(0.25, -0.4)
-		  vertices(8) = New PKVector2(1.0, 0.3)
-		  vertices(9) = New PKVector2(0.25, -0.5)
+		  Var vertices() AS PKVector2 = Array( _
+		  New PKVector2(2.0, 0.5), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(-0.25, 0.25), _
+		  New PKVector2(-0.75, 1.5), _
+		  New PKVector2(-1.0, 2.0), _
+		  New PKVector2(-1.0, 0.0), _
+		  New PKVector2(-0.5, -0.75), _
+		  New PKVector2(0.25, -0.4), _
+		  New PKVector2(1.0, 0.3), _
+		  New PKVector2(0.25, -0.5))
 		  
 		  // Decompose the poly.
 		  Var result() As PKConvex = Algorithm.Decompose(vertices)
@@ -553,7 +373,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessBirdTest()
 		  ///
-		  ' Tests the ear clipping implementation against the bird data string.
+		  ' Tests the implementation against the bird data string.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.BIRD_DATA)
@@ -570,10 +390,8 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessNazcaHeronTest()
 		  ///
-		  ' Tests the ear clipping implementation against the Nazca heron data string.
+		  ' Tests the implementation against the Nazca heron data string.
 		  ///
-		  
-		  #Pragma Warning "TODO: This test passes but is **really** slow"
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.NAZCA_HERON_DATA)
 		  
@@ -589,10 +407,8 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessNazcaMonkeyTest()
 		  ///
-		  ' Tests the ear clipping implementation against the Nazca monkey data string.
+		  ' Tests the implementation against the Nazca monkey data string.
 		  ///
-		  
-		  #Pragma Warning "TODO: This test passes but is **really** slow"
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.NAZCA_MONKEY_DATA)
 		  
@@ -608,7 +424,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessTankTest()
 		  ///
-		  ' Tests the ear clipping implementation against the tank data string.
+		  ' Tests the implementation against the tank data string.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.TANK_DATA)
@@ -625,7 +441,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessTridol1Test()
 		  ///
-		  ' Tests the implementation against the tridol1 data string
+		  ' Tests the implementation against the tridol1 data string.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL1_DATA)
@@ -633,7 +449,7 @@ Inherits AbstractDecomposeTest
 		  // Decompose the poly.
 		  Var result() As PKConvex = Algorithm.Decompose(vertices)
 		  
-		  // The result should have less than or equal to n - 2 convex shapes.
+		  // The result should have n - 2 triangles shapes.
 		  Assert.IsTrue(result.Count <= vertices.Count - 2)
 		  
 		End Sub
@@ -642,7 +458,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessTridol2Test()
 		  ///
-		  ' Tests the implementation against the tridol2 data string
+		  ' Tests the implementation against the tridol2 data string.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL2_DATA)
@@ -650,7 +466,7 @@ Inherits AbstractDecomposeTest
 		  // Decompose the poly.
 		  Var result() As PKConvex = Algorithm.Decompose(vertices)
 		  
-		  // The result should have less than or equal to n - 2 convex shapes.
+		  // The result should have n - 2 triangles shapes.
 		  Assert.IsTrue(result.Count <= vertices.Count - 2)
 		  
 		End Sub
@@ -659,7 +475,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessTridol3Test()
 		  ///
-		  ' Tests the implementation against the tridol3 data string
+		  ' Tests the implementation against the tridol3 data string.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL3_DATA)
@@ -667,7 +483,7 @@ Inherits AbstractDecomposeTest
 		  // Decompose the poly.
 		  Var result() As PKConvex = Algorithm.Decompose(vertices)
 		  
-		  // The result should have less than or equal to n - 2 convex shapes.
+		  // The result should have n - 2 triangles shapes.
 		  Assert.IsTrue(result.Count <= vertices.Count - 2)
 		  
 		End Sub
@@ -676,7 +492,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom1Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 1.
+		  ' Tests the implementation against the zoom(forum) data string 1.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM1_DATA)
@@ -693,7 +509,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom2Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 2.
+		  ' Tests the implementation against the zoom(forum) data string 2.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM2_DATA)
@@ -710,7 +526,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom3Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 3.
+		  ' Tests the implementation against the zoom(forum) data string 3.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM3_DATA)
@@ -727,7 +543,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom4Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 4.
+		  ' Tests the implementation against the zoom(forum) data string 4.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM4_DATA)
@@ -744,7 +560,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom5Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 5.
+		  ' Tests the implementation against the zoom(forum) data string 5.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM5_DATA)
@@ -761,7 +577,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom6Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 6.
+		  ' Tests the implementation against the zoom(forum) data string 6.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM6_DATA)
@@ -778,7 +594,7 @@ Inherits AbstractDecomposeTest
 	#tag Method, Flags = &h0
 		Sub SuccessZoom7Test()
 		  ///
-		  ' Tests the bayazit implementation against the zoom(forum) data string 7.
+		  ' Tests the implementation against the zoom(forum) data string 7.
 		  ///
 		  
 		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM7_DATA)
@@ -792,17 +608,529 @@ Inherits AbstractDecomposeTest
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection1Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.1, -0.2), _
+		    New PKVector2(0.15, 0.0), _
+		    New PKVector2(0.2, 0.07), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
 
-	#tag ComputedProperty, Flags = &h21, Description = 54686520626179617A697420616C676F726974686D2E
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection2Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection3Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.07792188619765694, 0.10364292899125216), _
+		    New PKVector2(0.1, -0.2), _
+		    New PKVector2(0.2412466770151972, -0.3145214553981004), _
+		    New PKVector2(0.21037640391727175, 0.06289919008100842), _
+		    New PKVector2(0.3079072605141815, -0.20863138522549773))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection4Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(-0.22574647794211955, 0.3562272754868271), _
+		    New PKVector2(-0.24724056392833493, -0.06552204150010887), _
+		    New PKVector2(0.2551995234048088, -0.4678431592201415), _
+		    New PKVector2(-0.11272047497863902, -0.40936273068655504))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection5Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(0.187521000630546, -0.2171227524343904), _
+		    New PKVector2(-0.05418163781638374, -0.4552384293706746), _
+		    New PKVector2(-0.12615265827683775, 0.08842525905551823), _
+		    New PKVector2(-0.4197343412893181, -0.45293439849558936))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateFailSelfIntersection6Test()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on self-intersecting edges.
+		  ///
+		  
+		  Try
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(0.1595990921676319, 0.20158036631684495), _
+		    New PKVector2(0.3627243978540108, -0.2125801642934565), _
+		    New PKVector2(0.4972213824759445, -0.2197501458724339), _
+		    New PKVector2(-0.17530050402164232, -0.10202036313267437))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateFailureDegenerateGusAsfTest()
+		  ///
+		  ' Tests the triangulation to confirm it fails properly on degenerate data.
+		  ///
+		  
+		  Try
+		    // Degenerate polygon.
+		    Var vertices() As PKVector2 = Array( _
+		    New PKVector2(70.5, 360.0), _
+		    New PKVector2(70.947212,360.89444), _
+		    New PKVector2(71.394424,361.78884899999997), _
+		    New PKVector2(71.158356,361.316711), _
+		    New PKVector2(70.71114299999999,360.422302))
+		    
+		    // Decompose the poly.
+		    Call Algorithm.Triangulate(vertices)
+		  Catch e As InvalidArgumentException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected an InvalidArgumentException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccess1Test()
+		  ///
+		  ' Tests the triangulation implementation against a 10 vertex non-convex polygon.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Array( _ 
+		  New PKVector2(2.0, 0.5), _
+		  New PKVector2(1.0, 1.0), _
+		  New PKVector2(-0.25, 0.25), _
+		  New PKVector2(-0.75, 1.5), _
+		  New PKVector2(-1.0, 2.0), _
+		  New PKVector2(-1.0, 0.0), _
+		  New PKVector2(-0.5, -0.75), _
+		  New PKVector2(0.25, -0.4), _
+		  New PKVector2(1.0, 0.3), _
+		  New PKVector2(0.25, -0.5))
+		  
+		  Var triangulation() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, triangulation.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccess2Test()
+		  ///
+		  ' Tests the triangulation implementation against the 1st polygon data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.POLYGON1_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccess3Test()
+		  ///
+		  ' Tests the triangulation implementation against the 2nd polygon data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.POLYGON2_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccess4Test()
+		  ///
+		  ' Tests the triangulation implementation against the 3rd polygon data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.POLYGON3_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccess5Test()
+		  ///
+		  ' Tests the triangulation implementation against the 4th polygon data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.POLYGON4_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessBirdTest()
+		  ///
+		  ' Tests the triangulation implementation against the bird data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.BIRD_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessNazcaHeronTest()
+		  ///
+		  ' Tests the triangulation implementation against the Nazca heron data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.NAZCA_HERON_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessNazcaMonkeyTest()
+		  ///
+		  ' Tests the triangulation implementation against the Nazca monkey data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.NAZCA_MONKEY_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessTankTest()
+		  ///
+		  ' Tests the triangulation implementation against the tank data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.TANK_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessTridol1Test()
+		  ///
+		  ' Tests the triangulation implementation against the tridol1 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL1_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKConvex = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessTridol2Test()
+		  ///
+		  ' Tests the triangulation implementation against the tridol2 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL2_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKConvex = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessTridol3Test()
+		  ///
+		  ' Tests the triangulation implementation against the tridol3 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.TRIDOL3_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKConvex = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom1Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom1 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM1_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom2Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom2 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM2_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom3Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom3 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM3_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom4Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom4 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM4_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom5Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom5 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM5_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom6Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom6 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM6_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TriangulateSuccessZoom7Test()
+		  ///
+		  ' Tests the triangulation implementation against the zoom7 data string.
+		  ///
+		  
+		  Var vertices() As PKVector2 = Parse(DecomposeData.ZOOM7_DATA)
+		  
+		  // Decompose the poly.
+		  Var result() As PKTriangle = Algorithm.Triangulate(vertices)
+		  
+		  // The result should have n - 2 triangles shapes.
+		  Assert.AreEqual(vertices.Count - 2, result.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h21, Description = 5468652065617220636C697070696E6720616C676F726974686D2E
 		#tag Getter
 			Get
-			  Static algo As New PKBayazit
+			  Static algo As New PKEarClipping
 			  
 			  Return algo
 			  
 			End Get
 		#tag EndGetter
-		Private Algorithm As PKBayazit
+		Private Algorithm As PKEarClipping
 	#tag EndComputedProperty
 
 

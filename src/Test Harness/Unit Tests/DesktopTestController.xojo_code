@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New EarClippingTests(Self, "EarClipping")
 		  group = New BayazitTests(Self, "Bayazit")
 		  group = New DivideAndConquerTests(Self, "DivideAndConquer")
 		  group = New TriangleTests(Self, "Triangle")
@@ -42,6 +43,10 @@ Inherits TestController
 		  // take a long time to complete). Comment out `FilterTests` below to run them all.
 		  Var includePatterns() As String
 		  Var excludePatterns() As String = Array( _
+		  "EarClipping.SuccessNazcaHeron", _
+		  "EarClipping.SuccessNazcaMonkey", _
+		  "EarClipping.TriangulateSuccessNazcaHeron", _
+		  "EarClipping.TriangulateSuccessNazcaMonkey", _
 		  "Bayazit.SuccessNazcaHeron", _
 		  "Bayazit.SuccessNazcaMonkey")
 		  FilterTests(includePatterns, excludePatterns)
