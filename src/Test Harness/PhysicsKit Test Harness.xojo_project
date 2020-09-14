@@ -125,6 +125,7 @@ Class=PKEarClipping;../PhysicsKit/Geometry/Decompose/PKEarClipping.xojo_xml_code
 Class=PKEarClippingVertex;../PhysicsKit/Geometry/Decompose/PKEarClippingVertex.xojo_xml_code;&h0000000077355FFF;&h00000000535167FF;false
 Class=PKMonotonePolygon;../PhysicsKit/Geometry/Decompose/PKMonotonePolygon.xojo_xml_code;&h00000000770CA7FF;&h00000000535167FF;false
 Class=PKMonotoneVertex;../PhysicsKit/Geometry/Decompose/PKMonotoneVertex.xojo_xml_code;&h000000007CA50FFF;&h00000000535167FF;false
+Class=PKSweepLine;../PhysicsKit/Geometry/Decompose/PKSweepLine.xojo_xml_code;&h0000000044C4DFFF;&h00000000535167FF;false
 Interface=PKTriangulator;../PhysicsKit/Geometry/Decompose/PKTriangulator.xojo_xml_code;&h0000000056356FFF;&h00000000535167FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar

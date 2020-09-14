@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1484251135">
+ <ObjName>PKSweepLine</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKDecomposer, PKTriangulator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Decompose</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the decomposition on the given polygon returning a list of Convex shapes.</CodeDescription>
+  <PartID>1714341887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Decompose(points() As PKVector2) As PKConvex()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKDecomposer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Triangulate.</SourceLine>
+   <SourceLine>Var dcel As PKDoubleEdgeList = Self.CreateTriangulation(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The DCEL now contains a valid triangulation.</SourceLine>
+   <SourceLine>// Next we perform the Hertel-Mehlhorn algorithm to remove unnecessary edges.</SourceLine>
+   <SourceLine>dcel.HertelMehlhorn</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The DCEL now contains a valid convex decompostion.</SourceLine>
+   <SourceLine>// Convert the dcel into a list of convex shapes.</SourceLine>
+   <SourceLine>Return dcel.GetConvexDecomposition</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKConvex()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Triangulate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs the triangulation on the given polygon returning an array of PKTriangles.</CodeDescription>
+  <PartID>778717183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Triangulate(points() As PKVector2) As PKTriangle()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKTriangulator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Triangulate.</SourceLine>
+   <SourceLine>Var dcel As PKDoubleEdgeList = Self.CreateTriangulation(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the triangulation.</SourceLine>
+   <SourceLine>Return dcel.GetTriangulation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKTriangle()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateTriangulation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a triangulation of the given simple polygon and places it in the returned doubly-connected edge list.</CodeDescription>
+  <PartID>1756641279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateTriangulation(points() As PKVector2) As PKDoubleEdgeList</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a triangulation of the given simple polygon and places it in the </SourceLine>
+   <SourceLine>' returned doubly-connected edge list (DCEL).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points(): The vertices of the simple polygon to triangulate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil array.</SourceLine>
+   <SourceLine>If points Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_DECOMPOSE_NIL_ARRAY)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number of points.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the size.</SourceLine>
+   <SourceLine>If size &lt; 4 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_INVALID_SIZE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the winding order.</SourceLine>
+   <SourceLine>Var winding As Double = PKGeometry.GetWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Reverse the array if the points are in clockwise order.</SourceLine>
+   <SourceLine>If winding &lt; 0.0 Then PKGeometry.ReverseWinding(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a new sweep state.</SourceLine>
+   <SourceLine>// This is the container for the algorithms acceleration structures.</SourceLine>
+   <SourceLine>Var sweepstate As PKSweepLineState = New PKSweepLineState</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the priority queue (sorted queue by largest y value) and the cyclical lists.</SourceLine>
+   <SourceLine>PriorityQueue&lt;SweepLineVertex&gt; queue = sweepstate.initialize(points);</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find all edges that need to be added to the polygon</SourceLine>
+   <SourceLine>// to create a y-monotone decomposition</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>PKDoubleEdgeList</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
