@@ -752,7 +752,7 @@
    <SourceLine>Var iterator As PKBinarySearchTreeIterator = InOrderIterator</SourceLine>
    <SourceLine>s.AddRow("BinarySearchTree[")</SourceLine>
    <SourceLine>While iterator.MoveNext</SourceLine>
-   <SourceLine>s.AddRow(iterator.Value.ToString)</SourceLine>
+   <SourceLine>s.AddRow(iterator.Value.StringValue)</SourceLine>
    <SourceLine>s.AddRow(",")</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
