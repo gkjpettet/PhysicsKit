@@ -1095,7 +1095,7 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams>tree As PKBinarySearchTree</ItemParams>
   <ItemResult>Boolean</ItemResult>

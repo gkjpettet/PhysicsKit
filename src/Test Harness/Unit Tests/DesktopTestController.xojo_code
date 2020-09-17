@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New BinarySearchTreeTests(Self, "BinarySearchTree")
 		  group = New EarClippingTests(Self, "EarClipping")
 		  group = New BayazitTests(Self, "Bayazit")
 		  group = New DivideAndConquerTests(Self, "DivideAndConquer")
