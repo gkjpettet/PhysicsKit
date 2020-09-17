@@ -4,30 +4,10 @@
  <ObjName>PKBinarySearchTree</ObjName>
  <ObjContainerID>0</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>FKComparable, Iterable</Interfaces>
+ <Interfaces> Iterable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
- <Method>
-  <ItemName>CompareTo</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>2000887807</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CompareTo(other As Variant) As Integer</SourceLine>
-   <SourceLine>// Part of the FKComparable interface.</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>other As Variant</ItemParams>
-  <ItemResult>Integer</ItemResult>
- </Method>
  <Method>
   <ItemName>Iterator</ItemName>
   <Compatibility></Compatibility>
@@ -123,7 +103,7 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Self.SelfBalancing = tree.SelfBalancing</SourceLine>
-   <SourceLine>Self.InsertSubtree(tree)</SourceLine>
+   <SourceLine>Call Self.InsertSubtree(tree)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -153,7 +133,7 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Self.SelfBalancing = selfBalancing</SourceLine>
-   <SourceLine>Self.InsertSubtree(tree)</SourceLine>
+   <SourceLine>Call Self.InsertSubtree(tree)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -254,7 +234,7 @@
    <SourceLine>If comparable Is Nil Then Return False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create a node for this object.</SourceLine>
-   <SourceLine>Var node As PKBinarySearchTreeNode = New BinarySearchTreeNode(comparable)</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(comparable)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Otherwise we need to find where to insert this node.</SourceLine>
    <SourceLine>Return Self.Insert(node)</SourceLine>
@@ -641,7 +621,7 @@
   <PartID>452282367</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function TailIterator(from As FKComparab) As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>Function TailIterator(from As FKComparable) As PKBinarySearchTreeIterator</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns the in-order (ascending) iterator starting from the given node.</SourceLine>
    <SourceLine>'</SourceLine>
@@ -656,7 +636,7 @@
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>from As FKComparab</ItemParams>
+  <ItemParams>from As FKComparable</ItemParams>
   <ItemResult>PKBinarySearchTreeIterator</ItemResult>
  </Method>
  <Method>
@@ -776,7 +756,7 @@
    <SourceLine>s.AddRow(",")</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If s(s.LastRowIndex) = "," Then s.Pop</SourceLine>
+   <SourceLine>If s(s.LastRowIndex) = "," Then Call s.Pop</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>s.AddRow("]")</SourceLine>
    <SourceLine></SourceLine>
@@ -790,6 +770,987 @@
   <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMinimum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the minimum value of the subtree of the given node. May be Nil.</CodeDescription>
+  <PartID>602595327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMinimum(node As PKBinarySearchTreeNode) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the minimum value of the subtree of the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree root node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node found or Nil. if subtree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil node.</SourceLine>
+   <SourceLine>If node Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we find the minimum.</SourceLine>
+   <SourceLine>While node.Left &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Continue to the left since the minimum value will always be the left most node.</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The minimum will be last node traversed.</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaximum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum value of the subtree of the given node. May be Nil.</CodeDescription>
+  <PartID>220491775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaximum(node As PKBinarySearchTreeNode) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum value of the subtree of the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree root node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node found or Nil if subtree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil node.</SourceLine>
+   <SourceLine>If node Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we find the maximum.</SourceLine>
+   <SourceLine>while node.Right &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Continue to the right since the maximum value will always be the right most node.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The maximum will be last node traversed.</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveMinimum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the minimum value node from the subtree of the given node. May be Nil.</CodeDescription>
+  <PartID>973055999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveMinimum(node As PKBinarySearchTreeNode) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the minimum value node from the subtree of the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree root node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node removed. May be Nil</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the minimum.</SourceLine>
+   <SourceLine>node = GetMinimum(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the given subtree root node is Nil.</SourceLine>
+   <SourceLine>If node Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the minimum the root node?</SourceLine>
+   <SourceLine>If node = Self.Root Then</SourceLine>
+   <SourceLine>// Preserve the right subtree by setting the new root of the tree to the root of the right subtree.</SourceLine>
+   <SourceLine>Self.Root = node.Right</SourceLine>
+   <SourceLine>ElseIf node.Parent.Right = node Then</SourceLine>
+   <SourceLine>// Otherwise the minimum node is the right node of its parent overwrite the right pointer of </SourceLine>
+   <SourceLine>// the parent to the minimum node's right subtree.</SourceLine>
+   <SourceLine>node.Parent.Right = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise the minimum node is the left node of its parent overwrite the left pointer of </SourceLine>
+   <SourceLine>// the parent to the minimum node's right subtree.</SourceLine>
+   <SourceLine>node.Parent.Left = node.Right</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decrement the size of the tree.</SourceLine>
+   <SourceLine>mSize = mSize - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the minimum.</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveMaximum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the maximum value node from the subtree of the given node. May be Nil.</CodeDescription>
+  <PartID>2062278655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveMaximum(node As PKBinarySearchTreeNode) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the maximum value node from the subtree of the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree root node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node removed. May be Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the maximum.</SourceLine>
+   <SourceLine>node = GetMaximum(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the given subtree root node is Nil.</SourceLine>
+   <SourceLine>If node Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the maximum the root node?</SourceLine>
+   <SourceLine>If node = Self.Root Then</SourceLine>
+   <SourceLine>// Preserve the left subtree by setting the new root of the tree to the root of the left subtree.</SourceLine>
+   <SourceLine>Self.Root = node.Left</SourceLine>
+   <SourceLine>ElseIf node.Parent.Right = node Then</SourceLine>
+   <SourceLine>// Otherwise the maximum node is the right node of its parent overwrite the right pointer of </SourceLine>
+   <SourceLine>// the parent to the maximum node's left subtree.</SourceLine>
+   <SourceLine>node.Parent.Right = node.Left</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise the maximum node is the left node of its parent overwrite the left pointer of </SourceLine>
+   <SourceLine>// the parent to the maximum node's left subtree.</SourceLine>
+   <SourceLine>node.Parent.Left = node.Left</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decrement the size of the tree.</SourceLine>
+   <SourceLine>mSize = mSize - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the maximum.</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum depth of the subtree of the given node.</CodeDescription>
+  <PartID>937000959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight(node As PKBinarySearchTreeNode) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum depth of the subtree of the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The root node of the subtree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil node.</SourceLine>
+   <SourceLine>If node Is Nil Then Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for the leaf node.</SourceLine>
+   <SourceLine>If node.Left = Nil And node.Right = Nil Then Return 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise recurse.</SourceLine>
+   <SourceLine>Return 1 + Max(GetHeight(node.Left), GetHeight(node.Right))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Size</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of elements in the subtree.</CodeDescription>
+  <PartID>110280703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Size(node As PKBinarySearchTreeNode) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the number of elements in the subtree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The root node of the subtree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil node.</SourceLine>
+   <SourceLine>If node Is Nil Then Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for the leaf node.</SourceLine>
+   <SourceLine>If node.Left = Nil And node.Right = Nil Then Return 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise recurse.</SourceLine>
+   <SourceLine>Return 1 + Size(node.Left) + Size(node.Right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Get</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the node that contains the given value or NIL if the value is not found.</CodeDescription>
+  <PartID>1694224383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Get(comparable As FKComparable) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the node that contains the given value or Nil if the value is not found.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable value.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil comparable.</SourceLine>
+   <SourceLine>If comparable Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the comparable.</SourceLine>
+   <SourceLine>Return Contains(Root, comparable)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InsertSubtree</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inserts the given subtree into this binary tree.</CodeDescription>
+  <PartID>1431230463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InsertSubtree(tree As PKBinarySearchTree) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inserts the given subtree into this binary tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter tree: The subtree</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the insertion was successful.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method copies the elements from the given tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If tree Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty source tree.</SourceLine>
+   <SourceLine>If tree.Root Is Nil Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get an iterator to go through all the nodes.</SourceLine>
+   <SourceLine>Var iterator As PKBinarySearchTreeIterator = tree.InOrderIterator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Iterate over the nodes.</SourceLine>
+   <SourceLine>While iterator.MoveNext</SourceLine>
+   <SourceLine>// Create a copy of the node.</SourceLine>
+   <SourceLine>Var newNode As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(iterator.Value)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Insert the node.</SourceLine>
+   <SourceLine>Call Insert(newNode)</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The inserts were successful.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>tree As PKBinarySearchTree</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveSubtree</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the node containing the given value and the corresponding subtree from this tree.</CodeDescription>
+  <PartID>1809051647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveSubtree(comparable As FKComparable) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the node containing the given value and the corresponding subtree from this tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable to search for.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the element was found and its subtree was removed.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil input.</SourceLine>
+   <SourceLine>If comparable Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the node.</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = Root</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Compare the data to the current node.</SourceLine>
+   <SourceLine>Var diff As Integer = comparable.CompareTo(node.Comparable)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the difference.</SourceLine>
+   <SourceLine>If diff &lt; 0 Then</SourceLine>
+   <SourceLine>// If the given comparable is less than the current node then go to the left on the tree.</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>ElseIf diff &gt; 0 Then</SourceLine>
+   <SourceLine>// If the given comparable is greater than the current node then go to the right on the tree.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// We found where the value should be, now check for equality.</SourceLine>
+   <SourceLine>If node.Comparable.Equals(comparable) Then</SourceLine>
+   <SourceLine>// We found the node, now remove it.</SourceLine>
+   <SourceLine>If node.IsLeftChild Then</SourceLine>
+   <SourceLine>node.Parent.Left = Nil</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>node.Parent.Right = Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>// Decrement the size by the size of the removed subtree.</SourceLine>
+   <SourceLine>mSize = mSize - Size(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Re-balance the tree.</SourceLine>
+   <SourceLine>If SelfBalancing Then BalanceTree(node.Parent)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return success.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Wasn't found. This is the case where equals and compareTo are not consistent.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we get here the node was not found.</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Insert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inserts the given node into the tree.</CodeDescription>
+  <PartID>255774719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Insert(item As PKBinarySearchTreeNode) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inserts the given node into the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter item: The new node to insert.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the insertion was successful.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then</SourceLine>
+   <SourceLine>// Set the root to the new item.</SourceLine>
+   <SourceLine>Root = item</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Increment the size ot the tree.</SourceLine>
+   <SourceLine>mSize = mSize + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return a success.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise use the internal insert method.</SourceLine>
+   <SourceLine>Return Insert(item, Root)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>item As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Insert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2015365119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Insert(item As PKBinarySearchTreeNode, root As PKBinarySearchTreeNode) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal insertion method.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter item: The node to insert.</SourceLine>
+   <SourceLine>' - Parameter root: The subtree root node to start the search.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the insertion was successful.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method cannot insert into the tree if the given node parameter is Nil. Use the</SourceLine>
+   <SourceLine>' `Insert(PKBinarySearchTreeNode)` method instead to ensure that the node is inserted.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = root</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we find where the node should be placed.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Compare the item to the current item.</SourceLine>
+   <SourceLine>If item.CompareTo(node) &lt; 0 Then</SourceLine>
+   <SourceLine>// If the new item is less than the current item, then check the left node of the current item.</SourceLine>
+   <SourceLine>If node.Left Is Nil Then</SourceLine>
+   <SourceLine>// If it's Nil then we can go ahead and add the item to the tree at this location.</SourceLine>
+   <SourceLine>node.Left = item</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Don't forget to set the parent node.</SourceLine>
+   <SourceLine>item.Parent = node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We're done, so break from the loop.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the left node is not Nil then we need to continue searching for a place to </SourceLine>
+   <SourceLine>// insert the new item.</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the new item is greater than (or equal) to the current item, then check the right node </SourceLine>
+   <SourceLine>// of the current item.</SourceLine>
+   <SourceLine>If node.Right Is Nil Then</SourceLine>
+   <SourceLine>// If it's Nil then we can go ahead and add the item to the tree at this location.</SourceLine>
+   <SourceLine>node.Right = item</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Don't forget to set the parent node.</SourceLine>
+   <SourceLine>item.Parent = node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We're done, so break from the loop.</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the right node is not Nil then we need to continue searching for a place to </SourceLine>
+   <SourceLine>// insert the new item.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Increment the size.</SourceLine>
+   <SourceLine>mSize = mSize + 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the tree remains balanced.</SourceLine>
+   <SourceLine>If SelfBalancing Then BalanceTree(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return success.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>item As PKBinarySearchTreeNode, root As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the node removed if the comparable is found, Nil otherwise.</CodeDescription>
+  <PartID>1305221119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(node As PKBinarySearchTreeNode, comparable As FKComparable) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the node removed if the comparable is found, Nil otherwise.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree node to start the search.</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable object to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node removed or Nil if the given comparable was not found.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform an iterative version of the `Remove` method so that</SourceLine>
+   <SourceLine>// we can return a boolean result about removal.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Check if the given comparable object is less than the current subtree root node.</SourceLine>
+   <SourceLine>Var diff As Integer = comparable.CompareTo(node.Comparable)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If diff &lt; 0 Then</SourceLine>
+   <SourceLine>// If it's less than, we need to continue to search for the item in the left subtree.</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>ElseIf diff &gt; 0 Then</SourceLine>
+   <SourceLine>// If it's greater than, we need to continue to search for the item in the right subtree.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If we got here we know that we found where the comparable would be, now check equality.</SourceLine>
+   <SourceLine>If node.Comparable.Equals(comparable) Then</SourceLine>
+   <SourceLine>RemoveNode(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the node removed.</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we get here we didn't find the node in the tree.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode, comparable As FKComparable</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveNode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal method to remove the given node from the tree retaining all the subtree nodes.</CodeDescription>
+  <PartID>934363135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RemoveNode(node As PKBinarySearchTreeNode)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal method to remove the given node from the tree retaining all the subtree nodes.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The node to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method assumes that the node is contained in this tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var isLeftChild As Boolean = node.IsLeftChild</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check how many children it has.</SourceLine>
+   <SourceLine>If node.Left &lt;&gt; Nil And node.Right &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>// Find the minimum node in the right subtree and use it as a replacement for the node we are removing.</SourceLine>
+   <SourceLine>Var min As PKBinarySearchTreeNode = GetMinimum(node.Right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove the minimum node from the tree.</SourceLine>
+   <SourceLine>If min &lt;&gt; node.Right Then</SourceLine>
+   <SourceLine>// Set the minimum node's parent's left pointer to the minimum node's right pointer </SourceLine>
+   <SourceLine>// (this removes the minimum node from the tree and preserves the elements to the right</SourceLine>
+   <SourceLine>// of the minimum node; no elements should exist to the left of the minimum node since this is </SourceLine>
+   <SourceLine>// the minimum for this subtree).</SourceLine>
+   <SourceLine>min.Parent.Left = min.Right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to change the parent of the right subtree also.</SourceLine>
+   <SourceLine>If min.Right &lt;&gt; Nil Then min.Right.Parent = min.Parent</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Preserve the subtree to the right of the node we plan to </SourceLine>
+   <SourceLine>// remove by setting the minimum node's right pointer.</SourceLine>
+   <SourceLine>min.Right = node.Right</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Change the node's right subtree's parent.</SourceLine>
+   <SourceLine>If node.Right &lt;&gt; Nil Then node.Right.Parent = min</SourceLine>
+   <SourceLine>If node.Left &lt;&gt; Nil Then node.Left.Parent = min</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the node we are removing is the root.</SourceLine>
+   <SourceLine>If node = Self.root Then</SourceLine>
+   <SourceLine>// Just set the root pointer to the replacement node.</SourceLine>
+   <SourceLine>Self.Root = min</SourceLine>
+   <SourceLine>ElseIf isLeftChild Then</SourceLine>
+   <SourceLine>// Set the parent's left pointer of the node we plan to delete</SourceLine>
+   <SourceLine>// to the replacement node (the minimum node in the right subtree).</SourceLine>
+   <SourceLine>node.Parent.Left = min</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Set the parent's right pointer of the node we plan to delete</SourceLine>
+   <SourceLine>// to the replacement node (the minimum node in the right subtree).</SourceLine>
+   <SourceLine>node.Parent.Right = min</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the left subtree of the replacement node to the left subtree of the node we are removing.</SourceLine>
+   <SourceLine>min.Left = node.Left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the parent of the replacement node to the parent of the node we are removing.</SourceLine>
+   <SourceLine>min.Parent = node.Parent</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Finally make sure the tree remains balanced.</SourceLine>
+   <SourceLine>If SelfBalancing Then BalanceTree(min.Parent)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>ElseIf node.Left &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>// Otherwise the right node of the node we want to remove is Nil.</SourceLine>
+   <SourceLine>// Check if the node we are removing is the root.</SourceLine>
+   <SourceLine>If node = Self.Root Then</SourceLine>
+   <SourceLine>// Just set the root pointer to the left subtree node.</SourceLine>
+   <SourceLine>Self.Root = node.Left</SourceLine>
+   <SourceLine>ElseIf isLeftChild Then</SourceLine>
+   <SourceLine>// If the node we are trying to remove is the left node</SourceLine>
+   <SourceLine>// of its parent, then set the left node of the parent to the left subtree of this node.</SourceLine>
+   <SourceLine>node.Parent.Left = node.Left</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the node we are trying to remove is the right node</SourceLine>
+   <SourceLine>// of its parent, then set the right node of the parent to the left subtree of this node.</SourceLine>
+   <SourceLine>node.Parent.Right = node.Left</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to change the parent of the left subtree also.</SourceLine>
+   <SourceLine>If node.Left &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>node.Left.Parent = node.Parent</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>ElseIf node.Right &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>// Otherwise the left node of the node we want to remove is Nil.</SourceLine>
+   <SourceLine>// Check if the node we are removing is the root.</SourceLine>
+   <SourceLine>If node = Self.Root Then</SourceLine>
+   <SourceLine>// Just set the root pointer to the right subtree node.</SourceLine>
+   <SourceLine>Self.Root = node.Right</SourceLine>
+   <SourceLine>ElseIf isLeftChild Then</SourceLine>
+   <SourceLine>// If the node we are trying to remove is the left node of its parent, then set the left node </SourceLine>
+   <SourceLine>// of the parent to the right subtree of this node.</SourceLine>
+   <SourceLine>node.Parent.Left = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the node we are trying to remove is the right node</SourceLine>
+   <SourceLine>// of its parent, then set the right node of the parent to the right subtree of this node.</SourceLine>
+   <SourceLine>node.Parent.Right = node.Right</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to change the parent of the right subtree also.</SourceLine>
+   <SourceLine>If node.Right &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>node.Right.Parent = node.Parent</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If both are null then we can just remove the node check if this node is the root node.</SourceLine>
+   <SourceLine>If node = Self.Root Then</SourceLine>
+   <SourceLine>Self.Root = Nil</SourceLine>
+   <SourceLine>ElseIf isLeftChild Then</SourceLine>
+   <SourceLine>node.Parent.Left = Nil</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>node.Parent.Right = Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Decrement the size.</SourceLine>
+   <SourceLine>mSize = mSize - 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Internal iterative method to find an item in the tree.</CodeDescription>
+  <PartID>322281471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(node As PKBinarySearchTreeNode, comparable As FKComparable) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Internal iterative method to find an item in the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The subtree root node.</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable to find.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The node or Nil if not found.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the node is not Nil.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Compare the comparable.</SourceLine>
+   <SourceLine>Var nodeData As FKComparable = node.Comparable</SourceLine>
+   <SourceLine>Var diff As Integer = comparable.CompareTo(nodeData)</SourceLine>
+   <SourceLine>If diff = 0 Then</SourceLine>
+   <SourceLine>// We found where the item should be now we to test for equality.</SourceLine>
+   <SourceLine>If node.Comparable.Equals(comparable) Then</SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>ElseIf diff &lt; 0 Then</SourceLine>
+   <SourceLine>// The comparable must be to the left of this node since its less than this node.</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// The comparable must be to the right of this node since its greater than this node.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The node was not found.</SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode, comparable As FKComparable</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>BalanceTree</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Re-balances the entire tree.</CodeDescription>
+  <PartID>529608703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub BalanceTree()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Re-balances the entire tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Save the current tree.</SourceLine>
+   <SourceLine>Var root As PKBinarySearchTreeNode = Self.Root</SourceLine>
+   <SourceLine>Var balancing As Boolean = Self.SelfBalancing</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Empty the tree.</SourceLine>
+   <SourceLine>Self.Root = Nil</SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine>Self.SelfBalancing = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create an iterator for the old tree.</SourceLine>
+   <SourceLine>Var iterator As PKBinarySearchTreeIterator = New PKBinarySearchTreeIterator(root)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add all the elements from the old tree into the new tree.</SourceLine>
+   <SourceLine>While iterator.MoveNext</SourceLine>
+   <SourceLine>// Create a new node for each old node.</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(iterator.Value)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the new node to this tree.</SourceLine>
+   <SourceLine>Call Self.Insert(node)</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.SelfBalancing = balancing</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>BalanceTree</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Balances the tree iteratively to the root starting at the given node.</CodeDescription>
+  <PartID>1047140351</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub BalanceTree(node As PKBinarySearchTreeNode)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Balances the tree iteratively to the root starting at the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The node to begin balancing.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we reach the root node.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Balance the tree; this can return a new root node because of the rotations that happen therefore</SourceLine>
+   <SourceLine>// we need to update the current node we are on.</SourceLine>
+   <SourceLine>node = Balance(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Next balance the parent of this node.</SourceLine>
+   <SourceLine>node = node.Parent</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Balance</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Balances the given node's subtree.</CodeDescription>
+  <PartID>138113023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Balance(node As PKBinarySearchTreeNode) As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Balances the given node's subtree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The root node of the subtree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The new root.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the node is Nil.</SourceLine>
+   <SourceLine>If node Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the node has a height of 2 or more.</SourceLine>
+   <SourceLine>If Self.GetHeight(node) &lt; 2 Then Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the child nodes.</SourceLine>
+   <SourceLine>Var p As PKBinarySearchTreeNode = node.Parent</SourceLine>
+   <SourceLine>Var a As PKBinarySearchTreeNode = node.Left</SourceLine>
+   <SourceLine>Var b As PKBinarySearchTreeNode = node.Right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the heights of the children.</SourceLine>
+   <SourceLine>Var ah As Integer = Self.GetHeight(a)</SourceLine>
+   <SourceLine>Var bh As Integer = Self.GetHeight(b)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the balance.</SourceLine>
+   <SourceLine>Var balance As Integer = ah - bh</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the balance.</SourceLine>
+   <SourceLine>If balance &gt; 1 Then</SourceLine>
+   <SourceLine>//        node  or    node</SourceLine>
+   <SourceLine>//     /           /</SourceLine>
+   <SourceLine>//    a           a</SourceLine>
+   <SourceLine>//   /             \</SourceLine>
+   <SourceLine>//  c               c</SourceLine>
+   <SourceLine>Var ach As Integer = Self.GetHeight(a.Right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the subtree into left-left case.</SourceLine>
+   <SourceLine>If ach &gt; 1 Then</SourceLine>
+   <SourceLine>// The subtree of node is left-right change it to be left-left.</SourceLine>
+   <SourceLine>Var c As PKBinarySearchTreeNode = a.Right</SourceLine>
+   <SourceLine>a.Right = c.Left</SourceLine>
+   <SourceLine>If c.Left &lt;&gt; Nil Then c.Left.Parent = a</SourceLine>
+   <SourceLine>c.Left = a</SourceLine>
+   <SourceLine>a.Parent = c</SourceLine>
+   <SourceLine>node.Left = c</SourceLine>
+   <SourceLine>c.Parent = node</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//        node</SourceLine>
+   <SourceLine>//     /</SourceLine>
+   <SourceLine>//    c</SourceLine>
+   <SourceLine>//   /</SourceLine>
+   <SourceLine>//  a</SourceLine>
+   <SourceLine>Var c As PKBinarySearchTreeNode = node.Left</SourceLine>
+   <SourceLine>node.Left = c.Right</SourceLine>
+   <SourceLine>If c.Right &lt;&gt; Nil Then c.Right.Parent = node</SourceLine>
+   <SourceLine>c.Right = node</SourceLine>
+   <SourceLine>c.Parent = node.Parent</SourceLine>
+   <SourceLine>node.Parent = c</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If p &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>If p.Left = node Then</SourceLine>
+   <SourceLine>p.Left = c</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>p.Right = c</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.Root = c</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//   c</SourceLine>
+   <SourceLine>//  / \</SourceLine>
+   <SourceLine>// a   node</SourceLine>
+   <SourceLine>Return c</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If balance &lt; -1 Then</SourceLine>
+   <SourceLine>// node   or    node</SourceLine>
+   <SourceLine>//     \            \</SourceLine>
+   <SourceLine>//      b            b</SourceLine>
+   <SourceLine>//       \          /</SourceLine>
+   <SourceLine>//        d        d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Then the right subtree need to rotate.</SourceLine>
+   <SourceLine>Var bch As Integer = Self.GetHeight(b.Left)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If bch &gt; 1 Then</SourceLine>
+   <SourceLine>Var d As PKBinarySearchTreeNode = b.Left</SourceLine>
+   <SourceLine>b.Left = d.Right</SourceLine>
+   <SourceLine>If d.Right &lt;&gt; Nil Then d.Right.Parent = b</SourceLine>
+   <SourceLine>d.Right = b</SourceLine>
+   <SourceLine>b.Parent = d</SourceLine>
+   <SourceLine>node.Right = d</SourceLine>
+   <SourceLine>d.Parent = node</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// node</SourceLine>
+   <SourceLine>//     \</SourceLine>
+   <SourceLine>//      d</SourceLine>
+   <SourceLine>//       \</SourceLine>
+   <SourceLine>//        b</SourceLine>
+   <SourceLine>Var d As PKBinarySearchTreeNode = node.Right</SourceLine>
+   <SourceLine>node.Right = d.Left</SourceLine>
+   <SourceLine>If d.Left &lt;&gt; Nil Then d.Left.Parent = node</SourceLine>
+   <SourceLine>d.Left = node</SourceLine>
+   <SourceLine>d.Parent = node.Parent</SourceLine>
+   <SourceLine>node.Parent = d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If p &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>If p.Left = node Then</SourceLine>
+   <SourceLine>p.Left = d</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>p.Right = d</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.Root = d</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//      d</SourceLine>
+   <SourceLine>//     / \</SourceLine>
+   <SourceLine>// node   b</SourceLine>
+   <SourceLine>Return d</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return node</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult>PKBinarySearchTreeNode</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

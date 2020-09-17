@@ -165,7 +165,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
    <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
-   <SourceLine>sweepstate.Tree.Insert(leftEdge)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Insert(leftEdge)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Set the left edge's helper to this vertex.</SourceLine>
    <SourceLine>leftEdge.Helper = vertex</SourceLine>
@@ -209,7 +209,7 @@
    <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove v.Right from T.</SourceLine>
-   <SourceLine>sweepstate.Tree.Remove(rightEdge)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Remove(rightEdge)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -238,7 +238,8 @@
    <SourceLine></SourceLine>
    <SourceLine>// If we have a split vertex then we can find the closest edge to the left side of the vertex</SourceLine>
    <SourceLine>// and attach its helper to this vertex.</SourceLine>
-   <SourceLine>Var ej As PKSweepLineEdge = sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine>Var ej As PKSweepLineEdge = _</SourceLine>
+   <SourceLine>PKClosestEdgeToVertexSearchCriteria(sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex))).Closest</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
    <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>
@@ -253,7 +254,7 @@
    <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Insert the edge to the left of this vertex.</SourceLine>
-   <SourceLine>sweepstate.Tree.Insert(vertex.Left)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Insert(vertex.Left)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Set the left edge's helper.</SourceLine>
    <SourceLine>vertex.Left.Helper = vertex</SourceLine>
@@ -296,10 +297,11 @@
    <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the previous edge since the sweep line no longer intersects with it.</SourceLine>
-   <SourceLine>sweepstate.Tree.Remove(eiPrev)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Remove(eiPrev)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Find the edge closest to the given vertex.</SourceLine>
-   <SourceLine>Var ej As PKSweepLineEdge = sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine>Var ej As PKSweepLineEdge = _</SourceLine>
+   <SourceLine>PKClosestEdgeToVertexSearchCriteria(sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex))).Closest</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
    <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>
@@ -350,17 +352,17 @@
    <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// remove the previous edge since the sweep line no longer intersects with it.</SourceLine>
-   <SourceLine>sweepstate.Tree.Remove(vertex.Right)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Remove(vertex.Right)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the next edge.</SourceLine>
-   <SourceLine>sweepstate.Tree.Insert(vertex.Left)</SourceLine>
+   <SourceLine>Call sweepstate.Tree.Insert(vertex.Left)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Set the helper.</SourceLine>
    <SourceLine>vertex.Left.Helper = vertex</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>// Otherwise find the closest edge.</SourceLine>
    <SourceLine>Var ej As PKSweepLineEdge = _</SourceLine>
-   <SourceLine>sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine>PKClosestEdgeToVertexSearchCriteria(sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex))).Closest</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
    <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>

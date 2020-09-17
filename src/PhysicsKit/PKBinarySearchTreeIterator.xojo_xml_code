@@ -26,7 +26,7 @@
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Get an element off the stack.</SourceLine>
-   <SourceLine>Var node As PKBinarySearchTreeNode = Stack.Pop</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = PKBinarySearchTreeNode(Stack.Pop)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If InOrder Then</SourceLine>
    <SourceLine>// Add all the left most nodes of the right subtree of this element.</SourceLine>

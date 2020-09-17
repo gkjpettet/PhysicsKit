@@ -264,7 +264,7 @@ Working on the BinarySearchTree class. Upto (not including) `BinarySearchTreeNod
 	- [ ] PhysicsWorld.java
 	- [ ] World.java
 	- [ ] WorldCollisionData.java
-- [-] BinarySearchTree.java
+- [x] BinarySearchTree.java
 - [x] BinarySearchTreeIterator.java
 - [x] BinarySearchTreeNode.java
 - [x] BinarySearchTreeSearchCriteria.java
