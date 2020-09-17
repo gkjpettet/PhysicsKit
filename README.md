@@ -156,8 +156,8 @@ Porting the BinarySearchTree tests. Upto (not including) `remove()`.
 	- [ ] TimeOfImpactListener.java
 	- [ ] Torque.java
 	- [ ] World.java
-- [ ] geometry
-	- [ ] decompose
+- [x] geometry
+	- [x] decompose
 		- [x] Bayazit.java
 		- [x] ClosestEdgeToVertexSearchCriteria.java
 		- [x] Decomposer.java
