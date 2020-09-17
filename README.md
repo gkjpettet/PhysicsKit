@@ -1,6 +1,9 @@
 # PhysicsKit
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
+## Port Progress
+Working on the BinarySearchTree class. Upto (not including) `BinarySearchTreeNode<E> getMinimum(BinarySearchTreeNode<E> node).`
+
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
