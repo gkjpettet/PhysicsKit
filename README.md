@@ -261,9 +261,9 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] PhysicsWorld.java
 	- [ ] World.java
 	- [ ] WorldCollisionData.java
-- [ ] BinarySearchTree.java
-- [ ] BinarySearchTreeIterator.java
-- [ ] BinarySearchTreeNode.java
+- [-] BinarySearchTree.java
+- [x] BinarySearchTreeIterator.java
+- [x] BinarySearchTreeNode.java
 - [x] BinarySearchTreeSearchCriteria.java
 - [x] Copyable.java
 - [x] DataContainer.java

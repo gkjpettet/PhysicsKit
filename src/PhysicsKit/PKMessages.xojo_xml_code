@@ -900,7 +900,17 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemType>0</ItemType>
   <ItemDef>The polygon cannot have coincident vertices.</ItemDef>
-  <ItemFlags>0</ItemFlags>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>BINARY_SEARCH_TREE_NIL_COMPARABLE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1904637951</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A node cannot be created with a Nil comparable.</ItemDef>
+  <ItemFlags>1</ItemFlags>
  </Constant>
 </block>
 </RBProject>

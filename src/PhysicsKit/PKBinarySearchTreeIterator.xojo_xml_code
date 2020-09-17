@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="2056079359">
+ <ObjName>PKBinarySearchTreeIterator</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>Iterator</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>MoveNext</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>701011967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MoveNext() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the Iterator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Stack.IsEmpty Then</SourceLine>
+   <SourceLine>mNext = Nil</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get an element off the stack.</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = Stack.Pop</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If InOrder Then</SourceLine>
+   <SourceLine>// Add all the left most nodes of the right subtree of this element.</SourceLine>
+   <SourceLine>PushLeft(node.Right)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Add all the right most nodes of the left subtree of this element .</SourceLine>
+   <SourceLine>PushRight(node.Left)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the comparable object.</SourceLine>
+   <SourceLine>mNext = node.Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Value</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>544481279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Value() As Variant</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the Iterator interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mNext</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Variant</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1312708607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(root As PKBinarySearchTreeNode)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The default constructor using in-order traversal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter root: The root node of the subtree to traverse.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if node is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(root, Nil, Nil, True)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>root As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1547251711</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(root As PKBinarySearchTreeNode, inOrder As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter root: The root node of the subtree to traverse.</SourceLine>
+   <SourceLine>' - Parameter inOrder: True to iterate in-order, false to iterate reverse order.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(root, Nil, Nil, inOrder)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>root As PKBinarySearchTreeNode, inOrder As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1861943295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(root As PKBinarySearchTreeNode, from As FKComparable, upto As FKComparable)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter root: The root node of the subtree to traverse.</SourceLine>
+   <SourceLine>' - Parameter from: The value to start iterating from (inclusive).</SourceLine>
+   <SourceLine>' - Parameter upto: The value to stop iterating after (inclusive).</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException is node is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(root, from, upto, True)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>root As PKBinarySearchTreeNode, from As FKComparable, upto As FKComparable</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>408774655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(root As PKBinarySearchTreeNode, from As FKComparable, upto As FKComparable, inOrder As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter root: The root node of the subtree to traverse.</SourceLine>
+   <SourceLine>' - Parameter from: The value to start iterating from (inclusive).</SourceLine>
+   <SourceLine>' - Parameter upto: The value to stop iterating after (inclusive).</SourceLine>
+   <SourceLine>' - Parameter inOrder: True to iterate in-order, false to iterate reverse order.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' NOTES_TEXT</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the direction.</SourceLine>
+   <SourceLine>Self.InOrder = inOrder</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the node stack and initialise it.</SourceLine>
+   <SourceLine>Self.Stack = New FKArrayDeque</SourceLine>
+   <SourceLine>Self.Root = root</SourceLine>
+   <SourceLine>Self.From = from</SourceLine>
+   <SourceLine>Self.Upto = upto</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the direction to determine how to initialise it.</SourceLine>
+   <SourceLine>If inOrder Then</SourceLine>
+   <SourceLine>If Self.From &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>PushLeftFrom(from)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>PushLeft(root)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>PushRight(root)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>root As PKBinarySearchTreeNode, from As FKComparable, upto As FKComparable, inOrder As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>PushLeftFrom</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Pushes the required nodes onto the stack to begin iterating nodes in order starting from the given value.</CodeDescription>
+  <PartID>396621823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub PushLeftFrom(from As FKComparable)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Pushes the required nodes onto the stack to begin iterating nodes in order starting from the given value.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter from: The value to start iterating from.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = Self.Root</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>Var cmp As Integer = from.CompareTo(node.Comparable)</SourceLine>
+   <SourceLine>If cmp &lt; 0 Then</SourceLine>
+   <SourceLine>// Go left.</SourceLine>
+   <SourceLine>Self.Stack.Push(node)</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>ElseIf cmp &gt; 0 Then</SourceLine>
+   <SourceLine>// Go right.</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Self.Stack.Push(node)</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>from As FKComparable</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>PushLeft</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Pushes the left most nodes of the given subtree onto the stack.</CodeDescription>
+  <PartID>17108991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub PushLeft(node As PKBinarySearchTreeNode)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Pushes the left most nodes of the given subtree onto the stack.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The root node of the subtree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we don't have any more left nodes.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// If we have a iterate to node, then only push nodes to that are less than or equal to it.</SourceLine>
+   <SourceLine>If Self.Upto Is Nil Or Self.Upto.CompareTo(node.Comparable) &gt;= 0 Then</SourceLine>
+   <SourceLine>Self.Stack.Push(node)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>PushRight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Pushes the right most nodes of the given subtree onto the stack.</CodeDescription>
+  <PartID>217579519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub PushRight(node As PKBinarySearchTreeNode)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Pushes the right most nodes of the given subtree onto the stack.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter node: The root node of the subtree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until we don't have any more right nodes.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>Stack.Push(node)</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>542398463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>An iterator class for looping through the elements of a `PKBinarySearchTree` in order or in reverse order.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Stack</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>he node stack for iterative traversal</CodeDescription>
+  <PartID>116899839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Stack As FKArrayDeque</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Stack As FKArrayDeque</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Root</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The root of the tree.</CodeDescription>
+  <PartID>1490126847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Root As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Root As PKBinarySearchTreeNode</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>From</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The value to start iteration from. Can be Nil.</CodeDescription>
+  <PartID>1685630975</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>From As FKComparable</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>From As FKComparable</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Upto</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The value to end iteration. Can be Nil.</CodeDescription>
+  <PartID>383033343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Upto As FKComparable</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Upto As FKComparable</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>InOrder</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The traversal direction.</CodeDescription>
+  <PartID>428115967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>InOrder As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>InOrder As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mNext</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The next comparable to return with iteration. May be Nil.</CodeDescription>
+  <PartID>2112843775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mNext As FKComparable</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mNext As FKComparable</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>InOrder</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

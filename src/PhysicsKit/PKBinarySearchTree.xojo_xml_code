@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="578844671">
+ <ObjName>PKBinarySearchTree</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>FKComparable, Iterable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>CompareTo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2000887807</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CompareTo(other As Variant) As Integer</SourceLine>
+   <SourceLine>// Part of the FKComparable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Iterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the in-order (ascending) iterator.</CodeDescription>
+  <PartID>1891880959</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Iterator() As Iterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the in-order (ascending) iterator.</SourceLine>
+   <SourceLine>' - Note: Part of the Iterable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return InOrderIterator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>36542463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new binary search tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Root = Nil</SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine>SelfBalancing = False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1303597055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(selfBalancing As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Creates a new binary search tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter selfBalancing: True if the tree should automatically balance.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Root = Nil</SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine>Self.SelfBalancing = selfBalancing</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>selfBalancing As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>46528511</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(tree As PKBinarySearchTree)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter tree: The tree to copy.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This performs a deep copy of the elements in the tree. The values contained in the tree are shallow copied.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.SelfBalancing = tree.SelfBalancing</SourceLine>
+   <SourceLine>Self.InsertSubtree(tree)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>tree As PKBinarySearchTree</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1918341119</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(tree As PKBinarySearchTree, selfBalancing As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Copy constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter tree: The tree to copy.</SourceLine>
+   <SourceLine>' - Parameter selfBalancing: True if the tree should self balance.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This performs a deep copy of the elements in the tree. The values contained in the tree are shallow copied.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.SelfBalancing = selfBalancing</SourceLine>
+   <SourceLine>Self.InsertSubtree(tree)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>tree As PKBinarySearchTree, selfBalancing As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsSelfBalancing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this tree is self balancing.</CodeDescription>
+  <PartID>975003647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsSelfBalancing() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this tree is self balancing.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return SelfBalancing</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetSelfBalancing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets whether this tree should self balance.</CodeDescription>
+  <PartID>2128551935</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetSelfBalancing(flag As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets whether this tree should self balance.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter flag: True if the tree should self balance.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' When self balancing is enabled, adding and removing elements will perform a post</SourceLine>
+   <SourceLine>' step to make sure the tree stays balanced. Balancing minimizes the tree's depth, </SourceLine>
+   <SourceLine>' thereby increasing search performance.</SourceLine>
+   <SourceLine>' If enabled and the tree contains more than 2 elements, the tree will be balanced</SourceLine>
+   <SourceLine>' before this method returns.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the flag is true (indicating the tree should self balance) and</SourceLine>
+   <SourceLine>// check if the tree is not already self balancing.</SourceLine>
+   <SourceLine>If flag And Not SelfBalancing Then</SourceLine>
+   <SourceLine>// Check for elements (0, 1, or 2 element trees don't have to be re-balanced).</SourceLine>
+   <SourceLine>If mSize &gt; 2 Then</SourceLine>
+   <SourceLine>// If the tree was not already self balancing and the new flag is to have</SourceLine>
+   <SourceLine>// the tree self balance itself we need to recreate the tree</SourceLine>
+   <SourceLine>BalanceTree</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the local flag.</SourceLine>
+   <SourceLine>SelfBalancing = flag</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>flag As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Insert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Inserts the given comparable into this binary tree.</CodeDescription>
+  <PartID>691275775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Insert(comparable As FKComparable) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Inserts the given comparable into this binary tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable object to insert.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if successful or False if the given comparable is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If comparable Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a node for this object.</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = New BinarySearchTreeNode(comparable)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise we need to find where to insert this node.</SourceLine>
+   <SourceLine>Return Self.Insert(node)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the comparable object from the tree returning True if the comparable was found and removed.</CodeDescription>
+  <PartID>897767423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(comparable As FKComparable) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the comparable object from the tree returning True if the comparable was found and removed.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable object.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the object is removed or False if the comparable is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil.</SourceLine>
+   <SourceLine>If comparable Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise we need to find and remove the node retaining any children of the removed node.</SourceLine>
+   <SourceLine>Return Remove(Root, comparable) &lt;&gt; Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveMinimum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the minimum value node from this tree.</CodeDescription>
+  <PartID>1350137855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveMinimum() As FKComparable</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the minimum value node from this tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Returns Nil if the tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the minimum.</SourceLine>
+   <SourceLine>Return RemoveMinimum(Root).Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>FKComparable</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveMaximum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the maximum value node from this tree.</CodeDescription>
+  <PartID>87207935</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveMaximum() As FKComparable</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the maximum value node from this tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Returns Nil if the tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the maximum.</SourceLine>
+   <SourceLine>Return RemoveMaximum(Root).Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>FKComparable</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMinimum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the minimum value of the tree.</CodeDescription>
+  <PartID>123348991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMinimum() As FKComparable</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the minimum value of the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Nil if the tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the minimum.</SourceLine>
+   <SourceLine>Return GetMinimum(Root).Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>FKComparable</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMaximum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum value of the tree.</CodeDescription>
+  <PartID>452569087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMaximum() As FKComparable</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum value of the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: Nil if the tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the maximum.</SourceLine>
+   <SourceLine>Return GetMaximum(Root).Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>FKComparable</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Attempts to find the given comparable object within the tree.</CodeDescription>
+  <PartID>315801599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(comparable As FKComparable) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Attempts to find the given comparable object within the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter comparable: The comparable object to find.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the given comparable object was found.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for Nil comparable.</SourceLine>
+   <SourceLine>If comparable Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Attempt to find the comparable. If it's not found then Nil will be returned.</SourceLine>
+   <SourceLine>Return Contains(Root, comparable) &lt;&gt; Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Search</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Performs a binary search on this tree given the criteria.</CodeDescription>
+  <PartID>1424580607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Search(criteria As PKBinarySearchTreeSearchCriteria) As PKBinarySearchTreeSearchCriteria</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Performs a binary search on this tree given the criteria.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter criteria: The criteria.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The criteria for chaining.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for a Nil root node.</SourceLine>
+   <SourceLine>If Root Is Nil Then Return criteria</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the current node to the root.</SourceLine>
+   <SourceLine>Var node As PKBinarySearchTreeNode = Root</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop until the current node is Nil.</SourceLine>
+   <SourceLine>While node &lt;&gt; Nil</SourceLine>
+   <SourceLine>// Perform the search criteria.</SourceLine>
+   <SourceLine>Var result As Integer = criteria.Evaluate(node.Comparable)</SourceLine>
+   <SourceLine>If result &lt; 0 Then</SourceLine>
+   <SourceLine>node = node.Left</SourceLine>
+   <SourceLine>ElseIf result &gt; 0 Then</SourceLine>
+   <SourceLine>node = node.Right</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Exit</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return criteria</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>criteria As PKBinarySearchTreeSearchCriteria</ItemParams>
+  <ItemResult>PKBinarySearchTreeSearchCriteria</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRoot</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the root of the tree.</CodeDescription>
+  <PartID>1396291583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRoot() As FKComparable</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the root of the tree.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The root value or Nil if the tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for an empty tree.</SourceLine>
+   <SourceLine>If Root Is Nil Then return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Otherwise return the value.</SourceLine>
+   <SourceLine>Return Root.Comparable</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>FKComparable</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Clear</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Empties the tree.</CodeDescription>
+  <PartID>641988607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Clear()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Empties the tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Just set the root to Nil.</SourceLine>
+   <SourceLine>Root = Nil</SourceLine>
+   <SourceLine>mSize = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsEmpty</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this tree is empty.</CodeDescription>
+  <PartID>712112127</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsEmpty() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this tree is empty.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Root Is Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum depth of the tree.</CodeDescription>
+  <PartID>292378623</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the maximum depth of the tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return GetHeight(Root)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Size</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of elements in the tree.</CodeDescription>
+  <PartID>1545963519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Size() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the number of elements in the tree.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mSize</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TailIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the in-order (ascending) iterator starting from the given node.</CodeDescription>
+  <PartID>452282367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function TailIterator(from As FKComparab) As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the in-order (ascending) iterator starting from the given node.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter from: The starting value.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKBinarySearchTreeIterator(Root, from, Nil)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>from As FKComparab</ItemParams>
+  <ItemResult>PKBinarySearchTreeIterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HeadIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the in-order (ascending) iterator.</CodeDescription>
+  <PartID>308293631</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HeadIterator(upto As FKComparable) As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the in-order (ascending) iterator.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter upto: The ending value.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKBinarySearchTreeIterator(Root, Nil, upto)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>upto As FKComparable</ItemParams>
+  <ItemResult>PKBinarySearchTreeIterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SubsetIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the in-order (ascending) iterator.</CodeDescription>
+  <PartID>1857830911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SubsetIterator(from As FKComparable, upto As FKComparable) As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the in-order (ascending) iterator.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter from: The starting value.</SourceLine>
+   <SourceLine>' - Parameter upto: The ending value.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKBinarySearchTreeIterator(Root, from, upto)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>from As FKComparable, upto As FKComparable</ItemParams>
+  <ItemResult>PKBinarySearchTreeIterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>InOrderIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new iterator for traversing the tree in order.</CodeDescription>
+  <PartID>506716159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function InOrderIterator() As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new iterator for traversing the tree in order.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKBinarySearchTreeIterator(Root, True)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKBinarySearchTreeIterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ReverseOrderIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new iterator for traversing the tree in reverse order.</CodeDescription>
+  <PartID>1395458047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ReverseOrderIterator() As PKBinarySearchTreeIterator</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a new iterator for traversing the tree in reverse order.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKBinarySearchTreeIterator(Root, False)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKBinarySearchTreeIterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>950153215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>Var iterator As PKBinarySearchTreeIterator = InOrderIterator</SourceLine>
+   <SourceLine>s.AddRow("BinarySearchTree[")</SourceLine>
+   <SourceLine>While iterator.MoveNext</SourceLine>
+   <SourceLine>s.AddRow(iterator.Value.ToString)</SourceLine>
+   <SourceLine>s.AddRow(",")</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If s(s.LastRowIndex) = "," Then s.Pop</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1833742335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents an (optionally balanced) Binary Search Tree.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Nil elements are not allowed and duplicates can have unexpected behavior. Changing the value</NoteLine>
+   <NoteLine>of the elements after being inserted into the tree is undefined. It's also undefined behavior</NoteLine>
+   <NoteLine>if the elements are not consistent with equals.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Use the `IsSelfBalancing` and `SetSelfBalancing(Boolean)` methods to enable</NoteLine>
+   <NoteLine>or disable self balancing. A balanced tree minimizes the tree depth and improves search </NoteLine>
+   <NoteLine>performance. When self balancing is enabled, each insert or removal rebalances the tree</NoteLine>
+   <NoteLine>as necessary.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class can be used in conjunction with the `PKBinarySearchTreeSearchCriteria` interface </NoteLine>
+   <NoteLine>to perform arbitrary searches on the tree.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Root</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The root node of the tree. Nil when empty.</CodeDescription>
+  <PartID>1746907135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Root As PKBinarySearchTreeNode</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Root As PKBinarySearchTreeNode</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current size of the tree.</CodeDescription>
+  <PartID>405213183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mSize As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mSize As Integer</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>SelfBalancing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Whether to keep the tree balanced or not.</CodeDescription>
+  <PartID>1946959871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>SelfBalancing As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SelfBalancing As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>mSize</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>SelfBalancing</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
