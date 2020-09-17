@@ -156,7 +156,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [ ] geometry
 	- [ ] decompose
 		- [x] Bayazit.java
-		- [ ] ClosestEdgeToVertexSearchCriteria.java
+		- [x] ClosestEdgeToVertexSearchCriteria.java
 		- [x] Decomposer.java
 		- [x] DoubleEdgeList.java
 		- [x] DoubleEdgeListFace.java
@@ -168,11 +168,11 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [x] MonotonePolygon.java
 		- [x] MonotonePolygonType.java
 		- [x] MonotoneVertex.java
-		- [ ] SweepLine.java
-		- [ ] SweepLineEdge.java
-		- [ ] SweepLineState.java
-		- [ ] SweepLineVertex.java
-		- [ ] SweepLineVertexType.java
+		- [x] SweepLine.java
+		- [x] SweepLineEdge.java
+		- [x] SweepLineState.java
+		- [x] SweepLineVertex.java
+		- [x] SweepLineVertexType.java
 		- [x] Triangulator.java
 	- [x] hull
 		- [x] DivideAndConquer.java
@@ -264,13 +264,13 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [ ] BinarySearchTree.java
 - [ ] BinarySearchTreeIterator.java
 - [ ] BinarySearchTreeNode.java
-- [ ] BinarySearchTreeSearchCriteria.java
+- [x] BinarySearchTreeSearchCriteria.java
 - [x] Copyable.java
 - [x] DataContainer.java
 - [x] Epsilon.java
 - [ ] Listener.java
 - [ ] Ownable.java
-- [ ] Reference.java
+- [x] Reference.java
 - [ ] UnitConversion.java
 - [ ] Version.java
 

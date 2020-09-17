@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="2030430207">
+ <ObjName>PKBinarySearchTreeSearchCriteria</ObjName>
+ <ObjContainerID>856788991</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Evaluate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1374136319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Evaluate(comparable As FKComparable) As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>comparable As FKComparable</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1972557823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents criteria for performing a binary search on a PKBinarySearchTree.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The `PKBinarySearchTree.Search(PKBinarySearchTreeSearchCriteria)` method performs a </NoteLine>
+   <NoteLine>binary search and requires some criteria to determine whether to traverse to the left (smaller) or </NoteLine>
+   <NoteLine>right (larger) child.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The `Eevaluate(PKComparable) method is called for each node visited starting at the root of the tree.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>=====================</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Evaluate:</NoteLine>
+   <NoteLine>Evaluates the current comparable determining which child to navigateto  next.</NoteLine>
+   <NoteLine> - Return zero to stop the search.</NoteLine>
+   <NoteLine> - Return less than zero to continue searching to the left.</NoteLine>
+   <NoteLine> - Return greater than zero to continue searching to the right</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

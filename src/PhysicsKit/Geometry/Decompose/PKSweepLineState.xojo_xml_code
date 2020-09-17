@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1105459199">
+ <ObjName>PKSweepLineState</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1083181055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>ReferenceY = New PKReference(0.0)</SourceLine>
+   <SourceLine>Tree = New PKBinarySearchTree(True)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initialize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a priority queue of the points in the given array and initializes the Binary Tree and DCEL for the SweepLine algorithm.</CodeDescription>
+  <PartID>41961471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Initialize(points() As PKVector2) As FKPriorityQueue</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns a priority queue of the points in the given array and initializes </SourceLine>
+   <SourceLine>' the Binary Tree and DCEL for the SweepLine algorithm.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter points(): The array of polygon points.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Initialise the DCEL.</SourceLine>
+   <SourceLine>Dcel = New PKDoubleEdgeList(points)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the number points.</SourceLine>
+   <SourceLine>Var size As Integer = points.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create a priority queue for the vertices.</SourceLine>
+   <SourceLine>Var queue As FKPriorityQueue= New FKPriorityQueue(size)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var rootVertex As PKSweepLineVertex = Nil</SourceLine>
+   <SourceLine>Var prevVertex As PKSweepLineVertex = Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var rootEdge As PKSweepLineEdge = Nil</SourceLine>
+   <SourceLine>Var prevEdge As PKSweepLineEdge = Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Build the vertices and edges.</SourceLine>
+   <SourceLine>Var iLimit As Integer = size - 1</SourceLine>
+   <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
+   <SourceLine>// Get this vertex point.</SourceLine>
+   <SourceLine>Var point As PKVector2 = points(i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the vertex for this point.</SourceLine>
+   <SourceLine>Var vertex As PKSweepLineVertex = New PKSweepLineVertex(point, i)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Default the type to regular.</SourceLine>
+   <SourceLine>vertex.Type = PKSweepLineVertex.Types.Regular</SourceLine>
+   <SourceLine>vertex.PreviousVertex = prevVertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous vertex's next pointer.</SourceLine>
+   <SourceLine>If prevVertex &lt;&gt; Nil Then prevVertex.NextVertex = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure we save the first vertex so we can wire up the last and first to create</SourceLine>
+   <SourceLine>// a cyclic list.</SourceLine>
+   <SourceLine>If rootVertex Is Nil Then rootVertex = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the neighboring points.</SourceLine>
+   <SourceLine>Var point1 As PKVector2 = points(If(i + 1 = size, 0, i + 1))</SourceLine>
+   <SourceLine>Var point0 As PKVector2 = points(If(i = 0, size - 1, i - 1))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the vertex type.</SourceLine>
+   <SourceLine>vertex.Type = Self.GetType(point0, point, point1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous vertex to this vertex.</SourceLine>
+   <SourceLine>prevVertex = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the vertex to the priority queue.</SourceLine>
+   <SourceLine>Call queue.Offer(vertex)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the next edge.</SourceLine>
+   <SourceLine>Var e As PKSweepLineEdge = New PKSweepLineEdge(Self.ReferenceY)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The first vertex is this vertex.</SourceLine>
+   <SourceLine>e.V0 = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the slope.</SourceLine>
+   <SourceLine>Var my As Double = point.Y - point1.Y</SourceLine>
+   <SourceLine>If my = 0.0 Then</SourceLine>
+   <SourceLine>e.Slope = MathsKit.POSITIVE_INFINITY</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Var mx As Double = point.X - point1.X</SourceLine>
+   <SourceLine>e.Slope = (mx / my)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous edge's end vertex and next edge pointers.</SourceLine>
+   <SourceLine>If prevEdge &lt;&gt; Nil Then prevEdge.V1 = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure we save the first edge so we can wire up the last and first to create</SourceLine>
+   <SourceLine>// a cyclic list.</SourceLine>
+   <SourceLine>If rootEdge Is Nil Then rootEdge = e</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the vertex's left and right edges.</SourceLine>
+   <SourceLine>vertex.Left = e</SourceLine>
+   <SourceLine>vertex.Right = prevEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous edge to this edge.</SourceLine>
+   <SourceLine>prevEdge = e</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the last edge's end vertex pointer to the first edge's start vertex.</SourceLine>
+   <SourceLine>prevEdge.V1 = rootEdge.V0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous edge of the first vertex.</SourceLine>
+   <SourceLine>rootVertex.Right = prevEdge</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the previous vertex of the first vertex.</SourceLine>
+   <SourceLine>rootVertex.PreviousVertex = prevVertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the last vertex's next pointer to the first vertex.</SourceLine>
+   <SourceLine>prevVertex.NextVertex = rootVertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the priority queue.</SourceLine>
+   <SourceLine>Return queue</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>points() As PKVector2</ItemParams>
+  <ItemResult>FKPriorityQueue</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the vertex type given the previous and next points.</CodeDescription>
+  <PartID>1450444799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetType(point0 As PKVector2, point As PKVector2, point1 As PKVector2) As PKSweepLineVertex.Types</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the vertex type given the previous and next points.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter point0: The previous point.</SourceLine>
+   <SourceLine>' - Parameter point: The vertex point.</SourceLine>
+   <SourceLine>' - Parameter point1: The next point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Create the edge vectors.</SourceLine>
+   <SourceLine>Var v1 As PKVector2 = point0.Towards(point)</SourceLine>
+   <SourceLine>Var v2 As PKVector2 = point.Towards(point1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for coincident points.</SourceLine>
+   <SourceLine>If v1.IsZero Or v2.IsZero Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_COINCIDENT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the angle between the two edges (we assume CCW winding).</SourceLine>
+   <SourceLine>Var cross As Double = v1.Cross(v2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var pBelowP0 As Boolean = Self.IsBelow(point, point0)</SourceLine>
+   <SourceLine>Var pBelowP1 As Boolean = Self.IsBelow(point, point1)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Where is p relative to its neighbours?</SourceLine>
+   <SourceLine>If pBelowP0 And pBelowP1 Then</SourceLine>
+   <SourceLine>// If it's below both of them then we need to check the interior angle.</SourceLine>
+   <SourceLine>If cross &gt; 0.0 Then</SourceLine>
+   <SourceLine>// If the cross product is greater than zero this indicates that the angle is &lt; pi</SourceLine>
+   <SourceLine>// This vertex is an end vertex</SourceLine>
+   <SourceLine>Return PKSweepLineVertex.Types.Finish</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// This indicates that the angle is pi or greater.</SourceLine>
+   <SourceLine>// This vertex is a merge vertex.</SourceLine>
+   <SourceLine>Return PKSweepLineVertex.Types.Merge</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>ElseIf Not pBelowP0 And Not pBelowP1 Then</SourceLine>
+   <SourceLine>// If it's above both of them then we need to check the interior angle.</SourceLine>
+   <SourceLine>If cross &gt; 0.0 Then</SourceLine>
+   <SourceLine>// If the cross product is greater than zero this indicates that the angle is &lt; pi.</SourceLine>
+   <SourceLine>// This vertex is a start vertex.</SourceLine>
+   <SourceLine>Return PKSweepLineVertex.Types.Start</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// This indicates that the angle is pi or greater.</SourceLine>
+   <SourceLine>// This vertex is a split vertex.</SourceLine>
+   <SourceLine>Return PKSweepLineVertex.Types.Split</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKSweepLineVertex.Types.Regular</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point0 As PKVector2, point As PKVector2, point1 As PKVector2</ItemParams>
+  <ItemResult>PKSweepLineVertex.Types</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsBelow</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given point p is below the given point q.</CodeDescription>
+  <PartID>736200703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsBelow(p As PKVector2, q As PKVector2) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given point p is below the given point q.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter p: The point.</SourceLine>
+   <SourceLine>' - Parameter q: Another point.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if p is below q; False if p is above q</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' If the point p and q form a horizontal line then p is considered</SourceLine>
+   <SourceLine>' below if its x coordinate is greater than q's x coordinate.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var diff As Double = p.Y - q.Y</SourceLine>
+   <SourceLine>If diff = 0.0 Then</SourceLine>
+   <SourceLine>If p.X &gt; q.X Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If diff &lt; 0.0 Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>p As PKVector2, q As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>ReferenceY</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current sweepline y-intercept value</CodeDescription>
+  <PartID>1109342207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ReferenceY As PKReference</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ReferenceY As PKReference</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Tree</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The edge binary tree.</CodeDescription>
+  <PartID>789071871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Tree As PKBinarySearchTree</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Tree As PKBinarySearchTree</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Dcel</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The doubly connected edge list.</CodeDescription>
+  <PartID>38799359</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Dcel As PKDoubleEdgeList</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Dcel As PKDoubleEdgeList</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1484251135">
  <ObjName>PKSweepLine</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKDecomposer, PKTriangulator</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -109,10 +109,31 @@
    <SourceLine>Var sweepstate As PKSweepLineState = New PKSweepLineState</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create the priority queue (sorted queue by largest y value) and the cyclical lists.</SourceLine>
-   <SourceLine>PriorityQueue&lt;SweepLineVertex&gt; queue = sweepstate.initialize(points);</SourceLine>
+   <SourceLine>Var queue As FKPriorityQueue = sweepstate.Initialize(points)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>// Find all edges that need to be added to the polygon</SourceLine>
-   <SourceLine>// to create a y-monotone decomposition</SourceLine>
+   <SourceLine>// Find all edges that need to be added to the polygon to create a y-monotone decomposition.</SourceLine>
+   <SourceLine>While Not queue.IsEmpty</SourceLine>
+   <SourceLine>Var vertex As PKSweepLineVertex  = PKSweepLineVertex(queue.Poll)</SourceLine>
+   <SourceLine>If vertex.Type = PKSweepLineVertex.Types.Start Then</SourceLine>
+   <SourceLine>Self.Start(vertex, sweepstate)</SourceLine>
+   <SourceLine>ElseIf vertex.Type = PKSweepLineVertex.Types.Finish Then</SourceLine>
+   <SourceLine>Self.Finish(vertex, sweepstate)</SourceLine>
+   <SourceLine>ElseIf vertex.Type = PKSweepLineVertex.Types.Split Then</SourceLine>
+   <SourceLine>Self.Split(vertex, sweepstate)</SourceLine>
+   <SourceLine>ElseIf vertex.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>Self.Merge(vertex, sweepstate)</SourceLine>
+   <SourceLine>ElseIf vertex.Type = PKSweepLineVertex.Types.Regular Then</SourceLine>
+   <SourceLine>Self.Regular(vertex, sweepstate)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Wend</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// The DCEL now contains a valid y-monotone polygon decomposition.</SourceLine>
+   <SourceLine>// Next we need to triangulate all the y-monotone polygons.</SourceLine>
+   <SourceLine>sweepstate.Dcel.TriangulateYMonotonePolygons</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the triangulation.</SourceLine>
+   <SourceLine>Return sweepstate.Dcel</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -121,6 +142,247 @@
   <IsShared>0</IsShared>
   <ItemParams>points() As PKVector2</ItemParams>
   <ItemResult>PKDoubleEdgeList</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Start</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Handles a `PKSweepLineVertex.Types.START` event.</CodeDescription>
+  <PartID>1310742527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Start(vertex As PKSweepLineVertex, sweepstate As PKSweepLineState)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Handles a `PKSweepLineVertex.Types.Start` event.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex.</SourceLine>
+   <SourceLine>' - Parameter sweepstate: The current state of the SweepLine algorithm.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// We need to add the edge to the left to the tree since the line in the next event </SourceLine>
+   <SourceLine>// may be intersecting it.</SourceLine>
+   <SourceLine>Var leftEdge As PKSweepLineEdge = vertex.Left</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
+   <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
+   <SourceLine>sweepstate.Tree.Insert(leftEdge)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the left edge's helper to this vertex.</SourceLine>
+   <SourceLine>leftEdge.Helper = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKSweepLineVertex, sweepstate As PKSweepLineState</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Finish</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Handles a `PKSweepLineVertex.Types.Finish` event.</CodeDescription>
+  <PartID>850966527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Finish(vertex As PKSweepLineVertex, sweepstate As PKSweepLineState)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Handles a `PKSweepLineVertex.Types.Finish` event.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex.</SourceLine>
+   <SourceLine>' - Parameter sweepstate: The current state of the SweepLine algorithm.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If the vertex type is an end vertex then we know that we need to remove the right edge</SourceLine>
+   <SourceLine>// since the sweep line no longer intersects it.</SourceLine>
+   <SourceLine>Var rightEdge As PKSweepLineEdge = vertex.Right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Before we remove the edge we need to make sure that we don't forget to link up Merge vertices.</SourceLine>
+   <SourceLine>If rightEdge.Helper.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>// Connect v to v.Right.Helper</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, rightEdge.Helper.Index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
+   <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove v.Right from T.</SourceLine>
+   <SourceLine>sweepstate.Tree.Remove(rightEdge)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKSweepLineVertex, sweepstate As PKSweepLineState</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Split</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Handles a `PKSweepLineVertex.Types.SPLIT` event.</CodeDescription>
+  <PartID>735244287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Split(vertex As PKSweepLineVertex, sweepstate As PKSweepLineState)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Handles a `PKSweepLineVertex.Types.Split` event.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex.</SourceLine>
+   <SourceLine>' - Parameter sweepstate: The current state of the SweepLine algorithm.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If we have a split vertex then we can find the closest edge to the left side of the vertex</SourceLine>
+   <SourceLine>// and attach its helper to this vertex.</SourceLine>
+   <SourceLine>Var ej As PKSweepLineEdge = sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
+   <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Connect v to ej.Helper.</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, ej.Helper.Index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the new helper for the edge.</SourceLine>
+   <SourceLine>ej.Helper = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
+   <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Insert the edge to the left of this vertex.</SourceLine>
+   <SourceLine>sweepstate.Tree.Insert(vertex.Left)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the left edge's helper.</SourceLine>
+   <SourceLine>vertex.Left.Helper = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKSweepLineVertex, sweepstate As PKSweepLineState</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Merge</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Handles a `PKSweepLineVertex.Types.MERGE` event.</CodeDescription>
+  <PartID>218669055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Merge(vertex As PKSweepLineVertex, sweepstate As PKSweepLineState)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Handles a `PKSweepLineVertex.Types.Merge` event.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex.</SourceLine>
+   <SourceLine>' - Parameter sweepstate: The current state of the SweepLine algorithm.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the previous edge.</SourceLine>
+   <SourceLine>Var eiPrev As PKSweepLineEdge = vertex.Right</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if its helper is a merge vertex.</SourceLine>
+   <SourceLine>If eiPrev.Helper.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>// Connect v to v.Right.Helper</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, eiPrev.Helper.Index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
+   <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove the previous edge since the sweep line no longer intersects with it.</SourceLine>
+   <SourceLine>sweepstate.Tree.Remove(eiPrev)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Find the edge closest to the given vertex.</SourceLine>
+   <SourceLine>Var ej As PKSweepLineEdge = sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
+   <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Is the edge's helper a merge vertex?</SourceLine>
+   <SourceLine>If ej.Helper.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>// Connect v to ej.Helper</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, ej.Helper.Index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the closest edge's helper to this vertex.</SourceLine>
+   <SourceLine>ej.Helper = vertex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKSweepLineVertex, sweepstate As PKSweepLineState</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Regular</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Handles a `PKSweepLineVertex.Types.MERGE` event.</CodeDescription>
+  <PartID>943276031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Regular(vertex As PKSweepLineVertex, sweepstate As PKSweepLineState)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Handles a `PKSweepLineVertex.Types.Merge` event.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter vertex: The vertex.</SourceLine>
+   <SourceLine>' - Parameter sweepstate: The current state of the SweepLine algorithm.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the interior is to the right of this vertex.</SourceLine>
+   <SourceLine>If vertex.IsInteriorRight Then</SourceLine>
+   <SourceLine>// If so, check the previous edge's helper to see if it's a merge vertex.</SourceLine>
+   <SourceLine>If vertex.Right.Helper.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>// Connect v to v.Right.Helper</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, vertex.Right.Helper.Index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the reference y to the current vertex's y.</SourceLine>
+   <SourceLine>sweepstate.ReferenceY.Value = vertex.Point.Y</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// remove the previous edge since the sweep line no longer intersects with it.</SourceLine>
+   <SourceLine>sweepstate.Tree.Remove(vertex.Right)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the next edge.</SourceLine>
+   <SourceLine>sweepstate.Tree.Insert(vertex.Left)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the helper.</SourceLine>
+   <SourceLine>vertex.Left.Helper = vertex</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// Otherwise find the closest edge.</SourceLine>
+   <SourceLine>Var ej As PKSweepLineEdge = _</SourceLine>
+   <SourceLine>sweepstate.Tree.Search(New PKClosestEdgeToVertexSearchCriteria(vertex)).Closest</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// This indicates that there's self intersection or holes.</SourceLine>
+   <SourceLine>If ej Is Nil Then Raise New InvalidArgumentException("The input must be a simple polygon")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the helper type.</SourceLine>
+   <SourceLine>If ej.Helper.Type = PKSweepLineVertex.Types.Merge Then</SourceLine>
+   <SourceLine>// Connect v to ej.Helper</SourceLine>
+   <SourceLine>sweepstate.Dcel.AddHalfEdges(vertex.Index, ej.Helper.Index)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Set the new helper.</SourceLine>
+   <SourceLine>ej.Helper = vertex</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vertex As PKSweepLineVertex, sweepstate As PKSweepLineState</ItemParams>
+  <ItemResult></ItemResult>
  </Method>
  <ViewBehavior>
   <ViewProperty>
