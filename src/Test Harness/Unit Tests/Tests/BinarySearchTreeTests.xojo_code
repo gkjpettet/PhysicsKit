@@ -82,6 +82,32 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GetDepthTest()
+		  ///
+		  ' Tests the `GetDepth` methods.
+		  ///
+		  
+		  Assert.AreEqual(6, Tree.GetHeight)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(-3))
+		  Assert.AreEqual(4, Tree.GetHeight(node))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub InsertNilTest()
+		  ///
+		  ' Tests insertion of Nil into the BST (it just returns False).
+		  ///
+		  
+		  Var nilObject As ComparableInteger
+		  Assert.IsFalse(Tree.Insert(nilObject))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub InsertTest()
 		  ///
 		  ' Tests the insert methods.
@@ -143,6 +169,37 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub NodeComparableTest()
+		  ///
+		  ' Tests the storage of the comparable in the node.
+		  ///
+		  
+		  Var node As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(New ComparableInteger(-3))
+		  Assert.AreEqual(-3, ComparableInteger(node.GetComparable).Value)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub NodeNilComparableTest()
+		  ///
+		  ' Test creating a BST node with a Nil comparable.
+		  ///
+		  
+		  Try
+		    Var node As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(Nil)
+		    #Pragma Unused node
+		  Catch e As NilObjectException
+		    Assert.Pass
+		    Return
+		  End Try
+		  
+		  Assert.Fail("Expected a NilObjectException")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RemoveMaximumTest()
 		  ///
 		  ' Tests the remove method with a valid value.
@@ -174,6 +231,87 @@ Inherits TestGroup
 		  // Test removing when empty.
 		  Tree.Clear
 		  Assert.IsNil(Tree.RemoveMaximum)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveMinimumTest()
+		  ///
+		  ' Tests the remove method with a valid value.
+		  ///
+		  
+		  Call Tree.RemoveMinimum
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(-4)))
+		  Assert.AreEqual(12, Tree.Size)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(11))
+		  Call Tree.RemoveMinimum(node)
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(11)))
+		  Assert.AreEqual(11, Tree.Size)
+		  
+		  // Test removing Nil.
+		  Assert.IsNil(Tree.RemoveMinimum(Nil))
+		  
+		  Tree.Clear
+		  Call Tree.Insert(New ComparableInteger(0))
+		  Call Tree.Insert(New ComparableInteger(1))
+		  Assert.AreEqual(0, ComparableInteger(Tree.RemoveMinimum(Tree.Root).Comparable).Value)
+		  
+		  Tree.Clear
+		  Call Tree.Insert(New ComparableInteger(0))
+		  Call Tree.Insert(New ComparableInteger(-1))
+		  Call Tree.Insert(New ComparableInteger(1))
+		  Assert.AreEqual(1, ComparableInteger(Tree.Get(New ComparableInteger(1)).Comparable).Value)
+		  
+		  // Test removing when empty.
+		  Tree.Clear
+		  Assert.IsNil(Tree.RemoveMinimum)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveSubtreeTest()
+		  ///
+		  ' Tests the `RemoveSubTree` method.
+		  ///
+		  
+		  Call Tree.RemoveSubtree(New ComparableInteger(-3))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(0)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(-1)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(1)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(-4)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(2)))
+		  Assert.AreEqual(7, Tree.Size)
+		  
+		  // Test not found.
+		  Assert.IsFalse(Tree.RemoveSubtree(New ComparableInteger(8)))
+		  Assert.IsFalse(Tree.RemoveSubtree(New ComparableInteger(5)))
+		  
+		  // Test found.
+		  Assert.IsTrue(Tree.RemoveSubtree(New ComparableInteger(4)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(4)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(6)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(9)))
+		  Assert.AreEqual(4, Tree.Size)
+		  
+		  // Remove Nil.
+		  Assert.IsFalse(Tree.RemoveSubtree(Nil))
+		  
+		  // Remove from empty.
+		  Tree.Clear
+		  Assert.AreEqual(0, Tree.Size)
+		  Assert.IsFalse(Tree.RemoveSubtree(New ComparableInteger(4)))
+		  
+		  Var t2 As PKBinarySearchTree = New PKBinarySearchTree
+		  Call t2.Insert(New InconsistentElementType(0))
+		  Call t2.Insert(New InconsistentElementType(2))
+		  Call t2.Insert(New InconsistentElementType(10))
+		  Call t2.Insert(New InconsistentElementType(7))
+		  Call t2.Insert(New InconsistentElementType(1))
+		  
+		  Assert.IsFalse(t2.RemoveSubtree(New InconsistentElementType(7)))
 		  
 		End Sub
 	#tag EndMethod
@@ -212,6 +350,29 @@ Inherits TestGroup
 		  Call t2.Insert(New InconsistentElementType(1))
 		  
 		  Assert.IsFalse(t2.Remove(New InconsistentElementType(7)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ToStringTest()
+		  ///
+		  ' Tests the `ToString` method. Should print whatever the comparable is.
+		  ///
+		  
+		  Var node As PKBinarySearchTreeNode = New PKBinarySearchTreeNode(New ComparableInteger(-3))
+		  Var s As String = node.ToString
+		  Var i As Integer = -3
+		  Assert.AreEqual(i.ToString, s)
+		  
+		  s = Tree.ToString
+		  Assert.IsFalse(s = "")
+		  Assert.IsTrue(s.Length > 0)
+		  
+		  Tree.Clear
+		  s = Tree.ToString
+		  Assert.IsFalse(s = "")
+		  Assert.IsTrue(s.Length > 0)
 		  
 		End Sub
 	#tag EndMethod

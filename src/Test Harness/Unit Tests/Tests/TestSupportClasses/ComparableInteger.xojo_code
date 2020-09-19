@@ -52,6 +52,13 @@ Implements FKComparable
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function ToString() As String
+		  Return Value.ToString
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		Value As Integer
@@ -96,6 +103,14 @@ Implements FKComparable
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Value"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

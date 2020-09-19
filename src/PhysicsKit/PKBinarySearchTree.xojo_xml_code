@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="578844671">
  <ObjName>PKBinarySearchTree</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces> Iterable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -752,7 +752,12 @@
    <SourceLine>Var iterator As PKBinarySearchTreeIterator = InOrderIterator</SourceLine>
    <SourceLine>s.AddRow("BinarySearchTree[")</SourceLine>
    <SourceLine>While iterator.MoveNext</SourceLine>
-   <SourceLine>s.AddRow(iterator.Value.StringValue)</SourceLine>
+   <SourceLine>If FoundationKit.HasMethodNamed(iterator.Value, "ToString") Then</SourceLine>
+   <SourceLine>Var theString As String = FoundationKit.GetMethod(iterator.Value, "ToString").Invoke(iterator.Value)</SourceLine>
+   <SourceLine>s.AddRow(theString)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>s.AddRow("Unknown string value")</SourceLine>
+   <SourceLine>End If</SourceLine>
    <SourceLine>s.AddRow(",")</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
@@ -1167,7 +1172,7 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams>comparable As FKComparable</ItemParams>
   <ItemResult>Boolean</ItemResult>
@@ -1474,7 +1479,7 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams>node As PKBinarySearchTreeNode</ItemParams>
   <ItemResult></ItemResult>
@@ -1858,11 +1863,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>mSize</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
