@@ -7,8 +7,6 @@ Inherits TestGroup
 		  ' Sets up the binary tree and populates it with data.
 		  ///
 		  
-		  Using TestSupportClasses
-		  
 		  Tree = New PKBinarySearchTree
 		  Call Tree.Insert(New ComparableInteger(10))
 		  Call Tree.Insert(New ComparableInteger(3))
@@ -46,8 +44,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests creation with a subtree.
 		  ///
-		  
-		  Using TestSupportClasses
 		  
 		  Var t2 As PKBinarySearchTree= New PKBinarySearchTree(Self.Tree)
 		  Assert.AreEqual(Tree.Size, t2.Size)
@@ -90,8 +86,6 @@ Inherits TestGroup
 		  ///
 		  ' Tests the insert methods.
 		  ///
-		  
-		  Using TestSupportClasses
 		  
 		  Assert.IsFalse(Tree.Contains(New ComparableInteger(5)))
 		  Assert.IsTrue(Tree.Insert(New ComparableInteger(5)))
@@ -148,10 +142,88 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub RemoveMaximumTest()
+		  ///
+		  ' Tests the remove method with a valid value.
+		  ///
+		  
+		  Call Tree.RemoveMaximum
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(19)))
+		  Assert.AreEqual(12, Tree.Size)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(0))
+		  Call Tree.RemoveMaximum(node)
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(2)))
+		  Assert.AreEqual(11, Tree.Size)
+		  
+		  // Test removing Nil.
+		  Assert.IsNil(Tree.RemoveMaximum(Nil))
+		  
+		  Tree.Clear
+		  Call Tree.Insert(New ComparableInteger(0))
+		  Call Tree.Insert(New ComparableInteger(-1))
+		  Assert.AreEqual(0, ComparableInteger(Tree.RemoveMaximum(Tree.Root).Comparable).Value)
+		  
+		  Tree.Clear
+		  Call Tree.Insert(New ComparableInteger(0))
+		  Call Tree.Insert(New ComparableInteger(-1))
+		  Call Tree.Insert(New ComparableInteger(1))
+		  Assert.AreEqual(-1, ComparableInteger(Tree.RemoveMaximum(Tree.Get(New ComparableInteger(-1))).Comparable).Value)
+		  
+		  // Test removing when empty.
+		  Tree.Clear
+		  Assert.IsNil(Tree.RemoveMaximum)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveTest()
+		  ///
+		  ' Tests the remove method with a valid value.
+		  ///
+		  
+		  Assert.IsTrue(Tree.Remove(New ComparableInteger(-3)))
+		  
+		  // Make sure it was removed.
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(-3)))
+		  
+		  // Make sure the other values around that node are still there.
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(-4)))
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(0)))
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(1)))
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(2)))
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(-1)))
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(3)))
+		  
+		  // Test removing Nil.
+		  Assert.IsFalse(Tree.Remove(Nil))
+		  
+		  // Test removing from empty tree.
+		  Tree.Clear
+		  Assert.IsFalse(Tree.Remove(New ComparableInteger(4)))
+		  
+		  Var t2 As PKBinarySearchTree = New PKBinarySearchTree
+		  Call t2.Insert(New InconsistentElementType(0))
+		  Call t2.Insert(New InconsistentElementType(2))
+		  Call t2.Insert(New InconsistentElementType(10))
+		  Call t2.Insert(New InconsistentElementType(7))
+		  Call t2.Insert(New InconsistentElementType(1))
+		  
+		  Assert.IsFalse(t2.Remove(New InconsistentElementType(7)))
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0, Description = 5468652062696E61727920747265652E
 		Tree As PKBinarySearchTree
 	#tag EndProperty
+
+
+	#tag Using, Name = TestSupportClasses
+	#tag EndUsing
 
 
 	#tag ViewBehavior

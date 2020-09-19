@@ -147,6 +147,7 @@ Class=FKPriorityQueue;../../../FoundationKit/FoundationKit/Collections/FKPriorit
 Class=FKArrays;../../../FoundationKit/FoundationKit/Collections/FKArrays.xojo_xml_code;&h000000007837F7FF;&h000000006E21AFFF;false
 Class=PKReference;../PhysicsKit/Misc/PKReference.xojo_xml_code;&h0000000020389FFF;&h0000000033118FFF;false
 Module=FoundationKit;../../../FoundationKit/FoundationKit/FoundationKit.xojo_xml_code;&h00000000147817FF;&h000000006E8867FF;false
+Class=InconsistentElementType;Unit Tests/Tests/TestSupportClasses/InconsistentElementType.xojo_code;&h0000000049A20FFF;&h0000000053A287FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

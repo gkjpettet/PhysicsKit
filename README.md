@@ -2,7 +2,7 @@
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
 ## Port Progress
-Porting the BinarySearchTree tests. Upto (not including) `remove()`.
+Porting the BinarySearchTree tests. Upto (not including) `removeMinimum()`.
 
 ## Main Files To Port
 - [ ] collision
@@ -451,7 +451,7 @@ Porting the BinarySearchTree tests. Upto (not including) `remove()`.
 - [ ] BalancedBinarySearchTreeTest.java
 - [-] BinarySearchTreeTest.java
 - [x] EpsilonTest.java
-- [ ] InconsistentElementType.java
+- [x] InconsistentElementType.java
 - [ ] MessagesTest.java
 - [ ] ReferenceTest.java
 - [ ] UnitConversionTest.java
