@@ -38,6 +38,7 @@ Folder=Framework;Unit Tests/Framework;&h000000003E1A9B41;&h000000002516B04D;fals
 Folder=Tests;Unit Tests/Tests;&h0000000044C729E7;&h000000002516B04D;false
 Folder=Geometry;Unit Tests/Tests/Geometry;&h00000000246387FF;&h0000000044C729E7;false
 Class=BinarySearchTreeTests;Unit Tests/Tests/BinarySearchTreeTests.xojo_code;&h00000000391B1FFF;&h0000000044C729E7;false
+Class=BalancedBinarySearchTreeTests;Unit Tests/Tests/BalancedBinarySearchTreeTests.xojo_code;&h0000000033ED7FFF;&h0000000044C729E7;false
 Folder=Decompose;Unit Tests/Tests/Geometry/Decompose;&h000000002749DFFF;&h00000000246387FF;false
 Class=AbstractDecomposeTest;Unit Tests/Tests/Geometry/Decompose/AbstractDecomposeTest.xojo_code;&h00000000297487FF;&h000000002749DFFF;false
 Class=BayazitTests;Unit Tests/Tests/Geometry/Decompose/BayazitTests.xojo_code;&h000000005AF1F7FF;&h000000002749DFFF;false
