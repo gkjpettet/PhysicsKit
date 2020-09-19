@@ -1026,7 +1026,7 @@
   <ItemName>Get</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns the node that contains the given value or NIL if the value is not found.</CodeDescription>
+  <CodeDescription>Returns the node that contains the given value or Nil if the value is not found.</CodeDescription>
   <PartID>1694224383</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>

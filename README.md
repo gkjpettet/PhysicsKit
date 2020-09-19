@@ -449,7 +449,7 @@ Porting the BinarySearchTree tests. Upto (not including) `getDepth()`.
 	- [ ] PhysicsBodyBroadphaseFilterTest.java
 	- [ ] WorldTest.java
 - [ ] BalancedBinarySearchTreeTest.java
-- [-] BinarySearchTreeTest.java
+- [x] BinarySearchTreeTest.java
 - [x] EpsilonTest.java
 - [x] InconsistentElementType.java
 - [ ] MessagesTest.java

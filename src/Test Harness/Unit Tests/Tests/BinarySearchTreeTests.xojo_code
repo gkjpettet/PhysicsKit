@@ -40,6 +40,74 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub BalanceTest()
+		  ///
+		  ' Tests the conversion from not self balancing to self balancing.
+		  ///
+		  
+		  Assert.IsFalse(Tree.IsSelfBalancing)
+		  
+		  Assert.AreEqual(6, Tree.GetHeight)
+		  
+		  Tree.SetSelfBalancing(True)
+		  
+		  Assert.AreEqual(4, Tree.GetHeight)
+		  
+		  Assert.IsTrue(Tree.IsSelfBalancing)
+		  
+		  Assert.IsNil(Tree.balance(Nil))
+		  
+		  Tree.Clear
+		  Call Tree.Insert(New ComparableInteger(1))
+		  Assert.IsTrue(Tree.Root.Equals(Tree.Balance(Tree.Root)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ClearTest()
+		  ///
+		  ' Tests the clear method.
+		  ///
+		  
+		  Assert.IsFalse(Tree.IsEmpty)
+		  Assert.AreEqual(13, Tree.Size)
+		  Tree.Clear
+		  Assert.IsTrue(Tree.IsEmpty)
+		  Assert.AreEqual(0, Tree.Size)
+		  Assert.AreEqual(0, Tree.GetHeight)
+		  Assert.IsNil(Tree.GetRoot)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ContainsTest()
+		  ///
+		  ' Tests the Contains method.
+		  ///
+		  
+		  Assert.IsTrue(Tree.Contains(New ComparableInteger(9)))
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(14)))
+		  
+		  Assert.IsFalse(Tree.Contains(Nil))
+		  
+		  Tree.Clear
+		  Assert.IsFalse(Tree.Contains(New ComparableInteger(9)))
+		  
+		  Var t2 As PKBinarySearchTree = New PKBinarySearchTree
+		  Call t2.Insert(New InconsistentElementType(0))
+		  Call t2.Insert(New InconsistentElementType(2))
+		  Call t2.Insert(New InconsistentElementType(10))
+		  Call t2.Insert(New InconsistentElementType(7))
+		  Call t2.Insert(New InconsistentElementType(1))
+		  
+		  Assert.IsFalse(t2.Contains(New InconsistentElementType(7)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateTest()
 		  ///
 		  ' Tests creation with a subtree.
@@ -91,6 +159,64 @@ Inherits TestGroup
 		  
 		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(-3))
 		  Assert.AreEqual(4, Tree.GetHeight(node))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetMaximumTest()
+		  ///
+		  ' Tests the GetMaximum methods.
+		  ///
+		  
+		  Assert.AreEqual(19, ComparableInteger(Tree.GetMaximum).Value)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(-3))
+		  Assert.AreEqual(2, ComparableInteger(Tree.GetMaximum(node).Comparable).Value)
+		  
+		  node = Tree.Get(New ComparableInteger(11))
+		  Assert.AreEqual(19, ComparableInteger(Tree.GetMaximum(node).Comparable).Value)
+		  
+		  Tree.Clear
+		  Assert.IsNil(Tree.GetMaximum)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetMinimumTest()
+		  ///
+		  ' Tests the GetMinimum methods.
+		  ///
+		  
+		  Assert.AreEqual(-4, ComparableInteger(Tree.GetMinimum).Value)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(4))
+		  Assert.AreEqual(4, ComparableInteger(Tree.GetMinimum(node).Comparable).Value)
+		  
+		  node = Tree.Get(New ComparableInteger(0))
+		  Assert.AreEqual(-1, ComparableInteger(Tree.GetMinimum(node).Comparable).Value)
+		  
+		  Tree.Clear
+		  Assert.IsNil(Tree.GetMinimum)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetTest()
+		  ///
+		  ' Tests the Get method.
+		  ///
+		  
+		  Assert.IsNotNil(Tree.Get(New ComparableInteger(-3)))
+		  Assert.IsNil(Tree.Get(New ComparableInteger(45)))
+		  Assert.AreEqual(10, ComparableInteger(Tree.GetRoot).Value)
+		  
+		  Tree.Clear
+		  Assert.IsNil(Tree.GetRoot)
+		  Assert.IsNil(Tree.Get(New ComparableInteger(0)))
+		  Assert.IsNil(Tree.Get(Nil))
 		  
 		End Sub
 	#tag EndMethod
@@ -164,6 +290,70 @@ Inherits TestGroup
 		  Assert.IsTrue(Tree.Contains(New ComparableInteger(16)))
 		  Assert.IsTrue(Tree.Contains(New ComparableInteger(15)))
 		  Assert.AreEqual(4, Tree.Size)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsEmptyTest()
+		  ///
+		  ' Tests the IsEmpty method.
+		  ///
+		  
+		  Assert.IsFalse(Tree.IsEmpty)
+		  
+		  Var test As PKBinarySearchTree = New PKBinarySearchTree
+		  Assert.IsTrue(test.IsEmpty)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IteratorTest()
+		  ///
+		  ' Tests the iterators.
+		  ///
+		  
+		  // Test in order traversal.
+		  Var it As Iterator = Tree.InOrderIterator
+		  Var last As Integer = MathsKit.INT32_MIN_VALUE
+		  While it.MoveNext
+		    Var i As Integer = ComparableInteger(it.Value).Value
+		    If i < last Then
+		      Assert.Fail("The next item was not greater than the last. In order traversal failed.")
+		    End If
+		    last = i
+		  Wend
+		  
+		  // Test reverse order traversal.
+		  it = Tree.ReverseOrderIterator
+		  last = MathsKit.INT32_MAX_VALUE
+		  While it.MoveNext
+		    Var i As Integer = ComparableInteger(it.Value).Value
+		    If i > last Then
+		      Assert.Fail("The next item was not less than the last. Reverse order traversal failed.")
+		    End If
+		    last = i
+		  Wend
+		  
+		  Assert.Pass
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IteratorWithNoElementsTest()
+		  ///
+		  ' Tests the iterator for an empty tree.
+		  ///
+		  
+		  Var tree As PKBinarySearchTree = New PKBinarySearchTree
+		  Var it As Iterator = Tree.InOrderIterator
+		  While it.MoveNext
+		    Call it.Value
+		  Wend
+		  
+		  Assert.Pass
 		  
 		End Sub
 	#tag EndMethod
@@ -350,6 +540,20 @@ Inherits TestGroup
 		  Call t2.Insert(New InconsistentElementType(1))
 		  
 		  Assert.IsFalse(t2.Remove(New InconsistentElementType(7)))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SizeTest()
+		  ///
+		  ' Tests the ASize methods.
+		  ///
+		  
+		  Assert.AreEqual(13, Tree.Size)
+		  
+		  Var node As PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(-3))
+		  Assert.AreEqual(6, Tree.Size(node))
 		  
 		End Sub
 	#tag EndMethod
