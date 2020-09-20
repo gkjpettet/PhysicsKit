@@ -717,7 +717,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Create a list to store the y-monotone polygons.</SourceLine>
    <SourceLine>Var yMonotonePolygons() As PKMonotonePolygon</SourceLine>
-   <SourceLine>yMonotonePolygons.ResizeTo(fSize - 1)</SourceLine>
+   <SourceLine>'yMonotonePolygons.ResizeTo(fSize - 1)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
    <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>
@@ -776,10 +776,11 @@
    <SourceLine></SourceLine>
    <SourceLine>// Create a sorted array of vertices.</SourceLine>
    <SourceLine>Var sorted() As PKMonotoneVertex</SourceLine>
-   <SourceLine>sorted.ResizeTo(size - 1)</SourceLine>
+   <SourceLine>'sorted.ResizeTo(size - 1)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// The first point is the vertex with maximum y.</SourceLine>
    <SourceLine>sorted.AddRow(max)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>// Default the location to the left chain.</SourceLine>
    <SourceLine>max.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left</SourceLine>
    <SourceLine></SourceLine>

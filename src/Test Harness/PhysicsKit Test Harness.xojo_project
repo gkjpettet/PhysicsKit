@@ -42,6 +42,7 @@ Class=BalancedBinarySearchTreeTests;Unit Tests/Tests/BalancedBinarySearchTreeTes
 Folder=Decompose;Unit Tests/Tests/Geometry/Decompose;&h000000002749DFFF;&h00000000246387FF;false
 Class=AbstractDecomposeTest;Unit Tests/Tests/Geometry/Decompose/AbstractDecomposeTest.xojo_code;&h00000000297487FF;&h000000002749DFFF;false
 Class=BayazitTests;Unit Tests/Tests/Geometry/Decompose/BayazitTests.xojo_code;&h000000005AF1F7FF;&h000000002749DFFF;false
+Class=SweepLineTests;Unit Tests/Tests/Geometry/Decompose/SweepLineTests.xojo_code;&h0000000078497FFF;&h000000002749DFFF;false
 Class=DecomposeData;Unit Tests/Tests/Geometry/Decompose/DecomposeData.xojo_code;&h00000000294597FF;&h000000002749DFFF;false
 Class=EarClippingTests;Unit Tests/Tests/Geometry/Decompose/EarClippingTests.xojo_code;&h0000000077D587FF;&h000000002749DFFF;false
 Folder=Hull;Unit Tests/Tests/Geometry/Hull;&h0000000009E937FF;&h00000000246387FF;false
