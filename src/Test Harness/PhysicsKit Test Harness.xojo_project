@@ -30,6 +30,7 @@ Class=PKLinkedVertexHull;../PhysicsKit/Geometry/Hull/PKLinkedVertexHull.xojo_xml
 Class=PKMinXYPointComparator;../PhysicsKit/Geometry/Hull/PKMinXYPointComparator.xojo_xml_code;&h000000001ADB4FFF;&h00000000256C5FFF;false
 Class=PKMonotoneChain;../PhysicsKit/Geometry/Hull/PKMonotoneChain.xojo_xml_code;&h00000000465CF7FF;&h00000000256C5FFF;false
 Folder=Misc;PhysicsKit/Misc;&h000000007CC53FFF;&h0000000033118FFF;false
+Interface=PKOwnable;../PhysicsKit/PKOwnable.xojo_xml_code;&h0000000074572FFF;&h0000000033118FFF;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h000000006E4D97FF;&h0000000000000000;false
 Module=MathsKit;../../../MathsKit/MathsKit.xojo_xml_code;&h0000000003808FFF;&h0000000000000000;false
 Folder=FoundationKit;FoundationKit;&h000000006E8867FF;&h0000000000000000;false
