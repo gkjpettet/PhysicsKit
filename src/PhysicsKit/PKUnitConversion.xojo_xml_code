@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="584093695">
+ <ObjName>PKUnitConversion</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>744388607</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Private to prevent instantiation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FeetToMeters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts feet to metres.</CodeDescription>
+  <PartID>977879039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FeetToMeters(feet As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts feet to metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter feet: The length in feet.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The length in metres.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return feet * FOOT_TO_METER</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>feet As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SlugsToKilograms</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts slugs to kilograms.</CodeDescription>
+  <PartID>469737471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function SlugsToKilograms(slugs As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts slugs to kilograms.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter slugs: The mass value in slugs.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The mass in kilograms.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return slugs * SLUG_TO_KILOGRAM</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>slugs As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>PoundsToKilograms</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts pound-mass to kilograms.</CodeDescription>
+  <PartID>358580223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function PoundsToKilograms(pound As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts pound-mass to kilograms.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter pound: The mass value in pound-masses.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The mass value in kilograms.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return pound * POUND_TO_KILOGRAM</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>pound As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FeetPerSecondToMetersPerSecond</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts feet per second to metres per second.</CodeDescription>
+  <PartID>950751231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FeetPerSecondToMetersPerSecond(feetPerSecond As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts feet per second to metres per second.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter feetPerSecond: The velocity in feet per second.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The velocity in meters per second.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return feetPerSecond * METER_TO_FOOT</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>feetPerSecond As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>PoundsToNewtons</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts pound-force to newtons.</CodeDescription>
+  <PartID>2009966591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function PoundsToNewtons(pound As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts pound-force to newtons.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter pound: The force value in pound-force.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The force value in newtons.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return pound * POUND_TO_NEWTON</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>pound As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FootPoundsToNewtonMeters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts foot-pounds to newton-metres.</CodeDescription>
+  <PartID>1645283327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function FootPoundsToNewtonMeters(footPound As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts foot-pounds to newton-metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter footPound: The torque value in foot-pounds.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The torque value in newton-metres.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return footPound * FOOT_POUND_TO_NEWTON_METER</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>footPound As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MetersToFeet</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts metres to feet.</CodeDescription>
+  <PartID>1131765759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MetersToFeet(meters As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts metres to feet.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter meters: The length value in metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The length value in feet.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return meters * METER_TO_FOOT</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>meters As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>KilogramsToSlugs</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts kilograms to slugs.</CodeDescription>
+  <PartID>587311103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function KilogramsToSlugs(kilograms As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts kilograms to slugs.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter kilograms: The mass value in kilograms.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The mass value in slugs.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return kilograms * KILOGRAM_TO_SLUG</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>kilograms As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>KilogramsToPounds</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts kilograms to pound-mass.</CodeDescription>
+  <PartID>1772683263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function KilogramsToPounds(kilograms As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts kilograms to pound-mass.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter kilograms: The mass value in kilograms.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The mass value in pound-masses.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return kilograms * KILOGRAM_TO_POUND</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>kilograms As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MetersPerSecondToFeetPerSecond</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts metres per second to feet per second.</CodeDescription>
+  <PartID>370358271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MetersPerSecondToFeetPerSecond(metersPerSecond As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts metres per second to feet per second.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter metersPerSecond: The velocity in metres per second.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The velocity in feet per second.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return metersPerSecond * FOOT_TO_METER</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>metersPerSecond As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>NewtonsToPounds</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts newtons to pound-force.</CodeDescription>
+  <PartID>1111339007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function NewtonsToPounds(newtons As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts newtons to pound-force.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter newtons: The force value in newtons.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The force value in pound-force.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return newtons * NEWTON_TO_POUND</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>newtons As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>NewtonMetersToFootPounds</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Converts newton-metres to foot-pounds.</CodeDescription>
+  <PartID>299995135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function NewtonMetersToFootPounds(newtonMeters As Double) As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Converts newton-metres to foot-pounds.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter newtonMeters: The torque value in newton-metres.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The torque value in foot-pounds.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return newtonMeters * NEWTON_METER_TO_FOOT_POUND</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>newtonMeters As Double</ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>113014783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>A class used to convert units.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>PhysicsKit uses meters-kilograms-seconds (MKS) units by default. This class can be used</NoteLine>
+   <NoteLine>to convert to and from MKS.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>FOOT_TO_METER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One foot in metres.</CodeDescription>
+  <PartID>287836159</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property FOOT_TO_METER As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FOOT_TO_METER As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static footToMeter As Double = 0.0254 * 12.0</SourceLine>
+   <SourceLine>Return footToMeter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>METER_TO_FOOT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1780488191</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property METER_TO_FOOT As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>METER_TO_FOOT As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static meterToFoot As Double = 1.0 / FOOT_TO_METER</SourceLine>
+   <SourceLine>Return meterToFoot</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>KILOGRAM_TO_SLUG</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>692840447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property KILOGRAM_TO_SLUG As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>KILOGRAM_TO_SLUG As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static kgToSlug As Double = 1.0 / SLUG_TO_KILOGRAM</SourceLine>
+   <SourceLine>Return kgToSlug</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>KILOGRAM_TO_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One kilogram in pounds.</CodeDescription>
+  <PartID>1235003391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property KILOGRAM_TO_POUND As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>KILOGRAM_TO_POUND As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static kgToPound As Double = 1.0 / POUND_TO_KILOGRAM</SourceLine>
+   <SourceLine>Return kgToPound</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>NEWTON_TO_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One Newton in pounds force.</CodeDescription>
+  <PartID>2034235391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property NEWTON_TO_POUND As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>NEWTON_TO_POUND As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static newtonToPound As Double = 1.0 / POUND_TO_NEWTON</SourceLine>
+   <SourceLine>Return newtonToPound</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>NEWTON_METER_TO_FOOT_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One Newton metre in foot pounds.</CodeDescription>
+  <PartID>1881712639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Property NEWTON_METER_TO_FOOT_POUND As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>NEWTON_METER_TO_FOOT_POUND As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static nmtofp As Double = 1.0 / FOOT_POUND_TO_NEWTON_METER</SourceLine>
+   <SourceLine>Return nmtofp</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>SLUG_TO_KILOGRAM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One slug in kilograms.</CodeDescription>
+  <PartID>1542930431</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>14.5939029</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>POUND_TO_KILOGRAM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One pound in kilograms.</CodeDescription>
+  <PartID>824666111</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.45359237</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>POUND_TO_NEWTON</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One pound force in Newtons.</CodeDescription>
+  <PartID>221444095</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>4.448222</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>FOOT_POUND_TO_NEWTON_METER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One foot-pound in Newton metres.</CodeDescription>
+  <PartID>1845477375</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.7375621</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+</block>
+</RBProject>
