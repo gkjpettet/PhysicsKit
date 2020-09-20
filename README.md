@@ -269,7 +269,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [x] DataContainer.java
 - [x] Epsilon.java
 - [ ] Listener.java
-- [ ] Ownable.java
+- [x] Ownable.java
 - [x] Reference.java
 - [ ] UnitConversion.java
 - [ ] Version.java
