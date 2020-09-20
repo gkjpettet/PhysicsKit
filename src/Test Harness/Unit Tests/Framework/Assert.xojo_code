@@ -100,6 +100,7 @@ Protected Class Assert
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Double, actual As Double, message As Text = "")
 		  Dim tolerance As Double = 0.00000001
+		  'Dim tolerance As Double = 0.0000000000000001
 		  
 		  AreEqual(expected, actual, tolerance, message)
 		  

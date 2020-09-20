@@ -30,9 +30,20 @@ Inherits TestGroup
 		  ' - Returns: The approximation as a Double representation of the result.
 		  ///
 		  
-		  #Pragma Warning "Should use BigDecimal"
+		  #Pragma Warning "Can we use the open source Decimal plugin?"
 		  
-		  Return PKSegment.GetLocation(point, linePoint1, linePoint2)
+		  Var pax As BigNumberMBS = New BigNumberMBS(point.X)
+		  Var pay As BigNumberMBS = New BigNumberMBS(point.y)
+		  Var pbx As BigNumberMBS = New BigNumberMBS(linePoint1.X)
+		  Var pby As BigNumberMBS = New BigNumberMBS(linePoint1.Y)
+		  Var pcx As BigNumberMBS = New BigNumberMBS(linePoint2.X)
+		  Var pcy As BigNumberMBS = New BigNumberMBS(linePoint2.Y)
+		  
+		  Var d1 As BigNumberMBS = pcx.Subtract(pbx).Multiply(pay.Subtract(pby))
+		  Var d2 As BigNumberMBS = pax.Subtract(pbx).Multiply(pcy.Subtract(pby))
+		  Var result As BigNumberMBS = d1.Subtract(d2)
+		  
+		  Return result.DoubleValue
 		  
 		End Function
 	#tag EndMethod

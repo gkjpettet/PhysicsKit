@@ -388,12 +388,12 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] TimeStepTest.java
 	- [ ] TorqueTest.java
 	- [ ] WorldTest.java
-- [-] geometry
-	- [-] decompose
+- [x] geometry
+	- [x] decompose
 		- [x] AbstractDecomposeTest.java
 		- [x] BayazitTest.java
 		- [x] EarClippingTest.java
-		- [ ] SweepLineTest.java			
+		- [x] SweepLineTest.java			
 	- [x] hull
 		- [x] DivideAndConquerTest.java
 		- [x] GiftWrapTest.java
