@@ -30,6 +30,8 @@ Implements FKComparable
 		  ' - Note: Part of the FKComparable interface.
 		  ///
 		  
+		  #Pragma Unused other
+		  
 		  Return False
 		  
 		End Function

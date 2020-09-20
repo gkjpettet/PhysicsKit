@@ -712,12 +712,8 @@
    <SourceLine>' perform any verification of this assumption.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>// Get the number of faces.</SourceLine>
-   <SourceLine>Var fSize As Integer = Self.Faces.Count</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>// Create a list to store the y-monotone polygons.</SourceLine>
    <SourceLine>Var yMonotonePolygons() As PKMonotonePolygon</SourceLine>
-   <SourceLine>'yMonotonePolygons.ResizeTo(fSize - 1)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create a y-monotone polygon for each face.</SourceLine>
    <SourceLine>For Each face As PKDoubleEdgeListFace In Self.Faces</SourceLine>
