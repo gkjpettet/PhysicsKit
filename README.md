@@ -272,7 +272,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [x] Ownable.java
 - [x] Reference.java
 - [x] UnitConversion.java
-- [ ] Version.java
+- [x] Version.java
 
 ## Tests To Port
 - [ ] collision
@@ -452,6 +452,6 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [ ] MessagesTest.java
 - [ ] ReferenceTest.java
 - [x] UnitConversionTest.java
-- [ ] VersionTest.java
+- [x] VersionTest.java
 
 [dyn4j]: https://github.com/dyn4j/dyn4j
