@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="584093695">
  <ObjName>PKUnitConversion</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -381,184 +381,6 @@
   </ItemSource>
   <ItemFlags>0</ItemFlags>
  </Note>
- <Property>
-  <ItemName>FOOT_TO_METER</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>One foot in metres.</CodeDescription>
-  <PartID>287836159</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property FOOT_TO_METER As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>FOOT_TO_METER As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static footToMeter As Double = 0.0254 * 12.0</SourceLine>
-   <SourceLine>Return footToMeter</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>METER_TO_FOOT</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>1780488191</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property METER_TO_FOOT As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>METER_TO_FOOT As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static meterToFoot As Double = 1.0 / FOOT_TO_METER</SourceLine>
-   <SourceLine>Return meterToFoot</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>KILOGRAM_TO_SLUG</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>692840447</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property KILOGRAM_TO_SLUG As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>KILOGRAM_TO_SLUG As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static kgToSlug As Double = 1.0 / SLUG_TO_KILOGRAM</SourceLine>
-   <SourceLine>Return kgToSlug</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>KILOGRAM_TO_POUND</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>One kilogram in pounds.</CodeDescription>
-  <PartID>1235003391</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property KILOGRAM_TO_POUND As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>KILOGRAM_TO_POUND As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static kgToPound As Double = 1.0 / POUND_TO_KILOGRAM</SourceLine>
-   <SourceLine>Return kgToPound</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>NEWTON_TO_POUND</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>One Newton in pounds force.</CodeDescription>
-  <PartID>2034235391</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property NEWTON_TO_POUND As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>NEWTON_TO_POUND As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static newtonToPound As Double = 1.0 / POUND_TO_NEWTON</SourceLine>
-   <SourceLine>Return newtonToPound</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>NEWTON_METER_TO_FOOT_POUND</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>One Newton metre in foot pounds.</CodeDescription>
-  <PartID>1881712639</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Property NEWTON_METER_TO_FOOT_POUND As Double</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>NEWTON_METER_TO_FOOT_POUND As Double</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine>Static nmtofp As Double = 1.0 / FOOT_POUND_TO_NEWTON_METER</SourceLine>
-   <SourceLine>Return nmtofp</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Name</ObjName>
@@ -636,6 +458,72 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>0.7375621</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>FOOT_TO_METER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One foot in metres.</CodeDescription>
+  <PartID>1922033663</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.3048</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>KILOGRAM_TO_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One kilogram in pounds.</CodeDescription>
+  <PartID>1237633023</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>2.20462262185</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>KILOGRAM_TO_SLUG</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One kilogram in slugs.</CodeDescription>
+  <PartID>697069567</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.06852176603</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>METER_TO_FOOT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One metre in feet.</CodeDescription>
+  <PartID>580933631</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>3.28083989501</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>NEWTON_METER_TO_FOOT_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One Newton-metre in foot-pounds.</CodeDescription>
+  <PartID>1063299071</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>1.35581803891</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>NEWTON_TO_POUND</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>One Newton in pounds force.</CodeDescription>
+  <PartID>1174491135</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>0.22480892365</ItemDef>
   <ItemFlags>0</ItemFlags>
  </Constant>
 </block>
