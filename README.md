@@ -451,7 +451,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [x] InconsistentElementType.java
 - [ ] MessagesTest.java
 - [ ] ReferenceTest.java
-- [ ] UnitConversionTest.java
+- [x] UnitConversionTest.java
 - [ ] VersionTest.java
 
 [dyn4j]: https://github.com/dyn4j/dyn4j
