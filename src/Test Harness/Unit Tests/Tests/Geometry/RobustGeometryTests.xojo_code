@@ -30,7 +30,7 @@ Inherits TestGroup
 		  ' - Returns: The approximation as a Double representation of the result.
 		  ///
 		  
-		  #Pragma Warning "Can we use the open source Decimal plugin?"
+		  #Pragma Warning "Can we use the open source Decimal plugin instead of MBS?"
 		  
 		  Var pax As BigNumberMBS = New BigNumberMBS(point.X)
 		  Var pay As BigNumberMBS = New BigNumberMBS(point.y)

@@ -21,6 +21,8 @@
    <SourceLine>' Always returns True.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused filter</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Return True</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>

@@ -76,8 +76,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] Collisions.java	
 	- [x] Filter.java
 	- [x] Fixture.java
-	- [ ] FixtureIterator.java	
-	- [ ] TypeFilter.java
+	- [DEP] FixtureIterator.java
+	- [x] TypeFilter.java
 - [ ] dynamics
 	- [ ] contact
 		- [ ] Contact.java
