@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="238405631">
  <ObjName>PKReference</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>PKObject</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -40,7 +40,7 @@
    <SourceLine>///</SourceLine>
    <SourceLine>' Full constructor</SourceLine>
    <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter initialValue: The initial value (must be a Xojo primitive, e.g: Double, String, etc).</SourceLine>
+   <SourceLine>' - Parameter initialValue: The initial value (must be a Xojo primitive, e.g: Double, String).</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Self.Value = initialValue</SourceLine>
@@ -116,7 +116,7 @@
    <SourceLine>' - Note: Overrides PKObject.HashCode</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Return If(Self.Value = Nil, 0, Self.Value.PtrValue.Integer)</SourceLine>
+   <SourceLine>Return If(Self.Value = Nil, 0, Self.Value.Hash)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -189,11 +189,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Value</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>
  </ViewBehavior>

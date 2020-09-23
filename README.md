@@ -450,7 +450,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 - [x] EpsilonTest.java
 - [x] InconsistentElementType.java
 - [ ] MessagesTest.java
-- [ ] ReferenceTest.java
+- [x] ReferenceTest.java
 - [x] UnitConversionTest.java
 - [x] VersionTest.java
 

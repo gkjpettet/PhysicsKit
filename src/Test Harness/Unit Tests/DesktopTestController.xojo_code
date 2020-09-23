@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Dim group As TestGroup
 		  
+		  group = New ReferenceTests(Self, "Reference")
 		  group = New VersionTests(Self, "Version")
 		  group = New UnitConversionTests(Self, "UnitConversion")
 		  group = New SweepLineTests(Self, "SweepLine")

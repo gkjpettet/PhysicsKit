@@ -19,9 +19,7 @@
    <SourceLine>' Returns this object's unique hash code.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Warning "TODO: Verify this works as expected"</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Return Variant(Self).PtrValue.Integer</SourceLine>
+   <SourceLine>Return Variant(Self).Hash</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
