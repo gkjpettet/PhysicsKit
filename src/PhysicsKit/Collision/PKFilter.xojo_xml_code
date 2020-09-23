@@ -7,6 +7,43 @@
  <ItemFlags>1</ItemFlags>
  <IsInterface>1</IsInterface>
  <Compatibility></Compatibility>
+ <Method>
+  <ItemName>IsAllowed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given filter and this filter allow the objects to interact.</CodeDescription>
+  <PartID>1173626879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsAllowed(filter As PKFilter) As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>filter As PKFilter</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>844990463</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -20,8 +57,12 @@
    <NoteLine>Filters allow the collision detection system to skip expensive operations</NoteLine>
    <NoteLine>between PKFixtures that shouldn't be colliding at all.</NoteLine>
    <NoteLine></NoteLine>
-   <NoteLine>The `DEFAULT_FILTER` allows all fixture collisions.</NoteLine>
-   <NoteLine></NoteLine>
+   <NoteLine>============</NoteLine>
+   <NoteLine>IsAllowed(filter)</NoteLine>
+   <NoteLine>Returns True if the given filter and this filter allow the objects to interact.</NoteLine>
+   <NoteLine>If the given filter is not the same type as this filter then it's up to the implementing </NoteLine>
+   <NoteLine>class to specify the behaviour.</NoteLine>
+   <NoteLine>In addition, if the given filter is Nil its up to the implementing class to specify the behaviour.</NoteLine>
    <NoteLine></NoteLine>
   </ItemSource>
   <ItemFlags>0</ItemFlags>

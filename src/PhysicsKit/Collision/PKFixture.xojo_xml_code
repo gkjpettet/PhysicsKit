@@ -75,7 +75,7 @@
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Self.Shape = shape</SourceLine>
-   <SourceLine>Self.Flter = PKFilter.DEFAULT_FILTER</SourceLine>
+   <SourceLine>Self.Filter = PKDefaultFilter.Get</SourceLine>
    <SourceLine>Self.Sensor = False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -99,11 +99,18 @@
    <SourceLine>s.AddRow("Fixture[HashCode=")</SourceLine>
    <SourceLine>s.AddRow(Variant(Self).Hash.ToString)</SourceLine>
    <SourceLine>s.AddRow("|Shape=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Shape.ToString)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var miToString As Introspection.MethodInfo = FoundationKit.GetMethod(Self.Shape, "ToString")</SourceLine>
+   <SourceLine>If miToString &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>s.AddRow(miToString.Invoke(Self.Shape))</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>s.AddRow("Unknown Shape")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>s.AddRow("|Filter=")</SourceLine>
    <SourceLine>s.AddRow(Self.Filter.ToString)</SourceLine>
    <SourceLine>s.AddRow("|IsSensor=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Sensor)</SourceLine>
+   <SourceLine>s.AddRow(Self.Sensor.ToString)</SourceLine>
    <SourceLine>s.AddRow("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
