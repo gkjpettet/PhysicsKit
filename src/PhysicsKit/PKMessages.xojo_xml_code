@@ -912,5 +912,25 @@
   <ItemDef>A node cannot be created with a Nil comparable.</ItemDef>
   <ItemFlags>1</ItemFlags>
  </Constant>
+ <Constant>
+  <ItemName>COLLISION_FIXTURE_NIL_SHAPE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1361770495</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A fixture cannot be created with a Nil shape.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>COLLISION_FIXTURE_NIL_FILTER</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1820821503</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A fixture cannot have a Nil filter. Use the PKFilter.DEFAULT_FILTER instead</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
 </block>
 </RBProject>

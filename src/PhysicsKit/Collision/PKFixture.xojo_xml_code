@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="949133311">
+ <ObjName>PKFixture</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKDataContainer</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>GetUserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1463752703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetUserData() As Variant</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Note: Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return UserData</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Variant</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetUserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1234030591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetUserData(data As Variant)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Note: Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>UserData = data</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>data As Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>103735295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(shape As PKConvex)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter shape: The convex shape for this fixture.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `shape` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If shape Is Nil Then</SourceLine>
+   <SourceLine>Raise New NilObjectException(PKMessages.COLLISION_FIXTURE_NIL_SHAPE)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Shape = shape</SourceLine>
+   <SourceLine>Self.Flter = PKFilter.DEFAULT_FILTER</SourceLine>
+   <SourceLine>Self.Sensor = False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>shape As PKConvex</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1005801471</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("Fixture[HashCode=")</SourceLine>
+   <SourceLine>s.AddRow(Variant(Self).Hash.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Shape=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Shape.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Filter=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Filter.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|IsSensor=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Sensor)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetShape</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The convex shape representing the geometry of this fixture.</CodeDescription>
+  <PartID>2000482303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetShape() As PKConvex</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' The convex shape representing the geometry of this fixture.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Shape</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKConvex</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFilter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the collision filter for this fixture.</CodeDescription>
+  <PartID>2070274047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFilter() As PKFilter</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the collision filter for this fixture.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Filter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFilter</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetFilter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the collision filter for this fixture.</CodeDescription>
+  <PartID>1750796287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFilter(filter As PKFilter)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Sets the collision filter for this fixture.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter filter: The collision filter.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: NilObjectException if `filter` is Nil.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the given filter is Nil.</SourceLine>
+   <SourceLine>If filter Is Nil Then  Raise New NilObjectException(PKMessages.COLLISION_FIXTURE_NIL_FILTER)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Use the given filter.</SourceLine>
+   <SourceLine>Self.Filter = filter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>filter As PKFilter</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsSensor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this fixture is a sensor.</CodeDescription>
+  <PartID>1443782655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsSensor() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this fixture is a sensor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' A sensor fixture is a fixture that participates in collision detection but does not</SourceLine>
+   <SourceLine>' participate in collision resolution (response).</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.IsSensor</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetSensor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Toggles this fixture as a sensor fixture.</CodeDescription>
+  <PartID>469516287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetSensor(flag As Boolean)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Toggles this fixture as a sensor fixture.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter flag: True if this fixture should only sense contacts.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' A sensor fixture is a fixture that participates in collision detection but does not</SourceLine>
+   <SourceLine>' participate in collision resolution (response).</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Sensor = flag</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>flag As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1607602175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a geometric piece of a PKCollisionBody.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A PKFixture has a one-to-one relationship with a PKConvex PKShape, storing</NoteLine>
+   <NoteLine>additional collision specific information.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A PKCollisionBody is composed of many PKFixtures to represent its physical shape. While</NoteLine>
+   <NoteLine>the only shapes supported by the collision detection system are PKConvex shapes, the composition</NoteLine>
+   <NoteLine>of multiple PKFixtures in a PKCollisionBody allows the bodies to be non-convex.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The PKFixture's PKShape should be translated and rotated using the PKShape's methods</NoteLine>
+   <NoteLine>to move the shape relative to the containing PKCollisionBody.  Other modifications to the shape is</NoteLine>
+   <NoteLine>not recommended after adding it to a PKFixture. To change the shape of a fixture, remove the </NoteLine>
+   <NoteLine>existing PKFixture from the PKCollisionBody and add a new PKFixture with an updated shape instead.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>There's no restriction on reusing PKShapes and PKFixtures between PKCollisionBodys, but </NoteLine>
+   <NoteLine>this is also discouraged to reduce confusion and unexpected behavior (primarily local </NoteLine>
+   <NoteLine>translations and rotations).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A PKFixture can have a PKFilter assigned to enable filtering of collisions between it</NoteLine>
+   <NoteLine>and other fixtures.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>A PKFixture can be flagged as a sensor fixture to enable standard collision detection, but disable</NoteLine>
+   <NoteLine>collision resolution (response).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Shape</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>he convex shape for this fixture.</CodeDescription>
+  <PartID>2136598527</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shape As PKConvex</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Shape As PKConvex</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Filter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The collision filter.</CodeDescription>
+  <PartID>872447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Filter As PKFilter</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Filter As PKFilter</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Sensor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Whether the fixture only senses contact.</CodeDescription>
+  <PartID>712202239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sensor As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Sensor As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>UserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The user data.</CodeDescription>
+  <PartID>1669079039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>UserData As Variant</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>UserData As Variant</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Sensor</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
