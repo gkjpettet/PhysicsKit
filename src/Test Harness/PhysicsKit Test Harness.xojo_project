@@ -160,6 +160,7 @@ Interface=PKFilter;../PhysicsKit/Collision/PKFilter.xojo_xml_code;&h000000006252
 Class=PKFixture;../PhysicsKit/Collision/PKFixture.xojo_xml_code;&h0000000075110FFF;&h000000006BE6D7FF;false
 Class=PKTypeFilter;../PhysicsKit/Collision/PKTypeFilter.xojo_xml_code;&h000000001CE707FF;&h000000006BE6D7FF;false
 Class=PKDefaultFilter;../PhysicsKit/Collision/PKDefaultFilter.xojo_xml_code;&h00000000317937FF;&h000000006BE6D7FF;false
+Class=PKCategoryFilter;../PhysicsKit/Collision/PKCategoryFilter.xojo_xml_code;&h00000000688087FF;&h000000006BE6D7FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

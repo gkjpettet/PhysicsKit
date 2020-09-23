@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1280407551">
+ <ObjName>PKCategoryFilter</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKFilter</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>IsAllowed</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given filter and this filter allow the objects to interact.</CodeDescription>
+  <PartID>1860079615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsAllowed(filter As PKFilter) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given filter and this filter allow the objects to interact.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter filter: The other filter.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' If the given filter is not the same type as this filter then returns True.</SourceLine>
+   <SourceLine>' If the given filter is Nil then returns True.</SourceLine>
+   <SourceLine>' Part of the PKFilter interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure the given filter is not Nil.</SourceLine>
+   <SourceLine>If filter Is Nil Then Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check the type.</SourceLine>
+   <SourceLine>If filter IsA PKCategoryFilter Then</SourceLine>
+   <SourceLine>// Cast the filter.</SourceLine>
+   <SourceLine>Var cf As PKCategoryFilter = PKCategoryFilter(filter)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Perform the check.</SourceLine>
+   <SourceLine>Return (Self.Category And cf.Mask) &gt; 0 And (cf.Category And Self.Mask) &gt; 0</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// If it's not of right type always return True.</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>filter As PKFilter</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>104015871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKFilter interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("CategoryFilter[Category=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Category.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Mask=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Mask.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>273872895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Category = 1</SourceLine>
+   <SourceLine>Self.Mask = MathsKit.INT64_MAX_VALUE</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1609879551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(category As Int64, mask As Int64)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter category: The category bits.</SourceLine>
+   <SourceLine>' - Parameter mask: The mask bits.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor</SourceLine>
+   <SourceLine>Self.Category = category</SourceLine>
+   <SourceLine>Self.Mask = mask</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>category As Int64, mask As Int64</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1107447807</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>If obj Is Nil Then Return False</SourceLine>
+   <SourceLine>If obj Is Self Then Return True</SourceLine>
+   <SourceLine>If obj IsA PKCategoryFilter Then</SourceLine>
+   <SourceLine>Var filter As PKCategoryFilter = PKCategoryFilter(obj)</SourceLine>
+   <SourceLine>Return filter.Category = Self.Category And filter.Mask = Self.Mask</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1059153919</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>Var hash As Integer = 17</SourceLine>
+   <SourceLine>hash = hash * 31 + (MathsKit.RShiftU64(Self.Category, 32) Xor Self.Category)</SourceLine>
+   <SourceLine>hash = hash * 31 + (MathsKit.RShiftU64(Self.Mask, 32) Xor Self.Mask)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return hash</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCategory</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the category bits.</CodeDescription>
+  <PartID>1179738111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCategory() As Int64</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the category bits.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Category</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Int64</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMask</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the mask bits.</CodeDescription>
+  <PartID>435095551</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetMask() As Int64</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the mask bits.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Mask</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Int64</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>217319423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>A filter} for categorised fixtures.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Constructing a PKCategoryFilter requires supplying two integers: a category integer and a mask integer.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>The usage of this class can be explained as follows:</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>```</NoteLine>
+   <NoteLine>Var f1 As PKCategoryFilter = New PKCategoryFilter(1, 1)</NoteLine>
+   <NoteLine>Var f2 As PKCategoryFilter = New PKCategoryFilter(2, 2)</NoteLine>
+   <NoteLine>Var f3 As PKCategoryFilter = New PKCategoryFitler(3, 3)</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>f1.IsAllowed(f2) // Returns False</NoteLine>
+   <NoteLine>f2.IsAllowed(f3) // Returns True</NoteLine>
+   <NoteLine>```</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This is because the integers passed in are being used via their binary representation.</NoteLine>
+   <NoteLine>If we examine the binary representation of these numbers:</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>1 = 0...0001</NoteLine>
+   <NoteLine>2 = 0...0010</NoteLine>
+   <NoteLine>3 = 0...0011</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>We see that 3 is actually a combination of 1 and 2.  Because of this `f3`</NoteLine>
+   <NoteLine>will actually be part of category 1 and 2, not its own category.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Because of this representation, there are a maximum of 64 categories that can be represented:</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>category  1 =  1 = 2^0</NoteLine>
+   <NoteLine>category  2 =  2 = 2^1</NoteLine>
+   <NoteLine>category  3 =  4 = 2^2</NoteLine>
+   <NoteLine>category  4 =  8 = 2^3</NoteLine>
+   <NoteLine>category  5 = 16 = 2^4</NoteLine>
+   <NoteLine>...</NoteLine>
+   <NoteLine>category 64 = MathsKit.Int64_MAX_VALUE = 2^64&lt;/pre&gt;</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>In addition, the mask integer is handled in a similar way. `f3` will be able to</NoteLine>
+   <NoteLine>collide with both category 1 and 2 because of the binary representation of 3.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>In general, the mask or category can be generated by OR-ing the categories.</NoteLine>
+   <NoteLine>For example:</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>```</NoteLine>
+   <NoteLine>Var CATEGORY_0 As Integer = 1</NoteLine>
+   <NoteLine>Var CATEGORY_1 As Integer = 2</NoteLine>
+   <NoteLine>Var CATEGORY_2 As Integer = 4</NoteLine>
+   <NoteLine>Var MASK_ALL As Intger = MathsKit.INT64_MAX_VALUE</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>// Make `f1` part of category 0, and allow collisions with category 0 and 1.</NoteLine>
+   <NoteLine>Var f1 As PKCategoryFilter = New PKCategoryFilter(CATEGORY_0, CATEGORY_0 Or CATEGORY_1)</NoteLine>
+   <NoteLine>&#32;</NoteLine>
+   <NoteLine>// Make `f2` part of category 1 and 2, and allow collisions with category 0 and 2.</NoteLine>
+   <NoteLine>Var f2 As PKCategoryFilter = New PKCategoryFilter(CATEGORY_1 Or CATEGORY_2, CATEGORY_0 Or CATEGORY_2)</NoteLine>
+   <NoteLine>&#32;</NoteLine>
+   <NoteLine>// Make `f3` part of category 2, and allow collision with every category.</NoteLine>
+   <NoteLine>Var f3 As PKCategoryFilter = New PKCategoryFilter(CATEGORY_2, MASK_ALL)</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>f1.IsAllowed(f2) // True since `f1` can collide with 0 or 1 and f2 is part of 1.</NoteLine>
+   <NoteLine>                 // and because `f2` can collide with 0 or 2 and f1 is part of 0.</NoteLine>
+   <NoteLine>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</NoteLine>
+   <NoteLine>f1.IsAllowed(f3) // False since `f1` can collide with 0 or 1 but `f3` is part of 2 only</NoteLine>
+   <NoteLine>                 // even though `f3` is allowed to collide with all categories (both must work).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>f2.IsAllowed(f3) // True since `f2` can collide with 0 or 2 and `f3` is part of 2.</NoteLine>
+   <NoteLine>                 // and because `f3` can collide with all categories</NoteLine>
+   <NoteLine>```</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>As its apparent from the code above, both `f1.IsAllowed(f2)` and `f2.IsAllowed(f1)` must return True</NoteLine>
+   <NoteLine>if the entire result is to be deemed True.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>By default the PKCategoryFilter will be set to category 1 and have a mask of all category bits.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Category</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The category this object is in.</CodeDescription>
+  <PartID>469739519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Category As Int64</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Category As Int64</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Mask</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The categories this object can collide with.</CodeDescription>
+  <PartID>1089396735</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Mask As Int64</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Mask As Int64</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Category</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Int64</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Mask</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
