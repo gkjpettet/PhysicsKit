@@ -46,7 +46,7 @@
    <SourceLine>Var selfTI As Introspection.TypeInfo = Introspection.GetType(Self)</SourceLine>
    <SourceLine>Var filterTI As Introspection.TypeInfo = Introspection.GetType(filter)</SourceLine>
    <SourceLine>// Check the types of </SourceLine>
-   <SourceLine>If selfTI.FullName = filterTI.FullName Or selfTI.IsSubclassOf(filterTI) Or filterTI.IsSubclassOf(selfTI) Then</SourceLine>
+   <SourceLine>If selfTI.IsSubclassOf(filterTI) Or filterTI.IsSubclassOf(selfTI) Then</SourceLine>
    <SourceLine>// If they are the same type then return True.</SourceLine>
    <SourceLine>// If the given filter is a descendant type of this filter type then return True.</SourceLine>
    <SourceLine>// If this type is a descendant of the given filter's type then return True.</SourceLine>
