@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Var group As TestGroup
 		  
+		  group = New CategoryFilterTests(Self, "CategoryFilter")
 		  group = New DefaultFilterTests(Self, "DefaultFilter")
 		  group = New TypeFilterTests(Self, "TypeFilter")
 		  group = New FixtureTests(Self, "Fixture")
