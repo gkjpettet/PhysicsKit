@@ -176,6 +176,7 @@ Class=TypeFilterCategory3;Unit Tests/Tests/Collision/TypeFilter Tests/TypeFilter
 Class=TypeFilterCategory4;Unit Tests/Tests/Collision/TypeFilter Tests/TypeFilterCategory4.xojo_code;&h000000001E0AD7FF;&h00000000739C0FFF;false
 Interface=PKBounds;../PhysicsKit/Collision/PKBounds.xojo_xml_code;&h000000006C4237FF;&h000000006BE6D7FF;false
 Interface=PKCollisionBody;../PhysicsKit/Collision/PKCollisionBody.xojo_xml_code;&h0000000057D177FF;&h000000006BE6D7FF;false
+Interface=PKCollisionItem;../PhysicsKit/Collision/PKCollisionItem.xojo_xml_code;&h00000000399997FF;&h000000006BE6D7FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
