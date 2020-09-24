@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1175742463">
+ <ObjName>PKCollisionBody</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKDataContainer, PKOwnable, PKShiftable, PKTransformable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>1</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>TYPICAL_FIXTURE_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Number of fixtures typically attached to a collision body.</CodeDescription>
+  <PartID>1240547327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function TYPICAL_FIXTURE_COUNT() As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AddFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>918767615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AddFixture(fixture As PKFixture) As PKCollisionBody</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>PKCollisionBody</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AddFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates a fixture for the given convex shape, adds it to this collision body, and returns it.</CodeDescription>
+  <PartID>402475007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AddFixture(convex As PKConvex) As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>convex As PKConvex</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the fixture at the given index.</CodeDescription>
+  <PartID>941725695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture(index As Integer) As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ContainsFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Reutrns True if this collision body contains the given fixture.</CodeDescription>
+  <PartID>24758271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ContainsFixture(fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the first fixture in this collision body, determined by the order in which they were added, that contains the given point. Returns Nil if the point is not contained in any fixture in this collision body.</CodeDescription>
+  <PartID>2030446591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture(point As PKVector2) As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns all the fixtures in this collision body that contain the given world space point. Returns an empty array if the point is not contained in any fixture in this collision body.</CodeDescription>
+  <PartID>142596095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtures(point As PKVector2) As PKFixture()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the fixture at the given index and returns it. </CodeDescription>
+  <PartID>939735039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(index As Integer) As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveAllFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes all fixtures from this collision body and returns them as an array.</CodeDescription>
+  <PartID>969697279</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveAllFixtures() As PKFixture()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the first fixture in this collision body, determined by the order in which they were added, that contains the given world space point and returns it. Returns Nil if the point is not contained in any fixture in this collision body.</CodeDescription>
+  <PartID>1369870335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(point As PKVector2) As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes all the fixtures in this collision body that contain the given point and returns them. Returns an empty array if the world space point is not contained in any fixture in this collision body.</CodeDescription>
+  <PartID>952791039</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixtures(point As PKVector2) As PKFixture()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureCount</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of fixtures attached.</CodeDescription>
+  <PartID>1337432063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureCount() As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an array containing the fixtures attached to this collision body. The returned array is backed by the internal array, therefore adding or removing fixtures while iterating through it is not permitted. Use the `GetFixtureIterator` method instead.</CodeDescription>
+  <PartID>513509375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtures() As PKFixture()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns an iterator for this body's fixtures.</CodeDescription>
+  <PartID>2009350143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureIterator() As Iterator</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given world space point is contained in this collision body. The point is contained in this collision body only if the point is contained in one of this collision body's fixtures.</CodeDescription>
+  <PartID>271777791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2) As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the centre for this collision body in local coordinates.</CodeDescription>
+  <PartID>657891327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalCenter() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the centre for this collision body in world coordinates.</CodeDescription>
+  <PartID>2109700095</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldCenter() As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new point in local coordinates of this collision body given a point in world coordinates.</CodeDescription>
+  <PartID>960999423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalPoint(worldPoint As PKVector2) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>worldPoint As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new point in world coordinates given a point in the local coordinates of this collision body.</CodeDescription>
+  <PartID>125186047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldPoint(localPoint As PKVector2) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localPoint As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new vector in local coordinates of this collision body given a vector in world coordinates.</CodeDescription>
+  <PartID>1186222079</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalVector(worldVector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>worldVector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a new vector in world coordinates given a vector in the local coordinates of this collision body.</CodeDescription>
+  <PartID>660406271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldVector(localVector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localVector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationDiscRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the maximum radius of the disk that the collision body creates if rotated 360 degrees about its centre.</CodeDescription>
+  <PartID>2143672319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationDiscRadius() As Double</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the local to world space transform of this collision body.</CodeDescription>
+  <PartID>1255116799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransform() As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPreviousTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the transform of the last iteration. This transform represents the last frame's position and orientation.</CodeDescription>
+  <PartID>2068344831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPreviousTransform() As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets this collision body's local to world space transform. If the given transform is Nil, nothing is done and this method returns immediately.</CodeDescription>
+  <PartID>1531381759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTransform(transform As PKTransform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RotateAboutCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates this collision body about its centre.</CodeDescription>
+  <PartID>2071418879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RotateAboutCenter(theta As Double)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TranslateToOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Translates the center of the collision body to the world space origin (0,0).</CodeDescription>
+  <PartID>1199261695</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TranslateToOrigin()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an AABB from this collision body's attached fixtures using the given world space transform. If there are no fixtures attached, a degenerate AABB, (0.0, 0.0) to (0.0, 0.0), is returned.</CodeDescription>
+  <PartID>619853823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetEnabled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the body as enabled or not. A disabled body is completely ignored by the engine. A body will be automatically  only when it's out of bounds. If there's no bounds detection this will never be set automatically.</CodeDescription>
+  <PartID>183992319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetEnabled(enabled As Boolean)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>enabled As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsEnabled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this collision body is enabled.</CodeDescription>
+  <PartID>1137188863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsEnabled() As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureModificationHandler</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the PKFixtureModificationHandler for this body.</CodeDescription>
+  <PartID>1081069567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureModificationHandler() As PKFixtureModificationHandler</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixtureModificationHandler</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetFixtureModificationHandler</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the PKFixtureModificationHandler for this body.</CodeDescription>
+  <PartID>1954979839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFixtureModificationHandler(handler As PKFixtureModificationHandler)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>handler As PKFixtureModificationHandler</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1401421823</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents an object that can collide with other objects.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>TYPICAL_FIXTURE_COUNT is implemented as a static final integer in dyn4j but because Xojo </NoteLine>
+   <NoteLine>doesn't support static interface methods or default implementations within an interface we will </NoteLine>
+   <NoteLine>need to implement this method for every class implementing this interface. Its value is `1`.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>=======================</NoteLine>
+   <NoteLine>AddFixture(PKFixture) As PKCollisionBody</NoteLine>
+   <NoteLine>- Adds the given fixture to this collision body and returns this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>AddFixture(PKConvex) As PKFixture</NoteLine>
+   <NoteLine>- Creates a fixture for the given convex shape, adds it to this collision body, and returns it.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixture(Integer) As PKFixture</NoteLine>
+   <NoteLine>- Returns the fixture at the given index.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixture(PKVector2) As PKFixture or Nil</NoteLine>
+   <NoteLine>- Returns the first fixture in this collision body, determined by the order in which they were added, </NoteLine>
+   <NoteLine>  that contains the given point. Returns Nil if the point is not contained in any fixture in this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>ContainsFixture(PKFixture) As Boolean</NoteLine>
+   <NoteLine>- Returns True if this collision body contains the given fixture.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixtures(PKVector2) As PKFixture()</NoteLine>
+   <NoteLine>- Returns all the fixtures in this collision body that contain the given world space point. </NoteLine>
+   <NoteLine>  Returns an empty array if the point is not contained in any fixture in this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RemoveFixture(Integer) As PKFixture</NoteLine>
+   <NoteLine>- Removes the fixture at the given index and returns it. </NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RemoveFixture(PKVector2) As PKFixture or Nil</NoteLine>
+   <NoteLine>- Removes the first fixture in this collision body, determined by the order in which they were added, </NoteLine>
+   <NoteLine>  that contains the given world space point and returns it. Returns Nil if the point is not </NoteLine>
+   <NoteLine>  contained in any fixture in this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RemoveAllFixtures() As PKFixture()</NoteLine>
+   <NoteLine>- Removes all fixtures from this collision body and returns them as an array.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RemoveFixtures(PKVector2) As PKFixture()</NoteLine>
+   <NoteLine>- Removes all the fixtures in this collision body that contain the given point and returns them. </NoteLine>
+   <NoteLine>  Returns an empty array if the world space point is not contained in any fixture in this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixtureCount() As Integer</NoteLine>
+   <NoteLine>- Returns the number of fixtures attached.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixtures() As PKFixture()</NoteLine>
+   <NoteLine>- Returns an array containing the fixtures attached to this collision body. The returned array is backed by </NoteLine>
+   <NoteLine>  the internal array, therefore adding or removing fixtures while iterating through it is not permitted. </NoteLine>
+   <NoteLine>  Use the `GetFixtureIterator` method instead.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixtureIterator() As Iterator</NoteLine>
+   <NoteLine>- Returns an iterator for this body's fixtures.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Contains(PKVector2) As Boolean</NoteLine>
+   <NoteLine>- Returns True if the given world space point is contained in this collision body. </NoteLine>
+   <NoteLine>  The point is contained in this collision body only if the point is contained in one of this </NoteLine>
+   <NoteLine>  collision body's fixtures.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetLocalCenter() As PKVector2</NoteLine>
+   <NoteLine>- Returns the centre for this collision body in local coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetWorldCenter() As PKVector2</NoteLine>
+   <NoteLine>- Returns the centre for this collision body in world coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetLocalPoint(PKVector2) As PKVector2</NoteLine>
+   <NoteLine>- Returns a new point in local coordinates of this collision body given a point in world coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetWorldPoint(PKVector2) As PKVector2</NoteLine>
+   <NoteLine>- Returns a new point in world coordinates given a point in the local coordinates of this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetLocalVector(PKVector2) As PKVector2</NoteLine>
+   <NoteLine>- Returns a new vector in local coordinates of this collision body given a vector in world coordinates.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetWorldVector(PKVector2) As PKVector2</NoteLine>
+   <NoteLine>- Returns a new vector in world coordinates given a vector in the local coordinates of this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetRotationDiscRadius() As Double</NoteLine>
+   <NoteLine>- Returns the maximum radius of the disk that the collision body creates if rotated 360 degrees about its centre.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetTransform() As PKTransform</NoteLine>
+   <NoteLine>- Returns the local to world space transform of this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetPreviousTransform() As PKTransform</NoteLine>
+   <NoteLine>- Returns the transform of the last iteration. This transform represents the last frame's position and orientation.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>SetTransform(PKTransform)</NoteLine>
+   <NoteLine>- Sets this collision body's local to world space transform. If the given transform is Nil, nothing is </NoteLine>
+   <NoteLine>  done and this method returns immediately.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RotateAboutCenter(Double)</NoteLine>
+   <NoteLine>- Rotates this collision body about its centre.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>TranslateToOrigin()</NoteLine>
+   <NoteLine>- Translates the center of the collision body to the world space origin (0,0).</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>CreateAABB(PKTransform) As PKAABB</NoteLine>
+   <NoteLine>- Creates an AABB from this collision body's attached fixtures using the given world space transform. </NoteLine>
+   <NoteLine>  If there are no fixtures attached, a degenerate AABB, (0.0, 0.0) to (0.0, 0.0), is returned.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>SetEnabled(Boolean)</NoteLine>
+   <NoteLine>- Sets the body as enabled or not. A disabled body is completely ignored by the engine. </NoteLine>
+   <NoteLine>  A body will be automatically  only when it's out of bounds. If there's no bounds detection this will </NoteLine>
+   <NoteLine>  never be set automatically.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>IsEnabled() As Boolean</NoteLine>
+   <NoteLine>- Returns True if this collision body is enabled.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>GetFixtureModificationHandler() As PKFixtureModificationHandler</NoteLine>
+   <NoteLine>- Returns the PKFixtureModificationHandler for this body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>SetFixtureModificationHandler(PKFixtureModificationHandler)</NoteLine>
+   <NoteLine>- Sets the PKFixtureModificationHandler for this body.</NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
