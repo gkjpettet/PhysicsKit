@@ -57,7 +57,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [ ] Separation.java
 		- [ ] SingleTypedFallbackCondition.java
 		- [ ] TypedFallbackCondition.java
-	- [ ] AbstractBounds.java
+	- [x] AbstractBounds.java
 	- [ ] AbstractCollidable.java
 	- [ ] AbstractCollisionBody.java
 	- [ ] AbstractCollisionItem.java
