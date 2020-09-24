@@ -143,9 +143,19 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetFixtures(point As PKVector2) As PKFixture()</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Var result() As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each fixture As PKFixture In Self.Fixtures</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then result.AddRow(fixture)</SourceLine>
+   <SourceLine>Next fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return result</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -294,9 +304,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetFixtureCount() As Integer</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Fixtures.Count</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -314,9 +327,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetFixtures() As PKFixture()</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Fixtures</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -334,9 +350,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetFixtureIterator() As Iterator</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return New PKFixtureIterator(self)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -1049,6 +1068,59 @@
   <IsShared>0</IsShared>
   <ItemParams>fixture As PKFixture</ItemParams>
   <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetRotationDiscRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Computes the rotation disc for this abstract collision body.</CodeDescription>
+  <PartID>78147583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetRotationDiscRadius(center As PKVector2)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Computes the rotation disc for this abstract collision body.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter center: The centre of rotation.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' This method requires that the centre of the body be given.</SourceLine>
+   <SourceLine>' The rotation disc radius is the radius, from the given point, of the disc that encompasses </SourceLine>
+   <SourceLine>' the entire body as if it was rotated 360 degrees about that point.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var r As Double = 0.0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check for zero fixtures.</SourceLine>
+   <SourceLine>If Fixtures.Count = 0 Then</SourceLine>
+   <SourceLine>// Set the radius to zero.</SourceLine>
+   <SourceLine>Self.Radius = 0.0</SourceLine>
+   <SourceLine>Return</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Loop over the fixtures.</SourceLine>
+   <SourceLine>For Each fixture As PKFixture In Self.Fixtures</SourceLine>
+   <SourceLine>// Get the convex for this fixture.</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the convex's radius using the body's centre of mass.</SourceLine>
+   <SourceLine>Var cr As Double = convex.GetRadius(center)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Keep the maximum.</SourceLine>
+   <SourceLine>r = Max(r, cr)</SourceLine>
+   <SourceLine>Next Fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the max.</SourceLine>
+   <SourceLine>Self.Radius = r</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>center As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>
