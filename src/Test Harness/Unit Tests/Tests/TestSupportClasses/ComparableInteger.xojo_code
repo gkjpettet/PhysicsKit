@@ -54,6 +54,10 @@ Implements FKComparable
 
 	#tag Method, Flags = &h0
 		Function ToString() As String
+		  ///
+		  ' - Note: Part of the FKStringable interface.
+		  ///
+		  
 		  Return Value.ToString
 		  
 		End Function

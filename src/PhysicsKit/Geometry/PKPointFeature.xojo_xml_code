@@ -101,6 +101,8 @@
    <SourceLine>' "PointFeature[Point=(X,Y)|Index=index]".</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
@@ -109,6 +111,7 @@
    <SourceLine>s.AddRow("|Index=")</SourceLine>
    <SourceLine>s.AddRow(Self.Index.ToString)</SourceLine>
    <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>

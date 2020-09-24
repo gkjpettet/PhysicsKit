@@ -4,6 +4,7 @@
  <ObjName>PKRay</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -292,6 +293,8 @@
    <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns a String representation of this Ray.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>

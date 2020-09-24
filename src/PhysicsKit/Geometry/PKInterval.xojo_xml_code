@@ -4,6 +4,7 @@
  <ObjName>PKInterval</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -778,6 +779,8 @@
    <SourceLine>' Returns a String representation of this Interval in the format: "[min, max]".</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
@@ -786,6 +789,7 @@
    <SourceLine>s.AddRow(", ")</SourceLine>
    <SourceLine>s.AddRow(Self.Max.ToString)</SourceLine>
    <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>

@@ -4,6 +4,7 @@
  <ObjName>PKMonotoneVertex</ObjName>
  <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -40,6 +41,10 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Return Self.Data.ToString</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>

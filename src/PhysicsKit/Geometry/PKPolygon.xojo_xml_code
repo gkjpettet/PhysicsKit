@@ -751,6 +751,8 @@
    <SourceLine>' "Polygon[ID=id|Center=(X,Y)|Radius=radius|Vertices={(X,Y),n}]".</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: String</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>

@@ -48,6 +48,17 @@ Implements FKComparable
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function ToString() As String
+		  ///
+		  ' - Note: Part of the FKStringable interface.
+		  ///
+		  
+		  Return Value.ToString
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private Value As Integer

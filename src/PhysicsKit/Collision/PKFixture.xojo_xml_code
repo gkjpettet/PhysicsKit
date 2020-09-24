@@ -4,7 +4,7 @@
  <ObjName>PKFixture</ObjName>
  <ObjContainerID>0</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKDataContainer</Interfaces>
+ <Interfaces>PKDataContainer, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -95,18 +95,15 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine>s.AddRow("Fixture[HashCode=")</SourceLine>
    <SourceLine>s.AddRow(Variant(Self).Hash.ToString)</SourceLine>
    <SourceLine>s.AddRow("|Shape=")</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Var miToString As Introspection.MethodInfo = FoundationKit.GetMethod(Self.Shape, "ToString")</SourceLine>
-   <SourceLine>If miToString &lt;&gt; Nil Then</SourceLine>
-   <SourceLine>s.AddRow(miToString.Invoke(Self.Shape))</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>s.AddRow("Unknown Shape")</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow(Self.Shape.ToString)</SourceLine>
    <SourceLine>s.AddRow("|Filter=")</SourceLine>
    <SourceLine>s.AddRow(Self.Filter.ToString)</SourceLine>
    <SourceLine>s.AddRow("|IsSensor=")</SourceLine>

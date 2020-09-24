@@ -4,7 +4,7 @@
  <ObjName>PKConvex</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKShape</Interfaces>
+ <Interfaces>PKShape, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>1</IsInterface>
  <Compatibility></Compatibility>

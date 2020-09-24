@@ -4,7 +4,7 @@
  <ObjName>PKTypeFilter</ObjName>
  <ObjContainerID>0</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKFilter</Interfaces>
+ <Interfaces>PKFilter, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -75,7 +75,7 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>'- Note: Part of the PKFilter interface.</SourceLine>
+   <SourceLine>'- Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>

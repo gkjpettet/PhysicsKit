@@ -4,7 +4,7 @@
  <ObjName>PKBinarySearchTree</ObjName>
  <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces> Iterable</Interfaces>
+ <Interfaces> Iterable, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -748,6 +748,10 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine>Var iterator As PKBinarySearchTreeIterator = InOrderIterator</SourceLine>
    <SourceLine>s.AddRow("BinarySearchTree[")</SourceLine>

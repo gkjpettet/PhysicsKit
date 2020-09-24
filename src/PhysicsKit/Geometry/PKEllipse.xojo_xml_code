@@ -848,6 +848,8 @@
    <SourceLine>' Returns a String representation of this Ellipse.</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>

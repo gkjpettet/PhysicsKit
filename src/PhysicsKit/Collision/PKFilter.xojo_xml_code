@@ -4,6 +4,7 @@
  <ObjName>PKFilter</ObjName>
  <ObjContainerID>0</ObjContainerID>
  <IsClass>1</IsClass>
+ <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>1</IsInterface>
  <Compatibility></Compatibility>
@@ -25,24 +26,6 @@
   <IsShared>0</IsShared>
   <ItemParams>filter As PKFilter</ItemParams>
   <ItemResult>Boolean</ItemResult>
- </Method>
- <Method>
-  <ItemName>ToString</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>844990463</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function ToString() As String</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>String</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

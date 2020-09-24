@@ -4,7 +4,7 @@
  <ObjName>PKMass</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKCopyable</Interfaces>
+ <Interfaces>PKCopyable, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -541,6 +541,8 @@
    <SourceLine>' "Mass[Type=type|Center=c|Mass=m|Inertia=i]".</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: String.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>

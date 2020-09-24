@@ -5,6 +5,7 @@
  <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>PKObject</Superclass>
+ <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -62,8 +63,14 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>If Self.Value Is Nil Then</SourceLine>
    <SourceLine>Return "Nil"</SourceLine>
+   <SourceLine>ElseIf Self.Value IsA FKStringable Then</SourceLine>
+   <SourceLine>Return FKStringable(Self.Value).ToString</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>Return Self.Value.StringValue</SourceLine>
    <SourceLine>End If</SourceLine>

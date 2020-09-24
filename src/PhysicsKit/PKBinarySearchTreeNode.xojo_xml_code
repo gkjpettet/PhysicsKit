@@ -2,7 +2,7 @@
 <RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1693147135">
  <ObjName>PKBinarySearchTreeNode</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>856788991</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>FKComparable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -102,12 +102,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ToString() As String</SourceLine>
-   <SourceLine>Var toStringMethod As Introspection.MethodInfo = FoundationKit.GetMethod(Comparable, "ToString")</SourceLine>
-   <SourceLine>If toStringMethod &lt;&gt; Nil Then</SourceLine>
-   <SourceLine>Return toStringMethod.Invoke(Comparable)</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>Raise New UnsupportedOperationException("This comparable object does not implement the `ToString` method")</SourceLine>
-   <SourceLine>End If</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Comparable.ToString</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -284,11 +284,6 @@
   </ViewProperty>
   <ViewProperty>
    <ObjName>Left</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Right</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>

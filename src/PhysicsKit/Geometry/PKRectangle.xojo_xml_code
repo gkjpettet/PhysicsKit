@@ -382,6 +382,8 @@
    <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns a String representation of this Rectangle.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
