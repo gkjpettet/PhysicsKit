@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1297326079">
+ <ObjName>PKAbstractCollisionBody</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKCollisionBody, PKDataContainer, PKOwnable, PKTransformable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>AddFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Adds the given fixture to this collision body and returns this collision body.</CodeDescription>
+  <PartID>122947583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AddFixture(fixture As PKFixture) As PKCollisionBody</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Make sure neither is Nil.</SourceLine>
+   <SourceLine>If fixture Is Nil Then Raise New NilObjectException(PKMessages.DYNAMICS_BODY_ADD_NIL_FIXTURE)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Add the shape and mass to the respective lists.</SourceLine>
+   <SourceLine>Fixtures.AddRow(fixture)</SourceLine>
+   <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureAdded(fixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return this body to facilitate chaining.</SourceLine>
+   <SourceLine>Return Self</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>PKCollisionBody</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AddFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>786561023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AddFixture(convex As PKConvex) As PKFixture</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>convex As PKConvex</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1751771135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture(index As Integer) As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Fixtures(index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ContainsFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>15069183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ContainsFixture(fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Because the fixture array contains no Nils, this handles the case fixture Is Nil as well.</SourceLine>
+   <SourceLine>Return Fixtures.Contains(fixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1518338047</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture(point As PKVector2) As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each fixture As PKFixture In Fixtures</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then Return fixture</SourceLine>
+   <SourceLine>Next fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1431046143</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtures(point As PKVector2) As PKFixture()</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1358862335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(index As Integer) As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var fixture As PKFixture = Fixtures.Remove(index)</SourceLine>
+   <SourceLine>If fixture &lt;&gt; Nil And FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveAllFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1323769855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveAllFixtures() As PKFixture()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Copy the array of the current fixtures.</SourceLine>
+   <SourceLine>Var cache() As PKFixture</SourceLine>
+   <SourceLine>For Each f As PKFixture In Self.Fixtures</SourceLine>
+   <SourceLine>cache.AddRow(f)</SourceLine>
+   <SourceLine>Next f</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Notify of removal.</SourceLine>
+   <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.AllFixturesRemoved</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Lastly clear the array.</SourceLine>
+   <SourceLine>Self.Fixtures.RemoveAllRows</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return cache</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1017325567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(point As PKVector2) As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var lastRowIndex As Integer = Fixtures.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To lastRowIndex</SourceLine>
+   <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then</SourceLine>
+   <SourceLine>Self.Fixtures.Remove(i)</SourceLine>
+   <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
+   <SourceLine>Return fixture</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>24147967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixtures(point As PKVector2) As PKFixture()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>var cache() As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i As Integer = Self.Fixtures.LastRowIndex DownTo 0</SourceLine>
+   <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then</SourceLine>
+   <SourceLine>// We are going to remove this fixture. Cache it first.</SourceLine>
+   <SourceLine>cache.AddRowAt(0, fixture)</SourceLine>
+   <SourceLine>Self.Fixtures.RemoveRowAt(i)</SourceLine>
+   <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return cache</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureCount</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1956792319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureCount() As Integer</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtures</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1840934911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtures() As PKFixture()</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureIterator</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>527249407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureIterator() As Iterator</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Iterator</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1420824575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(point As PKVector2) As Boolean</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>point As PKVector2</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1045880831</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalCenter() As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>724711423</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldCenter() As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>639563775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalPoint(worldPoint As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>worldPoint As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>397768703</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldPoint(localPoint As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localPoint As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLocalVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1479737343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLocalVector(worldVector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>worldVector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWorldVector</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1886885887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWorldVector(localVector As PKVector2) As PKVector2</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>localVector As PKVector2</ItemParams>
+  <ItemResult>PKVector2</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetRotationDiscRadius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>520701951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetRotationDiscRadius() As Double</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>361938943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetTransform() As PKTransform</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetPreviousTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>112650239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetPreviousTransform() As PKTransform</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKTransform</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>534413311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetTransform(transform As PKTransform)</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RotateAboutCenter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>235964415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RotateAboutCenter(theta As Double)</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TranslateToOrigin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>514619391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub TranslateToOrigin()</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>482797567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>transform As PKTransform</ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetEnabled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2010425343</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetEnabled(enabled As Boolean)</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>enabled As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsEnabled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1714042879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsEnabled() As Boolean</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixtureModificationHandler</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>408193023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixtureModificationHandler() As PKFixtureModificationHandler</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixtureModificationHandler</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetFixtureModificationHandler</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1636620287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFixtureModificationHandler(handler As PKFixtureModificationHandler)</SourceLine>
+   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>handler As PKFixtureModificationHandler</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetUserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2018977791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetUserData() As Variant</SourceLine>
+   <SourceLine>// Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Variant</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetUserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>741869567</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetUserData(data As Variant)</SourceLine>
+   <SourceLine>// Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>data As Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetOwner</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1592492031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetOwner() As Object</SourceLine>
+   <SourceLine>// Part of the PKOwnable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Object</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetOwner</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1048465407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetOwner(owner As Object)</SourceLine>
+   <SourceLine>// Part of the PKOwnable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>owner As Object</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Shift</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>512720895</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Shift(shift As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKShiftable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>shift As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>548671487</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>626079743</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1923782655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(theta As Double, point As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>theta As Double, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1087043583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1166700543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2003312639</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(r As PKRotation, point As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>r As PKRotation, point As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>745355263</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
+   <SourceLine>// Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>x As Double, y As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1100929023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(vector As PKVector2)</SourceLine>
+   <SourceLine>// Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>vector As PKVector2</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>780429311</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Constructor(PhysicsKit.COLLISION_BODY_TYPICAL_FIXTURE_COUNT)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1493284863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(fixtureCount As Integer)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Optional constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter fixtureCount: The estimated number of fixtures.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Since Xojo dynamically grows arrays the passed `fixtureCount` is vestigial but is included to </SourceLine>
+   <SourceLine>' help with the dyn4j port.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused fixtureCount</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Radius = 0.0</SourceLine>
+   <SourceLine>Self.Transform = New PKTransform</SourceLine>
+   <SourceLine>Self.Transform0 = New PKTransform</SourceLine>
+   <SourceLine>Self.Enabled = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixtureCount As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>747825151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Because the fixture list contains no Nils, this handles the case fixture Is Nil as well</SourceLine>
+   <SourceLine>Var wasRemoved As Boolean = Fixtures.Remove(fixture)</SourceLine>
+   <SourceLine>If wasRemoved And FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return wasRemoved</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1763674111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>A base implementation of the `PKCollisionBody` interface.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Transform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current transform.</CodeDescription>
+  <PartID>233181183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Transform As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Transform As PKTransform</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Transform0</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The previous transform.</CodeDescription>
+  <PartID>946659327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Transform0 As PKTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Transform0 As PKTransform</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Fixtures()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>This body's fixtures.</CodeDescription>
+  <PartID>5531647</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Fixtures() As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Fixtures() As PKFixture</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>FixturesUnmodifiable()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>An unmodifiable view of the fixtures on this body</CodeDescription>
+  <PartID>2107166719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FixturesUnmodifiable() As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FixturesUnmodifiable() As PKFixture</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Radius</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The rotation disk radius.</CodeDescription>
+  <PartID>42422271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Radius As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Radius As Double</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>UserData</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The user data associated with this collision body.</CodeDescription>
+  <PartID>392833023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>UserData As Variant</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>UserData As Variant</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Enabled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if the body is enabled.</CodeDescription>
+  <PartID>1417496575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Enabled As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Enabled As Boolean</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>FixtureModificationHandler</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Used for notifcation of fixture modification events.</CodeDescription>
+  <PartID>806502399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FixtureModificationHandler As PKFixtureModificationHandler</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FixtureModificationHandler As PKFixtureModificationHandler</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Owner</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Used for ownership by another object.</CodeDescription>
+  <PartID>1938739199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Owner As Variant</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Owner As Variant</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

@@ -9,28 +9,10 @@
  <IsInterface>1</IsInterface>
  <Compatibility></Compatibility>
  <Method>
-  <ItemName>TYPICAL_FIXTURE_COUNT</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>Number of fixtures typically attached to a collision body.</CodeDescription>
-  <PartID>1240547327</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function TYPICAL_FIXTURE_COUNT() As Integer</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>Integer</ItemResult>
- </Method>
- <Method>
   <ItemName>AddFixture</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds the given fixture to this collision body and returns this collision body.</CodeDescription>
   <PartID>918767615</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
@@ -615,6 +597,25 @@
   <ItemParams>handler As PKFixtureModificationHandler</ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>RemoveFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the given fixture from this collision body.</CodeDescription>
+  <PartID>1072582655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RemoveFixture(fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -624,10 +625,6 @@
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>About</NoteLine>
    <NoteLine>Represents an object that can collide with other objects.</NoteLine>
-   <NoteLine></NoteLine>
-   <NoteLine>TYPICAL_FIXTURE_COUNT is implemented as a static final integer in dyn4j but because Xojo </NoteLine>
-   <NoteLine>doesn't support static interface methods or default implementations within an interface we will </NoteLine>
-   <NoteLine>need to implement this method for every class implementing this interface. Its value is `1`.</NoteLine>
    <NoteLine></NoteLine>
    <NoteLine>=======================</NoteLine>
    <NoteLine>AddFixture(PKFixture) As PKCollisionBody</NoteLine>
@@ -657,6 +654,9 @@
    <NoteLine>- Removes the first fixture in this collision body, determined by the order in which they were added, </NoteLine>
    <NoteLine>  that contains the given world space point and returns it. Returns Nil if the point is not </NoteLine>
    <NoteLine>  contained in any fixture in this collision body.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>RemoveFixture(PKFixture) As Boolean</NoteLine>
+   <NoteLine>- Removes the given fixture from this collision body.</NoteLine>
    <NoteLine></NoteLine>
    <NoteLine>RemoveAllFixtures() As PKFixture()</NoteLine>
    <NoteLine>- Removes all fixtures from this collision body and returns them as an array.</NoteLine>

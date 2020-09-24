@@ -932,5 +932,15 @@
   <ItemDef>A fixture cannot have a Nil filter. Use the PKFilter.DEFAULT_FILTER instead</ItemDef>
   <ItemFlags>1</ItemFlags>
  </Constant>
+ <Constant>
+  <ItemName>DYNAMICS_BODY_ADD_NIL_FIXTURE</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1308782591</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>0</ItemType>
+  <ItemDef>A Nil fixture cannot be added to a body.</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
 </block>
 </RBProject>

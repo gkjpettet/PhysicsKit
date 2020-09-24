@@ -1,6 +1,9 @@
 # PhysicsKit
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
+## Port progress
+Current porting `AbstractCollisionBody` upto (not including) `getFixtures(point)`.
+
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
@@ -58,8 +61,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 		- [ ] SingleTypedFallbackCondition.java
 		- [ ] TypedFallbackCondition.java
 	- [x] AbstractBounds.java
-	- [ ] AbstractCollidable.java
-	- [ ] AbstractCollisionBody.java
+	- [DEP] AbstractCollidable.java
+	- [-] AbstractCollisionBody.java
 	- [ ] AbstractCollisionItem.java
 	- [ ] AbstractCollisionPair.java
 	- [ ] AxisAlignedBounds.java
@@ -76,7 +79,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [x] Collisions.java	
 	- [x] Filter.java
 	- [x] Fixture.java
-	- [DEP] FixtureIterator.java
+	- [x] FixtureIterator.java
 	- [x] FixtureModificationHandler.java
 	- [x] TypeFilter.java
 - [ ] dynamics

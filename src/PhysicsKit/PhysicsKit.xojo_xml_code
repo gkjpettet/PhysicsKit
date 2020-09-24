@@ -227,6 +227,107 @@
   <ItemParams>Extends delf() As PKDoubleEdgeListFace, face As PKDoubleEdgeListFace</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns True if successful.</CodeDescription>
+  <PartID>1774757887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(Extends fixtures() As PKFixture, fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns </SourceLine>
+   <SourceLine>' True if successful.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends fixtures(): The array of fixtures to remove from.</SourceLine>
+   <SourceLine>' - Parameter fixture: The fixture to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the fixture was found and removed, False otherwise.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = fixtures.IndexOf(fixture)</SourceLine>
+   <SourceLine>If index &lt;&gt; -1 Then</SourceLine>
+   <SourceLine>fixtures.RemoveRowAt(index)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends fixtures() As PKFixture, fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1908248575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(Extends fixtures() As PKFixture, index As Integer) As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the fixture at the specified index from this array and returns it.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends fixtures(): The array to remove from.</SourceLine>
+   <SourceLine>' - Parameter index: 0-based element to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: The fixture removed.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if index &lt; 0 Or index &gt; fixtures.LastRowIndex</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If index &lt; 0 Or index &gt; fixtures.LastRowIndex Then Raise New OutOfBoundsException("Index out of bounds")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the fixture.</SourceLine>
+   <SourceLine>Var fixture As PKFixture = fixtures(index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Remove it.</SourceLine>
+   <SourceLine>fixtures.RemoveRowAt(index)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return it.</SourceLine>
+   <SourceLine>Return fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends fixtures() As PKFixture, index As Integer</ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed array contains the specified fixture.</CodeDescription>
+  <PartID>1381171199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(Extends fixtures() As PKFixture, fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed array contains the specified fixture.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends fixtures(): The array to check.</SourceLine>
+   <SourceLine>' - Parameter fixture: The fixture we are looking for.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return fixtures.IndexOf(fixture) &lt;&gt; -1</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends fixtures() As PKFixture, fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
   <Compatibility></Compatibility>
@@ -288,6 +389,17 @@
    <ItemType>Integer</ItemType>
   </ViewProperty>
  </ViewBehavior>
+ <Constant>
+  <ItemName>COLLISION_BODY_TYPICAL_FIXTURE_COUNT</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The number of fixtures typically connected to a collision body.</CodeDescription>
+  <PartID>1378101247</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>1</ItemDef>
+  <ItemFlags>1</ItemFlags>
+ </Constant>
  <Enumeration>
   <TextEncoding>134217984</TextEncoding>
   <ItemName>MassTypes</ItemName>
