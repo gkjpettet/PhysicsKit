@@ -789,20 +789,10 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub IsInfinity(value As Double, message As Text = "")
-		  If value = 1.0/0.0 Or value = -(1.0/0.0) Then
+		  If value.IsInfinite Then
 		    Pass()
 		  Else
 		    Fail("Infinity expected, but was " + value.ToText + ".", message)
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub IsNaN(value As Double, message As Text = "")
-		  If value.ToString.BeginsWith("NaN") Then
-		    Pass()
-		  Else
-		    Fail("NaN expected, but was " + value.ToText + ".", message)
 		  End If
 		End Sub
 	#tag EndMethod
@@ -825,6 +815,16 @@ Protected Class Assert
 		    Fail("Object was expected to be [nil], but was not.", message)
 		  End If
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsNotANumber(value As Double, message As Text = "")
+		  If value.IsNotANumber Then
+		    Pass()
+		  Else
+		    Fail("NaN expected, but was " + value.ToText + ".", message)
+		  End If
 		End Sub
 	#tag EndMethod
 
