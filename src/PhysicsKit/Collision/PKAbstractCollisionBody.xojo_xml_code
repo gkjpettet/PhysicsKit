@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1297326079">
  <ObjName>PKAbstractCollisionBody</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKCollisionBody, PKDataContainer, PKOwnable, PKTransformable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -48,9 +48,14 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function AddFixture(convex As PKConvex) As PKFixture</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>#Pragma Unused convex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException("Subclasses must implement this method")</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -373,9 +378,17 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Contains(point As PKVector2) As Boolean</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>For Each fixture As PKFixture In Self.Fixtures</SourceLine>
+   <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then Return True</SourceLine>
+   <SourceLine>Next fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -393,9 +406,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetLocalCenter() As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>'- Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException("Subclasses must implement this method")</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -413,9 +429,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetWorldCenter() As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform.GetTransformed(Self.GetLocalCenter)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -433,9 +452,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetLocalPoint(worldPoint As PKVector2) As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform.GetInverseTransformed(worldPoint)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -453,9 +475,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetWorldPoint(localPoint As PKVector2) As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform.GetTransformed(localPoint)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -473,9 +498,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetLocalVector(worldVector As PKVector2) As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform.GetInverseTransformedR(worldVector)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -493,9 +521,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetWorldVector(localVector As PKVector2) As PKVector2</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform.GetTransformedR(localVector)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -513,9 +544,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetRotationDiscRadius() As Double</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Radius</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -533,9 +567,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetTransform() As PKTransform</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -553,9 +590,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetPreviousTransform() As PKTransform</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Transform0</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -573,9 +613,13 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetTransform(transform As PKTransform)</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>If transform Is Nil Then Return</SourceLine>
+   <SourceLine>Self.Transform.Set(transform)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -593,9 +637,13 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub RotateAboutCenter(theta As Double)</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Var center As PKVector2 = Self.GetWorldCenter</SourceLine>
+   <SourceLine>Self.Rotate(theta, center)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -613,9 +661,16 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub TranslateToOrigin()</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>// Get the world space centre of mass.</SourceLine>
+   <SourceLine>Var wc As PKVector2 = Self.GetWorldCenter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Translate the body negative that much to put it at the origin.</SourceLine>
+   <SourceLine>Self.Transform.Translate(-wc.x, -wc.y)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -633,9 +688,28 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function CreateAABB(transform As PKTransform) As PKAABB</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>// Make sure there is at least one fixture.</SourceLine>
+   <SourceLine>If Fixtures.Count &gt; 0 Then</SourceLine>
+   <SourceLine>// Create the AABB for the first fixture.</SourceLine>
+   <SourceLine>Var aabb As PKAABB = Fixtures(0).GetShape.CreateAABB(transform)</SourceLine>
+   <SourceLine>// Loop over the remaining fixtures, unioning the AABBs.</SourceLine>
+   <SourceLine>For Each f As PKFixture In Fixtures</SourceLine>
+   <SourceLine>// Create the aabb for the current fixture</SourceLine>
+   <SourceLine>Var faabb As PKAABB = f.GetShape.CreateAABB(transform)</SourceLine>
+   <SourceLine>// Union the AABBs.</SourceLine>
+   <SourceLine>Call aabb.Union(faabb)</SourceLine>
+   <SourceLine>Next f</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the AABB</SourceLine>
+   <SourceLine>Return aabb</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return New PKAABB(0.0, 0.0, 0.0, 0.0)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -653,9 +727,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetEnabled(enabled As Boolean)</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Enabled = enabled</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -673,9 +750,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsEnabled() As Boolean</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Enabled</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -693,9 +773,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetFixtureModificationHandler() As PKFixtureModificationHandler</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.FixtureModificationHandler</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -713,9 +796,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetFixtureModificationHandler(handler As PKFixtureModificationHandler)</SourceLine>
-   <SourceLine>// Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.FixtureModificationHandler = handler</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -733,9 +819,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetUserData() As Variant</SourceLine>
-   <SourceLine>// Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.UserData</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -753,9 +842,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetUserData(data As Variant)</SourceLine>
-   <SourceLine>// Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKDataContainer interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.UserData = data</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -773,9 +865,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetOwner() As Object</SourceLine>
-   <SourceLine>// Part of the PKOwnable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKOwnable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Return Self.Owner</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -793,9 +888,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetOwner(owner As Object)</SourceLine>
-   <SourceLine>// Part of the PKOwnable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKOwnable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Owner = owner</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -813,9 +911,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Shift(shift As PKVector2)</SourceLine>
-   <SourceLine>// Part of the PKShiftable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKShiftable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Translate(shift)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -833,9 +934,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(theta As Double)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(theta)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -853,9 +957,11 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(theta As Double, x As Double, y As Double)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(theta, x, y)</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -873,9 +979,11 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(theta As Double, point As PKVector2)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(theta, point)</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -893,9 +1001,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(r As PKRotation)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(r)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -913,9 +1024,11 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(r As PKRotation, x As Double, y As Double)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(r, x, y)</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -933,9 +1046,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Rotate(r As PKRotation, point As PKVector2)</SourceLine>
-   <SourceLine>// Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKRotatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Rotate(r, point)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -953,9 +1069,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Translate(x As Double, y As Double)</SourceLine>
-   <SourceLine>// Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Translate(x, y)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -973,9 +1092,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Translate(vector As PKVector2)</SourceLine>
-   <SourceLine>// Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKTranslatable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#Pragma Error "TODO"</SourceLine>
+   <SourceLine>Self.Transform.Translate(vector)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -1121,6 +1243,29 @@
   <IsShared>0</IsShared>
   <ItemParams>center As PKVector2</ItemParams>
   <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>859842559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB() As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.CreateAABB(Self.Transform)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAABB</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

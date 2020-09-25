@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1175742463">
  <ObjName>PKCollisionBody</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKDataContainer, PKOwnable, PKShiftable, PKTransformable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -616,6 +616,25 @@
   <ItemParams>fixture As PKFixture</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>CreateAABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Creates an AABB from this collision body's attached fixtures. If there are no fixtures attached, a degenerate AABB, (0.0, 0.0) to (0.0, 0.0), is returned.</CodeDescription>
+  <PartID>1923100671</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CreateAABB() As PKAABB</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -721,6 +740,9 @@
    <NoteLine>CreateAABB(PKTransform) As PKAABB</NoteLine>
    <NoteLine>- Creates an AABB from this collision body's attached fixtures using the given world space transform. </NoteLine>
    <NoteLine>  If there are no fixtures attached, a degenerate AABB, (0.0, 0.0) to (0.0, 0.0), is returned.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>CreateAABB(PKTransform) As PKAABB</NoteLine>
+   <NoteLine>- Creates an AABB from this collision body's attached fixtures using the given world space transform.</NoteLine>
    <NoteLine></NoteLine>
    <NoteLine>SetEnabled(Boolean)</NoteLine>
    <NoteLine>- Sets the body as enabled or not. A disabled body is completely ignored by the engine. </NoteLine>
