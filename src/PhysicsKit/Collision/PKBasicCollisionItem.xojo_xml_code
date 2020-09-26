@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="836308991">
+ <ObjName>PKBasicCollisionItem</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractCollisionItem</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1258264575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(body As PKCollisionBody, fixture As PKFixture)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter body: The body.</SourceLine>
+   <SourceLine>' - Parameter fixture: The fixture.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>mBody = body</SourceLine>
+   <SourceLine>mFixture = fixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>body As PKCollisionBody, fixture As PKFixture</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1323190271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Overrides PKAbstractCollisionItem's implementation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKAbstractCollisionItem.Equals(Self, obj)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns this item's hash code.</CodeDescription>
+  <PartID>4003839</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns this item's hash code.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return PKAbstractCollisionItem.GetHashCode(mBody, mFixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Copy</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2021578751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Copy() As PKBasicCollisionItem</SourceLine>
+   <SourceLine>Return New PKBasicCollisionItem(mBody, mFixture)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKBasicCollisionItem</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetBody</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2065115135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetBody() As PKCollisionBody</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Overrides PKAbstractCollisionItem's implementation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mBody</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKCollisionBody</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>722184191</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture() As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Overrides PKAbstractCollisionItem's implementation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return mFixture</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>378818559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a basic, immutable implementation of the PKCollisionItem interface.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>mBody</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The body.</CodeDescription>
+  <PartID>1272729599</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mBody As PKCollisionBody</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mBody As PKCollisionBody</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>mFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The fixture.</CodeDescription>
+  <PartID>476506111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>mFixture As PKFixture</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>mFixture As PKFixture</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
