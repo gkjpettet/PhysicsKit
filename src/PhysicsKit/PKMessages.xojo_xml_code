@@ -869,7 +869,7 @@
   <PartID>1756030975</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>0</ItemType>
-  <ItemDef>Cannot decompose a null array of points.</ItemDef>
+  <ItemDef>Cannot decompose a Nil array of points.</ItemDef>
   <ItemFlags>1</ItemFlags>
  </Constant>
  <Constant>

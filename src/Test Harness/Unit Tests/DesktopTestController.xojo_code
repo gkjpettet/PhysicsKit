@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Var group As TestGroup
 		  
+		  group = New AbstractCollisionPairTests(Self, "AbstractCollisionPair")
 		  group = New CollisionsTests(Self, "Collisions")
 		  group = New AxisAlignedBoundsTests(Self, "AxisAlignedBounds")
 		  group = New CategoryFilterTests(Self, "CategoryFilter")

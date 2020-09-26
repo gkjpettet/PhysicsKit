@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="389670911">
  <ObjName>PKLinkedHashSetVector2</ObjName>
  <ObjContainerID>2093301759</ObjContainerID>
@@ -128,7 +128,7 @@
    <SourceLine>' If this set fits in the specified array with room to spare (i.e., the array has more </SourceLine>
    <SourceLine>' elements than this set), the element in the array immediately following the end of the </SourceLine>
    <SourceLine>' set is set to Nil. (This is useful in determining the length of this set only if </SourceLine>
-   <SourceLine>' the caller knows that this set does not contain any null elements.)</SourceLine>
+   <SourceLine>' the caller knows that this set does not contain any Nil elements.)</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If result.Count &lt; Self.Size Then</SourceLine>

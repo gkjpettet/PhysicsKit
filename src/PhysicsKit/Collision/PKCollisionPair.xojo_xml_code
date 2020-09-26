@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1189197823">
  <ObjName>PKCollisionPair</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -159,6 +159,25 @@
   <IsShared>0</IsShared>
   <ItemParams>body As PKCollisionBody</ItemParams>
   <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>This collision pair's hash code.</CodeDescription>
+  <PartID>1676965887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

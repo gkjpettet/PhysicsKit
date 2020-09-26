@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="578844671">
  <ObjName>PKBinarySearchTree</ObjName>
  <ObjContainerID>856788991</ObjContainerID>
@@ -1466,7 +1466,7 @@
    <SourceLine>node.Right.Parent = node.Parent</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>// If both are null then we can just remove the node check if this node is the root node.</SourceLine>
+   <SourceLine>// If both are Nil then we can just remove the node check if this node is the root node.</SourceLine>
    <SourceLine>If node = Self.Root Then</SourceLine>
    <SourceLine>Self.Root = Nil</SourceLine>
    <SourceLine>ElseIf isLeftChild Then</SourceLine>

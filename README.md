@@ -1,6 +1,9 @@
 # PhysicsKit
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
+## Port progress
+Porting `AbstractCollisionPairTest` up to (not including) `mapTest`.
+
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
@@ -351,7 +354,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] AbstractBoundsTest.java
 	- [ ] AbstractCollisionBodyTest.java
 	- [ ] AbstractCollisionItemTest.java
-	- [ ] AbstractCollisionPairTest.java
+	- [-] AbstractCollisionPairTest.java
 	- [x] AxisAlignedBoundsTest.java
 	- [ ] BasicCollisionItemTest.java
 	- [ ] BasicCollisionPairTest.java

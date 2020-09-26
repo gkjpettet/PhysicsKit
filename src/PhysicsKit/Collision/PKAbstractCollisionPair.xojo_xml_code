@@ -2,7 +2,7 @@
 <RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1963022335">
  <ObjName>PKAbstractCollisionPair</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKCollisionPair, PKCopyable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -208,7 +208,7 @@
   <PartID>1575024639</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetHashCode(body1 As PKCollisionBody, fixture1 As PKFixture, body2 As PKCollisionBody, fixture2 As PKFixture) As Integer</SourceLine>
+   <SourceLine>Shared Function GetHashCode(body1 As PKCollisionBody, fixture1 As PKFixture, body2 As PKCollisionBody, fixture2 As PKFixture) As Integer</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns the hash code for a collision pair.</SourceLine>
    <SourceLine>'</SourceLine>
@@ -229,7 +229,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <IsShared>1</IsShared>
   <ItemParams>body1 As PKCollisionBody, fixture1 As PKFixture, body2 As PKCollisionBody, fixture2 As PKFixture</ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
@@ -241,7 +241,7 @@
   <PartID>267890687</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function Equals(pairA As PKCollisionPair, obj As Variant) As Boolean</SourceLine>
+   <SourceLine>Shared Function Equals(pairA As PKCollisionPair, obj As Variant) As Boolean</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns True if the given pair and object are equal.</SourceLine>
    <SourceLine>'</SourceLine>
@@ -276,9 +276,32 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <IsShared>1</IsShared>
   <ItemParams>pairA As PKCollisionPair, obj As Variant</ItemParams>
   <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>742967295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionPair interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException("Subclasses must override this method")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>
