@@ -26,6 +26,8 @@
    <SourceLine>' - Raises: InvalidArgumentException if either width or height are &lt;= 0.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>Super.Constructor</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>If width &lt;= 0.0 Or height &lt;= 0.0 Then</SourceLine>
    <SourceLine>Raise New InvalidArgumentException(PKMessages.COLLISION_BOUNDS_AXIS_ALIGNED_INVALID_ARGUMENT)</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -50,7 +52,7 @@
   <PartID>1461528575</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Public Function ToString() As String</SourceLine>
+   <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>

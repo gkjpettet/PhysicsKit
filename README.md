@@ -352,7 +352,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] AbstractCollisionBodyTest.java
 	- [ ] AbstractCollisionItemTest.java
 	- [ ] AbstractCollisionPairTest.java
-	- [ ] AxisAlignedBoundsTest.java
+	- [x] AxisAlignedBoundsTest.java
 	- [ ] BasicCollisionItemTest.java
 	- [ ] BasicCollisionPairTest.java
 	- [x] CategoryFilterTest.java

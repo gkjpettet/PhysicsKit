@@ -1320,7 +1320,7 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Transform As PKTransform</ItemDeclaration>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
  </Property>
  <Property>
