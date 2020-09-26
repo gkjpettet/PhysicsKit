@@ -328,6 +328,42 @@
   <ItemParams>Extends fixtures() As PKFixture, fixture As PKFixture</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>AddAll</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Appends the elements in `array2` to the end of `array1` in the order they appear in `array2`.</CodeDescription>
+  <PartID>1237458943</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub AddAll(Extends array1() As PKFixture, array2() As PKFixture)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Appends the elements in `array2` to the end of `array1` in the order they appear in `array2`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends array1(): The array to append to.</SourceLine>
+   <SourceLine>' - Parameter array2(): An array containing elements to be appended to `array1`.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Mutates `array1` but does not modify `array2`.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma BoundsChecking False</SourceLine>
+   <SourceLine>#Pragma StackOverflowChecking False</SourceLine>
+   <SourceLine>#Pragma NilObjectChecking False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each f As PKFixture In array2</SourceLine>
+   <SourceLine>array1.AddRow(f)</SourceLine>
+   <SourceLine>Next f</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends array1() As PKFixture, array2() As PKFixture</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
   <Compatibility></Compatibility>

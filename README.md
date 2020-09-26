@@ -66,8 +66,8 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [x] BasicCollisionItem.java
 	- [x] BasicCollisionPair.java
 	- [x] Bounds.java
-	- [ ] BoundsAdaptor.java
-	- [ ] BoundsListener.java
+	- [DEP] BoundsAdaptor.java
+	- [DEP] BoundsListener.java
 	- [x] CategoryFilter.java
 	- [DEP] Collidable.java
 	- [x] CollisionBody.java
@@ -359,7 +359,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [ ] CollisionsTest.java
 	- [x] DefaultFilterTest.java
 	- [x] FixtureTest.java
-	- [ ] TestCollisionBody.java
+	- [x] TestCollisionBody.java
 	- [x] TypeFilterTest.java
 - [ ] dynamics
 	- [ ] contact

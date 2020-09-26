@@ -187,6 +187,7 @@ Class=PKAbstractCollisionBody;../PhysicsKit/Collision/PKAbstractCollisionBody.xo
 Class=PKAbstractCollisionItem;../PhysicsKit/Collision/PKAbstractCollisionItem.xojo_xml_code;&h000000004CF867FF;&h000000006BE6D7FF;false
 Class=PKAbstractCollisionPair;../PhysicsKit/Collision/PKAbstractCollisionPair.xojo_xml_code;&h000000005CE927FF;&h000000006BE6D7FF;false
 Class=PKAxisAlignedBounds;../PhysicsKit/Collision/PKAxisAlignedBounds.xojo_xml_code;&h000000005B10DFFF;&h000000006BE6D7FF;false
+Class=TestCollisionBody;Unit Tests/Tests/Collision/TestCollisionBody.xojo_code;&h000000004A355FFF;&h00000000117D6FFF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
