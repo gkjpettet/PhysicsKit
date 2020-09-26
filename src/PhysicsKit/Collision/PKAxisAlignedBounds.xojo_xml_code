@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="2135717887">
+ <ObjName>PKAxisAlignedBounds</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKAbstractBounds</Superclass>
+ <Interfaces>FKStringable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1257803775</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(width As Double, height As Double)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter width: The width of the bounds. Must be greater than zero.</SourceLine>
+   <SourceLine>' - Parameter height: The height of the bouds. Must be greater than zero.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Raises: InvalidArgumentException if either width or height are &lt;= 0.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If width &lt;= 0.0 Or height &lt;= 0.0 Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException(PKMessages.COLLISION_BOUNDS_AXIS_ALIGNED_INVALID_ARGUMENT)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var w2 As Double = width * 0.5</SourceLine>
+   <SourceLine>Var h2 As Double = height * 0.5</SourceLine>
+   <SourceLine>Self.AABB = New PKAABB(-w2, -h2, w2, h2)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>width As Double, height As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1461528575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Public Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine>s.AddRow("AxisAlignedBounds[Width=")</SourceLine>
+   <SourceLine>s.AddRow(Self.AABB.GetWidth.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Height=")</SourceLine>
+   <SourceLine>s.AddRow(Self.AABB.GetHeight.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Translation=")</SourceLine>
+   <SourceLine>s.AddRow(Self.GetTranslation.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOutside</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1456375807</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOutside(body As PKCollisionBody) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Overrides PKAbstractBounds implementation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tx As PKVector2 = Self.Transform.GetTranslation</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var aabbBounds As PKAABB = Self.AABB.GetTranslated(tx)</SourceLine>
+   <SourceLine>Var aabbBody As PKAABB = body.CreateAABB</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test the projections for overlap.</SourceLine>
+   <SourceLine>Return Not aabbBounds.Overlaps(aabbBody)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>body As PKCollisionBody</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOutside</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>573181951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOutside(aabb As PKAABB) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Overrides PKAbstractBounds implementation.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tx As PKVector2 = Self.Transform.GetTranslation</SourceLine>
+   <SourceLine>Var aabbBounds As PKAABB = Self.AABB.GetTranslated(tx)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Test the projections for overlap.</SourceLine>
+   <SourceLine>Return Not aabbBounds.Overlaps(aabb)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aabb As PKAABB</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetBounds</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the world space Axis-Aligned bounding box for this bounds object.</CodeDescription>
+  <PartID>2020564991</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetBounds() As PKAABB</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the world space Axis-Aligned bounding box for this bounds object.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Return the AABB in world coordinates.</SourceLine>
+   <SourceLine>Return Self.AABB.GetTranslated(Self.Transform.GetTranslation)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKAABB</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the width of the bounds.</CodeDescription>
+  <PartID>472672255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetWidth() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the width of the bounds.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.AABB.GetWidth</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHeight</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the height of the bounds.</CodeDescription>
+  <PartID>1906286591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetHeight() As Double</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the height of the bounds.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.AABB.GetHeight</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Double</ItemResult>
+ </Method>
+ <Property>
+  <ItemName>AABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The local coordinates AABB.</CodeDescription>
+  <PartID>1551884287</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>AABB As PKAABB</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>AABB As PKAABB</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

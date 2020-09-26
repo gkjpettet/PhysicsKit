@@ -62,7 +62,7 @@ A 2D collision detection and physics engine written in Xojo. A direct port of [d
 	- [x] AbstractCollisionBody.java
 	- [x] AbstractCollisionItem.java
 	- [x] AbstractCollisionPair.java
-	- [ ] AxisAlignedBounds.java
+	- [x] AxisAlignedBounds.java
 	- [ ] BasicCollisionItem.java
 	- [ ] BasicCollisionPair.java
 	- [x] Bounds.java
