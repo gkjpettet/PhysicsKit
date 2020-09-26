@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1387673599">
  <ObjName>PKCollisions</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -36,7 +36,7 @@
   <PartID>1245997055</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetEstimatedCollisionPairs(n As Integer) As Integer</SourceLine>
+   <SourceLine>Shared Function GetEstimatedCollisionPairs(n As Integer) As Integer</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns an estimate on the number of collision pairs based on the number objects being simulated.</SourceLine>
    <SourceLine>'</SourceLine>
@@ -50,7 +50,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <IsShared>1</IsShared>
   <ItemParams>n As Integer</ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
@@ -62,7 +62,7 @@
   <PartID>726687743</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetEstimatedCollisionsPerObject() As Integer</SourceLine>
+   <SourceLine>Shared Function GetEstimatedCollisionsPerObject() As Integer</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns an estimate on the number of collisions per object.</SourceLine>
    <SourceLine>///</SourceLine>
@@ -76,7 +76,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <IsShared>1</IsShared>
   <ItemParams></ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
@@ -88,7 +88,7 @@
   <PartID>1503062015</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function GetEstimatedRaycastCollisions(n As Integer) As Integer</SourceLine>
+   <SourceLine>Shared Function GetEstimatedRaycastCollisions(n As Integer) As Integer</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' Returns an estimate on the number of raycast collisions given the total number of objects to collide with.</SourceLine>
    <SourceLine>'</SourceLine>
@@ -102,7 +102,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <IsShared>1</IsShared>
   <ItemParams>n As Integer</ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
