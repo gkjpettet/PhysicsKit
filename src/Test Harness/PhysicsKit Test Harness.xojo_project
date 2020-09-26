@@ -182,6 +182,7 @@ Interface=PKCollisionPair;../PhysicsKit/Collision/PKCollisionPair.xojo_xml_code;
 Class=PKCollisions;../PhysicsKit/Collision/PKCollisions.xojo_xml_code;&h000000000613CFFF;&h000000006BE6D7FF;false
 Class=PKAbstractBounds;../PhysicsKit/Collision/PKAbstractBounds.xojo_xml_code;&h00000000093847FF;&h000000006BE6D7FF;false
 Class=PKAbstractCollisionBody;../PhysicsKit/Collision/PKAbstractCollisionBody.xojo_xml_code;&h0000000066181FFF;&h000000006BE6D7FF;false
+Class=PKAbstractCollisionItem;../PhysicsKit/Collision/PKAbstractCollisionItem.xojo_xml_code;&h000000004CF867FF;&h000000006BE6D7FF;false
 Class=PKAbstractCollisionPair;../PhysicsKit/Collision/PKAbstractCollisionPair.xojo_xml_code;&h000000005CE927FF;&h000000006BE6D7FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="650401791">
+ <ObjName>PKAbstractCollisionItem</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>PKCollisionItem, PKCopyable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>GetBody</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1467281407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetBody() As PKCollisionBody</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionItem interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException("Subclasses must implement this method")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKCollisionBody</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetFixture</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1864949759</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetFixture() As PKFixture</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the PKCollisionItem interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException("Subclasses must implement this method")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>PKFixture</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetHashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the hash code for a collision item.</CodeDescription>
+  <PartID>1565634559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetHashCode(body As PKCollisionBody, fixture As PKFixture) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the hash code for a collision item.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter body: The first body.</SourceLine>
+   <SourceLine>' - Parameter fixture: The first body's fixture.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Const PRIME = 17</SourceLine>
+   <SourceLine>Var h1 As Integer = 1</SourceLine>
+   <SourceLine>h1 = h1 * PRIME + body.HashCode</SourceLine>
+   <SourceLine>h1 = h1 * PRIME + fixture.HashCode</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return h1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>body As PKCollisionBody, fixture As PKFixture</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the given item and object are equal.</CodeDescription>
+  <PartID>428281855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function Equals(item As PKCollisionItem, obj As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the given item and object are equal.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter item: The item.</SourceLine>
+   <SourceLine>' - Parameter obj: The other object.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If obj Is item Then Return True</SourceLine>
+   <SourceLine>If obj Is Nil Or item Is Nil Then Return False</SourceLine>
+   <SourceLine>If obj IsA PKCollisionItem Then</SourceLine>
+   <SourceLine>Var other As PKCollisionItem = PKCollisionItem(obj)</SourceLine>
+   <SourceLine>Return other.GetBody Is item.GetBody And other.GetFixture Is item.GetFixture</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>item As PKCollisionItem, obj As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1668937727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>PKCollisionItem interface.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>tion of the C</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

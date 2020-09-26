@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="949133311">
  <ObjName>PKFixture</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
+ <Superclass>PKObject</Superclass>
  <Interfaces>PKDataContainer, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
