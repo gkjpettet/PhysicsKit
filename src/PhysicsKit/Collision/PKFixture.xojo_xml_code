@@ -4,8 +4,7 @@
  <ObjName>PKFixture</ObjName>
  <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>PKObject</Superclass>
- <Interfaces>PKDataContainer, FKStringable</Interfaces>
+ <Interfaces>PKDataContainer, FKStringable, FKComparable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -259,6 +258,79 @@
   <IsShared>0</IsShared>
   <ItemParams>flag As Boolean</ItemParams>
   <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CompareTo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>402255871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CompareTo(other As Variant) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused other</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>682201087</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(other As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused other</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1126449151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Variant(Self).Hash</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>

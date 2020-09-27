@@ -52,6 +52,19 @@ Implements FKComparable
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686973206F626A656374277320756E69717565206861736820636F64652E
+		Function HashCode() As Integer
+		  ///
+		  ' Returns this object's unique hash code.
+		  '
+		  ' - Note: Part of the FKComparable interface.
+		  ///
+		  
+		  Return Variant(Self).Hash
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function ToString() As String
 		  ///

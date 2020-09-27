@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="972042239">
  <ObjName>PKSweepLineEdge</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1397843967</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>FKComparable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -197,6 +197,32 @@
   <ItemParams>other As Variant</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns this object's unique hash code.</CodeDescription>
+  <PartID>498069503</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns this object's unique hash code.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Variant(Self).Hash</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
  <Note>
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
@@ -329,7 +355,7 @@
   <ViewProperty>
    <ObjName>Slope</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Integer</ItemType>
+   <ItemType>Double</ItemType>
   </ViewProperty>
  </ViewBehavior>
 </block>

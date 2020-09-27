@@ -42,6 +42,8 @@ Inherits TestGroup
 		  ' Tests the `Equals` method.
 		  ///
 		  
+		  Using TestSupportClasses
+		  
 		  Var test As PKReference = New PKReference(5)
 		  
 		  Var r1 As PKReference = New PKReference
@@ -56,7 +58,8 @@ Inherits TestGroup
 		  Assert.IsTrue(test.Equals(r5))
 		  Assert.IsTrue(test.Equals(test))
 		  
-		  Var obj As PKObject = New PKObject
+		  // Var obj As PKObject = New PKObject
+		  Var obj As ComparableObject = New ComparableObject
 		  Var test2 As PKReference = New PKReference(obj)
 		  
 		  Var r7 As PKReference = New PKReference(obj)
@@ -92,6 +95,8 @@ Inherits TestGroup
 		  ' Tests the `HashCode` method.
 		  ///
 		  
+		  Using TestSupportClasses
+		  
 		  Var test As PKReference = New PKReference(5)
 		  
 		  Var r1 As PKReference = New PKReference
@@ -106,7 +111,8 @@ Inherits TestGroup
 		  Assert.AreEqual(test.HashCode, r5.HashCode)
 		  Assert.AreEqual(test.HashCode, test.HashCode)
 		  
-		  Var obj As PKObject = New PKObject
+		  // Var obj As PKObject = New PKObject
+		  Var obj As ComparableObject = New ComparableObject
 		  Var test2 As PKReference = New PKReference(obj)
 		  
 		  Var r6 As PKReference = New PKReference

@@ -34,7 +34,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Color, actual As Color, message As Text = "")
-		  Dim expectedColor, actualColor As Text
+		  Var expectedColor, actualColor As Text
 		  
 		  If expected = actual Then
 		    Pass()
@@ -58,7 +58,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected() As Double, actual() As Double, message As Text = "")
-		  Dim expectedSize, actualSize As Double
+		  Var expectedSize, actualSize As Double
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -85,7 +85,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Double, actual As Double, tolerance As Double, message As Text = "")
-		  Dim diff As Double
+		  Var diff As Double
 		  
 		  diff = Abs(expected - actual)
 		  If diff <= (Abs(tolerance) + 0.00000001) Then
@@ -99,8 +99,8 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected As Double, actual As Double, message As Text = "")
-		  Dim tolerance As Double = 0.00000001
-		  'Dim tolerance As Double = 0.0000000000000001
+		  Var tolerance As Double = 0.00000001
+		  'Var tolerance As Double = 0.0000000000000001
 		  
 		  AreEqual(expected, actual, tolerance, message)
 		  
@@ -129,8 +129,8 @@ Protected Class Assert
 		    Return
 		  End If
 		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
+		  Var expectedSize As Integer = expected.Size
+		  Var actualSize As Integer = actual.Size
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
@@ -139,8 +139,8 @@ Protected Class Assert
 		    Return
 		  End If
 		  
-		  Dim sExpected As String = expected.StringValue(0, expectedSize)
-		  Dim sActual As String = actual.StringValue(0, actualSize)
+		  Var sExpected As String = expected.StringValue(0, expectedSize)
+		  Var sActual As String = actual.StringValue(0, actualSize)
 		  
 		  If StrComp(sExpected, sActual, 0) = 0 Then
 		    Pass()
@@ -213,7 +213,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected() As Integer, actual() As Integer, message As Text = "")
-		  Dim expectedSize, actualSize As Integer
+		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -240,7 +240,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreEqual(expected() As String, actual() As String, message As Text = "")
-		  Dim expectedSize, actualSize As Integer
+		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -279,7 +279,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreEqual(expected() As Text, actual() As Text, message As Text = "")
-		  Dim expectedSize, actualSize As Integer
+		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -380,8 +380,8 @@ Protected Class Assert
 		    Return
 		  End If
 		  
-		  Dim expectedSize As Integer = expected.Size
-		  Dim actualSize As Integer = actual.Size
+		  Var expectedSize As Integer = expected.Size
+		  Var actualSize As Integer = actual.Size
 		  
 		  If expectedSize <> actualSize Then
 		    Fail( "Expected MemoryBlock Size [" + expectedSize.ToText + _
@@ -395,7 +395,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Color, actual As Color, message As Text = "")
-		  Dim expectedColor, actualColor As Text
+		  Var expectedColor, actualColor As Text
 		  
 		  If expected <> actual Then
 		    Pass()
@@ -420,7 +420,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Double, actual As Double, tolerance As Double, message As Text = "")
-		  Dim diff As Double
+		  Var diff As Double
 		  
 		  diff = Abs(expected - actual)
 		  If diff > (Abs(tolerance) + 0.00000001) Then
@@ -434,7 +434,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreNotEqual(expected As Double, actual As Double, message As Text = "")
-		  Dim tolerance As Double = 0.00000001
+		  Var tolerance As Double = 0.00000001
 		  
 		  AreNotEqual(expected, actual, tolerance, message)
 		  
@@ -465,15 +465,15 @@ Protected Class Assert
 		    Pass()
 		    
 		  Else
-		    Dim expectedSize As Integer = expected.Size
-		    Dim actualSize As Integer = actual.Size
+		    Var expectedSize As Integer = expected.Size
+		    Var actualSize As Integer = actual.Size
 		    
 		    If expectedSize <> actualSize Then
 		      Pass()
 		      
 		    Else
 		      
-		      Dim sExpected As String = expected.StringValue(0, expectedSize)
+		      Var sExpected As String = expected.StringValue(0, expectedSize)
 		      dim sActual As String = actual.StringValue(0, actualSize)
 		      
 		      If StrComp(sExpected, sActual, 0) <> 0 Then
@@ -633,7 +633,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (not TargetHasGUI and not TargetWeb and not TargetIOS) or  (TargetWeb) or  (TargetHasGUI)
 		Sub AreSame(expected() As String, actual() As String, message As Text = "")
-		  Dim expectedSize, actualSize As Integer
+		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -678,7 +678,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h0
 		Sub AreSame(expected() As Text, actual() As Text, message As Text = "")
-		  Dim expectedSize, actualSize As Integer
+		  Var expectedSize, actualSize As Integer
 		  
 		  expectedSize = UBound(expected)
 		  actualSize = UBound(actual)
@@ -723,12 +723,12 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub DoesNotMatch(regExPattern As String, actual As String, message As Text = "")
 		  If regExPattern = "" Then
-		    Dim err As New RegExException
+		    Var err As New RegExException
 		    err.Reason = "No pattern was specified"
 		    Raise err
 		  End If
 		  
-		  Dim rx As New RegEx
+		  Var rx As New RegEx
 		  rx.SearchPattern = regExPattern
 		  
 		  If rx.Search(actual) Is Nil Then
@@ -741,9 +741,9 @@ Protected Class Assert
 
 	#tag Method, Flags = &h21
 		Private Function EncodeHexNewMB(mb As Xojo.Core.MemoryBlock) As Text
-		  Dim r() As Text
+		  Var r() As Text
 		  
-		  Dim lastByteIndex As Integer = mb.Size - 1
+		  Var lastByteIndex As Integer = mb.Size - 1
 		  For byteIndex As Integer = 0 To lastByteIndex
 		    r.Append mb.Data.Byte(byteIndex).ToHex
 		  Next
@@ -769,7 +769,7 @@ Protected Class Assert
 
 	#tag Method, Flags = &h21
 		Private Function FailEqualMessage(expected As Text, actual As Text) As Text
-		  Dim message As Text
+		  Var message As Text
 		  
 		  message = "Expected [" + expected + "] but was [" + actual + "]."
 		  
@@ -862,12 +862,12 @@ Protected Class Assert
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
 		Sub Matches(regExPattern As String, actual As String, message As Text = "")
 		  If regExPattern = "" Then
-		    Dim err As New RegExException
+		    Var err As New RegExException
 		    err.Reason = "No pattern was specified"
 		    Raise err
 		  End If
 		  
-		  Dim rx As New RegEx
+		  Var rx As New RegEx
 		  rx.SearchPattern = regExPattern
 		  
 		  If rx.Search(actual) Is Nil Then

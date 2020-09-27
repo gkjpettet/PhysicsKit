@@ -1,6 +1,5 @@
 #tag Class
 Protected Class InconsistentElementType
-Inherits PKObject
 Implements FKComparable
 	#tag Method, Flags = &h0
 		Function CompareTo(other As Variant) As Integer
@@ -37,10 +36,10 @@ Implements FKComparable
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Function HashCode() As Integer
+	#tag Method, Flags = &h0
+		Function HashCode() As Integer
 		  ///
-		  ' - Note: Overrides `PKObject.HashCode`.
+		  ' - Note: Part of the FKComparable interface.
 		  ///
 		  
 		  Return Value

@@ -97,6 +97,44 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub MapTest()
+		  ///
+		  ' Tests the hashcode/equals method for a standard map implementation.
+		  ///
+		  
+		  Var map As FKHashMap = New FKHashMap
+		  
+		  Var o1 As DateTime = DateTime.Now
+		  Var o2 As DateTime = DateTime.Now
+		  Var o3 As DateTime = DateTime.Now
+		  
+		  map.Put(pair_1a_to_2, o1)
+		  map.Put(pair_2_to_1b, o2)
+		  map.Put(pair_2_to_3, o3)
+		  
+		  Var test As DateTime
+		  test = map.Get(pair_1a_to_2)
+		  Assert.AreEqual(o1, test)
+		  
+		  test = map.Get(pair_1b_to_2)
+		  Assert.AreEqual(o2, test)
+		  
+		  test = map.Get(pair_2_to_1a)
+		  Assert.AreEqual(o1, test)
+		  
+		  test = map.Get(pair_2_to_1b)
+		  Assert.AreEqual(o2, test)
+		  
+		  test = map.Get(pair_2_to_3)
+		  Assert.AreEqual(o3, test)
+		  
+		  test = map.Get(pair_3_to_2)
+		  Assert.AreEqual(o3, test)
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private cb1 As TestCollisionBody

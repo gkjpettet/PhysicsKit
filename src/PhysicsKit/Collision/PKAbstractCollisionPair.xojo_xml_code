@@ -4,7 +4,7 @@
  <ObjName>PKAbstractCollisionPair</ObjName>
  <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
- <Interfaces>PKCollisionPair, PKCopyable</Interfaces>
+ <Interfaces>PKCollisionPair, PKCopyable, FKComparable</Interfaces>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -256,7 +256,7 @@
    <SourceLine>Var pairB As PKCollisionPair = PKCollisionPair(obj)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var c1a As PKCollisionBody = pairA.GetBody1</SourceLine>
-   <SourceLine>Var f1a As pKFixture = pairA.GetFixture1</SourceLine>
+   <SourceLine>Var f1a As PKFixture = pairA.GetFixture1</SourceLine>
    <SourceLine>Var c2a As PKCollisionBody = pairA.GetBody2</SourceLine>
    <SourceLine>Var f2a As PKFixture = pairA.GetFixture2</SourceLine>
    <SourceLine></SourceLine>
@@ -302,6 +302,75 @@
   <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CompareTo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>682539007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CompareTo(other As Variant) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused other</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1957210111</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(other As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#Pragma Unused other</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Raise New UnsupportedOperationException</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1090803711</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>// Part of the FKStringable interface.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
  </Method>
  <Note>
   <ItemName>About</ItemName>
