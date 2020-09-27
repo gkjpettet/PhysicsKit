@@ -354,7 +354,7 @@ Porting `AbstractCollisionPairTest` up to (not including) `mapTest`.
 	- [ ] AbstractBoundsTest.java
 	- [ ] AbstractCollisionBodyTest.java
 	- [ ] AbstractCollisionItemTest.java
-	- [-] AbstractCollisionPairTest.java
+	- [x] AbstractCollisionPairTest.java
 	- [x] AxisAlignedBoundsTest.java
 	- [ ] BasicCollisionItemTest.java
 	- [ ] BasicCollisionPairTest.java
