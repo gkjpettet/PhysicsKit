@@ -351,7 +351,7 @@ Porting `AbstractCollisionPairTest` up to (not including) `mapTest`.
 		- [ ] TriangleHalfEllipseTest.java
 		- [ ] TriangleSliceTest.java
 		- [ ] TriangleTriangleTest.java 
-	- [ ] AbstractBoundsTest.java
+	- [x] AbstractBoundsTest.java
 	- [ ] AbstractCollisionBodyTest.java
 	- [x] AbstractCollisionItemTest.java
 	- [x] AbstractCollisionPairTest.java
