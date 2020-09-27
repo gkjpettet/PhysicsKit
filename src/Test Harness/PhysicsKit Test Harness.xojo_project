@@ -47,6 +47,7 @@ Class=FixtureTests;Unit Tests/Tests/Collision/FixtureTests.xojo_code;&h000000004
 Class=CollisionsTests;Unit Tests/Tests/Collision/CollisionsTests.xojo_code;&h00000000054FA7FF;&h00000000117D6FFF;false
 Class=AbstractCollisionPairTests;Unit Tests/Tests/Collision/AbstractCollisionPairTests.xojo_code;&h00000000647A6FFF;&h00000000117D6FFF;false
 Class=AxisAlignedBoundsTests;Unit Tests/Tests/Collision/AxisAlignedBoundsTests.xojo_code;&h000000001B74F7FF;&h00000000117D6FFF;false
+Class=AbstractCollisionItemTests;Unit Tests/Tests/Collision/AbstractCollisionItemTests.xojo_code;&h0000000052FE7FFF;&h00000000117D6FFF;false
 Class=DefaultFilterTests;Unit Tests/Tests/Collision/DefaultFilterTests.xojo_code;&h000000003512CFFF;&h00000000117D6FFF;false
 Class=CategoryFilterTests;Unit Tests/Tests/Collision/CategoryFilterTests.xojo_code;&h0000000060F0FFFF;&h00000000117D6FFF;false
 Folder=Geometry;Unit Tests/Tests/Geometry;&h00000000246387FF;&h0000000044C729E7;false
