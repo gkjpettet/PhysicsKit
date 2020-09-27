@@ -829,8 +829,8 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub IsNotNil(anObject As Object, message As Text = "")
-		  If anObject <> Nil Then
+		Sub IsNotNil(obj As Variant, message As Text = "")
+		  If obj <> Nil Then
 		    Pass()
 		  Else
 		    Fail("Expected value not to be [nil], but was [nil].", message)

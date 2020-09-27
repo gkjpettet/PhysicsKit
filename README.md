@@ -2,7 +2,7 @@
 A 2D collision detection and physics engine written in Xojo. A direct port of [dyn4j], a Java 2D physics engine (version 4.0.0).
 
 ## Port progress
-Porting `AbstractCollisionPairTest` up to (not including) `mapTest`.
+Porting `AbstractCollisionBodyTest` up to (not including) `getFixtureIteratorFailures`.
 
 ## Main Files To Port
 - [ ] collision
@@ -352,7 +352,7 @@ Porting `AbstractCollisionPairTest` up to (not including) `mapTest`.
 		- [ ] TriangleSliceTest.java
 		- [ ] TriangleTriangleTest.java 
 	- [x] AbstractBoundsTest.java
-	- [ ] AbstractCollisionBodyTest.java
+	- [-] AbstractCollisionBodyTest.java
 	- [x] AbstractCollisionItemTest.java
 	- [x] AbstractCollisionPairTest.java
 	- [x] AxisAlignedBoundsTest.java

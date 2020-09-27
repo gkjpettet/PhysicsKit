@@ -26,6 +26,8 @@ Inherits PKAbstractBounds
 
 	#tag Method, Flags = &h0
 		Function IsOutside(aabb As PKAABB) As Boolean
+		  #Pragma Unused aabb
+		  
 		  Return False
 		  
 		End Function
@@ -33,6 +35,8 @@ Inherits PKAbstractBounds
 
 	#tag Method, Flags = &h0
 		Function IsOutside(body As PKCollisionBody) As Boolean
+		  #Pragma Unused body
+		  
 		  Return False
 		  
 		End Function
