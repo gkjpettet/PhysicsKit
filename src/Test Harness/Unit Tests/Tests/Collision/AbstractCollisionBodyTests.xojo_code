@@ -287,6 +287,73 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GetFixtureIteratorFailuresTest()
+		  ///
+		  ' Tests the GetFixtureIterator method failure cases.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Var it As PKFixtureIterator = PKFixtureIterator(b.GetFixtureIterator)
+		  Assert.IsNotNil(it)
+		  Assert.IsFalse(it.MoveNext)
+		  
+		  Call b.AddFixture(PKGeometry.CreateCircle(0.5))
+		  Call b.AddFixture(PKGeometry.CreateRectangle(1.0, 0.5))
+		  
+		  // Test overflow.
+		  it = PKFixtureIterator(b.GetFixtureIterator)
+		  Try
+		    Call it.MoveNext
+		    Call it.MoveNext
+		    Assert.IsFalse(it.MoveNext, "Expected `it.MoveNext` to return False")
+		  catch e As RuntimeException
+		    Assert.Fail("Unexpected RuntimeException")
+		  End Try
+		  
+		  // Test remove.
+		  it = PKFixtureIterator(b.GetFixtureIterator)
+		  Try
+		    it.Remove
+		    Assert.Fail("Expected an IteratorException")
+		  Catch e As IteratorException
+		    // Expected.
+		  Catch e As RuntimeException
+		    Assert.Fail("Unexpected RuntimeException")
+		  End Try
+		  
+		  // Test second remove.
+		  it = PKFixtureIterator(b.GetFixtureIterator)
+		  Try
+		    Call it.MoveNext
+		    it.Remove
+		    it.Remove
+		    Assert.Fail("Expected an IteratorException")
+		  Catch e As IteratorException
+		    // Expected.
+		  Catch e As RuntimeException
+		    Assert.Fail("Unexpected RuntimeException")
+		  End Try
+		  
+		  // Test source modification before remove.
+		  it = PKFixtureIterator(b.GetFixtureIterator)
+		  Try
+		    Call it.MoveNext
+		    Call b.RemoveAllFixtures
+		    it.Remove
+		    Assert.Fail("Expected an OutOfBoundsException")
+		  Catch e As OutOfBoundsException
+		    // Expected.
+		  Catch e As RuntimeException
+		    Assert.Fail("Unexpected RuntimeException")
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetFixtureIteratorTest()
 		  ///
 		  ' Tests the fixture iterator.
@@ -312,6 +379,88 @@ Inherits TestGroup
 		  Wend
 		  
 		  Assert.AreEqual(0, b.GetFixtureCount)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetFixturesTest()
+		  ///
+		  ' Tests the GetFixtures method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.IsNotNil(b.GetFixtures)
+		  
+		  Var f1 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.5))
+		  Var fixtures() As PKFixture = b.GetFixtures
+		  Assert.AreEqual(1, fixtures.Count)
+		  Assert.IsTrue(f1 = fixtures(0))
+		  
+		  Var f2 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.5))
+		  fixtures = b.GetFixtures
+		  Assert.AreEqual(2, fixtures.Count)
+		  Assert.IsTrue(f1 = fixtures(0))
+		  Assert.IsTrue(f2 = fixtures(1))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetFixtureModificationHandlerTest()
+		  ///
+		  ' Tests the get/set FixtureModificationHandler methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  Var f1 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.5))
+		  Var f2 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.4))
+		  
+		  Assert.IsNil(b.FixtureModificationHandler)
+		  Assert.IsNil(b.GetFixtureModificationHandler)
+		  
+		  Var fmc As FixtureModificationCounter = New FixtureModificationCounter
+		  b.SetFixtureModificationHandler(fmc)
+		  
+		  Assert.IsNotNil(b.FixtureModificationHandler)
+		  Assert.IsNotNil(b.GetFixtureModificationHandler)
+		  
+		  Call b.AddFixture(PKGeometry.CreateCircle(0.3))
+		  Call b.AddFixture(PKGeometry.CreateCircle(0.2))
+		  
+		  Assert.AreEqual(2, fmc.Added)
+		  
+		  Call b.RemoveFixture(0)
+		  
+		  Assert.AreEqual(1, fmc.Removed)
+		  
+		  Call b.RemoveAllFixtures
+		  
+		  Assert.IsTrue(fmc.AllRemoved)
+		  
+		  fmc.Reset
+		  Call b.AddFixture(f1)
+		  Call b.RemoveFixture(f1)
+		  
+		  Assert.AreEqual(1, fmc.Removed)
+		  
+		  fmc.Reset
+		  Call b.AddFixture(f1)
+		  Call b.AddFixture(f2)
+		  Call b.RemoveFixture(New PKVector2)
+		  
+		  Assert.AreEqual(1, fmc.Removed)
+		  
+		  fmc.Reset
+		  Call b.AddFixture(f1)
+		  Call b.RemoveFixtures(New PKVector2)
+		  
+		  Assert.AreEqual(2, fmc.Removed)
 		  
 		End Sub
 	#tag EndMethod

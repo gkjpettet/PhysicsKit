@@ -47,16 +47,16 @@ Implements PKFixtureModificationHandler
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21
-		Private Added As Integer
+	#tag Property, Flags = &h0
+		Added As Integer
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private AllRemoved As Boolean
+	#tag Property, Flags = &h0
+		AllRemoved As Boolean
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private Removed As Integer
+	#tag Property, Flags = &h0
+		Removed As Integer
 	#tag EndProperty
 
 
@@ -98,14 +98,6 @@ Implements PKFixtureModificationHandler
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Added"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
