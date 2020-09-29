@@ -120,7 +120,7 @@ Inherits TestGroup
 		  ' Tests the GetMinimum methods.
 		  ///
 		  
-		  Assert.AreEqual(-4, ComparableInteger(Tree.getMinimum).Value)
+		  Assert.AreEqual(-4, ComparableInteger(Tree.GetMinimum).Value)
 		  
 		  Var node AS PKBinarySearchTreeNode = Tree.Get(New ComparableInteger(10))
 		  Assert.AreEqual(4, ComparableInteger(Tree.GetMinimum(node).Comparable).Value)

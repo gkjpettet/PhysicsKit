@@ -304,7 +304,7 @@ Inherits TestGroup
 		  
 		  Var aabb As PKAABB = New PKAABB(-2.0, 0.0, 1.0, 1.0)
 		  
-		  Assert.AreEqual(1.0, aabb.getHeight)
+		  Assert.AreEqual(1.0, aabb.GetHeight)
 		  
 		End Sub
 	#tag EndMethod

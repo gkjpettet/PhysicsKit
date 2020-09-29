@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="64647167">
  <ObjName>PKMonotonePolygon</ObjName>
  <ObjContainerID>1397843967</ObjContainerID>
@@ -20,7 +20,7 @@
    <SourceLine>' Full constructor.</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Parameter type: The monotone polygon type.</SourceLine>
-   <SourceLine>' - Parameter vertices(): The sorted array of vertices; descending order.</SourceLine>
+   <SourceLine>' - Parameter vertices(): The sorted array of vertices in descending order.</SourceLine>
    <SourceLine>'</SourceLine>
    <SourceLine>' - Notes:</SourceLine>
    <SourceLine>' Since Xojo lacks Java's generics, we are passing in a Variant here but it should </SourceLine>

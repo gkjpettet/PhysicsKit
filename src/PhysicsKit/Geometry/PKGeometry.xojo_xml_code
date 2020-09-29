@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1393102847">
  <ObjName>PKGeometry</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -1287,7 +1287,7 @@
    <SourceLine>' - Raises: NilObjectException if `p1` or `p2` is Nil.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var s As PKSegment= PKGeometry.createSegment(p1, p2)</SourceLine>
+   <SourceLine>Var s As PKSegment= PKGeometry.CreateSegment(p1, p2)</SourceLine>
    <SourceLine>Var center As PKVector2 = s.GetCenter</SourceLine>
    <SourceLine>s.Translate(-center.X, -center.Y)</SourceLine>
    <SourceLine></SourceLine>

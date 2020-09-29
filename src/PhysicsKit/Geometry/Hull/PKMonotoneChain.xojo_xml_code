@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1296453631">
  <ObjName>PKMonotoneChain</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>627859455</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKHullGenerator</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -41,7 +41,7 @@
    <SourceLine>// This algorithm is very resilient to errors even with the vastly imprecise </SourceLine>
    <SourceLine>// `PKSegment.GetLocation`. But we still implement it with `PKRobustGeometry.GetLocation`</SourceLine>
    <SourceLine>// in order to provide better coincident point removal and consistent results</SourceLine>
-   <SourceLine>// with the rest algorithms; the added overhead is quite small.</SourceLine>
+   <SourceLine>// with the rest algorithms. The added overhead is quite small.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Find the points whose x values are the smallest and largest.</SourceLine>
    <SourceLine>Var minmin As Integer= 0</SourceLine>

@@ -272,13 +272,13 @@ Inherits TestGroup
 		  Call v.Set(1.0, 0.0, 0.0)
 		  Assert.IsFalse(v.IsZero)
 		  
-		  Call v.set(1.0, 1.0, 0.0)
+		  Call v.Set(1.0, 1.0, 0.0)
 		  Assert.IsFalse(v.IsZero)
 		  
-		  Call v.set(0.0, 1.0, 1.0)
+		  Call v.Set(0.0, 1.0, 1.0)
 		  Assert.IsFalse(v.IsZero)
 		  
-		  Call v.set(0.0, 0.0, 1.0)
+		  Call v.Set(0.0, 0.0, 1.0)
 		  Assert.IsFalse(v.IsZero)
 		  
 		End Sub

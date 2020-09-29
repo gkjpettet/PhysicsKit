@@ -143,10 +143,10 @@ Inherits TestGroup
 		  ///
 		  
 		  Var e As PKEllipse = New PKEllipse(1.0, 2.0)
-		  Assert.AreEqual(1.0, e.getHalfHeight)
-		  Assert.AreEqual(0.5, e.getHalfWidth)
-		  Assert.AreEqual(1.0, e.getWidth)
-		  Assert.AreEqual(2.0, e.getHeight)
+		  Assert.AreEqual(1.0, e.GetHalfHeight)
+		  Assert.AreEqual(0.5, e.GetHalfWidth)
+		  Assert.AreEqual(1.0, e.GetWidth)
+		  Assert.AreEqual(2.0, e.GetHeight)
 		  
 		End Sub
 	#tag EndMethod

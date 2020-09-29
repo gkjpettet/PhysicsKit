@@ -1386,7 +1386,7 @@
    <SourceLine>If min &lt;&gt; node.Right Then</SourceLine>
    <SourceLine>// Set the minimum node's parent's left pointer to the minimum node's right pointer </SourceLine>
    <SourceLine>// (this removes the minimum node from the tree and preserves the elements to the right</SourceLine>
-   <SourceLine>// of the minimum node; no elements should exist to the left of the minimum node since this is </SourceLine>
+   <SourceLine>// of the minimum node. No elements should exist to the left of the minimum node since this is </SourceLine>
    <SourceLine>// the minimum for this subtree).</SourceLine>
    <SourceLine>min.Parent.Left = min.Right</SourceLine>
    <SourceLine></SourceLine>
@@ -1601,7 +1601,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Loop until we reach the root node.</SourceLine>
    <SourceLine>While node &lt;&gt; Nil</SourceLine>
-   <SourceLine>// Balance the tree; this can return a new root node because of the rotations that happen therefore</SourceLine>
+   <SourceLine>// Balance the tree. This can return a new root node because of the rotations that happen therefore</SourceLine>
    <SourceLine>// we need to update the current node we are on.</SourceLine>
    <SourceLine>node = Balance(node)</SourceLine>
    <SourceLine></SourceLine>

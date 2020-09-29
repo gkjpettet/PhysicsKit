@@ -288,7 +288,7 @@ Inherits TestGroup
 		  
 		  // Test inverse rotation transformation.
 		  t.InverseTransformR(v)
-		  t.transformR(v)
+		  t.TransformR(v)
 		  Assert.IsTrue(v.equals(v))
 		  
 		End Sub

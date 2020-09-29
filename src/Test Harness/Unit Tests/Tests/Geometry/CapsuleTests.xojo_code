@@ -345,7 +345,7 @@ Inherits TestGroup
 		  e.Rotate(MathsKit.ToRadians(90))
 		  Assert.AreEqual(-1.000, e.Center.x, 1.0e-3)
 		  Assert.AreEqual( 1.000, e.Center.y, 1.0e-3)
-		  e.translate(e.GetCenter.GetNegative)
+		  e.Translate(e.GetCenter.GetNegative)
 		  
 		  // Should move the centre.
 		  e.Rotate(MathsKit.ToRadians(90), 1.0, -1.0)

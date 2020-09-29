@@ -1556,7 +1556,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call PKGeometry.createVerticalSegment(0.0)
+		    Call PKGeometry.CreateVerticalSegment(0.0)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return
@@ -2140,7 +2140,7 @@ Inherits TestGroup
 		  #Pragma BreakOnExceptions False
 		  
 		  Try
-		    Call PKGeometry.minkowskiSum(PKGeometry.createUnitCirclePolygon(5, 0.5), 0.2, -2)
+		    Call PKGeometry.minkowskiSum(PKGeometry.CreateUnitCirclePolygon(5, 0.5), 0.2, -2)
 		  Catch e As InvalidArgumentException
 		    Assert.Pass
 		    Return

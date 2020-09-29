@@ -68,19 +68,19 @@ Inherits TestGroup
 		  
 		  // Try using the default method.
 		  Var aabb2 As PKAABB = s.CreateAABB
-		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
-		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
-		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)
-		  Assert.AreEqual(aabb.getMaxY, aabb2.getMaxY)
+		  Assert.AreEqual(aabb.GetMinX, aabb2.GetMinX)
+		  Assert.AreEqual(aabb.GetMinY, aabb2.GetMinY)
+		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)
+		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
 		  
 		  Var tx As PKTransform = New PKTransform
 		  tx.Rotate(MathsKit.ToRadians(30.0))
 		  tx.Translate(1.0, 2.0)
 		  aabb = s.CreateAABB(tx)
-		  Assert.AreEqual(1.0, aabb.getMinX, 1.0e-3)
-		  Assert.AreEqual(2.0, aabb.getMinY, 1.0e-3)
-		  Assert.AreEqual(1.366, aabb.getMaxX, 1.0e-3)
-		  Assert.AreEqual(3.366, aabb.getMaxY, 1.0e-3)
+		  Assert.AreEqual(1.0, aabb.GetMinX, 1.0e-3)
+		  Assert.AreEqual(2.0, aabb.GetMinY, 1.0e-3)
+		  Assert.AreEqual(1.366, aabb.GetMaxX, 1.0e-3)
+		  Assert.AreEqual(3.366, aabb.GetMaxY, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod

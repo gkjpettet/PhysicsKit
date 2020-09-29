@@ -505,6 +505,32 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GetSetEnabledTest()
+		  ///
+		  ' Tests the set/is enabled methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.IsTrue(b.Enabled)
+		  Assert.IsTrue(b.IsEnabled)
+		  
+		  b.SetEnabled(False)
+		  
+		  Assert.IsFalse(b.Enabled)
+		  Assert.IsFalse(b.IsEnabled)
+		  
+		  b.SetEnabled(True)
+		  
+		  Assert.IsTrue(b.Enabled)
+		  Assert.IsTrue(b.IsEnabled)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetSetFixtureModificationHandlerTest()
 		  ///
 		  ' Tests the get/set FixtureModificationHandler methods.
@@ -681,6 +707,407 @@ Inherits TestGroup
 		  Assert.IsFalse(tx = b.GetTransform)
 		  Assert.AreEqual(tx.GetTranslationX, b.GetTransform.GetTranslationX)
 		  Assert.AreEqual(tx.GetTranslationY, b.GetTransform.GetTranslationY)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetUserDataTest()
+		  ///
+		  ' Make sure the user data is stored.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var obj As String = "hello"
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.IsNil(b.GetUserData)
+		  
+		  b.SetUserData(obj)
+		  Assert.IsNotNil(b.GetUserData)
+		  Assert.IsTrue(obj = b.GetUserData)
+		  
+		  b.SetUserData(Nil)
+		  Assert.IsNil(b.GetUserData)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWorldCenterTest()
+		  ///
+		  ' Tests the `GetWorldCenter` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Var wc As PKVector2 = b.GetWorldCenter
+		  Assert.AreEqual(0.0, wc.X)
+		  Assert.AreEqual(0.0, wc.Y)
+		  
+		  b.Translate(2.0, 0.5)
+		  wc = b.GetWorldCenter
+		  Assert.AreEqual(2.0, wc.X)
+		  Assert.AreEqual(0.5, wc.Y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWorldPointTest()
+		  ///
+		  ' Tests the `GetWorldPoint` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Var lsp As PKVector2 = New PKVector2
+		  Var wsp As PKVector2 = b.GetWorldPoint(lsp)
+		  
+		  // Test without transform.
+		  Assert.AreEqual(0.0, wsp.X)
+		  Assert.AreEqual(0.0, wsp.Y)
+		  
+		  // Test with transform.
+		  b.Translate(1.0, 2.0)
+		  wsp = b.GetWorldPoint(lsp)
+		  Assert.AreEqual(1.0, wsp.X)
+		  Assert.AreEqual(2.0, wsp.Y)
+		  
+		  // Test with transform + non-origin point.
+		  Call lsp.Set(1, 1)
+		  wsp = b.GetWorldPoint(lsp)
+		  Assert.AreEqual(2.0, wsp.X)
+		  Assert.AreEqual(3.0, wsp.Y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetWorldVectorTest()
+		  ///
+		  ' Tests the `GetWorldVector` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Var lsv As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var wsv As PKVector2 = b.GetWorldVector(lsv)
+		  
+		  // Test without transform.
+		  Assert.AreEqual(1.0, wsv.X)
+		  Assert.AreEqual(1.0, wsv.Y)
+		  
+		  // Test with transform.
+		  b.Translate(1.0, 2.0)
+		  wsv = b.GetWorldVector(lsv)
+		  Assert.AreEqual(1.0, wsv.X)
+		  Assert.AreEqual(1.0, wsv.Y)
+		  
+		  // Test with transform + non-origin point.
+		  b.Rotate(MathsKit.ToRadians(90))
+		  wsv = b.GetWorldVector(lsv)
+		  Assert.AreEqual(-1.0, wsv.X, 1e-8)
+		  Assert.AreEqual(1.0, wsv.Y, 1e-8)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveAllFixturesTest()
+		  ///
+		  ' Tests the removal of all fixtures.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  Call b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  Call b.AddFixture(PKGeometry.CreateRectangle(1.0, 0.5))
+		  Call b.AddFixture(PKGeometry.CreateSegment(New PKVector2(1.0, -2.0)))
+		  
+		  Assert.AreEqual(3, b.GetFixtureCount)
+		  
+		  Call b.RemoveAllFixtures
+		  
+		  Assert.AreEqual(0, b.GetFixtureCount)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveFixtureByIndexOutOfBoundsTest()
+		  ///
+		  ' Tests receiving index out of bounds exceptions.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Try
+		    Var b As TestBody = New TestBody
+		    // Test index with empty fixture list.
+		    Call b.RemoveFixture(0)
+		    Assert.Fail("Expected an OutOfBoundsException")
+		  Catch e As OutOfBoundsException
+		    Assert.Pass
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveFixtureByPointTest()
+		  ///
+		  ' Tests removing fixtures by a world space point.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  Call b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  Var bf As PKFixture = b.AddFixture(PKGeometry.CreateUnitCirclePolygon(5, 1.0))
+		  bf.GetShape.Translate(0.5, 0)
+		  
+		  // Test not in body.
+		  bf = b.RemoveFixture(New PKVector2(-1.0, -1.0))
+		  Assert.IsNil(bf)
+		  Assert.AreEqual(2, b.GetFixtures.Count)
+		  
+		  // Confirm there are two fixtures at this location.
+		  Assert.AreEqual(2, b.GetFixtures(New PKVector2(0.5, 0.25)).Count)
+		  
+		  // Test remove the first one.
+		  bf = b.RemoveFixture(New PKVector2(0.5, 0.25))
+		  Assert.IsNotNil(bf)
+		  Assert.IsTrue(bf.GetShape IsA PKCircle)
+		  Assert.AreEqual(1, b.GetFixtures.Count)
+		  
+		  // Add the fixture back.
+		  bf = b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  
+		  // Test not in body.
+		  Var bfs() As PKFixture = b.RemoveFixtures(New PKVector2(-1.0, -1.0))
+		  Assert.IsNotNil(bfs)
+		  Assert.AreEqual(0, bfs.Count)
+		  Assert.AreEqual(2, b.GetFixtures.Count)
+		  
+		  // Test in body remove one.
+		  bfs = b.RemoveFixtures(New PKVector2(1.25, 0.10))
+		  Assert.IsNotNil(bfs)
+		  Assert.AreEqual(1, bfs.Count)
+		  Assert.IsTrue(bfs(0).GetShape IsA PKPolygon)
+		  Assert.AreEqual(1, b.GetFixtures.Count)
+		  
+		  // Add the fixture back.
+		  bf = b.AddFixture(PKGeometry.CreateUnitCirclePolygon(5, 1.0))
+		  bf.GetShape.Translate(0.5, 0)
+		  
+		  // Test in body remove both.
+		  bfs = b.RemoveFixtures(New PKVector2(0.75, 0.10))
+		  Assert.IsNotNil(bfs)
+		  Assert.AreEqual(2, bfs.Count)
+		  Assert.AreEqual(0, b.GetFixtures.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveFixtureIndexNegativeTest()
+		  ///
+		  ' Tests receiving index out of bounds exceptions.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Try
+		    Var b As TestBody = New TestBody
+		    Call b.AddFixture(PKGeometry.CreateCircle(1.0))
+		    // Test negative index.
+		    Call b.RemoveFixture(-2)
+		    Assert.Fail("Expected an OutOfBoundsException")
+		  Catch e As OutOfBoundsException
+		    Assert.Pass
+		  End Try
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveFixtureNotFoundTest()
+		  ///
+		  ' Tests the remove fixture method failure cases.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  // Test Nil fixture.
+		  Var nilFixture As PKFixture = Nil
+		  Var success As Boolean = b.RemoveFixture(nilFixture)
+		  Assert.IsFalse(success)
+		  
+		  // Test not found fixture.
+		  Call b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  success = b.RemoveFixture(New PKFixture(PKGeometry.CreateRightTriangle(0.5, 0.3)))
+		  Assert.IsFalse(success)
+		  Assert.AreEqual(1, b.Fixtures.Count)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveFixtureTest()
+		  ///
+		  ' Tests the remove fixture methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  Var f As PKFixture = b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  
+		  // Test removing the fixture.
+		  Var success As Boolean = b.removeFixture(f)
+		  Assert.AreEqual(0, b.GetFixtures.Count)
+		  Assert.IsTrue(success)
+		  
+		  Call b.AddFixture(f)
+		  Var f2 As PKFixture = b.AddFixture(PKGeometry.CreateSquare(0.5))
+		  success = b.RemoveFixture(f)
+		  Assert.AreEqual(1, b.GetFixtures.Count)
+		  Var bFixtures() As PKFixture = b.GetFixtures
+		  Assert.IsTrue(f2 = bFixtures(0))
+		  Assert.IsTrue(success)
+		  
+		  // Test removing by index.
+		  f = b.AddFixture(PKGeometry.CreateEquilateralTriangle(0.5))
+		  Call b.AddFixture(PKGeometry.CreateRectangle(1.0, 2.0))
+		  f2 = b.RemoveFixture(1)
+		  
+		  Assert.AreEqual(2, b.GetFixtures.Count)
+		  Assert.IsTrue(f2 = f)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RotateTest()
+		  ///
+		  ' Tests the rotate methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.AreEqual(0.0, b.GetTransform.GetRotationAngle)
+		  
+		  Var r As Double = MathsKit.ToRadians(30)
+		  
+		  b.Rotate(r)
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationY)
+		  
+		  b.Rotate(New PKRotation(r))
+		  Assert.AreEqual(2.0 * r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationY)
+		  
+		  b.GetTransform.Identity
+		  b.Rotate(r, 1.0, 1.0)
+		  
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.6339745962155612, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(-0.3660254037844386, b.GetTransform.GetTranslationY)
+		  
+		  Var rp As PKVector2 = New PKVector2(1.0, 1.0)
+		  b.GetTransform.Identity
+		  b.Rotate(r, rp)
+		  
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.6339745962155612, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(-0.3660254037844386, b.GetTransform.GetTranslationY)
+		  
+		  b.GetTransform.Identity
+		  b.Rotate(New PKRotation(r), 1.0, 1.0)
+		  
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.6339745962155612, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(-0.3660254037844386, b.GetTransform.GetTranslationY)
+		  
+		  b.GetTransform.Identity
+		  b.Rotate(New PKRotation(r), rp)
+		  
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(0.6339745962155612, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(-0.3660254037844386, b.GetTransform.GetTranslationY)
+		  
+		  b.GetTransform.Identity
+		  b.GetTransform.Translate(1.0, 1.0)
+		  b.RotateAboutCenter(r)
+		  Assert.AreEqual(r, b.GetTransform.GetRotationAngle, 1e-15)
+		  Assert.AreEqual(1.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(1.0, b.GetTransform.GetTranslationY)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ShiftCoordinatesTest()
+		  ///
+		  ' Tests the `ShiftCoordinates` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  b.Shift(New PKVector2(-2.0, 1.0))
+		  
+		  // It just translates the transform.
+		  Var tx As PKVector2 = b.GetTransform.GetTranslation
+		  Assert.AreEqual(-2.0, tx.X, 1.0e-3)
+		  Assert.AreEqual(1.0, tx.Y, 1.0e-3)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TranslateTest()
+		  ///
+		  ' Tests the translate methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationY)
+		  
+		  b.Translate(1.0, 1.0)
+		  
+		  Assert.AreEqual(1.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(1.0, b.GetTransform.GetTranslationY)
+		  
+		  Var tx As PKVector2 = New PKVector2(2.0, -1.0)
+		  b.Translate(tx)
+		  Assert.AreEqual(3.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationY)
+		  
+		  b.TranslateToOrigin
+		  
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(0.0, b.GetTransform.GetTranslationY)
 		  
 		End Sub
 	#tag EndMethod

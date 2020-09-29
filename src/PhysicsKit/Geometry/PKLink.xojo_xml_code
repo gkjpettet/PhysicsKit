@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="2066259967">
  <ObjName>PKLink</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -101,7 +101,7 @@
    <SourceLine>' - Returns: PKVector2.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Return If(Self.NextLink &lt;&gt; Nil, Self.NextLink.getPoint2, Nil)</SourceLine>
+   <SourceLine>Return If(Self.NextLink &lt;&gt; Nil, Self.NextLink.GetPoint2, Nil)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>

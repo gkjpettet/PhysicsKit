@@ -77,17 +77,17 @@ Inherits TestGroup
 		  
 		  // Using an identity transform.
 		  Var aabb As PKAABB = e.CreateAABB(IDENTITY)
-		  Assert.AreEqual(-0.500, aabb.getMinX, 1.0e-3)
-		  Assert.AreEqual( 0.000, aabb.getMinY, 1.0e-3)
-		  Assert.AreEqual( 0.500, aabb.getMaxX, 1.0e-3)
-		  Assert.AreEqual( 0.250, aabb.getMaxY, 1.0e-3)
+		  Assert.AreEqual(-0.500, aabb.GetMinX, 1.0e-3)
+		  Assert.AreEqual( 0.000, aabb.GetMinY, 1.0e-3)
+		  Assert.AreEqual( 0.500, aabb.GetMaxX, 1.0e-3)
+		  Assert.AreEqual( 0.250, aabb.GetMaxY, 1.0e-3)
 		  
 		  // Try using the default method.
 		  Var aabb2 As PKAABB = e.CreateAABB
-		  Assert.AreEqual(aabb.getMinX, aabb2.getMinX)
-		  Assert.AreEqual(aabb.getMinY, aabb2.getMinY)
-		  Assert.AreEqual(aabb.getMaxX, aabb2.getMaxX)
-		  Assert.AreEqual(aabb.getMaxY, aabb2.getMaxY)
+		  Assert.AreEqual(aabb.GetMinX, aabb2.GetMinX)
+		  Assert.AreEqual(aabb.GetMinY, aabb2.GetMinY)
+		  Assert.AreEqual(aabb.GetMaxX, aabb2.GetMaxX)
+		  Assert.AreEqual(aabb.GetMaxY, aabb2.GetMaxY)
 		  
 		  // Test using a rotation and translation matrix.
 		  Var tx As PKTransform = New PKTransform
@@ -95,10 +95,10 @@ Inherits TestGroup
 		  tx.Translate(1.0, 2.0)
 		  
 		  aabb = e.CreateAABB(tx)
-		  Assert.AreEqual(0.549, aabb.getMinX, 1.0e-3)
-		  Assert.AreEqual(1.750, aabb.getMinY, 1.0e-3)
-		  Assert.AreEqual(1.433, aabb.getMaxX, 1.0e-3)
-		  Assert.AreEqual(2.330, aabb.getMaxY, 1.0e-3)
+		  Assert.AreEqual(0.549, aabb.GetMinX, 1.0e-3)
+		  Assert.AreEqual(1.750, aabb.GetMinY, 1.0e-3)
+		  Assert.AreEqual(1.433, aabb.GetMaxX, 1.0e-3)
+		  Assert.AreEqual(2.330, aabb.GetMaxY, 1.0e-3)
 		  
 		End Sub
 	#tag EndMethod
