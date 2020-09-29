@@ -7,6 +7,7 @@ Inherits TestController
 		  
 		  Var group As TestGroup
 		  
+		  group = New BasicCollisionPairTests(Self, "BasicCollisionPair")
 		  group = New BasicCollisionItemTests(Self, "BasicCollisionItem")
 		  group = New AbstractCollisionBodyTests(Self, "AbstractCollisionBody")
 		  group = New AbstractBoundsTests(Self, "AbstractBounds")
