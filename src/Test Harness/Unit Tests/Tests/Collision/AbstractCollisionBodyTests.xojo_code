@@ -384,6 +384,37 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GetFixturesByPointTest()
+		  ///
+		  ' Tests getting fixtures by a world space point.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  Call b.AddFixture(PKGeometry.CreateCircle(1.0))
+		  Var bf As PKFixture = b.AddFixture(PKGeometry.CreateUnitCirclePolygon(5, 1.0))
+		  bf.GetShape.Translate(0.5, 0)
+		  
+		  // Test not in body.
+		  Var fixtures() As PKFixture = b.GetFixtures(New PKVector2(-1.0, -1.0))
+		  Assert.IsNotNil(fixtures)
+		  Assert.AreEqual(0, fixtures.Count)
+		  
+		  // Test on top of both.
+		  fixtures = b.GetFixtures(New PKVector2(0.5, 0.25))
+		  Assert.AreEqual(2, fixtures.Count)
+		  
+		  // Test in body remove one.
+		  fixtures = b.GetFixtures(New PKVector2(1.25, 0.10))
+		  Assert.IsNotNil(fixtures)
+		  Assert.AreEqual(1, fixtures.Count)
+		  Assert.IsTrue(fixtures(0).GetShape IsA PKPolygon)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetFixturesTest()
 		  ///
 		  ' Tests the GetFixtures method.
@@ -405,6 +436,70 @@ Inherits TestGroup
 		  Assert.AreEqual(2, fixtures.Count)
 		  Assert.IsTrue(f1 = fixtures(0))
 		  Assert.IsTrue(f2 = fixtures(1))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetLocalPointTest()
+		  ///
+		  ' Tests the `GetLocalPoint` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Var wsp As PKVector2 = New PKVector2
+		  Var lsp As PKVector2 = b.GetLocalPoint(wsp)
+		  
+		  // Test without transform.
+		  Assert.AreEqual(0.0, lsp.X)
+		  Assert.AreEqual(0.0, lsp.Y)
+		  
+		  // Test with transform.
+		  b.Translate(1.0, 2.0)
+		  lsp = b.GetLocalPoint(wsp)
+		  Assert.AreEqual(-1.0, lsp.X)
+		  Assert.AreEqual(-2.0, lsp.Y)
+		  
+		  // Test with transform + non-origin point.
+		  Call wsp.Set(1, 1)
+		  lsp = b.GetLocalPoint(wsp)
+		  Assert.AreEqual(0.0, lsp.X)
+		  Assert.AreEqual(-1.0, lsp.Y)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetLocalVectorTest()
+		  ///
+		  ' Tests the `GetLocalVector` method.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As  TestBody = New TestBody
+		  
+		  Var wsv As PKVector2 = New PKVector2(1.0, 1.0)
+		  Var lsv As PKVector2 = b.GetLocalVector(wsv)
+		  
+		  // Test without transform.
+		  Assert.AreEqual(1.0, lsv.X)
+		  Assert.AreEqual(1.0, lsv.Y)
+		  
+		  // Test with transform.
+		  b.Translate(1.0, 2.0)
+		  lsv = b.GetLocalVector(wsv)
+		  Assert.AreEqual(1.0, lsv.X)
+		  Assert.AreEqual(1.0, lsv.Y)
+		  
+		  // Test with transform + non-origin point.
+		  b.Rotate(MathsKit.ToRadians(90))
+		  lsv = b.GetLocalVector(wsv)
+		  Assert.AreEqual(1.0, lsv.X, 1e-8)
+		  Assert.AreEqual(-1.0, lsv.Y, 1e-8)
 		  
 		End Sub
 	#tag EndMethod
@@ -461,6 +556,131 @@ Inherits TestGroup
 		  Call b.RemoveFixtures(New PKVector2)
 		  
 		  Assert.AreEqual(2, fmc.Removed)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetOwnerTest()
+		  ///
+		  ' Tests the get/set of ownership.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.IsNil(b.GetOwner)
+		  Assert.IsNil(b.Owner)
+		  
+		  Var o As ComparableObject = New ComparableObject
+		  b.SetOwner(o)
+		  Assert.IsNotNil(b.GetOwner)
+		  Assert.IsNotNil(b.Owner)
+		  Assert.IsTrue(o Is b.Owner)
+		  Assert.IsTrue(o Is b.GetOwner)
+		  
+		  b.SetOwner(Nil)
+		  Assert.IsNil(b.GetOwner)
+		  Assert.IsNil(b.Owner)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetPreviousTransformTest()
+		  ///
+		  ' Tests the get/set of the previous transform.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  var b As TestBody = New TestBody
+		  
+		  // Test the default.
+		  Assert.IsNotNil(b.GetPreviousTransform)
+		  Assert.IsTrue(b.GetPreviousTransform.IsIdentity)
+		  
+		  b.Translate(1.0, -1.0)
+		  
+		  Assert.IsNotNil(b.GetPreviousTransform)
+		  Assert.IsTrue(b.GetPreviousTransform.IsIdentity)
+		  
+		  b.GetPreviousTransform.Set(b.GetTransform)
+		  
+		  Assert.IsNotNil(b.GetPreviousTransform)
+		  Assert.IsFalse(b.GetPreviousTransform.IsIdentity)
+		  Assert.AreEqual(1.0, b.GetPreviousTransform.GetTranslationX)
+		  Assert.AreEqual(-1.0, b.GetPreviousTransform.GetTranslationY)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetRotationDiscRadiusTest()
+		  ///
+		  ' Tests the get/set RotationDiscRadius methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  b.SetRotationDiscRadius(b.center)
+		  Assert.AreEqual(0.0, b.Radius)
+		  Assert.AreEqual(0.0, b.GetRotationDiscRadius)
+		  
+		  Var f1 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.5))
+		  Var f2 As PKFixture = b.AddFixture(PKGeometry.CreateCircle(0.4))
+		  
+		  b.SetRotationDiscRadius(b.center)
+		  
+		  Assert.AreEqual(0.5, b.Radius)
+		  Assert.AreEqual(0.5, b.GetRotationDiscRadius)
+		  
+		  f1.GetShape.Translate(1.0, 0.0)
+		  f2.GetShape.Translate(0.0, 1.0)
+		  b.SetRotationDiscRadius(b.Center)
+		  
+		  Assert.AreEqual(1.5, b.Radius)
+		  Assert.AreEqual(1.5, b.GetRotationDiscRadius)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GetSetTransformTest()
+		  ///
+		  ' Tests the get/set Transform methods.
+		  ///
+		  
+		  Using TestSupportClasses
+		  
+		  Var b As TestBody = New TestBody
+		  
+		  Assert.IsNotNil(b.Transform)
+		  Assert.IsNotNil(b.GetTransform)
+		  
+		  b.SetTransform(Nil)
+		  
+		  Assert.IsNotNil(b.Transform)
+		  Assert.IsNotNil(b.GetTransform)
+		  
+		  Var tx As PKTransform = New PKTransform
+		  b.SetTransform(tx)
+		  
+		  Assert.IsNotNil(b.Transform)
+		  Assert.IsNotNil(b.GetTransform)
+		  Assert.IsFalse(tx = b.GetTransform)
+		  
+		  tx.Translate(2.0, 1.0)
+		  b.SetTransform(tx)
+		  
+		  Assert.IsNotNil(b.Transform)
+		  Assert.IsNotNil(b.GetTransform)
+		  Assert.IsFalse(tx = b.GetTransform)
+		  Assert.AreEqual(tx.GetTranslationX, b.GetTransform.GetTranslationX)
+		  Assert.AreEqual(tx.GetTranslationY, b.GetTransform.GetTranslationY)
 		  
 		End Sub
 	#tag EndMethod

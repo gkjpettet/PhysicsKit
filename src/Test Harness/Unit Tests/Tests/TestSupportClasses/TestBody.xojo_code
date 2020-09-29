@@ -36,12 +36,28 @@ Inherits PKAbstractCollisionBody
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21
-		Private Center As PKVector2
+	#tag Property, Flags = &h0
+		Center As PKVector2
 	#tag EndProperty
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Enabled"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Radius"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
@@ -79,14 +95,6 @@ Inherits PKAbstractCollisionBody
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Center"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
