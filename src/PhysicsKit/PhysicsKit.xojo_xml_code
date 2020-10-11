@@ -214,7 +214,7 @@
    <SourceLine>// Not in the array.</SourceLine>
    <SourceLine>Return False</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>delf.RemoveRowAt(index)</SourceLine>
+   <SourceLine>delf.RemoveAt(index)</SourceLine>
    <SourceLine>Return True</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
@@ -248,7 +248,7 @@
    <SourceLine></SourceLine>
    <SourceLine>Var index As Integer = fixtures.IndexOf(fixture)</SourceLine>
    <SourceLine>If index &lt;&gt; -1 Then</SourceLine>
-   <SourceLine>fixtures.RemoveRowAt(index)</SourceLine>
+   <SourceLine>fixtures.RemoveAt(index)</SourceLine>
    <SourceLine>Return True</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>Return False</SourceLine>
@@ -288,7 +288,7 @@
    <SourceLine>Var fixture As PKFixture = fixtures(index)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove it.</SourceLine>
-   <SourceLine>fixtures.RemoveRowAt(index)</SourceLine>
+   <SourceLine>fixtures.RemoveAt(index)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Return it.</SourceLine>
    <SourceLine>Return fixture</SourceLine>
