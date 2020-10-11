@@ -28,7 +28,7 @@ Protected Class TestGroup
 		  If CurrentClone Is Nil Then
 		    elapsed = 0.0
 		  Else
-		    elapsed = (Microseconds - TestDuration) / 1000000.0
+		    elapsed = (System.Microseconds - TestDuration) / 1000000.0
 		  End If
 		  
 		  CurrentTestResult.Duration = elapsed
