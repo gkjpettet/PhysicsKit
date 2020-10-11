@@ -206,6 +206,7 @@ Class=TestBody;Unit Tests/Tests/TestSupportClasses/TestBody.xojo_code;&h00000000
 Class=FixtureModificationCounter;Unit Tests/Tests/TestSupportClasses/FixtureModificationCounter.xojo_code;&h000000001A978FFF;&h0000000053A287FF;false
 Class=PKBroadphaseItem;../PhysicsKit/Collision/Broadphase/PKBroadphaseItem.xojo_xml_code;&h000000001D5A4FFF;&h0000000053D8F7FF;false
 Class=PKAABBBroadphaseProxy;../PhysicsKit/Collision/Broadphase/PKAABBBroadphaseProxy.xojo_xml_code;&h000000005F70FFFF;&h0000000053D8F7FF;false
+Class=PKBroadphasePair;../PhysicsKit/Collision/Broadphase/PKBroadphasePair.xojo_xml_code;&h000000006DA9BFFF;&h0000000053D8F7FF;false
 DefaultWindow=UnitTestsWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

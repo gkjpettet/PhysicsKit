@@ -5,10 +5,10 @@
 		- [ ] AbstractBroadphaseDetector.java
 		- [ ] BatchBroadphaseDetector.java
 		- [ ] BroadphaseDetector.java
-		- [ ] BroadphaseFilter.java
-		- [ ] BroadphaseFilterAdaptor.java
+		- [DEP] BroadphaseFilter.java
+		- [DEP] BroadphaseFilterAdaptor.java
 		- [x] BroadphaseItem.java
-		- [ ] BroadphasePair.java
+		- [x] BroadphasePair.java
 		- [ ] BruteForceBroadphase.java
 		- [ ] DefaultBroadphaseFilter.java
 		- [ ] DynamicAABBTree.java
