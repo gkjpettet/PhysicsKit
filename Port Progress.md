@@ -12,7 +12,7 @@
 		- [ ] BruteForceBroadphase.java
 		- [DEP] DefaultBroadphaseFilter.java
 		- [ ] DynamicAABBTree.java
-		- [ ] DynamicAABBTreeLeaf.java
+		- [x] DynamicAABBTreeLeaf.java
 		- [x] DynamicAABBTreeNode.java
 		- [ ] LazyAABBTree.java
 		- [ ] LazyAABBTreeLeaf.java

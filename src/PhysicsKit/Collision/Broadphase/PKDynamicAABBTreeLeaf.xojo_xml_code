@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="606076927">
+ <ObjName>PKDynamicAABBTreeLeaf</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>PKDynamicAABBTreeNode</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1239087103</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(item As PKBroadphaseItem)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Minimal constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter item: The collision item.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Item = item</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>item As PKBroadphaseItem</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>102094847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("DynamicAABBTreeLeaf[Body=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Item.Body.HashCode.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Fixture=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Item.Fixture.HashCode.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|AABB=")</SourceLine>
+   <SourceLine>s.AddRow(Self.AABB.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Height=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Height.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>61528063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a leaf node in a Dynamic AABB tree.</NoteLine>
+   <NoteLine>The leaf nodes in a dynamic AABB tree are the nodes that contain the fixture AABBs.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Item</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The collision item.</CodeDescription>
+  <PartID>1682767871</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Item As PKBroadphaseItem</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Item As PKBroadphaseItem</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Item</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
