@@ -765,7 +765,7 @@
    <SourceLine>s.Add(",")</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If s(s.LastRowIndex) = "," Then Call s.Pop</SourceLine>
+   <SourceLine>If s(s.LastIndex) = "," Then Call s.Pop</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>

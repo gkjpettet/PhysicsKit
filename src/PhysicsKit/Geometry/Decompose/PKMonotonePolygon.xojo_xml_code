@@ -55,7 +55,7 @@
    <SourceLine>s.Add("MonotonePolygon[Type=")</SourceLine>
    <SourceLine>s.Add(TypeToString(type))</SourceLine>
    <SourceLine>s.Add("|Vertices={")</SourceLine>
-   <SourceLine>For i As Integer = 0 To Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To Self.Vertices.LastIndex</SourceLine>
    <SourceLine>If i &lt;&gt; 0 Then s.Add(",")</SourceLine>
    <SourceLine>s.Add(PKMonotoneVertex(Self.Vertices(i)).ToString)</SourceLine>
    <SourceLine>Next i</SourceLine>
@@ -108,7 +108,7 @@
    <SourceLine>' Returns the minimum vertex in the sorted array.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Return Self.Vertices(Self.Vertices.LastRowIndex)</SourceLine>
+   <SourceLine>Return Self.Vertices(Self.Vertices.LastIndex)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>

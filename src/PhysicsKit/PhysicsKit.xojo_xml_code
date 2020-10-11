@@ -279,10 +279,10 @@
    <SourceLine>'</SourceLine>
    <SourceLine>' - Returns: The fixture removed.</SourceLine>
    <SourceLine>'</SourceLine>
-   <SourceLine>' - Raises: OutOfBoundsException if index &lt; 0 Or index &gt; fixtures.LastRowIndex</SourceLine>
+   <SourceLine>' - Raises: OutOfBoundsException if index &lt; 0 Or index &gt; fixtures.LastIndex</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If index &lt; 0 Or index &gt; fixtures.LastRowIndex Then Raise New OutOfBoundsException("Index out of bounds")</SourceLine>
+   <SourceLine>If index &lt; 0 Or index &gt; fixtures.LastIndex Then Raise New OutOfBoundsException("Index out of bounds")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Get the fixture.</SourceLine>
    <SourceLine>Var fixture As PKFixture = fixtures(index)</SourceLine>

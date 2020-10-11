@@ -243,7 +243,7 @@
    <SourceLine>' - Note: Part of the PKCollisionBody interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var lastRowIndex As Integer = Fixtures.LastRowIndex</SourceLine>
+   <SourceLine>Var lastRowIndex As Integer = Fixtures.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 0 To lastRowIndex</SourceLine>
    <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
    <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
@@ -279,13 +279,13 @@
    <SourceLine></SourceLine>
    <SourceLine>var cache() As PKFixture</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>For i As Integer = Self.Fixtures.LastRowIndex DownTo 0</SourceLine>
+   <SourceLine>For i As Integer = Self.Fixtures.LastIndex DownTo 0</SourceLine>
    <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
    <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
    <SourceLine>If convex.Contains(point, Self.Transform) Then</SourceLine>
    <SourceLine>// We are going to remove this fixture. Cache it first.</SourceLine>
    <SourceLine>cache.AddRowAt(0, fixture)</SourceLine>
-   <SourceLine>Self.Fixtures.RemoveRowAt(i)</SourceLine>
+   <SourceLine>Self.Fixtures.RemoveAt(i)</SourceLine>
    <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Next i</SourceLine>

@@ -740,7 +740,7 @@
    <SourceLine>y = radius * Sin(theta)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var iLimit As Integer = vertices.LastRowIndex</SourceLine>
+   <SourceLine>Var iLimit As Integer = vertices.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
    <SourceLine>vertices(i) = New PKVector2(x, y)</SourceLine>
    <SourceLine></SourceLine>

@@ -309,7 +309,7 @@
    <SourceLine>Var closest As PKVector2 = transform.GetTransformed(Self.Vertices(0))</SourceLine>
    <SourceLine>Var d As Double = f.DistanceSquared(closest)</SourceLine>
    <SourceLine>// Find the minimum distance vertex.</SourceLine>
-   <SourceLine>Var jLimit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>Var jLimit As Integer = Self.Vertices.LastIndex</SourceLine>
    <SourceLine>For j As Integer = 1 To jLimit</SourceLine>
    <SourceLine>// Get the vertex.</SourceLine>
    <SourceLine>Var p As PKVector2 = Self.Vertices(j)</SourceLine>
@@ -686,7 +686,7 @@
    <SourceLine>Var max As Double = min</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Loop over the rest of the vertices.</SourceLine>
-   <SourceLine>Var limit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>Var limit As Integer = Self.Vertices.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 1 To limit</SourceLine>
    <SourceLine>// Get the next point.</SourceLine>
    <SourceLine>p = transform.GetTransformed(Self.Vertices(i))</SourceLine>
@@ -722,7 +722,7 @@
    <SourceLine></SourceLine>
    <SourceLine>Super.Rotate(r, x, y)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var limit As Integer = Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>Var limit As Integer = Self.Vertices.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 0 To limit</SourceLine>
    <SourceLine>Call Self.Vertices(i).Rotate(r, x, y)</SourceLine>
    <SourceLine>Call Self.Normals(i).Rotate(r)</SourceLine>
@@ -759,7 +759,7 @@
    <SourceLine>s.Add("Polygon[")</SourceLine>
    <SourceLine>s.Add(Super.ToString)</SourceLine>
    <SourceLine>s.Add("|Vertices={")</SourceLine>
-   <SourceLine>For i As Integer = 0 To Self.Vertices.LastRowIndex</SourceLine>
+   <SourceLine>For i As Integer = 0 To Self.Vertices.LastIndex</SourceLine>
    <SourceLine>If i &lt;&gt; 0 Then s.Add(",")</SourceLine>
    <SourceLine>s.Add(Self.Vertices(i).ToString)</SourceLine>
    <SourceLine>Next i</SourceLine>

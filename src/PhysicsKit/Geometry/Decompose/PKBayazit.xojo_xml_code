@@ -84,7 +84,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Get the size of the given polygon.</SourceLine>
    <SourceLine>Var size As Integer = polygon.Count</SourceLine>
-   <SourceLine>Var polygonLastRowIndex As Integer = polygon.LastRowIndex</SourceLine>
+   <SourceLine>Var polygonLastRowIndex As Integer = polygon.LastIndex</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Initialise.</SourceLine>
    <SourceLine>Var upperIntersection As PKVector2 = New PKVector2</SourceLine>

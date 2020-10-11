@@ -428,8 +428,8 @@
    <SourceLine>Call Self.Faces.Remove(edge.Face)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the edges.</SourceLine>
-   <SourceLine>Self.Edges.RemoveRowAt(index) // The edge.</SourceLine>
-   <SourceLine>Self.Edges.RemoveRowAt(index) // The edge's twin.</SourceLine>
+   <SourceLine>Self.Edges.RemoveAt(index) // The edge.</SourceLine>
+   <SourceLine>Self.Edges.RemoveAt(index) // The edge's twin.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -567,7 +567,7 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var monotonePolygons() As PKMonotonePolygon = Self.GetYMonotonePolygons</SourceLine>
-   <SourceLine>Var limit As Integer = monotonePolygons.LastRowIndex</SourceLine>
+   <SourceLine>Var limit As Integer = monotonePolygons.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 0 To limit</SourceLine>
    <SourceLine>Self.TriangulateYMonotonePolygon(monotonePolygons(i))</SourceLine>
    <SourceLine>Next i</SourceLine>
@@ -614,7 +614,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Get the bottom and top elements of the stack.</SourceLine>
    <SourceLine>Var vBot As PKMonotoneVertex= stack(0)</SourceLine>
-   <SourceLine>Var vTop As PKMonotoneVertex = stack(stack.LastRowIndex)</SourceLine>
+   <SourceLine>Var vTop As PKMonotoneVertex = stack(stack.LastIndex)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Is the current vertex adjacent to the bottom element but not to the top element?</SourceLine>
    <SourceLine>If v.IsAdjacent(vBot) And Not v.IsAdjacent(vTop) Then</SourceLine>
