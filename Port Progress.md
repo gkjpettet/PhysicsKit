@@ -1,13 +1,13 @@
 ## Main Files To Port
 - [ ] collision
 	- [ ] broadphase
-		- [ ] AABBBroadphaseProxy.java
+		- [x] AABBBroadphaseProxy.java
 		- [ ] AbstractBroadphaseDetector.java
 		- [ ] BatchBroadphaseDetector.java
 		- [ ] BroadphaseDetector.java
 		- [ ] BroadphaseFilter.java
 		- [ ] BroadphaseFilterAdaptor.java
-		- [ ] BroadphaseItem.java
+		- [x] BroadphaseItem.java
 		- [ ] BroadphasePair.java
 		- [ ] BruteForceBroadphase.java
 		- [ ] DefaultBroadphaseFilter.java

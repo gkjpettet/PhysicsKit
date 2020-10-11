@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="604069887">
+ <ObjName>PKAABBBroadphaseProxy</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>FKComparable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>CompareTo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>976564223</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CompareTo(other As Variant) As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If other IsA PKAABBBroadphaseProxy = False Then Return -1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var o As PKAABBBroadphaseProxy = PKAABBBroadphaseProxy(other)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Check if the objects are the same instance.</SourceLine>
+   <SourceLine>If Self Is o Then Return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Compute the difference in the minimum x values of the AABBs.</SourceLine>
+   <SourceLine>Var diff As Double = Self.AABB.GetMinX - o.AABB.GetMinX</SourceLine>
+   <SourceLine>If diff &lt;&gt; 0 Then</SourceLine>
+   <SourceLine>Return MathsKit.Signum(diff)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>// If the x values are the same then compare on the y values.</SourceLine>
+   <SourceLine>diff = Self.AABB.GetMinY - o.AABB.GetMinY</SourceLine>
+   <SourceLine>Return MathsKit.Signum(diff)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Equals</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>442310655</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Equals(other As Variant) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self Is Other</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>other As Variant</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HashCode</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1549410303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function HashCode() As Integer</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKComparable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Variant(Self).Hash</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>381642751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' - Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("SapProxy[Body=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Item.Body.HashCode.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Fixture=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Item.Fixture.HashCode.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|AABB=")</SourceLine>
+   <SourceLine>s.AddRow(Self.AABB.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1754935295</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(item As PKBroadphaseItem, aabb As PKAABB)</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Full constructor.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter item: The collision item.</SourceLine>
+   <SourceLine>' - Parameter aabb: The AABB.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Item = item</SourceLine>
+   <SourceLine>Self.AABB = aabb</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>item As PKBroadphaseItem, aabb As PKAABB</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1945784319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a sortable proxy for a collision body fixture in the Sap broadphase detector.</NoteLine>
+   <NoteLine>Note: This class has a natural ordering that is inconsistent with `Equals()`.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Item</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The collision item.</CodeDescription>
+  <PartID>143851519</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Item As PKBroadphaseItem</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Item As PKBroadphaseItem</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>AABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The body's AABB.</CodeDescription>
+  <PartID>153819135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>AABB As PKAABB</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>AABB As PKAABB</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

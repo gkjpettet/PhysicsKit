@@ -774,7 +774,7 @@ Begin Window UnitTestsWindow
          Top             =   346
          Transparent     =   False
          Underline       =   False
-         UnicodeMode     =   "0"
+         UnicodeMode     =   0
          UseFocusRing    =   True
          Visible         =   True
          Width           =   463
