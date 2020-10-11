@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1297326079">
  <ObjName>PKAbstractCollisionBody</ObjName>
  <ObjContainerID>1810290687</ObjContainerID>
@@ -25,7 +25,7 @@
    <SourceLine>If fixture Is Nil Then Raise New NilObjectException(PKMessages.DYNAMICS_BODY_ADD_NIL_FIXTURE)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the shape and mass to the respective lists.</SourceLine>
-   <SourceLine>Fixtures.AddRow(fixture)</SourceLine>
+   <SourceLine>Fixtures.Add(fixture)</SourceLine>
    <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureAdded(fixture)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Return this body to facilitate chaining.</SourceLine>
@@ -156,7 +156,7 @@
    <SourceLine></SourceLine>
    <SourceLine>For Each fixture As PKFixture In Self.Fixtures</SourceLine>
    <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
-   <SourceLine>If convex.Contains(point, Self.Transform) Then result.AddRow(fixture)</SourceLine>
+   <SourceLine>If convex.Contains(point, Self.Transform) Then result.Add(fixture)</SourceLine>
    <SourceLine>Next fixture</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return result</SourceLine>
@@ -211,7 +211,7 @@
    <SourceLine>// Copy the array of the current fixtures.</SourceLine>
    <SourceLine>Var cache() As PKFixture</SourceLine>
    <SourceLine>For Each f As PKFixture In Self.Fixtures</SourceLine>
-   <SourceLine>cache.AddRow(f)</SourceLine>
+   <SourceLine>cache.Add(f)</SourceLine>
    <SourceLine>Next f</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Notify of removal.</SourceLine>

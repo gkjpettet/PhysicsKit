@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1393102847">
  <ObjName>PKGeometry</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -83,7 +83,7 @@
    <SourceLine>winding = winding + point.Cross(nextPoint)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Otherwise the point is valid.</SourceLine>
-   <SourceLine>result.AddRow(point)</SourceLine>
+   <SourceLine>result.Add(point)</SourceLine>
    <SourceLine>Next i</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Check the winding.</SourceLine>
@@ -447,7 +447,7 @@
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add link to the array of links.</SourceLine>
-   <SourceLine>links.AddRow(link)</SourceLine>
+   <SourceLine>links.Add(link)</SourceLine>
    <SourceLine>Next i</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If closed Then</SourceLine>
@@ -461,7 +461,7 @@
    <SourceLine>Var nextLink As PKLink = links(0)</SourceLine>
    <SourceLine>link.SetPrevious(prev)</SourceLine>
    <SourceLine>link.SetNext(nextLink)</SourceLine>
-   <SourceLine>links.AddRow(link)</SourceLine>
+   <SourceLine>links.Add(link)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return links</SourceLine>
@@ -507,7 +507,7 @@
    <SourceLine>For Each vertex As PKVector2 In vertices</SourceLine>
    <SourceLine>// Check for Nil points.</SourceLine>
    <SourceLine>If vertex &lt;&gt; Nil Then</SourceLine>
-   <SourceLine>verts.AddRow(vertex.Copy)</SourceLine>
+   <SourceLine>verts.Add(vertex.Copy)</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>Raise New NilObjectException(PKMessages.GEOMETRY_NIL_POLYGON_POINT)</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -2473,7 +2473,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// On subsequent interations we can assume this is a correct</SourceLine>
    <SourceLine>// one since the angle condition was used to increment the vertex index.</SourceLine>
-   <SourceLine>sum.AddRow(v1s.sum(v2s))</SourceLine>
+   <SourceLine>sum.Add(v1s.sum(v2s))</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Compute the edge vectors.</SourceLine>
    <SourceLine>Var e1 As PKVector2 = v1s.Towards(v1e)</SourceLine>

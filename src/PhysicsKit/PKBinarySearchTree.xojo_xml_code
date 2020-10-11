@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="578844671">
  <ObjName>PKBinarySearchTree</ObjName>
  <ObjContainerID>856788991</ObjContainerID>
@@ -754,20 +754,20 @@
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine>Var iterator As PKBinarySearchTreeIterator = InOrderIterator</SourceLine>
-   <SourceLine>s.AddRow("BinarySearchTree[")</SourceLine>
+   <SourceLine>s.Add("BinarySearchTree[")</SourceLine>
    <SourceLine>While iterator.MoveNext</SourceLine>
    <SourceLine>If FoundationKit.HasMethodNamed(iterator.Value, "ToString") Then</SourceLine>
    <SourceLine>Var theString As String = FoundationKit.GetMethod(iterator.Value, "ToString").Invoke(iterator.Value)</SourceLine>
-   <SourceLine>s.AddRow(theString)</SourceLine>
+   <SourceLine>s.Add(theString)</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>s.AddRow("Unknown string value")</SourceLine>
+   <SourceLine>s.Add("Unknown string value")</SourceLine>
    <SourceLine>End If</SourceLine>
-   <SourceLine>s.AddRow(",")</SourceLine>
+   <SourceLine>s.Add(",")</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s(s.LastRowIndex) = "," Then Call s.Pop</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

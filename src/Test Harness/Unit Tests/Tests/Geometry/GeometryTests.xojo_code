@@ -22,14 +22,14 @@ Inherits TestGroup
 		  ///
 		  
 		  Var points() As PKVector2
-		  points.AddRow(New PKVector2(1.0, 0.0))
-		  points.AddRow(New PKVector2(1.0, 0.0))
-		  points.AddRow(New PKVector2(0.5, -0.5))
-		  points.AddRow(New PKVector2(0.0, -0.5))
-		  points.AddRow(New PKVector2(-0.5, -0.5))
-		  points.AddRow(New PKVector2(-2.0, -0.5))
-		  points.AddRow(New PKVector2(2.1, 0.5))
-		  points.AddRow(New PKVector2(1.0, 0.0))
+		  points.Add(New PKVector2(1.0, 0.0))
+		  points.Add(New PKVector2(1.0, 0.0))
+		  points.Add(New PKVector2(0.5, -0.5))
+		  points.Add(New PKVector2(0.0, -0.5))
+		  points.Add(New PKVector2(-0.5, -0.5))
+		  points.Add(New PKVector2(-2.0, -0.5))
+		  points.Add(New PKVector2(2.1, 0.5))
+		  points.Add(New PKVector2(1.0, 0.0))
 		  
 		  Var result() As PKVector2= PKGeometry.Cleanse(points)
 		  

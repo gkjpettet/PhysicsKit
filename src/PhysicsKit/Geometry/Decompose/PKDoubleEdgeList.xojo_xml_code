@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1319456767">
  <ObjName>PKDoubleEdgeList</ObjName>
  <ObjContainerID>1397843967</ObjContainerID>
@@ -49,7 +49,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// We will always have exactly one face at the beginning.</SourceLine>
    <SourceLine>Var face As PKDoubleEdgeListFace = New PKDoubleEdgeListFace</SourceLine>
-   <SourceLine>Self.Faces.AddRow(face)</SourceLine>
+   <SourceLine>Self.Faces.Add(face)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var prevLeftEdge As PKDoubleEdgeListHalfEdge</SourceLine>
    <SourceLine>Var prevRightEdge As PKDoubleEdgeListHalfEdge</SourceLine>
@@ -72,14 +72,14 @@
    <SourceLine>right.Twin = left</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the edges the edge list.</SourceLine>
-   <SourceLine>Self.Edges.AddRow(left)</SourceLine>
-   <SourceLine>Self.Edges.AddRow(right)</SourceLine>
+   <SourceLine>Self.Edges.Add(left)</SourceLine>
+   <SourceLine>Self.Edges.Add(right)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Populate the vertex.</SourceLine>
    <SourceLine>vertex.Leaving = left</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the vertex to the vertices list.</SourceLine>
-   <SourceLine>Self.Vertices.AddRow(vertex)</SourceLine>
+   <SourceLine>Self.Vertices.Add(vertex)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Set the previous next edge to this left edge.</SourceLine>
    <SourceLine>If prevLeftEdge &lt;&gt; Nil Then prevLeftEdge.NextEdge = left</SourceLine>
@@ -220,11 +220,11 @@
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the new edges to the list.</SourceLine>
-   <SourceLine>Self.Edges.AddRow(left)</SourceLine>
-   <SourceLine>Self.Edges.AddRow(right)</SourceLine>
+   <SourceLine>Self.Edges.Add(left)</SourceLine>
+   <SourceLine>Self.Edges.Add(right)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add the new face to the list.</SourceLine>
-   <SourceLine>Self.Faces.AddRow(face)</SourceLine>
+   <SourceLine>Self.Faces.Add(face)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -482,7 +482,7 @@
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var p As PKPolygon = PKGeometry.CreatePolygon(vertices)</SourceLine>
-   <SourceLine>convexes.AddRow(p)</SourceLine>
+   <SourceLine>convexes.Add(p)</SourceLine>
    <SourceLine>Next face</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return convexes</SourceLine>
@@ -539,7 +539,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Add the triangle.</SourceLine>
    <SourceLine>Var t As PKTriangle = PKGeometry.CreateTriangle(vertices(0), vertices(1), vertices(2))</SourceLine>
-   <SourceLine>triangles.AddRow(t)</SourceLine>
+   <SourceLine>triangles.Add(t)</SourceLine>
    <SourceLine>Next face</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return triangles</SourceLine>
@@ -604,8 +604,8 @@
    <SourceLine></SourceLine>
    <SourceLine>// A monotone polygon can be triangulated in O(n) time.</SourceLine>
    <SourceLine>// Push the first two onto the stack.</SourceLine>
-   <SourceLine>stack.AddRow(vertices(0))</SourceLine>
-   <SourceLine>stack.AddRow(vertices(1))</SourceLine>
+   <SourceLine>stack.Add(vertices(0))</SourceLine>
+   <SourceLine>stack.Add(vertices(1))</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var i As Integer = 2</SourceLine>
    <SourceLine>While stack.Count &gt; 0</SourceLine>
@@ -629,8 +629,8 @@
    <SourceLine>stack.RemoveAllRows</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Push the remaining edge.</SourceLine>
-   <SourceLine>stack.AddRow(vTop)</SourceLine>
-   <SourceLine>stack.AddRow(v)</SourceLine>
+   <SourceLine>stack.Add(vTop)</SourceLine>
+   <SourceLine>stack.Add(v)</SourceLine>
    <SourceLine>ElseIf v.IsAdjacent(vTop) And Not v.IsAdjacent(vBot) Then</SourceLine>
    <SourceLine>Var cross As Double = 0</SourceLine>
    <SourceLine></SourceLine>
@@ -669,7 +669,7 @@
    <SourceLine>Exit</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Wend</SourceLine>
-   <SourceLine>stack.AddRow(v)</SourceLine>
+   <SourceLine>stack.Add(v)</SourceLine>
    <SourceLine>ElseIf v.IsAdjacent(vTop) And v.isAdjacent(vBot) Then</SourceLine>
    <SourceLine>// Create the triangles and pop all the points.</SourceLine>
    <SourceLine>// Pop.</SourceLine>
@@ -775,7 +775,7 @@
    <SourceLine>'sorted.ResizeTo(size - 1)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// The first point is the vertex with maximum y.</SourceLine>
-   <SourceLine>sorted.AddRow(max)</SourceLine>
+   <SourceLine>sorted.Add(max)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Default the location to the left chain.</SourceLine>
    <SourceLine>max.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left</SourceLine>
@@ -794,11 +794,11 @@
    <SourceLine>// If it's equal compare the x values.</SourceLine>
    <SourceLine>If diff = 0 Then diff = r.X - l.X</SourceLine>
    <SourceLine>If diff &gt; 0 Then</SourceLine>
-   <SourceLine>sorted.AddRow(currLeft)</SourceLine>
+   <SourceLine>sorted.Add(currLeft)</SourceLine>
    <SourceLine>currLeft.ChainType = PKMonotoneVertex.MonotoneChainTypes.Left</SourceLine>
    <SourceLine>currLeft = currLeft.NextVertex</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>sorted.AddRow(currRight)</SourceLine>
+   <SourceLine>sorted.Add(currRight)</SourceLine>
    <SourceLine>currRight.ChainType = PKMonotoneVertex.MonotoneChainTypes.Right</SourceLine>
    <SourceLine>currRight = currRight.PreviousVertex</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -809,7 +809,7 @@
    <SourceLine>sorted(size - 1).ChainType = PKMonotoneVertex.MonotoneChainTypes.Right</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Add a new y-monotone polygon to the list.</SourceLine>
-   <SourceLine>yMonotonePolygons.AddRow(New PKMonotonePolygon(PKMonotonePolygon.MonotonePolygonTypes.Y, sorted))</SourceLine>
+   <SourceLine>yMonotonePolygons.Add(New PKMonotonePolygon(PKMonotonePolygon.MonotonePolygonTypes.Y, sorted))</SourceLine>
    <SourceLine>Next face</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return yMonotonePolygons</SourceLine>

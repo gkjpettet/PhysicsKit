@@ -35,7 +35,7 @@ Inherits TestGroup
 		  
 		  // Fill the cloud with a random distribution of points.
 		  For i As Integer = 0 To size - 1
-		    cloud.AddRow(New PKVector2(System.Random.Number * 2.0 - 1.0, System.Random.Number * 2.0 - 1.0))
+		    cloud.Add(New PKVector2(System.Random.Number * 2.0 - 1.0, System.Random.Number * 2.0 - 1.0))
 		  Next i
 		  
 		  Return cloud

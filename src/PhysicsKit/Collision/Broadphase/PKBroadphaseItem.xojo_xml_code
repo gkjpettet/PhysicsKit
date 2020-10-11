@@ -2,7 +2,7 @@
 <RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1034233855">
  <ObjName>PKBroadphaseItem</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1406728191</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>PKAbstractCollisionItem</Superclass>
  <Interfaces>FKComparable, FKStringable</Interfaces>
@@ -130,11 +130,11 @@
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("BroadphaseItem[Body=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Body.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Fixture=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Fixture.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("BroadphaseItem[Body=")</SourceLine>
+   <SourceLine>s.Add(Self.Body.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("|Fixture=")</SourceLine>
+   <SourceLine>s.Add(Self.Fixture.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
@@ -282,11 +282,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Fixture</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>
  </ViewBehavior>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1142224895">
  <ObjName>PKCircle</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -322,9 +322,9 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Circle[")</SourceLine>
-   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Circle[")</SourceLine>
+   <SourceLine>s.Add(Super.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>

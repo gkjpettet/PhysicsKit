@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1407696895">
  <ObjName>PKPolygon</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -756,15 +756,15 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Polygon[")</SourceLine>
-   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Vertices={")</SourceLine>
+   <SourceLine>s.Add("Polygon[")</SourceLine>
+   <SourceLine>s.Add(Super.ToString)</SourceLine>
+   <SourceLine>s.Add("|Vertices={")</SourceLine>
    <SourceLine>For i As Integer = 0 To Self.Vertices.LastRowIndex</SourceLine>
-   <SourceLine>If i &lt;&gt; 0 Then s.AddRow(",")</SourceLine>
-   <SourceLine>s.AddRow(Self.Vertices(i).ToString)</SourceLine>
+   <SourceLine>If i &lt;&gt; 0 Then s.Add(",")</SourceLine>
+   <SourceLine>s.Add(Self.Vertices(i).ToString)</SourceLine>
    <SourceLine>Next i</SourceLine>
-   <SourceLine>s.AddRow("}")</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("}")</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

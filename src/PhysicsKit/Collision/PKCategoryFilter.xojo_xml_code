@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1280407551">
  <ObjName>PKCategoryFilter</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKFilter, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -65,11 +65,11 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("CategoryFilter[Category=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Category.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Mask=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Mask.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("CategoryFilter[Category=")</SourceLine>
+   <SourceLine>s.Add(Self.Category.ToString)</SourceLine>
+   <SourceLine>s.Add("|Mask=")</SourceLine>
+   <SourceLine>s.Add(Self.Mask.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
@@ -387,7 +387,7 @@
   <ViewProperty>
    <ObjName>Mask</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Integer</ItemType>
+   <ItemType>Int64</ItemType>
   </ViewProperty>
  </ViewBehavior>
 </block>

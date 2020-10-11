@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1921173503">
  <ObjName>PKMass</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -546,15 +546,15 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Mass[Type=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Type.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Center=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Center.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Mass=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Mass.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Inertia=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Inertia.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Mass[Type=")</SourceLine>
+   <SourceLine>s.Add(Self.Type.ToString)</SourceLine>
+   <SourceLine>s.Add("|Center=")</SourceLine>
+   <SourceLine>s.Add(Self.Center.ToString)</SourceLine>
+   <SourceLine>s.Add("|Mass=")</SourceLine>
+   <SourceLine>s.Add(Self.Mass.ToString)</SourceLine>
+   <SourceLine>s.Add("|Inertia=")</SourceLine>
+   <SourceLine>s.Add(Self.Inertia.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

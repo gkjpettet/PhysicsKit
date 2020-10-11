@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="598288383">
  <ObjName>PKPointFeature</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -106,11 +106,11 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("PointFeature[Point=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Point.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Index=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Index.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("PointFeature[Point=")</SourceLine>
+   <SourceLine>s.Add(Self.Point.ToString)</SourceLine>
+   <SourceLine>s.Add("|Index=")</SourceLine>
+   <SourceLine>s.Add(Self.Index.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

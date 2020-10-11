@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1461110783">
  <ObjName>PKVector3</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -1344,13 +1344,13 @@
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("(")</SourceLine>
-   <SourceLine>s.AddRow(Self.X.ToString)</SourceLine>
-   <SourceLine>s.AddRow(", ")</SourceLine>
-   <SourceLine>s.AddRow(Self.Y.ToString)</SourceLine>
-   <SourceLine>s.AddRow(", ")</SourceLine>
-   <SourceLine>s.AddRow(Self.Z.ToString)</SourceLine>
-   <SourceLine>s.AddRow(")")</SourceLine>
+   <SourceLine>s.Add("(")</SourceLine>
+   <SourceLine>s.Add(Self.X.ToString)</SourceLine>
+   <SourceLine>s.Add(", ")</SourceLine>
+   <SourceLine>s.Add(Self.Y.ToString)</SourceLine>
+   <SourceLine>s.Add(", ")</SourceLine>
+   <SourceLine>s.Add(Self.Z.ToString)</SourceLine>
+   <SourceLine>s.Add(")")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="643526655">
  <ObjName>PKAdaptiveDecimal</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -240,8 +240,8 @@
    <SourceLine>' - Parameter a1: The component with the largest magnitude.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Self.Components.AddRow(a0)</SourceLine>
-   <SourceLine>Self.Components.AddRow(a1)</SourceLine>
+   <SourceLine>Self.Components.Add(a0)</SourceLine>
+   <SourceLine>Self.Components.Add(a1)</SourceLine>
    <SourceLine>mSize = 2</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -300,7 +300,7 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>For Each d As Double In other.Components</SourceLine>
-   <SourceLine>Self.Components.AddRow(d)</SourceLine>
+   <SourceLine>Self.Components.Add(d)</SourceLine>
    <SourceLine>Next d</SourceLine>
    <SourceLine>mSize = other.Size</SourceLine>
    <SourceLine></SourceLine>
@@ -1070,17 +1070,17 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("[")</SourceLine>
+   <SourceLine>s.Add("[")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var iLimit As Integer = mSize - 1</SourceLine>
    <SourceLine>For i As Integer = 0 To iLimit</SourceLine>
-   <SourceLine>s.AddRow(Components(i).ToString)</SourceLine>
+   <SourceLine>s.Add(Components(i).ToString)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If i &lt; mSize - 1 Then s.AddRow(", ")</SourceLine>
+   <SourceLine>If i &lt; mSize - 1 Then s.Add(", ")</SourceLine>
    <SourceLine>Next i</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("] ~= ")</SourceLine>
-   <SourceLine>s.AddRow(GetEstimation.ToString)</SourceLine>
+   <SourceLine>s.Add("] ~= ")</SourceLine>
+   <SourceLine>s.Add(GetEstimation.ToString)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

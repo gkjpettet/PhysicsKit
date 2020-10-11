@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="949133311">
  <ObjName>PKFixture</ObjName>
  <ObjContainerID>1810290687</ObjContainerID>
@@ -100,15 +100,15 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Fixture[HashCode=")</SourceLine>
-   <SourceLine>s.AddRow(Variant(Self).Hash.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Shape=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Shape.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Filter=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Filter.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|IsSensor=")</SourceLine>
-   <SourceLine>s.AddRow(mSensor.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Fixture[HashCode=")</SourceLine>
+   <SourceLine>s.Add(Variant(Self).Hash.ToString)</SourceLine>
+   <SourceLine>s.Add("|Shape=")</SourceLine>
+   <SourceLine>s.Add(Self.Shape.ToString)</SourceLine>
+   <SourceLine>s.Add("|Filter=")</SourceLine>
+   <SourceLine>s.Add(Self.Filter.ToString)</SourceLine>
+   <SourceLine>s.Add("|IsSensor=")</SourceLine>
+   <SourceLine>s.Add(mSensor.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

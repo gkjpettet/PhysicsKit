@@ -2,7 +2,7 @@
 <RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1064728575">
  <ObjName>PKDynamicAABBTreeNode</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1406728191</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -62,18 +62,18 @@
   <PartID>1173592063</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Public Function ToString() As String</SourceLine>
+   <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>' -Note: Part of the FKStringable interface.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("DynamicAABBTreeNode[AABB=")</SourceLine>
-   <SourceLine>s.AddRow(Self.AABB.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Height=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Height.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("DynamicAABBTreeNode[AABB=")</SourceLine>
+   <SourceLine>s.Add(Self.AABB.ToString)</SourceLine>
+   <SourceLine>s.Add("|Height=")</SourceLine>
+   <SourceLine>s.Add(Self.Height.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
@@ -216,11 +216,6 @@
   </ViewProperty>
   <ViewProperty>
    <ObjName>Height</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AABB</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>

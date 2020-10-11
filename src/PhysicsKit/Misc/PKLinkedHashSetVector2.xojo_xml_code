@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="389670911">
  <ObjName>PKLinkedHashSetVector2</ObjName>
  <ObjContainerID>2093301759</ObjContainerID>
@@ -26,7 +26,7 @@
    <SourceLine>If DataDictionary.HasKey(e) Then Return False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>DataDictionary.Value(e) = True</SourceLine>
-   <SourceLine>DataArray.AddRow(e)</SourceLine>
+   <SourceLine>DataArray.Add(e)</SourceLine>
    <SourceLine>Return True</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
@@ -99,7 +99,7 @@
    <SourceLine>Var result() As PKVector2</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>For Each v As PKVector2 In DataArray</SourceLine>
-   <SourceLine>result.AddRow(v)</SourceLine>
+   <SourceLine>result.Add(v)</SourceLine>
    <SourceLine>Next v</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return result</SourceLine>

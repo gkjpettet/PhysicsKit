@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="966422527">
  <ObjName>PKTypeFilter</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1810290687</ObjContainerID>
  <IsClass>1</IsClass>
  <Interfaces>PKFilter, FKStringable</Interfaces>
  <ItemFlags>1</ItemFlags>
@@ -79,9 +79,9 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("TypeFilter[ClassName=")</SourceLine>
-   <SourceLine>s.AddRow(Introspection.GetType(Self).FullName)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("TypeFilter[ClassName=")</SourceLine>
+   <SourceLine>s.Add(Introspection.GetType(Self).FullName)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

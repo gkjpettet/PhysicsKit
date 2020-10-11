@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="2021218303">
  <ObjName>PKEdgeFeature</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -159,17 +159,17 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("EdgeFeature[Vertex1=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Vertex1.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Vertex2=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Vertex2.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Edge=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Edge.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Max=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Max.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Index=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Index.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("EdgeFeature[Vertex1=")</SourceLine>
+   <SourceLine>s.Add(Self.Vertex1.ToString)</SourceLine>
+   <SourceLine>s.Add("|Vertex2=")</SourceLine>
+   <SourceLine>s.Add(Self.Vertex2.ToString)</SourceLine>
+   <SourceLine>s.Add("|Edge=")</SourceLine>
+   <SourceLine>s.Add(Self.Edge.ToString)</SourceLine>
+   <SourceLine>s.Add("|Max=")</SourceLine>
+   <SourceLine>s.Add(Self.Max.ToString)</SourceLine>
+   <SourceLine>s.Add("|Index=")</SourceLine>
+   <SourceLine>s.Add(Self.Index.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1491810303">
  <ObjName>PKGrahamScan</ObjName>
  <ObjContainerID>627859455</ObjContainerID>
@@ -53,8 +53,8 @@
    <SourceLine>Var stack() As PKVector2</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Push</SourceLine>
-   <SourceLine>stack.AddRow(points(0))</SourceLine>
-   <SourceLine>stack.AddRow(points(1))</SourceLine>
+   <SourceLine>stack.Add(points(0))</SourceLine>
+   <SourceLine>stack.Add(points(1))</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var i As Integer = 2</SourceLine>
    <SourceLine>While i &lt; size</SourceLine>
@@ -64,7 +64,7 @@
    <SourceLine></SourceLine>
    <SourceLine>If sSize = 1 Then</SourceLine>
    <SourceLine>// Push.</SourceLine>
-   <SourceLine>stack.AddRow(points(i))</SourceLine>
+   <SourceLine>stack.Add(points(i))</SourceLine>
    <SourceLine>i = i + 1</SourceLine>
    <SourceLine>Continue</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -88,7 +88,7 @@
    <SourceLine>If location &lt; 0 Then</SourceLine>
    <SourceLine>// If it's to the left, then push the new point on</SourceLine>
    <SourceLine>// the stack since it maintains convexity</SourceLine>
-   <SourceLine>stack.AddRow(p3)</SourceLine>
+   <SourceLine>stack.Add(p3)</SourceLine>
    <SourceLine>i = i + 1</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>// Otherwise the pop the previous point off the stack</SourceLine>

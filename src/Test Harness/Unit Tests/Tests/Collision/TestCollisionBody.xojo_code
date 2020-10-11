@@ -36,7 +36,7 @@ Inherits PKAbstractCollisionBody
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
-		  Self.Fixtures.AddRow(New PKFixture(shape))
+		  Self.Fixtures.Add(New PKFixture(shape))
 		  
 		End Sub
 	#tag EndMethod
@@ -68,7 +68,7 @@ Inherits PKAbstractCollisionBody
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
-		  Self.Fixtures.AddRow(fixture)
+		  Self.Fixtures.Add(fixture)
 		  
 		End Sub
 	#tag EndMethod

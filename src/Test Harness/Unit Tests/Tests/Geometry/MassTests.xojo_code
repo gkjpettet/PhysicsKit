@@ -47,9 +47,9 @@ Inherits TestGroup
 		  Var m2 As PKMass = New PKMass
 		  Var m3 As PKMass = New PKMass
 		  Var masses() As PKMass
-		  masses.AddRow(m1)
-		  masses.AddRow(m2)
-		  masses.AddRow(m3)
+		  masses.Add(m1)
+		  masses.Add(m2)
+		  masses.Add(m3)
 		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter
@@ -74,9 +74,9 @@ Inherits TestGroup
 		    Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
 		    Var m2 As PKMass = New PKMass(New PKVector2, 2.0, 7.0)
 		    Var masses() As PKMass
-		    masses.AddRow(m1)
-		    masses.AddRow(Nil)
-		    masses.AddRow(m2)
+		    masses.Add(m1)
+		    masses.Add(Nil)
+		    masses.Add(m2)
 		    Call PKMass.Create(masses)
 		  Catch e As NilObjectException
 		    Assert.Pass
@@ -117,7 +117,7 @@ Inherits TestGroup
 		  
 		  Var m1 As PKMass = New PKMass(New PKVector2, 1.0, 2.0)
 		  Var masses() As PKMass
-		  masses.AddRow(m1)
+		  masses.Add(m1)
 		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter
@@ -141,7 +141,7 @@ Inherits TestGroup
 		  
 		  Try
 		    Var masses() As PKMass
-		    masses.AddRow(Nil)
+		    masses.Add(Nil)
 		    Var m As PKMass = PKMass.Create(masses)
 		    #Pragma Unused m
 		  Catch e As NilObjectException
@@ -164,9 +164,9 @@ Inherits TestGroup
 		  Var m2 As PKMass = New PKMass(New PKVector2(-1.0,  0.0), 0.50, 0.02)
 		  Var m3 As PKMass = New PKMass(New PKVector2( 1.0, -2.0), 2.00, 3.00)
 		  Var masses() As PKMass
-		  masses.AddRow(m1)
-		  masses.AddRow(m2)
-		  masses.AddRow(m3)
+		  masses.Add(m1)
+		  masses.Add(m2)
+		  masses.Add(m3)
 		  Var m As PKMass = PKMass.Create(masses)
 		  
 		  Var c As PKVector2 = m.GetCenter

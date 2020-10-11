@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="132151295">
  <ObjName>PKInterval</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -784,11 +784,11 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("[")</SourceLine>
-   <SourceLine>s.AddRow(Self.Min.ToString)</SourceLine>
-   <SourceLine>s.AddRow(", ")</SourceLine>
-   <SourceLine>s.AddRow(Self.Max.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("[")</SourceLine>
+   <SourceLine>s.Add(Self.Min.ToString)</SourceLine>
+   <SourceLine>s.Add(", ")</SourceLine>
+   <SourceLine>s.Add(Self.Max.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

@@ -2,7 +2,7 @@
 <RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1455714303">
  <ObjName>PKBroadphasePair</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1406728191</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>PKAbstractCollisionPair</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -109,15 +109,15 @@
    <SourceLine>Function ToString() As String</SourceLine>
    <SourceLine>Var s() As String</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>s.AddRow("BroadphasePair[Body1=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Body1.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Fixture1=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Fixture1.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Body2=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Body2.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Fixture2=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Fixture2.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("BroadphasePair[Body1=")</SourceLine>
+   <SourceLine>s.Add(Self.Body1.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("|Fixture1=")</SourceLine>
+   <SourceLine>s.Add(Self.Fixture1.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("|Body2=")</SourceLine>
+   <SourceLine>s.Add(Self.Body2.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("|Fixture2=")</SourceLine>
+   <SourceLine>s.Add(Self.Fixture2.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>
@@ -434,11 +434,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Fixture2</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Integer</ItemType>
   </ViewProperty>
  </ViewBehavior>

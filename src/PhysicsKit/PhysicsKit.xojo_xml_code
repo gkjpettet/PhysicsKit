@@ -114,7 +114,7 @@
    <SourceLine>#Pragma NilObjectChecking False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>For Each v As PKVector2 In array2</SourceLine>
-   <SourceLine>array1.AddRow(v)</SourceLine>
+   <SourceLine>array1.Add(v)</SourceLine>
    <SourceLine>Next v</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -176,7 +176,7 @@
    <SourceLine>// Create the array to return.</SourceLine>
    <SourceLine>Var limit As Integer = toIndex - 1</SourceLine>
    <SourceLine>For i As Integer = fromIndex To limit</SourceLine>
-   <SourceLine>result.AddRow(original(i))</SourceLine>
+   <SourceLine>result.Add(original(i))</SourceLine>
    <SourceLine>Next i</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return result</SourceLine>
@@ -352,7 +352,7 @@
    <SourceLine>#Pragma NilObjectChecking False</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>For Each f As PKFixture In array2</SourceLine>
-   <SourceLine>array1.AddRow(f)</SourceLine>
+   <SourceLine>array1.Add(f)</SourceLine>
    <SourceLine>Next f</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>

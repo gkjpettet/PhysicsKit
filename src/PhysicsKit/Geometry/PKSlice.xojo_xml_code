@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="336588799">
  <ObjName>PKSlice</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -649,13 +649,13 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Slice[")</SourceLine>
-   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Radius=")</SourceLine>
-   <SourceLine>s.AddRow(Self.SliceRadius.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Theta=")</SourceLine>
-   <SourceLine>s.AddRow(Self.GetTheta.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Slice[")</SourceLine>
+   <SourceLine>s.Add(Super.ToString)</SourceLine>
+   <SourceLine>s.Add("|Radius=")</SourceLine>
+   <SourceLine>s.Add(Self.SliceRadius.ToString)</SourceLine>
+   <SourceLine>s.Add("|Theta=")</SourceLine>
+   <SourceLine>s.Add(Self.GetTheta.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

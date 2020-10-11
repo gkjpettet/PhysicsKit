@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1490391039">
  <ObjName>PKEllipse</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -853,13 +853,13 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As String</SourceLine>
-   <SourceLine>s.AddRow("Ellipse[")</SourceLine>
-   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Width=")</SourceLine>
-   <SourceLine>s.AddRow(Self.GetWidth.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Height=")</SourceLine>
-   <SourceLine>s.AddRow(Self.GetHeight.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Ellipse[")</SourceLine>
+   <SourceLine>s.Add(Super.ToString)</SourceLine>
+   <SourceLine>s.Add("|Width=")</SourceLine>
+   <SourceLine>s.Add(Self.GetWidth.ToString)</SourceLine>
+   <SourceLine>s.Add("|Height=")</SourceLine>
+   <SourceLine>s.Add(Self.GetHeight.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

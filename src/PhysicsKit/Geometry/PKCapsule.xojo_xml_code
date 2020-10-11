@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1368289279">
  <ObjName>PKCapsule</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -563,13 +563,13 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() as String</SourceLine>
-   <SourceLine>s.AddRow("Capsule[")</SourceLine>
-   <SourceLine>s.AddRow(Super.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Width=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Length.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|CapRadius=")</SourceLine>
-   <SourceLine>s.AddRow(Self.CapRadius.ToString)</SourceLine>
-   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine>s.Add("Capsule[")</SourceLine>
+   <SourceLine>s.Add(Super.ToString)</SourceLine>
+   <SourceLine>s.Add("|Width=")</SourceLine>
+   <SourceLine>s.Add(Self.Length.ToString)</SourceLine>
+   <SourceLine>s.Add("|CapRadius=")</SourceLine>
+   <SourceLine>s.Add(Self.CapRadius.ToString)</SourceLine>
+   <SourceLine>s.Add("]")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

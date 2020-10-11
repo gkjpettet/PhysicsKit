@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="798779391">
  <ObjName>PKAbstractShape</ObjName>
  <ObjContainerID>124669951</ObjContainerID>
@@ -523,12 +523,12 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var s() As STring</SourceLine>
-   <SourceLine>s.AddRow("HashCode=")</SourceLine>
-   <SourceLine>s.AddRow(Self.HashCode.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Center=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Center.ToString)</SourceLine>
-   <SourceLine>s.AddRow("|Radius=")</SourceLine>
-   <SourceLine>s.AddRow(Self.Radius.ToString)</SourceLine>
+   <SourceLine>s.Add("HashCode=")</SourceLine>
+   <SourceLine>s.Add(Self.HashCode.ToString)</SourceLine>
+   <SourceLine>s.Add("|Center=")</SourceLine>
+   <SourceLine>s.Add(Self.Center.ToString)</SourceLine>
+   <SourceLine>s.Add("|Radius=")</SourceLine>
+   <SourceLine>s.Add(Self.Radius.ToString)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return String.FromArray(s)</SourceLine>
    <SourceLine></SourceLine>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="353060863">
  <ObjName>PKBayazit</ObjName>
  <ObjContainerID>1397843967</ObjContainerID>
@@ -45,7 +45,7 @@
    <SourceLine></SourceLine>
    <SourceLine>// Copy the points to the list.</SourceLine>
    <SourceLine>For Each p As PKVector2 In points</SourceLine>
-   <SourceLine>polygon.AddRow(p)</SourceLine>
+   <SourceLine>polygon.Add(p)</SourceLine>
    <SourceLine>Next p</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Create an array for the polygons to live.</SourceLine>
@@ -173,15 +173,15 @@
    <SourceLine>// Partition the polygon.</SourceLine>
    <SourceLine>If i &lt; upperIndex Then</SourceLine>
    <SourceLine>lower.AddAll(polygon.subList(i, upperIndex + 1))</SourceLine>
-   <SourceLine>lower.AddRow(s)</SourceLine>
-   <SourceLine>upper.AddRow(s)</SourceLine>
+   <SourceLine>lower.Add(s)</SourceLine>
+   <SourceLine>upper.Add(s)</SourceLine>
    <SourceLine>If lowerIndex &lt;&gt; 0 Then upper.AddAll(polygon.subList(lowerIndex, size))</SourceLine>
    <SourceLine>upper.addAll(polygon.subList(0, i + 1))</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>If i &lt;&gt; 0 Then lower.addAll(polygon.subList(i, size))</SourceLine>
    <SourceLine>lower.addAll(polygon.subList(0, upperIndex + 1))</SourceLine>
-   <SourceLine>lower.AddRow(s)</SourceLine>
-   <SourceLine>upper.AddRow(s)</SourceLine>
+   <SourceLine>lower.Add(s)</SourceLine>
+   <SourceLine>upper.Add(s)</SourceLine>
    <SourceLine>upper.addAll(polygon.subList(lowerIndex, i + 1))</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Else</SourceLine>
@@ -241,7 +241,7 @@
    <SourceLine>Raise New InvalidArgumentException(PKMessages.GEOMETRY_DECOMPOSE_CROSSING_EDGES)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>polygons.AddRow(PKGeometry.CreatePolygon(polygon))</SourceLine>
+   <SourceLine>polygons.Add(PKGeometry.CreatePolygon(polygon))</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
