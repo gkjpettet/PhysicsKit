@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2020r2" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1064728575">
+ <ObjName>PKDynamicAABBTreeNode</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Interfaces>FKStringable</Interfaces>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1192812543</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Default constructor.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.AABB = New PKAABB(0,0,0,0)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsLeaf</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if this node is a leaf node.</CodeDescription>
+  <PartID>374065151</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsLeaf() As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if this node is a leaf node.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Self.Left = Nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ToString</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1173592063</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Public Function ToString() As String</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' -Note: Part of the FKStringable interface.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var s() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s.AddRow("DynamicAABBTreeNode[AABB=")</SourceLine>
+   <SourceLine>s.AddRow(Self.AABB.ToString)</SourceLine>
+   <SourceLine>s.AddRow("|Height=")</SourceLine>
+   <SourceLine>s.AddRow(Self.Height.ToString)</SourceLine>
+   <SourceLine>s.AddRow("]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(s)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>About</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1657266175</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>About</NoteLine>
+   <NoteLine>Represents a basic node in a dynamic AABB tree.</NoteLine>
+   <NoteLine>The AABB of the node should be the union of all the AABBs below this node.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine></NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>Left</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The left child.</CodeDescription>
+  <PartID>408363007</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Left As PKDynamicAABBTreeNode</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Left As PKDynamicAABBTreeNode</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Right</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The right node.</CodeDescription>
+  <PartID>1649661951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Right As PKDynamicAABBTreeNode</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Right As PKDynamicAABBTreeNode</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Parent</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The parent node.</CodeDescription>
+  <PartID>596578303</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Parent As PKDynamicAABBTreeNode</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Parent As PKDynamicAABBTreeNode</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Height</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The height of this subtree.</CodeDescription>
+  <PartID>1456603135</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Height As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Height As Integer</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>AABB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The AABB containing all children.</CodeDescription>
+  <PartID>273993727</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>AABB As PKAABB</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>AABB As PKAABB</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AABB</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

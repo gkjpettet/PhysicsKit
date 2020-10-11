@@ -10,10 +10,10 @@
 		- [x] BroadphaseItem.java
 		- [x] BroadphasePair.java
 		- [ ] BruteForceBroadphase.java
-		- [ ] DefaultBroadphaseFilter.java
+		- [DEP] DefaultBroadphaseFilter.java
 		- [ ] DynamicAABBTree.java
 		- [ ] DynamicAABBTreeLeaf.java
-		- [ ] DynamicAABBTreeNode.java
+		- [x] DynamicAABBTreeNode.java
 		- [ ] LazyAABBTree.java
 		- [ ] LazyAABBTreeLeaf.java
 		- [ ] LazyAABBTreeNode.java
