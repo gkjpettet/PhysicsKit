@@ -425,8 +425,11 @@
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the unneeded face.</SourceLine>
-   <SourceLine>#Pragma Warning "Is this really deprecated?"</SourceLine>
-   <SourceLine>Call Self.Faces.Remove(edge.Face)</SourceLine>
+   <SourceLine>'Call Self.Faces.RemoveFace(edge.Face)</SourceLine>
+   <SourceLine>Var faceIndex As Integer = Self.Faces.IndexOf(edge.Face)</SourceLine>
+   <SourceLine>If faceIndex &lt;&gt; -1 Then</SourceLine>
+   <SourceLine>Self.Faces.RemoveAt(faceIndex)</SourceLine>
+   <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the edges.</SourceLine>
    <SourceLine>Self.Edges.RemoveAt(index) // The edge.</SourceLine>

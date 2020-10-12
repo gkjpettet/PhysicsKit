@@ -92,7 +92,7 @@ Protected Class TestGroup
 		  //
 		  
 		  Static props() As Xojo.Introspection.PropertyInfo
-		  If props.Ubound = -1 Then
+		  If props.LastIndex = -1 Then
 		    Var ti As Xojo.Introspection.TypeInfo
 		    ti = Xojo.Introspection.GetType(Self)
 		    While ti.BaseType IsA Object And Not (ti Is ti.BaseType)
@@ -135,8 +135,8 @@ Protected Class TestGroup
 		        Var toArr() As Object = prop.Value(Self)
 		        Var fromArr() As Object = fromValue
 		        
-		        For i As Integer = 0 To fromArr.Ubound
-		          toArr.Append(fromArr(i))
+		        For i As Integer = 0 To fromArr.LastIndex
+		          toArr.Add(fromArr(i))
 		        Next i
 		      Else
 		        prop.Value(Self) = fromValue
@@ -184,10 +184,10 @@ Protected Class TestGroup
 		  // Get the unique set of methods
 		  //
 		  Var methodsDict As New Xojo.Core.Dictionary
-		  For i As Integer = 0 To methods.Ubound
+		  For i As Integer = 0 To methods.LastIndex
 		    Var m As Xojo.Introspection.MethodInfo = methods(i)
 		    If m.Name.Length > kTestSuffix.Length And m.Name.Right(kTestSuffix.Length) = kTestSuffix And _
-		      m.Parameters.Ubound = -1 Then
+		      m.Parameters.LastIndex = -1 Then
 		      methodsDict.Value(m.Name) = m // Will replace overridden methods
 		    End If
 		  Next 
@@ -200,7 +200,7 @@ Protected Class TestGroup
 		    tr.MethodInfo = m
 		    tr.Result = TestResult.NotImplemented
 		    
-		    mResults.Append(tr)
+		    mResults.Add(tr)
 		  Next
 		End Sub
 	#tag EndMethod
@@ -217,7 +217,7 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h1
 		Protected Function GetTestTimer(key As Text = "") As Double
-		  Var endTime As Double = Microseconds
+		  Var endTime As Double = System.Microseconds
 		  Var startTime As Double = TestTimers.Value(key)
 		  Var duration As Double = endTime - startTime
 		  
@@ -273,7 +273,7 @@ Protected Class TestGroup
 
 	#tag Method, Flags = &h21
 		Private Sub ResetTestDuration()
-		  TestDuration = Microseconds
+		  TestDuration = System.Microseconds
 		End Sub
 	#tag EndMethod
 
@@ -291,7 +291,7 @@ Protected Class TestGroup
 		    Var myInfo As Xojo.Introspection.TypeInfo = Xojo.Introspection.GetType(Self)
 		    Var constructors() As Xojo.Introspection.ConstructorInfo = myInfo.Constructors
 		    For Each c As Xojo.Introspection.ConstructorInfo In constructors
-		      If c.Parameters.Ubound = 0 Then
+		      If c.Parameters.LastIndex = 0 Then
 		        UseConstructor = c
 		        Exit For c
 		      End If
@@ -299,7 +299,7 @@ Protected Class TestGroup
 		  End If
 		  
 		  Var constructorParams() As Auto
-		  constructorParams.Append Self
+		  constructorParams.Add Self
 		  
 		  If CurrentClone IsA Object Then
 		    CalculateTestDuration
@@ -308,7 +308,7 @@ Protected Class TestGroup
 		    End If
 		  End If
 		  
-		  If CurrentResultIndex <= mResults.Ubound Then
+		  If CurrentResultIndex <= mResults.LastIndex Then
 		    RunTestsTimer.Period = kTimerPeriod
 		    CurrentClone = Nil // Make sure TearDown happens
 		    
@@ -427,7 +427,7 @@ Protected Class TestGroup
 		    TestTimers = New Xojo.Core.Dictionary
 		  End If
 		  
-		  TestTimers.Value(key) = Microseconds
+		  TestTimers.Value(key) = System.Microseconds
 		  
 		End Sub
 	#tag EndMethod
@@ -675,7 +675,7 @@ Protected Class TestGroup
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mResults.Ubound + 1
+			  Return mResults.LastIndex + 1
 			End Get
 		#tag EndGetter
 		TestCount As Integer

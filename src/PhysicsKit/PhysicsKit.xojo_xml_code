@@ -194,79 +194,6 @@
   <ItemName>Remove</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Removes the specified face from this array of PKDoubleEdgeListFaces (if present). Returns True if successful or False if not present in the array.</CodeDescription>
-  <PartID>675332095</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function Remove(Extends delf() As PKDoubleEdgeListFace, face As PKDoubleEdgeListFace) As Boolean</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine>' Removes the specified face from this array of PKDoubleEdgeListFaces (if present). Returns True if</SourceLine>
-   <SourceLine>' successful or False if not present in the array.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter Extends delf(): The array to remove from.</SourceLine>
-   <SourceLine>' - Parameter face: The face to remove.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Returns: True if removed or False if not present.</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Var index As Integer = delf.IndexOf(face)</SourceLine>
-   <SourceLine>If index = -1 Then</SourceLine>
-   <SourceLine>// Not in the array.</SourceLine>
-   <SourceLine>Return False</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>delf.RemoveAt(index)</SourceLine>
-   <SourceLine>Return True</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>Extends delf() As PKDoubleEdgeListFace, face As PKDoubleEdgeListFace</ItemParams>
-  <ItemResult>Boolean</ItemResult>
- </Method>
- <Method>
-  <ItemName>Remove</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns True if successful.</CodeDescription>
-  <PartID>1774757887</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function Remove(Extends fixtures() As PKFixture, fixture As PKFixture) As Boolean</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine>' Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns </SourceLine>
-   <SourceLine>' True if successful.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter Extends fixtures(): The array of fixtures to remove from.</SourceLine>
-   <SourceLine>' - Parameter fixture: The fixture to remove.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Returns: True if the fixture was found and removed, False otherwise.</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Var index As Integer = fixtures.IndexOf(fixture)</SourceLine>
-   <SourceLine>If index &lt;&gt; -1 Then</SourceLine>
-   <SourceLine>fixtures.RemoveAt(index)</SourceLine>
-   <SourceLine>Return True</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>Return False</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>Extends fixtures() As PKFixture, fixture As PKFixture</ItemParams>
-  <ItemResult>Boolean</ItemResult>
- </Method>
- <Method>
-  <ItemName>Remove</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
   <PartID>1908248575</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
@@ -363,6 +290,42 @@
   <IsShared>0</IsShared>
   <ItemParams>Extends array1() As PKFixture, array2() As PKFixture</ItemParams>
   <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Remove</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns True if successful.</CodeDescription>
+  <PartID>802498559</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Remove(Extends fixtures() As PKFixture, fixture As PKFixture) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Removes the first occurrence of the passed PKFixture from the an array of PKFixtures and returns </SourceLine>
+   <SourceLine>' True if successful.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter Extends fixtures(): The array of fixtures to remove from.</SourceLine>
+   <SourceLine>' - Parameter fixture: The fixture to remove.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Returns: True if the fixture was found and removed, False otherwise.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var index As Integer = fixtures.IndexOf(fixture)</SourceLine>
+   <SourceLine>If index &lt;&gt; -1 Then</SourceLine>
+   <SourceLine>fixtures.RemoveAt(index)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends fixtures() As PKFixture, fixture As PKFixture</ItemParams>
+  <ItemResult>Boolean</ItemResult>
  </Method>
  <Note>
   <ItemName>MassTypes Enumeration</ItemName>
