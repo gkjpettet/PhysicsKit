@@ -134,7 +134,7 @@
    <SourceLine>If result.Count &lt; Self.Size Then</SourceLine>
    <SourceLine>result.ResizeTo(-1)</SourceLine>
    <SourceLine>For Each v As Variant In DataArray</SourceLine>
-   <SourceLine>result.Append(v)</SourceLine>
+   <SourceLine>result.Add(v)</SourceLine>
    <SourceLine>Next v</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>Var i As Integer = 0</SourceLine>

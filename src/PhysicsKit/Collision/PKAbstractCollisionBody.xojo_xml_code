@@ -248,7 +248,7 @@
    <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
    <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
    <SourceLine>If convex.Contains(point, Self.Transform) Then</SourceLine>
-   <SourceLine>Self.Fixtures.Remove(i)</SourceLine>
+   <SourceLine>Self.Fixtures.RemoveAt(i)</SourceLine>
    <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
    <SourceLine>Return fixture</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -283,8 +283,8 @@
    <SourceLine>Var fixture As PKFixture = Self.Fixtures(i)</SourceLine>
    <SourceLine>Var convex As PKConvex = fixture.GetShape</SourceLine>
    <SourceLine>If convex.Contains(point, Self.Transform) Then</SourceLine>
-   <SourceLine>// We are going to remove this fixture. Cache it first.</SourceLine>
-   <SourceLine>cache.AddRowAt(0, fixture)</SourceLine>
+   <SourceLine>// We're going to remove this fixture. Cache it first.</SourceLine>
+   <SourceLine>cache.AddAt(0, fixture)</SourceLine>
    <SourceLine>Self.Fixtures.RemoveAt(i)</SourceLine>
    <SourceLine>If FixtureModificationHandler &lt;&gt; Nil Then FixtureModificationHandler.FixtureRemoved(fixture)</SourceLine>
    <SourceLine>End If</SourceLine>

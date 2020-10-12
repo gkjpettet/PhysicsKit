@@ -425,6 +425,7 @@
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the unneeded face.</SourceLine>
+   <SourceLine>#Pragma Warning "Is this really deprecated?"</SourceLine>
    <SourceLine>Call Self.Faces.Remove(edge.Face)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Remove the edges.</SourceLine>

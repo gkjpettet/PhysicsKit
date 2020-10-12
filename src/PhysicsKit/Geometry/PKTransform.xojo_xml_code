@@ -1283,8 +1283,8 @@
    <SourceLine>///</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Perform rotation by theta but leave x and y intact.</SourceLine>
-   <SourceLine>Var cos As Double = Xojo.Math.Cos(theta)</SourceLine>
-   <SourceLine>Var sin As Double = Xojo.Math.Sin(theta)</SourceLine>
+   <SourceLine>Var cos As Double = Cos(theta)</SourceLine>
+   <SourceLine>Var sin As Double = Sin(theta)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var cost As Double = PKInterval.Clamp(cos * Self.Cost - sin * Self.Sint, -1.0, 1.0)</SourceLine>
    <SourceLine>Var sint As Double = PKInterval.Clamp(sin * Self.Cost + cos * Self.Sint, -1.0, 1.0)</SourceLine>

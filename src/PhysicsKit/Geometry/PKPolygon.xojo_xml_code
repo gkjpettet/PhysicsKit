@@ -939,7 +939,7 @@
    <SourceLine>Var maxY As Double = p.Y</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Loop over the rest of the vertices.</SourceLine>
-   <SourceLine>Var size As Integer = Self.Vertices.Ubound</SourceLine>
+   <SourceLine>Var size As Integer = Self.Vertices.LastIndex</SourceLine>
    <SourceLine>For i As Integer = 1 To size</SourceLine>
    <SourceLine>// Get the next point p = transform.GetTransformed(Self.vertices(i))</SourceLine>
    <SourceLine>Var px As Double = transform.GetTransformedX(Self.Vertices(i))</SourceLine>

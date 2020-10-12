@@ -119,7 +119,7 @@
    <SourceLine>Exit</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>// Otherwise we need to remove the top point because it creates a concavity.</SourceLine>
-   <SourceLine>lower.Remove(lSize - 1)</SourceLine>
+   <SourceLine>lower.RemoveAt(lSize - 1)</SourceLine>
    <SourceLine>lSize = lsize - 1</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
@@ -157,7 +157,7 @@
    <SourceLine>Exit</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>// Otherwise we need to remove the top point because it creates a concavity.</SourceLine>
-   <SourceLine>upper.Remove(uSize - 1)</SourceLine>
+   <SourceLine>upper.RemoveAt(uSize - 1)</SourceLine>
    <SourceLine>uSize = uSize - 1</SourceLine>
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
@@ -168,10 +168,10 @@
    <SourceLine>Wend</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Check if the first element of the upper hull is the same as the last element of the lower hull.</SourceLine>
-   <SourceLine>If upper(0) = lower(lower.Count - 1) Then upper.Remove(0)</SourceLine>
+   <SourceLine>If upper(0) = lower(lower.Count - 1) Then upper.RemoveAt(0)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Likewise check the first element of the lower hull with the last element of the upper hull.</SourceLine>
-   <SourceLine>If lower(0) = upper(upper.Count - 1) Then lower.Remove(0)</SourceLine>
+   <SourceLine>If lower(0) = upper(upper.Count - 1) Then lower.RemoveAt(0)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Append all the upper hull points to the lower hull creating the complete convex hull.</SourceLine>
    <SourceLine>For Each v As PKVector2 In upper</SourceLine>
